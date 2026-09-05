@@ -94,6 +94,53 @@ const ALL_TABLES = ["pokemon", "stats", "evolutions", "movesets", "names", "loca
 // evolution extractor) so it never writes a meaningless `gender` field.
 const GENDER = { 1: "female", 2: "male" };
 const titleCase = s => s.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+// growth_rates.csv id -> the curve name stats.js stores, plus the Lv.100
+// total. Module-scope (not inside extract) so tools/one-offs that need the
+// same id->name mapping — data/experience.js's curve keys — reuse it.
+const GROWTH = {
+  "1": { curve: "Slow", points: 1250000 },
+  "2": { curve: "Medium Fast", points: 1000000 },
+  "3": { curve: "Fast", points: 800000 },
+  "4": { curve: "Medium Slow", points: 1059860 },
+  "5": { curve: "Erratic", points: 600000 },
+  "6": { curve: "Fluctuating", points: 1640000 },
+};
+// The 5 other-language name columns names.js has always used, in its own key
+// order. Reused for abilities.js / moves.js / types.js `names` sub-objects.
+const NAME_LANGS = [["ja", "1"], ["jaRomaji", "2"], ["fr", "5"], ["de", "6"], ["ko", "3"]];
+// rows = *_names.csv rows for one entity, already filtered to that entity.
+// A language with no row is OMITTED, not written as null — same
+// "absence means none" convention the rest of the schema uses. Matters:
+// move_names.csv/ability_names.csv carry no roomaji (language 2) rows at
+// all, so every one of those 800-odd entries would otherwise carry a
+// meaningless `jaRomaji: null`.
+function names5(rows) {
+  const out = {};
+  for (const [key, langId] of NAME_LANGS) {
+    const r = rows.find(x => x.local_language_id === langId);
+    if (r) out[key] = r.name;
+  }
+  return out;
+}
+// One pokedex per mainline region for pokemon_dex_numbers.csv. Several
+// regions have more than one (kanto + letsgo-kanto, original- vs
+// updated-johto/sinnoh/unova/alola, Galar/Paldea DLC dexes): prefer the
+// pokedex whose identifier is exactly the region name, else the "original-"
+// one — the same "prefer the base/earliest option" rule the evolution
+// row-selection uses. KALOS IS DELIBERATELY ABSENT: it has only the three
+// kalos-central/coastal/mountain sub-dexes (plus lumiose-city/hyperspace)
+// and no national-style parent, so merging them would be a guessed rule
+// (TODO.md #10). Add it here if a rule is ever agreed.
+function regionalPokedexes(csvs) {
+  const regionName = new Map(csvs.regions.map(r => [r.id, r.identifier]));
+  const byRegion = new Map();
+  for (const region of Object.keys(REGION_GEN)) {
+    const rows = csvs.pokedexes.filter(p => regionName.get(p.region_id) === region);
+    const pick = rows.find(p => p.identifier === region) || rows.find(p => p.identifier === "original-" + region);
+    if (pick) byRegion.set(region, pick.id);
+  }
+  return byRegion;
+}
 
 // ---- minimal CSV parser (handles quoted fields incl. embedded commas/newlines) ----
 function parseCSV(text) {
@@ -134,6 +181,8 @@ function loadAllCSVs() {
   return {
     pokemon: loadCSV("pokemon.csv"),
     species: loadCSV("pokemon_species.csv"),
+    habitats: loadCSV("pokemon_habitats.csv"),
+    dexNumbers: loadCSV("pokemon_dex_numbers.csv"),
     speciesNames: loadCSV("pokemon_species_names.csv"),
     flavorText: loadCSV("pokemon_species_flavor_text.csv"),
     forms: loadCSV("pokemon_forms.csv"),
@@ -146,6 +195,13 @@ function loadAllCSVs() {
     pMoves: loadCSV("pokemon_moves.csv"),
     moves: loadCSV("moves.csv"),
     moveNames: loadCSV("move_names.csv"),
+    moveTargets: loadCSV("move_targets.csv"),
+    moveMeta: loadCSV("move_meta.csv"),
+    moveMetaCategories: loadCSV("move_meta_categories.csv"),
+    moveMetaAilments: loadCSV("move_meta_ailments.csv"),
+    moveFlags: loadCSV("move_flags.csv"),
+    moveFlagMap: loadCSV("move_flag_map.csv"),
+    abilityNames: loadCSV("ability_names.csv"),
     versionGroups: loadCSV("version_groups.csv"),
     types: loadCSV("types.csv"),
     items: loadCSV("items.csv"),
@@ -162,6 +218,65 @@ function loadAllCSVs() {
 // The small subset --dry-run / target resolution needs.
 function loadParamCSVs() {
   return { species: loadCSV("pokemon_species.csv"), regions: loadCSV("regions.csv"), pokedexes: loadCSV("pokedexes.csv"), pokedexVersionGroups: loadCSV("pokedex_version_groups.csv"), versions: loadCSV("versions.csv") };
+}
+
+// Everything moves.js stores for one move, straight off the CSVs (0.2.5
+// added priority/target/effectChance/flags/meta/names to the original
+// type/category/power/accuracy/pp). One builder so the pipeline's "new
+// move" writer, --audit and any backfill can never drift apart.
+function moveDataBuilder(csvs) {
+  const typeById = new Map(csvs.types.map(x => [x.id, x]));
+  const targetById = new Map(csvs.moveTargets.map(x => [x.id, x]));
+  const metaByMove = new Map(csvs.moveMeta.map(x => [x.move_id, x]));
+  const metaCatById = new Map(csvs.moveMetaCategories.map(x => [x.id, x]));
+  const ailmentById = new Map(csvs.moveMetaAilments.map(x => [x.id, x]));
+  const flagById = new Map(csvs.moveFlags.map(x => [x.id, x]));
+  const flagsByMove = new Map();
+  for (const r of csvs.moveFlagMap) { if (!flagsByMove.has(r.move_id)) flagsByMove.set(r.move_id, []); flagsByMove.get(r.move_id).push(r.move_flag_id); }
+  const namesByMove = new Map();
+  for (const r of csvs.moveNames) { if (!namesByMove.has(r.move_id)) namesByMove.set(r.move_id, []); namesByMove.get(r.move_id).push(r); }
+  const DAMAGE_CLASS = { "1": "Status", "2": "Physical", "3": "Special" };
+  const num = v => (v === "" || v === undefined ? null : Number(v));
+  return function moveData(row, name) {
+    const meta = metaByMove.get(row.id);
+    let metaOut = null;
+    if (meta) {
+      metaOut = {};
+      const cat = metaCatById.get(meta.meta_category_id);
+      if (cat) metaOut.category = cat.identifier;
+      // ailment 0 = "none" and -1 = "unknown" both mean "inflicts nothing".
+      const ail = ailmentById.get(meta.meta_ailment_id);
+      if (ail && meta.meta_ailment_id !== "0" && meta.meta_ailment_id !== "-1") metaOut.ailment = ail.identifier;
+      // The numeric columns are omitted at their own no-op value: blank, or
+      // 0 = "not multi-hit / no drain / no healing / normal crit rate /
+      // never happens". A non-zero negative drain (recoil) is kept.
+      const opt = { minHits: meta.min_hits, maxHits: meta.max_hits, minTurns: meta.min_turns, maxTurns: meta.max_turns, drain: meta.drain, healing: meta.healing, critRate: meta.crit_rate, ailmentChance: meta.ailment_chance, flinchChance: meta.flinch_chance, statChance: meta.stat_chance };
+      for (const k of Object.keys(opt)) { const v = num(opt[k]); if (v !== null && v !== 0) metaOut[k] = v; }
+    }
+    return {
+      name,
+      type: titleCase(typeById.get(row.type_id).identifier),
+      category: DAMAGE_CLASS[row.damage_class_id] || "Status",
+      power: Number(row.power) || null, // CSV writes 0 (not blank) for some newer status moves
+      accuracy: Number(row.accuracy) || null,
+      pp: Number(row.pp),
+      priority: Number(row.priority),
+      // Raw move_targets.csv identifier ("user", "selected-pokemon"), same
+      // hyphenated-slug convention evolutions.js uses for item/type names.
+      target: (targetById.get(row.target_id) || {}).identifier || null,
+      effectChance: num(row.effect_chance),
+      flags: (flagsByMove.get(row.id) || []).map(fid => (flagById.get(fid) || {}).identifier).filter(Boolean),
+      meta: metaOut,
+      names: names5(namesByMove.get(row.id) || []),
+    };
+  };
+}
+// abilities.js's per-entry CSV data — just the 5-language names so far
+// (the description stays hand-authored).
+function abilityDataBuilder(csvs) {
+  const namesByAbility = new Map();
+  for (const r of csvs.abilityNames) { if (!namesByAbility.has(r.ability_id)) namesByAbility.set(r.ability_id, []); namesByAbility.get(r.ability_id).push(r); }
+  return (row, name) => ({ name, names: names5(namesByAbility.get(row.id) || []) });
 }
 
 // =========================================================================
@@ -290,14 +405,10 @@ function extract(t, csvs, current) {
   const moveNameById = new Map();
   for (const r of csvs.moveNames) if (r.local_language_id === "9") moveNameById.set(r.move_id, r.name);
 
-  const GROWTH = {
-    "1": { curve: "Slow", points: 1250000 },
-    "2": { curve: "Medium Fast", points: 1000000 },
-    "3": { curve: "Fast", points: 800000 },
-    "4": { curve: "Medium Slow", points: 1059860 },
-    "5": { curve: "Erratic", points: 600000 },
-    "6": { curve: "Fluctuating", points: 1640000 },
-  };
+  const habitatById = byId(csvs.habitats, "id");
+  // Regional dex numbers: pokedex_id -> the REGIONS key it belongs to.
+  const regionByPokedexId = new Map([...regionalPokedexes(csvs)].map(([r, pid]) => [pid, r]));
+  const dexNumsBySpecies = groupBy(csvs.dexNumbers, "species_id");
 
   const locNameById = new Map();
   for (const r of csvs.locationNames) if (r.local_language_id === "9" && !locNameById.has(r.location_id)) locNameById.set(r.location_id, r.name);
@@ -337,6 +448,14 @@ function extract(t, csvs, current) {
     for (const r of statsByPokemon.get(pokemonId) || []) out[statKeys[r.stat_id]] = Number(r.base_stat);
     return out;
   };
+  // EV yield, same six keys and same order as the base-stat object. Always
+  // fully populated (0 is real data here, not absence), so a missing row
+  // still reads as 0 rather than undefined.
+  const effortOf = pokemonId => {
+    const out = { hp: 0, attack: 0, defense: 0, spAttack: 0, spDefense: 0, speed: 0 };
+    for (const r of statsByPokemon.get(pokemonId) || []) if (statKeys[r.stat_id]) out[statKeys[r.stat_id]] = Number(r.effort);
+    return out;
+  };
 
   for (const id of t.ids) {
     const sid = String(id);
@@ -366,6 +485,25 @@ function extract(t, csvs, current) {
       isMythical: sp.is_mythical === "1",
       isBaby: sp.is_baby === "1",
       genderRate: Number(sp.gender_rate),
+      // Second species/pokemon-row batch (0.2.5, TODO.md #10). Booleans are
+      // written only when true; `habitat` is the resolved display name (many
+      // species have no habitat_id at all — Gen 4+ dropped the field);
+      // baseExperience comes off this species' default pokemon.csv row.
+      hasGenderDifferences: sp.has_gender_differences === "1",
+      habitat: habitatById.get(sp.habitat_id) ? titleCase(habitatById.get(sp.habitat_id).identifier) : null,
+      formsSwitchable: sp.forms_switchable === "1",
+      baseExperience: pk.base_experience ? Number(pk.base_experience) : null,
+      regionalDexNumbers: (() => {
+        const found = {};
+        for (const r of dexNumsBySpecies.get(sid) || []) {
+          const rg = regionByPokedexId.get(r.pokedex_id);
+          if (rg) found[rg] = Number(r.pokedex_number);
+        }
+        // REGIONS order, not pokemon_dex_numbers.csv row order.
+        const out = {};
+        for (const rg of Object.keys(REGION_GEN)) if (found[rg] !== undefined) out[rg] = found[rg];
+        return out;
+      })(),
     };
 
     // raw flavor text (latest version) kept only as an authoring aid, NOT written verbatim
@@ -374,7 +512,7 @@ function extract(t, csvs, current) {
 
     const st = statsOf(sid);
     const growth = GROWTH[sp.growth_rate_id] || { curve: "?", points: null };
-    results.stats[id] = Object.assign(st, { captureRate: Number(sp.capture_rate), baseHappiness: Number(sp.base_happiness), expGrowth: { points: growth.points, curve: growth.curve } });
+    results.stats[id] = Object.assign(st, { captureRate: Number(sp.capture_rate), baseHappiness: Number(sp.base_happiness), expGrowth: { points: growth.points, curve: growth.curve }, hatchCounter: Number(sp.hatch_counter), effort: effortOf(sid) });
 
     // evolutions.js: species that evolve FROM this one
     const evolvesTo = [];
@@ -460,14 +598,24 @@ function extract(t, csvs, current) {
     const levelUp = [], tm = [], egg = [];
     const mvName = mid => moveNameById.get(mid) || `#${mid}`;
     for (const r of chosen) {
-      if (r.pokemon_move_method_id === "1") levelUp.push({ level: Number(r.level), move: mvName(r.move_id) });
-      else if (r.pokemon_move_method_id === "4") tm.push(mvName(r.move_id));
+      if (r.pokemon_move_method_id === "1") {
+        const e = { level: Number(r.level), move: mvName(r.move_id) };
+        // Legends: Arceus move-mastery level (0.2.5). Only ever set on
+        // level-up rows, and only in PLA-era version groups — absent
+        // everywhere else, which is expected, not a gap.
+        if (r.mastery !== "" && r.mastery !== undefined) e.mastery = Number(r.mastery);
+        levelUp.push(e);
+      } else if (r.pokemon_move_method_id === "4") tm.push(mvName(r.move_id));
       else if (r.pokemon_move_method_id === "2") egg.push(mvName(r.move_id));
     }
     levelUp.sort((a, b) => a.level - b.level);
+    // Tutor moves (method 3), from the SAME version group already chosen
+    // above — deliberately not part of the selection set, so adding them
+    // can't shift which game's levelUp/tm/egg lists get stored.
+    const tutor = bestVg ? (movesByPokemon.get(sid) || []).filter(r => r.version_group_id === bestVg && r.pokemon_move_method_id === "3").map(r => mvName(r.move_id)) : [];
     const dedupe = arr => [...new Set(arr)];
     results.movesets[id] = {
-      levelUp, tm: dedupe(tm), egg: dedupe(egg), max: [],
+      levelUp, tm: dedupe(tm), egg: dedupe(egg), tutor: dedupe(tutor), max: [],
       _sourceGeneration: bestVg ? vgById.get(bestVg).identifier : null,
     };
     if (bestVg && vgById.get(bestVg).generation_id !== "9") {
@@ -530,6 +678,7 @@ function extract(t, csvs, current) {
     for (const x of ms.levelUp) neededMoves.add(x.move);
     for (const x of ms.tm) neededMoves.add(x);
     for (const x of ms.egg) neededMoves.add(x);
+    for (const x of ms.tutor) neededMoves.add(x);
   }
   const missingAbilities = [...neededAbilities].filter(a => !current.abilities[a]);
   const missingMoves = [...neededMoves].filter(m => !current.moves[m]);
@@ -537,19 +686,16 @@ function extract(t, csvs, current) {
   const identifierToAbilityRow = new Map(csvs.abilities.map(a => [titleCase(a.identifier), a]));
   const identifierToMoveRow = new Map();
   for (const m of csvs.moves) { const nm = moveNameById.get(m.id); if (nm) identifierToMoveRow.set(nm, m); }
-  const DAMAGE_CLASS = { "1": "Status", "2": "Physical", "3": "Special" };
-  results.missingAbilities = missingAbilities.map(a => ({ name: a, csvId: identifierToAbilityRow.get(a) ? identifierToAbilityRow.get(a).id : null }));
+  const moveData = moveDataBuilder(csvs);
+  const abilityData = abilityDataBuilder(csvs);
+  results.missingAbilities = missingAbilities.map(a => {
+    const row = identifierToAbilityRow.get(a);
+    return Object.assign({ name: a, csvId: row ? row.id : null }, row ? abilityData(row, a) : { names: names5([]) });
+  });
   results.missingMoves = missingMoves.map(name => {
     const row = identifierToMoveRow.get(name);
     if (!row) return { name, found: false };
-    return {
-      name, found: true,
-      type: typeName(row.type_id),
-      category: DAMAGE_CLASS[row.damage_class_id] || "Status",
-      power: Number(row.power) || null, // CSV writes 0 (not blank) for some newer status moves
-      accuracy: Number(row.accuracy) || null,
-      pp: Number(row.pp),
-    };
+    return Object.assign({ found: true }, moveData(row, name));
   });
   return results;
 }
@@ -640,6 +786,28 @@ function escD(s) { return String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 function statsText(s) {
   return `{ hp: ${s.hp}, attack: ${s.attack}, defense: ${s.defense}, spAttack: ${s.spAttack}, spDefense: ${s.spDefense}, speed: ${s.speed}`;
 }
+function namesText(n) {
+  return `{ ${NAME_LANGS.filter(([k]) => n[k] !== null && n[k] !== undefined).map(([k]) => `${k}: "${escD(n[k])}"`).join(", ")} }`;
+}
+// One moves.js / abilities.js entry line, WITHOUT the trailing comma (the
+// callers add it). Shared by the pipeline's new-entry writers and the 0.2.5
+// backfill so every entry in those two tables has an identical field order.
+function moveEntryText(mv, description) {
+  const parts = [
+    `type: "${escD(mv.type)}"`, `category: "${escD(mv.category)}"`,
+    `power: ${mv.power === null ? "null" : mv.power}`, `accuracy: ${mv.accuracy === null ? "null" : mv.accuracy}`,
+    `pp: ${mv.pp}`, `description: "${escD(description)}"`,
+    `priority: ${mv.priority}`, `target: "${escD(mv.target)}"`,
+  ];
+  if (mv.effectChance !== null && mv.effectChance !== undefined) parts.push(`effectChance: ${mv.effectChance}`);
+  if (mv.flags && mv.flags.length) parts.push(`flags: [${mv.flags.map(f => `"${f}"`).join(", ")}]`);
+  if (mv.meta) parts.push(`meta: { ${Object.keys(mv.meta).map(k => `${k}: ${typeof mv.meta[k] === "string" ? `"${escD(mv.meta[k])}"` : mv.meta[k]}`).join(", ")} }`);
+  parts.push(`names: ${namesText(mv.names)}`);
+  return `  "${escD(mv.name)}": { ${parts.join(", ")} }`;
+}
+function abilityEntryText(ab, description) {
+  return `  "${escD(ab.name)}": { description: "${escD(description)}", names: ${namesText(ab.names)} }`;
+}
 function evoStepText(s) {
   const parts = [`id: ${s.id}`, `method: "${s.method}"`];
   if (s.level !== undefined) parts.push(`level: ${s.level}`);
@@ -678,12 +846,12 @@ function assemble(results, descriptions, tables, strict, current) {
   const unresolvedAbilities = new Set(results.missingAbilities.filter(a => !d.abilities[a.name]).map(a => a.name));
   const passLabel = results.slug[0].toUpperCase() + results.slug.slice(1);
   if (addableMoves.length) {
-    const lines = addableMoves.map(mv => `  "${escD(mv.name)}": { type: "${escD(mv.type)}", category: "${escD(mv.category)}", power: ${mv.power === null ? "null" : mv.power}, accuracy: ${mv.accuracy === null ? "null" : mv.accuracy}, pp: ${mv.pp}, description: "${escD(d.moves[mv.name])}" },`);
+    const lines = addableMoves.map(mv => moveEntryText(mv, d.moves[mv.name]) + ",");
     const block = `\n  // Moves added during the ${passLabel} CSV-pipeline pass.\n${lines.join("\n")}\n};`;
     fs.writeFileSync(path.join(DATA_DIR, "moves.js"), fs.readFileSync(path.join(DATA_DIR, "moves.js"), "utf8").replace(/\n\};\s*$/, block + "\n"));
   }
   if (addableAbilities.length) {
-    const lines = addableAbilities.map(ab => `  "${escD(ab.name)}": { description: "${escD(d.abilities[ab.name])}" },`);
+    const lines = addableAbilities.map(ab => abilityEntryText(ab, d.abilities[ab.name]) + ",");
     const block = `\n  // Abilities added during the ${passLabel} CSV-pipeline pass.\n${lines.join("\n")}\n};`;
     fs.writeFileSync(path.join(DATA_DIR, "abilities.js"), fs.readFileSync(path.join(DATA_DIR, "abilities.js"), "utf8").replace(/\n\};\s*$/, block + "\n"));
   }
@@ -706,7 +874,17 @@ function assemble(results, descriptions, tables, strict, current) {
       const where = existing && existing.hisuiOnly ? "hisuiOnly: true" : `region: '${pk.region}'`;
       const hidden = pk.hiddenAbility ? `, hiddenAbility: '${esc(pk.hiddenAbility)}'` : "";
       const flags = (pk.isLegendary ? ", isLegendary: true" : "") + (pk.isMythical ? ", isMythical: true" : "") + (pk.isBaby ? ", isBaby: true" : "");
-      entries.push({ id, text: `  { id: ${id}, name: '${esc(name)}', ${where}, types: [${pk.types.map(t => `'${esc(t)}'`).join(", ")}], category: '${esc(pk.category)}', height: ${pk.height}, weight: ${pk.weight}${flags}, genderRate: ${pk.genderRate}, abilities: [${pk.abilities.map(a => `'${esc(a)}'`).join(", ")}]${hidden}, description: '${esc(desc)}' }` });
+      // hasFemaleSprite is hand-derived from the bundled sprite folder, not
+      // CSV-sourced (SCOPE.md §2) — carried over from the existing entry so
+      // a --refresh --tables pokemon can't silently drop it.
+      const femaleSprite = existing && existing.hasFemaleSprite ? ", hasFemaleSprite: true" : "";
+      const rdnKeys = Object.keys(pk.regionalDexNumbers || {});
+      const extra = (pk.hasGenderDifferences ? ", hasGenderDifferences: true" : "")
+        + (pk.habitat ? `, habitat: '${esc(pk.habitat)}'` : "")
+        + (pk.formsSwitchable ? ", formsSwitchable: true" : "")
+        + (pk.baseExperience !== null && pk.baseExperience !== undefined ? `, baseExperience: ${pk.baseExperience}` : "")
+        + (rdnKeys.length ? `, regionalDexNumbers: { ${rdnKeys.map(r => `${r}: ${pk.regionalDexNumbers[r]}`).join(", ")} }` : "");
+      entries.push({ id, text: `  { id: ${id}, name: '${esc(name)}', ${where}, types: [${pk.types.map(t => `'${esc(t)}'`).join(", ")}], category: '${esc(pk.category)}', height: ${pk.height}, weight: ${pk.weight}${flags}, genderRate: ${pk.genderRate}${femaleSprite}, abilities: [${pk.abilities.map(a => `'${esc(a)}'`).join(", ")}]${hidden}, description: '${esc(desc)}'${extra} }` });
     }
     upsertEntries("pokemon.js", entries);
   }
@@ -714,7 +892,8 @@ function assemble(results, descriptions, tables, strict, current) {
   // ---- stats.js ----
   if (want("stats")) upsertEntries("stats.js", ids.map(id => {
     const s = results.stats[id];
-    return { id, text: `  ${id}: ${statsText(s)}, captureRate: ${s.captureRate}, baseHappiness: ${s.baseHappiness}, expGrowth: { points: ${s.expGrowth.points}, curve: "${s.expGrowth.curve}" } }` };
+    const e = s.effort;
+    return { id, text: `  ${id}: ${statsText(s)}, captureRate: ${s.captureRate}, baseHappiness: ${s.baseHappiness}, expGrowth: { points: ${s.expGrowth.points}, curve: "${s.expGrowth.curve}" }, hatchCounter: ${s.hatchCounter}, effort: { hp: ${e.hp}, attack: ${e.attack}, defense: ${e.defense}, spAttack: ${e.spAttack}, spDefense: ${e.spDefense}, speed: ${e.speed} } }` };
   }));
 
   // ---- evolutions.js ----
@@ -725,12 +904,13 @@ function assemble(results, descriptions, tables, strict, current) {
     const entries = [];
     for (const id of ids) {
       const ms = results.movesets[id];
-      const bad = [...ms.levelUp.map(x => x.move), ...ms.tm, ...ms.egg].find(m => unresolvedMoves.has(m));
+      const bad = [...ms.levelUp.map(x => x.move), ...ms.tm, ...ms.egg, ...ms.tutor].find(m => unresolvedMoves.has(m));
       if (bad) { skip(`movesets ${id}: move "${bad}" has no description yet`); continue; }
-      const lu = ms.levelUp.map(x => `{level:${x.level},move:"${escD(x.move)}"}`).join(",");
+      const lu = ms.levelUp.map(x => `{level:${x.level},move:"${escD(x.move)}"${x.mastery !== undefined ? `,mastery:${x.mastery}` : ""}}`).join(",");
       const tm = ms.tm.map(x => `"${escD(x)}"`).join(",");
       const egg = ms.egg.map(x => `"${escD(x)}"`).join(",");
-      entries.push({ id, text: `  ${id}: {\n    levelUp: [${lu}],\n    tm: [${tm}],\n    egg: [${egg}],\n    max: []\n  }` });
+      const tutor = ms.tutor.map(x => `"${escD(x)}"`).join(",");
+      entries.push({ id, text: `  ${id}: {\n    levelUp: [${lu}],\n    tm: [${tm}],\n    egg: [${egg}],\n    tutor: [${tutor}],\n    max: []\n  }` });
     }
     upsertEntries("movesets.js", entries);
   }
@@ -815,7 +995,7 @@ function audit(ids, csvs, current, verbose) {
     console.log(`${label} ${field}: ${missing.length} missing, ${extra.length} extra (of ${exp.length} expected)` + (verbose ? `\n    missing: ${missing.join(", ") || "-"}\n    extra: ${extra.join(", ") || "-"}` : ""));
   };
   const EVO_KEYS = ["method", "level", "item", "timeOfDay", "moveType", "move", "gender"];
-  const STAT_KEYS = ["hp", "attack", "defense", "spAttack", "spDefense", "speed", "captureRate", "baseHappiness"];
+  const STAT_KEYS = ["hp", "attack", "defense", "spAttack", "spDefense", "speed", "captureRate", "baseHappiness", "hatchCounter"];
 
   for (const id of ids) {
     const L = tag(id), p = current.pokemonById.get(id), ep = r.pokemon[id];
@@ -825,14 +1005,18 @@ function audit(ids, csvs, current, verbose) {
     for (const k of ["types", "category", "height", "weight", "abilities"]) check(L, "pokemon." + k, ep[k], p[k]);
     check(L, "pokemon.hiddenAbility", ep.hiddenAbility || undefined, p.hiddenAbility);
     // Written only when true, so a false expectation must read as absent.
-    for (const k of ["isLegendary", "isMythical", "isBaby"]) check(L, "pokemon." + k, ep[k] || undefined, p[k]);
+    for (const k of ["isLegendary", "isMythical", "isBaby", "hasGenderDifferences", "formsSwitchable"]) check(L, "pokemon." + k, ep[k] || undefined, p[k]);
     check(L, "pokemon.genderRate", ep.genderRate, p.genderRate);
+    check(L, "pokemon.habitat", ep.habitat || undefined, p.habitat);
+    check(L, "pokemon.baseExperience", ep.baseExperience === null ? undefined : ep.baseExperience, p.baseExperience);
+    check(L, "pokemon.regionalDexNumbers", Object.keys(ep.regionalDexNumbers).length ? ep.regionalDexNumbers : undefined, p.regionalDexNumbers);
 
     const s = current.tables.stats[id], es = r.stats[id];
     if (!s) report(L, "stats", "entry", undefined);
     else {
       for (const k of STAT_KEYS) check(L, "stats." + k, es[k], s[k]);
       check(L, "stats.expGrowth", es.expGrowth, s.expGrowth);
+      check(L, "stats.effort", es.effort, s.effort);
     }
 
     const nm = current.tables.names[id], en = r.names[id];
@@ -854,6 +1038,7 @@ function audit(ids, csvs, current, verbose) {
       checkList(L, "movesets.levelUp", ems.levelUp.map(lv), (ms.levelUp || []).map(lv));
       checkList(L, "movesets.tm", ems.tm, ms.tm || []);
       checkList(L, "movesets.egg", ems.egg, ms.egg || []);
+      checkList(L, "movesets.tutor", ems.tutor, ms.tutor || []);
       if ((ms.max || []).length) report(L, "movesets.max", [], ms.max);
     }
 
@@ -880,18 +1065,26 @@ function audit(ids, csvs, current, verbose) {
   }
 
   // moves.js / abilities.js: every key is a real PokeAPI name; move stats match
-  const abilityNames = new Set(csvs.abilities.map(a => titleCase(a.identifier)));
-  for (const k of Object.keys(current.abilities)) if (!abilityNames.has(k)) report("-", `abilities.js "${k}"`, "a PokeAPI ability name", "unknown");
-  const typeById = new Map(csvs.types.map(x => [x.id, x]));
+  const abilityRowByName = new Map(csvs.abilities.map(a => [titleCase(a.identifier), a]));
+  const abilityData = abilityDataBuilder(csvs);
+  for (const [k, a] of Object.entries(current.abilities)) {
+    const row = abilityRowByName.get(k);
+    if (!row) { report("-", `abilities.js "${k}"`, "a PokeAPI ability name", "unknown"); continue; }
+    check(`- abilities.js "${k}"`, "names", abilityData(row, k).names, a.names);
+  }
   const moveById = new Map(csvs.moves.map(m => [m.id, m]));
   const moveRowByName = new Map();
   for (const x of csvs.moveNames) if (x.local_language_id === "9" && moveById.has(x.move_id)) moveRowByName.set(x.name, moveById.get(x.move_id));
-  const DAMAGE_CLASS = { "1": "Status", "2": "Physical", "3": "Special" };
+  const moveData = moveDataBuilder(csvs);
   for (const [k, m] of Object.entries(current.moves)) {
     const row = moveRowByName.get(k);
     if (!row) { report("-", `moves.js "${k}"`, "a PokeAPI move name", "unknown"); continue; }
-    const exp = { type: titleCase(typeById.get(row.type_id).identifier), category: DAMAGE_CLASS[row.damage_class_id] || "Status", power: Number(row.power) || null, accuracy: Number(row.accuracy) || null, pp: Number(row.pp) };
-    for (const f of Object.keys(exp)) check(`- moves.js "${k}"`, f, exp[f], m[f]);
+    const exp = moveData(row, k);
+    for (const f of ["type", "category", "power", "accuracy", "pp", "priority", "target", "names"]) check(`- moves.js "${k}"`, f, exp[f], m[f]);
+    // Optional keys: absent in the file when the CSV has nothing to say.
+    check(`- moves.js "${k}"`, "effectChance", exp.effectChance === null ? undefined : exp.effectChance, m.effectChance);
+    check(`- moves.js "${k}"`, "flags", exp.flags.length ? exp.flags : undefined, m.flags);
+    check(`- moves.js "${k}"`, "meta", exp.meta || undefined, m.meta);
   }
 
   console.log(n === 0 ? `AUDIT PASS: ${ids.length} id(s), ${Object.keys(current.moves).length} moves, ${Object.keys(current.abilities).length} abilities match the CSVs.` : `AUDIT: ${n} discrepancy(ies) across ${ids.length} id(s).`);
@@ -906,36 +1099,26 @@ function audit(ids, csvs, current, verbose) {
 // checked against the clone's real header so a stale row fails loudly.
 // Prune a row here when its field lands in the schema.
 const SCHEMA_GAPS = [
-  // is_legendary/is_mythical/is_baby, gender_rate and base_happiness landed
-  // in 0.2.1 (pokemon.js / stats.js) and were pruned from this list.
-  ["pokemon_species.csv", "has_gender_differences", "whether the sprite differs by gender (temp/home/female/ art exists, TODO.md #3)"],
-  ["pokemon_species.csv", "hatch_counter", "egg cycles"],
-  ["pokemon_species.csv", "color_id,shape_id,habitat_id", "Pokédex color / body shape / habitat (habitat is FRLG-only, null for Gen 4+); lookup names in pokemon_colors / pokemon_shapes / pokemon_habitats(.csv + *_names)"],
-  ["pokemon_species.csv", "forms_switchable", "whether formes can be switched outside battle"],
+  // Pruned as they landed: is_legendary/is_mythical/is_baby, gender_rate,
+  // base_happiness (0.2.1); has_gender_differences, habitat_id,
+  // forms_switchable, base_experience, effort, hatch_counter, mastery,
+  // move_meta.*, move_flags, ability_names, move_names, type_names,
+  // natures, experience (0.2.5).
+  ["pokemon_species.csv", "color_id,shape_id", "Pokédex color / body shape (lookup names in pokemon_colors / pokemon_shapes + their *_names). Deliberately out of scope — user decision 2026-09-05, not a \"later\"; habitat_id from the same row landed 0.2.5"],
   ["pokemon_species.csv", "order", "official ordering that places formes/regional variants next to their species (differs from national id)"],
-  ["pokemon.csv", "base_experience", "base exp yield on defeat"],
-  ["pokemon_stats.csv", "effort", "EV yield per stat"],
   ["pokemon_egg_groups.csv", "egg_group_id", "egg groups (breeding compatibility) — nothing in the schema covers breeding; names in egg_groups.csv / egg_group_prose.csv"],
   ["pokemon_items.csv", "item_id,rarity", "wild held items per version"],
-  ["pokemon_dex_numbers.csv", "pokedex_id,pokedex_number", "every regional dex number; only Hisui's is stored (data/hisui.js) — a Kanto/Johto/... regional numbering would come from here"],
-  ["pokemon_moves.csv", "pokemon_move_method_id", "only methods 1/2/4 (level-up/egg/machine) are stored; tutor (3) and the other methods are dropped"],
-  ["pokemon_moves.csv", "version_group_id", "only the newest usable version group is stored — no per-game learnset history"],
-  ["pokemon_moves.csv", "mastery", "Legends: Arceus move-mastery level"],
-  ["pokemon_evolution.csv", "location_id,minimum_beauty,relative_physical_stats,party_species_id,party_type_id,trade_species_id,needs_overworld_rain,turn_upside_down,minimum_move_count,minimum_steps,minimum_damage_taken", "evolution conditions the schema collapses to method \"other\" (TODO.md #7; known_move_id is represented as of 0.1.39, gender_id as of 0.2.2)"],
+  ["pokemon_dex_numbers.csv", "pokedex_id,pokedex_number", "KALOS ONLY as of 0.2.5: pokemon.js's regionalDexNumbers covers the 8 regions with an unambiguous base pokedex, but Kalos has just the 3 kalos-central/coastal/mountain sub-dexes and no national-style parent, so it is skipped rather than merged by a guessed rule (see regionalPokedexes())"],
+  ["pokemon_moves.csv", "pokemon_move_method_id", "methods 1/2/3/4 (level-up/egg/tutor/machine) are stored as of 0.2.5; the rest (form-change, stadium/XD specials, PLA \"train\", ...) are still dropped"],
+  ["pokemon_moves.csv", "version_group_id", "only the newest usable version group is stored — no per-game learnset history (deliberately deferred 2026-09-05: one list vs. a list keyed by game is an unsettled data-shape decision)"],
+  ["pokemon_evolution.csv", "location_id,minimum_beauty,party_species_id,party_type_id,trade_species_id,needs_overworld_rain,turn_upside_down,minimum_move_count,minimum_steps,minimum_damage_taken", "evolution conditions the schema collapses to method \"other\" (TODO.md #7; known_move_id is represented as of 0.1.39, gender_id as of 0.2.2, relative_physical_stats hand-authored). Only 4 in-range edges actually set any of these — Sliggoo->Goodra (rain), Stantler->Wyrdeer and Qwilfish->Overqwil (use a move N times), Basculin->Basculegion (recoil damage) — all left unlabelled pending a user call on wording"],
   ["pokemon_evolution.csv", "version_group_id,is_default", "per-version alternative evolution methods (one row is picked)"],
   ["evolution_chains.csv", "baby_trigger_item_id", "incense needed to breed the baby stage"],
   ["encounters.csv", "version_id,encounter_slot_id,min_level,max_level", "encounter method/rate/level range per version — locations.js keeps area names only"],
   ["pokemon_forms.csv", "is_battle_only,introduced_in_version_group_id", "battle-only formes and forme debut game — only Mega/Hisuian/recolor formes are represented at all (TODO.md #4)"],
-  ["moves.csv", "priority,target_id,effect_id,effect_chance,generation_id", "move priority, target, secondary-effect chance, debut generation"],
-  ["move_meta.csv", "meta_ailment_id,crit_rate,flinch_chance,drain,healing,min_hits,max_hits", "move mechanics beyond power/accuracy/pp"],
-  ["move_flags.csv", "identifier", "move flags (contact, sound, punch, ...), via move_flag_map.csv"],
+  ["moves.csv", "effect_id,generation_id", "the move's effect-text id (move_effect_prose.csv) and debut generation; priority/target_id/effect_chance landed 0.2.5"],
   ["abilities.csv", "generation_id", "ability debut generation"],
-  ["ability_names.csv", "name", "ability names in other languages (names.js covers species only)"],
-  ["move_names.csv", "name", "move names in other languages"],
-  ["type_names.csv", "name", "type names in other languages"],
   ["items.csv", "identifier,category_id,cost", "no ITEMS_DATA at all — sprites only (TODO.md #8)"],
-  ["natures.csv", "identifier,decreased_stat_id,increased_stat_id", "natures (calcStat() assumes neutral)"],
-  ["experience.csv", "growth_rate_id,level,experience", "exp needed per level per growth curve (stats.js stores only the Lv.100 total)"],
 ];
 function gaps() {
   let bad = 0;
@@ -1033,4 +1216,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { parseCSV, loadCSV, loadAllCSVs, currentData, resolveTargets, extract, upsertEntries, assemble, audit, gaps };
+module.exports = { parseCSV, loadCSV, loadAllCSVs, currentData, resolveTargets, extract, upsertEntries, assemble, audit, gaps, GROWTH, NAME_LANGS, names5, regionalPokedexes, moveDataBuilder, abilityDataBuilder, moveEntryText, abilityEntryText, namesText, escD };

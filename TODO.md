@@ -264,7 +264,9 @@ data, a Bag screen, tap-to-name on the evolution-arrow icons, etc.) would
 need: a data table (name → description/effect/sprite path), and wiring
 into whatever screen shows it — the detail screen's existing per-Pokémon
 fields don't have an obvious item slot yet, so scope that first. Not
-committed.
+committed. **Deferred to a future `overlord` pass** (2026-09-05), alongside
+#10's egg-groups and encounter-detail gaps — all three are bigger-than-
+pure-data features rather than field adds.
 
 ---
 
@@ -322,36 +324,48 @@ now reports 0 discrepancies.** Full original-baseline output:
 - ~~Farfetch'd apostrophe~~ — **resolved 0.1.37**: user chose the CSV's
   curly apostrophe (`Farfetch’d`) over the straight one.
 
-**Schema gaps** (`--gaps`, static `SCHEMA_GAPS` list, **28 groups** as of
-0.2.1 — was 29; full text in
-`temp/csv-audit-pipeline-2026-09-05/gaps_real_run.txt`, now stale by 1
-entry). Candidates, not commitments — the clearly Pokédex-core ones:
+**Schema gaps** (`--gaps`, static `SCHEMA_GAPS` list — **15 groups** as of
+0.2.5, was 28; full history in `HISTORY.md` 0.2.1/0.2.5). Most of the
+Pokédex-core candidates landed 0.2.5 as pure data (`SCOPE.md` §2 for the
+full field list): `is_legendary`/`is_mythical`/`is_baby`/`gender_rate`/
+`base_happiness` (0.2.1), then 0.2.5's batch — `has_gender_differences`,
+`hatch_counter`, `forms_switchable`, `base_experience`, `effort` (EV
+yield), `habitat_id` (as `habitat`, a resolved name), tutor moves +
+`mastery`, move mechanics (`moves.csv` priority/target/effect chance,
+`move_meta`, `move_flags`), other-language ability/move/type names,
+natures (new `data/natures.js`), and the per-level exp curve (new
+`data/experience.js`).
 
-- ~~`is_legendary`/`is_mythical`/`is_baby`~~ — **landed 0.2.1**: all 3 on
-  every `pokemon.js` entry (522/522), no UI wiring yet (pure data).
-  `gender_rate` **also landed 0.2.1** (as `genderRate`); its sibling
-  `has_gender_differences` remains a gap (the female sprite art in
-  `temp/home/female/` would pair with it, #3). ~~`base_happiness`~~ —
-  **landed 0.2.1** on `stats.js` as `baseHappiness`; `hatch_counter`
-  remains a gap. Still open: `color_id`/`shape_id`/`habitat_id`,
-  `forms_switchable`.
+**Still genuinely open:**
+
+- **`color_id`/`shape_id`** — user-decided 2026-09-05: **out of scope for
+  the project**, not "later." Don't re-propose unless a future task makes
+  them newly relevant.
+- ~~Regional dex numbers beyond Kalos~~ — **resolved 2026-09-05**: landed
+  0.2.5 for every other mainline region via a pokedex-variant tie-break in
+  `populate_region.js` (exact region-name identifier, else `original-`);
+  Kalos has only 3 parallel sub-dexes with no unambiguous single regional
+  pokedex under that rule, and the user chose to **leave it excluded**
+  rather than force a merge-rule call — not a gap needing further work.
+- **Per-game learnset history** (`pokemon_moves.csv` `version_group_id`) —
+  the tool still collapses every species to one "best" version group;
+  storing full per-game history is a real data-shape decision (one list vs.
+  one list per game) that hasn't been made, deliberately not guessed at
+  during 0.2.5.
+- ~~4 evolution edges with no obvious arrow label~~ — **resolved 0.2.6**:
+  Sliggoo→Goodra/Stantler→Wyrdeer/Qwilfish→Overqwil/Basculin→Basculegion
+  all got user-approved hand-authored `note`s via the existing
+  `evoDescriptorHtml()` mechanism (`SCOPE.md` §4, `HISTORY.md` 0.2.6) —
+  same hand-authored, refresh-fragile shape as Wurmple's.
 - **Egg groups** (`pokemon_egg_groups.csv`) — nothing in the schema covers
-  breeding at all.
-- `pokemon.csv` `base_experience`; `pokemon_stats.csv` `effort` (EV yield).
-- `pokemon_items.csv` wild held items; `pokemon_dex_numbers.csv` every
-  regional dex number (only Hisui's is stored).
-- `pokemon_moves.csv`: tutor moves (method 3) and per-game learnset
-  history are dropped; PLA `mastery` levels.
-- `pokemon_evolution.csv`: 2 of the 13 condition columns that used to
-  collapse to `"other"` now have real structured support —
-  `relative_physical_stats` and `gender_id`, both via #12's evolution-line
-  descriptor mechanism (0.2.1/0.2.2). The rest (#7's per-version
-  alternative methods, `evolution_chains.csv` `baby_trigger_item_id`/
-  incense, etc.) still collapse to `"other"`.
-- `encounters.csv`: method/rate/level range (only area names kept).
-- Move mechanics (`moves.csv` priority/target/effect chance, `move_meta`,
-  `move_flags`), ability/move/type names in other languages, natures,
-  `experience.csv` per-level exp table, and items (#8).
+  breeding at all. Deferred to a future `overlord` pass, paired with a
+  Facts-card UI addition (user-specified 2026-09-05) rather than shipped as
+  bare data.
+- **Encounter detail** (`encounters.csv` method/rate/level range, only area
+  names kept today) — deferred to a future `overlord` pass, likely paired
+  with a Found In UI upgrade.
+- **Items** (`pokemon_items.csv` wild held items + `#8`'s `ITEMS_DATA`) —
+  deferred to a future `overlord` pass; see #8.
 
 Prune a `SCHEMA_GAPS` row when its field lands.
 

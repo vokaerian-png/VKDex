@@ -98,6 +98,7 @@ for (const id of IDS) {
   for (const x of ms.levelUp || []) if (!MOVES[x.move]) fail(`movesets.js id ${id}: unknown move "${x.move}" (levelUp)`);
   for (const x of ms.tm || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (tm)`);
   for (const x of ms.egg || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (egg)`);
+  for (const x of ms.tutor || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (tutor)`);
   for (const x of ms.max || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (max)`);
 }
 

@@ -52,6 +52,8 @@ VKDex/
       altforms.js      (ALT_FORMS, keyed by base id — SCOPE.md §4's Alt Formes module)
       hisui.js         (HISUI_DEX_NUMBERS: id -> Hisui's own 001-242 number)
       orre.js          (ORRE_MEMBERS: id -> C/XD/C-XD game tag)
+      natures.js       (NATURES, 25 entries keyed by identifier — 0.2.5, data only)
+      experience.js    (EXPERIENCE_CURVES, 6 curves x 101 by level — 0.2.5, data only)
       sprites/         (local sprite files — SCOPE.md §2)
         pokemon/       (per-Pokemon sprites: normal/shiny/alt formes)
         items/         (item sprites)
@@ -60,7 +62,8 @@ VKDex/
     app/         (generated copy of ../src, refreshed by copy-app.js)
     dist/        (electron-packager output)
   tools/                                     <- Node data-pipeline scripts (SCOPE.md §2)
-  temp/                                      <- HANDOFF.md, handoff/, PokeAPI clone, <task-slug>/ scratch
+  temp/                                      <- HANDOFF.md, handoff/, PokeAPI clone, SCRAP.md,
+                                                  clean_temp.sh, <task-slug>/ scratch
 ```
 
 **Any edit to the app goes to `src/`, never the project root** (the app
@@ -73,6 +76,23 @@ throwaway check scripts, pre-edit backups — all under a folder named for
 the task, so a later cleanup can judge a whole folder at a glance.
 `HANDOFF.md`, `handoff/`, and `PokeAPI-master/` stay at `temp/` root —
 fixed infrastructure (§6b, the CSV pipeline), not task scratch.
+
+**`SCRAP.md`/`clean_temp.sh`** (`temp/` root, fixed infrastructure like the
+above — shipped 2026-09-05): a user-run cleanup script that deletes
+whatever `SCRAP.md` lists. **Whenever a task finishes with a `temp/` file
+or folder it generated or used** — a task-slug scratch folder, a one-off
+source file like a hand-supplied CSV/txt — architect checks whether it's
+now safe to delete (the same diligence used to populate the list
+originally: cross-check `HISTORY.md`/`TODO.md`/`PLAN.md` for a live
+citation to a specific path inside it before listing it) and appends it to
+`SCRAP.md` if so, noting why in one line. Don't list anything still cited
+as "kept for reference" elsewhere in the memory bank. The user reviews and
+runs the script on their own machine at their own discretion — architect
+never runs it or deletes the files itself (§4's `EPERM` restriction would
+block it anyway). **Every time `SCRAP.md` is opened for this check**, also
+confirm each already-listed entry still exists on disk — the user runs
+`clean_temp.sh` independently, so a prior entry may already be gone — and
+remove any that aren't, keeping the list matched to reality.
 
 **Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
 `.gitignore` excludes `electron-app/` and `temp/` wholesale — the Electron
@@ -136,7 +156,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.4.** Mirror on every bump, both together:
+**Current version: 0.2.6.** Mirror on every bump, both together:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`) and `electron-app/package.json`'s `"version"` (so
 the packaged `.exe`'s Windows file properties match).

@@ -38,7 +38,7 @@ centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
 and a Settings popup (§3).
 
-**Current version: 0.2.4** (`CLAUDE.md` §3 for the bump policy,
+**Current version: 0.2.6** (`CLAUDE.md` §3 for the bump policy,
 `HISTORY.md` for the changelog).
 
 ---
@@ -76,12 +76,30 @@ sourced from `pokemon_species.csv`. `stats.js` gained the same-pass
 `baseHappiness` alongside `captureRate`/`expGrowth`. No detail-screen fact
 row renders any of these yet — future work, `TODO.md` #10.
 **`hasFemaleSprite: true`** (0.2.3, UI-wired — §4's gender toggle) on 95
-entries — hand-derived from the sprite folder below, **not** CSV-sourced,
-so (like `evolutions.js`'s `statCompare`/`note`) a `--refresh --tables
-pokemon` would silently drop it; `--audit` doesn't flag it either. A
-future region pass populating one of the 7 already-sprited-but-unpopulated
-ids (521/592/593/668/678/876/916 — `TODO.md` #2) must add this field by
-hand.
+entries, hand-derived from the sprite folder below, **not** CSV-sourced —
+**no longer refresh-fragile** (fixed 0.2.5, the `pokemon.js` writer now
+carries it over on any `--refresh`). A future region pass populating one of
+the 7 already-sprited-but-unpopulated ids (521/592/593/668/678/876/916 —
+`TODO.md` #2) must still set it by hand the first time. 0.2.5's CSV-sourced
+`hasGenderDifferences` matches this 95-id set exactly (a cross-check, not a
+substitute — a future region's dimorphic ids may have no bundled art).
+**`evolutions.js`'s `statCompare`/`note` are the only fields left that a
+`--refresh` would silently drop.**
+
+**0.2.5 schema-gap batch** (data only, no UI wiring; `TODO.md` #10):
+`pokemon.js` +`habitat`/`formsSwitchable`/`baseExperience`/
+`regionalDexNumbers` (per mainline region, Kalos/Hisui excluded — see
+`TODO.md` #10); `stats.js` +`hatchCounter`/`effort` (EV yield, 6 keys);
+`movesets.js` +`tutor` (only Wormadam non-empty) and per-row `mastery` (384
+rows/54 species, all Legends: Arceus); `moves.js` +`priority`/`target`/
+`effectChance`/`flags`/a nested `meta` (hit/turn/drain/crit/ailment);
+`abilities.js`/`moves.js`/new `types.js` export `TYPE_NAMES` all +a `names`
+sub-object (same 5 languages as `data/names.js`, unwired). Two new pure
+lookup files: `data/natures.js` (`NATURES`, 25) and `data/experience.js`
+(`EXPERIENCE_CURVES`, 6×101 by level). `SCHEMA_GAPS` 28→15. Left open (all
+`TODO.md` #10): 4 evolution edges with no obvious arrow label (Sliggoo→
+Goodra/Stantler→Wyrdeer/Qwilfish→Overqwil/Basculin→Basculegion), Kalos
+regional numbers, per-game learnset history.
 
 **Population status:** `abilities.js` (179) and `moves.js` (622) hold
 Gen-9-era values with original paraphrase descriptions. The per-Pokémon
@@ -407,10 +425,13 @@ sprite subfolder never needs a `copy-app.js` change.
       0.2.2, `gender` also on 3 species whose branches were **already**
       label-distinct (Combee's single gender-gated edge, Kirlia→Gallade,
       Snorunt→Froslass) purely to surface an otherwise-invisible
-      requirement. `statCompare`/hand-`note` fields are hand-authored and
-      not tool-extracted — a `--refresh --tables evolutions` drops them;
-      `gender` **is** tool-extracted/audited (`populate_region.js`), so it
-      survives a refresh.
+      requirement. 0.2.6 added 4 more hand-authored `note`s from 0.2.5's
+      evolution-condition CSV scan: Qwilfish→Overqwil (211), Stantler→
+      Wyrdeer (234), Basculin→Basculegion (550), Goomy→Sliggoo→Goodra
+      (**note on Goomy, 704** — `note` reads only off the chain root, so
+      Sliggoo itself can't carry it). `statCompare`/`note` are hand-
+      authored, dropped by a `--refresh --tables evolutions`; `gender` is
+      tool-extracted/audited, so it survives one.
     - **Gendered parent sprite** (0.2.3): a row's parent-stage bubble
       (`evoStageHtml`) shows that edge's required gender's bundled sprite
       instead of the default one, if the species has one (`hasFemaleSprite`,

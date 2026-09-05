@@ -29,3 +29,29 @@ var TYPE_CHART = {
   Steel:    { Fire: 0.5, Water: 0.5, Electric: 0.5, Ice: 2, Rock: 2, Steel: 0.5, Fairy: 2 },
   Fairy:    { Fire: 0.5, Fighting: 2, Poison: 0.5, Dragon: 2, Dark: 2, Steel: 0.5 }
 };
+
+// The same five other-language names data/names.js stores per species, for
+// the 18 battle types — keyed by the lowercase English type identifier used
+// throughout the data files ("fire", "water", ...), not TYPE_CHART's
+// Title Case keys. Data only: nothing renders these yet.
+
+var TYPE_NAMES = {
+  normal: { ja: "ノーマル", fr: "Normal", de: "Normal", ko: "노말" },
+  fighting: { ja: "かくとう", fr: "Combat", de: "Kampf", ko: "격투" },
+  flying: { ja: "ひこう", fr: "Vol", de: "Flug", ko: "비행" },
+  poison: { ja: "どく", fr: "Poison", de: "Gift", ko: "독" },
+  ground: { ja: "じめん", fr: "Sol", de: "Boden", ko: "땅" },
+  rock: { ja: "いわ", fr: "Roche", de: "Gestein", ko: "바위" },
+  bug: { ja: "むし", fr: "Insecte", de: "Käfer", ko: "벌레" },
+  ghost: { ja: "ゴースト", fr: "Spectre", de: "Geist", ko: "고스트" },
+  steel: { ja: "はがね", fr: "Acier", de: "Stahl", ko: "강철" },
+  fire: { ja: "ほのお", fr: "Feu", de: "Feuer", ko: "불꽃" },
+  water: { ja: "みず", fr: "Eau", de: "Wasser", ko: "물" },
+  grass: { ja: "くさ", fr: "Plante", de: "Pflanze", ko: "풀" },
+  electric: { ja: "でんき", fr: "Électrik", de: "Elektro", ko: "전기" },
+  psychic: { ja: "エスパー", fr: "Psy", de: "Psycho", ko: "에스퍼" },
+  ice: { ja: "こおり", fr: "Glace", de: "Eis", ko: "얼음" },
+  dragon: { ja: "ドラゴン", fr: "Dragon", de: "Drache", ko: "드래곤" },
+  dark: { ja: "あく", fr: "Ténèbres", de: "Unlicht", ko: "악" },
+  fairy: { ja: "フェアリー", fr: "Fée", de: "Fee", ko: "페어리" }
+};

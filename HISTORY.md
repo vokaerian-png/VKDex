@@ -8,9 +8,87 @@ only edits are exempt. The authoritative policy is `CLAUDE.md` §3 — this
 file is just the log, newest entry first. Current-state descriptions live
 in `CLAUDE.md`; entries here record what changed and why.
 
-**Current version: 0.2.4.**
+**Current version: 0.2.6.**
 
 ---
+
+## 0.2.5 → 0.2.6 — Descriptor lines for 4 evolution edges found in 0.2.5's CSV scan
+
+`coder` only, low effort, small mechanical follow-up. User approved exact
+wording for the 4 unlabeled-condition edges 0.2.5 flagged; shipped via the
+**existing** `note` mechanism (`SCOPE.md` §4's descriptor line), no new
+field or rendering path: Qwilfish→Overqwil (`note` on 211), Stantler→
+Wyrdeer (234), Basculin→Basculegion (550), and Sliggoo→Goodra — but that
+last `note` had to go on **Goomy (704)**, not Sliggoo, since
+`evoDescriptorHtml()` only reads `note` off the chain **root**; renders
+chain-wide same as every other case. Pre-flight confirmed none of the 4
+chains already had a `note`/`statCompare`/`gender` conflict.
+
+- Verified: `node --check`; `verify_region_data.js` PASS; a harness
+  `vm`-loading the real data and replicating `evolutionRootId()` confirmed
+  all 4 resolve to a root carrying the exact approved string; diff is 4
+  lines in `evolutions.js` + the version bump.
+
+## 0.2.4 → 0.2.5 — TODO #10 schema-gap batch: 9 data additions, 2 new files, no UI
+
+`coder` only (Cowork `general-purpose`+opus, high effort — the largest
+single data dispatch to date). User went through `TODO.md` #10's 17
+remaining schema gaps one at a time (architect asked individually);
+everything marked "ship" landed here as pure data, no UI wiring.
+
+- **`pokemon.js`** (+5 fields): `hasGenderDifferences` (95 ids — byte-
+  identical to `hasFemaleSprite`'s set, a cross-check not a substitute),
+  `habitat` (name, 386), `formsSwitchable` (59), `baseExperience` (522),
+  `regionalDexNumbers` (503 — one key per mainline region resolved via a
+  new pokedex-variant tie-break in `populate_region.js`, so a future region
+  pass gets this free; Kalos excluded — no unambiguous single regional
+  pokedex exists among its 3 sub-dexes; Hisui excluded, `hisui.js` already
+  owns that numbering).
+- **`stats.js`**: `hatchCounter` and a full `effort` (EV yield, 6 keys,
+  always written including all-zero) on all 522.
+- **`movesets.js`**: `tutor` array (only Wormadam non-empty) and a per-
+  level-up-row `mastery` value — not the no-op expected, 384 rows across 54
+  Legends: Arceus-era species. `app.js`'s 4-tab Moves card ignores the new
+  key, as intended.
+- **Evolution conditions cross-checked, nothing added**: scanned all 11
+  unused `pokemon_evolution.csv` columns against every in-range edge. 5 hit
+  — Eevee→Sylveon was already correctly classified; the other 4 (Sliggoo→
+  Goodra, Stantler→Wyrdeer, Qwilfish→Overqwil, Basculin→Basculegion) have
+  no short arrow label that wouldn't need invented wording, so `coder`
+  flagged rather than guessed (same precedent as 0.1.29's "labels judged
+  out of scope"). Left as `"other"` for now — `TODO.md` #10 has the 3
+  concrete options if this gets revisited.
+- **`moves.js`** (+6 fields, all 622): `priority`, `target`, `effectChance`,
+  `flags`, a nested `meta` (hit/turn counts, drain, crit rate, ailment —
+  nested to avoid colliding with the existing top-level `category`).
+- **Other-language names**: `abilities.js` (179)/`moves.js` (622) gain a
+  `names` sub-object; new `types.js` export `TYPE_NAMES` (18). Same 5
+  languages as `data/names.js` (ja/jaRomaji/fr/de/ko); a language with no
+  CSV row is omitted rather than written `null` (move/ability names have
+  zero romaji rows — would've been 801 meaningless nulls). Not wired to any
+  popup yet.
+- **2 new files**: `data/natures.js` (`NATURES`, 25 — neutral natures get
+  an empty object, not both keys pointing at the same stat, to avoid a
+  naive `×1.1`/`×0.9` consumer landing on 0.99) and `data/experience.js`
+  (`EXPERIENCE_CURVES`, 6 curves × 101 entries, indexed by level with index
+  0 an unused placeholder). Both wired into `index.html`/`copy-app.js`.
+- **Pipeline bug caught and fixed**: a `--refresh --tables pokemon` would
+  have silently dropped `hasFemaleSprite` from all 95 entries — the writer
+  now carries it over. `evolutions.js`'s `statCompare`/`note` are the only
+  fields left that a refresh would drop.
+- `SCHEMA_GAPS`: 28 → 15 groups.
+- Verified: `node --check` on all 14 touched/new files; `verify_region_
+  data.js` PASS; `--audit` PASS (0 discrepancies) — extended to cover every
+  new field, not just pre-existing ones; a byte-diff harness confirmed
+  every pre-existing key on every entry in all 6 rewritten files is
+  unchanged; hand spot-checks against the raw CSVs for dex numbers,
+  natures, move flags/meta/target, priority, and both new tables' values;
+  a smoke test of the new-species code path (id 494, not written) to
+  exercise the one path the 522-id refresh doesn't.
+- **Explicitly deferred, not touched**: `color_id`/`shape_id` (user:
+  genuinely out of scope for the project, not "later"), egg groups,
+  encounter detail (`encounters.csv`), and `TODO.md` #8's item data — all
+  parked for a future `overlord` pass.
 
 ## 0.2.3 → 0.2.4 — Gender toggle disabled while an alt forme is active
 
