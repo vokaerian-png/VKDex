@@ -16,36 +16,36 @@ itself is more finalized**. Not a commitment.
 
 ---
 
-## 2. Region data population — RESOLVED for ids 1-493; next region uncommitted
+## 2. Region data population — RESOLVED for ids 1-649 (Unova 0.2.7); Kalos onward uncommitted
 
 Everything the detail-screen redesign needed (schema, sourcing order, the
-Kanto→Sinnoh population, the redesign itself) shipped 0.1.10-0.1.22 — see
-`PLAN.md`'s storage/sourcing entries and `HISTORY.md`. Still useful here:
+Kanto→Sinnoh population, the redesign itself) shipped 0.1.10-0.1.22; Unova
+landed 0.2.7 via `overlord` (`HISTORY.md`). Still useful here:
 
-- **Next expansion (Unova onward) is a `PLAN.md` candidate, not open
-  work.** The tooling being ready doesn't by itself commit to doing it.
 - **Running a pass** (`tools/populate_region.js`, unified 2026-09-05 —
   `SCOPE.md` §2 for the full mode list): target is a region
-  (`unova|kalos|alola|galar|paldea`) or `--ids 494,531` for individual
-  species. `--dry-run` to sanity-check the resolved ids/versions and which
-  tables already hold each id → `--generate` to extract CSV data plus a
-  descriptions-needed manifest (`temp/<region|species>_needs_descriptions
-  .json`) → hand-author `descriptions.json` from that manifest →
-  `--assemble [descriptions.json]` (upserts every table in id order,
-  auto-runs `verify_region_data.js`). For ids already in `pokemon.js`,
-  `--refresh [--tables movesets,...]` does generate+assemble in one step,
-  keeping hand-authored descriptions. Needs the PokeAPI clone at
-  `temp/PokeAPI-master`. Its `--generate` output goes to `temp/` root
-  (pre-dates the `temp/<task-slug>/` rule; move it if that bothers).
-- Unova/Kalos/Alola already hold 13/6/3 entries from the Hisui-29 pass
-  (0.1.28); a region pass upserts by id, so those entries are refreshed in
-  place rather than duplicated. A refresh also emits Mega formes for any
-  species not yet in `ALT_FORMS` (`--tables altforms`).
-- **7 ids already have bundled female-sprite art waiting** (0.2.3): 521,
-  592, 593, 668, 678, 876, 916 — `src/data/sprites/pokemon/female/` and
-  `shiny/female/` already hold their files, but `hasFemaleSprite` isn't
-  CSV-sourced (`SCOPE.md` §2), so whichever region pass adds these ids must
-  set the flag by hand or the art will sit unused.
+  (`kalos|alola|galar|paldea`) or `--ids 668,678` for individual species.
+  `--dry-run` → `--generate` (CSV extract + a descriptions-needed manifest,
+  `temp/<region|species>_needs_descriptions.json`, now with an `items`
+  list too) → hand-author `descriptions.json` (`pokemon`/`moves`/
+  `abilities`/`items` keys) → `--assemble [descriptions.json]` (upserts
+  every table in id order, auto-runs `verify_region_data.js`). For ids
+  already in `pokemon.js`, `--refresh [--tables movesets,...]` does
+  generate+assemble in one step, keeping hand-authored descriptions. Needs
+  the PokeAPI clone at `temp/PokeAPI-master`. `--generate` output goes to
+  `temp/` root (pre-dates the `temp/<task-slug>/` rule) — `mv` it into the
+  task folder afterwards, as the Unova pass did.
+- Kalos/Alola already hold 6/3 entries from the Hisui-29 pass (0.1.28); a
+  region pass upserts by id, so those refresh in place rather than
+  duplicate. A pass also emits Mega formes for any species not yet in
+  `ALT_FORMS` (`--tables altforms`).
+- **After every `--tables evolutions` write, re-check the hand-authored
+  `note`/`statCompare` fields** on 211/234/236/265/550/704 — the upsert
+  drops them (Unova's did drop Basculin's; restored by hand, 0.2.7).
+- **4 ids still have bundled female-sprite art waiting** (0.2.3): 668, 678,
+  876, 916 — `hasFemaleSprite` isn't CSV-sourced (`SCOPE.md` §2), so the
+  region pass adding these must set the flag by hand (521/592/593 were
+  done in 0.2.7).
 
 ---
 
@@ -102,6 +102,17 @@ Hisuian Sneasel's own alt-forme id, not a species id, so it doesn't fit
 `pokemon.js`'s `hasFemaleSprite` mechanism (`SCOPE.md` §2/§4, shipped 0.2.3
 for base-species gender only). Would need `ALT_FORMS` entries to carry
 their own gender-sprite concept — its own scoping pass, not started.
+
+**Unova alt-forme candidates, new 0.2.7** (species populated, no
+`ALT_FORMS` entry yet — needs a user call per species, same as the Kanto-
+Sinnoh ones got): Deerling/Sawsbuck seasons and Genesect drives (rule 6,
+recolor sprites bundled `585-spring.png`…/`649-burn.png`…); Darmanitan Zen
+Mode, Meloetta Pirouette, Kyurem Black/White, Tornadus/Thundurus/Landorus
+Therian, Keldeo Resolute (rule 7 — distinct stats/typing, sprites under
+`alt formes/` root); Basculin blue-/white-striped (`alt formes/
+basculin_blue_striped.png`/`basculin_white_striped.png` — a rule-6-ish
+sibling of the Shellos case below, since only the white-striped form
+evolves into Basculegion).
 
 **Shellos/Gastrodon (#422/#423) explicitly deferred, 2026-09-04:** rule 6
 candidates on the surface (2 recolor forms each, West/East, no stat/type/
@@ -177,9 +188,12 @@ records the decisions). `HISTORY.md` 0.1.34 / `PLAN.md`'s Alt Formes entry
 for what shipped; 0.1.35 made every Mega bubble tappable (sprite/name
 swap) regardless of a type/ability delta. Still needing a user call:
 
-- **Keep the 17 Legends: Z-A / Mega Dimension Megas?** Included (official,
-  in the CSV, "newest available data"); `DESIGN.md` lists them and the
-  revert is deleting those forme entries.
+- **Keep the Legends: Z-A / Mega Dimension Megas?** Included (official,
+  in the CSV, "newest available data"); `DESIGN.md` lists the original 17
+  and the revert is deleting those forme entries. **Unova (0.2.7) added 7
+  more** the same way — Emboar/Excadrill/Scolipede/Scrafty/Eelektross/
+  Chandelure/Golurk (Mega Audino, also added, is Gen 6 official) — so the
+  set awaiting the call is now 24.
 - **Mega Heatran / Mega Darkrai have no `ability`** — the CSV carries
   stats/types but no ability rows for them. Add by hand once known.
 - **Gigantamax**: 12 Kanto species have Gmax art in `alt formes/gmax/`
@@ -252,21 +266,20 @@ reversal rather than as originally scoped (0.1.30) — `HISTORY.md` for each.
 
 ---
 
-## 8. Item sprites bundled (0.1.32); first consumer 0.1.33; still no `ITEMS_DATA`
+## 8. Items — RESOLVED 0.2.7 (`ITEMS_DATA` + Held Items row + tappable arrow icons); Bag screen not scoped
 
-`src/data/sprites/items/` holds 898 flat item sprites plus 7 subfolders of
-PokeAPI historical/version-specific art (berries/dream-world/gen3/gen5/
-gen8/gen9/underground) — `SCOPE.md` §2. First code use landed 0.1.33 (the
-Evolution Line's arrow condition icons, `HISTORY.md`), but those are
-decorative (`alt=""`, not tappable) since there's still no `ITEMS_DATA`
-table to name items from. A future item feature (held items, TM/berry
-data, a Bag screen, tap-to-name on the evolution-arrow icons, etc.) would
-need: a data table (name → description/effect/sprite path), and wiring
-into whatever screen shows it — the detail screen's existing per-Pokémon
-fields don't have an obvious item slot yet, so scope that first. Not
-committed. **Deferred to a future `overlord` pass** (2026-09-05), alongside
-#10's egg-groups and encounter-detail gaps — all three are bigger-than-
-pure-data features rather than field adds.
+`data/items.js` (`ITEMS_DATA`, 130 entries, slug-keyed, hand-authored
+descriptions) covers exactly what the app references: wild held items
+(`pokemon.js` `heldItems`, 340 species — the Facts card's "Held Items"
+chips) and evolution items (the Evolution Line's arrow icons, now tappable
+→ item popup). `SCOPE.md` §2/§4, `HISTORY.md` 0.2.7. The pipeline appends
+new items per pass via the manifest's `items` list. **Still not scoped**:
+a Bag-style catalogue screen (898 sprites bundled, only 130 described),
+item category/price/Fling data (`SCHEMA_GAPS` row), TM/berry-specific
+data. ~~Decisions taken blind~~ — **resolved 0.2.8**: held-item rate
+reworked to a per-game breakdown (`heldItems[].rates`, one group per
+distinct rarity, `SCOPE.md` §2); row moved to sit after Capture Rate
+(user-directed, not Egg-Groups-adjacent as first shipped).
 
 ---
 
@@ -280,7 +293,7 @@ backups and revert instructions. Left deliberately unchanged, per user:
 light mode on the detail screen; not built, per user: name-language
 display, favorites export. Follow-ups that fell out of the pass:
 
-- **Partial-region chips** (Unova/Kalos/Alola, 13/6/3 entries) are not
+- **Partial-region chips** (Kalos/Alola, 6/3 entries) are not
   visually distinguished from full ones — the shipped `.region-chip.empty`
   dims only zero-entry regions. Signalling "partial" needs an expected
   count per region (e.g. from `pokemon_species.csv` generation totals).
@@ -324,8 +337,8 @@ now reports 0 discrepancies.** Full original-baseline output:
 - ~~Farfetch'd apostrophe~~ — **resolved 0.1.37**: user chose the CSV's
   curly apostrophe (`Farfetch’d`) over the straight one.
 
-**Schema gaps** (`--gaps`, static `SCHEMA_GAPS` list — **15 groups** as of
-0.2.5, was 28; full history in `HISTORY.md` 0.2.1/0.2.5). Most of the
+**Schema gaps** (`--gaps`, static `SCHEMA_GAPS` list — **14 groups** as of
+0.2.7, was 28; full history in `HISTORY.md` 0.2.1/0.2.5/0.2.7). Most of the
 Pokédex-core candidates landed 0.2.5 as pure data (`SCOPE.md` §2 for the
 full field list): `is_legendary`/`is_mythical`/`is_baby`/`gender_rate`/
 `base_happiness` (0.2.1), then 0.2.5's batch — `has_gender_differences`,
@@ -334,7 +347,8 @@ yield), `habitat_id` (as `habitat`, a resolved name), tutor moves +
 `mastery`, move mechanics (`moves.csv` priority/target/effect chance,
 `move_meta`, `move_flags`), other-language ability/move/type names,
 natures (new `data/natures.js`), and the per-level exp curve (new
-`data/experience.js`).
+`data/experience.js`). 0.2.7 landed egg groups, encounter detail and held
+items **with** UI (below).
 
 **Still genuinely open:**
 
@@ -357,15 +371,25 @@ natures (new `data/natures.js`), and the per-level exp curve (new
   all got user-approved hand-authored `note`s via the existing
   `evoDescriptorHtml()` mechanism (`SCOPE.md` §4, `HISTORY.md` 0.2.6) —
   same hand-authored, refresh-fragile shape as Wurmple's.
-- **Egg groups** (`pokemon_egg_groups.csv`) — nothing in the schema covers
-  breeding at all. Deferred to a future `overlord` pass, paired with a
-  Facts-card UI addition (user-specified 2026-09-05) rather than shipped as
-  bare data.
-- **Encounter detail** (`encounters.csv` method/rate/level range, only area
-  names kept today) — deferred to a future `overlord` pass, likely paired
-  with a Found In UI upgrade.
-- **Items** (`pokemon_items.csv` wild held items + `#8`'s `ITEMS_DATA`) —
-  deferred to a future `overlord` pass; see #8.
+- ~~Egg groups~~ — **shipped 0.2.7**: `pokemon.js` `eggGroups` + a Facts-
+  card "Egg Groups" row (`SCOPE.md` §4). Placement resolved 0.2.8
+  (user-directed): sits beside Category, not at the end of the plain-fact
+  run as first shipped.
+- ~~Encounter detail~~ — **shipped 0.2.7, reworked to per-game 0.2.8,
+  Found In popup reworked to a collapsible accordion in real in-game order
+  0.2.10**: `locations.js` areas carry per-(method, game-group)
+  level range + "up to N%" rate (`SCOPE.md` §2/§4); the Found In popup now
+  renders each area as a native `<details>`/`<summary>` (collapsed by
+  default, single-area regions pre-open) sorted by `location_game_indices
+  .csv` order instead of alphabetically; the "Walk" method label was
+  renamed "Grass" (0.2.10) as players don't recognize the former term.
+  **Still open**: condition values
+  (time of day, season, swarm) aren't stored or shown — the remaining half
+  of the `SCHEMA_GAPS` `version_id` row. Gift/static/NPC-trade rows kept
+  on purpose.
+- ~~Items~~ — **shipped 0.2.7**, see #8.
+- **Egg cycles / hatch steps** — `stats.js` `hatchCounter` (0.2.5) is still
+  unwired; a natural companion to the new Egg Groups row if wanted.
 
 Prune a `SCHEMA_GAPS` row when its field lands.
 

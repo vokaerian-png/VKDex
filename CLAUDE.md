@@ -41,12 +41,15 @@ VKDex/
     data/                                      <- per-Pokemon data, split by concern
       types.js         (TYPE_CHART: Gen 9 type-effectiveness chart, static)
       pokemon.js       (POKEMON_DATA: id, name, region, +types/category/height/
-                         weight/abilities/hiddenAbility/description)
-      abilities.js     (ABILITIES, keyed by name — 179 entries)
-      moves.js         (MOVES, keyed by name — 622 entries)
-      movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/max)
+                         weight/abilities/hiddenAbility/description/eggGroups/
+                         heldItems — 665 entries, ids 1-649 + Hisui-29)
+      abilities.js     (ABILITIES, keyed by name — 190 entries)
+      moves.js         (MOVES, keyed by name — 651 entries)
+      items.js         (ITEMS_DATA, keyed by slug — 130 referenced items, 0.2.7)
+      movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/tutor/max)
       evolutions.js    (EVOLUTIONS, keyed by id: evolvesTo chain)
-      locations.js     (LOCATIONS, keyed by id -> region -> areas)
+      locations.js     (LOCATIONS, keyed by id -> region -> areas w/ encounter
+                         method/level/rate lines — SCOPE.md §2)
       names.js         (NAMES, keyed by id: ja/jaRomaji/fr/de/ko)
       stats.js         (STATS, keyed by id: base stats, capture rate, exp growth)
       altforms.js      (ALT_FORMS, keyed by base id — SCOPE.md §4's Alt Formes module)
@@ -156,7 +159,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.6.** Mirror on every bump, both together:
+**Current version: 0.2.10.** Mirror on every bump, both together:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`) and `electron-app/package.json`'s `"version"` (so
 the packaged `.exe`'s Windows file properties match).
@@ -255,6 +258,25 @@ built-in types (`claude`, `claude-code-guide`, `Explore`, `general-purpose`,
 override (`"fable"` for `overlord`), pasting the target agent's `.md`
 content in as the prompt. A full Claude Code CLI session resolves
 `subagent_type: "coder"` etc. directly.
+
+---
+
+## 5a. Subagent task-list granularity
+
+When folding a subagent's (`coder`/`overlord`/etc.) finished report into
+the Cowork task list, break it into one `TaskCreate`/`TaskUpdate` per
+named sub-step the report itself identifies, not one lump task for the
+whole dispatch. Subagents run isolated with no live access to the task
+list — they return a single final report — so this granularity happens
+when architect reads that report back, not during the dispatch itself.
+User-specified 2026-09-05; a general practice, not specific to this
+project.
+
+**Clear the list between batches of work**: once every task on the list is
+completed and a new, unrelated batch of work is starting, delete the
+completed tasks rather than letting them accumulate — a long scroll of old
+completed items makes the list harder to read for no benefit. Not needed
+mid-batch, only at that boundary.
 
 ---
 

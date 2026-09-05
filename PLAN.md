@@ -7,15 +7,15 @@ belong here; ideas still under consideration live in `TODO.md`.
 records standing design decisions that still govern its feature — the
 per-version detail lives in `HISTORY.md`, the current-state description in
 `CLAUDE.md`. There is no open commitment right now; the next candidate
-(Unova onward) is still a `TODO.md` item.
+(Kalos onward) is still a `TODO.md` item.
 
 ---
 
 ## Add the remaining regions' Pokémon to `POKEMON_DATA`
 
 Extend `src/data/pokemon.js` region by region, each entry tagged with its
-own `region` value (matching `REGIONS`' ids). Status (0.1.31): Kanto/Johto/
-Hoenn/Sinnoh complete (ids 1-493); Unova/Kalos/Alola hold only the 22
+own `region` value (matching `REGIONS`' ids). Status (0.2.7): Kanto/Johto/
+Hoenn/Sinnoh/Unova complete (ids 1-649); Kalos/Alola hold only the 9
 Hisui-roster natives added in 0.1.28; Galar/Paldea empty ("coming soon").
 
 A region pass is purely data work — `tools/populate_region.js` (usage in
@@ -25,7 +25,8 @@ region (region bar, `renderGrid()`, filtering, search, favorites and the
 detail screen all key off `REGIONS`/the data).
 `id` = national dex number, never a region-internal display order.
 
-**Unova onward is not yet committed** — `TODO.md` #2.
+**Kalos onward is not yet committed** — `TODO.md` #2. A pass now also
+needs hand-authored `items` descriptions (0.2.7, `descriptions.json`).
 
 ---
 
@@ -39,9 +40,11 @@ the screen:
 - **Layout, top to bottom**: Picture card (normal + shiny sprites, dex
   number top-right, flavour text merged in as a bottom flap sharing the
   card's border; the name moves up into the topbar) → Alt Formes →
-  Evolution Line → Found In → Facts list → Learnable Moves (Level-Up/TM/
-  Egg/Max tabs, an empty tab isn't rendered; each row carries its type
-  pill) → Base Stats (Base / Lv.1 / Lv.100 table plus hexagonal radar).
+  Evolution Line → Found In → Facts list (0.2.7 appended Egg Groups and
+  Held Items rows after Exp Growth, ahead of the matchups — additions,
+  not a reorder) → Learnable Moves (Level-Up/TM/Egg/Max tabs, an empty
+  tab isn't rendered; each row carries its type pill) → Base Stats (Base /
+  Lv.1 / Lv.100 table plus hexagonal radar).
   0.1.34 briefly moved Facts/Stats up and cut the table to one
   settings-chosen level column; **both reverted 0.1.35 by user direction**
   — this original order and the three-column table stand. Old plain

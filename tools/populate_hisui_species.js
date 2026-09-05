@@ -370,6 +370,10 @@ function assemble(descriptionsPath) {
   write("names.js", read("names.js").replace(/\n\};\s*$/, ",\n" + namesLines.join(",\n") + "\n};\n"));
 
   // ---- locations.js
+  // NOTE (0.2.7): writes the pre-0.2.7 bare-string area shape. locations.js
+  // now stores { area, enc: [...] } objects (populate_region.js); the app's
+  // popup tolerates strings, and a `populate_region.js --ids ... --refresh
+  // --tables locations` upgrades them. This tool's run is done (0.1.28).
   const locLines = IDS.map(id => {
     const l = r.locations[id];
     return `  ${id}: { ${l.key}: [${l.areas.map(a => `"${escD(a)}"`).join(", ")}] }`;

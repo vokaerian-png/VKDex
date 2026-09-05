@@ -8,87 +8,114 @@ only edits are exempt. The authoritative policy is `CLAUDE.md` §3 — this
 file is just the log, newest entry first. Current-state descriptions live
 in `CLAUDE.md`; entries here record what changed and why.
 
-**Current version: 0.2.6.**
+**Current version: 0.2.10.**
 
 ---
 
-## 0.2.5 → 0.2.6 — Descriptor lines for 4 evolution edges found in 0.2.5's CSV scan
+## 0.2.4 → 0.2.10 — Found In popup rework: collapsible accordion, real in-game area order, "Grass" relabel
 
-`coder` only, low effort, small mechanical follow-up. User approved exact
-wording for the 4 unlabeled-condition edges 0.2.5 flagged; shipped via the
-**existing** `note` mechanism (`SCOPE.md` §4's descriptor line), no new
-field or rendering path: Qwilfish→Overqwil (`note` on 211), Stantler→
-Wyrdeer (234), Basculin→Basculegion (550), and Sliggoo→Goodra — but that
-last `note` had to go on **Goomy (704)**, not Sliggoo, since
-`evoDescriptorHtml()` only reads `note` off the chain **root**; renders
-chain-wide same as every other case. Pre-flight confirmed none of the 4
-chains already had a `note`/`statCompare`/`gender` conflict.
+`coder` only, three dispatches folded under one version at user direction
+(high/medium/medium effort), from real user screenshots of Pidgey's Kanto
+Found In popup — originally a long alphabetical wall of always-expanded
+area text labeled "Walk". Handoffs: `temp/handoff/2026-09-05-090618-
+found-in-collapsible-progression-order.md`, `temp/handoff/2026-09-05-
+091351-hoenn-gen3-area-order.md`, `temp/handoff/2026-09-05-113400-grass-
+method-label-version-revert.md`.
 
-- Verified: `node --check`; `verify_region_data.js` PASS; a harness
-  `vm`-loading the real data and replicating `evolutionRootId()` confirmed
-  all 4 resolve to a root carrying the exact approved string; diff is 4
-  lines in `evolutions.js` + the version bump.
+- **Collapsible areas, native `<details>`/`<summary>`** — no custom JS
+  toggle state; free keyboard/screen-reader semantics. All collapsed by
+  default **except** a region with exactly one area (105 of 505 popups),
+  which renders pre-`open` since there'd be nothing to see otherwise
+  (user-confirmed). One region-per-species-popup behavior (Found In's
+  existing pill-chip-per-region model) is unchanged.
+- **Areas sort in real in-game progression order**, not alphabetically —
+  sourced from `location_game_indices.csv`, joined on location **id**
+  (never display name — an early name-join bug put Hoenn's Safari Zone
+  atop Kanto's list). One generation chosen per region by coverage, ties
+  to the more recent: kanto 3, johto 4, sinnoh 4, unova 5, kalos/alola
+  6/7, **Hoenn two-tier** (below). A real bug caught along the way: Gen
+  5's location table lists every Unova location **twice** (BW + BW2
+  indices) — fixed to take the lower index, not the last row. Any area
+  neither generation's index covers keeps its prior alphabetical position
+  rather than a guessed slot (20 areas / 1.6% of rows, project-wide).
+  Re-ran the pipeline across every populated region.
+- **Hoenn area order, user-directed refinement**: the initial pick (Gen 6/
+  ORAS, by a 1-area coverage margin over Gen 3/RSE) was flagged as close —
+  the two disagree on which side-areas they can place. User chose **Gen 3
+  primary, with Gen-6-only areas appended as a trailing block** (sorted by
+  their own Gen 6 index). `REGION_ORDER_GEN` now accepts a list of
+  generations per region (`hoenn: ["3", "6"]`); a composite rank
+  (`tier*1e6 + game_index`) handles both tiers in one comparator. Result:
+  65 areas from Gen 3 (ending with Magma Hideout/Mirage Tower/Marine Cave/
+  Terra Cave/Desert Underpass — the RSE-only spots the switch was for), 2
+  appended from Gen 6 (Battle Resort, Mirage Island), 4 alphabetical-
+  fallback.
+- **"Walk" relabeled "Grass"**: real user feedback — "Walk" isn't a term
+  players recognize for the standard grass/cave random-encounter method.
+  Fixed at the source, `tools/populate_region.js`'s `METHOD_LABEL`
+  identifier→label table (`walk: "Grass"`), not a renderer special-case,
+  so a future `--refresh` won't regress it. Only this one method changed
+  — "Overworld"/"Overworld Flying" (Let's Go's real overworld encounters),
+  "Old Rod", "Gift", "Static", "NPC Trade", etc. are untouched; "Dark
+  Grass"/"Grass Spots"/"Roaming Grass" already existed as distinct labels
+  and don't collide. Re-ran the pipeline: 1,691 `enc` lines changed across
+  323 `locations.js` lines, byte-diff-confirmed as the only change.
+- **Version note**: this whole rework (originally dispatched and shipped
+  as 0.2.10, then a Hoenn refinement as 0.2.11) was consolidated back to a
+  single **0.2.10** at user direction — the leap from 0.2.4 (the last
+  version with its own surviving entry) reflects five intervening
+  versions folded below, not a gap in the log.
+- Verified: `node --check`; `styles.css` balanced; `verify_region_data.js`
+  PASS; `--audit` PASS (665 ids); `--gaps` unchanged; `release.js --check`
+  3/3; a harness grown across all three dispatches to **8,456 assertions**
+  — every popup/`<details>` element, reordered lists with 0 content drift,
+  the Hoenn two-tier contract (RSE-only areas sort ahead of Battle
+  Resort), and a full method-label census (Grass 1:1 replacing Walk, every
+  other label's count unchanged).
+- **Confirmed via user screenshots 2026-09-05**: the item-popup fixes from
+  0.2.9 hold on Lucky Egg's worst-case 18-game list; the Found In
+  accordion itself renders correctly (Route 1 expanded, the rest
+  collapsed with disclosure triangles, real in-game order visible —
+  Route 1/2/3/5/6/7/8/11/12/13.../17, not alphabetical). A second
+  screenshot (Wurmple, Hoenn) confirmed both the "Grass" relabel and the
+  Gen-3-primary/Gen-6-appended area order render as intended.
 
-## 0.2.4 → 0.2.5 — TODO #10 schema-gap batch: 9 data additions, 2 new files, no UI
+**Folded here 2026-09-05 — 0.2.5 through 0.2.9's individual entries
+(condensed, originals removed to cut redundancy):**
 
-`coder` only (Cowork `general-purpose`+opus, high effort — the largest
-single data dispatch to date). User went through `TODO.md` #10's 17
-remaining schema gaps one at a time (architect asked individually);
-everything marked "ship" landed here as pure data, no UI wiring.
-
-- **`pokemon.js`** (+5 fields): `hasGenderDifferences` (95 ids — byte-
-  identical to `hasFemaleSprite`'s set, a cross-check not a substitute),
-  `habitat` (name, 386), `formsSwitchable` (59), `baseExperience` (522),
-  `regionalDexNumbers` (503 — one key per mainline region resolved via a
-  new pokedex-variant tie-break in `populate_region.js`, so a future region
-  pass gets this free; Kalos excluded — no unambiguous single regional
-  pokedex exists among its 3 sub-dexes; Hisui excluded, `hisui.js` already
-  owns that numbering).
-- **`stats.js`**: `hatchCounter` and a full `effort` (EV yield, 6 keys,
-  always written including all-zero) on all 522.
-- **`movesets.js`**: `tutor` array (only Wormadam non-empty) and a per-
-  level-up-row `mastery` value — not the no-op expected, 384 rows across 54
-  Legends: Arceus-era species. `app.js`'s 4-tab Moves card ignores the new
-  key, as intended.
-- **Evolution conditions cross-checked, nothing added**: scanned all 11
-  unused `pokemon_evolution.csv` columns against every in-range edge. 5 hit
-  — Eevee→Sylveon was already correctly classified; the other 4 (Sliggoo→
-  Goodra, Stantler→Wyrdeer, Qwilfish→Overqwil, Basculin→Basculegion) have
-  no short arrow label that wouldn't need invented wording, so `coder`
-  flagged rather than guessed (same precedent as 0.1.29's "labels judged
-  out of scope"). Left as `"other"` for now — `TODO.md` #10 has the 3
-  concrete options if this gets revisited.
-- **`moves.js`** (+6 fields, all 622): `priority`, `target`, `effectChance`,
-  `flags`, a nested `meta` (hit/turn counts, drain, crit rate, ailment —
-  nested to avoid colliding with the existing top-level `category`).
-- **Other-language names**: `abilities.js` (179)/`moves.js` (622) gain a
-  `names` sub-object; new `types.js` export `TYPE_NAMES` (18). Same 5
-  languages as `data/names.js` (ja/jaRomaji/fr/de/ko); a language with no
-  CSV row is omitted rather than written `null` (move/ability names have
-  zero romaji rows — would've been 801 meaningless nulls). Not wired to any
-  popup yet.
-- **2 new files**: `data/natures.js` (`NATURES`, 25 — neutral natures get
-  an empty object, not both keys pointing at the same stat, to avoid a
-  naive `×1.1`/`×0.9` consumer landing on 0.99) and `data/experience.js`
-  (`EXPERIENCE_CURVES`, 6 curves × 101 entries, indexed by level with index
-  0 an unused placeholder). Both wired into `index.html`/`copy-app.js`.
-- **Pipeline bug caught and fixed**: a `--refresh --tables pokemon` would
-  have silently dropped `hasFemaleSprite` from all 95 entries — the writer
-  now carries it over. `evolutions.js`'s `statCompare`/`note` are the only
-  fields left that a refresh would drop.
-- `SCHEMA_GAPS`: 28 → 15 groups.
-- Verified: `node --check` on all 14 touched/new files; `verify_region_
-  data.js` PASS; `--audit` PASS (0 discrepancies) — extended to cover every
-  new field, not just pre-existing ones; a byte-diff harness confirmed
-  every pre-existing key on every entry in all 6 rewritten files is
-  unchanged; hand spot-checks against the raw CSVs for dex numbers,
-  natures, move flags/meta/target, priority, and both new tables' values;
-  a smoke test of the new-species code path (id 494, not written) to
-  exercise the one path the 522-id refresh doesn't.
-- **Explicitly deferred, not touched**: `color_id`/`shape_id` (user:
-  genuinely out of scope for the project, not "later"), egg groups,
-  encounter detail (`encounters.csv`), and `TODO.md` #8's item data — all
-  parked for a future `overlord` pass.
+- **0.2.5** — `TODO.md` #10's schema-gap batch, the largest single data
+  dispatch to date: `pokemon.js` +5 fields (`hasGenderDifferences`,
+  `habitat`, `formsSwitchable`, `baseExperience`, `regionalDexNumbers`),
+  `stats.js` +`hatchCounter`/`effort`, `movesets.js` +`tutor`/`mastery`,
+  `moves.js` +6 mechanics fields, other-language `names` on abilities/
+  moves/types, two new files `data/natures.js`/`data/experience.js`. Data
+  only, no UI wiring. `SCHEMA_GAPS` 28→15. Egg groups/encounter detail/
+  items deferred to a future pass (shipped 0.2.7); `color_id`/`shape_id`
+  ruled permanently out of scope.
+- **0.2.6** — 4 evolution `note` descriptors (Qwilfish→Overqwil, Stantler→
+  Wyrdeer, Basculin→Basculegion, Sliggoo→Goodra — the last living on chain
+  root Goomy) via the existing descriptor mechanism, user-approved wording.
+- **0.2.7** — `overlord`'s four-item dispatch: **Unova** (ids 494-649,
+  `POKEMON_DATA` 522→665, `MOVES`→651, `ABILITIES`→190, 8 Megas
+  auto-extracted); **egg groups** (`eggGroups` + Facts row, all 665);
+  **encounter detail** (`locations.js` areas gain method/level/rate,
+  collapsed across games — later rebuilt per-game in 0.2.8); **items**
+  (new `data/items.js`/`ITEMS_DATA`, 130 entries, + `heldItems` + Facts
+  "Held Items" row + tappable evolution-arrow item icons). User-flagged
+  decisions (Facts row placement, encounter/item rate collapsing, the 7
+  extra Legends: Z-A Megas) answered and actioned in 0.2.8.
+- **0.2.8** — Per the user's answers to 0.2.7's flags: encounter rate and
+  held-item rarity reworked from collapsed-across-games to **per-game**
+  breakdowns (`locations.js`/`pokemon.js` shape changes); Egg Groups/Held
+  Items Facts rows relocated (next to Category / after Capture Rate).
+  Found Japan-only Gen 1 versions duplicating international Gen 1 in the
+  new per-game lists — excluded from encounter extraction.
+- **0.2.9** — Two real-screenshot fixes to the item popup: 86 of 130
+  `data/items.js` descriptions had a redundant `"Held item;"`/`"Berry;"`
+  prefix stripped; the per-game list's horizontal scroll (caused by
+  `/`-joined names with no break opportunity) fixed via a shared
+  `encGamesHtml()` `<wbr>`-insertion helper, used by both the Found In and
+  item popups.
 
 ## 0.2.3 → 0.2.4 — Gender toggle disabled while an alt forme is active
 

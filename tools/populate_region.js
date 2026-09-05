@@ -89,6 +89,36 @@ const REGION_GEN = {
   unova: 5, kalos: 6, alola: 7, galar: 8, paldea: 9,
 };
 const GEN_REGION = Object.fromEntries(Object.entries(REGION_GEN).map(([r, g]) => [String(g), r]));
+// locations.js area ordering (0.2.10). location_game_indices.csv holds each
+// location's internal map index per generation — the closest thing the CSVs
+// have to "the order a player walks the region". It is NOT literal
+// progression order in most generations: the index is grouped by kind (all
+// towns/cities, then routes in numeric order, then dungeons/side areas), so
+// what it really buys is (a) Route 2 before Route 11 instead of the string
+// sort's "Route 1, Route 11, Route 12, ... Route 2", and (b) related areas
+// kept together. Gen 2 is the one exception whose index really is walk order.
+// Per region: the generation whose index covers the most locations the app
+// actually references, ties to the more recent (the user's "most recent,
+// complete data wins" rule). Measured 2026-09-05 over all 665 species —
+// kanto gen3 81/84, johto gen4 93/99, hoenn gen6 83/98 (gen3 82, so gen6 wins
+// on both counts), sinnoh gen4 73/76, unova gen5 75/76, kalos gen6 42/44,
+// alola gen7 67/68. Galar/Paldea are unpopulated guesses (own generation).
+// A location with no index in its region's generation keeps the old
+// alphabetical order, in a block after every ordered area.
+// A value may be a LIST of generations, tried in order (0.2.11, hoenn only,
+// user-directed): gen 3 (RSE) and gen 6 (ORAS) covered 82 and 83 of Hoenn's
+// 98 locations but dropped *different* content, so RSE orders the region and
+// the ORAS-only spots (Mirage Forest/Cave/Island/Mountain, Sea Mauville,
+// Battle Resort, Soaring in the sky) are appended after it, ordered among
+// themselves by their gen 6 index.
+const REGION_ORDER_GEN = {
+  kanto: "3", johto: "4", hoenn: ["3", "6"], sinnoh: "4",
+  unova: "5", kalos: "6", alola: "7", galar: "8", paldea: "9",
+};
+// Rank = tier * TIER_STEP + game_index, so one plain numeric compare handles
+// both tiers. game_index tops out in the hundreds; the step just has to be
+// bigger than any of them.
+const TIER_STEP = 1e6;
 const ALL_TABLES = ["pokemon", "stats", "evolutions", "movesets", "names", "locations", "altforms"];
 // genders.csv, static: 3 = genderless, deliberately absent (see the
 // evolution extractor) so it never writes a meaningless `gender` field.
@@ -183,6 +213,8 @@ function loadAllCSVs() {
     species: loadCSV("pokemon_species.csv"),
     habitats: loadCSV("pokemon_habitats.csv"),
     dexNumbers: loadCSV("pokemon_dex_numbers.csv"),
+    eggGroups: loadCSV("pokemon_egg_groups.csv"),
+    eggGroupProse: loadCSV("egg_group_prose.csv"),
     speciesNames: loadCSV("pokemon_species_names.csv"),
     flavorText: loadCSV("pokemon_species_flavor_text.csv"),
     forms: loadCSV("pokemon_forms.csv"),
@@ -205,14 +237,21 @@ function loadAllCSVs() {
     versionGroups: loadCSV("version_groups.csv"),
     types: loadCSV("types.csv"),
     items: loadCSV("items.csv"),
+    itemNames: loadCSV("item_names.csv"),
+    pItems: loadCSV("pokemon_items.csv"),
     encounters: loadCSV("encounters.csv"),
+    encounterSlots: loadCSV("encounter_slots.csv"),
+    encounterMethods: loadCSV("encounter_methods.csv"),
+    encounterConditionValueMap: loadCSV("encounter_condition_value_map.csv"),
     locationAreas: loadCSV("location_areas.csv"),
     locations: loadCSV("locations.csv"),
     locationNames: loadCSV("location_names.csv"),
+    locationGameIndices: loadCSV("location_game_indices.csv"),
     regions: loadCSV("regions.csv"),
     pokedexes: loadCSV("pokedexes.csv"),
     pokedexVersionGroups: loadCSV("pokedex_version_groups.csv"),
     versions: loadCSV("versions.csv"),
+    versionNames: loadCSV("version_names.csv"),
   };
 }
 // The small subset --dry-run / target resolution needs.
@@ -302,6 +341,7 @@ function currentData() {
     },
     moves: loadGlobal("moves.js", "MOVES"),
     abilities: loadGlobal("abilities.js", "ABILITIES"),
+    items: loadGlobal("items.js", "ITEMS_DATA"),
   };
 }
 
@@ -314,7 +354,11 @@ function regionVersions(region, csvs) {
   if (!regionRow) throw new Error(`no regions.csv row with identifier "${region}"`);
   const pokedexIds = new Set(csvs.pokedexes.filter(p => p.region_id === regionRow.id && p.is_main_series === "1").map(p => p.id));
   const versionGroupIds = new Set(csvs.pokedexVersionGroups.filter(r => pokedexIds.has(r.pokedex_id)).map(r => r.version_group_id));
-  const versionRows = csvs.versions.filter(v => versionGroupIds.has(v.version_group_id));
+  // The Japan-only Gen 1 releases (red-japan/green-japan/blue-japan) are
+  // dropped: their English display names collide with the international
+  // Red/Blue, so a per-game encounter line (0.2.8) would read
+  // "Red/Blue/.../Red/Green". Their encounter tables duplicate Gen 1's.
+  const versionRows = csvs.versions.filter(v => versionGroupIds.has(v.version_group_id) && !v.identifier.endsWith("-japan"));
   return { regionId: regionRow.id, pokedexIds, versionGroupIds, versionIds: new Set(versionRows.map(v => v.id)), versionsById: new Map(versionRows.map(v => [v.id, v.identifier])) };
 }
 
@@ -409,9 +453,57 @@ function extract(t, csvs, current) {
   // Regional dex numbers: pokedex_id -> the REGIONS key it belongs to.
   const regionByPokedexId = new Map([...regionalPokedexes(csvs)].map(([r, pid]) => [pid, r]));
   const dexNumsBySpecies = groupBy(csvs.dexNumbers, "species_id");
+  // Egg groups (0.2.7): English display names from egg_group_prose.csv
+  // ("Water 1", "Human-Like", "Undiscovered"), in pokemon_egg_groups.csv
+  // row order (= egg_group id order).
+  const eggGroupName = new Map(csvs.eggGroupProse.filter(r => r.local_language_id === "9").map(r => [r.egg_group_id, r.name]));
+  const eggGroupsBySpecies = groupBy(csvs.eggGroups, "species_id");
+  // Wild held items (0.2.7; per-game since 0.2.8): every game's
+  // pokemon_items.csv rows for the species' default pokemon row, kept as one
+  // group per distinct rarity with the games sharing it.
+  const heldItemsByPokemon = groupBy(csvs.pItems, "pokemon_id");
+  // Version display names ("Black 2", "Let's Go, Pikachu!") for the per-game
+  // groups in heldItems / locations. Version id order == release order.
+  const versionName = new Map(csvs.versionNames.filter(r => r.local_language_id === "9").map(r => [r.version_id, r.name]));
+  const vName = id => versionName.get(id) || id;
+  // Collapse a version-keyed map into [{ games, ...value }], one group per
+  // distinct value signature, games "/"-joined in version order and groups
+  // ordered by their first version. Used by heldItems and locations alike.
+  const groupByVersion = (byVer, sigOf) => {
+    const sigs = new Map();
+    for (const vid of [...byVer.keys()].sort((a, b) => Number(a) - Number(b))) {
+      const val = byVer.get(vid);
+      const key = sigOf(val);
+      if (!sigs.has(key)) sigs.set(key, { val, games: [] });
+      sigs.get(key).games.push(vName(vid));
+    }
+    return [...sigs.values()].map(g => Object.assign({ games: g.games.join("/") }, g.val));
+  };
 
   const locNameById = new Map();
   for (const r of csvs.locationNames) if (r.local_language_id === "9" && !locNameById.has(r.location_id)) locNameById.set(r.location_id, r.name);
+  // location_id -> generation_id -> game_index, for the area sort above.
+  // A location can carry SEVERAL rows for one generation, one per version
+  // group: Gen 5 lists every Unova location twice, once in Black/White's map
+  // order (1-75) and again in Black 2/White 2's (76-153). The LOWEST index
+  // wins, which keeps one game's numbering intact end to end instead of
+  // interleaving two ("Route 3, Route 18, Dreamyard, Route 7"); anything the
+  // earlier game didn't have (Aspertia City, Routes 19-23) still sorts after
+  // it, on the later game's own numbering.
+  const locIndexById = new Map();
+  for (const r of csvs.locationGameIndices) {
+    if (!locIndexById.has(r.location_id)) locIndexById.set(r.location_id, new Map());
+    const m = locIndexById.get(r.location_id);
+    const i = Number(r.game_index);
+    if (!m.has(r.generation_id) || i < m.get(r.generation_id)) m.set(r.generation_id, i);
+  }
+  const locOrder = (region, locId) => {
+    const gens = [].concat(REGION_ORDER_GEN[region] || []);
+    const m = locIndexById.get(locId);
+    if (!m) return null;
+    for (let t = 0; t < gens.length; t++) if (m.has(gens[t])) return t * TIER_STEP + m.get(gens[t]);
+    return null;
+  };
 
   const pokemonById = byId(csvs.pokemon, "id"); // pokemon.id === species id for default forms
   const speciesById = byId(csvs.species, "id");
@@ -423,6 +515,18 @@ function extract(t, csvs, current) {
   const evoByTarget = groupBy(csvs.pEvolution, "evolved_species_id");
   const movesByPokemon = groupBy(csvs.pMoves, "pokemon_id");
   const encByPokemon = groupBy(csvs.encounters, "pokemon_id");
+  // Encounter detail (0.2.7): slot -> method + rarity; condition values
+  // (time of day, season, swarm, ...) key separate rate buckets so a Gen 2
+  // morning/day/night triple isn't summed into one 150% figure.
+  const encSlotById = byId(csvs.encounterSlots, "id");
+  const encMethodById = byId(csvs.encounterMethods, "id");
+  const condByEncounter = groupBy(csvs.encounterConditionValueMap, "encounter_id");
+  // `walk` is the CSV's name for the standard random encounter (tall grass,
+  // caves, ...); players call it "Grass", so that's what the popup shows
+  // (0.2.10, user-directed). Only this one identifier is renamed — the real
+  // overworld methods (`overworld`, `overworld-flying`) keep their own labels.
+  const METHOD_LABEL = { walk: "Grass", "npc-trade": "NPC Trade", sos: "SOS Call", "sos-from-bubbling-spot": "SOS Call (bubbling spot)" };
+  const methodLabel = m => METHOD_LABEL[m.identifier] || titleCase(m.identifier);
   const formNameByForm = new Map(csvs.formNames.filter(r => r.local_language_id === "9").map(r => [r.pokemon_form_id, r]));
   const megaFormsBySpecies = new Map();
   for (const f of csvs.forms.filter(f => f.is_mega === "1")) {
@@ -503,6 +607,21 @@ function extract(t, csvs, current) {
         const out = {};
         for (const rg of Object.keys(REGION_GEN)) if (found[rg] !== undefined) out[rg] = found[rg];
         return out;
+      })(),
+      eggGroups: (eggGroupsBySpecies.get(sid) || []).map(r => eggGroupName.get(r.egg_group_id)).filter(Boolean),
+      // Per-game since 0.2.8 (user call, overriding 0.2.7's single max-rarity
+      // number): one `rates` group per distinct rarity, listing the games that
+      // share it. Items still sort by their highest rate, then slug.
+      heldItems: (() => {
+        const byItem = new Map();
+        for (const r of heldItemsByPokemon.get(sid) || []) {
+          const slug = itemSlug(r.item_id);
+          if (!slug) continue;
+          if (!byItem.has(slug)) byItem.set(slug, new Map());
+          byItem.get(slug).set(r.version_id, { rate: Number(r.rarity) });
+        }
+        return [...byItem].map(([item, byVer]) => ({ item, rates: groupByVersion(byVer, v => String(v.rate)) }))
+          .sort((a, b) => Math.max(...b.rates.map(x => x.rate)) - Math.max(...a.rates.map(x => x.rate)) || (a.item < b.item ? -1 : 1));
       })(),
     };
 
@@ -629,15 +748,57 @@ function extract(t, csvs, current) {
     // locations.js (this species' own region's games only)
     const versionIds = t.versionsOf(id);
     const encRows = (encByPokemon.get(sid) || []).filter(r => versionIds.has(r.version_id));
-    const areaNames = new Set();
+    // Per area (location name) -> per method -> per GAME (0.2.8, user call
+    // overriding 0.2.7's collapse): that game's own level range, and its rate
+    // = the highest single (sub-area, condition set) slot-rarity sum, capped
+    // at 100 — sub-areas/conditions are still never summed together. Games
+    // whose (min, max, rate) are identical share one line via `games`.
+    const byArea = new Map();
+    const areaOrder = new Map();
     for (const r of encRows) {
       const area = locAreaById.get(r.location_area_id);
       if (!area) continue;
       const loc = locById.get(area.location_id);
       if (!loc) continue;
-      areaNames.add(locNameById.get(loc.id) || titleCase(loc.identifier));
+      const name = locNameById.get(loc.id) || titleCase(loc.identifier);
+      if (!byArea.has(name)) byArea.set(name, new Map());
+      // Sort key, not stored: this location's map index in the region's
+      // chosen generation (null = no index, sorts into the alphabetical
+      // tail). Keyed off loc.id, never the display name — "Victory Road"
+      // and "Safari Zone" exist in several regions at once.
+      const ord = locOrder(region, loc.id);
+      if (ord !== null && (!areaOrder.has(name) || ord < areaOrder.get(name))) areaOrder.set(name, ord);
+      const slot = encSlotById.get(r.encounter_slot_id);
+      const method = slot && encMethodById.get(slot.encounter_method_id);
+      if (!method) continue;
+      const methods = byArea.get(name);
+      if (!methods.has(method.id)) methods.set(method.id, { order: Number(method.order), method: methodLabel(method), byVer: new Map() });
+      const m = methods.get(method.id);
+      if (!m.byVer.has(r.version_id)) m.byVer.set(r.version_id, { min: Infinity, max: 0, buckets: new Map() });
+      const v = m.byVer.get(r.version_id);
+      v.min = Math.min(v.min, Number(r.min_level)); v.max = Math.max(v.max, Number(r.max_level));
+      const bucket = r.location_area_id + "|" + (condByEncounter.get(r.id) || []).map(c => c.encounter_condition_value_id).sort().join("+");
+      v.buckets.set(bucket, (v.buckets.get(bucket) || 0) + Number(slot.rarity));
     }
-    results.locations[id] = { region, areas: [...areaNames].sort() };
+    results.locations[id] = {
+      region,
+      // In-game progression order (0.2.10, REGION_ORDER_GEN above) with the
+      // old plain-string sort as the tie-break and as the tail for anything
+      // the CSVs can't place.
+      areas: [...byArea.keys()].sort((a, b) => {
+        const oa = areaOrder.has(a) ? areaOrder.get(a) : null;
+        const ob = areaOrder.has(b) ? areaOrder.get(b) : null;
+        if (oa !== ob) return oa === null ? 1 : ob === null ? -1 : oa - ob;
+        return a < b ? -1 : a > b ? 1 : 0;
+      }).map(name => ({
+        area: name,
+        enc: [].concat(...[...byArea.get(name).values()].sort((a, b) => a.order - b.order).map(m => {
+          for (const v of m.byVer.values()) v.rate = Math.min(100, Math.max(...v.buckets.values()));
+          return groupByVersion(m.byVer, v => v.min + "," + v.max + "," + v.rate)
+            .map(g => ({ method: m.method, games: g.games, min: g.min, max: g.max, rate: g.rate }));
+        })),
+      })),
+    };
 
     // altforms.js: Mega formes only (pokemon_forms.csv is_mega), the shape
     // 0.1.34's extract_megas.js produced. Sprite name per TODO.md #3's rule:
@@ -697,7 +858,25 @@ function extract(t, csvs, current) {
     if (!row) return { name, found: false };
     return Object.assign({ found: true }, moveData(row, name));
   });
+  // Items referenced by this batch (held items + evolution items) that
+  // data/items.js doesn't have yet. tm-normal is an app-internal icon for
+  // "knows a move" edges, not an items.csv row — never listed.
+  const neededItems = new Set();
+  for (const id in results.pokemon) for (const h of results.pokemon[id].heldItems) neededItems.add(h.item);
+  for (const id in results.evolutions) for (const e of results.evolutions[id]) if (e.item && e.item !== "tm-normal") neededItems.add(e.item);
+  const itemData = itemDataBuilder(csvs);
+  results.missingItems = [...neededItems].filter(s => !current.items[s]).sort().map(itemData);
   return results;
+}
+// items.js's per-entry CSV data: the English display name (the description
+// stays hand-authored, like moves/abilities).
+function itemDataBuilder(csvs) {
+  const rowBySlug = new Map(csvs.items.map(i => [i.identifier, i]));
+  const enName = new Map(csvs.itemNames.filter(r => r.local_language_id === "9").map(r => [r.item_id, r.name]));
+  return slug => { const row = rowBySlug.get(slug); return { slug, name: row ? enName.get(row.id) || titleCase(slug) : titleCase(slug), found: !!row }; };
+}
+function itemEntryText(it, description) {
+  return `  "${escD(it.slug)}": { name: "${escD(it.name)}", description: "${escD(description)}" }`;
 }
 
 function writeGenerateFiles(results, current) {
@@ -712,12 +891,13 @@ function writeGenerateFiles(results, current) {
     pokemon: results.ids.filter(id => results.pokemon[id] && !current.pokemonById.has(id)).map(id => ({ id, name: results.pokemon[id].name, flavorHint: results.pokemon[id]._flavorHint })),
     moves: results.missingMoves.map(m => m.name),
     abilities: results.missingAbilities.map(a => a.name),
+    items: results.missingItems.map(i => i.slug),
   };
   const manifestFile = path.join(TEMP_DIR, `${results.slug}_needs_descriptions.json`);
   fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 1));
 
   console.log(`\nWrote ${resultsFile}`);
-  console.log(`Wrote ${manifestFile} (${manifest.pokemon.length} pokemon, ${manifest.moves.length} moves, ${manifest.abilities.length} abilities need descriptions)`);
+  console.log(`Wrote ${manifestFile} (${manifest.pokemon.length} pokemon, ${manifest.moves.length} moves, ${manifest.abilities.length} abilities, ${manifest.items.length} items need descriptions)`);
   console.log("Flagged:", results.flagged.length, "| Missing abilities:", results.missingAbilities.length, "| Missing moves:", results.missingMoves.length);
   for (const f of results.flagged) console.log("  " + f);
 }
@@ -818,6 +998,13 @@ function evoStepText(s) {
   if (s.gender) parts.push(`gender: "${s.gender}"`);
   return `{ ${parts.join(", ")} }`;
 }
+// One locations.js area entry (0.2.8 shape: one enc line per method per
+// game-group). A bare string is a pre-0.2.7 area (populate_hisui_species.js
+// still writes those) — passed through.
+function areaText(a) {
+  if (typeof a === "string") return `"${escD(a)}"`;
+  return `{ area: "${escD(a.area)}", enc: [${a.enc.map(e => `{ method: "${escD(e.method)}", games: "${escD(e.games)}", min: ${e.min}, max: ${e.max}, rate: ${e.rate} }`).join(", ")}] }`;
+}
 function altFormsText(id, baseName, formes) {
   const lines = [`  ${id}: { // ${baseName} — Mega Evolution${formes.length > 1 ? "s (X/Y)" : ""}`, "    formes: ["];
   formes.forEach((f, i) => {
@@ -833,8 +1020,8 @@ function altFormsText(id, baseName, formes) {
 // strict: every new species/move/ability must have a description (region /
 // --assemble). lenient (--refresh): skip + report instead.
 function assemble(results, descriptions, tables, strict, current) {
-  const d = descriptions || { pokemon: {}, moves: {}, abilities: {} };
-  d.pokemon = d.pokemon || {}; d.moves = d.moves || {}; d.abilities = d.abilities || {};
+  const d = descriptions || { pokemon: {}, moves: {}, abilities: {}, items: {} };
+  d.pokemon = d.pokemon || {}; d.moves = d.moves || {}; d.abilities = d.abilities || {}; d.items = d.items || {};
   const skipped = [];
   const skip = msg => { if (strict) throw new Error(msg); skipped.push(msg); };
   const want = tb => tables.indexOf(tb) !== -1;
@@ -855,6 +1042,17 @@ function assemble(results, descriptions, tables, strict, current) {
     const block = `\n  // Abilities added during the ${passLabel} CSV-pipeline pass.\n${lines.join("\n")}\n};`;
     fs.writeFileSync(path.join(DATA_DIR, "abilities.js"), fs.readFileSync(path.join(DATA_DIR, "abilities.js"), "utf8").replace(/\n\};\s*$/, block + "\n"));
   }
+  // ---- items.js additions (0.2.7) — same rule as moves/abilities: a
+  // referenced item with no description is an error in strict mode; in
+  // lenient mode the pokemon entry that needs it is skipped below.
+  const missingItems = results.missingItems || [];
+  const addableItems = missingItems.filter(i => d.items[i.slug]);
+  const unresolvedItems = new Set(missingItems.filter(i => !d.items[i.slug]).map(i => i.slug));
+  if (addableItems.length) {
+    const lines = addableItems.map(it => itemEntryText(it, d.items[it.slug]) + ",");
+    const block = `\n  // Items added during the ${passLabel} CSV-pipeline pass.\n${lines.join("\n")}\n};`;
+    fs.writeFileSync(path.join(DATA_DIR, "items.js"), fs.readFileSync(path.join(DATA_DIR, "items.js"), "utf8").replace(/\n\};\s*$/, block + "\n"));
+  }
 
   const ids = results.ids.filter(id => results.pokemon[id]);
 
@@ -870,6 +1068,8 @@ function assemble(results, descriptions, tables, strict, current) {
       if (!desc) { skip(`pokemon ${id}: no description`); continue; }
       const badAbility = pk.abilities.find(a => unresolvedAbilities.has(a));
       if (badAbility) { skip(`pokemon ${id}: ability "${badAbility}" has no description yet`); continue; }
+      const badItem = (pk.heldItems || []).find(h => unresolvedItems.has(h.item));
+      if (badItem) { skip(`pokemon ${id}: item "${badItem.item}" has no description yet`); continue; }
       if (!existing && !pk.region) throw new Error(`id ${id}: no mainline region (a Legends: Arceus original? use populate_hisui_species.js)`);
       const where = existing && existing.hisuiOnly ? "hisuiOnly: true" : `region: '${pk.region}'`;
       const hidden = pk.hiddenAbility ? `, hiddenAbility: '${esc(pk.hiddenAbility)}'` : "";
@@ -883,7 +1083,9 @@ function assemble(results, descriptions, tables, strict, current) {
         + (pk.habitat ? `, habitat: '${esc(pk.habitat)}'` : "")
         + (pk.formsSwitchable ? ", formsSwitchable: true" : "")
         + (pk.baseExperience !== null && pk.baseExperience !== undefined ? `, baseExperience: ${pk.baseExperience}` : "")
-        + (rdnKeys.length ? `, regionalDexNumbers: { ${rdnKeys.map(r => `${r}: ${pk.regionalDexNumbers[r]}`).join(", ")} }` : "");
+        + (rdnKeys.length ? `, regionalDexNumbers: { ${rdnKeys.map(r => `${r}: ${pk.regionalDexNumbers[r]}`).join(", ")} }` : "")
+        + (pk.eggGroups.length ? `, eggGroups: [${pk.eggGroups.map(g => `'${esc(g)}'`).join(", ")}]` : "")
+        + ((pk.heldItems || []).length ? `, heldItems: [${pk.heldItems.map(h => `{ item: '${esc(h.item)}', rates: [${h.rates.map(g => `{ games: '${esc(g.games)}', rate: ${g.rate} }`).join(", ")}] }`).join(", ")}]` : "");
       entries.push({ id, text: `  { id: ${id}, name: '${esc(name)}', ${where}, types: [${pk.types.map(t => `'${esc(t)}'`).join(", ")}], category: '${esc(pk.category)}', height: ${pk.height}, weight: ${pk.weight}${flags}, genderRate: ${pk.genderRate}${femaleSprite}, abilities: [${pk.abilities.map(a => `'${esc(a)}'`).join(", ")}]${hidden}, description: '${esc(desc)}'${extra} }` });
     }
     upsertEntries("pokemon.js", entries);
@@ -930,7 +1132,7 @@ function assemble(results, descriptions, tables, strict, current) {
       const merged = Object.assign({}, current.tables.locations[id] || {});
       if (region && (areas.length || merged[region] === undefined)) merged[region] = areas;
       if (!Object.keys(merged).length) merged[region || "hisui"] = [];
-      const body = Object.keys(merged).map(r => `${r}: [${merged[r].map(a => `"${escD(a)}"`).join(", ")}]`).join(", ");
+      const body = Object.keys(merged).map(r => `${r}: [${merged[r].map(areaText).join(", ")}]`).join(", ");
       entries.push({ id, text: `  ${id}: { ${body} }` });
     }
     upsertEntries("locations.js", entries);
@@ -1010,6 +1212,8 @@ function audit(ids, csvs, current, verbose) {
     check(L, "pokemon.habitat", ep.habitat || undefined, p.habitat);
     check(L, "pokemon.baseExperience", ep.baseExperience === null ? undefined : ep.baseExperience, p.baseExperience);
     check(L, "pokemon.regionalDexNumbers", Object.keys(ep.regionalDexNumbers).length ? ep.regionalDexNumbers : undefined, p.regionalDexNumbers);
+    check(L, "pokemon.eggGroups", ep.eggGroups.length ? ep.eggGroups : undefined, p.eggGroups);
+    check(L, "pokemon.heldItems", ep.heldItems.length ? ep.heldItems : undefined, p.heldItems);
 
     const s = current.tables.stats[id], es = r.stats[id];
     if (!s) report(L, "stats", "entry", undefined);
@@ -1043,7 +1247,7 @@ function audit(ids, csvs, current, verbose) {
     }
 
     const region = t.regionOf(id);
-    if (region) checkList(L, `locations.${region}`, r.locations[id].areas, (current.tables.locations[id] || {})[region] || []);
+    if (region) checkList(L, `locations.${region}`, r.locations[id].areas.map(a => JSON.stringify(a)), ((current.tables.locations[id] || {})[region] || []).map(a => JSON.stringify(a)));
 
     // Megas: the only ALT_FORMS shape extract() produces. Non-Mega formes
     // (Deoxys/Castform/Hisuian/recolorOnly) are hand-curated, untouched.
@@ -1087,7 +1291,15 @@ function audit(ids, csvs, current, verbose) {
     check(`- moves.js "${k}"`, "meta", exp.meta || undefined, m.meta);
   }
 
-  console.log(n === 0 ? `AUDIT PASS: ${ids.length} id(s), ${Object.keys(current.moves).length} moves, ${Object.keys(current.abilities).length} abilities match the CSVs.` : `AUDIT: ${n} discrepancy(ies) across ${ids.length} id(s).`);
+  // items.js: every key is a real items.csv slug with the CSV's English name.
+  const itemData = itemDataBuilder(csvs);
+  for (const [slug, it] of Object.entries(current.items)) {
+    const exp = itemData(slug);
+    if (!exp.found) { report("-", `items.js "${slug}"`, "a PokeAPI item slug", "unknown"); continue; }
+    check(`- items.js "${slug}"`, "name", exp.name, it.name);
+  }
+
+  console.log(n === 0 ? `AUDIT PASS: ${ids.length} id(s), ${Object.keys(current.moves).length} moves, ${Object.keys(current.abilities).length} abilities, ${Object.keys(current.items).length} items match the CSVs.` : `AUDIT: ${n} discrepancy(ies) across ${ids.length} id(s).`);
   return n;
 }
 
@@ -1103,22 +1315,22 @@ const SCHEMA_GAPS = [
   // base_happiness (0.2.1); has_gender_differences, habitat_id,
   // forms_switchable, base_experience, effort, hatch_counter, mastery,
   // move_meta.*, move_flags, ability_names, move_names, type_names,
-  // natures, experience (0.2.5).
+  // natures, experience (0.2.5); egg groups, encounter slot/method/level
+  // detail, items (0.2.7).
   ["pokemon_species.csv", "color_id,shape_id", "Pokédex color / body shape (lookup names in pokemon_colors / pokemon_shapes + their *_names). Deliberately out of scope — user decision 2026-09-05, not a \"later\"; habitat_id from the same row landed 0.2.5"],
   ["pokemon_species.csv", "order", "official ordering that places formes/regional variants next to their species (differs from national id)"],
-  ["pokemon_egg_groups.csv", "egg_group_id", "egg groups (breeding compatibility) — nothing in the schema covers breeding; names in egg_groups.csv / egg_group_prose.csv"],
-  ["pokemon_items.csv", "item_id,rarity", "wild held items per version"],
+  ["pokemon_items.csv", "version_id", "per-game held-item rarity landed 0.2.8 (heldItems[].rates: one { games, rate } group per distinct rarity); still collapsed: games sharing a rarity are joined into one string rather than kept as version ids"],
   ["pokemon_dex_numbers.csv", "pokedex_id,pokedex_number", "KALOS ONLY as of 0.2.5: pokemon.js's regionalDexNumbers covers the 8 regions with an unambiguous base pokedex, but Kalos has just the 3 kalos-central/coastal/mountain sub-dexes and no national-style parent, so it is skipped rather than merged by a guessed rule (see regionalPokedexes())"],
   ["pokemon_moves.csv", "pokemon_move_method_id", "methods 1/2/3/4 (level-up/egg/tutor/machine) are stored as of 0.2.5; the rest (form-change, stadium/XD specials, PLA \"train\", ...) are still dropped"],
   ["pokemon_moves.csv", "version_group_id", "only the newest usable version group is stored — no per-game learnset history (deliberately deferred 2026-09-05: one list vs. a list keyed by game is an unsettled data-shape decision)"],
   ["pokemon_evolution.csv", "location_id,minimum_beauty,party_species_id,party_type_id,trade_species_id,needs_overworld_rain,turn_upside_down,minimum_move_count,minimum_steps,minimum_damage_taken", "evolution conditions the schema collapses to method \"other\" (TODO.md #7; known_move_id is represented as of 0.1.39, gender_id as of 0.2.2, relative_physical_stats hand-authored). Only 4 in-range edges actually set any of these — Sliggoo->Goodra (rain), Stantler->Wyrdeer and Qwilfish->Overqwil (use a move N times), Basculin->Basculegion (recoil damage) — all left unlabelled pending a user call on wording"],
   ["pokemon_evolution.csv", "version_group_id,is_default", "per-version alternative evolution methods (one row is picked)"],
   ["evolution_chains.csv", "baby_trigger_item_id", "incense needed to breed the baby stage"],
-  ["encounters.csv", "version_id,encounter_slot_id,min_level,max_level", "encounter method/rate/level range per version — locations.js keeps area names only"],
+  ["encounters.csv", "version_id", "per-game encounter tables landed 0.2.8 (locations.js enc lines carry `games`, one line per method per game-group); still not stored: condition values (time of day, season, swarm) — they only separate the rate buckets within a game"],
   ["pokemon_forms.csv", "is_battle_only,introduced_in_version_group_id", "battle-only formes and forme debut game — only Mega/Hisuian/recolor formes are represented at all (TODO.md #4)"],
   ["moves.csv", "effect_id,generation_id", "the move's effect-text id (move_effect_prose.csv) and debut generation; priority/target_id/effect_chance landed 0.2.5"],
   ["abilities.csv", "generation_id", "ability debut generation"],
-  ["items.csv", "identifier,category_id,cost", "no ITEMS_DATA at all — sprites only (TODO.md #8)"],
+  ["items.csv", "category_id,cost,fling_power", "data/items.js (0.2.7) holds only name + hand-authored description for items the app references (held/evolution items) — no category, price or Fling data, and no full-catalogue Bag screen (TODO.md #8)"],
 ];
 function gaps() {
   let bad = 0;

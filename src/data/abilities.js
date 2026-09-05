@@ -206,4 +206,16 @@ var ABILITIES = {
   "Refrigerate": { description: "Turns the Pokémon's Normal-type moves into Ice-type moves and slightly boosts their power.", names: { ja: "フリーズスキン", fr: "Peau Gelée", de: "Frostschicht", ko: "프리즈스킨" } },
   "Stalwart": { description: "Ignores abilities and moves that would redirect the Pokémon's attacks.", names: { ja: "すじがねいり", fr: "Nerfs d’Acier", de: "Stahlrückgrat", ko: "굳건한신념" } },
   "Tough Claws": { description: "Boosts the power of the Pokémon's moves that make direct contact.", names: { ja: "かたいツメ", fr: "Griffe Dure", de: "Krallenwucht", ko: "단단한발톱" } },
+  // Abilities added during the Unova CSV-pipeline pass.
+  "Victory Star": { description: "Raises the accuracy of the Pokémon and its allies by 10%.", names: { ja: "しょうりのほし", fr: "Victorieux", de: "Triumphstern", ko: "승리의별" } },
+  "Zen Mode": { description: "Changes the Pokémon's form when its HP drops to half or below.", names: { ja: "ダルマモード", fr: "Mode Transe", de: "Trance-Modus", ko: "달마모드" } },
+  "Mummy": { description: "Any Pokémon that makes contact with this one has its Ability replaced with Mummy.", names: { ja: "ミイラ", fr: "Momie", de: "Mumie", ko: "미라" } },
+  "Defeatist": { description: "Halves Attack and Sp. Atk while the Pokémon's HP is at half or below.", names: { ja: "よわき", fr: "Défaitiste", de: "Schwächling", ko: "무기력" } },
+  "Iron Barbs": { description: "Inflicts damage on any attacker that makes direct contact.", names: { ja: "てつのトゲ", fr: "Épine de Fer", de: "Eisenstachel", ko: "철가시" } },
+  "Slush Rush": { description: "Doubles Speed while snow is falling.", names: { ja: "ゆきかき", fr: "Chasse-Neige", de: "Schneescharrer", ko: "눈치우기" } },
+  "Turboblaze": { description: "The Pokémon's moves ignore any Ability that would otherwise hinder them.", names: { ja: "ターボブレイズ", fr: "Turbo Brasier", de: "Turbobrand", ko: "터보블레이즈" } },
+  "Teravolt": { description: "The Pokémon's moves ignore any Ability that would otherwise hinder them.", names: { ja: "テラボルテージ", fr: "Téra-Voltage", de: "Teravolt", ko: "테라볼티지" } },
+  "Piercing Drill": { description: "Contact moves can pierce a protecting target, dealing a quarter of their usual damage.", names: { ja: "かんつうドリル", fr: "Transperceuse", de: "Stichbohrer", ko: "관통드릴" } },
+  "Eelevate": { description: "The Pokémon floats free of the ground, immune to Ground moves and entry hazards; knocking out a target boosts its highest stat.", names: {  } },
+  "Unseen Fist": { description: "Contact moves strike the target even if it is protecting itself.", names: { ja: "ふかしのこぶし", fr: "Poing Invisible", de: "Verborgene Faust", ko: "보이지않는주먹" } },
 };

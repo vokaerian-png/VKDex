@@ -1601,6 +1601,55 @@ body {
   padding: 6px 14px;
 }
 
+/* Held Items chips (0.2.7): same raised pill as .region-chip.chip-auto,
+   with the item sprite inline and the encounter rate dimmed. */
+.item-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px 4px 6px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.04)), var(--chip-bg);
+  color: var(--chip-fg);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: var(--raised-shadow-sm);
+}
+
+.item-chip img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
+.item-chip .item-rate {
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.item-chips {
+  justify-content: flex-start;
+}
+
+.evo-arrow-item.item-tap {
+  cursor: pointer;
+}
+
+.item-popup {
+  text-align: center;
+}
+
+.item-popup-sprite {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
 /* Key/value fact rows. */
 .detail-facts {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)), var(--chip-bg);
@@ -1976,6 +2025,79 @@ body {
     "Yu Gothic", "Meiryo", "Hiragino Sans", "Noto Sans CJK JP",
     "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR",
     Helvetica, Arial, sans-serif;
+}
+
+/* Found In popup (0.2.7): area name on top, one method/level/rate line
+   under it per encounter method. */
+.popup-row.column {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+/* Collapsible area rows (0.2.10): a native <details>/<summary> per area, so
+   the disclosure marker, toggle state, keyboard and screen-reader behavior
+   are the platform's, not ours. Chromium's UA sheet already gives summary
+   `display: list-item` with an inside disclosure marker — only the colors,
+   the hit area and the padding are set here. Don't set `display` on the
+   summary; that kills the marker. */
+.popup-row.area-row {
+  display: block;
+  padding: 0;
+}
+
+.popup-row.area-row > summary {
+  padding: 6px 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+}
+
+.popup-row.area-row > summary::marker {
+  color: var(--accent);
+}
+
+.popup-row.area-row > summary:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.area-encs {
+  padding: 0 0 6px 14px;
+}
+
+.enc-line {
+  font-size: 11px;
+  color: #c9c9c9;
+}
+
+/* Per-game attribution (0.2.8): its own dimmer sub-line under the method /
+   level / rate line, so a long list ("Black 2/White 2") wraps instead of
+   overflowing the 360px popup. app.js's encGamesHtml() inserts a <wbr>
+   after every "/" so the list breaks at game boundaries; overflow-wrap is
+   the backstop for a single name longer than the popup (0.2.9) — without
+   it the line overflowed and .detail-popup-body's overflow-y:auto (which
+   computes overflow-x to auto) grew a horizontal scrollbar. */
+.enc-games {
+  display: block;
+  padding-left: 8px;
+  font-size: 10px;
+  color: #9a9a9a;
+  overflow-wrap: anywhere;
+}
+
+/* Item popup's per-game wild-hold rates (0.2.8), reusing .enc-line. */
+.held-rates {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.held-rates-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
 }
 
 .popup-note {

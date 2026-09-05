@@ -35,7 +35,9 @@ const LOCATIONS = loadGlobal("locations.js", "LOCATIONS");
 const MOVES = loadGlobal("moves.js", "MOVES");
 const ABILITIES = loadGlobal("abilities.js", "ABILITIES");
 const ALT_FORMS = loadGlobal("altforms.js", "ALT_FORMS");
+const ITEMS_DATA = loadGlobal("items.js", "ITEMS_DATA");
 const SPRITE_DIR = path.join(DATA_DIR, "sprites", "pokemon");
+const ITEM_SPRITE_DIR = path.join(DATA_DIR, "sprites", "items");
 
 let failures = 0;
 const fail = msg => { failures++; console.log("FAIL:", msg); };
@@ -75,6 +77,33 @@ for (const p of POKEMON_DATA) {
   for (const a of p.abilities || []) if (!ABILITIES[a]) fail(`pokemon.js id ${p.id}: unknown ability "${a}"`);
   if (p.hiddenAbility && (p.abilities || []).indexOf(p.hiddenAbility) === -1) fail(`pokemon.js id ${p.id}: hiddenAbility "${p.hiddenAbility}" not in abilities`);
 }
+
+// ---- items (0.2.7): every heldItems / evolution `item` slug resolves in
+// ITEMS_DATA (tm-normal is an app-internal icon, exempt); an ITEMS_DATA
+// entry with no bundled sprite is noted, not failed — the app hides the
+// <img> and black-augurite/peat-block are known to have no art ----
+const itemRefs = new Set();
+for (const p of POKEMON_DATA) for (const h of p.heldItems || []) itemRefs.add(h.item);
+// ---- per-game shapes (0.2.8): heldItems[].rates and locations enc lines
+// each carry a `games` string + a sane rate. Catches a hand edit that drops
+// back to the 0.2.7 single-`rate` shape, which the UI would render blank ----
+for (const p of POKEMON_DATA) for (const h of p.heldItems || []) {
+  if (!Array.isArray(h.rates) || !h.rates.length) fail(`pokemon.js id ${p.id}: heldItems "${h.item}" has no rates[] (pre-0.2.8 shape?)`);
+  else for (const g of h.rates) if (!g.games || !(g.rate > 0 && g.rate <= 100)) fail(`pokemon.js id ${p.id}: heldItems "${h.item}" bad rate group ${JSON.stringify(g)}`);
+}
+for (const id of IDS) for (const region of Object.keys(LOCATIONS[id] || {})) {
+  for (const a of LOCATIONS[id][region] || []) {
+    if (typeof a === "string") continue; // pre-0.2.7 bare-string area, tolerated
+    for (const e of a.enc || []) {
+      if (!e.games) fail(`locations.js id ${id}/${region}/"${a.area}": enc line has no games (pre-0.2.8 shape?)`);
+      if (!(e.rate > 0 && e.rate <= 100) || !(e.min >= 1) || !(e.max >= e.min)) fail(`locations.js id ${id}/${region}/"${a.area}": bad enc line ${JSON.stringify(e)}`);
+    }
+  }
+}
+for (const id of IDS) for (const step of (EVOLUTIONS[id] || {}).evolvesTo || []) if (step.item && step.item !== "tm-normal") itemRefs.add(step.item);
+for (const slug of itemRefs) if (!ITEMS_DATA[slug]) fail(`items.js: referenced item "${slug}" has no ITEMS_DATA entry`);
+const noItemArt = Object.keys(ITEMS_DATA).filter(slug => !fs.existsSync(path.join(ITEM_SPRITE_DIR, slug + ".png")));
+if (noItemArt.length) console.log(`NOTE: ${noItemArt.length} ITEMS_DATA entries have no sprite under data/sprites/items/: ${noItemArt.join(", ")}`);
 
 // ---- ALT_FORMS: species exists, abilities resolve, sprites on disk ----
 let altFormeCount = 0;
@@ -118,7 +147,7 @@ for (const id of IDS) {
   }
 }
 
-console.log(`Checked ids ${MIN_ID}-${MAX_ID}: ${POKEMON_DATA.length} POKEMON_DATA entries, ${Object.keys(MOVES).length} MOVES, ${Object.keys(ABILITIES).length} ABILITIES, ${Object.keys(ALT_FORMS).length} ALT_FORMS species / ${altFormeCount} formes.`);
+console.log(`Checked ids ${MIN_ID}-${MAX_ID}: ${POKEMON_DATA.length} POKEMON_DATA entries, ${Object.keys(MOVES).length} MOVES, ${Object.keys(ABILITIES).length} ABILITIES, ${Object.keys(ITEMS_DATA).length} ITEMS_DATA, ${Object.keys(ALT_FORMS).length} ALT_FORMS species / ${altFormeCount} formes.`);
 console.log(`Evolution targets outside range (unexpected if >0): ${outOfRangeNoted}`);
 console.log(failures === 0 ? "PASS: no integrity failures." : `FAIL: ${failures} integrity failure(s) found.`);
 process.exit(failures === 0 ? 0 : 1);

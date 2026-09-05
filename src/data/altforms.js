@@ -712,5 +712,62 @@ var ALT_FORMS = {
       { key: "mega", name: "Mega Darkrai", sprite: "mega/darkrai", isMega: true,
         stats: { hp: 70, attack: 120, defense: 130, spAttack: 165, spDefense: 130, speed: 85 } } // CSV carries no ability row for this Mega yet
     ]
+  },
+  500: { // Emboar — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Emboar", sprite: "mega/emboar", isMega: true,
+        stats: { hp: 110, attack: 148, defense: 75, spAttack: 110, spDefense: 110, speed: 75 },
+        ability: "Mold Breaker" }
+    ]
+  },
+  530: { // Excadrill — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Excadrill", sprite: "mega/excadrill", isMega: true,
+        stats: { hp: 110, attack: 165, defense: 100, spAttack: 65, spDefense: 65, speed: 103 },
+        ability: "Piercing Drill" }
+    ]
+  },
+  531: { // Audino — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Audino", sprite: "mega/audino", isMega: true,
+        types: ["Normal", "Fairy"],
+        stats: { hp: 103, attack: 60, defense: 126, spAttack: 80, spDefense: 126, speed: 50 },
+        ability: "Healer" }
+    ]
+  },
+  545: { // Scolipede — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Scolipede", sprite: "mega/scolipede", isMega: true,
+        stats: { hp: 60, attack: 140, defense: 149, spAttack: 75, spDefense: 99, speed: 62 },
+        ability: "Shell Armor" }
+    ]
+  },
+  560: { // Scrafty — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Scrafty", sprite: "mega/scrafty", isMega: true,
+        stats: { hp: 65, attack: 130, defense: 135, spAttack: 55, spDefense: 135, speed: 68 },
+        ability: "Intimidate" }
+    ]
+  },
+  604: { // Eelektross — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Eelektross", sprite: "mega/eelektross", isMega: true,
+        stats: { hp: 85, attack: 145, defense: 80, spAttack: 135, spDefense: 90, speed: 80 },
+        ability: "Eelevate" }
+    ]
+  },
+  609: { // Chandelure — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Chandelure", sprite: "mega/chandelure", isMega: true,
+        stats: { hp: 60, attack: 75, defense: 110, spAttack: 175, spDefense: 110, speed: 90 },
+        ability: "Infiltrator" }
+    ]
+  },
+  623: { // Golurk — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Golurk", sprite: "mega/golurk", isMega: true,
+        stats: { hp: 89, attack: 159, defense: 105, spAttack: 70, spDefense: 105, speed: 55 },
+        ability: "Unseen Fist" }
+    ]
   }
 };

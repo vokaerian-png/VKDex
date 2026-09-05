@@ -1017,8 +1017,12 @@
     if (via.item) {
       // No generic "unknown item" placeholder exists, so an item with no
       // bundled art (black-augurite, peat-block) just hides its <img>.
-      icons += '<img class="evo-arrow-item" src="' + itemSpriteUrl(via.item) +
-        '" alt="" onerror="this.style.display=\'none\';">';
+      // Tappable (0.2.7, data-item -> openItemPopup) when ITEMS_DATA names
+      // it; tm-normal is the app's own "knows a move" icon, not an item.
+      var itemData = ITEMS_DATA[via.item];
+      icons += '<img class="evo-arrow-item' + (itemData ? " item-tap" : "") + '" src="' + itemSpriteUrl(via.item) +
+        '" alt="' + escapeHtml(itemData ? itemData.name : "") + '"' + (itemData ? ' data-item="' + escapeHtml(via.item) + '" role="button" tabindex="0"' : "") +
+        ' onerror="this.style.display=\'none\';">';
     } else if (via.method === "level" && typeof via.level !== "number") {
       icons += EVO_HEART_SVG;
     }
@@ -1191,6 +1195,15 @@
     return Math.round(p * 1000) / 10;
   }
 
+  // Held-item chip summary (0.2.8): the rate when every game agrees, else the
+  // low–high span. The per-game groups themselves are in the item popup.
+  function heldRateSummary(h) {
+    var rates = (h.rates || []).map(function (g) { return g.rate; });
+    if (!rates.length) return "";
+    var lo = Math.min.apply(null, rates), hi = Math.max.apply(null, rates);
+    return (lo === hi ? lo : lo + "–" + hi) + "%";
+  }
+
   // Appends any alt forme's own distinct ability (rule 4) after the base
   // entry's own abilities, tagged with that forme's short label — reusing
   // .hidden-tag's generic small-badge styling (a Mega/Gmax forme adds
@@ -1243,6 +1256,9 @@
     rows += pillRowHtml("Type", (entry.types || []).map(function (t) { return { type: t }; }), "type-pills");
     rows += abilityListHtml(entry);
     if (entry.category) rows += rowHtml("Category", entry.category);
+    // Egg Groups sits beside Category (both species trivia) — user-directed
+    // move 0.2.8 from its 0.2.7 slot after Exp Growth.
+    if (entry.eggGroups && entry.eggGroups.length) rows += rowHtml("Egg Groups", entry.eggGroups.join(" / "));
     if (entry.height !== undefined && entry.weight !== undefined) {
       var heightVal = useImperialUnits ? metersToFeetInches(entry.height) : entry.height + " m";
       var weightVal = useImperialUnits ? kgToLbs(entry.weight) : entry.weight + " kg";
@@ -1253,6 +1269,20 @@
       var odds = captureOddsPercent(stats.captureRate);
       rows += '<div class="detail-row"><span class="detail-key">Capture Rate</span><span class="detail-val">' +
         '<span class="capture-val">' + BALL_ICON_SVG + stats.captureRate + " (" + odds + "%)</span></span></div>";
+    }
+    // Held Items sits with the other catching info, right after Capture Rate
+    // — user-directed move 0.2.8 from its 0.2.7 slot after Exp Growth.
+    // One chip per wild held item (sprite + name + rate), tap ->
+    // openItemPopup for the per-game breakdown. Same delegated .item-tap
+    // hook the Evolution Line's arrow item icons use.
+    if (entry.heldItems && entry.heldItems.length) {
+      rows += '<div class="detail-row column"><span class="detail-key">Held Items</span><div class="chip-row item-chips">' +
+        entry.heldItems.map(function (h) {
+          var it = ITEMS_DATA[h.item];
+          return '<button class="item-chip item-tap" type="button" data-item="' + escapeHtml(h.item) + '">' +
+            '<img src="' + itemSpriteUrl(h.item) + '" alt="" onerror="this.style.display=\'none\';">' +
+            escapeHtml(it ? it.name : h.item) + ' <span class="item-rate">' + heldRateSummary(h) + "</span></button>";
+        }).join("") + "</div></div>";
     }
     if (stats && stats.expGrowth) {
       rows += rowHtml("Exp Growth", stats.expGrowth.points.toLocaleString() + " – " + stats.expGrowth.curve);
@@ -1441,13 +1471,65 @@
     openDetailPopup("Names", rows);
   }
 
+  // A "/"-joined game list is one unbreakable word to the line breaker (no
+  // break opportunity after "/"), so a long one overflowed the fixed-width
+  // popup and turned .detail-popup-body's overflow-y:auto into a horizontal
+  // scrollbar (0.2.9). A <wbr> after each "/" gives it somewhere to wrap;
+  // .enc-games's overflow-wrap covers a pathologically long single name.
+  function encGamesHtml(games) {
+    if (!games) return "";
+    return '<span class="enc-games">' + escapeHtml(games).replace(/\//g, "/<wbr>") + "</span>";
+  }
+
   function openLocationPopup(regionId) {
     if (detailEntryId === null) return;
     var areas = (LOCATIONS[detailEntryId] || {})[regionId] || [];
+    // 0.2.8 shape: { area, enc: [{ method, games, min, max, rate }] } — one
+    // line per method per game-group under the area name, games named on
+    // their own sub-line so a long list ("Black 2/White 2") can't overflow
+    // the 360px popup. A bare string (pre-0.2.7 entry) still renders as just
+    // the name; a pre-0.2.8 line just has no games sub-line.
+    // Each area is a native <details> (0.2.10) — the encounter lines are
+    // collapsed until its name is tapped, so a 24-area list like Pidgey's
+    // Kanto reads as one screen of area names instead of a long scroll.
+    // Native gives us the marker, the toggle state, Enter/Space and the
+    // screen-reader semantics for free; nothing here is JS-driven. Areas
+    // come in in-game progression order since 0.2.10 (populate_region.js's
+    // REGION_ORDER_GEN), so the first row is the earliest-reached area.
+    // A lone area opens by default — there is nothing to scan past, so
+    // making the only content cost a tap would be strictly worse.
     var body = areas.length
-      ? areas.map(function (a) { return '<div class="popup-row"><span class="v" style="text-align:left;flex:1">' + escapeHtml(a) + "</span></div>"; }).join("")
+      ? areas.map(function (a) {
+        var name = typeof a === "string" ? a : a.area;
+        var lines = (a.enc || []).map(function (e) {
+          return '<div class="enc-line">' + escapeHtml(e.method) + " &middot; Lv " + (e.min === e.max ? e.min : e.min + "&ndash;" + e.max) + " &middot; " + e.rate + "%" +
+            encGamesHtml(e.games) + "</div>";
+        }).join("");
+        if (!lines) return '<div class="popup-row column"><span class="v" style="text-align:left">' + escapeHtml(name) + "</span></div>";
+        return '<details class="popup-row area-row"' + (areas.length === 1 ? " open" : "") + "><summary>" +
+          escapeHtml(name) + '</summary><div class="area-encs">' + lines + "</div></details>";
+      }).join("")
       : '<p class="popup-note">No specific areas recorded.</p>';
     openDetailPopup(regionLabel(regionId), body);
+  }
+
+  // Item popup (0.2.7): sprite + hand-authored description from ITEMS_DATA.
+  // Since 0.2.8 it also carries the per-game wild-hold rates, when the open
+  // detail entry is a species that holds this item — same grouping the Found
+  // In popup uses (one line per rate, games named under it). An evolution
+  // arrow's item icon opens the same popup and simply gets no such block,
+  // unless that species happens to hold the item too.
+  function openItemPopup(slug) {
+    var it = ITEMS_DATA[slug];
+    if (!it) return;
+    var entry = detailEntryId === null ? null : findPokemon(detailEntryId);
+    var held = entry && (entry.heldItems || []).filter(function (h) { return h.item === slug; })[0];
+    var rates = held ? (held.rates || []).map(function (g) {
+      return '<div class="enc-line">' + g.rate + "%" + encGamesHtml(g.games) + "</div>";
+    }).join("") : "";
+    openDetailPopup(it.name, '<div class="item-popup"><img class="item-popup-sprite" src="' + itemSpriteUrl(slug) +
+      '" alt="" onerror="this.style.display=\'none\';"><p class="popup-note">' + escapeHtml(it.description) + "</p>" +
+      (rates ? '<div class="held-rates"><span class="held-rates-label">Held in the wild</span>' + rates + "</div>" : "") + "</div>");
   }
 
   detailPopupClose.addEventListener("click", closeDetailPopup);
@@ -1501,6 +1583,17 @@
 
     var regionChip = e.target.closest ? e.target.closest(".chip-auto") : null;
     if (regionChip) { openLocationPopup(regionChip.getAttribute("data-region")); return; }
+
+    var itemTap = e.target.closest ? e.target.closest(".item-tap") : null;
+    if (itemTap) { openItemPopup(itemTap.getAttribute("data-item")); return; }
+  });
+  // The arrow item icon is an <img role="button">, not a real button, so
+  // Enter/Space need wiring by hand (the Held Items chips are <button>s and
+  // fire click natively).
+  detailBody.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var itemTap = e.target.closest ? e.target.closest("img.item-tap") : null;
+    if (itemTap) { e.preventDefault(); openItemPopup(itemTap.getAttribute("data-item")); }
   });
 
   function renderDetail(entry) {

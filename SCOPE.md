@@ -10,9 +10,10 @@ Sections run sequentially §1-§8; a sub-clause takes its main section's
 number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
 full convention).
 
-**Standing cap: ≤600 lines**, same 50-line raise-at-a-time rule as
-`CLAUDE.md` (full shared rule: `CLAUDE.md` §7) — tracked independently of
-that file's own ≤400-line cap.
+**Standing cap: ≤650 lines** (raised from 600, 2026-09-05, 0.2.8's
+per-game encounter/item shapes pushed past it), same 50-line
+raise-at-a-time rule as `CLAUDE.md` (full shared rule: `CLAUDE.md` §7) —
+tracked independently of that file's own ≤400-line cap.
 
 **Cards and their internal data blocks don't get reordered, restructured,
 or reshuffled unless the user explicitly asks for that specific change**
@@ -36,10 +37,8 @@ thin Electron wrapper packaging it as a portable Windows `.exe`.
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3).
-
-**Current version: 0.2.6** (`CLAUDE.md` §3 for the bump policy,
-`HISTORY.md` for the changelog).
+and a Settings popup (§3). **Current version: 0.2.10** (`CLAUDE.md` §3 for
+the bump policy, `HISTORY.md` for the changelog).
 
 ---
 
@@ -52,64 +51,88 @@ order among them doesn't matter). Split by concern so a diff only touches
 the file that changed; shared data (abilities, moves) is normalized and
 referenced by name, not duplicated per-Pokémon.
 
-**`POKEMON_DATA`** (`data/pokemon.js`): 522 entries — Kanto/Johto/Hoenn/
-Sinnoh in full (ids 1-493) plus 29 Hisui-roster species (0.1.28, for the
-standalone Hisui dex, §4 — not a regional pass): 22 carry a real mainline
-`region` (`unova`/`kalos`/`alola` — 13/6/3, so those chips show a small
-partial grid; expected) and 7 (dex 899-905, Legends: Arceus originals)
-carry `hisuiOnly: true` and no `region` key. **`hisuiOnly` excludes an
-entry from the unfiltered National Dex browse grid** (`renderDexList()`'s
-national branch); it stays reachable via the Hisui screen (keyed by
-`data/hisui.js`, not `region`), quick-search (§4), and Favorites. `id` =
-national dex number; **don't assume `id` ordering is region-internal
-order** beyond Kanto. `REGIONS` (`data.js`) lists all 9 mainline regions
-plus the 2 standalone dexes; a region with zero entries renders "coming
-soon".
+**`POKEMON_DATA`** (`data/pokemon.js`): 665 entries — Kanto/Johto/Hoenn/
+Sinnoh/Unova in full (ids 1-649; Unova landed 0.2.7) plus the rest of the
+29 Hisui-roster species (0.1.28, for the standalone Hisui dex, §4 — not a
+regional pass): 9 carry a real mainline `region` (`kalos`/`alola` — 6/3, so
+those chips show a small partial grid; expected) and 7 (dex 899-905,
+Legends: Arceus originals) carry `hisuiOnly: true` and no `region` key.
+**`hisuiOnly` excludes an entry from the unfiltered National Dex browse
+grid** (`renderDexList()`'s national branch); it stays reachable via the
+Hisui screen (keyed by `data/hisui.js`, not `region`), quick-search (§4),
+and Favorites. `id` = national dex number; **don't assume `id` ordering is
+region-internal order** beyond Kanto. `REGIONS` (`data.js`) lists all 9
+mainline regions plus the 2 standalone dexes; a region with zero entries
+renders "coming soon".
 
 Detail-screen fields in `pokemon.js`: `types`, `category`, `height`,
 `weight`, `abilities` (names resolved in `data/abilities.js`, hidden
 ability sorted last), `hiddenAbility` (name or absent), `description`.
 **Data-only, not yet UI-wired** (0.2.1): `isLegendary`/`isMythical`/
 `isBaby` (booleans, emitted only when true — absence means false) and
-`genderRate` (-1 = genderless, else 0-8 eighths-female), all 522 entries,
+`genderRate` (-1 = genderless, else 0-8 eighths-female), every entry,
 sourced from `pokemon_species.csv`. `stats.js` gained the same-pass
 `baseHappiness` alongside `captureRate`/`expGrowth`. No detail-screen fact
 row renders any of these yet — future work, `TODO.md` #10.
-**`hasFemaleSprite: true`** (0.2.3, UI-wired — §4's gender toggle) on 95
+**`hasFemaleSprite: true`** (0.2.3, UI-wired — §4's gender toggle) on 98
 entries, hand-derived from the sprite folder below, **not** CSV-sourced —
 **no longer refresh-fragile** (fixed 0.2.5, the `pokemon.js` writer now
 carries it over on any `--refresh`). A future region pass populating one of
-the 7 already-sprited-but-unpopulated ids (521/592/593/668/678/876/916 —
-`TODO.md` #2) must still set it by hand the first time. 0.2.5's CSV-sourced
-`hasGenderDifferences` matches this 95-id set exactly (a cross-check, not a
-substitute — a future region's dimorphic ids may have no bundled art).
-**`evolutions.js`'s `statCompare`/`note` are the only fields left that a
-`--refresh` would silently drop.**
+the 4 already-sprited-but-unpopulated ids (668/678/876/916 — `TODO.md` #2)
+must still set it by hand the first time (done for 521/592/593 in 0.2.7).
+0.2.5's CSV-sourced `hasGenderDifferences` matches this 98-id set exactly
+(a cross-check, not a substitute — a future region's dimorphic ids may have
+no bundled art). **`evolutions.js`'s `statCompare`/`note` are the only
+fields left that a `--refresh` would silently drop** (Basculin's `note`
+did get dropped by 0.2.7's Unova upsert and was restored by hand — expect
+the same on any future `--tables evolutions` write over 211/234/236/265/
+550/704).
+**0.2.7/0.2.8, UI-wired** (`TODO.md` #8/#10 closed): `eggGroups` (1-2
+English names, all 665 — Facts row beside Category) and `heldItems`
+(`[{ item: slug, rates: [{ games, rate }] }]`, one group per distinct
+rarity across games, 340 species — Facts row after Capture Rate, §4), both
+pipeline-written and audited.
 
-**0.2.5 schema-gap batch** (data only, no UI wiring; `TODO.md` #10):
+**0.2.5 schema-gap batch** (data only, unwired; `TODO.md` #10):
 `pokemon.js` +`habitat`/`formsSwitchable`/`baseExperience`/
-`regionalDexNumbers` (per mainline region, Kalos/Hisui excluded — see
-`TODO.md` #10); `stats.js` +`hatchCounter`/`effort` (EV yield, 6 keys);
-`movesets.js` +`tutor` (only Wormadam non-empty) and per-row `mastery` (384
-rows/54 species, all Legends: Arceus); `moves.js` +`priority`/`target`/
-`effectChance`/`flags`/a nested `meta` (hit/turn/drain/crit/ailment);
-`abilities.js`/`moves.js`/new `types.js` export `TYPE_NAMES` all +a `names`
-sub-object (same 5 languages as `data/names.js`, unwired). Two new pure
-lookup files: `data/natures.js` (`NATURES`, 25) and `data/experience.js`
-(`EXPERIENCE_CURVES`, 6×101 by level). `SCHEMA_GAPS` 28→15. Left open (all
-`TODO.md` #10): 4 evolution edges with no obvious arrow label (Sliggoo→
-Goodra/Stantler→Wyrdeer/Qwilfish→Overqwil/Basculin→Basculegion), Kalos
-regional numbers, per-game learnset history.
+`regionalDexNumbers` (per mainline region, Kalos/Hisui excluded);
+`stats.js` +`hatchCounter`/`effort` (EV yield); `movesets.js` +`tutor` and
+per-row `mastery` (Legends: Arceus only); `moves.js` +`priority`/`target`/
+`effectChance`/`flags`/nested `meta`; `abilities.js`/`moves.js`/`types.js`'s
+`TYPE_NAMES` +a 5-language `names` sub-object. Pure lookups `data/natures.js`
+(`NATURES`, 25) and `data/experience.js` (`EXPERIENCE_CURVES`, 6×101).
+`SCHEMA_GAPS` now 14 (`--gaps`); what's still open is `TODO.md` #10.
 
-**Population status:** `abilities.js` (179) and `moves.js` (622) hold
-Gen-9-era values with original paraphrase descriptions. The per-Pokémon
-files (`movesets`/`evolutions`/`locations`/`names`/`stats`) are **fully
-populated for ids 1-493 and the 29 Hisui additions**, including every
-Sinnoh `hiddenAbility` flag (backfilled 0.1.36) and all 5 previously-empty
-movesets — Pinsir/Tauros/Slowking/Sceptile/Rhyperior (0.1.38). Farfetch'd
-spelled with the CSV's curly apostrophe (`Farfetch’d`, 0.1.37 — user
-decision). Next region (Unova onward) is not a `PLAN.md` commitment —
-`TODO.md` #2.
+**Population status:** `abilities.js` (190), `moves.js` (651) and
+`items.js` (130, 0.2.7 — only items the app references, keyed by PokeAPI
+slug = sprite filename) hold Gen-9-era values with original paraphrase
+descriptions. The per-Pokémon files (`movesets`/`evolutions`/`locations`/
+`names`/`stats`) are **fully populated for ids 1-649 and the 29 Hisui
+additions**. Farfetch'd spelled with the CSV's curly apostrophe
+(`Farfetch’d`, 0.1.37 — user decision). Next region (Kalos onward) is not
+a `PLAN.md` commitment — `TODO.md` #2.
+
+**`locations.js` shape (0.2.8, per-game):** `LOCATIONS[id][region]` is a
+list of `{ area, enc: [{ method, games, min, max, rate }] }` — one `enc`
+line per (method, game-group). `games` = "/"-joined English version names
+in release order; `min`/`max`/`rate` are that game's own figures (a
+single (sub-area, condition-set) slot-rarity sum, capped 100 — sub-areas/
+conditions are never summed, and since 0.2.8 neither are games, so it
+reads "up to N%" per game). Games sharing identical `(min,max,rate)`
+collapse to one line. Japan-only Gen 1 releases are excluded from
+extraction (English-name collision with international Red/Blue/Green).
+Gift/static/trade rows are kept on purpose. The 7 `hisuiOnly` entries hold
+`hisui: []`; a bare-string area (`populate_hisui_species.js`'s pre-0.2.7
+shape) still renders, upgraded by any `--refresh --tables locations`.
+**Area order (0.2.10)**: real in-game progression, not
+alphabetical — `location_game_indices.csv` joined on location id, one
+generation per region by coverage (kanto 3, johto 4, sinnoh 4, unova 5,
+kalos/alola 6/7; **Hoenn is two-tier**, Gen 3 primary + Gen-6-only areas
+appended as a trailing block, user-directed after a flagged coverage
+coin-flip). An area neither chosen generation's index covers keeps its
+prior alphabetical position rather than a guessed slot (~20 areas
+project-wide). `tools/populate_region.js`'s `REGION_ORDER_GEN` holds
+either a single generation string or (Hoenn only) a list.
 
 **Data pipeline: `tools/populate_region.js`** (unified 2026-09-05; full
 scope in its header comment) is the one tool for CSV → `src/data/*.js`,
@@ -122,23 +145,25 @@ reading the `PokeAPI/pokeapi` clone at `temp/PokeAPI-master/data/v2/csv/`.
   ids already in `pokemon.js`; hand-authored descriptions kept; an entry
   needing a missing description is skipped and reported). `--tables a,b,c`
   scopes which of `pokemon stats evolutions movesets names locations
-  altforms` get written (moves/abilities additions always).
+  altforms` get written (moves/abilities/items additions always —
+  `descriptions.json` carries `pokemon`/`moves`/`abilities`/`items` keys,
+  0.2.7).
 - Every write is an **in-place, id-ordered upsert** — the same command
   adds or edits. `pokemon.js` lines carry `hiddenAbility`; `evolutions.js`
   edges carry `item`/`timeOfDay`/`moveType`; `altforms` writes Mega formes
   only, and only for a species with no `ALT_FORMS` entry yet (an existing
   hand-curated one is printed for hand-merging, never touched).
-- Every write path ends in **`tools/verify_region_data.js`** (all 8 data
-  files: ids present in every table, move/ability names resolve,
-  `hiddenAbility` listed, `ALT_FORMS` species/abilities/sprites on disk) —
-  run it after any hand edit too.
+- Every write path ends in **`tools/verify_region_data.js`** (all 9 data
+  files: ids present in every table, move/ability/item names resolve,
+  `hiddenAbility` listed, `ALT_FORMS` species/abilities/sprites on disk,
+  `ITEMS_DATA` entries with no bundled art noted) — run it after any hand
+  edit too.
 - **`--audit [--verbose]`** (read-only) diffs the 6 per-id tables, Mega
-  formes, and `moves.js`/`abilities.js` against the CSVs ("would
-  `--refresh` change anything?") — ~3s, one line per mismatch, exit 1 on
-  any. **`--gaps`** lists CSV columns the schema lacks. First-run
-  findings: `TODO.md` #10.
-- `tools/populate_hisui_species.js` is the separate id-list fork for the
-  Hisui/Orre standalone dexes.
+  formes, and `moves.js`/`abilities.js`/`items.js` against the CSVs
+  ("would `--refresh` change anything?") — ~3s, one line per mismatch,
+  exit 1 on any. **`--gaps`** lists CSV columns the schema lacks (`TODO.md`
+  #10). `tools/populate_hisui_species.js` is the separate, already-run
+  id-list fork for the Hisui/Orre standalone dexes.
 
 `data/types.js`: `TYPE_CHART`, the full Gen 9 type-effectiveness chart
 (static, sparse — only non-1× pairs), keyed attacker→defender→multiplier.
@@ -151,8 +176,8 @@ sprite subfolder never needs a `copy-app.js` change.
 
 - **`pokemon/female/`** (and `pokemon/shiny/female/`, 0.2.3): 103 files
   each, id-named same as the root — bundled art for species with a visible
-  gender difference. 95 map to real `POKEMON_DATA` entries (`hasFemaleSprite`
-  above); 8 don't (7 unpopulated species, plus `10235.png` — Hisuian
+  gender difference. 98 map to real `POKEMON_DATA` entries (`hasFemaleSprite`
+  above); 5 don't (4 unpopulated species, plus `10235.png` — Hisuian
   Sneasel's alt-forme id, not a species id, deliberately unwired — a
   gendered-alt-forme extension would need `altforms.js`'s own scoping pass).
   No `male/` folder exists anywhere upstream — the root sprite already *is*
@@ -173,18 +198,23 @@ sprite subfolder never needs a `copy-app.js` change.
   `hisui/` `mega/` `paldea/` `totem/` subfolders (one-offs at root),
   script-sorted off the CSVs so names are CSV-authoritative (`TODO.md` #3
   for the method and per-folder counts). Used: Deoxys's 3 + Castform's 3
-  (root), the 16 `hisui/` forms, 63 of `mega/`'s 97; `gmax/` unused
+  (root), the 16 `hisui/` forms, 71 of `mega/`'s 97; `gmax/` unused
   (`TODO.md` #5). **The two `ALT_FORMS` sprite builders diverge**:
   `recolorOnly` entries render flat via `spriteUrl()` (`pokemon/{name}.png`,
   not under `alt formes/`); every other entry via
   `altFormSpriteUrl(sprite, shiny)`'s subfolder tree (shiny mirrors it).
 - **`items/`**: 898 flat item sprites (`{item-slug}.png`) plus 7 subfolders
   of historical/version-specific art (`berries/` `dream-world/` `gen3/`
-  `gen5/` `gen8/` `gen9/` `underground/`). Only consumer: the Evolution
-  Line's arrow condition icons (§4) via `itemSpriteUrl()`
-  (`data/sprites/items/{item}.png`, flat root only). No `ITEMS_DATA`
-  table (names/descriptions, Bag-style screen) exists yet — not scoped
-  (`TODO.md` #8).
+  `gen5/` `gen8/` `gen9/` `underground/`). Consumers, all via
+  `itemSpriteUrl()` (`data/sprites/items/{item}.png`, flat root only): the
+  Evolution Line's arrow condition icons, the Facts card's Held Items chips
+  and the item popup (§4). `data/items.js`'s `ITEMS_DATA` (0.2.7) names and
+  describes the 130 items those reference — not a catalogue, no Bag screen
+  (`TODO.md` #8). **Description convention (0.2.9)**: no redundant
+  category prefix — the popup title already names the item, so a
+  description doesn't restate "Held item;"/"Berry;" (86 entries stripped
+  of exactly that); a genuinely descriptive lead-in like Honey's "Sweet
+  honey; ..." is fine and was kept.
 
 ---
 
@@ -215,12 +245,11 @@ sprite subfolder never needs a `copy-app.js` change.
     Custom checkbox-switch, defaults on; class ships in HTML to avoid a
     load flash; persisted as `vkdex-theme`.
   - **Measurements** (`#unitsControl`): 2-box Metric/Imperial segmented
-    control, `.units-btn` — its **own** class, never `.grid-width-btn`,
-    because `app.js` selects `.grid-width-btn` wholesale for the column
-    handler (sharing it was 0.1.34's Stat Level bug). Stacked row
-    (`.settings-row.stacked`: label above, boxes below, each `flex:1`) —
-    two text boxes don't fit beside a 14px label in the 178px body.
-    Default metric. `setUnits()` sets `useImperialUnits`, persists as
+    control, `.units-btn` — its **own** class, never `.grid-width-btn`
+    (`app.js` selects that wholesale for the column handler; sharing it was
+    0.1.34's Stat Level bug). Stacked row (`.settings-row.stacked`: label
+    above, boxes below) — two boxes don't fit beside the label in the 178px
+    body. Default metric. `setUnits()` sets `useImperialUnits`, persists as
     `vkdex-units`, re-renders an open detail screen immediately. Read by
     the Height/Weight fact row (§4) via `metersToFeetInches()`/`kgToLbs()`.
   - **Grid Width** (`#gridWidthControl`): 3-box segmented control (3/4/5
@@ -245,7 +274,7 @@ sprite subfolder never needs a `copy-app.js` change.
   Orre) are standalone dexes, tinted purple (`.region-chip.standalone`,
   `--accent-purple`/`--accent-purple-grad`) — see §4. A mainline region
   with zero `POKEMON_DATA` entries (Galar/Paldea) is dimmed
-  (`.region-chip.empty`); partials (Unova/Kalos/Alola) are not.
+  (`.region-chip.empty`); partials (Kalos/Alola) are not.
 - **Grid layout is flexbox, not CSS grid** (`.region-bar`, `.dex-list`):
   item width via `calc((100% - (N-1)*gap) / N)` from `--region-cols`/
   `--grid-cols`, so a short last row **centers itself** instead of
@@ -255,15 +284,14 @@ sprite subfolder never needs a `copy-app.js` change.
   (`--dex-panel-bg: #4a1f20`, fixed, not theme-dependent — nod to the
   classic Pokédex device), 8px padding. `.dex-cell` is a flex column:
   sprite → name → dex number, **intrinsic height, never forced
-  `aspect-ratio`** (see §6). Cells carry `data-id`,
-  `role="button"`, `tabindex="0"`. Favorites reuses the same
-  `.dex-panel > .dex-list` markup and `renderGrid()`.
+  `aspect-ratio`** (see §6); carries `data-id`, `role="button"`,
+  `tabindex="0"`. Favorites reuses the same markup and `renderGrid()`.
 - **Outlines**: `.dex-cell` gets `var(--cell-border)` (`1px solid #000`);
   `.dex-panel`/`.dex-header` get `var(--panel-border)` (`2px solid #000`).
-- **Scrollbar styling** (`.dex-list`, `.detail-body`): explicitly thin/
-  rounded/semi-transparent via `scrollbar-width`/`scrollbar-color` +
-  `::-webkit-scrollbar*` (Electron's Chromium otherwise renders a plain
-  default). Not scoped to `.is-electron` — right in a plain browser too.
+- **Scrollbar styling** (`.dex-list`, `.detail-body`): thin/rounded/semi-
+  transparent via `scrollbar-width`/`scrollbar-color` + `::-webkit-
+  scrollbar*` (Electron's Chromium otherwise renders a plain default). Not
+  scoped to `.is-electron` — right in a plain browser too.
 - **Other `:root` tokens**: `--menu-width`, `--anim-speed` (0.25s),
   `--window-radius` (18px), `--accent` (`#4da3ff`), `--grid-cols` (5).
 
@@ -288,13 +316,12 @@ sprite subfolder never needs a `copy-app.js` change.
   (delegated listeners, `data-id`). Back arrow/Escape/Backspace/mouse-back
   run `backDetail()`: pop `detailHistory` (pushed by evolution-stage taps)
   or close — **a second press within 400ms of the first** (0.2.1) skips the
-  rest of the stack and closes directly instead of popping one more entry;
-  all 4 triggers share the one guard in `backDetail()`, so none needed
-  separate handling. Doesn't touch `backOut()`'s outer layers (settings/
+  rest of the stack and closes directly; one guard in `backDetail()` covers
+  all 4 triggers. Doesn't touch `backOut()`'s outer layers (settings/
   drawer/popup stay one press per layer). ArrowLeft/ArrowRight
-  (`stepDetail()`) step through national id
-  order, clamped, clearing that history. `rerenderDetail()` rebuilds the
-  body for a settings change while keeping `activeFormeKey` and scroll.
+  (`stepDetail()`) step through national id order, clamped, clearing that
+  history. `rerenderDetail()` rebuilds the body for a settings change
+  while keeping `activeFormeKey` and scroll.
 - **Detail screen body**: `renderDetail()` rebuilds `#detailBody` on every
   `openDetail()` as a stack of `.detail-section` cards, in this order:
   `pictureCardHtml()`, `altFormsCardHtml()`, `evolutionCardHtml()`,
@@ -312,15 +339,14 @@ sprite subfolder never needs a `copy-app.js` change.
     resolver both `pictureCardHtml()` and `setActiveForme()` build sprite
     `src`s through, so forme and gender choices can't disagree — **an
     active non-base forme's sprite always wins** (no gendered alt-forme art
-    exists to show instead), and the gender buttons `disabled`/dim
-    (`opacity:0.35`, no click/keyboard) while that's the case, re-enabling
-    the instant base is reselected; the picked button's filled state is
-    kept underneath so the remembered choice stays visible.
-  - **Alt Formes**: from `data/altforms.js`'s `ALT_FORMS[id]` — 79
+    exists), and the gender buttons are `disabled`/dim (`opacity:0.35`)
+    while that's the case, re-enabling the instant base is reselected; the
+    picked button's filled state stays visible underneath.
+  - **Alt Formes**: from `data/altforms.js`'s `ALT_FORMS[id]` — 87
     entries: Deoxys, Castform, 4 `recolorOnly` species (Unown/Burmy/
     Cherrim/Arceus — Arceus by explicit user override), 16 Hisuian-
-    regional-form species, and 57 Mega species (63 `isMega` formes, incl.
-    17 Legends: Z-A ones pending user confirmation — `TODO.md` #5). The
+    regional-form species, and 65 Mega species (71 `isMega` formes, incl.
+    24 Legends: Z-A ones pending user confirmation — `TODO.md` #5). The
     9-rule spec is `TODO.md` #4; decisions locked on promotion are in
     `PLAN.md`'s Alt Formes entry.
     - Each forme is a sprite bubble reusing `.evo-stage`/`.evo-sprite-wrap`/
@@ -373,17 +399,13 @@ sprite subfolder never needs a `copy-app.js` change.
       groups of `FAN_ROW_SIZE` (3) branches each, `border-top: var(--divider)`
       between rows (same convention as the Facts card's `.detail-row`).
       Each `.evo-fan-branch` shows only its own condition icons + label
-      above its leaf bubble — no arrow of its own. `.evo-fan-branch
-      .evo-arrow-icons`/`.evo-arrow` carry fixed `min-height`s so sprites
-      line up within a row regardless of icon count (item sprite vs.
-      heart vs. pill vs. none); `.evo-arrow`'s `flex: 1 0 auto` (0.2.0)
-      additionally absorbs a row's per-branch height difference (`.evo-
-      fan-row`'s default `align-items: stretch` sizes every branch to the
-      row's tallest — e.g. Sylveon's icons wrap to 2 lines, Espeon/
-      Umbreon's don't) so `.evo-stage` still starts at the same y in every
-      branch. Everything else (a straight chain, or any branch with
-      further depth, e.g. Wurmple) keeps the original one-`.evo-row`-per-path
-      layout — no shared-tree case beyond the fan exists.
+      above its leaf bubble — no arrow of its own. Fixed `min-height`s on
+      `.evo-fan-branch .evo-arrow-icons`/`.evo-arrow` plus `.evo-arrow`'s
+      `flex: 1 0 auto` (0.2.0) keep every branch's `.evo-stage` at the same
+      y within a row whatever its icon count/wrapping (Sylveon's icons wrap
+      to 2 lines, Espeon's don't). Everything else (a straight chain, or any
+      branch with further depth, e.g. Wurmple) keeps the original one-
+      `.evo-row`-per-path layout — no shared-tree case beyond the fan exists.
     - **Methods**: `"level"`/`"stone"`/`"trade"`/`"held"`/`"other"`.
       `"held"` = an item required but held (not traded) while leveling
       up, usually with a `timeOfDay` condition (Sneasel→Sneasler,
@@ -399,7 +421,10 @@ sprite subfolder never needs a `copy-app.js` change.
       the arrow SVG and its text label): an `item` field (stone/trade/
       `held`) shows that item's sprite via `itemSpriteUrl()` (`black-
       augurite`/`peat-block` have no bundled art — their `<img>` hides
-      itself on load failure; there is no item equivalent of `0.png`). A
+      itself on load failure; there is no item equivalent of `0.png`).
+      **Tappable since 0.2.7** (`data-item` + `role="button"`/`tabindex`,
+      Enter/Space wired by hand since it's an `<img>`) → `openItemPopup()`;
+      the `tm-normal` "knows a move" icon is not an item and stays inert. A
       bare-friendship edge (`method: "level"`, no `level`) shows a
       hand-drawn heart SVG. Either can be followed by a hand-drawn sun/moon
       SVG when `timeOfDay` is `"day"`/`"night"`, and a `moveType` field
@@ -418,20 +443,14 @@ sprite subfolder never needs a `copy-app.js` change.
       hand-authored top-level `note` on the `EVOLUTIONS` entry, checked in
       that order. Renders on the whole chain (a card shows its root's full
       tree), so e.g. Ralts/Kirlia/Gardevoir/Gallade all show one line.
-      Ships on 3 chains: Tyrogue (`statCompare`, real ambiguity — all 3
-      branches read "Lv 20"), Burmy (`gender`, real ambiguity — both read
-      "Lv 20"), Wurmple (hand-authored `note` — a hidden personality value
-      with no CSV column at all, both branches read "Lv 7"); plus, since
-      0.2.2, `gender` also on 3 species whose branches were **already**
-      label-distinct (Combee's single gender-gated edge, Kirlia→Gallade,
-      Snorunt→Froslass) purely to surface an otherwise-invisible
-      requirement. 0.2.6 added 4 more hand-authored `note`s from 0.2.5's
-      evolution-condition CSV scan: Qwilfish→Overqwil (211), Stantler→
-      Wyrdeer (234), Basculin→Basculegion (550), Goomy→Sliggoo→Goodra
-      (**note on Goomy, 704** — `note` reads only off the chain root, so
-      Sliggoo itself can't carry it). `statCompare`/`note` are hand-
-      authored, dropped by a `--refresh --tables evolutions`; `gender` is
-      tool-extracted/audited, so it survives one.
+      Ships on: Tyrogue (`statCompare`), Burmy + Combee/Kirlia/Snorunt
+      (`gender` — the last 3 weren't label-ambiguous, added 0.2.2 purely to
+      surface the requirement), and hand-authored `note`s on Wurmple (265)
+      plus 0.2.6's Qwilfish (211)/Stantler (234)/Basculin (550)/Goomy
+      (704 — `note` reads only off the chain root, so Sliggoo→Goodra's
+      sits on Goomy). `statCompare`/`note` are hand-authored, dropped by a
+      `--refresh --tables evolutions`; `gender` is tool-extracted/audited,
+      so it survives one.
     - **Gendered parent sprite** (0.2.3): a row's parent-stage bubble
       (`evoStageHtml`) shows that edge's required gender's bundled sprite
       instead of the default one, if the species has one (`hasFemaleSprite`,
@@ -442,24 +461,40 @@ sprite subfolder never needs a `copy-app.js` change.
   - **Found In**: pill-chip row of every region key in `data/locations.js`
     with a non-empty area list (broader than `pokemon.js`'s single
     `region`, which only means "introduced in"). Tap opens `#detailPopup`
-    with that region's areas. Zero regions → "Not found in the wild —
+    with **one popup scoped to that region's areas only** — each area is
+    a native `<details>`/`<summary>` (0.2.10, no custom JS; never set
+    `display` on the summary — it kills Chromium's default disclosure
+    triangle), collapsed by default except a single-area region, which
+    renders pre-`open`. Areas sort in real in-game progression order
+    (§2), not alphabetically. Expanding an area (`.popup-row.column`)
+    carries one `.enc-line` per (method, game-group): "Grass · Lv 2–5 · 50%"
+    with a
+    dimmer `.enc-games` sub-line naming the games underneath (§2's
+    `locations.js` shape; "up to N%", never summed across games). The game
+    list renders via shared `encGamesHtml()` (0.2.9), which inserts a
+    `<wbr>` after every "/" so a long `/`-joined list wraps instead of
+    forcing horizontal scroll (the item popup's held-in-the-wild block
+    uses the same helper). Zero regions → "Not found in the wild —
     evolution only." when a prior evolution exists (`evolutionRootId()`),
     else "No wild encounter data recorded."
-  - **Facts list**: Type (colored `.type-TYPE` pills), then Abilities
-    (name + description, hidden ability tagged), Category, merged Height/
-    Weight, Capture Rate (raw + odds), Exp Growth, then — closing out the
-    card — Weakness/Resists/(Immune)/Neutral pill rows computed live by
-    `computeMatchups()` from `TYPE_CHART` against the entry's `types` —
-    nothing per-Pokémon stored; a ×4 pill gets `.mult-4`'s gradient
-    outline. **This is the original 0.1.18 order**; 0.1.34's design-
-    overhaul pass moved the matchups block up to directly under Type
-    without real user sign-off, and it was reverted back to here in 0.1.38
-    once the user caught it (see the intro's no-unauthorized-reorder
-    rule). **Capture odds use the real Gen 3+ formula** (full HP, no
-    status, regular Poké Ball):
+  - **Facts list**: Type (colored `.type-TYPE` pills), Abilities (name +
+    description, hidden ability tagged), Category, **Egg Groups** (0.2.7,
+    "Monster / Grass" text — sits here since 0.2.8, user-directed move),
+    merged Height/Weight, Capture Rate (raw + odds), **Held Items** (0.2.7,
+    `.item-chip` buttons: sprite + name + a rate summary, a single value or
+    a `50–100%` span when games disagree — sits here since 0.2.8,
+    user-directed move; tap → `openItemPopup()`, which since 0.2.8 also
+    lists a per-game "Held in the wild" breakdown; row absent for a species
+    with none), Exp Growth, then — closing out the card — Weakness/
+    Resists/(Immune)/Neutral pill rows computed live by `computeMatchups()`
+    from
+    `TYPE_CHART` against the entry's `types` — nothing per-Pokémon stored;
+    a ×4 pill gets `.mult-4`'s gradient outline. **The matchups-last order
+    is the original 0.1.18 one** — 0.1.34 moved it under Type without
+    sign-off, reverted 0.1.38 (the intro's rule). **Capture odds use the
+    real Gen 3+ formula** (full HP, no status, regular Poké Ball):
     `captureOddsPercent()` reduces to `catchRate/3` then the standard
-    4-shake-check probability (catch rate 45→5.9%, 255→33.3%; 255 is *not*
-    a guaranteed catch).
+    4-shake-check probability (45→5.9%, 255→33.3% — not a guaranteed catch).
   - **Moves**: up to four tabs (Level-Up/TM/Egg/Max) over
     `data/movesets.js` — an empty list gets no tab (Max always; no tabs →
     no card). Rows: level (level-up only) | type pill from `MOVES` | name.
@@ -472,7 +507,7 @@ sprite subfolder never needs a `copy-app.js` change.
     (`RADAR_MAX`, 280×270, r=105 — comparable across species), on a grey
     hexagon backdrop for contrast against the dark-red card.
   - `#detailPopup`/`#detailPopupBackdrop` (names, locations, recolor
-    galleries) is innermost in the Escape chain, ahead of the detail
+    galleries, items) is innermost in the Escape chain, ahead of the detail
     screen itself.
 - **Favorites**: toggled from `#detailFav` (`aria-pressed` drives yellow
   fill). Stored as an array of dex numbers in localStorage
@@ -491,7 +526,7 @@ sprite subfolder never needs a `copy-app.js` change.
   `POKEMON_DATA.filter()` over `dexSetFor(filter, hasQuery)`'s `match`
   (the active chip's membership, with that chip's sort/`numberFn`/
   `spriteFn`) AND `queryMatcher(query)` — search always respects the
-  active chip. National + a query lifts the `hisuiOnly` exclusion (all 522
+  active chip. National + a query lifts the `hisuiOnly` exclusion (all 665
   findable; user rule 2026-09-04). Enter opens a sole result. Switching
   region filter while open closes it; the chip persists as `vkdex-region`.
   Icon swap (magnifying glass↔"×") is pure CSS (`.dex-search-toggle.active`).
@@ -501,15 +536,14 @@ sprite subfolder never needs a `copy-app.js` change.
   `HISUI_DEX_NUMBERS[id]` (PLA's own 001-242 track, complete 242/242);
   Orre filters by `data/orre.js`'s `ORRE_MEMBERS[id]`, sorts by national
   id, and appends the C/XD/C-XD tag (`"#016 · XD"`). Both use
-  `renderGrid()`'s `numberFn` override (a `.dex-number` text override)
-  rather than new markup; neither is ever written into `pokemon.js`'s
-  `region`. **Hisui-specific:** the 16 Hisuian-form species show that
-  sprite in the Hisui grid (browse and Hisui-context quick-search) via the
-  parallel `spriteFn` override (`hisuiCellSprite()`); opening one *from
-  the Hisui screen* (`currentRegionFilter === "hisui"` on a `#dexList`
-  click — not Search/Favorites) auto-activates its Hisuian forme
-  (`openDetail(id, autoForme)` → `setActiveForme("hisui")`) — the app's
-  only navigation-context-dependent default (user-confirmed 2026-09-04).
+  `renderGrid()`'s `numberFn` override rather than new markup; neither is
+  ever written into `pokemon.js`'s `region`. **Hisui-specific:** the 16
+  Hisuian-form species show that sprite in the Hisui grid via the parallel
+  `spriteFn` override (`hisuiCellSprite()`); opening one *from the Hisui
+  screen* (`currentRegionFilter === "hisui"` on a `#dexList` click — not
+  Search/Favorites) auto-activates its Hisuian forme (`openDetail(id,
+  autoForme)` → `setActiveForme("hisui")`) — the app's only navigation-
+  context-dependent default (user-confirmed 2026-09-04).
 - **`backOut()` backs out innermost-first**: settings → drawer → detail's
   popup → detail (one history step) → dex quick-search. Triggered by
   Escape, Backspace outside a text field, and mouse button 3. `/` (outside
@@ -522,9 +556,8 @@ sprite subfolder never needs a `copy-app.js` change.
 
 ## 5. Offline sprite cache — removed in 0.1.20
 
-Bundled local sprites (§2) made the old IndexedDB blob cache redundant
-(`HISTORY.md` 0.1.20). The `vkdex-cache` IndexedDB database **still exists
-and still matters** as the Favorites fallback (§4).
+Bundled local sprites (§2) made the IndexedDB blob cache redundant; the
+`vkdex-cache` database **still exists** as the Favorites fallback (§4).
 
 ---
 
@@ -570,26 +603,23 @@ and still matters** as the Favorites fallback (§4).
 
 ## 8. Window resize / scaling behavior (`CLAUDE.md` §2)
 
-Resizable with a locked aspect ratio (`win.setAspectRatio`) matching the
-phone frame's 360:800; `minWidth`/`minHeight` locked to exactly 360/800.
-Growing past that scales the **entire phone frame as a unit** (not padding
-around a fixed frame):
+Resizable with a locked 360:800 aspect ratio (`win.setAspectRatio`),
+`minWidth`/`minHeight` exactly 360/800. Growing past that scales the
+**entire phone frame as a unit** (not padding around a fixed frame):
 
 - `index.html` adds an `is-electron` class to `<html>` before first paint
-  if `navigator.userAgent` contains "Electron" — scopes everything below
-  to the packaged app; plain-browser use is untouched.
+  if `navigator.userAgent` contains "Electron"; plain-browser use is
+  untouched.
 - `styles.css`: `.is-electron .phone { transform:
   scale(var(--phone-scale, 1)); transform-origin: center center; }`.
 - `app.js` computes `phoneScale = Math.min(innerWidth/360,
   innerHeight/800)`, sets `--phone-scale` on load and on resize
-  (rAF-throttled). `useContentSize:true` + locked aspect ratio means inner
-  dimensions always grow 360:800, so scale is exactly 1 at minimum and
-  grows evenly — never letterboxed.
-- **Coordinate-space fix**: drawer drag math is calibrated in the phone's
-  unscaled/logical pixels, but `e.clientX` from Pointer Events is real
-  (post-scale) screen pixels — `logicalX(clientX) { return clientX /
-  phoneScale; }` at every `e.clientX` read in the drag handlers. No-op
-  outside Electron (`phoneScale` stays 1).
+  (rAF-throttled). `useContentSize:true` + the locked ratio means scale is
+  exactly 1 at minimum and grows evenly — never letterboxed.
+- **Coordinate-space fix**: drag math is in the phone's logical pixels but
+  `e.clientX` is post-scale screen pixels — `logicalX(clientX) { return
+  clientX / phoneScale; }` at every `e.clientX` read in the drag handlers.
+  No-op outside Electron (`phoneScale` stays 1).
 
 ---
 

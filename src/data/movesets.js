@@ -3478,6 +3478,55 @@ var MOVESETS = {
     tutor: [],
     max: []
   },
+  494: {
+    levelUp: [{level:1,move:"Confusion"},{level:1,move:"Quick Attack"},{level:1,move:"Focus Energy"},{level:1,move:"Flame Charge"},{level:1,move:"V-create"},{level:7,move:"Work Up"},{level:14,move:"Incinerate"},{level:21,move:"Stored Power"},{level:28,move:"Headbutt"},{level:35,move:"Endure"},{level:42,move:"Zen Headbutt"},{level:49,move:"Inferno"},{level:56,move:"Reversal"},{level:63,move:"Searing Shot"},{level:70,move:"Double-Edge"},{level:77,move:"Flare Blitz"},{level:84,move:"Overheat"},{level:91,move:"Final Gambit"}],
+    tm: ["Mega Punch","Fire Punch","Thunder Punch","Mega Kick","Flamethrower","Hyper Beam","Solar Beam","Fire Spin","Thunderbolt","Thunder Wave","Thunder","Psychic","Light Screen","Focus Energy","Fire Blast","Swift","Rest","Substitute","Snore","Reversal","Protect","Endure","Sleep Talk","Safeguard","Baton Pass","Encore","Sunny Day","Shadow Ball","Future Sight","Uproar","Heat Wave","Will-O-Wisp","Facade","Taunt","Helping Hand","Trick","Brick Break","Skill Swap","Blaze Kick","Overheat","Bounce","U-turn","Fling","Power Swap","Guard Swap","Flare Blitz","Focus Blast","Energy Ball","Giga Impact","Zen Headbutt","Trick Room","Grass Knot","Psyshock","Round","Stored Power","Work Up","Wild Charge","Mystical Fire","Dazzling Gleam","Speed Swap"],
+    egg: [],
+    tutor: ["Expanding Force","Scorching Sands"],
+    max: []
+  },
+  495: {
+    levelUp: [{level:1,move:"Tackle"},{level:4,move:"Leer"},{level:7,move:"Vine Whip"},{level:10,move:"Wrap"},{level:13,move:"Growth"},{level:16,move:"Magical Leaf"},{level:19,move:"Leech Seed"},{level:22,move:"Mega Drain"},{level:25,move:"Slam"},{level:28,move:"Leaf Blade"},{level:31,move:"Coil"},{level:34,move:"Giga Drain"},{level:37,move:"Gastro Acid"},{level:40,move:"Leaf Storm"}],
+    tm: ["Swords Dance","Take Down","Double-Edge","Solar Beam","Light Screen","Reflect","Swift","Rest","Substitute","Protect","Giga Drain","Endure","Sleep Talk","Sunny Day","Facade","Taunt","Helping Hand","Knock Off","Bullet Seed","Aerial Ace","Magical Leaf","Calm Mind","Seed Bomb","Energy Ball","Leaf Storm","Grass Knot","Grass Pledge","Petal Blizzard","Grassy Terrain","Grassy Glide","Tera Blast","Trailblaze"],
+    egg: ["Glare","Mean Look","Sweet Scent","Iron Tail","Synthesis","Twister","Mirror Coat"],
+    tutor: [],
+    max: []
+  },
+  496: {
+    levelUp: [{level:1,move:"Vine Whip"},{level:1,move:"Tackle"},{level:1,move:"Wrap"},{level:1,move:"Leer"},{level:13,move:"Growth"},{level:16,move:"Magical Leaf"},{level:20,move:"Leech Seed"},{level:24,move:"Mega Drain"},{level:28,move:"Slam"},{level:32,move:"Leaf Blade"},{level:36,move:"Coil"},{level:40,move:"Giga Drain"},{level:44,move:"Gastro Acid"},{level:48,move:"Leaf Storm"}],
+    tm: ["Swords Dance","Take Down","Double-Edge","Solar Beam","Light Screen","Reflect","Swift","Rest","Substitute","Protect","Giga Drain","Endure","Sleep Talk","Sunny Day","Facade","Taunt","Helping Hand","Knock Off","Bullet Seed","Aerial Ace","Magical Leaf","Calm Mind","Seed Bomb","Energy Ball","Leaf Storm","Grass Knot","Grass Pledge","Petal Blizzard","Grassy Terrain","Grassy Glide","Tera Blast","Trailblaze"],
+    egg: ["Glare","Mean Look","Sweet Scent","Iron Tail","Synthesis","Twister","Mirror Coat"],
+    tutor: [],
+    max: []
+  },
+  497: {
+    levelUp: [{level:1,move:"Vine Whip"},{level:1,move:"Tackle"},{level:1,move:"Wrap"},{level:1,move:"Leer"},{level:13,move:"Growth"},{level:16,move:"Magical Leaf"},{level:20,move:"Leech Seed"},{level:24,move:"Mega Drain"},{level:28,move:"Slam"},{level:32,move:"Leaf Blade"},{level:38,move:"Coil"},{level:44,move:"Giga Drain"},{level:50,move:"Gastro Acid"},{level:56,move:"Leaf Storm"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Double-Edge","Hyper Beam","Solar Beam","Light Screen","Reflect","Swift","Rest","Substitute","Protect","Scary Face","Outrage","Giga Drain","Endure","Sleep Talk","Sunny Day","Facade","Taunt","Helping Hand","Knock Off","Bullet Seed","Aerial Ace","Frenzy Plant","Magical Leaf","Calm Mind","Seed Bomb","Dragon Pulse","Energy Ball","Giga Impact","Leaf Storm","Grass Knot","Grass Pledge","Dragon Tail","Petal Blizzard","Grassy Terrain","Breaking Swipe","Scale Shot","Grassy Glide","Tera Blast","Trailblaze"],
+    egg: ["Glare","Mean Look","Sweet Scent","Iron Tail","Synthesis","Twister","Mirror Coat"],
+    tutor: [],
+    max: []
+  },
+  498: {
+    levelUp: [{level:1,move:"Tackle"},{level:3,move:"Tail Whip"},{level:7,move:"Ember"},{level:9,move:"Endure"},{level:13,move:"Defense Curl"},{level:15,move:"Flame Charge"},{level:19,move:"Smog"},{level:21,move:"Rollout"},{level:25,move:"Take Down"},{level:27,move:"Heat Crash"},{level:31,move:"Assurance"},{level:33,move:"Flamethrower"},{level:37,move:"Head Smash"},{level:39,move:"Roar"},{level:43,move:"Flare Blitz"}],
+    tm: ["Fire Punch","Body Slam","Take Down","Double-Edge","Roar","Flamethrower","Solar Beam","Fire Spin","Dig","Fire Blast","Rest","Substitute","Curse","Protect","Mud-Slap","Endure","Sleep Talk","Sunny Day","Heat Wave","Will-O-Wisp","Facade","Taunt","Helping Hand","Endeavor","Overheat","Rock Tomb","Gyro Ball","Flare Blitz","Zen Headbutt","Grass Knot","Heavy Slam","Flame Charge","Fire Pledge","Wild Charge","Heat Crash","Stomping Tantrum","Tera Blast","Trailblaze","Temper Flare"],
+    egg: ["Thrash","Superpower","Yawn","Sucker Punch"],
+    tutor: [],
+    max: []
+  },
+  499: {
+    levelUp: [{level:0,move:"Arm Thrust"},{level:1,move:"Tackle"},{level:1,move:"Tail Whip"},{level:1,move:"Ember"},{level:1,move:"Endure"},{level:13,move:"Defense Curl"},{level:15,move:"Flame Charge"},{level:20,move:"Smog"},{level:23,move:"Rollout"},{level:28,move:"Take Down"},{level:31,move:"Heat Crash"},{level:36,move:"Assurance"},{level:39,move:"Flamethrower"},{level:44,move:"Head Smash"},{level:47,move:"Roar"},{level:52,move:"Flare Blitz"}],
+    tm: ["Fire Punch","Thunder Punch","Body Slam","Take Down","Double-Edge","Roar","Flamethrower","Low Kick","Solar Beam","Fire Spin","Dig","Fire Blast","Rest","Rock Slide","Substitute","Curse","Reversal","Protect","Scary Face","Mud-Slap","Endure","Sleep Talk","Sunny Day","Heat Wave","Will-O-Wisp","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Endeavor","Overheat","Rock Tomb","Bulk Up","Gyro Ball","Close Combat","Fling","Flare Blitz","Poison Jab","Drain Punch","Focus Blast","Zen Headbutt","Stone Edge","Grass Knot","Heavy Slam","Flame Charge","Low Sweep","Fire Pledge","Bulldoze","Wild Charge","Heat Crash","High Horsepower","Stomping Tantrum","Coaching","Tera Blast","Trailblaze","Temper Flare"],
+    egg: ["Thrash","Superpower","Yawn","Sucker Punch"],
+    tutor: [],
+    max: []
+  },
+  500: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Tail Whip"},{level:1,move:"Ember"},{level:1,move:"Arm Thrust"},{level:13,move:"Defense Curl"},{level:15,move:"Flame Charge"},{level:20,move:"Smog"},{level:23,move:"Rollout"},{level:28,move:"Take Down"},{level:31,move:"Heat Crash"},{level:38,move:"Assurance"},{level:43,move:"Flamethrower"},{level:50,move:"Head Smash"},{level:55,move:"Roar"},{level:62,move:"Flare Blitz"}],
+    tm: ["Fire Punch","Thunder Punch","Body Slam","Take Down","Double-Edge","Roar","Flamethrower","Hyper Beam","Low Kick","Solar Beam","Fire Spin","Earthquake","Dig","Fire Blast","Rest","Rock Slide","Substitute","Curse","Reversal","Protect","Scary Face","Mud-Slap","Endure","Sleep Talk","Sunny Day","Heat Wave","Will-O-Wisp","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Endeavor","Blast Burn","Overheat","Rock Tomb","Bulk Up","Gyro Ball","Close Combat","Fling","Flare Blitz","Poison Jab","Drain Punch","Focus Blast","Giga Impact","Zen Headbutt","Iron Head","Stone Edge","Grass Knot","Smack Down","Heavy Slam","Flame Charge","Low Sweep","Scald","Fire Pledge","Bulldoze","Wild Charge","Heat Crash","High Horsepower","Stomping Tantrum","Body Press","Coaching","Tera Blast","Trailblaze","Hard Press","Temper Flare"],
+    egg: ["Thrash","Endure","Superpower","Yawn","Hammer Arm","Sucker Punch"],
+    tutor: [],
+    max: []
+  },
   501: {
     levelUp: [{level:1,move:"Tackle"},{level:5,move:"Tail Whip"},{level:7,move:"Water Gun"},{level:11,move:"Soak"},{level:13,move:"Focus Energy"},{level:17,move:"Razor Shell"},{level:19,move:"Fury Cutter"},{level:23,move:"Water Pulse"},{level:25,move:"Aerial Ace"},{level:29,move:"Aqua Jet"},{level:31,move:"Encore"},{level:35,move:"Aqua Tail"},{level:37,move:"Retaliate"},{level:41,move:"Swords Dance"},{level:43,move:"Hydro Pump"}],
     tm: ["Swords Dance","Take Down","Hydro Pump","Surf","Ice Beam","Blizzard","Dig","Waterfall","Swift","Rest","Substitute","Thief","Protect","Icy Wind","Endure","False Swipe","Sleep Talk","Encore","Rain Dance","Facade","Taunt","Helping Hand","Aerial Ace","Water Pulse","Fling","Air Slash","X-Scissor","Avalanche","Grass Knot","Water Pledge","Liquidation","Tera Blast","Snowscape","Chilling Water","Knock Off","Flip Turn","Whirlpool"],
@@ -3496,6 +3545,314 @@ var MOVESETS = {
     levelUp: [{level:0,move:"Slash"},{level:1,move:"Megahorn"},{level:1,move:"Tackle"},{level:1,move:"Tail Whip"},{level:1,move:"Water Gun"},{level:1,move:"Soak"},{level:13,move:"Focus Energy"},{level:18,move:"Razor Shell"},{level:21,move:"Fury Cutter"},{level:25,move:"Water Pulse"},{level:29,move:"Aerial Ace"},{level:34,move:"Aqua Jet"},{level:39,move:"Encore"},{level:46,move:"Aqua Tail"},{level:51,move:"Retaliate"},{level:58,move:"Swords Dance"},{level:63,move:"Hydro Pump"}],
     tm: ["Swords Dance","Body Slam","Take Down","Hydro Pump","Surf","Ice Beam","Blizzard","Hyper Beam","Dig","Waterfall","Swift","Rest","Substitute","Thief","Protect","Scary Face","Icy Wind","Endure","False Swipe","Sleep Talk","Encore","Rain Dance","Facade","Taunt","Helping Hand","Brick Break","Hydro Cannon","Aerial Ace","Water Pulse","Fling","Air Slash","X-Scissor","Giga Impact","Avalanche","Grass Knot","Water Pledge","Bulldoze","Drill Run","Smart Strike","Liquidation","Tera Blast","Snowscape","Chilling Water","Knock Off","Vacuum Wave","Flip Turn","Whirlpool","Dark Pulse","Snarl","Throat Chop","Lash Out","Upper Hand"],
     egg: ["Screech","Detect","Knock Off","Copycat","Night Slash","Air Slash","Sacred Sword","Aqua Cutter"],
+    tutor: [],
+    max: []
+  },
+  504: {
+    levelUp: [{level:1,move:"Tackle"},{level:3,move:"Leer"},{level:6,move:"Bite"},{level:8,move:"Bide"},{level:11,move:"Detect"},{level:13,move:"Sand Attack"},{level:16,move:"Crunch"},{level:18,move:"Hypnosis"},{level:21,move:"Super Fang"},{level:23,move:"After You"},{level:26,move:"Focus Energy"},{level:28,move:"Work Up"},{level:31,move:"Hyper Fang"},{level:33,move:"Nasty Plot"},{level:36,move:"Mean Look"},{level:38,move:"Baton Pass"},{level:41,move:"Slam"}],
+    tm: ["Swords Dance","Thunderbolt","Toxic","Double Team","Rest","Substitute","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Rain Dance","Sunny Day","Shadow Ball","Facade","Fling","Grass Knot","Round","Work Up","Confide"],
+    egg: ["Screech","Flail","Foresight","Pursuit","Iron Tail","Revenge","Bullet Seed","Assurance","Tearful Look"],
+    tutor: ["Low Kick","Super Fang","Snore","Iron Tail","Helping Hand","Endeavor","Covet","Shock Wave","Last Resort","Aqua Tail","Seed Bomb","Zen Headbutt","Gunk Shot","After You","Laser Focus"],
+    max: []
+  },
+  505: {
+    levelUp: [{level:0,move:"Confuse Ray"},{level:1,move:"Tackle"},{level:1,move:"Leer"},{level:1,move:"Bite"},{level:1,move:"Low Kick"},{level:1,move:"Confuse Ray"},{level:1,move:"Rototiller"},{level:3,move:"Leer"},{level:6,move:"Bite"},{level:8,move:"Bide"},{level:11,move:"Detect"},{level:13,move:"Sand Attack"},{level:16,move:"Crunch"},{level:18,move:"Hypnosis"},{level:22,move:"Super Fang"},{level:25,move:"After You"},{level:29,move:"Focus Energy"},{level:32,move:"Psych Up"},{level:36,move:"Hyper Fang"},{level:39,move:"Nasty Plot"},{level:43,move:"Mean Look"},{level:46,move:"Baton Pass"},{level:50,move:"Slam"}],
+    tm: ["Swords Dance","Flamethrower","Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Toxic","Double Team","Light Screen","Dream Eater","Rest","Substitute","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Fling","Focus Blast","Giga Impact","Grass Knot","Round","Work Up","Confide"],
+    egg: [],
+    tutor: ["Fire Punch","Ice Punch","Thunder Punch","Low Kick","Super Fang","Snore","Iron Tail","Focus Punch","Helping Hand","Knock Off","Endeavor","Signal Beam","Covet","Shock Wave","Last Resort","Aqua Tail","Seed Bomb","Zen Headbutt","Gunk Shot","After You","Laser Focus","Stomping Tantrum"],
+    max: []
+  },
+  506: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Leer"},{level:4,move:"Work Up"},{level:8,move:"Bite"},{level:12,move:"Retaliate"},{level:17,move:"Baby-Doll Eyes"},{level:20,move:"Play Rough"},{level:24,move:"Crunch"},{level:28,move:"Take Down"},{level:32,move:"Helping Hand"},{level:36,move:"Reversal"},{level:40,move:"Roar"},{level:44,move:"Last Resort"},{level:48,move:"Giga Impact"}],
+    tm: ["Thunderbolt","Thunder Wave","Dig","Rest","Substitute","Snore","Reversal","Protect","Endure","Charm","Attract","Sleep Talk","Rain Dance","Sunny Day","Crunch","Shadow Ball","Uproar","Facade","Helping Hand","Hyper Voice","Rock Tomb","Payback","Giga Impact","Thunder Fang","Ice Fang","Fire Fang","Round","Retaliate","Work Up","Wild Charge","Snarl","Play Rough","Psychic Fangs"],
+    egg: ["Lick","Mud-Slap","Yawn","Howl","Covet","After You"],
+    tutor: [],
+    max: []
+  },
+  507: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Leer"},{level:1,move:"Bite"},{level:1,move:"Work Up"},{level:12,move:"Retaliate"},{level:19,move:"Baby-Doll Eyes"},{level:24,move:"Play Rough"},{level:30,move:"Crunch"},{level:36,move:"Take Down"},{level:42,move:"Helping Hand"},{level:48,move:"Reversal"},{level:54,move:"Roar"},{level:60,move:"Last Resort"},{level:66,move:"Giga Impact"}],
+    tm: ["Surf","Thunderbolt","Thunder Wave","Dig","Rest","Substitute","Snore","Reversal","Protect","Endure","Charm","Attract","Sleep Talk","Rain Dance","Sunny Day","Crunch","Shadow Ball","Uproar","Facade","Helping Hand","Hyper Voice","Rock Tomb","Payback","Giga Impact","Thunder Fang","Ice Fang","Fire Fang","Round","Retaliate","Work Up","Wild Charge","Snarl","Play Rough","Psychic Fangs"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  508: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Leer"},{level:1,move:"Bite"},{level:1,move:"Thunder Fang"},{level:1,move:"Ice Fang"},{level:1,move:"Fire Fang"},{level:1,move:"Work Up"},{level:12,move:"Retaliate"},{level:19,move:"Baby-Doll Eyes"},{level:24,move:"Play Rough"},{level:30,move:"Crunch"},{level:38,move:"Take Down"},{level:46,move:"Helping Hand"},{level:54,move:"Reversal"},{level:62,move:"Roar"},{level:70,move:"Last Resort"},{level:78,move:"Giga Impact"}],
+    tm: ["Surf","Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Dig","Rest","Substitute","Snore","Reversal","Protect","Endure","Charm","Attract","Sleep Talk","Rain Dance","Sunny Day","Crunch","Shadow Ball","Uproar","Facade","Helping Hand","Superpower","Hyper Voice","Rock Tomb","Payback","Giga Impact","Thunder Fang","Ice Fang","Fire Fang","Iron Head","Round","Retaliate","Work Up","Wild Charge","Snarl","Play Rough","Psychic Fangs","Stomping Tantrum"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  509: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Growl"},{level:4,move:"Sand Attack"},{level:5,move:"Fake Out"},{level:12,move:"Fury Swipes"},{level:16,move:"Torment"},{level:21,move:"Assurance"},{level:24,move:"Hone Claws"},{level:28,move:"Sucker Punch"},{level:32,move:"Nasty Plot"},{level:36,move:"Night Slash"},{level:40,move:"Play Rough"}],
+    tm: ["Pay Day","Thunder Wave","Screech","Swift","Rest","Substitute","Thief","Snore","Protect","Endure","Charm","Attract","Sleep Talk","Baton Pass","Encore","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Facade","Taunt","Trick","Hyper Voice","Fake Tears","U-turn","Payback","Assurance","Dark Pulse","Seed Bomb","Nasty Plot","Shadow Claw","Gunk Shot","Grass Knot","Foul Play","Round","Snarl","Play Rough"],
+    egg: ["Quick Attack","Double Team","Slash","Yawn","Covet","Copycat"],
+    tutor: ["Lash Out"],
+    max: []
+  },
+  510: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Sand Attack"},{level:1,move:"Growl"},{level:1,move:"Fake Out"},{level:12,move:"Fury Swipes"},{level:16,move:"Torment"},{level:23,move:"Assurance"},{level:28,move:"Hone Claws"},{level:34,move:"Sucker Punch"},{level:40,move:"Nasty Plot"},{level:46,move:"Night Slash"},{level:52,move:"Play Rough"}],
+    tm: ["Pay Day","Hyper Beam","Thunder Wave","Screech","Swift","Rest","Substitute","Thief","Snore","Protect","Endure","Charm","Attract","Sleep Talk","Baton Pass","Encore","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Facade","Taunt","Trick","Hyper Voice","Fake Tears","U-turn","Payback","Assurance","Dark Pulse","Seed Bomb","Giga Impact","Nasty Plot","Shadow Claw","Psycho Cut","Gunk Shot","Grass Knot","Foul Play","Round","Snarl","Play Rough","Throat Chop"],
+    egg: [],
+    tutor: ["Skitter Smack","Burning Jealousy","Lash Out"],
+    max: []
+  },
+  511: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Play Nice"},{level:4,move:"Leer"},{level:7,move:"Lick"},{level:10,move:"Vine Whip"},{level:13,move:"Fury Swipes"},{level:16,move:"Leech Seed"},{level:19,move:"Bite"},{level:22,move:"Seed Bomb"},{level:25,move:"Torment"},{level:28,move:"Fling"},{level:31,move:"Acrobatics"},{level:34,move:"Grass Knot"},{level:37,move:"Recycle"},{level:40,move:"Natural Gift"},{level:43,move:"Crunch"}],
+    tm: ["Solar Beam","Toxic","Double Team","Rest","Substitute","Thief","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Sunny Day","Torment","Facade","Nature Power","Taunt","Rock Tomb","Payback","Fling","Energy Ball","Shadow Claw","Grass Knot","Low Sweep","Round","Acrobatics","Work Up","Confide"],
+    egg: ["Low Kick","Role Play","Astonish","Grass Whistle","Tickle","Bullet Seed","Covet","Magical Leaf","Nasty Plot","Leaf Storm","Disarming Voice","Spiky Shield"],
+    tutor: ["Low Kick","Snore","Giga Drain","Iron Tail","Synthesis","Uproar","Focus Punch","Helping Hand","Role Play","Recycle","Knock Off","Endeavor","Covet","Gastro Acid","Worry Seed","Seed Bomb","Gunk Shot","Grass Pledge"],
+    max: []
+  },
+  512: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Lick"},{level:1,move:"Fury Swipes"},{level:1,move:"Seed Bomb"}],
+    tm: ["Hyper Beam","Solar Beam","Toxic","Double Team","Rest","Rock Slide","Substitute","Thief","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Sunny Day","Torment","Facade","Nature Power","Taunt","Brick Break","Rock Tomb","Payback","Fling","Focus Blast","Energy Ball","Giga Impact","Shadow Claw","Grass Knot","Low Sweep","Round","Acrobatics","Work Up","Confide"],
+    egg: [],
+    tutor: ["Low Kick","Snore","Giga Drain","Iron Tail","Synthesis","Uproar","Focus Punch","Helping Hand","Role Play","Superpower","Recycle","Knock Off","Endeavor","Covet","Gastro Acid","Worry Seed","Seed Bomb","Gunk Shot","Grass Pledge","Throat Chop"],
+    max: []
+  },
+  513: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Play Nice"},{level:4,move:"Leer"},{level:7,move:"Lick"},{level:10,move:"Incinerate"},{level:13,move:"Fury Swipes"},{level:16,move:"Yawn"},{level:19,move:"Bite"},{level:22,move:"Flame Burst"},{level:25,move:"Amnesia"},{level:28,move:"Fling"},{level:31,move:"Acrobatics"},{level:34,move:"Fire Blast"},{level:37,move:"Recycle"},{level:40,move:"Natural Gift"},{level:43,move:"Crunch"}],
+    tm: ["Flamethrower","Solar Beam","Toxic","Double Team","Fire Blast","Rest","Substitute","Thief","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Sunny Day","Torment","Will-O-Wisp","Facade","Taunt","Overheat","Rock Tomb","Payback","Fling","Shadow Claw","Grass Knot","Flame Charge","Low Sweep","Round","Acrobatics","Work Up","Confide"],
+    egg: ["Fire Punch","Low Kick","Fire Spin","Sleep Talk","Heat Wave","Role Play","Astonish","Tickle","Covet","Flare Blitz","Nasty Plot","Belch","Disarming Voice"],
+    tutor: ["Fire Punch","Low Kick","Snore","Iron Tail","Uproar","Heat Wave","Focus Punch","Helping Hand","Role Play","Recycle","Knock Off","Endeavor","Covet","Gastro Acid","Gunk Shot","Fire Pledge"],
+    max: []
+  },
+  514: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Lick"},{level:1,move:"Fury Swipes"},{level:1,move:"Flame Burst"}],
+    tm: ["Flamethrower","Hyper Beam","Solar Beam","Toxic","Double Team","Fire Blast","Rest","Rock Slide","Substitute","Thief","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Sunny Day","Torment","Will-O-Wisp","Facade","Taunt","Brick Break","Overheat","Rock Tomb","Payback","Fling","Focus Blast","Giga Impact","Shadow Claw","Grass Knot","Flame Charge","Low Sweep","Round","Acrobatics","Work Up","Confide"],
+    egg: [],
+    tutor: ["Fire Punch","Low Kick","Snore","Iron Tail","Uproar","Heat Wave","Focus Punch","Helping Hand","Role Play","Superpower","Recycle","Knock Off","Endeavor","Covet","Gastro Acid","Gunk Shot","Fire Pledge","Throat Chop"],
+    max: []
+  },
+  515: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Play Nice"},{level:4,move:"Leer"},{level:7,move:"Lick"},{level:10,move:"Water Gun"},{level:13,move:"Fury Swipes"},{level:16,move:"Water Sport"},{level:19,move:"Bite"},{level:22,move:"Scald"},{level:25,move:"Taunt"},{level:28,move:"Fling"},{level:31,move:"Acrobatics"},{level:34,move:"Brine"},{level:37,move:"Recycle"},{level:40,move:"Natural Gift"},{level:43,move:"Crunch"}],
+    tm: ["Surf","Ice Beam","Blizzard","Toxic","Double Team","Waterfall","Rest","Substitute","Thief","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Rain Dance","Hail","Torment","Facade","Taunt","Rock Tomb","Payback","Fling","Shadow Claw","Grass Knot","Low Sweep","Round","Scald","Acrobatics","Work Up","Confide"],
+    egg: ["Hydro Pump","Low Kick","Role Play","Mud Sport","Astonish","Tickle","Covet","Aqua Ring","Aqua Tail","Nasty Plot","Disarming Voice"],
+    tutor: ["Ice Punch","Low Kick","Snore","Icy Wind","Iron Tail","Uproar","Focus Punch","Helping Hand","Role Play","Recycle","Knock Off","Endeavor","Covet","Water Pulse","Gastro Acid","Aqua Tail","Gunk Shot","Water Pledge"],
+    max: []
+  },
+  516: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Lick"},{level:1,move:"Fury Swipes"},{level:1,move:"Scald"}],
+    tm: ["Surf","Ice Beam","Blizzard","Hyper Beam","Toxic","Double Team","Waterfall","Rest","Rock Slide","Substitute","Thief","Protect","Swagger","Attract","Sleep Talk","Return","Frustration","Hidden Power","Rain Dance","Hail","Torment","Facade","Taunt","Brick Break","Rock Tomb","Payback","Fling","Focus Blast","Giga Impact","Shadow Claw","Grass Knot","Low Sweep","Round","Scald","Acrobatics","Work Up","Confide"],
+    egg: [],
+    tutor: ["Ice Punch","Low Kick","Snore","Icy Wind","Iron Tail","Uproar","Focus Punch","Helping Hand","Role Play","Superpower","Recycle","Knock Off","Endeavor","Covet","Water Pulse","Gastro Acid","Aqua Tail","Gunk Shot","Water Pledge","Throat Chop"],
+    max: []
+  },
+  517: {
+    levelUp: [{level:1,move:"Defense Curl"},{level:1,move:"Stored Power"},{level:4,move:"Hypnosis"},{level:8,move:"Psybeam"},{level:12,move:"Imprison"},{level:16,move:"Moonlight"},{level:20,move:"Magic Coat"},{level:24,move:"Zen Headbutt"},{level:28,move:"Calm Mind"},{level:32,move:"Yawn"},{level:36,move:"Psychic"},{level:40,move:"Moonblast"},{level:44,move:"Dream Eater"},{level:48,move:"Future Sight"},{level:52,move:"Wonder Room"}],
+    tm: ["Thunder Wave","Psychic","Light Screen","Reflect","Swift","Amnesia","Rest","Rock Slide","Substitute","Snore","Protect","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Future Sight","Facade","Helping Hand","Trick","Skill Swap","Imprison","Rock Tomb","Calm Mind","Gyro Ball","Power Swap","Guard Swap","Energy Ball","Zen Headbutt","Trick Room","Wonder Room","Psyshock","Round","Stored Power","Ally Switch","Dazzling Gleam"],
+    egg: ["Curse","Healing Wish"],
+    tutor: ["Expanding Force"],
+    max: []
+  },
+  518: {
+    levelUp: [{level:1,move:"Psybeam"},{level:1,move:"Psychic"},{level:1,move:"Hypnosis"},{level:1,move:"Defense Curl"},{level:1,move:"Dream Eater"},{level:1,move:"Moonlight"},{level:1,move:"Future Sight"},{level:1,move:"Magic Coat"},{level:1,move:"Yawn"},{level:1,move:"Imprison"},{level:1,move:"Calm Mind"},{level:1,move:"Zen Headbutt"},{level:1,move:"Wonder Room"},{level:1,move:"Stored Power"},{level:1,move:"Moonblast"},{level:1,move:"Psychic Terrain"}],
+    tm: ["Hyper Beam","Thunder Wave","Psychic","Light Screen","Reflect","Swift","Amnesia","Rest","Rock Slide","Substitute","Snore","Protect","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Future Sight","Facade","Helping Hand","Trick","Skill Swap","Imprison","Rock Tomb","Calm Mind","Gyro Ball","Power Swap","Guard Swap","Energy Ball","Giga Impact","Zen Headbutt","Trick Room","Wonder Room","Psyshock","Round","Stored Power","Ally Switch","Dazzling Gleam","Psychic Terrain"],
+    egg: [],
+    tutor: ["Expanding Force","Misty Explosion"],
+    max: []
+  },
+  519: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Growl"},{level:4,move:"Leer"},{level:8,move:"Quick Attack"},{level:12,move:"Taunt"},{level:16,move:"Air Cutter"},{level:20,move:"Swagger"},{level:24,move:"Feather Dance"},{level:28,move:"Detect"},{level:32,move:"Air Slash"},{level:36,move:"Roost"},{level:40,move:"Tailwind"},{level:44,move:"Sky Attack"}],
+    tm: ["Fly","Agility","Focus Energy","Swift","Rest","Substitute","Snore","Protect","Endure","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Uproar","Heat Wave","Facade","Taunt","U-turn","Air Slash","Round","Work Up"],
+    egg: ["Hypnosis","Morning Sun","Wish","Night Slash","Defog"],
+    tutor: ["Dual Wingbeat"],
+    max: []
+  },
+  520: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Leer"},{level:1,move:"Growl"},{level:1,move:"Quick Attack"},{level:12,move:"Taunt"},{level:16,move:"Air Cutter"},{level:20,move:"Swagger"},{level:26,move:"Feather Dance"},{level:34,move:"Detect"},{level:38,move:"Air Slash"},{level:44,move:"Roost"},{level:50,move:"Tailwind"},{level:56,move:"Sky Attack"}],
+    tm: ["Fly","Agility","Focus Energy","Swift","Rest","Substitute","Snore","Protect","Endure","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Uproar","Heat Wave","Facade","Taunt","U-turn","Air Slash","Round","Work Up"],
+    egg: [],
+    tutor: ["Dual Wingbeat"],
+    max: []
+  },
+  521: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Leer"},{level:1,move:"Growl"},{level:1,move:"Quick Attack"},{level:12,move:"Taunt"},{level:16,move:"Air Cutter"},{level:20,move:"Swagger"},{level:26,move:"Feather Dance"},{level:36,move:"Detect"},{level:42,move:"Air Slash"},{level:50,move:"Roost"},{level:58,move:"Tailwind"},{level:66,move:"Sky Attack"}],
+    tm: ["Fly","Hyper Beam","Agility","Focus Energy","Swift","Rest","Substitute","Snore","Protect","Endure","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Uproar","Heat Wave","Facade","Taunt","U-turn","Air Slash","Brave Bird","Giga Impact","Round","Work Up","Hurricane"],
+    egg: [],
+    tutor: ["Dual Wingbeat"],
+    max: []
+  },
+  522: {
+    levelUp: [{level:1,move:"Quick Attack"},{level:4,move:"Tail Whip"},{level:8,move:"Charge"},{level:11,move:"Shock Wave"},{level:15,move:"Thunder Wave"},{level:18,move:"Flame Charge"},{level:22,move:"Spark"},{level:25,move:"Stomp"},{level:29,move:"Discharge"},{level:33,move:"Agility"},{level:35,move:"Wild Charge"},{level:40,move:"Thrash"}],
+    tm: ["Body Slam","Take Down","Double-Edge","Low Kick","Thunderbolt","Thunder Wave","Thunder","Agility","Light Screen","Swift","Rest","Substitute","Protect","Endure","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Uproar","Facade","Charge","Helping Hand","Endeavor","Charge Beam","Electro Ball","Flame Charge","Volt Switch","Electroweb","Wild Charge","Eerie Impulse","Electric Terrain","Smart Strike","Tera Blast","Trailblaze","Supercell Slam"],
+    egg: ["Double Kick","Sand Attack","Screech","Feint"],
+    tutor: [],
+    max: []
+  },
+  523: {
+    levelUp: [{level:1,move:"Tail Whip"},{level:1,move:"Thunder Wave"},{level:1,move:"Quick Attack"},{level:1,move:"Charge"},{level:11,move:"Shock Wave"},{level:18,move:"Flame Charge"},{level:25,move:"Spark"},{level:31,move:"Stomp"},{level:36,move:"Discharge"},{level:42,move:"Agility"},{level:47,move:"Wild Charge"},{level:53,move:"Thrash"}],
+    tm: ["Body Slam","Take Down","Double-Edge","Roar","Hyper Beam","Low Kick","Thunderbolt","Thunder Wave","Thunder","Agility","Light Screen","Swift","Rest","Substitute","Protect","Endure","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Uproar","Facade","Charge","Taunt","Helping Hand","Endeavor","Overheat","Giga Impact","Charge Beam","Electro Ball","Flame Charge","Volt Switch","Bulldoze","Electroweb","Wild Charge","Eerie Impulse","Electric Terrain","High Horsepower","Smart Strike","Tera Blast","Trailblaze","Supercell Slam"],
+    egg: ["Double Kick","Sand Attack","Screech","Feint"],
+    tutor: [],
+    max: []
+  },
+  524: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Tackle"},{level:4,move:"Harden"},{level:8,move:"Stealth Rock"},{level:12,move:"Mud-Slap"},{level:16,move:"Smack Down"},{level:20,move:"Iron Defense"},{level:24,move:"Headbutt"},{level:28,move:"Rock Slide"},{level:32,move:"Rock Blast"},{level:36,move:"Sandstorm"},{level:40,move:"Stone Edge"},{level:44,move:"Explosion"}],
+    tm: ["Earthquake","Rest","Rock Slide","Substitute","Snore","Protect","Sandstorm","Endure","Attract","Sleep Talk","Facade","Rock Tomb","Sand Tomb","Iron Defense","Rock Blast","Earth Power","Flash Cannon","Stone Edge","Stealth Rock","Heavy Slam","Round","Bulldoze","Body Press"],
+    egg: ["Take Down","Curse","Gravity","Wide Guard","Autotomize"],
+    tutor: ["Meteor Beam"],
+    max: []
+  },
+  525: {
+    levelUp: [{level:0,move:"Power Gem"},{level:1,move:"Sand Attack"},{level:1,move:"Tackle"},{level:1,move:"Harden"},{level:1,move:"Power Gem"},{level:1,move:"Stealth Rock"},{level:12,move:"Mud-Slap"},{level:16,move:"Smack Down"},{level:20,move:"Iron Defense"},{level:24,move:"Headbutt"},{level:30,move:"Rock Slide"},{level:36,move:"Rock Blast"},{level:42,move:"Sandstorm"},{level:48,move:"Stone Edge"},{level:54,move:"Explosion"}],
+    tm: ["Earthquake","Rest","Rock Slide","Substitute","Snore","Protect","Sandstorm","Endure","Attract","Sleep Talk","Facade","Rock Tomb","Sand Tomb","Iron Defense","Rock Blast","Power Gem","Earth Power","Flash Cannon","Stone Edge","Stealth Rock","Heavy Slam","Round","Bulldoze","Stomping Tantrum","Body Press"],
+    egg: [],
+    tutor: ["Meteor Beam"],
+    max: []
+  },
+  526: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Tackle"},{level:1,move:"Harden"},{level:1,move:"Power Gem"},{level:1,move:"Stealth Rock"},{level:12,move:"Mud-Slap"},{level:16,move:"Smack Down"},{level:20,move:"Iron Defense"},{level:24,move:"Headbutt"},{level:30,move:"Rock Slide"},{level:36,move:"Rock Blast"},{level:42,move:"Sandstorm"},{level:48,move:"Stone Edge"},{level:54,move:"Explosion"}],
+    tm: ["Hyper Beam","Solar Beam","Earthquake","Self-Destruct","Rest","Rock Slide","Substitute","Snore","Protect","Sandstorm","Endure","Attract","Sleep Talk","Facade","Superpower","Weather Ball","Rock Tomb","Sand Tomb","Iron Defense","Rock Blast","Power Gem","Earth Power","Giga Impact","Flash Cannon","Iron Head","Stone Edge","Stealth Rock","Heavy Slam","Round","Bulldoze","Throat Chop","Stomping Tantrum","Body Press"],
+    egg: [],
+    tutor: ["Meteor Beam"],
+    max: []
+  },
+  527: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Attract"},{level:5,move:"Confusion"},{level:10,move:"Endeavor"},{level:15,move:"Air Cutter"},{level:20,move:"Imprison"},{level:25,move:"Assurance"},{level:30,move:"Amnesia"},{level:35,move:"Air Slash"},{level:40,move:"Psychic"},{level:45,move:"Calm Mind"},{level:50,move:"Future Sight"},{level:55,move:"Simple Beam"}],
+    tm: ["Fly","Thunder Wave","Psychic","Light Screen","Reflect","Swift","Amnesia","Rest","Substitute","Thief","Snore","Protect","Giga Drain","Endure","Charm","Steel Wing","Attract","Sleep Talk","Safeguard","Baton Pass","Rain Dance","Shadow Ball","Future Sight","Uproar","Heat Wave","Facade","Taunt","Helping Hand","Trick","Skill Swap","Imprison","Fake Tears","Calm Mind","Gyro Ball","U-turn","Assurance","Air Slash","Energy Ball","Nasty Plot","Psycho Cut","Zen Headbutt","Trick Room","Psyshock","Round","Stored Power","Ally Switch","Acrobatics","Venom Drench","Speed Swap"],
+    egg: ["Supersonic","Flatter","Knock Off","Roost","Psycho Shift"],
+    tutor: ["Expanding Force","Dual Wingbeat"],
+    max: []
+  },
+  528: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Confusion"},{level:1,move:"Attract"},{level:1,move:"Endeavor"},{level:15,move:"Air Cutter"},{level:20,move:"Imprison"},{level:25,move:"Assurance"},{level:30,move:"Amnesia"},{level:35,move:"Air Slash"},{level:40,move:"Psychic"},{level:45,move:"Calm Mind"},{level:50,move:"Future Sight"},{level:55,move:"Simple Beam"}],
+    tm: ["Fly","Hyper Beam","Thunder Wave","Psychic","Light Screen","Reflect","Swift","Amnesia","Rest","Substitute","Thief","Snore","Protect","Giga Drain","Endure","Charm","Steel Wing","Attract","Sleep Talk","Safeguard","Baton Pass","Rain Dance","Shadow Ball","Future Sight","Uproar","Heat Wave","Facade","Taunt","Helping Hand","Trick","Skill Swap","Imprison","Fake Tears","Calm Mind","Gyro Ball","U-turn","Assurance","Air Slash","Energy Ball","Giga Impact","Nasty Plot","Psycho Cut","Zen Headbutt","Trick Room","Psyshock","Round","Stored Power","Ally Switch","Acrobatics","Venom Drench","Speed Swap","Psychic Fangs"],
+    egg: [],
+    tutor: ["Expanding Force","Dual Wingbeat"],
+    max: []
+  },
+  529: {
+    levelUp: [{level:1,move:"Mud-Slap"},{level:1,move:"Rapid Spin"},{level:4,move:"Scratch"},{level:8,move:"Hone Claws"},{level:12,move:"Fury Swipes"},{level:16,move:"Metal Claw"},{level:20,move:"Sandstorm"},{level:24,move:"Crush Claw"},{level:28,move:"Rock Slide"},{level:32,move:"Dig"},{level:36,move:"Swords Dance"},{level:40,move:"Drill Run"},{level:44,move:"Earthquake"},{level:48,move:"Fissure"}],
+    tm: ["Swords Dance","Take Down","Double-Edge","Earthquake","Dig","Rest","Rock Slide","Substitute","Curse","Protect","Mud-Slap","Sandstorm","Endure","Sleep Talk","Metal Claw","Sunny Day","Facade","Helping Hand","Brick Break","Rock Tomb","Metal Sound","Sand Tomb","Aerial Ace","Iron Defense","Mud Shot","Fling","Poison Jab","X-Scissor","Earth Power","Shadow Claw","Stealth Rock","Bulldoze","Drill Run","High Horsepower","Stomping Tantrum","Scorching Sands","Tera Blast"],
+    egg: ["Slash","Metal Sound"],
+    tutor: [],
+    max: []
+  },
+  530: {
+    levelUp: [{level:0,move:"Horn Drill"},{level:1,move:"Scratch"},{level:1,move:"Mud-Slap"},{level:1,move:"Rapid Spin"},{level:1,move:"Hone Claws"},{level:12,move:"Fury Swipes"},{level:16,move:"Metal Claw"},{level:20,move:"Sandstorm"},{level:24,move:"Crush Claw"},{level:28,move:"Rock Slide"},{level:34,move:"Dig"},{level:40,move:"Swords Dance"},{level:46,move:"Drill Run"},{level:52,move:"Earthquake"},{level:58,move:"Fissure"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Double-Edge","Hyper Beam","Earthquake","Dig","Rest","Rock Slide","Substitute","Curse","Protect","Scary Face","Mud-Slap","Sandstorm","Endure","Sleep Talk","Metal Claw","Sunny Day","Facade","Helping Hand","Brick Break","Rock Tomb","Metal Sound","Sand Tomb","Aerial Ace","Iron Defense","Mud Shot","Rock Blast","Fling","Poison Jab","X-Scissor","Focus Blast","Earth Power","Giga Impact","Shadow Claw","Iron Head","Stealth Rock","Bulldoze","Drill Run","High Horsepower","Throat Chop","Smart Strike","Stomping Tantrum","Steel Beam","Scorching Sands","Tera Blast"],
+    egg: ["Slash","Metal Sound"],
+    tutor: [],
+    max: []
+  },
+  531: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Play Nice"},{level:4,move:"Disarming Voice"},{level:9,move:"Baby-Doll Eyes"},{level:12,move:"Helping Hand"},{level:16,move:"Growl"},{level:20,move:"Zen Headbutt"},{level:24,move:"Life Dew"},{level:28,move:"After You"},{level:32,move:"Take Down"},{level:36,move:"Simple Beam"},{level:40,move:"Hyper Voice"},{level:44,move:"Heal Pulse"},{level:48,move:"Double-Edge"},{level:52,move:"Entrainment"},{level:56,move:"Misty Terrain"},{level:60,move:"Last Resort"}],
+    tm: ["Mega Punch","Fire Punch","Ice Punch","Thunder Punch","Mega Kick","Body Slam","Flamethrower","Surf","Ice Beam","Blizzard","Hyper Beam","Low Kick","Solar Beam","Thunderbolt","Thunder Wave","Thunder","Dig","Psychic","Light Screen","Reflect","Fire Blast","Amnesia","Rest","Substitute","Snore","Protect","Icy Wind","Endure","Attract","Sleep Talk","Safeguard","Encore","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Uproar","Facade","Helping Hand","Skill Swap","Hyper Voice","Calm Mind","Fling","Drain Punch","Giga Impact","Zen Headbutt","Trick Room","Grass Knot","Psyshock","Round","Ally Switch","Retaliate","Work Up","Wild Charge","Draining Kiss","Misty Terrain","Dazzling Gleam","Throat Chop","Stomping Tantrum"],
+    egg: ["Sweet Kiss","Wish","Yawn","Healing Wish"],
+    tutor: [],
+    max: []
+  },
+  532: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Leer"},{level:4,move:"Low Kick"},{level:8,move:"Rock Throw"},{level:12,move:"Focus Energy"},{level:16,move:"Bulk Up"},{level:20,move:"Rock Slide"},{level:24,move:"Slam"},{level:28,move:"Scary Face"},{level:32,move:"Dynamic Punch"},{level:36,move:"Hammer Arm"},{level:40,move:"Stone Edge"},{level:44,move:"Superpower"},{level:48,move:"Focus Punch"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Take Down","Low Kick","Dig","Rest","Rock Slide","Substitute","Thief","Reversal","Protect","Scary Face","Endure","Sleep Talk","Rain Dance","Sunny Day","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Rock Tomb","Bulk Up","Close Combat","Fling","Poison Jab","Drain Punch","Focus Blast","Stone Edge","Grass Knot","Smack Down","Low Sweep","Tera Blast","Double-Edge","Coaching","Curse"],
+    egg: ["Counter","Mach Punch","Detect","Defog","Wide Guard"],
+    tutor: [],
+    max: []
+  },
+  533: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:1,move:"Rock Throw"},{level:12,move:"Focus Energy"},{level:16,move:"Bulk Up"},{level:20,move:"Rock Slide"},{level:24,move:"Slam"},{level:30,move:"Scary Face"},{level:36,move:"Dynamic Punch"},{level:42,move:"Hammer Arm"},{level:48,move:"Stone Edge"},{level:54,move:"Superpower"},{level:60,move:"Focus Punch"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Take Down","Low Kick","Dig","Rest","Rock Slide","Substitute","Thief","Reversal","Protect","Scary Face","Endure","Sleep Talk","Rain Dance","Sunny Day","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Rock Tomb","Bulk Up","Close Combat","Fling","Poison Jab","Drain Punch","Focus Blast","Stone Edge","Grass Knot","Smack Down","Low Sweep","High Horsepower","Tera Blast","Double-Edge","Coaching","Curse"],
+    egg: ["Counter","Mach Punch","Detect","Defog","Wide Guard"],
+    tutor: [],
+    max: []
+  },
+  534: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:1,move:"Rock Throw"},{level:12,move:"Focus Energy"},{level:16,move:"Bulk Up"},{level:20,move:"Rock Slide"},{level:24,move:"Slam"},{level:30,move:"Scary Face"},{level:36,move:"Dynamic Punch"},{level:42,move:"Hammer Arm"},{level:48,move:"Stone Edge"},{level:54,move:"Superpower"},{level:60,move:"Focus Punch"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Body Slam","Take Down","Hyper Beam","Low Kick","Earthquake","Dig","Rest","Rock Slide","Substitute","Thief","Reversal","Protect","Scary Face","Endure","Sleep Talk","Rain Dance","Sunny Day","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Rock Tomb","Bulk Up","Rock Blast","Close Combat","Fling","Poison Jab","Drain Punch","Focus Blast","Giga Impact","Stone Edge","Grass Knot","Smack Down","Low Sweep","Bulldoze","High Horsepower","Stomping Tantrum","Tera Blast","Double-Edge","Coaching","Curse","Hard Press","Upper Hand"],
+    egg: ["Counter","Mach Punch","Detect","Defog","Wide Guard"],
+    tutor: [],
+    max: []
+  },
+  535: {
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Echoed Voice"},{level:4,move:"Acid"},{level:8,move:"Supersonic"},{level:12,move:"Mud Shot"},{level:16,move:"Round"},{level:20,move:"Bubble Beam"},{level:24,move:"Flail"},{level:28,move:"Uproar"},{level:32,move:"Aqua Ring"},{level:36,move:"Hyper Voice"},{level:40,move:"Muddy Water"},{level:44,move:"Rain Dance"},{level:48,move:"Hydro Pump"}],
+    tm: ["Hydro Pump","Surf","Screech","Rest","Substitute","Snore","Protect","Sludge Bomb","Icy Wind","Endure","Attract","Sleep Talk","Rain Dance","Uproar","Hail","Facade","Hyper Voice","Weather Ball","Muddy Water","Bounce","Mud Shot","Earth Power","Sludge Wave","Round","Scald","Venom Drench"],
+    egg: ["Mist","Toxic","Mud-Slap","Water Pulse"],
+    tutor: [],
+    max: []
+  },
+  536: {
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Supersonic"},{level:1,move:"Acid"},{level:1,move:"Echoed Voice"},{level:12,move:"Mud Shot"},{level:16,move:"Round"},{level:20,move:"Bubble Beam"},{level:24,move:"Flail"},{level:30,move:"Uproar"},{level:37,move:"Aqua Ring"},{level:42,move:"Hyper Voice"},{level:48,move:"Muddy Water"},{level:54,move:"Rain Dance"},{level:60,move:"Hydro Pump"}],
+    tm: ["Hydro Pump","Surf","Screech","Rest","Substitute","Snore","Protect","Sludge Bomb","Icy Wind","Endure","Attract","Sleep Talk","Rain Dance","Uproar","Hail","Facade","Hyper Voice","Weather Ball","Muddy Water","Bounce","Mud Shot","Earth Power","Power Whip","Stealth Rock","Sludge Wave","Round","Scald","Bulldoze","Venom Drench"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  537: {
+    levelUp: [{level:0,move:"Drain Punch"},{level:1,move:"Growl"},{level:1,move:"Supersonic"},{level:1,move:"Acid"},{level:1,move:"Gastro Acid"},{level:1,move:"Drain Punch"},{level:1,move:"Echoed Voice"},{level:12,move:"Mud Shot"},{level:16,move:"Round"},{level:20,move:"Bubble Beam"},{level:24,move:"Flail"},{level:30,move:"Uproar"},{level:39,move:"Aqua Ring"},{level:46,move:"Hyper Voice"},{level:54,move:"Muddy Water"},{level:62,move:"Rain Dance"},{level:70,move:"Hydro Pump"}],
+    tm: ["Mega Punch","Ice Punch","Mega Kick","Hydro Pump","Surf","Hyper Beam","Low Kick","Earthquake","Dig","Screech","Rest","Rock Slide","Substitute","Snore","Protect","Sludge Bomb","Icy Wind","Endure","Attract","Sleep Talk","Rain Dance","Uproar","Hail","Facade","Brick Break","Dive","Hyper Voice","Weather Ball","Rock Tomb","Muddy Water","Bounce","Mud Shot","Payback","Fling","Poison Jab","Drain Punch","Focus Blast","Earth Power","Giga Impact","Power Whip","Stealth Rock","Grass Knot","Venoshock","Sludge Wave","Round","Scald","Bulldoze","Venom Drench","Stomping Tantrum","Liquidation"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  538: {
+    levelUp: [{level:1,move:"Bind"},{level:1,move:"Leer"},{level:5,move:"Focus Energy"},{level:10,move:"Circle Throw"},{level:15,move:"Wide Guard"},{level:20,move:"Revenge"},{level:25,move:"Bulk Up"},{level:30,move:"Storm Throw"},{level:35,move:"Vital Throw"},{level:40,move:"Seismic Toss"},{level:45,move:"Endure"},{level:50,move:"Reversal"},{level:55,move:"Superpower"}],
+    tm: ["Mega Punch","Fire Punch","Ice Punch","Thunder Punch","Mega Kick","Body Slam","Low Kick","Earthquake","Dig","Focus Energy","Rest","Rock Slide","Substitute","Snore","Reversal","Protect","Scary Face","Endure","Attract","Sleep Talk","Rain Dance","Sunny Day","Facade","Taunt","Helping Hand","Superpower","Revenge","Brick Break","Rock Tomb","Bulk Up","Payback","Fling","Poison Jab","Focus Blast","Giga Impact","Zen Headbutt","Stone Edge","Grass Knot","Low Sweep","Round","Retaliate","Bulldoze","Work Up","Stomping Tantrum"],
+    egg: [],
+    tutor: ["Coaching"],
+    max: []
+  },
+  539: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Rock Smash"},{level:5,move:"Focus Energy"},{level:10,move:"Double Kick"},{level:15,move:"Quick Guard"},{level:20,move:"Low Sweep"},{level:25,move:"Bulk Up"},{level:30,move:"Retaliate"},{level:35,move:"Brick Break"},{level:40,move:"Counter"},{level:45,move:"Endure"},{level:50,move:"Reversal"},{level:55,move:"Close Combat"}],
+    tm: ["Mega Punch","Fire Punch","Ice Punch","Thunder Punch","Mega Kick","Low Kick","Earthquake","Dig","Focus Energy","Rest","Rock Slide","Substitute","Snore","Reversal","Protect","Scary Face","Endure","Attract","Sleep Talk","Rain Dance","Sunny Day","Facade","Taunt","Helping Hand","Superpower","Revenge","Brick Break","Rock Tomb","Bulk Up","Close Combat","Payback","Fling","Poison Jab","Focus Blast","Giga Impact","Zen Headbutt","Stone Edge","Grass Knot","Low Sweep","Round","Retaliate","Bulldoze","Work Up","Throat Chop"],
+    egg: [],
+    tutor: ["Coaching"],
+    max: []
+  },
+  540: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"String Shot"},{level:8,move:"Bug Bite"},{level:15,move:"Razor Leaf"},{level:22,move:"Struggle Bug"},{level:29,move:"Endure"},{level:31,move:"Sticky Web"},{level:36,move:"Bug Buzz"},{level:43,move:"Flail"}],
+    tm: ["Take Down","Solar Beam","Rest","Substitute","Protect","Giga Drain","Endure","Charm","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Facade","Iron Defense","Magical Leaf","Seed Bomb","Bug Buzz","Energy Ball","Grass Knot","Bug Bite","Struggle Bug","Grassy Terrain","Lunge","Grassy Glide","Tera Blast","Pounce","Trailblaze","Electroweb","Skitter Smack"],
+    egg: ["Screech","Snore","Synthesis","Worry Seed","Switcheroo"],
+    tutor: [],
+    max: []
+  },
+  541: {
+    levelUp: [{level:0,move:"Protect"},{level:1,move:"Tackle"},{level:1,move:"Razor Leaf"},{level:1,move:"String Shot"},{level:1,move:"Bug Bite"},{level:22,move:"Struggle Bug"},{level:29,move:"Endure"},{level:31,move:"Sticky Web"},{level:36,move:"Bug Buzz"},{level:43,move:"Flail"}],
+    tm: ["Take Down","Solar Beam","Light Screen","Rest","Substitute","Protect","Giga Drain","Endure","Charm","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Facade","Iron Defense","Magical Leaf","Seed Bomb","Bug Buzz","Energy Ball","Grass Knot","Bug Bite","Struggle Bug","Grassy Terrain","Lunge","Grassy Glide","Tera Blast","Pounce","Trailblaze","Electroweb","Skitter Smack"],
+    egg: ["Screech","Snore","Synthesis","Worry Seed","Switcheroo"],
+    tutor: [],
+    max: []
+  },
+  542: {
+    levelUp: [{level:0,move:"Slash"},{level:1,move:"Tackle"},{level:1,move:"Razor Leaf"},{level:1,move:"String Shot"},{level:1,move:"False Swipe"},{level:22,move:"Struggle Bug"},{level:29,move:"Fell Stinger"},{level:32,move:"Helping Hand"},{level:36,move:"Leaf Blade"},{level:39,move:"X-Scissor"},{level:43,move:"Entrainment"},{level:46,move:"Swords Dance"},{level:50,move:"Leaf Storm"}],
+    tm: ["Swords Dance","Take Down","Hyper Beam","Low Kick","Solar Beam","Agility","Light Screen","Reflect","Rest","Substitute","Protect","Giga Drain","Endure","Charm","False Swipe","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Facade","Helping Hand","Knock Off","Bullet Seed","Iron Defense","Magical Leaf","Calm Mind","Poison Jab","Seed Bomb","Air Slash","X-Scissor","Bug Buzz","Energy Ball","Giga Impact","Shadow Claw","Leaf Storm","Grass Knot","Bug Bite","Struggle Bug","Grassy Terrain","Pollen Puff","Lunge","Grassy Glide","Tera Blast","Pounce","Trailblaze","Electroweb","Triple Axel","Skitter Smack","Throat Chop"],
+    egg: ["Screech","Snore","Synthesis","Worry Seed","Switcheroo","Bug Bite"],
+    tutor: [],
+    max: []
+  },
+  543: {
+    levelUp: [{level:1,move:"Poison Sting"},{level:1,move:"Defense Curl"},{level:4,move:"Rollout"},{level:8,move:"Protect"},{level:12,move:"Poison Tail"},{level:16,move:"Screech"},{level:20,move:"Bug Bite"},{level:24,move:"Venoshock"},{level:28,move:"Take Down"},{level:32,move:"Agility"},{level:36,move:"Toxic"},{level:40,move:"Venom Drench"},{level:44,move:"Double-Edge"}],
+    tm: ["Pin Missile","Solar Beam","Agility","Screech","Rest","Substitute","Snore","Protect","Sludge Bomb","Spikes","Endure","Attract","Sleep Talk","Sunny Day","Facade","Iron Defense","Gyro Ball","Payback","Toxic Spikes","Poison Jab","Venoshock","Round","Hex","Venom Drench"],
+    egg: ["Bite","Fury Cutter"],
+    tutor: ["Steel Roller","Skitter Smack"],
+    max: []
+  },
+  544: {
+    levelUp: [{level:0,move:"Iron Defense"},{level:1,move:"Poison Sting"},{level:1,move:"Defense Curl"},{level:1,move:"Protect"},{level:1,move:"Rollout"},{level:1,move:"Iron Defense"},{level:12,move:"Poison Tail"},{level:16,move:"Screech"},{level:20,move:"Bug Bite"},{level:26,move:"Venoshock"},{level:32,move:"Take Down"},{level:38,move:"Agility"},{level:44,move:"Toxic"},{level:50,move:"Venom Drench"},{level:56,move:"Double-Edge"}],
+    tm: ["Pin Missile","Solar Beam","Agility","Screech","Rest","Substitute","Snore","Protect","Sludge Bomb","Spikes","Endure","Attract","Sleep Talk","Sunny Day","Facade","Iron Defense","Gyro Ball","Payback","Toxic Spikes","Poison Jab","Venoshock","Round","Hex","Venom Drench"],
+    egg: [],
+    tutor: ["Steel Roller","Skitter Smack"],
+    max: []
+  },
+  545: {
+    levelUp: [{level:1,move:"Poison Sting"},{level:1,move:"Defense Curl"},{level:1,move:"Protect"},{level:1,move:"Rollout"},{level:1,move:"Baton Pass"},{level:1,move:"Iron Defense"},{level:12,move:"Poison Tail"},{level:16,move:"Screech"},{level:20,move:"Bug Bite"},{level:26,move:"Venoshock"},{level:34,move:"Take Down"},{level:42,move:"Agility"},{level:50,move:"Toxic"},{level:58,move:"Venom Drench"},{level:66,move:"Double-Edge"},{level:74,move:"Megahorn"}],
+    tm: ["Swords Dance","Pin Missile","Hyper Beam","Solar Beam","Earthquake","Dig","Agility","Screech","Rest","Rock Slide","Substitute","Snore","Protect","Sludge Bomb","Spikes","Endure","Attract","Sleep Talk","Megahorn","Baton Pass","Iron Tail","Sunny Day","Facade","Superpower","Rock Tomb","Iron Defense","Gyro Ball","Payback","Assurance","Toxic Spikes","Poison Jab","X-Scissor","Giga Impact","Cross Poison","Venoshock","Round","Hex","Bulldoze","Venom Drench","Throat Chop","Smart Strike","Stomping Tantrum"],
+    egg: [],
+    tutor: ["Steel Roller","Skitter Smack"],
+    max: []
+  },
+  546: {
+    levelUp: [{level:1,move:"Helping Hand"},{level:1,move:"Absorb"},{level:3,move:"Fairy Wind"},{level:6,move:"Stun Spore"},{level:12,move:"Mega Drain"},{level:15,move:"Razor Leaf"},{level:18,move:"Growth"},{level:21,move:"Poison Powder"},{level:24,move:"Giga Drain"},{level:27,move:"Charm"},{level:30,move:"Leech Seed"},{level:33,move:"Cotton Spore"},{level:36,move:"Energy Ball"},{level:39,move:"Sunny Day"},{level:42,move:"Endeavor"},{level:45,move:"Cotton Guard"},{level:48,move:"Solar Beam"}],
+    tm: ["Solar Beam","Swift","Rest","Substitute","Protect","Giga Drain","Endure","Charm","Sleep Talk","Encore","Sunny Day","Facade","Taunt","Helping Hand","Endeavor","Fake Tears","Seed Bomb","Energy Ball","Grass Knot","Grassy Terrain","Misty Terrain","Dazzling Gleam","Grassy Glide","Tera Blast"],
+    egg: ["Beat Up","Memento","Tickle","Worry Seed","Switcheroo"],
+    tutor: [],
+    max: []
+  },
+  547: {
+    levelUp: [{level:1,move:"Moonblast"},{level:1,move:"Hurricane"},{level:1,move:"Cotton Guard"},{level:1,move:"Energy Ball"},{level:1,move:"Tailwind"},{level:1,move:"Endeavor"},{level:1,move:"Helping Hand"},{level:1,move:"Memento"},{level:1,move:"Sunny Day"},{level:1,move:"Charm"},{level:1,move:"Giga Drain"},{level:1,move:"Cotton Spore"},{level:1,move:"Stun Spore"},{level:1,move:"Poison Powder"},{level:1,move:"Solar Beam"},{level:1,move:"Razor Leaf"},{level:1,move:"Growth"},{level:1,move:"Leech Seed"},{level:1,move:"Mega Drain"},{level:1,move:"Absorb"},{level:1,move:"Fairy Wind"},{level:1,move:"Gust"}],
+    tm: ["Hyper Beam","Solar Beam","Psychic","Light Screen","Swift","Rest","Substitute","Thief","Protect","Giga Drain","Endure","Charm","Sleep Talk","Encore","Sunny Day","Shadow Ball","Facade","Taunt","Helping Hand","Endeavor","Fake Tears","Tailwind","U-turn","Fling","Seed Bomb","Energy Ball","Giga Impact","Trick Room","Grass Knot","Hurricane","Grassy Terrain","Misty Terrain","Play Rough","Dazzling Gleam","Grassy Glide","Tera Blast"],
+    egg: ["Beat Up","Memento","Tickle","Worry Seed","Switcheroo"],
     tutor: [],
     max: []
   },
@@ -3520,6 +3877,139 @@ var MOVESETS = {
     tutor: [],
     max: []
   },
+  551: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Power Trip"},{level:3,move:"Sand Attack"},{level:6,move:"Hone Claws"},{level:9,move:"Sand Tomb"},{level:12,move:"Scary Face"},{level:15,move:"Bite"},{level:18,move:"Torment"},{level:21,move:"Dig"},{level:24,move:"Swagger"},{level:27,move:"Crunch"},{level:30,move:"Sandstorm"},{level:33,move:"Foul Play"},{level:36,move:"Earthquake"},{level:39,move:"Thrash"}],
+    tm: ["Body Slam","Take Down","Earthquake","Dig","Rest","Rock Slide","Substitute","Thief","Protect","Scary Face","Sludge Bomb","Mud-Slap","Sandstorm","Endure","Sleep Talk","Crunch","Facade","Taunt","Helping Hand","Brick Break","Rock Tomb","Mud Shot","Fling","Dark Pulse","Earth Power","Shadow Claw","Thunder Fang","Fire Fang","Stone Edge","Stealth Rock","Grass Knot","Foul Play","Bulldoze","Snarl","Stomping Tantrum","Tera Blast","Roar","Sand Tomb","Spite","Lash Out","Double-Edge","Scorching Sands","Skitter Smack","Curse"],
+    egg: ["Double-Edge","Counter","Spite","Aqua Tail"],
+    tutor: [],
+    max: []
+  },
+  552: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Leer"},{level:1,move:"Hone Claws"},{level:1,move:"Power Trip"},{level:9,move:"Sand Tomb"},{level:12,move:"Scary Face"},{level:15,move:"Bite"},{level:18,move:"Torment"},{level:21,move:"Dig"},{level:24,move:"Swagger"},{level:27,move:"Crunch"},{level:32,move:"Sandstorm"},{level:35,move:"Foul Play"},{level:42,move:"Earthquake"},{level:47,move:"Thrash"}],
+    tm: ["Body Slam","Take Down","Low Kick","Earthquake","Dig","Rest","Rock Slide","Substitute","Thief","Protect","Scary Face","Sludge Bomb","Mud-Slap","Sandstorm","Endure","Sleep Talk","Crunch","Facade","Taunt","Helping Hand","Brick Break","Rock Tomb","Aerial Ace","Dragon Claw","Mud Shot","Fling","Dark Pulse","Earth Power","Shadow Claw","Thunder Fang","Fire Fang","Stone Edge","Stealth Rock","Grass Knot","Low Sweep","Foul Play","Bulldoze","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Roar","Sand Tomb","Spite","Knock Off","Focus Punch","Lash Out","Scale Shot","Double-Edge","Endeavor","Scorching Sands","Skitter Smack","Breaking Swipe","Curse"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  553: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Leer"},{level:1,move:"Hone Claws"},{level:1,move:"Power Trip"},{level:9,move:"Sand Tomb"},{level:12,move:"Scary Face"},{level:15,move:"Bite"},{level:18,move:"Torment"},{level:21,move:"Dig"},{level:24,move:"Swagger"},{level:27,move:"Crunch"},{level:32,move:"Sandstorm"},{level:35,move:"Foul Play"},{level:44,move:"Earthquake"},{level:51,move:"Thrash"},{level:58,move:"Outrage"}],
+    tm: ["Body Slam","Take Down","Hyper Beam","Low Kick","Earthquake","Dig","Rest","Rock Slide","Substitute","Thief","Protect","Scary Face","Sludge Bomb","Mud-Slap","Outrage","Sandstorm","Endure","Sleep Talk","Crunch","Facade","Taunt","Helping Hand","Brick Break","Rock Tomb","Aerial Ace","Dragon Claw","Bulk Up","Mud Shot","Close Combat","Fling","Dark Pulse","Dragon Pulse","Focus Blast","Earth Power","Giga Impact","Shadow Claw","Thunder Fang","Fire Fang","Gunk Shot","Stone Edge","Stealth Rock","Grass Knot","Low Sweep","Foul Play","Bulldoze","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Roar","Sand Tomb","Spite","Smack Down","Knock Off","High Horsepower","Focus Punch","Lash Out","Scale Shot","Double-Edge","Endeavor","Scorching Sands","Skitter Smack","Throat Chop","Breaking Swipe","Curse"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  554: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Ember"},{level:4,move:"Taunt"},{level:8,move:"Bite"},{level:12,move:"Incinerate"},{level:16,move:"Work Up"},{level:20,move:"Fire Fang"},{level:24,move:"Headbutt"},{level:28,move:"Fire Punch"},{level:32,move:"Uproar"},{level:36,move:"Belly Drum"},{level:40,move:"Flare Blitz"},{level:44,move:"Thrash"},{level:48,move:"Superpower"}],
+    tm: ["Mega Punch","Fire Punch","Mega Kick","Flamethrower","Solar Beam","Fire Spin","Dig","Focus Energy","Fire Blast","Rest","Rock Slide","Substitute","Thief","Snore","Protect","Endure","Attract","Sleep Talk","Encore","Sunny Day","Uproar","Heat Wave","Will-O-Wisp","Facade","Taunt","Superpower","Brick Break","Overheat","Rock Tomb","Gyro Ball","U-turn","Fling","Flare Blitz","Fire Fang","Zen Headbutt","Grass Knot","Round","Work Up"],
+    egg: ["Take Down","Flame Wheel","Focus Punch","Yawn","Extrasensory","Hammer Arm"],
+    tutor: [],
+    max: []
+  },
+  555: {
+    levelUp: [{level:0,move:"Hammer Arm"},{level:1,move:"Tackle"},{level:1,move:"Bite"},{level:1,move:"Ember"},{level:1,move:"Taunt"},{level:1,move:"Hammer Arm"},{level:12,move:"Incinerate"},{level:16,move:"Work Up"},{level:20,move:"Fire Fang"},{level:24,move:"Headbutt"},{level:28,move:"Fire Punch"},{level:32,move:"Uproar"},{level:38,move:"Belly Drum"},{level:44,move:"Flare Blitz"},{level:50,move:"Thrash"},{level:56,move:"Superpower"}],
+    tm: ["Mega Punch","Fire Punch","Mega Kick","Body Slam","Flamethrower","Hyper Beam","Solar Beam","Fire Spin","Earthquake","Dig","Psychic","Focus Energy","Fire Blast","Rest","Rock Slide","Substitute","Thief","Snore","Reversal","Protect","Endure","Attract","Sleep Talk","Encore","Sunny Day","Future Sight","Uproar","Heat Wave","Will-O-Wisp","Facade","Taunt","Trick","Superpower","Brick Break","Overheat","Rock Tomb","Iron Defense","Bulk Up","Gyro Ball","U-turn","Payback","Fling","Power Swap","Guard Swap","Flare Blitz","Focus Blast","Giga Impact","Fire Fang","Zen Headbutt","Iron Head","Stone Edge","Grass Knot","Round","Bulldoze","Work Up","Mystical Fire","Body Press"],
+    egg: [],
+    tutor: ["Expanding Force","Burning Jealousy","Lash Out"],
+    max: []
+  },
+  556: {
+    levelUp: [{level:1,move:"Peck"},{level:1,move:"Absorb"},{level:1,move:"Ingrain"},{level:1,move:"After You"},{level:1,move:"Spiky Shield"},{level:4,move:"Growth"},{level:8,move:"Mega Drain"},{level:12,move:"Leech Seed"},{level:16,move:"Sucker Punch"},{level:20,move:"Pin Missile"},{level:24,move:"Giga Drain"},{level:28,move:"Sweet Scent"},{level:32,move:"Synthesis"},{level:36,move:"Petal Blizzard"},{level:40,move:"Cotton Spore"},{level:44,move:"Sunny Day"},{level:48,move:"Solar Beam"},{level:52,move:"Acupressure"},{level:56,move:"Petal Dance"},{level:60,move:"Cotton Guard"}],
+    tm: ["Pin Missile","Solar Beam","Screech","Rest","Substitute","Snore","Protect","Spikes","Giga Drain","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Uproar","Facade","Helping Hand","Hyper Voice","Weather Ball","Bullet Seed","Bounce","Assurance","Poison Jab","Seed Bomb","Drain Punch","Energy Ball","Leaf Storm","Grass Knot","Round","Grassy Terrain","Throat Chop"],
+    egg: ["Worry Seed","Wood Hammer"],
+    tutor: ["Grassy Glide"],
+    max: []
+  },
+  557: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Fury Cutter"},{level:4,move:"Withdraw"},{level:8,move:"Smack Down"},{level:12,move:"Bug Bite"},{level:16,move:"Flail"},{level:20,move:"Slash"},{level:24,move:"Rock Slide"},{level:28,move:"Stealth Rock"},{level:32,move:"Rock Blast"},{level:36,move:"X-Scissor"},{level:40,move:"Rock Polish"},{level:44,move:"Shell Smash"},{level:48,move:"Rock Wrecker"}],
+    tm: ["Swords Dance","Solar Beam","Earthquake","Dig","Rest","Rock Slide","Substitute","Snore","Protect","Spikes","Sandstorm","Endure","Attract","Sleep Talk","Facade","Rock Tomb","Sand Tomb","Iron Defense","Rock Blast","Poison Jab","X-Scissor","Shadow Claw","Stone Edge","Stealth Rock","Round","Bulldoze"],
+    egg: ["Counter","Curse","Knock Off","Block","Night Slash","Wide Guard"],
+    tutor: ["Skitter Smack"],
+    max: []
+  },
+  558: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Withdraw"},{level:1,move:"Fury Cutter"},{level:1,move:"Smack Down"},{level:12,move:"Bug Bite"},{level:16,move:"Flail"},{level:20,move:"Slash"},{level:24,move:"Rock Slide"},{level:28,move:"Stealth Rock"},{level:32,move:"Rock Blast"},{level:38,move:"X-Scissor"},{level:44,move:"Rock Polish"},{level:50,move:"Shell Smash"},{level:56,move:"Rock Wrecker"}],
+    tm: ["Swords Dance","Hyper Beam","Solar Beam","Earthquake","Dig","Rest","Rock Slide","Substitute","Snore","Protect","Spikes","Sandstorm","Endure","Attract","Sleep Talk","Facade","Rock Tomb","Sand Tomb","Iron Defense","Rock Blast","Poison Jab","X-Scissor","Giga Impact","Shadow Claw","Stone Edge","Stealth Rock","Heavy Slam","Round","Bulldoze","Solar Blade","Stomping Tantrum","Body Press"],
+    egg: [],
+    tutor: ["Meteor Beam","Skitter Smack"],
+    max: []
+  },
+  559: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:4,move:"Payback"},{level:8,move:"Headbutt"},{level:12,move:"Sand Attack"},{level:16,move:"Facade"},{level:20,move:"Torment"},{level:24,move:"Beat Up"},{level:28,move:"Scary Face"},{level:32,move:"Brick Break"},{level:36,move:"Swagger"},{level:40,move:"Crunch"},{level:44,move:"High Jump Kick"},{level:48,move:"Focus Punch"},{level:52,move:"Head Smash"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Take Down","Double-Edge","Roar","Low Kick","Dig","Amnesia","Rest","Rock Slide","Super Fang","Substitute","Thief","Curse","Protect","Scary Face","Sludge Bomb","Endure","Sleep Talk","Encore","Rain Dance","Sunny Day","Crunch","Uproar","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Endeavor","Fake Tears","Rock Tomb","Iron Defense","Dragon Claw","Bulk Up","Dragon Dance","Close Combat","Fling","Poison Jab","Dark Pulse","Dragon Pulse","Drain Punch","Focus Blast","Zen Headbutt","Iron Head","Stone Edge","Grass Knot","Smack Down","Low Sweep","Acid Spray","Foul Play","Dragon Tail","Snarl","Throat Chop","Lash Out","Coaching","Tera Blast","Trailblaze","Upper Hand"],
+    egg: ["Counter","Detect","Fake Out","Quick Guard"],
+    tutor: [],
+    max: []
+  },
+  560: {
+    levelUp: [{level:1,move:"Headbutt"},{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:1,move:"Payback"},{level:12,move:"Sand Attack"},{level:16,move:"Facade"},{level:20,move:"Torment"},{level:24,move:"Beat Up"},{level:28,move:"Scary Face"},{level:32,move:"Brick Break"},{level:36,move:"Swagger"},{level:42,move:"Crunch"},{level:48,move:"High Jump Kick"},{level:54,move:"Focus Punch"},{level:60,move:"Head Smash"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Swords Dance","Body Slam","Take Down","Double-Edge","Roar","Hyper Beam","Low Kick","Dig","Metronome","Amnesia","Rest","Rock Slide","Super Fang","Substitute","Thief","Curse","Reversal","Spite","Protect","Scary Face","Sludge Bomb","Outrage","Endure","Sleep Talk","Encore","Rain Dance","Sunny Day","Crunch","Uproar","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Endeavor","Fake Tears","Rock Tomb","Iron Defense","Dragon Claw","Bulk Up","Dragon Dance","Close Combat","Fling","Poison Jab","Dark Pulse","Dragon Pulse","Drain Punch","Focus Blast","Giga Impact","Zen Headbutt","Iron Head","Stone Edge","Grass Knot","Smack Down","Low Sweep","Acid Spray","Foul Play","Dragon Tail","Snarl","Throat Chop","Lash Out","Coaching","Tera Blast","Trailblaze","Upper Hand"],
+    egg: ["Counter","Detect","Fake Out","Quick Guard"],
+    tutor: [],
+    max: []
+  },
+  561: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Confusion"},{level:5,move:"Gravity"},{level:10,move:"Hypnosis"},{level:15,move:"Air Cutter"},{level:20,move:"Psybeam"},{level:25,move:"Whirlwind"},{level:30,move:"Cosmic Power"},{level:35,move:"Air Slash"},{level:40,move:"Psychic"},{level:45,move:"Tailwind"},{level:50,move:"Light Screen"},{level:50,move:"Reflect"},{level:55,move:"Sky Attack"},{level:60,move:"Skill Swap"}],
+    tm: ["Fly","Ice Beam","Hyper Beam","Solar Beam","Thunder Wave","Psychic","Light Screen","Reflect","Swift","Rest","Substitute","Thief","Snore","Protect","Icy Wind","Endure","Steel Wing","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Future Sight","Heat Wave","Facade","Trick","Skill Swap","Imprison","Cosmic Power","Calm Mind","Power Swap","Dark Pulse","Air Slash","Energy Ball","Giga Impact","Psycho Cut","Zen Headbutt","Flash Cannon","Trick Room","Psyshock","Magic Room","Round","Stored Power","Dazzling Gleam","Speed Swap"],
+    egg: ["Ancient Power","Roost","Psycho Shift"],
+    tutor: ["Expanding Force","Dual Wingbeat"],
+    max: []
+  },
+  562: {
+    levelUp: [{level:1,move:"Protect"},{level:1,move:"Astonish"},{level:4,move:"Haze"},{level:8,move:"Night Shade"},{level:12,move:"Disable"},{level:16,move:"Will-O-Wisp"},{level:20,move:"Crafty Shield"},{level:24,move:"Hex"},{level:28,move:"Mean Look"},{level:32,move:"Grudge"},{level:36,move:"Curse"},{level:40,move:"Shadow Ball"},{level:44,move:"Dark Pulse"},{level:48,move:"Guard Split"},{level:48,move:"Power Split"},{level:52,move:"Destiny Bond"}],
+    tm: ["Psychic","Rest","Substitute","Thief","Snore","Protect","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Will-O-Wisp","Facade","Trick","Skill Swap","Imprison","Fake Tears","Iron Defense","Calm Mind","Payback","Toxic Spikes","Dark Pulse","Energy Ball","Nasty Plot","Zen Headbutt","Trick Room","Wonder Room","Round","Ally Switch","Hex"],
+    egg: ["Memento"],
+    tutor: ["Poltergeist"],
+    max: []
+  },
+  563: {
+    levelUp: [{level:0,move:"Shadow Claw"},{level:1,move:"Night Shade"},{level:1,move:"Haze"},{level:1,move:"Protect"},{level:1,move:"Scary Face"},{level:1,move:"Astonish"},{level:1,move:"Shadow Claw"},{level:12,move:"Disable"},{level:16,move:"Will-O-Wisp"},{level:20,move:"Crafty Shield"},{level:24,move:"Hex"},{level:28,move:"Mean Look"},{level:32,move:"Grudge"},{level:38,move:"Curse"},{level:44,move:"Shadow Ball"},{level:50,move:"Dark Pulse"},{level:56,move:"Guard Split"},{level:56,move:"Power Split"},{level:62,move:"Destiny Bond"}],
+    tm: ["Hyper Beam","Psychic","Rest","Substitute","Thief","Snore","Protect","Scary Face","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Will-O-Wisp","Facade","Trick","Revenge","Skill Swap","Imprison","Fake Tears","Iron Defense","Calm Mind","Payback","Power Swap","Guard Swap","Toxic Spikes","Dark Pulse","Energy Ball","Giga Impact","Nasty Plot","Shadow Claw","Zen Headbutt","Trick Room","Grass Knot","Wonder Room","Round","Ally Switch","Hex","Phantom Force","Body Press"],
+    egg: [],
+    tutor: ["Poltergeist"],
+    max: []
+  },
+  564: {
+    levelUp: [{level:1,move:"Water Gun"},{level:1,move:"Withdraw"},{level:3,move:"Protect"},{level:6,move:"Aqua Jet"},{level:9,move:"Smack Down"},{level:12,move:"Ancient Power"},{level:15,move:"Bite"},{level:18,move:"Wide Guard"},{level:21,move:"Brine"},{level:24,move:"Rock Slide"},{level:27,move:"Crunch"},{level:30,move:"Curse"},{level:33,move:"Iron Defense"},{level:36,move:"Aqua Tail"},{level:39,move:"Rain Dance"},{level:42,move:"Hydro Pump"},{level:45,move:"Shell Smash"}],
+    tm: ["Body Slam","Hydro Pump","Surf","Ice Beam","Blizzard","Earthquake","Dig","Waterfall","Rest","Rock Slide","Substitute","Snore","Protect","Icy Wind","Sandstorm","Endure","Attract","Sleep Talk","Iron Tail","Rain Dance","Crunch","Whirlpool","Facade","Dive","Rock Tomb","Muddy Water","Iron Defense","Mud Shot","Rock Blast","Brine","Guard Swap","Earth Power","Zen Headbutt","Stone Edge","Stealth Rock","Round","Scald","Bulldoze","Liquidation"],
+    egg: ["Slam","Rock Throw","Rollout","Knock Off","Block","Water Pulse"],
+    tutor: ["Meteor Beam"],
+    max: []
+  },
+  565: {
+    levelUp: [{level:1,move:"Water Gun"},{level:1,move:"Withdraw"},{level:1,move:"Protect"},{level:1,move:"Aqua Jet"},{level:9,move:"Smack Down"},{level:12,move:"Ancient Power"},{level:15,move:"Bite"},{level:18,move:"Wide Guard"},{level:21,move:"Brine"},{level:24,move:"Rock Slide"},{level:27,move:"Crunch"},{level:30,move:"Curse"},{level:33,move:"Iron Defense"},{level:36,move:"Aqua Tail"},{level:41,move:"Rain Dance"},{level:46,move:"Hydro Pump"},{level:51,move:"Shell Smash"}],
+    tm: ["Body Slam","Hydro Pump","Surf","Ice Beam","Blizzard","Hyper Beam","Low Kick","Earthquake","Dig","Waterfall","Rest","Rock Slide","Substitute","Snore","Protect","Icy Wind","Sandstorm","Endure","Attract","Sleep Talk","Iron Tail","Rain Dance","Crunch","Whirlpool","Facade","Superpower","Dive","Rock Tomb","Muddy Water","Iron Defense","Mud Shot","Rock Blast","Brine","Guard Swap","Focus Blast","Earth Power","Giga Impact","Zen Headbutt","Iron Head","Stone Edge","Stealth Rock","Round","Scald","Bulldoze","Razor Shell","Liquidation"],
+    egg: [],
+    tutor: ["Meteor Beam"],
+    max: []
+  },
+  566: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Quick Attack"},{level:3,move:"Rock Throw"},{level:6,move:"Wing Attack"},{level:9,move:"Dragon Breath"},{level:12,move:"Ancient Power"},{level:15,move:"Pluck"},{level:18,move:"Quick Guard"},{level:21,move:"U-turn"},{level:24,move:"Rock Slide"},{level:27,move:"Scary Face"},{level:30,move:"Crunch"},{level:33,move:"Agility"},{level:36,move:"Tailwind"},{level:39,move:"Dragon Claw"},{level:42,move:"Thrash"},{level:45,move:"Endeavor"}],
+    tm: ["Earthquake","Dig","Agility","Swift","Rest","Rock Slide","Substitute","Snore","Protect","Scary Face","Sandstorm","Endure","Steel Wing","Attract","Sleep Talk","Iron Tail","Crunch","Uproar","Heat Wave","Facade","Taunt","Rock Tomb","Iron Defense","Dragon Claw","Bounce","Rock Blast","U-turn","Assurance","Dragon Pulse","Earth Power","Shadow Claw","Zen Headbutt","Stone Edge","Stealth Rock","Round","Ally Switch","Acrobatics","Bulldoze"],
+    egg: ["Bite","Double Team","Knock Off","Switcheroo","Defog","Head Smash"],
+    tutor: ["Meteor Beam","Lash Out","Dual Wingbeat"],
+    max: []
+  },
+  567: {
+    levelUp: [{level:1,move:"Wing Attack"},{level:1,move:"Leer"},{level:1,move:"Rock Throw"},{level:1,move:"Quick Attack"},{level:9,move:"Dragon Breath"},{level:12,move:"Ancient Power"},{level:15,move:"Pluck"},{level:18,move:"Quick Guard"},{level:21,move:"U-turn"},{level:24,move:"Rock Slide"},{level:27,move:"Scary Face"},{level:30,move:"Crunch"},{level:33,move:"Agility"},{level:36,move:"Tailwind"},{level:41,move:"Dragon Claw"},{level:46,move:"Thrash"},{level:51,move:"Endeavor"}],
+    tm: ["Fly","Hyper Beam","Earthquake","Dig","Agility","Swift","Rest","Rock Slide","Substitute","Snore","Protect","Scary Face","Outrage","Sandstorm","Endure","Steel Wing","Attract","Sleep Talk","Iron Tail","Crunch","Uproar","Heat Wave","Facade","Taunt","Rock Tomb","Iron Defense","Dragon Claw","Bounce","Rock Blast","U-turn","Assurance","Air Slash","Dragon Pulse","Focus Blast","Earth Power","Giga Impact","Shadow Claw","Zen Headbutt","Stone Edge","Stealth Rock","Round","Ally Switch","Acrobatics","Bulldoze"],
+    egg: [],
+    tutor: ["Meteor Beam","Lash Out","Dual Wingbeat"],
+    max: []
+  },
+  568: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Poison Gas"},{level:3,move:"Recycle"},{level:6,move:"Acid Spray"},{level:9,move:"Amnesia"},{level:12,move:"Clear Smog"},{level:15,move:"Toxic Spikes"},{level:18,move:"Sludge"},{level:21,move:"Stockpile"},{level:21,move:"Swallow"},{level:24,move:"Take Down"},{level:27,move:"Sludge Bomb"},{level:30,move:"Toxic"},{level:33,move:"Belch"},{level:37,move:"Pain Split"},{level:39,move:"Gunk Shot"},{level:42,move:"Explosion"}],
+    tm: ["Self-Destruct","Amnesia","Rest","Substitute","Thief","Snore","Protect","Sludge Bomb","Spikes","Giga Drain","Endure","Attract","Sleep Talk","Rain Dance","Sunny Day","Facade","Rock Blast","Payback","Toxic Spikes","Dark Pulse","Seed Bomb","Drain Punch","Gunk Shot","Venoshock","Sludge Wave","Round","Venom Drench"],
+    egg: ["Sand Attack","Haze","Curse","Rollout","Autotomize"],
+    tutor: ["Corrosive Gas"],
+    max: []
+  },
+  569: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Take Down"},{level:1,move:"Poison Gas"},{level:1,move:"Metal Claw"},{level:1,move:"Recycle"},{level:1,move:"Acid Spray"},{level:9,move:"Amnesia"},{level:12,move:"Clear Smog"},{level:15,move:"Toxic Spikes"},{level:18,move:"Sludge"},{level:21,move:"Stockpile"},{level:21,move:"Swallow"},{level:24,move:"Body Slam"},{level:27,move:"Sludge Bomb"},{level:30,move:"Toxic"},{level:33,move:"Belch"},{level:39,move:"Pain Split"},{level:43,move:"Gunk Shot"},{level:48,move:"Explosion"}],
+    tm: ["Body Slam","Hyper Beam","Solar Beam","Thunderbolt","Psychic","Screech","Self-Destruct","Amnesia","Rest","Substitute","Thief","Snore","Protect","Sludge Bomb","Spikes","Giga Drain","Endure","Attract","Sleep Talk","Rain Dance","Sunny Day","Facade","Rock Blast","Payback","Fling","Toxic Spikes","Dark Pulse","Seed Bomb","Drain Punch","Focus Blast","Giga Impact","Cross Poison","Gunk Shot","Venoshock","Sludge Wave","Round","Venom Drench","Stomping Tantrum","Body Press"],
+    egg: [],
+    tutor: ["Corrosive Gas"],
+    max: []
+  },
   570: {
     levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:4,move:"Torment"},{level:8,move:"Hone Claws"},{level:12,move:"Fury Swipes"},{level:16,move:"Scary Face"},{level:20,move:"Taunt"},{level:24,move:"Knock Off"},{level:28,move:"Fake Tears"},{level:32,move:"Agility"},{level:36,move:"Imprison"},{level:40,move:"Night Daze"},{level:44,move:"Nasty Plot"},{level:48,move:"Foul Play"}],
     tm: ["Swords Dance","Take Down","Dig","Agility","Night Shade","Confuse Ray","Swift","Rest","Substitute","Thief","Protect","Scary Face","Sludge Bomb","Endure","Sleep Talk","Encore","Rain Dance","Sunny Day","Shadow Ball","Facade","Taunt","Helping Hand","Trick","Imprison","Hyper Voice","Fake Tears","Calm Mind","U-turn","Fling","Dark Pulse","Nasty Plot","Shadow Claw","Grass Knot","Foul Play","Hex","Snarl","Tera Blast","Roar","Spite","Knock Off","Burning Jealousy","Lash Out","Pain Split","Psych Up","Skitter Smack"],
@@ -3534,6 +4024,391 @@ var MOVESETS = {
     tutor: [],
     max: []
   },
+  572: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Baby-Doll Eyes"},{level:4,move:"Helping Hand"},{level:8,move:"Echoed Voice"},{level:12,move:"Sing"},{level:16,move:"Charm"},{level:20,move:"Swift"},{level:24,move:"Encore"},{level:28,move:"After You"},{level:32,move:"Tail Slap"},{level:36,move:"Tickle"},{level:40,move:"Slam"},{level:44,move:"Hyper Voice"},{level:48,move:"Last Resort"}],
+    tm: ["Take Down","Thunderbolt","Thunder Wave","Dig","Swift","Rest","Super Fang","Substitute","Thief","Protect","Mud-Slap","Endure","Charm","Sleep Talk","Baton Pass","Encore","Rain Dance","Sunny Day","Uproar","Facade","Helping Hand","Knock Off","Endeavor","Hyper Voice","Fake Tears","Bullet Seed","Calm Mind","U-turn","Fling","Seed Bomb","Gunk Shot","Grass Knot","Play Rough","Dazzling Gleam","Triple Axel","Tera Blast","Trailblaze","Chilling Water","Alluring Voice"],
+    egg: ["Tail Whip","Flail","Knock Off","Aqua Tail","Tidy Up"],
+    tutor: [],
+    max: []
+  },
+  573: {
+    levelUp: [{level:0,move:"Tail Slap"},{level:1,move:"Pound"},{level:1,move:"Sing"},{level:1,move:"Charm"},{level:1,move:"Bullet Seed"}],
+    tm: ["Take Down","Double-Edge","Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Dig","Light Screen","Swift","Rest","Super Fang","Substitute","Thief","Protect","Mud-Slap","Endure","Charm","Sleep Talk","Baton Pass","Encore","Rain Dance","Sunny Day","Uproar","Facade","Helping Hand","Knock Off","Endeavor","Hyper Voice","Fake Tears","Bullet Seed","Calm Mind","Rock Blast","U-turn","Fling","Seed Bomb","Focus Blast","Giga Impact","Gunk Shot","Grass Knot","Play Rough","Dazzling Gleam","Triple Axel","Tera Blast","Ice Spinner","Trailblaze","Chilling Water","Alluring Voice"],
+    egg: ["Slam","Tail Whip","Swift","Flail","Encore","Helping Hand","Knock Off","Hyper Voice","Tickle","Rock Blast","Last Resort","Aqua Tail","After You","Echoed Voice","Baby-Doll Eyes","Tidy Up"],
+    tutor: [],
+    max: []
+  },
+  574: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Confusion"},{level:4,move:"Play Nice"},{level:8,move:"Tickle"},{level:12,move:"Psybeam"},{level:16,move:"Charm"},{level:20,move:"Psyshock"},{level:24,move:"Hypnosis"},{level:28,move:"Fake Tears"},{level:33,move:"Psych Up"},{level:36,move:"Psychic"},{level:40,move:"Flatter"},{level:44,move:"Future Sight"},{level:48,move:"Magic Room"}],
+    tm: ["Psybeam","Thunderbolt","Thunder Wave","Psychic","Light Screen","Reflect","Swift","Rest","Rock Slide","Substitute","Thief","Protect","Endure","Charm","Sleep Talk","Rain Dance","Shadow Ball","Facade","Taunt","Helping Hand","Trick","Skill Swap","Imprison","Fake Tears","Rock Tomb","Calm Mind","Fling","Dark Pulse","Energy Ball","Nasty Plot","Zen Headbutt","Trick Room","Grass Knot","Psyshock","Foul Play","Stored Power","Psychic Terrain","Tera Blast","Gravity","Psych Up","Future Sight","Expanding Force","Psychic Noise"],
+    egg: ["Mean Look","Mirror Coat","Fake Out","Torment","Heal Pulse"],
+    tutor: [],
+    max: []
+  },
+  575: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Confusion"},{level:1,move:"Tickle"},{level:1,move:"Play Nice"},{level:12,move:"Psybeam"},{level:16,move:"Charm"},{level:20,move:"Psyshock"},{level:24,move:"Hypnosis"},{level:28,move:"Fake Tears"},{level:35,move:"Psych Up"},{level:46,move:"Flatter"},{level:52,move:"Future Sight"},{level:58,move:"Magic Room"}],
+    tm: ["Psybeam","Thunderbolt","Thunder Wave","Psychic","Light Screen","Reflect","Metronome","Swift","Rest","Rock Slide","Substitute","Thief","Protect","Endure","Charm","Sleep Talk","Rain Dance","Shadow Ball","Facade","Taunt","Helping Hand","Trick","Skill Swap","Imprison","Fake Tears","Rock Tomb","Calm Mind","Fling","Dark Pulse","Energy Ball","Nasty Plot","Zen Headbutt","Trick Room","Grass Knot","Psyshock","Foul Play","Stored Power","Psychic Terrain","Tera Blast","Gravity","Psych Up","Future Sight","Expanding Force","Psychic Noise"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  576: {
+    levelUp: [{level:1,move:"Confusion"},{level:1,move:"Tickle"},{level:1,move:"Play Nice"},{level:1,move:"Pound"},{level:12,move:"Psybeam"},{level:16,move:"Charm"},{level:20,move:"Psyshock"},{level:24,move:"Hypnosis"},{level:28,move:"Fake Tears"},{level:35,move:"Psych Up"},{level:40,move:"Psychic"},{level:48,move:"Flatter"},{level:56,move:"Future Sight"},{level:64,move:"Magic Room"}],
+    tm: ["Body Slam","Psybeam","Hyper Beam","Thunderbolt","Thunder Wave","Psychic","Light Screen","Reflect","Metronome","Swift","Rest","Rock Slide","Substitute","Thief","Protect","Endure","Charm","Sleep Talk","Rain Dance","Shadow Ball","Facade","Taunt","Helping Hand","Trick","Brick Break","Skill Swap","Imprison","Fake Tears","Rock Tomb","Calm Mind","Fling","Dark Pulse","Focus Blast","Energy Ball","Giga Impact","Nasty Plot","Zen Headbutt","Trick Room","Grass Knot","Psyshock","Low Sweep","Foul Play","Stored Power","Psychic Terrain","Tera Blast","Gravity","Psych Up","Future Sight","Expanding Force","Psychic Noise"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  577: {
+    levelUp: [{level:1,move:"Confusion"},{level:1,move:"Protect"},{level:4,move:"Recover"},{level:8,move:"Endeavor"},{level:12,move:"Psybeam"},{level:16,move:"Charm"},{level:20,move:"Psyshock"},{level:24,move:"Light Screen"},{level:24,move:"Reflect"},{level:28,move:"Ally Switch"},{level:33,move:"Pain Split"},{level:36,move:"Psychic"},{level:40,move:"Skill Swap"},{level:44,move:"Future Sight"},{level:48,move:"Wonder Room"}],
+    tm: ["Psybeam","Thunder Wave","Thunder","Psychic","Night Shade","Confuse Ray","Light Screen","Reflect","Swift","Rest","Rock Slide","Substitute","Protect","Endure","Charm","Sleep Talk","Pain Split","Encore","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Future Sight","Facade","Helping Hand","Trick","Endeavor","Skill Swap","Imprison","Rock Tomb","Iron Defense","Calm Mind","Gravity","Gyro Ball","Energy Ball","Zen Headbutt","Flash Cannon","Trick Room","Psyshock","Stored Power","Psychic Terrain","Expanding Force","Tera Blast"],
+    egg: ["Confuse Ray","Acid Armor","Astonish"],
+    tutor: [],
+    max: []
+  },
+  578: {
+    levelUp: [{level:1,move:"Confusion"},{level:1,move:"Recover"},{level:1,move:"Protect"},{level:1,move:"Endeavor"},{level:12,move:"Psybeam"},{level:16,move:"Charm"},{level:20,move:"Psyshock"},{level:24,move:"Light Screen"},{level:24,move:"Reflect"},{level:28,move:"Ally Switch"},{level:35,move:"Pain Split"},{level:40,move:"Psychic"},{level:46,move:"Skill Swap"},{level:52,move:"Future Sight"},{level:58,move:"Wonder Room"}],
+    tm: ["Psybeam","Thunder Wave","Thunder","Psychic","Night Shade","Confuse Ray","Light Screen","Reflect","Swift","Rest","Rock Slide","Substitute","Protect","Endure","Charm","Sleep Talk","Pain Split","Encore","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Future Sight","Facade","Helping Hand","Trick","Endeavor","Skill Swap","Imprison","Rock Tomb","Iron Defense","Calm Mind","Gravity","Gyro Ball","Energy Ball","Zen Headbutt","Flash Cannon","Trick Room","Psyshock","Stored Power","Psychic Terrain","Expanding Force","Tera Blast"],
+    egg: ["Confuse Ray","Acid Armor","Astonish"],
+    tutor: [],
+    max: []
+  },
+  579: {
+    levelUp: [{level:0,move:"Hammer Arm"},{level:1,move:"Confusion"},{level:1,move:"Recover"},{level:1,move:"Protect"},{level:1,move:"Endeavor"},{level:12,move:"Psybeam"},{level:16,move:"Charm"},{level:20,move:"Psyshock"},{level:24,move:"Light Screen"},{level:24,move:"Reflect"},{level:28,move:"Ally Switch"},{level:35,move:"Pain Split"},{level:40,move:"Psychic"},{level:48,move:"Skill Swap"},{level:56,move:"Future Sight"},{level:64,move:"Wonder Room"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Body Slam","Psybeam","Hyper Beam","Thunder Wave","Thunder","Psychic","Night Shade","Confuse Ray","Light Screen","Reflect","Swift","Rest","Rock Slide","Substitute","Protect","Endure","Charm","Sleep Talk","Pain Split","Encore","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Future Sight","Facade","Focus Punch","Helping Hand","Trick","Knock Off","Endeavor","Skill Swap","Imprison","Rock Tomb","Iron Defense","Calm Mind","Gravity","Gyro Ball","Fling","Drain Punch","Focus Blast","Energy Ball","Giga Impact","Zen Headbutt","Flash Cannon","Trick Room","Grass Knot","Psyshock","Stored Power","Psychic Terrain","Expanding Force","Tera Blast","Psychic Noise"],
+    egg: ["Confuse Ray","Acid Armor","Astonish"],
+    tutor: [],
+    max: []
+  },
+  580: {
+    levelUp: [{level:1,move:"Water Gun"},{level:6,move:"Defog"},{level:9,move:"Wing Attack"},{level:13,move:"Water Pulse"},{level:15,move:"Aerial Ace"},{level:19,move:"Bubble Beam"},{level:21,move:"Feather Dance"},{level:24,move:"Aqua Ring"},{level:27,move:"Air Slash"},{level:30,move:"Roost"},{level:34,move:"Rain Dance"},{level:37,move:"Tailwind"},{level:41,move:"Brave Bird"},{level:46,move:"Hurricane"}],
+    tm: ["Fly","Surf","Ice Beam","Swift","Rest","Substitute","Protect","Icy Wind","Endure","Sleep Talk","Rain Dance","Facade","Helping Hand","Air Cutter","Aerial Ace","Water Pulse","Tailwind","Air Slash","Brave Bird","Hurricane","Disarming Voice","Liquidation","Tera Blast","Trailblaze","Chilling Water","Double-Edge","Endeavor","Whirlpool","Feather Dance"],
+    egg: ["Gust","Steel Wing","Endeavor","Dive","Brine","Aqua Jet"],
+    tutor: [],
+    max: []
+  },
+  581: {
+    levelUp: [{level:1,move:"Wing Attack"},{level:1,move:"Water Gun"},{level:1,move:"Defog"},{level:13,move:"Water Pulse"},{level:15,move:"Aerial Ace"},{level:19,move:"Bubble Beam"},{level:21,move:"Feather Dance"},{level:24,move:"Aqua Ring"},{level:27,move:"Air Slash"},{level:30,move:"Roost"},{level:34,move:"Rain Dance"},{level:40,move:"Tailwind"},{level:47,move:"Brave Bird"},{level:55,move:"Hurricane"}],
+    tm: ["Fly","Hydro Pump","Surf","Ice Beam","Hyper Beam","Swift","Rest","Substitute","Protect","Icy Wind","Endure","Sleep Talk","Rain Dance","Facade","Helping Hand","Knock Off","Weather Ball","Air Cutter","Aerial Ace","Water Pulse","Tailwind","Air Slash","Brave Bird","Giga Impact","Acrobatics","Hurricane","Disarming Voice","Liquidation","Flip Turn","Tera Blast","Trailblaze","Chilling Water","Double-Edge","Endeavor","Whirlpool","Feather Dance","Alluring Voice"],
+    egg: ["Gust","Steel Wing","Endeavor","Dive","Brine","Aqua Jet"],
+    tutor: [],
+    max: []
+  },
+  582: {
+    levelUp: [{level:1,move:"Harden"},{level:1,move:"Astonish"},{level:4,move:"Taunt"},{level:8,move:"Mist"},{level:12,move:"Icy Wind"},{level:16,move:"Avalanche"},{level:20,move:"Hail"},{level:24,move:"Icicle Spear"},{level:28,move:"Uproar"},{level:32,move:"Acid Armor"},{level:36,move:"Mirror Coat"},{level:40,move:"Ice Beam"},{level:44,move:"Blizzard"},{level:48,move:"Sheer Cold"}],
+    tm: ["Ice Beam","Blizzard","Light Screen","Self-Destruct","Rest","Substitute","Snore","Protect","Icy Wind","Endure","Attract","Sleep Talk","Rain Dance","Uproar","Hail","Facade","Taunt","Imprison","Hyper Voice","Icicle Spear","Iron Defense","Avalanche","Flash Cannon","Round","Ally Switch"],
+    egg: ["Explosion","Magnet Rise","Ice Shard","Autotomize","Icicle Crash","Aurora Veil"],
+    tutor: [],
+    max: []
+  },
+  583: {
+    levelUp: [{level:1,move:"Mist"},{level:1,move:"Harden"},{level:1,move:"Taunt"},{level:1,move:"Astonish"},{level:12,move:"Icy Wind"},{level:16,move:"Avalanche"},{level:20,move:"Hail"},{level:24,move:"Icicle Spear"},{level:28,move:"Uproar"},{level:32,move:"Acid Armor"},{level:38,move:"Mirror Coat"},{level:44,move:"Ice Beam"},{level:50,move:"Blizzard"},{level:56,move:"Sheer Cold"}],
+    tm: ["Ice Beam","Blizzard","Light Screen","Self-Destruct","Rest","Substitute","Snore","Protect","Icy Wind","Endure","Attract","Sleep Talk","Rain Dance","Uproar","Hail","Facade","Taunt","Imprison","Hyper Voice","Icicle Spear","Iron Defense","Avalanche","Flash Cannon","Round","Ally Switch"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  584: {
+    levelUp: [{level:1,move:"Mist"},{level:1,move:"Harden"},{level:1,move:"Taunt"},{level:1,move:"Astonish"},{level:1,move:"Weather Ball"},{level:1,move:"Icicle Crash"},{level:1,move:"Freeze-Dry"},{level:12,move:"Icy Wind"},{level:16,move:"Avalanche"},{level:20,move:"Hail"},{level:24,move:"Icicle Spear"},{level:28,move:"Uproar"},{level:32,move:"Acid Armor"},{level:38,move:"Mirror Coat"},{level:44,move:"Ice Beam"},{level:52,move:"Blizzard"},{level:60,move:"Sheer Cold"}],
+    tm: ["Ice Beam","Blizzard","Hyper Beam","Light Screen","Self-Destruct","Rest","Substitute","Snore","Protect","Icy Wind","Endure","Attract","Sleep Talk","Rain Dance","Beat Up","Uproar","Hail","Facade","Taunt","Imprison","Hyper Voice","Weather Ball","Icicle Spear","Iron Defense","Giga Impact","Avalanche","Flash Cannon","Round","Ally Switch"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  585: {
+    levelUp: [{level:1,move:"Tackle"},{level:4,move:"Growl"},{level:7,move:"Sand Attack"},{level:10,move:"Double Kick"},{level:13,move:"Leech Seed"},{level:16,move:"Bullet Seed"},{level:20,move:"Take Down"},{level:24,move:"Zen Headbutt"},{level:28,move:"Energy Ball"},{level:32,move:"Charm"},{level:37,move:"Double-Edge"},{level:42,move:"Solar Beam"}],
+    tm: ["Body Slam","Take Down","Solar Beam","Thunder Wave","Dig","Agility","Light Screen","Rest","Substitute","Protect","Giga Drain","Endure","Charm","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Shadow Ball","Facade","Helping Hand","Fake Tears","Bullet Seed","Magical Leaf","Seed Bomb","Energy Ball","Zen Headbutt","Leaf Storm","Grass Knot","Bulldoze","Wild Charge","Grassy Terrain","Play Rough","Tera Blast","Trailblaze","Grassy Glide","Double-Edge","Endeavor"],
+    egg: ["Headbutt","Agility","Sleep Talk","Baton Pass","Synthesis","Fake Tears","Worry Seed"],
+    tutor: [],
+    max: []
+  },
+  586: {
+    levelUp: [{level:0,move:"Horn Leech"},{level:1,move:"Sand Attack"},{level:1,move:"Tackle"},{level:1,move:"Growl"},{level:1,move:"Megahorn"},{level:10,move:"Double Kick"},{level:13,move:"Leech Seed"},{level:16,move:"Bullet Seed"},{level:20,move:"Take Down"},{level:24,move:"Zen Headbutt"},{level:28,move:"Energy Ball"},{level:36,move:"Charm"},{level:44,move:"Double-Edge"},{level:52,move:"Solar Beam"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Hyper Beam","Solar Beam","Thunder Wave","Dig","Agility","Light Screen","Rest","Substitute","Protect","Giga Drain","Endure","Charm","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Shadow Ball","Facade","Helping Hand","Fake Tears","Bullet Seed","Magical Leaf","Seed Bomb","Energy Ball","Giga Impact","Zen Headbutt","Leaf Storm","Grass Knot","Bulldoze","Wild Charge","Grassy Terrain","Play Rough","Smart Strike","Stomping Tantrum","Tera Blast","Trailblaze","High Horsepower","Grassy Glide","Double-Edge","Endeavor","Petal Blizzard","Throat Chop","Curse"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  587: {
+    levelUp: [{level:1,move:"Tail Whip"},{level:1,move:"Nuzzle"},{level:5,move:"Double Team"},{level:10,move:"Quick Attack"},{level:15,move:"Thunder Shock"},{level:20,move:"Charge"},{level:25,move:"Acrobatics"},{level:30,move:"Spark"},{level:35,move:"Encore"},{level:40,move:"Volt Switch"},{level:45,move:"Light Screen"},{level:50,move:"Discharge"},{level:55,move:"Agility"}],
+    tm: ["Solar Beam","Thunderbolt","Thunder Wave","Thunder","Agility","Light Screen","Swift","Rest","Substitute","Snore","Protect","Endure","Charm","Attract","Sleep Talk","Baton Pass","Encore","Iron Tail","Rain Dance","Facade","Taunt","Helping Hand","U-turn","Fling","Air Slash","Energy Ball","Electro Ball","Round","Acrobatics","Volt Switch","Electroweb","Wild Charge","Eerie Impulse","Speed Swap"],
+    egg: ["Astonish","Tickle","Covet","Shock Wave","Roost","Defog"],
+    tutor: ["Rising Voltage","Dual Wingbeat"],
+    max: []
+  },
+  588: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Peck"},{level:4,move:"Fury Cutter"},{level:8,move:"Endure"},{level:12,move:"False Swipe"},{level:16,move:"Acid Spray"},{level:20,move:"Headbutt"},{level:24,move:"Flail"},{level:28,move:"Scary Face"},{level:32,move:"X-Scissor"},{level:36,move:"Swords Dance"},{level:40,move:"Take Down"},{level:44,move:"Bug Buzz"},{level:48,move:"Double-Edge"}],
+    tm: ["Swords Dance","Screech","Rest","Substitute","Snore","Protect","Scary Face","Giga Drain","Endure","False Swipe","Attract","Sleep Talk","Megahorn","Encore","Rain Dance","Facade","Iron Defense","Poison Jab","X-Scissor","Bug Buzz","Energy Ball","Round","Drill Run"],
+    egg: ["Counter","Slash","Knock Off","Night Slash","Bug Bite"],
+    tutor: [],
+    max: []
+  },
+  589: {
+    levelUp: [{level:1,move:"Take Down"},{level:1,move:"Double-Edge"},{level:1,move:"Leer"},{level:1,move:"Peck"},{level:1,move:"Flail"},{level:1,move:"Scary Face"},{level:1,move:"Endure"},{level:1,move:"Fury Cutter"},{level:1,move:"Quick Guard"},{level:1,move:"Fell Stinger"},{level:12,move:"False Swipe"},{level:16,move:"Acid Spray"},{level:20,move:"Headbutt"},{level:24,move:"Reversal"},{level:28,move:"Iron Defense"},{level:32,move:"X-Scissor"},{level:36,move:"Swords Dance"},{level:40,move:"Iron Head"},{level:44,move:"Bug Buzz"},{level:48,move:"Giga Impact"},{level:52,move:"Metal Burst"}],
+    tm: ["Swords Dance","Hyper Beam","Agility","Screech","Rest","Substitute","Snore","Reversal","Protect","Scary Face","Giga Drain","Endure","False Swipe","Attract","Sleep Talk","Megahorn","Encore","Rain Dance","Facade","Taunt","Revenge","Iron Defense","Close Combat","Poison Jab","X-Scissor","Bug Buzz","Focus Blast","Energy Ball","Giga Impact","Iron Head","Round","Drill Run","Razor Shell","Smart Strike","Brutal Swing"],
+    egg: [],
+    tutor: ["Steel Beam"],
+    max: []
+  },
+  590: {
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Astonish"},{level:4,move:"Growth"},{level:8,move:"Stun Spore"},{level:12,move:"Mega Drain"},{level:16,move:"Synthesis"},{level:20,move:"Clear Smog"},{level:24,move:"Sweet Scent"},{level:28,move:"Giga Drain"},{level:32,move:"Ingrain"},{level:36,move:"Toxic"},{level:40,move:"Rage Powder"},{level:44,move:"Solar Beam"},{level:48,move:"Spore"}],
+    tm: ["Body Slam","Solar Beam","Rest","Substitute","Protect","Sludge Bomb","Giga Drain","Endure","Sleep Talk","Rain Dance","Sunny Day","Facade","Bullet Seed","Magical Leaf","Seed Bomb","Energy Ball","Leaf Storm","Grass Knot","Venoshock","Foul Play","Grassy Terrain","Pollen Puff","Tera Blast","Toxic"],
+    egg: ["Poison Powder","Defense Curl","Rollout","Worry Seed"],
+    tutor: [],
+    max: []
+  },
+  591: {
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Growth"},{level:1,move:"Stun Spore"},{level:1,move:"Astonish"},{level:12,move:"Mega Drain"},{level:16,move:"Synthesis"},{level:20,move:"Clear Smog"},{level:24,move:"Sweet Scent"},{level:28,move:"Giga Drain"},{level:32,move:"Ingrain"},{level:36,move:"Toxic"},{level:42,move:"Rage Powder"},{level:48,move:"Solar Beam"},{level:54,move:"Spore"}],
+    tm: ["Body Slam","Hyper Beam","Solar Beam","Rest","Substitute","Protect","Scary Face","Sludge Bomb","Giga Drain","Endure","Sleep Talk","Rain Dance","Sunny Day","Facade","Bullet Seed","Magical Leaf","Seed Bomb","Energy Ball","Giga Impact","Leaf Storm","Grass Knot","Venoshock","Foul Play","Hex","Grassy Terrain","Pollen Puff","Stomping Tantrum","Tera Blast","Toxic"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  592: {
+    levelUp: [{level:1,move:"Water Gun"},{level:1,move:"Absorb"},{level:4,move:"Poison Sting"},{level:8,move:"Night Shade"},{level:12,move:"Water Pulse"},{level:16,move:"Rain Dance"},{level:20,move:"Hex"},{level:24,move:"Brine"},{level:28,move:"Recover"},{level:32,move:"Shadow Ball"},{level:36,move:"Whirlpool"},{level:41,move:"Hydro Pump"},{level:44,move:"Destiny Bond"},{level:48,move:"Water Spout"}],
+    tm: ["Hydro Pump","Surf","Ice Beam","Blizzard","Psychic","Waterfall","Rest","Substitute","Snore","Protect","Sludge Bomb","Icy Wind","Giga Drain","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Whirlpool","Hail","Will-O-Wisp","Facade","Taunt","Trick","Imprison","Dive","Brine","Dark Pulse","Energy Ball","Trick Room","Sludge Wave","Round","Scald","Hex","Dazzling Gleam"],
+    egg: ["Mist","Bubble Beam","Confuse Ray","Acid Armor","Pain Split","Strength Sap"],
+    tutor: ["Poltergeist"],
+    max: []
+  },
+  593: {
+    levelUp: [{level:1,move:"Poison Sting"},{level:1,move:"Water Gun"},{level:1,move:"Absorb"},{level:1,move:"Night Shade"},{level:1,move:"Acid Armor"},{level:12,move:"Water Pulse"},{level:16,move:"Rain Dance"},{level:20,move:"Hex"},{level:24,move:"Brine"},{level:28,move:"Recover"},{level:32,move:"Shadow Ball"},{level:36,move:"Whirlpool"},{level:43,move:"Hydro Pump"},{level:48,move:"Destiny Bond"},{level:54,move:"Water Spout"}],
+    tm: ["Hydro Pump","Surf","Ice Beam","Blizzard","Hyper Beam","Psychic","Waterfall","Rest","Substitute","Snore","Protect","Sludge Bomb","Icy Wind","Giga Drain","Endure","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Whirlpool","Hail","Will-O-Wisp","Facade","Taunt","Trick","Imprison","Dive","Muddy Water","Brine","Dark Pulse","Energy Ball","Giga Impact","Trick Room","Sludge Wave","Round","Scald","Hex","Dazzling Gleam"],
+    egg: [],
+    tutor: ["Poltergeist"],
+    max: []
+  },
+  594: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Play Nice"},{level:5,move:"Aqua Ring"},{level:9,move:"Aqua Jet"},{level:13,move:"Helping Hand"},{level:13,move:"Wide Guard"},{level:21,move:"Protect"},{level:25,move:"Water Pulse"},{level:29,move:"Healing Wish"},{level:33,move:"Soak"},{level:37,move:"Wish"},{level:41,move:"Brine"},{level:45,move:"Safeguard"},{level:49,move:"Whirlpool"},{level:55,move:"Hydro Pump"}],
+    tm: ["Body Slam","Take Down","Hydro Pump","Surf","Ice Beam","Blizzard","Hyper Beam","Psychic","Light Screen","Waterfall","Rest","Substitute","Protect","Icy Wind","Endure","Sleep Talk","Baton Pass","Rain Dance","Shadow Ball","Facade","Helping Hand","Skill Swap","Calm Mind","Water Pulse","Giga Impact","Zen Headbutt","Acrobatics","Misty Terrain","Play Rough","Liquidation","Tera Blast","Snowscape","Chilling Water","Scald","Flip Turn","Scale Shot","Pain Split","Whirlpool","Alluring Voice"],
+    egg: ["Mist","Endure","Pain Split","Mirror Coat","Tickle","Bounce"],
+    tutor: [],
+    max: []
+  },
+  595: {
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Fury Cutter"},{level:4,move:"Electroweb"},{level:8,move:"Bug Bite"},{level:12,move:"String Shot"},{level:16,move:"Thunder Wave"},{level:20,move:"Electro Ball"},{level:24,move:"Agility"},{level:28,move:"Sucker Punch"},{level:32,move:"Slash"},{level:37,move:"Discharge"},{level:40,move:"Screech"},{level:44,move:"Gastro Acid"},{level:48,move:"Bug Buzz"}],
+    tm: ["Thunderbolt","Thunder Wave","Thunder","Agility","Light Screen","Swift","Leech Life","Rest","Substitute","Thief","Protect","Giga Drain","Endure","Sleep Talk","Rain Dance","Facade","Helping Hand","Poison Jab","X-Scissor","Bug Buzz","Energy Ball","Bug Bite","Charge Beam","Electro Ball","Volt Switch","Struggle Bug","Electroweb","Wild Charge","Lunge","Skitter Smack","Tera Blast","Pounce"],
+    egg: ["Poison Sting","Double Team","Struggle Bug","Infestation","Lunge"],
+    tutor: [],
+    max: []
+  },
+  596: {
+    levelUp: [{level:0,move:"Sticky Web"},{level:1,move:"Absorb"},{level:1,move:"Fury Cutter"},{level:1,move:"Bug Bite"},{level:1,move:"Electroweb"},{level:12,move:"String Shot"},{level:16,move:"Thunder Wave"},{level:20,move:"Electro Ball"},{level:24,move:"Agility"},{level:28,move:"Sucker Punch"},{level:32,move:"Slash"},{level:39,move:"Discharge"},{level:44,move:"Screech"},{level:50,move:"Gastro Acid"},{level:56,move:"Bug Buzz"}],
+    tm: ["Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Agility","Light Screen","Swift","Leech Life","Rest","Substitute","Thief","Protect","Giga Drain","Endure","Sleep Talk","Rain Dance","Facade","Charge","Helping Hand","Poison Jab","X-Scissor","Bug Buzz","Energy Ball","Giga Impact","Bug Bite","Charge Beam","Electro Ball","Volt Switch","Struggle Bug","Electroweb","Wild Charge","Throat Chop","Lunge","Skitter Smack","Tera Blast","Pounce"],
+    egg: ["Poison Sting","Double Team","Struggle Bug","Infestation","Lunge"],
+    tutor: [],
+    max: []
+  },
+  597: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Harden"},{level:5,move:"Metal Claw"},{level:10,move:"Pin Missile"},{level:15,move:"Ingrain"},{level:20,move:"Flash Cannon"},{level:25,move:"Iron Head"},{level:30,move:"Self-Destruct"},{level:35,move:"Iron Defense"},{level:41,move:"Curse"},{level:45,move:"Gyro Ball"},{level:50,move:"Explosion"}],
+    tm: ["Pin Missile","Solar Beam","Thunderbolt","Thunder Wave","Self-Destruct","Rest","Substitute","Snore","Protect","Spikes","Giga Drain","Endure","Attract","Sleep Talk","Sunny Day","Facade","Revenge","Bullet Seed","Iron Defense","Gyro Ball","Payback","Assurance","Poison Jab","Seed Bomb","Energy Ball","Flash Cannon","Iron Head","Stealth Rock","Round"],
+    egg: ["Leech Seed","Toxic","Knock Off","Gravity","Acid Spray"],
+    tutor: ["Steel Beam","Steel Roller"],
+    max: []
+  },
+  598: {
+    levelUp: [{level:0,move:"Power Whip"},{level:1,move:"Tackle"},{level:1,move:"Pin Missile"},{level:1,move:"Harden"},{level:1,move:"Metal Claw"},{level:1,move:"Power Whip"},{level:15,move:"Ingrain"},{level:20,move:"Flash Cannon"},{level:25,move:"Iron Head"},{level:30,move:"Self-Destruct"},{level:35,move:"Iron Defense"},{level:43,move:"Curse"},{level:49,move:"Gyro Ball"},{level:56,move:"Explosion"}],
+    tm: ["Swords Dance","Pin Missile","Hyper Beam","Solar Beam","Thunderbolt","Thunder Wave","Thunder","Self-Destruct","Rest","Substitute","Snore","Protect","Spikes","Sandstorm","Giga Drain","Endure","Attract","Sleep Talk","Sunny Day","Facade","Revenge","Bullet Seed","Iron Defense","Gyro Ball","Payback","Assurance","Poison Jab","Seed Bomb","Energy Ball","Giga Impact","Shadow Claw","Flash Cannon","Power Whip","Iron Head","Stealth Rock","Grass Knot","Heavy Slam","Round","Bulldoze","Brutal Swing","Body Press"],
+    egg: [],
+    tutor: ["Steel Beam","Steel Roller"],
+    max: []
+  },
+  599: {
+    levelUp: [{level:1,move:"Vise Grip"},{level:1,move:"Thunder Shock"},{level:4,move:"Bind"},{level:8,move:"Charge"},{level:12,move:"Charge Beam"},{level:16,move:"Metal Sound"},{level:20,move:"Autotomize"},{level:24,move:"Discharge"},{level:28,move:"Screech"},{level:32,move:"Gear Grind"},{level:36,move:"Lock-On"},{level:40,move:"Shift Gear"},{level:44,move:"Zap Cannon"},{level:48,move:"Hyper Beam"}],
+    tm: ["Hyper Beam","Thunderbolt","Thunder Wave","Screech","Rest","Substitute","Snore","Protect","Sandstorm","Endure","Sleep Talk","Uproar","Facade","Iron Defense","Assurance","Power Gem","Flash Cannon","Round","Volt Switch","Wild Charge"],
+    egg: [],
+    tutor: ["Steel Beam","Steel Roller","Rising Voltage"],
+    max: []
+  },
+  600: {
+    levelUp: [{level:1,move:"Vise Grip"},{level:1,move:"Bind"},{level:1,move:"Thunder Shock"},{level:1,move:"Charge"},{level:12,move:"Charge Beam"},{level:16,move:"Metal Sound"},{level:20,move:"Autotomize"},{level:24,move:"Discharge"},{level:28,move:"Screech"},{level:32,move:"Gear Grind"},{level:36,move:"Lock-On"},{level:42,move:"Shift Gear"},{level:48,move:"Zap Cannon"},{level:54,move:"Hyper Beam"}],
+    tm: ["Hyper Beam","Thunderbolt","Thunder Wave","Screech","Rest","Substitute","Snore","Protect","Sandstorm","Endure","Sleep Talk","Uproar","Facade","Iron Defense","Assurance","Power Gem","Flash Cannon","Round","Ally Switch","Volt Switch","Wild Charge"],
+    egg: [],
+    tutor: ["Steel Beam","Steel Roller","Rising Voltage"],
+    max: []
+  },
+  601: {
+    levelUp: [{level:1,move:"Vise Grip"},{level:1,move:"Bind"},{level:1,move:"Thunder Shock"},{level:1,move:"Charge"},{level:1,move:"Magnetic Flux"},{level:1,move:"Gear Up"},{level:12,move:"Charge Beam"},{level:16,move:"Metal Sound"},{level:20,move:"Autotomize"},{level:24,move:"Discharge"},{level:28,move:"Screech"},{level:32,move:"Gear Grind"},{level:36,move:"Lock-On"},{level:42,move:"Shift Gear"},{level:48,move:"Zap Cannon"},{level:56,move:"Hyper Beam"},{level:64,move:"Electric Terrain"}],
+    tm: ["Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Screech","Rest","Substitute","Snore","Protect","Sandstorm","Endure","Sleep Talk","Uproar","Facade","Iron Defense","Assurance","Power Gem","Giga Impact","Flash Cannon","Trick Room","Round","Ally Switch","Volt Switch","Wild Charge","Electric Terrain"],
+    egg: [],
+    tutor: ["Steel Beam","Steel Roller","Rising Voltage"],
+    max: []
+  },
+  602: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Thunder Wave"},{level:1,move:"Spark"},{level:1,move:"Charge Beam"}],
+    tm: ["Thunder Wave","Charge Beam","Tera Blast","Charge","Knock Off"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  603: {
+    levelUp: [{level:0,move:"Crunch"},{level:1,move:"Headbutt"},{level:1,move:"Thunder Wave"},{level:1,move:"Spark"},{level:1,move:"Charge Beam"},{level:9,move:"Bind"},{level:19,move:"Acid"},{level:29,move:"Discharge"},{level:44,move:"Thunderbolt"},{level:49,move:"Acid Spray"},{level:54,move:"Coil"},{level:59,move:"Wild Charge"},{level:64,move:"Gastro Acid"},{level:69,move:"Zap Cannon"},{level:74,move:"Thrash"}],
+    tm: ["Body Slam","Take Down","Thunderbolt","Thunder Wave","Thunder","Light Screen","Rest","Substitute","Protect","Scary Face","Giga Drain","Endure","Sleep Talk","Rain Dance","Crunch","Facade","U-turn","Thunder Fang","Flash Cannon","Charge Beam","Electro Ball","Acid Spray","Acrobatics","Volt Switch","Wild Charge","Eerie Impulse","Electric Terrain","Tera Blast","Charge","Knock Off","Super Fang","Lunge","Electroweb","Throat Chop"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  604: {
+    levelUp: [{level:1,move:"Headbutt"},{level:1,move:"Thrash"},{level:1,move:"Acid"},{level:1,move:"Zap Cannon"},{level:1,move:"Crunch"},{level:1,move:"Crush Claw"},{level:1,move:"Gastro Acid"},{level:1,move:"Discharge"},{level:1,move:"Coil"},{level:5,move:"Wild Charge"}],
+    tm: ["Fire Punch","Thunder Punch","Body Slam","Take Down","Flamethrower","Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Confuse Ray","Light Screen","Swift","Rest","Rock Slide","Substitute","Protect","Scary Face","Outrage","Giga Drain","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Brick Break","Rock Tomb","Dragon Claw","Bulk Up","U-turn","Close Combat","Dragon Pulse","Drain Punch","Giga Impact","Thunder Fang","Zen Headbutt","Flash Cannon","Grass Knot","Charge Beam","Heavy Slam","Electro Ball","Acid Spray","Hex","Acrobatics","Volt Switch","Bulldoze","Dragon Tail","Wild Charge","Eerie Impulse","Electric Terrain","Stomping Tantrum","Liquidation","Body Press","Tera Blast","Charge","Knock Off","Super Fang","Lunge","Focus Punch","Supercell Slam","Electroweb","Throat Chop"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  605: {
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Confusion"},{level:6,move:"Imprison"},{level:12,move:"Teleport"},{level:18,move:"Psybeam"},{level:24,move:"Guard Split"},{level:24,move:"Power Split"},{level:30,move:"Headbutt"},{level:36,move:"Zen Headbutt"},{level:43,move:"Recover"},{level:48,move:"Calm Mind"},{level:54,move:"Wonder Room"},{level:60,move:"Psychic"}],
+    tm: ["Thunderbolt","Thunder Wave","Psychic","Agility","Screech","Light Screen","Reflect","Rest","Rock Slide","Substitute","Thief","Snore","Protect","Endure","Steel Wing","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Uproar","Facade","Trick","Skill Swap","Imprison","Rock Tomb","Cosmic Power","Calm Mind","Power Swap","Guard Swap","Dark Pulse","Energy Ball","Nasty Plot","Zen Headbutt","Trick Room","Wonder Room","Psyshock","Round","Stored Power","Ally Switch"],
+    egg: ["Disable","Destiny Bond","Psych Up","Astonish"],
+    tutor: ["Expanding Force","Meteor Beam"],
+    max: []
+  },
+  606: {
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Confusion"},{level:1,move:"Teleport"},{level:1,move:"Imprison"},{level:1,move:"Psychic Terrain"},{level:18,move:"Psybeam"},{level:24,move:"Guard Split"},{level:24,move:"Power Split"},{level:30,move:"Headbutt"},{level:36,move:"Zen Headbutt"},{level:45,move:"Recover"},{level:52,move:"Calm Mind"},{level:60,move:"Wonder Room"},{level:68,move:"Psychic"}],
+    tm: ["Hyper Beam","Thunderbolt","Thunder Wave","Psychic","Agility","Screech","Light Screen","Reflect","Rest","Rock Slide","Tri Attack","Substitute","Thief","Snore","Protect","Endure","Steel Wing","Attract","Sleep Talk","Safeguard","Rain Dance","Shadow Ball","Future Sight","Uproar","Facade","Trick","Skill Swap","Imprison","Rock Tomb","Cosmic Power","Calm Mind","Power Swap","Guard Swap","Dark Pulse","Energy Ball","Giga Impact","Nasty Plot","Zen Headbutt","Flash Cannon","Trick Room","Wonder Room","Psyshock","Round","Stored Power","Ally Switch","Psychic Terrain"],
+    egg: [],
+    tutor: ["Expanding Force","Meteor Beam"],
+    max: []
+  },
+  607: {
+    levelUp: [{level:1,move:"Smog"},{level:1,move:"Astonish"},{level:4,move:"Ember"},{level:8,move:"Minimize"},{level:12,move:"Confuse Ray"},{level:16,move:"Hex"},{level:20,move:"Will-O-Wisp"},{level:24,move:"Fire Spin"},{level:28,move:"Night Shade"},{level:32,move:"Curse"},{level:36,move:"Shadow Ball"},{level:40,move:"Inferno"},{level:44,move:"Imprison"},{level:48,move:"Pain Split"},{level:52,move:"Overheat"},{level:56,move:"Memento"}],
+    tm: ["Flamethrower","Solar Beam","Fire Spin","Psychic","Night Shade","Confuse Ray","Haze","Fire Blast","Rest","Substitute","Thief","Spite","Protect","Endure","Sleep Talk","Sunny Day","Shadow Ball","Heat Wave","Will-O-Wisp","Facade","Taunt","Trick","Imprison","Overheat","Calm Mind","Flare Blitz","Dark Pulse","Energy Ball","Trick Room","Flame Charge","Hex","Burning Jealousy","Poltergeist","Tera Blast","Pain Split","Psych Up","Temper Flare","Skitter Smack","Curse"],
+    egg: ["Haze","Acid Armor","Power Split","Clear Smog"],
+    tutor: [],
+    max: []
+  },
+  608: {
+    levelUp: [{level:1,move:"Ember"},{level:1,move:"Minimize"},{level:1,move:"Smog"},{level:1,move:"Astonish"},{level:12,move:"Confuse Ray"},{level:16,move:"Hex"},{level:20,move:"Will-O-Wisp"},{level:24,move:"Fire Spin"},{level:28,move:"Night Shade"},{level:32,move:"Curse"},{level:36,move:"Shadow Ball"},{level:40,move:"Inferno"},{level:46,move:"Imprison"},{level:52,move:"Pain Split"},{level:58,move:"Overheat"},{level:64,move:"Memento"}],
+    tm: ["Flamethrower","Solar Beam","Fire Spin","Psychic","Night Shade","Confuse Ray","Haze","Fire Blast","Rest","Substitute","Thief","Spite","Protect","Endure","Sleep Talk","Sunny Day","Shadow Ball","Heat Wave","Will-O-Wisp","Facade","Taunt","Trick","Imprison","Overheat","Calm Mind","Flare Blitz","Dark Pulse","Energy Ball","Trick Room","Flame Charge","Hex","Burning Jealousy","Lash Out","Poltergeist","Tera Blast","Pain Split","Psych Up","Temper Flare","Skitter Smack","Curse"],
+    egg: ["Haze","Acid Armor","Power Split","Clear Smog"],
+    tutor: [],
+    max: []
+  },
+  609: {
+    levelUp: [{level:1,move:"Ember"},{level:1,move:"Fire Spin"},{level:1,move:"Night Shade"},{level:1,move:"Minimize"},{level:1,move:"Confuse Ray"},{level:1,move:"Smog"},{level:1,move:"Curse"},{level:1,move:"Pain Split"},{level:1,move:"Shadow Ball"},{level:1,move:"Will-O-Wisp"},{level:1,move:"Memento"},{level:1,move:"Imprison"},{level:1,move:"Astonish"},{level:1,move:"Overheat"},{level:1,move:"Hex"},{level:1,move:"Inferno"}],
+    tm: ["Flamethrower","Hyper Beam","Solar Beam","Fire Spin","Psychic","Night Shade","Confuse Ray","Haze","Fire Blast","Rest","Substitute","Thief","Spite","Protect","Endure","Sleep Talk","Sunny Day","Shadow Ball","Heat Wave","Will-O-Wisp","Facade","Taunt","Trick","Imprison","Overheat","Calm Mind","Flare Blitz","Dark Pulse","Energy Ball","Giga Impact","Trick Room","Flame Charge","Hex","Burning Jealousy","Lash Out","Poltergeist","Tera Blast","Trailblaze","Pain Split","Psych Up","Temper Flare","Skitter Smack","Curse"],
+    egg: ["Haze","Acid Armor","Power Split","Clear Smog"],
+    tutor: [],
+    max: []
+  },
+  610: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:3,move:"Bite"},{level:6,move:"False Swipe"},{level:9,move:"Assurance"},{level:12,move:"Taunt"},{level:15,move:"Slash"},{level:18,move:"Dragon Claw"},{level:21,move:"Scary Face"},{level:24,move:"Crunch"},{level:27,move:"Dragon Dance"},{level:30,move:"Breaking Swipe"},{level:33,move:"Focus Energy"},{level:36,move:"Dragon Pulse"},{level:39,move:"Swords Dance"},{level:42,move:"Outrage"},{level:45,move:"Guillotine"},{level:48,move:"Giga Impact"}],
+    tm: ["Swords Dance","Take Down","Surf","Dig","Swift","Rest","Substitute","Reversal","Protect","Scary Face","Outrage","Endure","False Swipe","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Dragon Claw","Dragon Dance","Fling","Poison Jab","X-Scissor","Dragon Pulse","Giga Impact","Shadow Claw","Draco Meteor","Iron Head","Bulldoze","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Trailblaze","Roar","Scale Shot","Double-Edge","Endeavor","Breaking Swipe","Dragon Cheer"],
+    egg: ["Counter","Iron Tail","Endeavor","Night Slash","Aqua Tail","First Impression"],
+    tutor: [],
+    max: []
+  },
+  611: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:1,move:"Bite"},{level:1,move:"False Swipe"},{level:9,move:"Assurance"},{level:12,move:"Taunt"},{level:15,move:"Slash"},{level:18,move:"Dragon Claw"},{level:21,move:"Scary Face"},{level:24,move:"Crunch"},{level:27,move:"Dragon Dance"},{level:30,move:"Breaking Swipe"},{level:33,move:"Focus Energy"},{level:36,move:"Dragon Pulse"},{level:41,move:"Swords Dance"},{level:46,move:"Outrage"},{level:51,move:"Guillotine"},{level:56,move:"Giga Impact"}],
+    tm: ["Swords Dance","Take Down","Surf","Low Kick","Dig","Swift","Rest","Substitute","Reversal","Protect","Scary Face","Outrage","Endure","False Swipe","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Dragon Claw","Dragon Dance","Fling","Poison Jab","X-Scissor","Dragon Pulse","Giga Impact","Shadow Claw","Draco Meteor","Iron Head","Bulldoze","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Trailblaze","Roar","Scale Shot","Double-Edge","Endeavor","Breaking Swipe","Dragon Cheer"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  612: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:1,move:"Bite"},{level:1,move:"False Swipe"},{level:9,move:"Assurance"},{level:12,move:"Taunt"},{level:15,move:"Slash"},{level:18,move:"Dragon Claw"},{level:21,move:"Scary Face"},{level:24,move:"Crunch"},{level:27,move:"Dragon Dance"},{level:30,move:"Breaking Swipe"},{level:33,move:"Focus Energy"},{level:36,move:"Dragon Pulse"},{level:41,move:"Swords Dance"},{level:46,move:"Outrage"},{level:53,move:"Guillotine"},{level:60,move:"Giga Impact"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Surf","Hyper Beam","Low Kick","Earthquake","Dig","Swift","Rest","Rock Slide","Substitute","Reversal","Protect","Scary Face","Outrage","Endure","False Swipe","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Dragon Claw","Dragon Dance","Close Combat","Fling","Poison Jab","X-Scissor","Dragon Pulse","Focus Blast","Giga Impact","Shadow Claw","Draco Meteor","Iron Head","Grass Knot","Low Sweep","Bulldoze","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Trailblaze","Roar","Scale Shot","Double-Edge","Endeavor","Breaking Swipe","Dragon Cheer"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  613: {
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Powder Snow"},{level:3,move:"Endure"},{level:6,move:"Fury Swipes"},{level:9,move:"Icy Wind"},{level:12,move:"Play Nice"},{level:15,move:"Brine"},{level:18,move:"Frost Breath"},{level:21,move:"Slash"},{level:24,move:"Flail"},{level:27,move:"Charm"},{level:30,move:"Snowscape"},{level:33,move:"Thrash"},{level:36,move:"Rest"},{level:39,move:"Blizzard"},{level:42,move:"Sheer Cold"}],
+    tm: ["Ice Punch","Body Slam","Take Down","Surf","Ice Beam","Blizzard","Low Kick","Dig","Rest","Rock Slide","Substitute","Thief","Protect","Mud-Slap","Icy Wind","Endure","Charm","Sleep Talk","Encore","Metal Claw","Rain Dance","Crunch","Facade","Taunt","Rock Tomb","Aerial Ace","Mud Shot","Water Pulse","Fling","X-Scissor","Avalanche","Shadow Claw","Ice Fang","Grass Knot","Heavy Slam","Bulldoze","Snarl","Play Rough","Liquidation","Body Press","Tera Blast","Snowscape","Trailblaze","Chilling Water","Icicle Spear","Focus Punch","Endeavor"],
+    egg: ["Focus Punch","Yawn","Night Slash"],
+    tutor: [],
+    max: []
+  },
+  614: {
+    levelUp: [{level:0,move:"Icicle Crash"},{level:1,move:"Endure"},{level:1,move:"Growl"},{level:1,move:"Fury Swipes"},{level:1,move:"Powder Snow"},{level:1,move:"Charm"},{level:1,move:"Aqua Jet"},{level:9,move:"Icy Wind"},{level:12,move:"Play Nice"},{level:15,move:"Brine"},{level:18,move:"Frost Breath"},{level:21,move:"Slash"},{level:24,move:"Flail"},{level:27,move:"Swagger"},{level:30,move:"Snowscape"},{level:33,move:"Thrash"},{level:36,move:"Rest"},{level:41,move:"Blizzard"},{level:46,move:"Sheer Cold"},{level:51,move:"Superpower"}],
+    tm: ["Ice Punch","Swords Dance","Body Slam","Take Down","Surf","Ice Beam","Blizzard","Hyper Beam","Low Kick","Earthquake","Dig","Rest","Rock Slide","Substitute","Thief","Reversal","Protect","Scary Face","Mud-Slap","Icy Wind","Endure","Charm","Sleep Talk","Encore","Metal Claw","Rain Dance","Crunch","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Bulk Up","Mud Shot","Water Pulse","Close Combat","Fling","X-Scissor","Focus Blast","Giga Impact","Avalanche","Shadow Claw","Ice Fang","Stone Edge","Grass Knot","Heavy Slam","Bulldoze","Snarl","Play Rough","Liquidation","Body Press","Tera Blast","Snowscape","Trailblaze","Chilling Water","Roar","Icicle Spear","Focus Punch","Double-Edge","Endeavor","Throat Chop","Curse","Hard Press"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  615: {
+    levelUp: [{level:1,move:"Bind"},{level:1,move:"Ice Shard"},{level:4,move:"Confuse Ray"},{level:8,move:"Rapid Spin"},{level:12,move:"Icy Wind"},{level:16,move:"Mist"},{level:16,move:"Haze"},{level:20,move:"Ancient Power"},{level:24,move:"Aurora Beam"},{level:28,move:"Slash"},{level:32,move:"Night Slash"},{level:36,move:"Freeze-Dry"},{level:40,move:"Light Screen"},{level:40,move:"Reflect"},{level:44,move:"Recover"},{level:48,move:"Ice Beam"},{level:52,move:"Acid Armor"},{level:56,move:"Solar Beam"},{level:60,move:"Sheer Cold"}],
+    tm: ["Body Slam","Take Down","Ice Beam","Blizzard","Hyper Beam","Solar Beam","Confuse Ray","Light Screen","Reflect","Rest","Substitute","Protect","Scary Face","Icy Wind","Endure","Sleep Talk","Rain Dance","Facade","Iron Defense","Water Pulse","Poison Jab","Giga Impact","Avalanche","Flash Cannon","Acrobatics","Tera Blast","Ice Spinner","Snowscape","Chilling Water","Haze","Icicle Spear","Triple Axel"],
+    egg: ["Explosion","Frost Breath","Aurora Veil"],
+    tutor: [],
+    max: []
+  },
+  616: {
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Protect"},{level:4,move:"Acid"},{level:8,move:"Curse"},{level:12,move:"Mega Drain"},{level:16,move:"Struggle Bug"},{level:20,move:"Yawn"},{level:24,move:"Acid Armor"},{level:28,move:"Giga Drain"},{level:32,move:"Guard Swap"},{level:36,move:"Body Slam"},{level:40,move:"Recover"},{level:44,move:"Bug Buzz"},{level:48,move:"Final Gambit"}],
+    tm: ["Body Slam","Leech Life","Rest","Substitute","Snore","Protect","Sludge Bomb","Spikes","Giga Drain","Endure","Attract","Sleep Talk","Baton Pass","Encore","Rain Dance","Facade","Mud Shot","Guard Swap","Toxic Spikes","Bug Buzz","Energy Ball","Venoshock","Round"],
+    egg: ["Double-Edge","Mind Reader","Feint","Guard Split"],
+    tutor: ["Skitter Smack"],
+    max: []
+  },
+  617: {
+    levelUp: [{level:1,move:"Body Slam"},{level:1,move:"Acid"},{level:1,move:"Absorb"},{level:1,move:"Quick Attack"},{level:1,move:"Double Team"},{level:1,move:"Acid Armor"},{level:1,move:"Curse"},{level:1,move:"Yawn"},{level:1,move:"Guard Swap"},{level:1,move:"Acid Spray"},{level:1,move:"Water Shuriken"},{level:12,move:"Mega Drain"},{level:16,move:"Struggle Bug"},{level:20,move:"Swift"},{level:24,move:"Agility"},{level:28,move:"Giga Drain"},{level:32,move:"Power Swap"},{level:36,move:"U-turn"},{level:40,move:"Recover"},{level:44,move:"Bug Buzz"},{level:48,move:"Final Gambit"},{level:52,move:"Toxic"}],
+    tm: ["Body Slam","Hyper Beam","Agility","Swift","Leech Life","Rest","Substitute","Snore","Reversal","Protect","Sludge Bomb","Spikes","Sandstorm","Giga Drain","Endure","Attract","Sleep Talk","Baton Pass","Encore","Rain Dance","Facade","Mud Shot","U-turn","Power Swap","Guard Swap","Toxic Spikes","Bug Buzz","Drain Punch","Focus Blast","Energy Ball","Giga Impact","Venoshock","Round","Venom Drench"],
+    egg: [],
+    tutor: ["Skitter Smack"],
+    max: []
+  },
+  618: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Water Gun"},{level:1,move:"Thunder Shock"},{level:1,move:"Mud-Slap"},{level:5,move:"Endure"},{level:10,move:"Mud Shot"},{level:15,move:"Revenge"},{level:20,move:"Charge"},{level:25,move:"Sucker Punch"},{level:30,move:"Electric Terrain"},{level:35,move:"Bounce"},{level:40,move:"Muddy Water"},{level:45,move:"Discharge"},{level:50,move:"Flail"},{level:55,move:"Fissure"}],
+    tm: ["Surf","Thunderbolt","Thunder Wave","Thunder","Earthquake","Dig","Rest","Rock Slide","Substitute","Snore","Protect","Sludge Bomb","Sandstorm","Endure","Attract","Sleep Talk","Rain Dance","Uproar","Facade","Revenge","Rock Tomb","Muddy Water","Bounce","Mud Shot","Payback","Earth Power","Stone Edge","Stealth Rock","Sludge Wave","Foul Play","Round","Scald","Bulldoze","Electroweb","Eerie Impulse","Electric Terrain","Stomping Tantrum"],
+    egg: ["Curse","Spite","Spark","Pain Split","Yawn","Astonish","Reflect Type"],
+    tutor: ["Lash Out"],
+    max: []
+  },
+  619: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Detect"},{level:5,move:"Fake Out"},{level:10,move:"Reversal"},{level:15,move:"Fury Swipes"},{level:20,move:"Quick Guard"},{level:25,move:"Force Palm"},{level:30,move:"U-turn"},{level:35,move:"Drain Punch"},{level:40,move:"Hone Claws"},{level:45,move:"Aura Sphere"},{level:51,move:"Bounce"},{level:55,move:"Calm Mind"},{level:60,move:"High Jump Kick"}],
+    tm: ["Swords Dance","Take Down","Low Kick","Dig","Agility","Swift","Rest","Substitute","Reversal","Protect","Endure","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Rock Tomb","Aerial Ace","Bulk Up","Calm Mind","U-turn","Close Combat","Fling","Aura Sphere","Poison Jab","Drain Punch","Focus Blast","Stone Edge","Grass Knot","Low Sweep","Acrobatics","Tera Blast","Trailblaze","Psych Up","Coaching","Upper Hand"],
+    egg: ["Focus Punch","Knock Off","Feint"],
+    tutor: [],
+    max: []
+  },
+  620: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Reversal"},{level:1,move:"Detect"},{level:1,move:"Fake Out"},{level:1,move:"Quick Guard"},{level:15,move:"Fury Swipes"},{level:20,move:"Wide Guard"},{level:25,move:"Force Palm"},{level:30,move:"U-turn"},{level:35,move:"Drain Punch"},{level:40,move:"Hone Claws"},{level:45,move:"Aura Sphere"},{level:53,move:"Bounce"},{level:59,move:"Calm Mind"},{level:66,move:"High Jump Kick"}],
+    tm: ["Swords Dance","Take Down","Hyper Beam","Low Kick","Dig","Agility","Swift","Rest","Substitute","Reversal","Protect","Endure","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Facade","Focus Punch","Taunt","Helping Hand","Brick Break","Knock Off","Rock Tomb","Aerial Ace","Bulk Up","Calm Mind","U-turn","Close Combat","Fling","Aura Sphere","Poison Jab","Drain Punch","Vacuum Wave","Focus Blast","Giga Impact","Stone Edge","Grass Knot","Low Sweep","Acrobatics","Tera Blast","Ice Spinner","Trailblaze","Psych Up","Double-Edge","Triple Axel","Coaching","Upper Hand"],
+    egg: ["Focus Punch","Knock Off","Feint"],
+    tutor: [],
+    max: []
+  },
+  621: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:5,move:"Bite"},{level:10,move:"Dragon Tail"},{level:15,move:"Metal Claw"},{level:20,move:"Scary Face"},{level:25,move:"Slash"},{level:30,move:"Dragon Claw"},{level:35,move:"Hone Claws"},{level:40,move:"Crunch"},{level:45,move:"Iron Head"},{level:50,move:"Outrage"},{level:55,move:"Superpower"}],
+    tm: ["Mega Punch","Fire Punch","Thunder Punch","Body Slam","Flamethrower","Surf","Hyper Beam","Earthquake","Dig","Rest","Rock Slide","Substitute","Snore","Protect","Scary Face","Sludge Bomb","Outrage","Endure","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Crunch","Heat Wave","Facade","Taunt","Superpower","Revenge","Rock Tomb","Dragon Claw","Payback","Fling","Dark Pulse","Dragon Pulse","Focus Blast","Giga Impact","Shadow Claw","Thunder Fang","Fire Fang","Flash Cannon","Gunk Shot","Iron Head","Stealth Rock","Round","Retaliate","Bulldoze","Snarl","Stomping Tantrum"],
+    egg: ["Glare","Poison Tail","Sucker Punch","Night Slash"],
+    tutor: ["Draco Meteor","Scale Shot","Lash Out","Dual Wingbeat"],
+    max: []
+  },
+  622: {
+    levelUp: [{level:1,move:"Mud-Slap"},{level:1,move:"Astonish"},{level:4,move:"Defense Curl"},{level:8,move:"Pound"},{level:12,move:"Shadow Punch"},{level:16,move:"Curse"},{level:20,move:"Night Shade"},{level:24,move:"Stomping Tantrum"},{level:28,move:"Iron Defense"},{level:32,move:"Mega Punch"},{level:36,move:"Shadow Ball"},{level:40,move:"Heavy Slam"},{level:44,move:"Phantom Force"},{level:48,move:"Hammer Arm"},{level:52,move:"Earthquake"},{level:56,move:"Dynamic Punch"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Body Slam","Take Down","Double-Edge","Ice Beam","Low Kick","Earthquake","Dig","Psychic","Night Shade","Confuse Ray","Reflect","Rest","Rock Slide","Substitute","Thief","Curse","Protect","Mud-Slap","Icy Wind","Sandstorm","Endure","Sleep Talk","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Focus Punch","Helping Hand","Brick Break","Knock Off","Imprison","Rock Tomb","Iron Defense","Gravity","Gyro Ball","Fling","Drain Punch","Focus Blast","Earth Power","Stealth Rock","Grass Knot","Smack Down","Heavy Slam","Low Sweep","Hex","Bulldoze","Phantom Force","Stomping Tantrum","Poltergeist","Scorching Sands","Tera Blast"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  623: {
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Defense Curl"},{level:1,move:"Astonish"},{level:1,move:"High Horsepower"},{level:12,move:"Shadow Punch"},{level:16,move:"Curse"},{level:20,move:"Night Shade"},{level:24,move:"Stomping Tantrum"},{level:28,move:"Iron Defense"},{level:32,move:"Mega Punch"},{level:36,move:"Shadow Ball"},{level:40,move:"Heavy Slam"},{level:46,move:"Phantom Force"},{level:52,move:"Hammer Arm"},{level:58,move:"Earthquake"},{level:64,move:"Dynamic Punch"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Fly","Body Slam","Take Down","Double-Edge","Ice Beam","Hyper Beam","Low Kick","Solar Beam","Thunderbolt","Earthquake","Dig","Psychic","Night Shade","Confuse Ray","Reflect","Rest","Rock Slide","Substitute","Thief","Curse","Protect","Mud-Slap","Icy Wind","Sandstorm","Endure","Sleep Talk","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Focus Punch","Helping Hand","Trick","Brick Break","Knock Off","Imprison","Rock Tomb","Iron Defense","Gravity","Gyro Ball","Close Combat","Fling","Drain Punch","Focus Blast","Earth Power","Giga Impact","Zen Headbutt","Flash Cannon","Stone Edge","Stealth Rock","Grass Knot","Charge Beam","Smack Down","Heavy Slam","Low Sweep","Hex","Bulldoze","Heat Crash","Phantom Force","High Horsepower","Stomping Tantrum","Body Press","Poltergeist","Scorching Sands","Tera Blast","Hard Press"],
+    egg: ["Mud-Slap","Focus Punch"],
+    tutor: [],
+    max: []
+  },
+  624: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:5,move:"Fury Cutter"},{level:10,move:"Metal Claw"},{level:15,move:"Torment"},{level:20,move:"Scary Face"},{level:25,move:"Assurance"},{level:30,move:"Metal Sound"},{level:35,move:"Slash"},{level:40,move:"Night Slash"},{level:45,move:"Iron Defense"},{level:50,move:"Retaliate"},{level:55,move:"Iron Head"},{level:60,move:"Swords Dance"},{level:65,move:"Guillotine"}],
+    tm: ["Swords Dance","Take Down","Low Kick","Thunder Wave","Dig","Rest","Substitute","Thief","Protect","Scary Face","Sandstorm","Endure","False Swipe","Sleep Talk","Metal Claw","Rain Dance","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Iron Defense","Fling","Poison Jab","Dark Pulse","Air Slash","X-Scissor","Shadow Claw","Flash Cannon","Iron Head","Stone Edge","Stealth Rock","Grass Knot","Low Sweep","Foul Play","Snarl","Steel Beam","Tera Blast","Spite","Lash Out","Metal Sound"],
+    egg: ["Headbutt","Mean Look","Sucker Punch","Quick Guard"],
+    tutor: [],
+    max: []
+  },
+  625: {
+    levelUp: [{level:1,move:"Scratch"},{level:1,move:"Leer"},{level:1,move:"Fury Cutter"},{level:1,move:"Metal Claw"},{level:1,move:"Metal Burst"},{level:15,move:"Torment"},{level:20,move:"Scary Face"},{level:25,move:"Assurance"},{level:30,move:"Metal Sound"},{level:35,move:"Slash"},{level:40,move:"Night Slash"},{level:45,move:"Iron Defense"},{level:50,move:"Retaliate"},{level:57,move:"Iron Head"},{level:64,move:"Swords Dance"},{level:71,move:"Guillotine"}],
+    tm: ["Swords Dance","Take Down","Hyper Beam","Low Kick","Thunder Wave","Dig","Rest","Substitute","Thief","Reversal","Protect","Scary Face","Sandstorm","Endure","False Swipe","Sleep Talk","Metal Claw","Rain Dance","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Iron Defense","Fling","Poison Jab","Dark Pulse","Air Slash","X-Scissor","Focus Blast","Giga Impact","Shadow Claw","Flash Cannon","Iron Head","Stone Edge","Stealth Rock","Grass Knot","Low Sweep","Foul Play","Snarl","Steel Beam","Tera Blast","Spite","Lash Out","Throat Chop","Metal Sound"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  626: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Leer"},{level:5,move:"Focus Energy"},{level:10,move:"Fury Attack"},{level:15,move:"Revenge"},{level:20,move:"Scary Face"},{level:25,move:"Horn Attack"},{level:30,move:"Reversal"},{level:35,move:"Throat Chop"},{level:40,move:"Head Charge"},{level:45,move:"Swords Dance"},{level:50,move:"Megahorn"},{level:55,move:"Giga Impact"}],
+    tm: ["Swords Dance","Body Slam","Surf","Earthquake","Focus Energy","Amnesia","Rest","Rock Slide","Substitute","Snore","Reversal","Protect","Scary Face","Outrage","Endure","Attract","Sleep Talk","Megahorn","Rain Dance","Sunny Day","Uproar","Facade","Taunt","Superpower","Revenge","Rock Tomb","Mud Shot","Close Combat","Payback","Assurance","Poison Jab","Giga Impact","Zen Headbutt","Iron Head","Stone Edge","Round","Retaliate","Bulldoze","Work Up","Wild Charge","High Horsepower","Throat Chop","Smart Strike","Stomping Tantrum"],
+    egg: ["Stomp","Headbutt","Skull Bash","Mud-Slap","Endeavor","Cotton Guard","Belch"],
+    tutor: ["Lash Out"],
+    max: []
+  },
   627: {
     levelUp: [{level:1,move:"Leer"},{level:1,move:"Peck"},{level:6,move:"Hone Claws"},{level:12,move:"Wing Attack"},{level:18,move:"Tailwind"},{level:24,move:"Scary Face"},{level:30,move:"Aerial Ace"},{level:36,move:"Slash"},{level:42,move:"Whirlwind"},{level:48,move:"Crush Claw"},{level:55,move:"Air Slash"},{level:60,move:"Defog"},{level:66,move:"Thrash"},{level:72,move:"Brave Bird"}],
     tm: ["Fly","Body Slam","Take Down","Agility","Swift","Rest","Rock Slide","Substitute","Protect","Scary Face","Endure","Sleep Talk","Rain Dance","Sunny Day","Heat Wave","Facade","Helping Hand","Air Cutter","Rock Tomb","Aerial Ace","Bulk Up","Tailwind","U-turn","Close Combat","Air Slash","Brave Bird","Shadow Claw","Zen Headbutt","Acrobatics","Hurricane","Tera Blast","Dual Wingbeat","Double-Edge","Feather Dance"],
@@ -3545,6 +4420,90 @@ var MOVESETS = {
     levelUp: [{level:0,move:"Superpower"},{level:1,move:"Wing Attack"},{level:1,move:"Leer"},{level:1,move:"Peck"},{level:1,move:"Sky Attack"},{level:1,move:"Hone Claws"},{level:18,move:"Tailwind"},{level:24,move:"Scary Face"},{level:30,move:"Aerial Ace"},{level:36,move:"Slash"},{level:42,move:"Whirlwind"},{level:48,move:"Crush Claw"},{level:57,move:"Air Slash"},{level:64,move:"Defog"},{level:72,move:"Thrash"}],
     tm: ["Fly","Body Slam","Take Down","Hyper Beam","Agility","Swift","Rest","Rock Slide","Substitute","Reversal","Protect","Scary Face","Endure","Sleep Talk","Metal Claw","Rain Dance","Sunny Day","Heat Wave","Facade","Helping Hand","Air Cutter","Rock Tomb","Aerial Ace","Bulk Up","Tailwind","U-turn","Close Combat","Air Slash","Brave Bird","Giga Impact","Shadow Claw","Zen Headbutt","Iron Head","Acrobatics","Hurricane","Tera Blast","Dual Wingbeat","Double-Edge","Feather Dance"],
     egg: [],
+    tutor: [],
+    max: []
+  },
+  629: {
+    levelUp: [{level:1,move:"Gust"},{level:1,move:"Leer"},{level:6,move:"Flatter"},{level:12,move:"Pluck"},{level:18,move:"Tailwind"},{level:24,move:"Knock Off"},{level:30,move:"Iron Defense"},{level:36,move:"Whirlwind"},{level:42,move:"Air Slash"},{level:48,move:"Dark Pulse"},{level:54,move:"Nasty Plot"},{level:60,move:"Defog"},{level:66,move:"Attract"},{level:72,move:"Brave Bird"}],
+    tm: ["Fly","Take Down","Toxic","Swift","Rest","Substitute","Thief","Spite","Protect","Scary Face","Endure","Sleep Talk","Rain Dance","Sunny Day","Shadow Ball","Uproar","Heat Wave","Facade","Taunt","Knock Off","Fake Tears","Air Cutter","Rock Tomb","Iron Defense","Tailwind","U-turn","Dark Pulse","Air Slash","Brave Bird","Nasty Plot","Foul Play","Snarl","Lash Out","Dual Wingbeat","Tera Blast","Psych Up","Double-Edge","Feather Dance","Throat Chop"],
+    egg: ["Toxic","Mean Look","Roost"],
+    tutor: [],
+    max: []
+  },
+  630: {
+    levelUp: [{level:0,move:"Bone Rush"},{level:1,move:"Gust"},{level:1,move:"Leer"},{level:1,move:"Toxic"},{level:1,move:"Sky Attack"},{level:1,move:"Pluck"},{level:1,move:"Flatter"},{level:18,move:"Tailwind"},{level:24,move:"Knock Off"},{level:30,move:"Iron Defense"},{level:36,move:"Whirlwind"},{level:42,move:"Air Slash"},{level:48,move:"Dark Pulse"},{level:57,move:"Nasty Plot"},{level:64,move:"Defog"},{level:72,move:"Attract"},{level:80,move:"Brave Bird"}],
+    tm: ["Fly","Take Down","Hyper Beam","Toxic","Swift","Rest","Substitute","Thief","Spite","Protect","Scary Face","Sandstorm","Endure","Sleep Talk","Rain Dance","Sunny Day","Shadow Ball","Uproar","Heat Wave","Facade","Taunt","Knock Off","Fake Tears","Air Cutter","Rock Tomb","Aerial Ace","Iron Defense","Tailwind","U-turn","Dark Pulse","Air Slash","Brave Bird","Giga Impact","Nasty Plot","Foul Play","Acrobatics","Hurricane","Snarl","Lash Out","Dual Wingbeat","Tera Blast","Psych Up","Double-Edge","Feather Dance","Throat Chop"],
+    egg: ["Toxic","Mean Look","Roost"],
+    tutor: [],
+    max: []
+  },
+  631: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Lick"},{level:5,move:"Fury Swipes"},{level:10,move:"Incinerate"},{level:15,move:"Bug Bite"},{level:20,move:"Stockpile"},{level:20,move:"Spit Up"},{level:20,move:"Swallow"},{level:25,move:"Slash"},{level:30,move:"Bind"},{level:35,move:"Fire Lash"},{level:40,move:"Hone Claws"},{level:45,move:"Amnesia"},{level:50,move:"Fire Spin"},{level:55,move:"Inferno"},{level:60,move:"Flare Blitz"}],
+    tm: ["Fire Punch","Thunder Punch","Body Slam","Flamethrower","Low Kick","Solar Beam","Fire Spin","Dig","Fire Blast","Amnesia","Rest","Substitute","Thief","Snore","Protect","Giga Drain","Endure","Attract","Sleep Talk","Rain Dance","Sunny Day","Heat Wave","Will-O-Wisp","Facade","Taunt","Superpower","Overheat","Rock Tomb","Fling","Flare Blitz","Drain Punch","Focus Blast","Giga Impact","Shadow Claw","Round","Throat Chop","Brutal Swing","Stomping Tantrum"],
+    egg: ["Curse","Tickle","Sucker Punch","Night Slash","Belch"],
+    tutor: ["Burning Jealousy","Scorching Sands"],
+    max: []
+  },
+  632: {
+    levelUp: [{level:1,move:"Sand Attack"},{level:1,move:"Fury Cutter"},{level:4,move:"Vise Grip"},{level:8,move:"Metal Claw"},{level:12,move:"Beat Up"},{level:16,move:"Bug Bite"},{level:20,move:"Bite"},{level:24,move:"Agility"},{level:28,move:"Dig"},{level:32,move:"X-Scissor"},{level:36,move:"Crunch"},{level:40,move:"Metal Sound"},{level:44,move:"Iron Head"},{level:48,move:"Entrainment"},{level:52,move:"Iron Defense"},{level:56,move:"Guillotine"}],
+    tm: ["Thunder Wave","Dig","Agility","Screech","Rest","Rock Slide","Substitute","Snore","Protect","Sandstorm","Endure","Attract","Sleep Talk","Baton Pass","Crunch","Beat Up","Facade","Helping Hand","Superpower","Rock Tomb","Iron Defense","X-Scissor","Energy Ball","Giga Impact","Shadow Claw","Thunder Fang","Flash Cannon","Iron Head","Stone Edge","Round","Retaliate","Stomping Tantrum"],
+    egg: ["Flail","Metal Burst","Struggle Bug","Infestation","First Impression"],
+    tutor: ["Steel Beam","Skitter Smack"],
+    max: []
+  },
+  633: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Focus Energy"},{level:4,move:"Dragon Breath"},{level:8,move:"Bite"},{level:12,move:"Roar"},{level:16,move:"Assurance"},{level:20,move:"Headbutt"},{level:24,move:"Work Up"},{level:28,move:"Slam"},{level:32,move:"Crunch"},{level:36,move:"Scary Face"},{level:40,move:"Dragon Pulse"},{level:44,move:"Body Slam"},{level:48,move:"Hyper Voice"},{level:52,move:"Dragon Rush"},{level:56,move:"Nasty Plot"},{level:60,move:"Outrage"}],
+    tm: ["Body Slam","Take Down","Thunder Wave","Rest","Substitute","Thief","Protect","Scary Face","Outrage","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Taunt","Hyper Voice","Dark Pulse","Dragon Pulse","Earth Power","Nasty Plot","Thunder Fang","Ice Fang","Fire Fang","Zen Headbutt","Draco Meteor","Dragon Tail","Snarl","Tera Blast","Roar","Spite","Psych Up","Dragon Cheer"],
+    egg: ["Astonish","Head Smash","Double Hit","Belch"],
+    tutor: [],
+    max: []
+  },
+  634: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Bite"},{level:1,move:"Focus Energy"},{level:1,move:"Dragon Breath"},{level:1,move:"Double Hit"},{level:12,move:"Roar"},{level:16,move:"Assurance"},{level:20,move:"Headbutt"},{level:24,move:"Work Up"},{level:28,move:"Slam"},{level:32,move:"Crunch"},{level:36,move:"Scary Face"},{level:40,move:"Dragon Pulse"},{level:44,move:"Body Slam"},{level:48,move:"Hyper Voice"},{level:54,move:"Dragon Rush"},{level:60,move:"Nasty Plot"},{level:66,move:"Outrage"}],
+    tm: ["Body Slam","Take Down","Thunder Wave","Rest","Substitute","Thief","Protect","Scary Face","Outrage","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Taunt","Helping Hand","Hyper Voice","Dark Pulse","Dragon Pulse","Earth Power","Nasty Plot","Thunder Fang","Ice Fang","Fire Fang","Zen Headbutt","Draco Meteor","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Roar","Spite","Lash Out","Psych Up","Dragon Cheer"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  635: {
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Bite"},{level:1,move:"Dragon Breath"},{level:1,move:"Focus Energy"},{level:1,move:"Tri Attack"},{level:1,move:"Double Hit"},{level:12,move:"Roar"},{level:16,move:"Assurance"},{level:20,move:"Headbutt"},{level:24,move:"Work Up"},{level:28,move:"Slam"},{level:32,move:"Crunch"},{level:36,move:"Scary Face"},{level:40,move:"Dragon Pulse"},{level:44,move:"Body Slam"},{level:48,move:"Hyper Voice"},{level:54,move:"Dragon Rush"},{level:60,move:"Nasty Plot"},{level:68,move:"Outrage"},{level:76,move:"Hyper Beam"}],
+    tm: ["Fly","Body Slam","Take Down","Flamethrower","Hydro Pump","Surf","Hyper Beam","Fire Spin","Thunder Wave","Earthquake","Reflect","Fire Blast","Rest","Rock Slide","Substitute","Thief","Protect","Scary Face","Outrage","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Heat Wave","Facade","Taunt","Helping Hand","Hyper Voice","Rock Tomb","Dragon Dance","Tailwind","U-turn","Dark Pulse","Dragon Pulse","Focus Blast","Earth Power","Giga Impact","Nasty Plot","Thunder Fang","Ice Fang","Fire Fang","Zen Headbutt","Flash Cannon","Draco Meteor","Stone Edge","Stealth Rock","Acrobatics","Bulldoze","Dragon Tail","Snarl","Stomping Tantrum","Tera Blast","Roar","Spite","Dual Wingbeat","Lash Out","Scale Shot","Psych Up","Throat Chop","Breaking Swipe","Dragon Cheer"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  636: {
+    levelUp: [{level:1,move:"Ember"},{level:1,move:"String Shot"},{level:6,move:"Flame Charge"},{level:12,move:"Struggle Bug"},{level:18,move:"Flame Wheel"},{level:24,move:"Bug Bite"},{level:30,move:"Screech"},{level:36,move:"Leech Life"},{level:42,move:"Bug Buzz"},{level:48,move:"Take Down"},{level:54,move:"Amnesia"},{level:60,move:"Double-Edge"},{level:66,move:"Flare Blitz"}],
+    tm: ["Body Slam","Take Down","Flamethrower","Solar Beam","Fire Spin","Psychic","Light Screen","Fire Blast","Amnesia","Leech Life","Rest","Substitute","Protect","Giga Drain","Endure","Sleep Talk","Sunny Day","Heat Wave","Will-O-Wisp","Facade","Overheat","Calm Mind","U-turn","Flare Blitz","Bug Buzz","Zen Headbutt","Flame Charge","Acrobatics","Struggle Bug","Wild Charge","Tera Blast","Pounce","Trailblaze","Bug Bite","Lunge","Double-Edge","Skitter Smack"],
+    egg: ["Thrash","Absorb","Harden","Morning Sun"],
+    tutor: [],
+    max: []
+  },
+  637: {
+    levelUp: [{level:0,move:"Quiver Dance"},{level:1,move:"Fiery Dance"},{level:1,move:"Struggle Bug"},{level:1,move:"Flame Charge"},{level:1,move:"Flare Blitz"},{level:1,move:"Fire Spin"},{level:1,move:"Gust"},{level:1,move:"Ember"},{level:1,move:"Double-Edge"},{level:1,move:"Take Down"},{level:1,move:"Whirlwind"},{level:1,move:"String Shot"},{level:18,move:"Flame Wheel"},{level:24,move:"Bug Bite"},{level:30,move:"Screech"},{level:36,move:"Leech Life"},{level:42,move:"Bug Buzz"},{level:48,move:"Heat Wave"},{level:54,move:"Amnesia"},{level:62,move:"Hurricane"},{level:70,move:"Fire Blast"},{level:78,move:"Rage Powder"}],
+    tm: ["Fly","Body Slam","Take Down","Flamethrower","Hyper Beam","Solar Beam","Fire Spin","Psychic","Light Screen","Fire Blast","Amnesia","Leech Life","Rest","Substitute","Protect","Giga Drain","Endure","Sleep Talk","Rain Dance","Sunny Day","Heat Wave","Will-O-Wisp","Facade","Air Cutter","Overheat","Calm Mind","Tailwind","U-turn","Flare Blitz","Poison Jab","Air Slash","Bug Buzz","Giga Impact","Zen Headbutt","Flame Charge","Acrobatics","Struggle Bug","Wild Charge","Hurricane","Tera Blast","Pounce","Trailblaze","Bug Bite","Lunge","Dual Wingbeat","Double-Edge","Skitter Smack"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  638: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Quick Attack"},{level:1,move:"Helping Hand"},{level:1,move:"Work Up"},{level:7,move:"Metal Claw"},{level:14,move:"Quick Guard"},{level:21,move:"Double Kick"},{level:28,move:"Retaliate"},{level:35,move:"Metal Burst"},{level:42,move:"Take Down"},{level:49,move:"Sacred Sword"},{level:56,move:"Swords Dance"},{level:63,move:"Iron Head"},{level:70,move:"Close Combat"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Double-Edge","Roar","Hyper Beam","Thunder Wave","Reflect","Swift","Rest","Substitute","Reversal","Protect","Scary Face","Sandstorm","Endure","False Swipe","Sleep Talk","Metal Claw","Rain Dance","Sunny Day","Psych Up","Facade","Taunt","Helping Hand","Brick Break","Metal Sound","Aerial Ace","Iron Defense","Calm Mind","Close Combat","Aura Sphere","Poison Jab","Air Slash","X-Scissor","Vacuum Wave","Focus Blast","Giga Impact","Zen Headbutt","Flash Cannon","Iron Head","Stone Edge","Stealth Rock","Heavy Slam","Volt Switch","Smart Strike","Body Press","Steel Beam","Coaching","Tera Blast","Upper Hand"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  639: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Quick Attack"},{level:1,move:"Helping Hand"},{level:1,move:"Work Up"},{level:7,move:"Smack Down"},{level:14,move:"Quick Guard"},{level:21,move:"Double Kick"},{level:28,move:"Retaliate"},{level:35,move:"Rock Slide"},{level:42,move:"Take Down"},{level:49,move:"Sacred Sword"},{level:56,move:"Swords Dance"},{level:63,move:"Stone Edge"},{level:70,move:"Close Combat"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Double-Edge","Roar","Hyper Beam","Earthquake","Reflect","Swift","Rest","Rock Slide","Substitute","Reversal","Protect","Scary Face","Sandstorm","Endure","False Swipe","Sleep Talk","Psych Up","Facade","Taunt","Helping Hand","Brick Break","Rock Tomb","Aerial Ace","Calm Mind","Rock Blast","Close Combat","Aura Sphere","Poison Jab","Air Slash","X-Scissor","Focus Blast","Earth Power","Giga Impact","Zen Headbutt","Iron Head","Stone Edge","Stealth Rock","Smack Down","Bulldoze","High Horsepower","Smart Strike","Stomping Tantrum","Coaching","Tera Blast","Upper Hand"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  640: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Quick Attack"},{level:1,move:"Helping Hand"},{level:1,move:"Work Up"},{level:7,move:"Magical Leaf"},{level:14,move:"Quick Guard"},{level:21,move:"Double Kick"},{level:28,move:"Retaliate"},{level:35,move:"Giga Drain"},{level:42,move:"Synthesis"},{level:49,move:"Sacred Sword"},{level:56,move:"Swords Dance"},{level:63,move:"Leaf Blade"},{level:70,move:"Close Combat"}],
+    tm: ["Swords Dance","Body Slam","Take Down","Double-Edge","Roar","Hyper Beam","Solar Beam","Light Screen","Reflect","Swift","Rest","Substitute","Reversal","Protect","Scary Face","Giga Drain","Endure","False Swipe","Sleep Talk","Sunny Day","Psych Up","Facade","Taunt","Helping Hand","Brick Break","Bullet Seed","Aerial Ace","Magical Leaf","Calm Mind","Close Combat","Aura Sphere","Seed Bomb","Air Slash","X-Scissor","Vacuum Wave","Focus Blast","Energy Ball","Giga Impact","Zen Headbutt","Leaf Storm","Stone Edge","Grass Knot","Solar Blade","Smart Strike","Grassy Glide","Coaching","Tera Blast","Trailblaze","Upper Hand"],
+    egg: ["Take Down"],
     tutor: [],
     max: []
   },
@@ -3562,11 +4521,53 @@ var MOVESETS = {
     tutor: [],
     max: []
   },
+  643: {
+    levelUp: [{level:1,move:"Dragon Breath"},{level:1,move:"Ancient Power"},{level:1,move:"Fire Fang"},{level:1,move:"Noble Roar"},{level:8,move:"Slash"},{level:16,move:"Crunch"},{level:24,move:"Extrasensory"},{level:32,move:"Dragon Pulse"},{level:40,move:"Flamethrower"},{level:48,move:"Fusion Flare"},{level:56,move:"Hyper Voice"},{level:64,move:"Fire Blast"},{level:72,move:"Imprison"},{level:80,move:"Outrage"},{level:88,move:"Blue Flare"}],
+    tm: ["Fly","Body Slam","Take Down","Double-Edge","Roar","Flamethrower","Hyper Beam","Solar Beam","Fire Spin","Psychic","Light Screen","Reflect","Fire Blast","Swift","Rest","Rock Slide","Substitute","Protect","Scary Face","Outrage","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Shadow Ball","Heat Wave","Will-O-Wisp","Facade","Helping Hand","Imprison","Hyper Voice","Weather Ball","Overheat","Rock Tomb","Dragon Claw","Dragon Dance","Tailwind","Fling","Flare Blitz","Dragon Pulse","Focus Blast","Earth Power","Giga Impact","Shadow Claw","Fire Fang","Zen Headbutt","Draco Meteor","Stone Edge","Flame Charge","Dragon Tail","Heat Crash","Body Press","Breaking Swipe","Scale Shot","Dual Wingbeat","Scorching Sands","Tera Blast","Dragon Cheer"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  644: {
+    levelUp: [{level:1,move:"Dragon Breath"},{level:1,move:"Ancient Power"},{level:1,move:"Thunder Fang"},{level:1,move:"Noble Roar"},{level:8,move:"Slash"},{level:16,move:"Crunch"},{level:24,move:"Zen Headbutt"},{level:32,move:"Dragon Claw"},{level:40,move:"Thunderbolt"},{level:48,move:"Fusion Bolt"},{level:56,move:"Hyper Voice"},{level:64,move:"Thunder"},{level:72,move:"Imprison"},{level:80,move:"Outrage"},{level:88,move:"Bolt Strike"}],
+    tm: ["Thunder Punch","Fly","Body Slam","Take Down","Double-Edge","Roar","Hyper Beam","Thunderbolt","Thunder Wave","Thunder","Psychic","Light Screen","Haze","Reflect","Swift","Rest","Rock Slide","Substitute","Protect","Scary Face","Outrage","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Shadow Ball","Facade","Focus Punch","Charge","Helping Hand","Brick Break","Imprison","Hyper Voice","Weather Ball","Rock Tomb","Dragon Claw","Dragon Dance","Tailwind","Fling","Dragon Pulse","Focus Blast","Earth Power","Giga Impact","Shadow Claw","Thunder Fang","Zen Headbutt","Flash Cannon","Draco Meteor","Stone Edge","Stealth Rock","Charge Beam","Electro Ball","Volt Switch","Dragon Tail","Wild Charge","Electric Terrain","Body Press","Breaking Swipe","Scale Shot","Dual Wingbeat","Tera Blast","Dragon Cheer","Supercell Slam"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
   645: {
     levelUp: [{level:1,move:"Smack Down"},{level:1,move:"Sand Tomb"},{level:5,move:"Leer"},{level:10,move:"Block"},{level:15,move:"Bulldoze"},{level:20,move:"Rock Tomb"},{level:30,move:"Imprison"},{level:35,move:"Rock Slide"},{level:40,move:"Earth Power"},{level:45,move:"Extrasensory"},{level:50,move:"Stone Edge"},{level:55,move:"Hammer Arm"},{level:60,move:"Sandstorm"},{level:65,move:"Earthquake"},{level:70,move:"Outrage"},{level:75,move:"Fissure"},{level:80,move:"Sandsear Storm"}],
     tm: ["Swords Dance","Fly","Body Slam","Take Down","Hyper Beam","Earthquake","Dig","Psychic","Rest","Rock Slide","Substitute","Protect","Scary Face","Sludge Bomb","Mud-Slap","Outrage","Sandstorm","Endure","Sleep Talk","Rain Dance","Sunny Day","Crunch","Facade","Taunt","Brick Break","Imprison","Rock Tomb","Bulk Up","Mud Shot","Calm Mind","U-turn","Fling","Focus Blast","Earth Power","Giga Impact","Nasty Plot","Stone Edge","Stealth Rock","Grass Knot","Bulldoze","Stomping Tantrum","Tera Blast","Sand Tomb","Gravity","Smack Down","Weather Ball","Sludge Wave","Scorching Sands"],
     egg: [],
     tutor: [],
+    max: []
+  },
+  646: {
+    levelUp: [{level:1,move:"Dragon Breath"},{level:1,move:"Ancient Power"},{level:1,move:"Noble Roar"},{level:1,move:"Freeze-Dry"},{level:8,move:"Slash"},{level:16,move:"Endeavor"},{level:24,move:"Dragon Pulse"},{level:32,move:"Ice Beam"},{level:40,move:"Hyper Voice"},{level:48,move:"Scary Face"},{level:56,move:"Blizzard"},{level:64,move:"Imprison"},{level:72,move:"Outrage"},{level:80,move:"Glaciate"},{level:88,move:"Sheer Cold"}],
+    tm: ["Roar","Icicle Spear","Weather Ball","Dual Wingbeat","Scale Shot","Endeavor","Breaking Swipe","Dragon Cheer","Fly","Body Slam","Take Down","Ice Beam","Blizzard","Hyper Beam","Psychic","Light Screen","Reflect","Swift","Rest","Rock Slide","Substitute","Protect","Scary Face","Icy Wind","Outrage","Endure","Sleep Talk","Rain Dance","Sunny Day","Shadow Ball","Facade","Helping Hand","Imprison","Hyper Voice","Rock Tomb","Aerial Ace","Dragon Claw","Dragon Dance","Fling","Dragon Pulse","Focus Blast","Earth Power","Giga Impact","Avalanche","Shadow Claw","Ice Fang","Zen Headbutt","Flash Cannon","Draco Meteor","Iron Head","Stone Edge","Dragon Tail","Body Press","Tera Blast","Snowscape"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  647: {
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Helping Hand"},{level:1,move:"Aqua Jet"},{level:1,move:"Work Up"},{level:1,move:"Secret Sword"},{level:7,move:"Bubble Beam"},{level:14,move:"Quick Guard"},{level:21,move:"Double Kick"},{level:28,move:"Retaliate"},{level:35,move:"Aqua Tail"},{level:42,move:"Take Down"},{level:49,move:"Sacred Sword"},{level:56,move:"Swords Dance"},{level:63,move:"Hydro Pump"},{level:70,move:"Close Combat"}],
+    tm: ["Swords Dance","Take Down","Double-Edge","Roar","Hydro Pump","Surf","Hyper Beam","Low Kick","Reflect","Swift","Rest","Substitute","Reversal","Protect","Icy Wind","Endure","False Swipe","Sleep Talk","Pain Split","Baton Pass","Rain Dance","Sunny Day","Psych Up","Facade","Taunt","Helping Hand","Brick Break","Muddy Water","Aerial Ace","Calm Mind","Water Pulse","Close Combat","Aura Sphere","Poison Jab","Air Slash","X-Scissor","Vacuum Wave","Focus Blast","Giga Impact","Stone Edge","Smart Strike","Liquidation","Coaching","Flip Turn","Tera Blast","Trailblaze","Chilling Water","Upper Hand"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  648: {
+    levelUp: [{level:1,move:"Sing"},{level:1,move:"Confusion"},{level:1,move:"Quick Attack"},{level:1,move:"Round"},{level:21,move:"Teeter Dance"},{level:26,move:"Acrobatics"},{level:31,move:"Psybeam"},{level:36,move:"Echoed Voice"},{level:43,move:"U-turn"},{level:50,move:"Relic Song"},{level:57,move:"Psychic"},{level:64,move:"Hyper Voice"},{level:71,move:"Role Play"},{level:78,move:"Close Combat"},{level:85,move:"Perish Song"}],
+    tm: ["Fire Punch","Ice Punch","Thunder Punch","Swords Dance","Psybeam","Hyper Beam","Low Kick","Thunderbolt","Thunder Wave","Thunder","Psychic","Light Screen","Metronome","Swift","Rest","Substitute","Reversal","Protect","Endure","Charm","Sleep Talk","Baton Pass","Rain Dance","Sunny Day","Shadow Ball","Facade","Helping Hand","Trick","Brick Break","Skill Swap","Hyper Voice","Fake Tears","Calm Mind","U-turn","Close Combat","Fling","Drain Punch","Focus Blast","Energy Ball","Giga Impact","Shadow Claw","Zen Headbutt","Trick Room","Stone Edge","Grass Knot","Psyshock","Low Sweep","Acrobatics","Disarming Voice","Play Rough","Dazzling Gleam","Tera Blast","Gravity","Knock Off","Focus Punch","Psych Up","Triple Axel","Coaching","Alluring Voice"],
+    egg: [],
+    tutor: [],
+    max: []
+  },
+  649: {
+    levelUp: [{level:1,move:"Quick Attack"},{level:1,move:"Fury Cutter"},{level:7,move:"Screech"},{level:14,move:"Metal Claw"},{level:21,move:"Fell Stinger"},{level:28,move:"Flame Charge"},{level:35,move:"Metal Sound"},{level:42,move:"X-Scissor"},{level:49,move:"Magnet Rise"},{level:56,move:"Bug Buzz"},{level:63,move:"Simple Beam"},{level:70,move:"Zap Cannon"},{level:77,move:"Lock-On"},{level:84,move:"Techno Blast"},{level:91,move:"Self-Destruct"}],
+    tm: ["Fly","Flamethrower","Ice Beam","Blizzard","Hyper Beam","Solar Beam","Thunderbolt","Thunder Wave","Thunder","Psychic","Screech","Light Screen","Reflect","Self-Destruct","Swift","Leech Life","Rest","Tri Attack","Substitute","Snore","Protect","Giga Drain","Endure","Sleep Talk","Facade","Blaze Kick","Iron Defense","U-turn","Assurance","Dark Pulse","X-Scissor","Bug Buzz","Energy Ball","Giga Impact","Shadow Claw","Zen Headbutt","Flash Cannon","Gunk Shot","Iron Head","Round","Ally Switch","Electroweb"],
+    egg: [],
+    tutor: ["Steel Beam"],
     max: []
   },
   700: {
