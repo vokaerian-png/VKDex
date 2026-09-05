@@ -13,6 +13,22 @@
 // A "knows a specific move" trigger reuses the stone shape with the shared
 // item slug "tm-normal" plus `move` (the move's display name, a MOVES key);
 // evoArrowLabel prints the move name instead of "Stone".
+// Branch descriptors (0.2.1, TODO.md #12) — for the 3 species whose sibling
+// edges would otherwise render an identical label with nothing to tell them
+// apart. Rendered as one plain-text line at the bottom of the Evolution Line
+// card (app.js evoDescriptorHtml). Per-edge: `statCompare`
+// ("atk_gt_def"/"atk_lt_def"/"atk_eq_def", Tyrogue — pokemon_evolution.csv
+// `relative_physical_stats` 1/-1/0) and `gender` ("female"/"male" — that
+// CSV's `gender_id` against genders.csv). Top-level `note` (Wurmple) is
+// hand-authored: no CSV column distinguishes Silcoon from Cascoon at all.
+// `gender` is emitted by populate_region.js and covered by `--audit` as of
+// 0.2.2, on all 5 rows the CSV sets it on: Burmy->Wormadam/Mothim,
+// Combee->Vespiquen, Kirlia->Gallade, Snorunt->Froslass (Salazzle's row is
+// out of the populated id range). Combee's is a lone, non-branching edge —
+// the line explains why males never evolve at all. `statCompare` and `note`
+// stay HAND-AUTHORED and are NOT emitted, so a `--refresh --tables
+// evolutions` will still drop those two — re-add by hand after one
+// (`--audit` ignores them, so it won't flag the loss either).
 // A Pokémon with no further evolution just has an empty evolvesTo array.
 //
 // 1: { evolvesTo: [{ id: 2, method: "level", level: 16 }] }
@@ -254,7 +270,7 @@ var EVOLUTIONS = {
   233: { evolvesTo: [{ id: 474, method: "trade", item: "dubious-disc" }] },
   234: { evolvesTo: [{ id: 899, method: "other" }] },
   235: { evolvesTo: [] },
-  236: { evolvesTo: [{ id: 106, method: "level", level: 20 }, { id: 107, method: "level", level: 20 }, { id: 237, method: "level", level: 20 }] },
+  236: { evolvesTo: [{ id: 106, method: "level", level: 20, statCompare: "atk_gt_def" }, { id: 107, method: "level", level: 20, statCompare: "atk_lt_def" }, { id: 237, method: "level", level: 20, statCompare: "atk_eq_def" }] },
   237: { evolvesTo: [] },
   238: { evolvesTo: [{ id: 124, method: "level", level: 30 }] },
   239: { evolvesTo: [{ id: 125, method: "level", level: 30 }] },
@@ -283,7 +299,7 @@ var EVOLUTIONS = {
   262: { evolvesTo: [] },
   263: { evolvesTo: [{ id: 264, method: "level", level: 20 }] },
   264: { evolvesTo: [] },
-  265: { evolvesTo: [{ id: 266, method: "level", level: 7 }, { id: 268, method: "level", level: 7 }] },
+  265: { evolvesTo: [{ id: 266, method: "level", level: 7 }, { id: 268, method: "level", level: 7 }], note: "Which one it evolves into is decided by a hidden value the player can't see or influence." },
   266: { evolvesTo: [{ id: 267, method: "level", level: 10 }] },
   267: { evolvesTo: [] },
   268: { evolvesTo: [{ id: 269, method: "level", level: 10 }] },
@@ -299,7 +315,7 @@ var EVOLUTIONS = {
   278: { evolvesTo: [{ id: 279, method: "level", level: 25 }] },
   279: { evolvesTo: [] },
   280: { evolvesTo: [{ id: 281, method: "level", level: 20 }] },
-  281: { evolvesTo: [{ id: 282, method: "level", level: 30 }, { id: 475, method: "stone", item: "dawn-stone" }] },
+  281: { evolvesTo: [{ id: 282, method: "level", level: 30 }, { id: 475, method: "stone", item: "dawn-stone", gender: "male" }] },
   282: { evolvesTo: [] },
   283: { evolvesTo: [{ id: 284, method: "level", level: 22 }] },
   284: { evolvesTo: [] },
@@ -379,7 +395,7 @@ var EVOLUTIONS = {
   358: { evolvesTo: [] },
   359: { evolvesTo: [] },
   360: { evolvesTo: [{ id: 202, method: "level", level: 15 }] },
-  361: { evolvesTo: [{ id: 362, method: "level", level: 42 }, { id: 478, method: "stone", item: "dawn-stone" }] },
+  361: { evolvesTo: [{ id: 362, method: "level", level: 42 }, { id: 478, method: "stone", item: "dawn-stone", gender: "female" }] },
   362: { evolvesTo: [] },
   363: { evolvesTo: [{ id: 364, method: "level", level: 32 }] },
   364: { evolvesTo: [{ id: 365, method: "level", level: 44 }] },
@@ -430,10 +446,10 @@ var EVOLUTIONS = {
   409: { evolvesTo: [] },
   410: { evolvesTo: [{ id: 411, method: "level", level: 30 }] },
   411: { evolvesTo: [] },
-  412: { evolvesTo: [{ id: 413, method: "level", level: 20 }, { id: 414, method: "level", level: 20 }] },
+  412: { evolvesTo: [{ id: 413, method: "level", level: 20, gender: "female" }, { id: 414, method: "level", level: 20, gender: "male" }] },
   413: { evolvesTo: [] },
   414: { evolvesTo: [] },
-  415: { evolvesTo: [{ id: 416, method: "level", level: 21 }] },
+  415: { evolvesTo: [{ id: 416, method: "level", level: 21, gender: "female" }] },
   416: { evolvesTo: [] },
   417: { evolvesTo: [] },
   418: { evolvesTo: [{ id: 419, method: "level", level: 26 }] },

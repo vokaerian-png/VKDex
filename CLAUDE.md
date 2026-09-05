@@ -136,7 +136,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.0.** Mirror on every bump, both together:
+**Current version: 0.2.2.** Mirror on every bump, both together:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`) and `electron-app/package.json`'s `"version"` (so
 the packaged `.exe`'s Windows file properties match).

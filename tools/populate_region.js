@@ -90,6 +90,9 @@ const REGION_GEN = {
 };
 const GEN_REGION = Object.fromEntries(Object.entries(REGION_GEN).map(([r, g]) => [String(g), r]));
 const ALL_TABLES = ["pokemon", "stats", "evolutions", "movesets", "names", "locations", "altforms"];
+// genders.csv, static: 3 = genderless, deliberately absent (see the
+// evolution extractor) so it never writes a meaningless `gender` field.
+const GENDER = { 1: "female", 2: "male" };
 const titleCase = s => s.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
 // ---- minimal CSV parser (handles quoted fields incl. embedded commas/newlines) ----
@@ -356,6 +359,13 @@ function extract(t, csvs, current) {
       weight: Number(pk.weight) / 10,
       abilities: abilityRows.map(r => abilityName(r.ability_id)),
       hiddenAbility: hiddenRow ? abilityName(hiddenRow.ability_id) : null,
+      // Species flags/ratio from pokemon_species.csv (0.2.1, TODO.md #10).
+      // Booleans are written only when true; genderRate is -1 (genderless)
+      // or 0-8 eighths-female, so it's always written.
+      isLegendary: sp.is_legendary === "1",
+      isMythical: sp.is_mythical === "1",
+      isBaby: sp.is_baby === "1",
+      genderRate: Number(sp.gender_rate),
     };
 
     // raw flavor text (latest version) kept only as an authoring aid, NOT written verbatim
@@ -364,7 +374,7 @@ function extract(t, csvs, current) {
 
     const st = statsOf(sid);
     const growth = GROWTH[sp.growth_rate_id] || { curve: "?", points: null };
-    results.stats[id] = Object.assign(st, { captureRate: Number(sp.capture_rate), expGrowth: { points: growth.points, curve: growth.curve } });
+    results.stats[id] = Object.assign(st, { captureRate: Number(sp.capture_rate), baseHappiness: Number(sp.base_happiness), expGrowth: { points: growth.points, curve: growth.curve } });
 
     // evolutions.js: species that evolve FROM this one
     const evolvesTo = [];
@@ -407,6 +417,10 @@ function extract(t, csvs, current) {
       const friendship = edge.method === "level" && (row.minimum_happiness || row.minimum_affection);
       if (row.time_of_day && (edge.method === "held" || friendship)) edge.timeOfDay = row.time_of_day;
       if (friendship && row.known_move_type_id) edge.moveType = typeSlug(row.known_move_type_id);
+      // gender_id restricts which sex evolves (genders.csv 1/2/3) — a branch
+      // descriptor, see the src/data/evolutions.js header. Genderless (3)
+      // never appears on a real row; skip it rather than write a no-op field.
+      if (GENDER[row.gender_id]) edge.gender = GENDER[row.gender_id];
       // "Knows a specific move" (Aipom, Yanma, Lickitung, ...) does have a
       // representation as of 0.1.39: the stone shape with the shared
       // tm-normal icon and the move name as the arrow label (see the
@@ -633,6 +647,7 @@ function evoStepText(s) {
   if (s.timeOfDay) parts.push(`timeOfDay: "${s.timeOfDay}"`);
   if (s.moveType) parts.push(`moveType: "${s.moveType}"`);
   if (s.move) parts.push(`move: "${escD(s.move)}"`);
+  if (s.gender) parts.push(`gender: "${s.gender}"`);
   return `{ ${parts.join(", ")} }`;
 }
 function altFormsText(id, baseName, formes) {
@@ -690,7 +705,8 @@ function assemble(results, descriptions, tables, strict, current) {
       if (!existing && !pk.region) throw new Error(`id ${id}: no mainline region (a Legends: Arceus original? use populate_hisui_species.js)`);
       const where = existing && existing.hisuiOnly ? "hisuiOnly: true" : `region: '${pk.region}'`;
       const hidden = pk.hiddenAbility ? `, hiddenAbility: '${esc(pk.hiddenAbility)}'` : "";
-      entries.push({ id, text: `  { id: ${id}, name: '${esc(name)}', ${where}, types: [${pk.types.map(t => `'${esc(t)}'`).join(", ")}], category: '${esc(pk.category)}', height: ${pk.height}, weight: ${pk.weight}, abilities: [${pk.abilities.map(a => `'${esc(a)}'`).join(", ")}]${hidden}, description: '${esc(desc)}' }` });
+      const flags = (pk.isLegendary ? ", isLegendary: true" : "") + (pk.isMythical ? ", isMythical: true" : "") + (pk.isBaby ? ", isBaby: true" : "");
+      entries.push({ id, text: `  { id: ${id}, name: '${esc(name)}', ${where}, types: [${pk.types.map(t => `'${esc(t)}'`).join(", ")}], category: '${esc(pk.category)}', height: ${pk.height}, weight: ${pk.weight}${flags}, genderRate: ${pk.genderRate}, abilities: [${pk.abilities.map(a => `'${esc(a)}'`).join(", ")}]${hidden}, description: '${esc(desc)}' }` });
     }
     upsertEntries("pokemon.js", entries);
   }
@@ -698,7 +714,7 @@ function assemble(results, descriptions, tables, strict, current) {
   // ---- stats.js ----
   if (want("stats")) upsertEntries("stats.js", ids.map(id => {
     const s = results.stats[id];
-    return { id, text: `  ${id}: ${statsText(s)}, captureRate: ${s.captureRate}, expGrowth: { points: ${s.expGrowth.points}, curve: "${s.expGrowth.curve}" } }` };
+    return { id, text: `  ${id}: ${statsText(s)}, captureRate: ${s.captureRate}, baseHappiness: ${s.baseHappiness}, expGrowth: { points: ${s.expGrowth.points}, curve: "${s.expGrowth.curve}" } }` };
   }));
 
   // ---- evolutions.js ----
@@ -798,8 +814,8 @@ function audit(ids, csvs, current, verbose) {
     n++;
     console.log(`${label} ${field}: ${missing.length} missing, ${extra.length} extra (of ${exp.length} expected)` + (verbose ? `\n    missing: ${missing.join(", ") || "-"}\n    extra: ${extra.join(", ") || "-"}` : ""));
   };
-  const EVO_KEYS = ["method", "level", "item", "timeOfDay", "moveType", "move"];
-  const STAT_KEYS = ["hp", "attack", "defense", "spAttack", "spDefense", "speed", "captureRate"];
+  const EVO_KEYS = ["method", "level", "item", "timeOfDay", "moveType", "move", "gender"];
+  const STAT_KEYS = ["hp", "attack", "defense", "spAttack", "spDefense", "speed", "captureRate", "baseHappiness"];
 
   for (const id of ids) {
     const L = tag(id), p = current.pokemonById.get(id), ep = r.pokemon[id];
@@ -808,6 +824,9 @@ function audit(ids, csvs, current, verbose) {
     if (!p.hisuiOnly) check(L, "pokemon.region", GEN_REGION[speciesById.get(String(id)).generation_id], p.region);
     for (const k of ["types", "category", "height", "weight", "abilities"]) check(L, "pokemon." + k, ep[k], p[k]);
     check(L, "pokemon.hiddenAbility", ep.hiddenAbility || undefined, p.hiddenAbility);
+    // Written only when true, so a false expectation must read as absent.
+    for (const k of ["isLegendary", "isMythical", "isBaby"]) check(L, "pokemon." + k, ep[k] || undefined, p[k]);
+    check(L, "pokemon.genderRate", ep.genderRate, p.genderRate);
 
     const s = current.tables.stats[id], es = r.stats[id];
     if (!s) report(L, "stats", "entry", undefined);
@@ -887,9 +906,10 @@ function audit(ids, csvs, current, verbose) {
 // checked against the clone's real header so a stale row fails loudly.
 // Prune a row here when its field lands in the schema.
 const SCHEMA_GAPS = [
-  ["pokemon_species.csv", "is_legendary,is_mythical,is_baby", "legendary/mythical/baby flags"],
-  ["pokemon_species.csv", "gender_rate,has_gender_differences", "gender ratio (-1 = genderless) and whether the sprite differs by gender (temp/home/female/ art exists, TODO.md #3)"],
-  ["pokemon_species.csv", "base_happiness,hatch_counter", "base friendship, egg cycles"],
+  // is_legendary/is_mythical/is_baby, gender_rate and base_happiness landed
+  // in 0.2.1 (pokemon.js / stats.js) and were pruned from this list.
+  ["pokemon_species.csv", "has_gender_differences", "whether the sprite differs by gender (temp/home/female/ art exists, TODO.md #3)"],
+  ["pokemon_species.csv", "hatch_counter", "egg cycles"],
   ["pokemon_species.csv", "color_id,shape_id,habitat_id", "Pokédex color / body shape / habitat (habitat is FRLG-only, null for Gen 4+); lookup names in pokemon_colors / pokemon_shapes / pokemon_habitats(.csv + *_names)"],
   ["pokemon_species.csv", "forms_switchable", "whether formes can be switched outside battle"],
   ["pokemon_species.csv", "order", "official ordering that places formes/regional variants next to their species (differs from national id)"],
@@ -901,7 +921,7 @@ const SCHEMA_GAPS = [
   ["pokemon_moves.csv", "pokemon_move_method_id", "only methods 1/2/4 (level-up/egg/machine) are stored; tutor (3) and the other methods are dropped"],
   ["pokemon_moves.csv", "version_group_id", "only the newest usable version group is stored — no per-game learnset history"],
   ["pokemon_moves.csv", "mastery", "Legends: Arceus move-mastery level"],
-  ["pokemon_evolution.csv", "gender_id,location_id,minimum_beauty,relative_physical_stats,party_species_id,party_type_id,trade_species_id,needs_overworld_rain,turn_upside_down,minimum_move_count,minimum_steps,minimum_damage_taken", "evolution conditions the schema collapses to method \"other\" (TODO.md #7; known_move_id is represented as of 0.1.39)"],
+  ["pokemon_evolution.csv", "location_id,minimum_beauty,relative_physical_stats,party_species_id,party_type_id,trade_species_id,needs_overworld_rain,turn_upside_down,minimum_move_count,minimum_steps,minimum_damage_taken", "evolution conditions the schema collapses to method \"other\" (TODO.md #7; known_move_id is represented as of 0.1.39, gender_id as of 0.2.2)"],
   ["pokemon_evolution.csv", "version_group_id,is_default", "per-version alternative evolution methods (one row is picked)"],
   ["evolution_chains.csv", "baby_trigger_item_id", "incense needed to breed the baby stage"],
   ["encounters.csv", "version_id,encounter_slot_id,min_level,max_level", "encounter method/rate/level range per version — locations.js keeps area names only"],

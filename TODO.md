@@ -310,14 +310,19 @@ now reports 0 discrepancies.** Full original-baseline output:
 - ~~Farfetch'd apostrophe~~ — **resolved 0.1.37**: user chose the CSV's
   curly apostrophe (`Farfetch’d`) over the straight one.
 
-**Schema gaps** (`--gaps`, static `SCHEMA_GAPS` list, 29 groups; full
-text in `temp/csv-audit-pipeline-2026-09-05/gaps_real_run.txt`). Candidates,
-not commitments — the clearly Pokédex-core ones:
+**Schema gaps** (`--gaps`, static `SCHEMA_GAPS` list, **28 groups** as of
+0.2.1 — was 29; full text in
+`temp/csv-audit-pipeline-2026-09-05/gaps_real_run.txt`, now stale by 1
+entry). Candidates, not commitments — the clearly Pokédex-core ones:
 
-- `pokemon_species.csv`: `is_legendary`/`is_mythical`/`is_baby`,
-  `gender_rate` + `has_gender_differences` (the female sprite art in
-  `temp/home/female/` would pair with this, #3), `base_happiness`,
-  `hatch_counter`, `color_id`/`shape_id`/`habitat_id`, `forms_switchable`.
+- ~~`is_legendary`/`is_mythical`/`is_baby`~~ — **landed 0.2.1**: all 3 on
+  every `pokemon.js` entry (522/522), no UI wiring yet (pure data).
+  `gender_rate` **also landed 0.2.1** (as `genderRate`); its sibling
+  `has_gender_differences` remains a gap (the female sprite art in
+  `temp/home/female/` would pair with it, #3). ~~`base_happiness`~~ —
+  **landed 0.2.1** on `stats.js` as `baseHappiness`; `hatch_counter`
+  remains a gap. Still open: `color_id`/`shape_id`/`habitat_id`,
+  `forms_switchable`.
 - **Egg groups** (`pokemon_egg_groups.csv`) — nothing in the schema covers
   breeding at all.
 - `pokemon.csv` `base_experience`; `pokemon_stats.csv` `effort` (EV yield).
@@ -325,9 +330,12 @@ not commitments — the clearly Pokédex-core ones:
   regional dex number (only Hisui's is stored).
 - `pokemon_moves.csv`: tutor moves (method 3) and per-game learnset
   history are dropped; PLA `mastery` levels.
-- `pokemon_evolution.csv`: the 13 condition columns that collapse to
-  `"other"` (#7), per-version alternative methods, `evolution_chains.csv`
-  `baby_trigger_item_id` (incense).
+- `pokemon_evolution.csv`: 2 of the 13 condition columns that used to
+  collapse to `"other"` now have real structured support —
+  `relative_physical_stats` and `gender_id`, both via #12's evolution-line
+  descriptor mechanism (0.2.1/0.2.2). The rest (#7's per-version
+  alternative methods, `evolution_chains.csv` `baby_trigger_item_id`/
+  incense, etc.) still collapse to `"other"`.
 - `encounters.csv`: method/rate/level range (only area names kept).
 - Move mechanics (`moves.csv` priority/target/effect chance, `move_meta`,
   `move_flags`), ability/move/type names in other languages, natures,
@@ -337,43 +345,42 @@ Prune a `SCHEMA_GAPS` row when its field lands.
 
 ---
 
-## 11. Detail-screen back navigation: single vs. double press
+## 11. Detail-screen back navigation: single vs. double press — RESOLVED 0.2.1
 
-User-noted 2026-09-05, from real-device chain-browsing (Eevee's
-evolutions): `backDetail()` pops one `detailHistory` entry per press, so
-returning to the National Dex after browsing several evolution/alt-forme
-stages deep needs one back-press per stage — tedious for a long chain.
-
-**Idea**: keep a single press/Escape/Backspace/mouse-back stepping back
-one stage at a time (current behavior), but a second rapid press (double-
-click/double-tap, within some timing threshold) jumps straight past the
-rest of `detailHistory` and closes the detail screen to the National Dex
-in one go. Needs a double-press timing mechanism layered onto the
-existing `backOut()`/`backDetail()` handlers, applied consistently across
-every trigger (Escape, Backspace, mouse button 3, the on-screen back
-arrow). Not committed — needs a design pass (exact timing threshold,
-whether it should apply to the drawer/settings/popup layers too or only
-the detail-history stack) before promotion to `PLAN.md`.
+Shipped as spec'd: a second press within **400ms** of the first jumps past
+the rest of `detailHistory` straight to closing the detail screen; a press
+≥400ms later is a fresh single pop. Scoped to the detail-history stack
+only — `backOut()`'s outer layers (settings/drawer/popup) stay one press
+per layer, unaccelerated, confirmed by a harness pressing that whole stack
+with zero delay. All 4 existing triggers (on-screen back arrow, Escape,
+Backspace, mouse button 3) count, since all 4 already funnel through the
+single `backDetail()` guard — no per-trigger duplication. `HISTORY.md`
+0.2.1 for the diff.
 
 ---
 
-## 12. Evolution-line card: text descriptor for non-obvious criteria
+## 12. Evolution-line card: text descriptor for non-obvious criteria — RESOLVED 0.2.1/0.2.2
 
-User-noted 2026-09-05, from a real screenshot of Tyrogue's fan-out: all 3
-branches show `Lv 20`, but the real determinant is a stat comparison at
-that level (Attack > Defense → Hitmonlee, Attack < Defense → Hitmonchan,
-Attack = Defense → Hitmontop) — the current schema (`method`/`level`/
-`item`/`moveType`) has no field for this, so the card doesn't convey it.
-Likely the same gap as `TODO.md` #10's `pokemon_evolution.csv` "13
-condition columns that collapse to `other`" (`relative_physical_stats` is
-almost certainly the exact column here).
+CSV sweep found exactly 3 chains in the 522-id+Hisui-29 dataset with
+sibling branches rendering an identical label: **Tyrogue** (all three
+"Lv 20" — real trigger is Attack-vs-Defense via `relative_physical_stats`),
+**Burmy** (both "Lv 20" — real trigger is gender via `gender_id`), and
+**Wurmple** (both "Lv 7" — a hidden personality value with **no CSV column
+at all**). Shipped 0.2.1: Tyrogue's 3 edges get a structured `statCompare`
+field, Burmy's 2 get a structured `gender` field, Wurmple's entry gets a
+hand-authored top-level `note` (nothing to derive it from). A new
+`evoDescriptorHtml()` renders one line at the bottom of the card, keyed off
+whichever field is present — generic, not species-ID-based.
 
-**Idea**: a plain-text descriptor line at the bottom of the Evolution Line
-card, below every sprite/row, for whichever lines need this kind of
-clarification beyond what an icon+label pair can convey. Needs: a new
-data field (e.g. a `note` string per `EVOLUTIONS` entry or per-edge) and a
-small render addition in `evolutionCardHtml()`. Scope which other species
-need it before committing — Tyrogue confirmed; candidates worth checking
-against the CSV: Toxel (nature-based split), Silcoon/Cascoon-style
-personality-value splits if any exist in the current 522-id range. Not
-committed — `PLAN.md` promotion needs that scope pass first.
+**Extended 0.2.2** (user-confirmed, since 3 more species turned up with
+`gender_id` set but weren't ambiguous — their sibling branches already
+differ by method/item, so they were left out of the original fix): Combee
+→Vespiquen (its only edge, gender-gated — males never evolve), Kirlia
+→Gallade, Snorunt→Froslass all got the `gender` field too, so the
+descriptor now also surfaces an otherwise-invisible gender requirement on
+species that aren't label-ambiguous. `populate_region.js` now extracts/
+audits `gender` for all 5 in-range rows (758 Salazzle is out of range).
+**Still hand-authored, still dropped by a `--refresh --tables evolutions`**:
+Tyrogue's `statCompare` and Wurmple's `note` — no CSV column backs either,
+so teaching the tool isn't possible the way `gender` was. `HISTORY.md`
+0.2.1/0.2.2 for the diffs.

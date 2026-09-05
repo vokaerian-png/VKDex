@@ -8,9 +8,83 @@ only edits are exempt. The authoritative policy is `CLAUDE.md` §3 — this
 file is just the log, newest entry first. Current-state descriptions live
 in `CLAUDE.md`; entries here record what changed and why.
 
-**Current version: 0.2.0.**
+**Current version: 0.2.2.**
 
 ---
+
+## 0.2.1 → 0.2.2 — Evolution `gender` descriptor extended to 3 more species
+
+`coder` only, user-confirmed follow-up to 0.2.1 the same session: Combee→
+Vespiquen (its only edge — males never evolve), Kirlia→Gallade, and
+Snorunt→Froslass all get a `gender` field (female/male/female) alongside
+Burmy's. These 3 weren't in 0.2.1 because their sibling branches already
+show different labels (level vs. item) — not ambiguous the way Tyrogue/
+Burmy/Wurmple were — but the gender requirement itself was invisible, and
+the user chose to surface it anyway.
+
+- **Real bug caught in verification**: `evoDescriptorHtml(root)` only read
+  the chain root's own edges. Burmy/Combee/Snorunt/Tyrogue are all roots,
+  so 0.2.1 worked by accident; **Kirlia isn't a root** (Ralts is), so
+  Kirlia→Gallade's `gender` would never have rendered. Fixed by collecting
+  every edge across the full `evolutionPaths(root)` walk instead of just
+  the root's. Consequence, not a bug: the card is chain-wide, so Ralts/
+  Kirlia/Gardevoir/Gallade all show one "Evolves based on gender." line —
+  same as Wormadam/Mothim already did.
+- `tools/populate_region.js`: hardcoded `GENDER` map (`genders.csv` is 3
+  static rows), evolution extractor now writes `gender` from `gender_id`,
+  `EVO_KEYS` gains `"gender"` for `--audit`, `--gaps` drops `gender_id`.
+  A future `--refresh --tables evolutions` now round-trips all 5 gendered
+  edges instead of reverting them.
+- **Still hand-authored, still refresh-fragile**: Tyrogue's `statCompare`
+  and Wurmple's `note` — no CSV column backs either.
+- Verified: `node --check` all 4 touched files; a harness running the
+  *real* `app.js` walkers (not stubs, to actually catch the Kirlia bug) —
+  descriptor on exactly 21 ids / 6 chains, 501 others clean, one note per
+  card; `--audit` proven to catch the field (flipped Combee's gender,
+  confirmed the audit line, reverted); `verify_region_data.js` PASS;
+  round-trip check confirms `--refresh` reproduces all 5 edges byte-exact.
+
+## 0.2.0 → 0.2.1 — Double-press back nav; evolution branch descriptors; 5 species-flag fields
+
+`coder` only, three user-confirmed features shipped as one bump.
+
+- **Double-press-to-skip back navigation** (`TODO.md` #11): a second press
+  within 400ms of the first jumps past the rest of `detailHistory` straight
+  to closing the detail screen, instead of popping one entry; a press
+  ≥400ms later is a fresh single pop. One guard in `backDetail()` — the
+  single point all 4 triggers (on-screen arrow, Escape, Backspace, mouse
+  button 3) already funnel through, so no per-trigger duplication.
+  `backOut()`'s outer layers (settings/drawer/popup) are untouched, still
+  one press per layer even at zero delay — verified explicitly.
+- **Evolution-line descriptor** (`TODO.md` #12): a CSV sweep (cross-checked
+  against the real shipped `evolutions.js`) found exactly 3 chains with
+  sibling branches rendering an identical, ambiguous label — Tyrogue (all
+  "Lv 20", real trigger is Attack-vs-Defense), Burmy (both "Lv 20", real
+  trigger is gender), Wurmple (both "Lv 7", a hidden personality value with
+  **no CSV column at all**). Tyrogue's 3 edges get a new structured
+  `statCompare` field, Burmy's 2 get a new structured `gender` field,
+  Wurmple's entry gets a hand-authored top-level `note` — new
+  `evoDescriptorHtml()` renders one line at the bottom of
+  `evolutionCardHtml()`'s card, keyed off whichever field is present (not
+  species id), reusing the existing `.detail-section-note` class. Renders
+  on all 12 ids across the 3 chains (a card shows its whole chain from the
+  root) — 510 other species unaffected.
+- **5 new `pokemon.js`/`stats.js` fields, all 522 ids** (`TODO.md` #10
+  slice): `isLegendary`/`isMythical`/`isBaby`/`genderRate` (`pokemon.js`,
+  booleans emitted only when true) and `baseHappiness` (`stats.js`), sourced
+  from `pokemon_species.csv` via `populate_region.js --ids <522> --refresh
+  --tables pokemon,stats`. Pure data — no detail-screen UI wiring this
+  pass. `--audit` extended to cover all 5 (still 0 discrepancies).
+  `SCHEMA_GAPS` pruned 29 → 28.
+- Verified: `node --check` on every touched file; a byte-diff of
+  `pokemon.js`/`stats.js` against pre-edit backups confirmed **no**
+  pre-existing field or key order changed on any of the 522 entries; an
+  independent hand-parse of `pokemon_species.csv` cross-checked all 5 new
+  fields on all 522 ids; `verify_region_data.js` PASS; `--audit` PASS (0);
+  4 harnesses (one per checked behavior) all green.
+- **Flagged, not shipped this pass**: whether Combee/Kirlia/Snorunt should
+  also get a `gender` descriptor (their branches already differ by label,
+  so they weren't ambiguous) — resolved yes, shipped next as 0.2.2 (above).
 
 ## 0.1.40 → 0.2.0 — Friendship-row sprite alignment fixed; user-directed minor bump
 

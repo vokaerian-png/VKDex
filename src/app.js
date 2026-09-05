@@ -972,6 +972,34 @@
       '<span class="evo-name">' + escapeHtml(mon.name) + "</span></button>";
   }
 
+  // One plain-text line at the bottom of the Evolution Line card, for a
+  // chain whose branches share an identical arrow label and need something
+  // beyond it to tell them apart (0.2.1, TODO.md #12). Keyed off the data,
+  // not off species ids: any future entry carrying these fields gets the
+  // line for free. Everything else renders nothing.
+  function evoDescriptorHtml(root) {
+    var e = EVOLUTIONS[root];
+    if (!e) return "";
+    // Every edge in the whole chain, not just the root's own: Kirlia->Gallade
+    // carries `gender` one step below the root (Ralts), and the card is
+    // chain-wide, so every member shows the same line (0.2.2).
+    var edges = evolutionPaths(root).reduce(function (acc, path) {
+      return acc.concat(path.map(function (step) { return step.via; }).filter(Boolean));
+    }, []);
+    var text = e.note;
+    if (!text) {
+      var statEdge = edges.find(function (x) { return x.statCompare; });
+      var genderEdge = edges.find(function (x) { return x.gender; });
+      if (statEdge) {
+        text = "Evolves based on Attack vs. Defense" +
+          (statEdge.level !== undefined ? " at level " + statEdge.level : "") + ".";
+      } else if (genderEdge) {
+        text = "Evolves based on gender.";
+      }
+    }
+    return text ? '<p class="detail-section-note">' + escapeHtml(text) + "</p>" : "";
+  }
+
   // A Pokemon with no evolution relationship at all (nothing evolves into
   // it, it evolves into nothing) hides this whole module rather than
   // showing a "Does not evolve" note (rule 8, PLAN.md "Alt Formes wiring").
@@ -987,6 +1015,7 @@
     // Tyrogue) repeats the root bubble once per row in the layout below, so
     // draw the root once and hang the branches off it instead. Anything
     // deeper or mixed keeps the per-path rows.
+    var descriptor = evoDescriptorHtml(root);
     var isFan = paths.length >= 3 && paths.every(function (p) { return p.length === 2; });
     if (isFan) {
       // Every branch leaves the same root, so the chevron is drawn once
@@ -1006,7 +1035,7 @@
         });
         html += "</div>";
       }
-      html += "</div></div>";
+      html += "</div>" + descriptor + "</div>";
       return html;
     }
     paths.forEach(function (path) {
@@ -1020,7 +1049,7 @@
       });
       html += "</div>";
     });
-    html += "</div>";
+    html += descriptor + "</div>";
     return html;
   }
 
@@ -1439,9 +1468,21 @@
 
   // Back arrow / Escape: return to the previous Pokemon if an evolution
   // tap got us here (0.1.34), otherwise close.
+  // A second press within BACK_DOUBLE_MS skips the rest of detailHistory
+  // and closes outright (0.2.1) — chain-browsing several stages deep
+  // otherwise needs one press per stage. All four triggers (back arrow,
+  // Escape, Backspace, mouse button 3) funnel through here, so this is the
+  // single place it needs to live. Only the detail-history stack
+  // accelerates: backOut()'s outer layers stay one press per layer.
+  var BACK_DOUBLE_MS = 400;
+  var lastBackAt = 0;
+
   function backDetail() {
     closeDetailPopup();
-    if (detailHistory.length) { openDetail(detailHistory.pop()); } else { closeDetail(); }
+    var now = Date.now();
+    var isDouble = now - lastBackAt < BACK_DOUBLE_MS;
+    lastBackAt = now;
+    if (detailHistory.length && !isDouble) { openDetail(detailHistory.pop()); } else { closeDetail(); }
   }
 
   function isDetailOpen() {

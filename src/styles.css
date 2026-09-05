@@ -1256,6 +1256,13 @@ body {
   margin-top: 6px;
 }
 
+/* Branch descriptor line (0.2.1) — reuses .detail-section-note, but that
+   class carries no margin of its own, so scope the spacing here rather than
+   change the Found In card's shipped look. */
+.evolution-card .detail-section-note {
+  margin: 8px 0 0;
+}
+
 .evo-stage {
   display: flex;
   flex-direction: column;

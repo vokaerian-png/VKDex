@@ -50,7 +50,7 @@ centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
 and a Settings popup (§3).
 
-**Current version: 0.2.0** (`CLAUDE.md` §3 for the bump policy,
+**Current version: 0.2.2** (`CLAUDE.md` §3 for the bump policy,
 `HISTORY.md` for the changelog).
 
 ---
@@ -81,6 +81,12 @@ soon".
 Detail-screen fields in `pokemon.js`: `types`, `category`, `height`,
 `weight`, `abilities` (names resolved in `data/abilities.js`, hidden
 ability sorted last), `hiddenAbility` (name or absent), `description`.
+**Data-only, not yet UI-wired** (0.2.1): `isLegendary`/`isMythical`/
+`isBaby` (booleans, emitted only when true — absence means false) and
+`genderRate` (-1 = genderless, else 0-8 eighths-female), all 522 entries,
+sourced from `pokemon_species.csv`. `stats.js` gained the same-pass
+`baseHappiness` alongside `captureRate`/`expGrowth`. No detail-screen fact
+row renders any of these yet — future work, `TODO.md` #10.
 
 **Population status:** `abilities.js` (179) and `moves.js` (622) hold
 Gen-9-era values with original paraphrase descriptions. The per-Pokémon
@@ -260,7 +266,12 @@ sprite subfolder never needs a `copy-app.js` change.
   with a detail view open. Opens on click/Enter/Space on any `.dex-cell`
   (delegated listeners, `data-id`). Back arrow/Escape/Backspace/mouse-back
   run `backDetail()`: pop `detailHistory` (pushed by evolution-stage taps)
-  or close. ArrowLeft/ArrowRight (`stepDetail()`) step through national id
+  or close — **a second press within 400ms of the first** (0.2.1) skips the
+  rest of the stack and closes directly instead of popping one more entry;
+  all 4 triggers share the one guard in `backDetail()`, so none needed
+  separate handling. Doesn't touch `backOut()`'s outer layers (settings/
+  drawer/popup stay one press per layer). ArrowLeft/ArrowRight
+  (`stepDetail()`) step through national id
   order, clamped, clearing that history. `rerenderDetail()` rebuilds the
   body for a settings change while keeping `activeFormeKey` and scroll.
 - **Detail screen body**: `renderDetail()` rebuilds `#detailBody` on every
@@ -360,6 +371,27 @@ sprite subfolder never needs a `copy-app.js` change.
       (friendship only, e.g. Sylveon's `"fairy"`) reuses `pillHtml()` for
       a small type-pill tag, sized down via a `.evo-arrow-icons .type-pill`
       parent selector.
+    - **Descriptor line** (`evoDescriptorHtml()`, 0.2.1/0.2.2): a plain-text
+      line at the bottom of the card, inside `.detail-section` via the
+      existing `.detail-section-note` class, for chains where sibling
+      branches would otherwise render an identical, ambiguous label. Keyed
+      off data present on any edge in the chain (not species id) — a
+      `statCompare` edge field ("Evolves based on Attack vs. Defense at
+      level N."), a `gender` edge field ("Evolves based on gender."), or a
+      hand-authored top-level `note` on the `EVOLUTIONS` entry, checked in
+      that order. Renders on the whole chain (a card shows its root's full
+      tree), so e.g. Ralts/Kirlia/Gardevoir/Gallade all show one line.
+      Ships on 3 chains: Tyrogue (`statCompare`, real ambiguity — all 3
+      branches read "Lv 20"), Burmy (`gender`, real ambiguity — both read
+      "Lv 20"), Wurmple (hand-authored `note` — a hidden personality value
+      with no CSV column at all, both branches read "Lv 7"); plus, since
+      0.2.2, `gender` also on 3 species whose branches were **already**
+      label-distinct (Combee's single gender-gated edge, Kirlia→Gallade,
+      Snorunt→Froslass) purely to surface an otherwise-invisible
+      requirement. `statCompare`/hand-`note` fields are hand-authored and
+      not tool-extracted — a `--refresh --tables evolutions` drops them;
+      `gender` **is** tool-extracted/audited (`populate_region.js`), so it
+      survives a refresh.
   - **Found In**: pill-chip row of every region key in `data/locations.js`
     with a non-empty area list (broader than `pokemon.js`'s single
     `region`, which only means "introduced in"). Tap opens `#detailPopup`

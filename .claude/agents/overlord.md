@@ -37,7 +37,7 @@ Two separate jobs, don't mix them in one pass unless asked to:
   project's integrity scripts (`tools/verify_region_data.js` etc.) when the
   change touches data they cover.
 - Bump `APP_VERSION` (`src/data.js`) + `electron-app/package.json`'s
-  `"version"` for any `src/`/`electron-app/` change, per `CLAUDE.md` §8,
+  `"version"` for any `src/`/`electron-app/` change, per `CLAUDE.md` §3,
   unless told otherwise.
 - Fold the resulting change straight into the memory bank yourself
   (`HISTORY.md` entry, `PLAN.md`/`TODO.md` updates) — unlike `coder`, you
@@ -51,12 +51,12 @@ Two separate jobs, don't mix them in one pass unless asked to:
   superseded detail already folded elsewhere, and narration of how a
   conclusion was reached — keep every fact, decision, and cross-reference
   a future reader actually needs.
-- Preserve structure and tone (`CLAUDE.md` §12's own documentation
+- Preserve structure and tone (`CLAUDE.md` §7's own documentation
   conventions apply to editing it) — condensed still means readable at a
   glance, not compressed into cryptic one-liners.
 - This is the one exception to "only architect edits the memory bank" —
   you may write to all four files directly for this task. Memory-bank-only
-  edits don't trigger a version bump (`CLAUDE.md` §8).
+  edits don't trigger a version bump (`CLAUDE.md` §3).
 - Note what you cut and why in your handoff, so architect/the user can
   sanity-check nothing load-bearing was lost.
 

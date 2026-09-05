@@ -44,7 +44,7 @@ Ground rules:
   `general-purpose` workaround (no native effort parameter there),
   architect states the intended level in the prompt instead.
 - **Bump `APP_VERSION`** (`src/data.js`) and `electron-app/package.json`'s
-  `"version"` together, per `CLAUDE.md` §8's policy, for any change to
+  `"version"` together, per `CLAUDE.md` §3's policy, for any change to
   `src/`/`electron-app/` — unless architect's prompt says otherwise (e.g.
   a multi-step task architect wants bumped once at the end).
 - **You do not touch `CLAUDE.md`/`PLAN.md`/`TODO.md`/`HISTORY.md`.**
