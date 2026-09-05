@@ -929,6 +929,12 @@
     return "";
   }
 
+  // Branches per row in the fan-out layout. .evo-stage is a fixed 76px, so
+  // 3 (228px) sits comfortably inside the ~308px card interior at the 360px
+  // base width; 4 (304px) technically fits but leaves no slack for the
+  // divider rows to breathe.
+  var FAN_ROW_SIZE = 3;
+
   var EVO_ARROW_SVG = '<svg viewBox="0 0 20 14" aria-hidden="true"><path d="M1 7 H16 M11 2 L16 7 L11 12" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
 
   // Hand-drawn (no external asset, same as EVO_ARROW_SVG) condition icons
@@ -983,15 +989,24 @@
     // deeper or mixed keeps the per-path rows.
     var isFan = paths.length >= 3 && paths.every(function (p) { return p.length === 2; });
     if (isFan) {
+      // Every branch leaves the same root, so the chevron is drawn once
+      // between the root and the branches instead of repeated per branch;
+      // each branch keeps only its own condition icons and label.
       html += '<div class="evo-fan"><div class="evo-row">' + evoStageHtml(root) + "</div>" +
-        '<div class="evo-fan-branches">';
-      paths.forEach(function (path) {
-        var leaf = path[1];
-        html += '<div class="evo-fan-branch"><span class="evo-arrow">' + evoArrowIconsHtml(leaf.via) +
-          EVO_ARROW_SVG + '<span class="evo-level">' + escapeHtml(evoArrowLabel(leaf.via)) + "</span></span>" +
-          evoStageHtml(leaf.id) + "</div>";
-      });
-      html += "</div></div></div>";
+        '<span class="evo-arrow evo-fan-arrow">' + EVO_ARROW_SVG + "</span>";
+      // Explicit row groups rather than one flex-wrap container: a wrap
+      // line break can't carry a border, and the rows need dividers.
+      for (var r = 0; r < paths.length; r += FAN_ROW_SIZE) {
+        html += '<div class="evo-fan-row">';
+        paths.slice(r, r + FAN_ROW_SIZE).forEach(function (path) {
+          var leaf = path[1];
+          html += '<div class="evo-fan-branch"><span class="evo-arrow">' + evoArrowIconsHtml(leaf.via) +
+            '<span class="evo-level">' + escapeHtml(evoArrowLabel(leaf.via)) + "</span></span>" +
+            evoStageHtml(leaf.id) + "</div>";
+        });
+        html += "</div>";
+      }
+      html += "</div></div>";
       return html;
     }
     paths.forEach(function (path) {

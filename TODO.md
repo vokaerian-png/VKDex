@@ -334,3 +334,46 @@ not commitments — the clearly Pokédex-core ones:
   `experience.csv` per-level exp table, and items (#8).
 
 Prune a `SCHEMA_GAPS` row when its field lands.
+
+---
+
+## 11. Detail-screen back navigation: single vs. double press
+
+User-noted 2026-09-05, from real-device chain-browsing (Eevee's
+evolutions): `backDetail()` pops one `detailHistory` entry per press, so
+returning to the National Dex after browsing several evolution/alt-forme
+stages deep needs one back-press per stage — tedious for a long chain.
+
+**Idea**: keep a single press/Escape/Backspace/mouse-back stepping back
+one stage at a time (current behavior), but a second rapid press (double-
+click/double-tap, within some timing threshold) jumps straight past the
+rest of `detailHistory` and closes the detail screen to the National Dex
+in one go. Needs a double-press timing mechanism layered onto the
+existing `backOut()`/`backDetail()` handlers, applied consistently across
+every trigger (Escape, Backspace, mouse button 3, the on-screen back
+arrow). Not committed — needs a design pass (exact timing threshold,
+whether it should apply to the drawer/settings/popup layers too or only
+the detail-history stack) before promotion to `PLAN.md`.
+
+---
+
+## 12. Evolution-line card: text descriptor for non-obvious criteria
+
+User-noted 2026-09-05, from a real screenshot of Tyrogue's fan-out: all 3
+branches show `Lv 20`, but the real determinant is a stat comparison at
+that level (Attack > Defense → Hitmonlee, Attack < Defense → Hitmonchan,
+Attack = Defense → Hitmontop) — the current schema (`method`/`level`/
+`item`/`moveType`) has no field for this, so the card doesn't convey it.
+Likely the same gap as `TODO.md` #10's `pokemon_evolution.csv` "13
+condition columns that collapse to `other`" (`relative_physical_stats` is
+almost certainly the exact column here).
+
+**Idea**: a plain-text descriptor line at the bottom of the Evolution Line
+card, below every sprite/row, for whichever lines need this kind of
+clarification beyond what an icon+label pair can convey. Needs: a new
+data field (e.g. a `note` string per `EVOLUTIONS` entry or per-edge) and a
+small render addition in `evolutionCardHtml()`. Scope which other species
+need it before committing — Tyrogue confirmed; candidates worth checking
+against the CSV: Toxel (nature-based split), Silcoon/Cascoon-style
+personality-value splits if any exist in the current 522-id range. Not
+committed — `PLAN.md` promotion needs that scope pass first.

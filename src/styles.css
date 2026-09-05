@@ -1361,18 +1361,36 @@ body {
   opacity: 0.8;
 }
 
-/* Fan-out layout: one root bubble, then every one-step branch below it
-   (Eevee, Tyrogue). Only the container structure and the arrow's direction
-   differ — the stage/arrow/icon pieces are the same ones .evo-row uses. */
-.evo-fan-branches {
+/* Fan-out layout (Eevee, Tyrogue): one root bubble, one shared arrow, then
+   the one-step branches chunked into explicit rows of FAN_ROW_SIZE (app.js).
+   Explicit rows rather than one flex-wrap container because a wrap-induced
+   line break can't carry a border, and each row needs a divider. The
+   stage/icon pieces are the same ones .evo-row uses. */
+.evo-fan-arrow {
+  /* No label under this one, so drop .evo-arrow's reserved label space. */
+  padding: 0;
+}
+
+.evo-fan-arrow > svg {
+  transform: rotate(90deg);
+  /* Rotation doesn't change the 20x14 layout box, so reserve the 6px the
+     now-20px-tall arrow gains vertically. */
+  margin: 3px 0;
+}
+
+.evo-fan-row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  /* No column gap: .evo-stage is a fixed 76px around a 60px sprite, so four
-     branches (304px) just fit the 308px card interior at the 360px base
-     width — Eevee reads 4+4 rather than 3+3+2. */
-  gap: 6px 0;
-  margin-top: 2px;
+  /* No column gap: .evo-stage is a fixed 76px around a 60px sprite. */
+  gap: 0;
+}
+
+/* Same divider convention as the Facts card's .detail-row — between rows
+   only, never after the last one. */
+.evo-fan-row + .evo-fan-row {
+  border-top: 1px solid var(--divider);
+  margin-top: 6px;
+  padding-top: 6px;
 }
 
 .evo-fan-branch {
@@ -1381,18 +1399,27 @@ body {
   align-items: center;
 }
 
-/* The arrow column is already vertical (icons / arrow / label), so pointing
-   it down is just rotating the chevron itself — never the condition icons
-   (heart, sun, moon), and .evo-arrow-item is an <img>, so it's excluded. */
+/* Reserve a uniform icon+label block above every branch's sprite so the
+   sprites in a row line up regardless of which condition icon (or none) the
+   branch shows: 18px item sprite + 2px gap + one 10px label line.
+   The min-height only covers a single-line icon row, so it alone can't
+   align a branch whose icons wrap to two lines (Sylveon: heart on line 1,
+   the "Fairy" type pill on line 2, ~45px total vs Espeon/Umbreon's ~32px).
+   flex:1 lets the arrow absorb the leftover height of its branch — which
+   .evo-fan-row's default align-items:stretch has already sized to the
+   tallest branch in *that* row — so flex-end bottom-anchors every branch's
+   label at the same y and the sprites below line up. Per-row rather than a
+   worst-case constant, so rows with no wrap (Tyrogue, Eevee's stone rows)
+   gain no dead space. */
 .evo-fan-branch .evo-arrow {
   padding: 0 2px;
+  min-height: 32px;
+  flex: 1 0 auto;
+  justify-content: flex-end;
 }
 
-.evo-fan-branch .evo-arrow > svg:not(.evo-cond-icon) {
-  transform: rotate(90deg);
-  /* Rotation doesn't change the 20x14 layout box, so reserve the 6px the
-     now-20px-tall arrow gains vertically. */
-  margin: 3px 0;
+.evo-fan-branch .evo-arrow-icons {
+  min-height: 18px;
 }
 
 /* Alt Formes module: reuses .evo-row/.evo-stage/.evo-sprite-wrap/.evo-name

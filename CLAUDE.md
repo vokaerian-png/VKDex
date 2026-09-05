@@ -42,7 +42,7 @@ centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
 and a Settings popup (§4).
 
-**Current version: 0.1.39** (§8 for the bump policy, `HISTORY.md` for the
+**Current version: 0.2.0** (§8 for the bump policy, `HISTORY.md` for the
 changelog).
 
 ---
@@ -95,6 +95,12 @@ throwaway check scripts, pre-edit backups — all under a folder named for
 the task, so a later cleanup can judge a whole folder at a glance.
 `HANDOFF.md`, `handoff/`, and `PokeAPI-master/` stay at `temp/` root —
 fixed infrastructure (§11b, the CSV pipeline), not task scratch.
+
+**Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
+`.gitignore` excludes `electron-app/` and `temp/` wholesale — the Electron
+wrapper and its build output have never been version-controlled; only
+`src/`, `tools/`, `.claude/`, and the memory bank are tracked. Releases
+(§7a) publish built `.exe`s as GitHub Release assets, not commits.
 
 ---
 
@@ -162,8 +168,7 @@ reading the `PokeAPI/pokeapi` clone at `temp/PokeAPI-master/data/v2/csv/`.
   any. **`--gaps`** lists CSV columns the schema lacks. First-run
   findings: `TODO.md` #10.
 - `tools/populate_hisui_species.js` is the separate id-list fork for the
-  Hisui/Orre standalone dexes. `tools/backfill_empty_movesets.js` /
-  `add_hidden_abilities.js` are superseded stubs awaiting manual deletion.
+  Hisui/Orre standalone dexes.
 
 `data/types.js`: `TYPE_CHART`, the full Gen 9 type-effectiveness chart
 (static, sparse — only non-1× pairs), keyed attacker→defender→multiplier.
@@ -364,11 +369,22 @@ sprite subfolder never needs a `copy-app.js` change.
     prior evolution still renders, with no forward arrow.
     - **Layout**: a root with **3+ branches, all single-step** (`paths`
       all length 2 — Eevee's 8, Tyrogue's 3) renders as a **fan-out**
-      (0.1.39): one root `.evo-stage` in its own row, then a wrapping
-      `.evo-fan-branches` row of arrow+leaf pairs below it, arrow rotated
-      90° via `.evo-fan-branch .evo-arrow > svg:not(.evo-cond-icon)`.
-      Everything else (a straight chain, or any branch with further
-      depth, e.g. Wurmple) keeps the original one-`.evo-row`-per-path
+      (0.1.39, refined 0.1.40): one root `.evo-stage` in its own row, then
+      **one shared `.evo-fan-arrow`** chevron (not per-branch — every
+      branch evolves from the same root), then explicit `.evo-fan-row`
+      groups of `FAN_ROW_SIZE` (3) branches each, `border-top: var(--divider)`
+      between rows (same convention as the Facts card's `.detail-row`).
+      Each `.evo-fan-branch` shows only its own condition icons + label
+      above its leaf bubble — no arrow of its own. `.evo-fan-branch
+      .evo-arrow-icons`/`.evo-arrow` carry fixed `min-height`s so sprites
+      line up within a row regardless of icon count (item sprite vs.
+      heart vs. pill vs. none); `.evo-arrow`'s `flex: 1 0 auto` (0.2.0)
+      additionally absorbs a row's per-branch height difference (`.evo-
+      fan-row`'s default `align-items: stretch` sizes every branch to the
+      row's tallest — e.g. Sylveon's icons wrap to 2 lines, Espeon/
+      Umbreon's don't) so `.evo-stage` still starts at the same y in every
+      branch. Everything else (a straight chain, or any branch with
+      further depth, e.g. Wurmple) keeps the original one-`.evo-row`-per-path
       layout — no shared-tree case beyond the fan exists.
     - **Methods**: `"level"`/`"stone"`/`"trade"`/`"held"`/`"other"`.
       `"held"` = an item required but held (not traded) while leveling
@@ -504,12 +520,35 @@ behavior."
 
 ---
 
+## 7a. Release pipeline
+
+`tools/release.js` (`node tools/release.js [--dry-run|--check]`; no new
+dependencies, plain script per the `tools/` convention; shipped 2026-09-05)
+builds and publishes a GitHub Release for the current version. Checks
+`src/data.js`'s `APP_VERSION` against `electron-app/package.json`'s
+`"version"` (hard error on mismatch), requires a clean tracked working tree
+and an unused `vX.Y.Z` tag (checked local + remote), extracts that
+version's `HISTORY.md` entry with its leading attribution paragraph
+stripped (whatever text follows the heading before the first real `- `/
+`**` content line), runs `npm run package:win`, zips the output via
+Windows' built-in `tar.exe` (no npm zip dependency), then tags, pushes, and
+runs `gh release create` with the zip and changelog as release notes.
+`--dry-run` builds/zips but stops before tagging/pushing/publishing;
+`--check` runs only the changelog-parser self-test (no git, no build, no
+network). Requires the GitHub CLI (`gh`) installed and authenticated via
+`gh auth login` — the script never handles a token directly. Never commits
+on the user's behalf, never force-overwrites an existing tag.
+
+---
+
 ## 8. Versioning policy
 
 Format **major.minor.regular** (e.g. `0.1.0`). Bump the last number by 1
 per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
+**0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
+version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.1.39.** Mirror on every bump, both together:
+**Current version: 0.2.0.** Mirror on every bump, both together:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`) and `electron-app/package.json`'s `"version"` (so
 the packaged `.exe`'s Windows file properties match).
@@ -544,17 +583,15 @@ in `HISTORY.md`, not here.
 
 Tested and confirmed working 2026-09-03.
 
-1. **Manual screenshot from the user (preferred)** — no permission dialog,
-   no setup, always works. Ask for this first.
-2. **Computer Use, scoped to `VKDex.exe`** (`mcp__computer-use__*`), only
-   if requested. **Must target the packaged build, never `npm start`**:
-   `request_access` only resolves formally-registered apps, so `["VKDex"]`/
-   `["Electron"]` fail; **`request_access(["VKDex.exe"])`** — the literal
-   filename at `electron-app/dist/VKDex-win32-x64/VKDex.exe` — resolves
-   (`tier: "full"`). One `request_access` call enables Computer Use for
-   the session, a second with the app name grants it. The window may be on
-   a non-primary monitor (`screenshot`/`switch_display`); then
-   `computer_batch` with `screenshot` (+`zoom`) is enough to look.
+1. **Manual screenshot from the user (preferred)** — no setup, always
+   works; ask for this first.
+2. **Computer Use, scoped to `VKDex.exe`**, only if requested. Target the
+   packaged build, never `npm start`: `request_access` needs the literal
+   filename **`VKDex.exe`** (`["VKDex"]`/`["Electron"]` don't resolve) —
+   one call enables Computer Use, a second with the filename grants
+   `tier: "full"`. Window may be on a non-primary monitor
+   (`screenshot`/`switch_display`); `computer_batch` with `screenshot`
+   (+`zoom`) is enough to look.
 
 ---
 
@@ -628,9 +665,8 @@ isn't subject to the mount's `EPERM` (§9) — it moves a file to Dropbox's
 own "Deleted files," recoverable. After writing a new archive,
 `list_folder` and `delete` the oldest until back at 10.
 
-**Superseded destination**: Google Drive (`/VKDex/backup_memory/`) still
-works — the known-good fallback if Dropbox is ever unavailable. Switched
-to local Dropbox 2026-09-03 (user-specified).
+**Fallback**: Google Drive (`/VKDex/backup_memory/`) still works if Dropbox
+is ever unavailable (switched to local Dropbox 2026-09-03, user-specified).
 
 ---
 
@@ -683,17 +719,17 @@ store is superseded as of 2026-09-02, kept only as a possibly-stale record).
 2. **Unnumbered (`###`) subsections live at the bottom of the file**,
    sorted after §11/§12 rather than nested under their parent section,
    which links down to them.
-3. **Target: ≤800 lines total, standing cap (re-affirmed 2026-09-05).**
-   Every future addition gets an evaluate-and-compress pass in the same
-   edit — look for restated context, superseded detail, or process
-   narration to cut before the addition pushes the file over budget, per
-   rule 4 below. **Only if the cap genuinely can't be held without cutting
-   load-bearing information**, raise it by **50 lines at a time** (not
-   100) and note the raise here — this no longer needs to be asked first,
-   just done and flagged to the user in the same response. Raised 500→800
-   in steps over 2026-09-04/05; pulled back toward ~600 by an `overlord`
-   condensing pass on 2026-09-05, then the cap itself reaffirmed at 800
-   the same day once further additions made ~600 impractical to hold.
+3. **Target: ≤850 lines total, standing cap (raised from 800, 2026-09-05,
+   for the release-pipeline addition — §7a).** Every future addition gets
+   an evaluate-and-compress pass in the same edit — look for restated
+   context, superseded detail, or process narration to cut before the
+   addition pushes the file over budget, per rule 4 below. **Only if the
+   cap genuinely can't be held without cutting load-bearing information**,
+   raise it by **50 lines at a time** (not 100) and note the raise here —
+   this no longer needs to be asked first, just done and flagged to the
+   user in the same response. Cap history: 500→800 in steps (2026-09-04/05,
+   briefly pulled to ~600 by a condensing pass, reaffirmed 800 same day),
+   →850 (2026-09-05, this addition).
 4. **Applies to every memory-bank edit** (`PLAN.md`/`TODO.md`/`HISTORY.md`
    too, and architect's routine §11 updates, not just `overlord`'s
    condensing passes — user-specified 2026-09-05): cut restated context,

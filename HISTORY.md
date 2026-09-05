@@ -8,7 +8,71 @@ only edits are exempt. The authoritative policy is `CLAUDE.md` §8 — this
 file is just the log, newest entry first. Current-state descriptions live
 in `CLAUDE.md`; entries here record what changed and why.
 
-**Current version: 0.1.39.**
+**Current version: 0.2.0.**
+
+---
+
+## 0.1.40 → 0.2.0 — Friendship-row sprite alignment fixed; user-directed minor bump
+
+`coder` only, user-spec'd from a real screenshot of 0.1.40's Eevee card.
+**Version jump is deliberate and user-directed** — not the usual "+1 to the
+last number"; 0.1.40's regular-number sequence isn't continued.
+
+- **Root cause**: row 2 (Espeon/Umbreon/Sylveon) misaligned because
+  Sylveon's icons (heart + "Fairy" type-pill) wrap to 2 lines inside
+  `.evo-arrow-icons`'s 46px `max-width` (heart 13px + gap 2px + pill
+  ~40.5px width > 46px), while Espeon/Umbreon's heart+sun/moon icons fit
+  one line — so Sylveon's real content (~44.9px) exceeded the 0.1.40
+  `min-height`s (32px), while Espeon/Umbreon's shorter content sat higher.
+- **Fix**: one CSS declaration, `.evo-fan-branch .evo-arrow { flex: 1 0 auto; }`.
+  `.evo-fan-row`'s default `align-items: stretch` already sizes every
+  branch in a row to that row's tallest; `flex:1` lets `.evo-arrow` (not
+  `.evo-stage`, which doesn't grow) absorb the leftover height, and the
+  pre-existing `justify-content: flex-end` bottom-anchors each branch's
+  icons/label at the same y, lining up the sprites below. Per-row, not a
+  global worst-case constant — rows with no wrap (Tyrogue, Eevee's stone
+  rows) gain no dead space, unlike the min-height-bump alternative
+  considered and rejected.
+- Verified: `node --check`; `styles.css` balanced (238/238); the 0.1.39
+  render harness re-run, 26/26 unchanged (markup untouched — CSS-only fix).
+- **Confirmed via user screenshot 2026-09-05**: row 2 (Espeon/Umbreon/
+  Sylveon) now aligns correctly; Tyrogue's single-row fan renders
+  correctly; rows 1/3 read pixel-identical to 0.1.40 — the stretch
+  mechanism's assumption held.
+
+---
+
+## 0.1.39 → 0.1.40 — Evolution fan-out: row dividers, sprite alignment, one shared arrow
+
+`coder` only, user-spec'd from a real screenshot of 0.1.39's Eevee card.
+
+- **One shared arrow, not one per branch**: every branch in the fan-out
+  layout evolves from the same root, so the per-branch down-chevron read as
+  redundant. Removed from every `.evo-fan-branch`; one `.evo-fan-arrow`
+  chevron now sits once between the root bubble and the branches. Each
+  branch keeps only its own condition icons + label.
+- **Explicit row groups with dividers**: branches now chunk into
+  `.evo-fan-row` divs of `FAN_ROW_SIZE = 3` (matches what actually renders;
+  a flex-wrap line break can't carry a CSS border, so explicit rows were
+  needed either way). `.evo-fan-row + .evo-fan-row` gets a `var(--divider)`
+  top border, same convention as the Facts card's `.detail-row`. Eevee
+  reads 3/3/2, Tyrogue one row of 3.
+- **Sprite alignment fix**: `.evo-fan-branch .evo-arrow-icons` gets
+  `min-height: 18px` (the tallest icon case, an item sprite) and
+  `.evo-fan-branch .evo-arrow` gets `min-height: 32px` — the second matters
+  because `evoArrowIconsHtml()` emits no wrapper at all when a branch has
+  no icons (Tyrogue's plain `Lv 20` branches), so without it a future
+  mixed icons/no-icons row would misalign again.
+- Verified: `node --check` on `src/app.js`; `styles.css` balanced
+  (238/238); `verify_region_data.js` PASS; `--audit` PASS; the 0.1.39
+  render harness (`temp/move-evo-fanout-0.1.39/check_evo_html.js`) extended
+  in place, 26/26 assertions pass (root-once, exactly one shared arrow,
+  row sizes [3,3,2]/[3], all move-trigger labels, non-fan species
+  untouched).
+- **Confirmed via user screenshot 2026-09-05**: shared arrow centering,
+  divider spacing, and "Friendship" wrapping all read correctly. Row 2
+  sprite alignment (Espeon/Umbreon vs. Sylveon) was still off — diagnosed
+  and fixed in 0.2.0.
 
 ---
 
@@ -42,8 +106,11 @@ in `CLAUDE.md`; entries here record what changed and why.
   scratch render harness (`temp/move-evo-fanout-0.1.39/check_evo_html.js`,
   19/19 assertions) confirmed Eevee/Tyrogue fan correctly with no repeated
   root bubble, and every other species' evolution card is unchanged.
-- Visual fit (Eevee's 4+4 wrap, the rotated arrow's centering, the wrapped
-  "Ancient Power" label) not yet confirmed on a real screenshot.
+- This entry's specific layout (4+4 wrap, per-branch rotated arrow) was
+  superseded by 0.1.40 before ever being screenshotted — see that entry
+  and 0.2.0 for the confirmed, current version. "Ancient Power"'s wrap
+  fix itself (unrelated to the fan layout) hasn't shown up in a
+  move-trigger screenshot yet.
 
 ---
 

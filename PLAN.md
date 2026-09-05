@@ -222,6 +222,28 @@ out-of-range).
 
 ---
 
-**Also shipped:** the "Visual polish pass (UI depth & interaction states)"
-in **0.1.5** — `HISTORY.md` for what was built, `CLAUDE.md`'s "Visual
-polish pass" subsection for the resulting tokens/structure.
+## Release pipeline — shipped 2026-09-05 (tools/-only, no version bump)
+
+User asked for a way to compile and publish builds to the GitHub repo
+(`origin` → `github.com/vokaerian-png/VKDex`) on command, with a changelog
+pulled from `HISTORY.md` minus its process-attribution lines. Two options
+were weighed: a local script using the `gh` CLI, vs. a GitHub Actions
+workflow triggered by a tag push. Chose the local script — this project
+already builds/tests Electron locally by design (`CLAUDE.md` §9, no
+Electron in any sandbox), so it matches the existing shape instead of
+standing up a parallel CI system for a one-developer project.
+
+Shipped as `tools/release.js` — full behavior in `CLAUDE.md` §7a. Must be
+run on the user's own machine: this session's sandbox can't reach GitHub
+at all (proxy hard-blocks github.com) and has no `gh` CLI or Electron
+binary, confirmed by direct test before building. One deviation from the
+original spec, coder-flagged and accepted: the changelog-parser's
+attribution-paragraph strip also treats a leading `**` line as real content
+(not just `- `), because one older `HISTORY.md` entry (0.1.29→0.1.30) opens
+with bold text instead of a bullet and has no attribution paragraph to
+strip — verified against all 41 entries, no real attribution paragraph
+starts with `**`.
+
+**Setup the user still owns**: install the GitHub CLI and run
+`gh auth login` once — the script checks for this and refuses to publish
+without it, but never handles the token itself.
