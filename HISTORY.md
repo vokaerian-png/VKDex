@@ -4,7 +4,7 @@ Versioning format is **major.minor.regular** (e.g. `0.1.0`): the last
 ("regular") number is bumped by 1 for every `src/`/`electron-app/` change,
 up to a max of 999, mirrored in `src/data.js` (`APP_VERSION`) and
 `electron-app/package.json` (`"version"`). Memory-bank-only and `tools/`-
-only edits are exempt. The authoritative policy is `CLAUDE.md` §8 — this
+only edits are exempt. The authoritative policy is `CLAUDE.md` §3 — this
 file is just the log, newest entry first. Current-state descriptions live
 in `CLAUDE.md`; entries here record what changed and why.
 
@@ -427,7 +427,7 @@ than stretching the singular one.
   species unaffected, singular-append path regression-checked);
   `verify_region_data.js` passes (522 entries, 617 moves, 168 abilities).
 - Reviewer step suspended from this pass on (user direction, token cost —
-  `CLAUDE.md` §10).
+  `CLAUDE.md` §5).
 
 ## 0.1.29 → 0.1.30 — Evolution-arrow mislabel correction; 16 Hisuian regional-form alt-formes; `hisuiOnly` search reversal
 
@@ -533,11 +533,11 @@ coder/reviewer pipeline run.
   tables; `HISUI_DEX_NUMBERS` diffed 1:1 against the source CSV; reviewer
   spot-checked all 29 species' data and 12 new moves against real game
   values.
-- Session halted here under the token-budget rule (`CLAUDE.md` §13).
+- Session halted here under the token-budget rule (`CLAUDE.md` §8).
 
 ## 0.1.26 → 0.1.27 — BST (base stat total) row on the Base Stats card
 
-First trial of the coder/reviewer pipeline (`CLAUDE.md` §10), run as
+First trial of the coder/reviewer pipeline (`CLAUDE.md` §5), run as
 `general-purpose`+`model:"opus"` in Cowork — passed, no process changes.
 
 - `src/app.js`: `statsTableAndRadarHtml()` (shared with per-forme cards, so
@@ -548,7 +548,7 @@ First trial of the coder/reviewer pipeline (`CLAUDE.md` §10), run as
   blocked) cross-checked all 493 `stats.js` entries' six stats
   individually against `pokemon_stats.csv` — 493/493 match. Reviewer
   confirmed the check fires on a mutated copy.
-- Reviewer caught `CLAUDE.md` §3 still describing 386 entries — fixed
+- Reviewer caught `SCOPE.md` §2 still describing 386 entries — fixed
   (memory-bank-only, no extra bump).
 - Verified: `node --check`; `JSON.parse` on `package.json`; all `STATS`
   and Deoxys forme entries carry all six keys.
@@ -606,7 +606,7 @@ its 213 already-populated species; the 29 net-new species deferred to
   `.altforms-popup-grid`/`.altforms-popup-item` (flexbox, 4 per row).
 - Deferred: Shellos/Gastrodon (#422/#423) — color-locked across the
   evolution boundary, no rule covers it (`TODO.md` #4).
-- `CLAUDE.md`: §9 trimmed to durable facts; new intro rule "stop and ask
+- `CLAUDE.md`: §4 trimmed to durable facts; new intro rule "stop and ask
   when genuinely uncertain."
 
 ## 0.1.23 → 0.1.24 — Cosmetic-form sprites restored; `0.png` wired as a missing-sprite fallback
@@ -984,7 +984,7 @@ screen (tap/Enter/Space on any cell, slides in from the right, back arrow
 or Escape closes; fact rows data-driven from `DETAIL_FIELDS`); persisted
 Favorites (localStorage `vkdex-favorites`, mirrored into IndexedDB `meta`/
 `favorites`); and a Search screen (name substring or exact dex number,
-tolerant of "#" and leading zeros). Full behavior: `CLAUDE.md` §5.
+tolerant of "#" and leading zeros). Full behavior: `SCOPE.md` §4.
 
 ## 0.1.2 → 0.1.3 — Explicit scrollbar styling
 

@@ -25,7 +25,7 @@ Kanto→Sinnoh population, the redesign itself) shipped 0.1.10-0.1.22 — see
 - **Next expansion (Unova onward) is a `PLAN.md` candidate, not open
   work.** The tooling being ready doesn't by itself commit to doing it.
 - **Running a pass** (`tools/populate_region.js`, unified 2026-09-05 —
-  `CLAUDE.md` §3 for the full mode list): target is a region
+  `SCOPE.md` §2 for the full mode list): target is a region
   (`unova|kalos|alola|galar|paldea`) or `--ids 494,531` for individual
   species. `--dry-run` to sanity-check the resolved ids/versions and which
   tables already hold each id → `--generate` to extract CSV data plus a
@@ -46,8 +46,8 @@ Kanto→Sinnoh population, the redesign itself) shipped 0.1.10-0.1.22 — see
 
 ## 3. Sprite bundle — RESOLVED (local files 0.1.20; `alt formes/` sorted 0.1.23/0.1.24)
 
-Sprites load from `src/data/sprites/` (`CLAUDE.md` §3). Kept here: the
-`alt formes/` sort method `CLAUDE.md` §3 points at, and one open idea.
+Sprites load from `src/data/sprites/` (`SCOPE.md` §2). Kept here: the
+`alt formes/` sort method `SCOPE.md` §2 points at, and one open idea.
 
 **Sort method** (script-driven off the PokeAPI CSVs; a hand-sorted first
 attempt was audited, found misspelled and shiny/normal-mismatched, and
@@ -87,7 +87,7 @@ scope — available if gender differences ever become a feature.
 Castform), 0.1.25 (rule 6 + Unown/Burmy/Cherrim/Arceus), 0.1.30/31
 (16 Hisuian regional forms), 0.1.34 (63 Mega Evolutions + the module
 re-cut as a segmented control).** The 9 rules below stay as the spec of
-record; `PLAN.md` records the confirmations, `CLAUDE.md` §5 the current
+record; `PLAN.md` records the confirmations, `SCOPE.md` §4 the current
 behavior. **Still open**: rule 5 (no real species needs it yet), the
 moves-card half of rule 9 (same), and Shellos/Gastrodon below.
 
@@ -214,7 +214,7 @@ reversal rather than as originally scoped (0.1.30) — `HISTORY.md` for each.
   0.1.30) are still optional.
 - ~~5 evolution edges still missing~~ — **fixed 0.1.39**: a "knows a
   specific move" trigger now exists (`item: "tm-normal"` + `move` field on
-  the stone-edge shape, `CLAUDE.md` §5) — Aipom/Lickitung/Tangela/Yanma/
+  the stone-edge shape, `SCOPE.md` §4) — Aipom/Lickitung/Tangela/Yanma/
   Piloswine populated, plus 2 more found the same way (Bonsly/Mime Jr.,
   user-confirmed). `tools/populate_region.js` classifies `known_move_id`
   into this shape too, so a future `--refresh` won't revert it.
@@ -244,7 +244,7 @@ reversal rather than as originally scoped (0.1.30) — `HISTORY.md` for each.
 
 `src/data/sprites/items/` holds 898 flat item sprites plus 7 subfolders of
 PokeAPI historical/version-specific art (berries/dream-world/gen3/gen5/
-gen8/gen9/underground) — `CLAUDE.md` §3. First code use landed 0.1.33 (the
+gen8/gen9/underground) — `SCOPE.md` §2. First code use landed 0.1.33 (the
 Evolution Line's arrow condition icons, `HISTORY.md`), but those are
 decorative (`alt=""`, not tappable) since there's still no `ITEMS_DATA`
 table to name items from. A future item feature (held items, TM/berry
@@ -289,7 +289,7 @@ display, favorites export. Follow-ups that fell out of the pass:
 
 ## 10. CSV audit baseline (2026-09-05) — data drift found, and schema gaps
 
-`node tools/populate_region.js --audit` (`CLAUDE.md` §3) ran against all
+`node tools/populate_region.js --audit` (`SCOPE.md` §2) ran against all
 522 ids the day it landed: **123 discrepancies**. `coder` (reviewed by
 `reviewer`) resolved everything fixable in 0.1.36; the Farfetch'd call
 came back in 0.1.37; the 5 empty movesets were fixed in 0.1.38; the last 5

@@ -19,7 +19,7 @@ Hoenn/Sinnoh complete (ids 1-493); Unova/Kalos/Alola hold only the 22
 Hisui-roster natives added in 0.1.28; Galar/Paldea empty ("coming soon").
 
 A region pass is purely data work — `tools/populate_region.js` (usage in
-`TODO.md` #2, current-state description in `CLAUDE.md` §3) writes all the
+`TODO.md` #2, current-state description in `SCOPE.md` §2) writes all the
 per-Pokémon files, and no `app.js` change has ever been needed for a new
 region (region bar, `renderGrid()`, filtering, search, favorites and the
 detail screen all key off `REGIONS`/the data).
@@ -33,7 +33,7 @@ detail screen all key off `REGIONS`/the data).
 
 Settled 2026-09-03 via the interactive `vkdex-detail-mockup` Cowork
 artifact (four review rounds); built in `app.js` in 0.1.18 (`HISTORY.md`),
-current behavior in `CLAUDE.md` §5. Standing decisions that still govern
+current behavior in `SCOPE.md` §4. Standing decisions that still govern
 the screen:
 
 - **Layout, top to bottom**: Picture card (normal + shiny sprites, dex
@@ -79,7 +79,7 @@ the screen:
 ## Alt Formes wiring for the detail screen — shipped 0.1.21 / 0.1.25 / 0.1.30-31 / 0.1.34 (Megas)
 
 Promoted from `TODO.md` #4 on 2026-09-04; that entry's 9 rules remain the
-spec of record, `CLAUDE.md` §5 the current behavior. Decisions locked in
+spec of record, `SCOPE.md` §4 the current behavior. Decisions locked in
 on promotion and since:
 
 - **Ability-tag wording**: any non-Mega/Gmax forme tags an appended
@@ -137,14 +137,14 @@ Phased by user direction on cost: mechanism + Orre in full (136 members)
 species (22 Unova/Kalos/Alola natives + 7 Legends: Arceus originals) as
 their own region-pass-sized follow-up in 0.1.28, which also settled how
 those attach to the National Dex (real `region` for the 22, `hisuiOnly:
-true` for the 7 — `CLAUDE.md` §3). Open data question on 2 dropped Orre
+true` for the 7 — `SCOPE.md` §2). Open data question on 2 dropped Orre
 rows: `TODO.md` #6.
 
 ---
 
 ## Data storage architecture — shipped 0.1.10
 
-Decided 2026-09-03; still the governing shape (`CLAUDE.md` §2/§3).
+Decided 2026-09-03; still the governing shape (`CLAUDE.md` §1, `SCOPE.md` §2).
 
 - **Plain JavaScript, not JSON/CSV/Excel.** The app runs over `file://`
   (a browser tab or the packaged Electron app) with no server and no build
@@ -194,7 +194,7 @@ Committed 2026-09-03. Still the rule for any future region pass:
 
 **Tool of record: `tools/populate_region.js`** — one pipeline for whole
 regions *and* individual species, adding or editing, every write ending in
-`verify_region_data.js` (`CLAUDE.md` §3 for the modes; `TODO.md` #2 for
+`verify_region_data.js` (`SCOPE.md` §2 for the modes; `TODO.md` #2 for
 the step-by-step). Consolidated 2026-09-04 from `gen_region_data.js` +
 `assemble_region_data.js`; unified 2026-09-05 (no version bump — `tools/`
 is exempt) to absorb the id-list, table-scoped and in-place cases that had
@@ -212,7 +212,7 @@ scratch copy: byte-identical apart from id-sorted edge order and the
 `TODO.md` #7 edges. Evolution triggers with no level/friendship condition
 now classify as `"other"` (blank arrow) rather than a wrong `"level"`,
 **except a `known_move_id` trigger** (0.1.39), which classifies into the
-app's "knows a specific move" shape instead (`CLAUDE.md` §5) — `TODO.md`
+app's "knows a specific move" shape instead (`SCOPE.md` §4) — `TODO.md`
 #7's edges are why this exception exists. **Excluded by design**: Hisui/
 Orre — `populate_hisui_species.js` stays separate.
 
@@ -229,11 +229,11 @@ User asked for a way to compile and publish builds to the GitHub repo
 pulled from `HISTORY.md` minus its process-attribution lines. Two options
 were weighed: a local script using the `gh` CLI, vs. a GitHub Actions
 workflow triggered by a tag push. Chose the local script — this project
-already builds/tests Electron locally by design (`CLAUDE.md` §9, no
+already builds/tests Electron locally by design (`CLAUDE.md` §4, no
 Electron in any sandbox), so it matches the existing shape instead of
 standing up a parallel CI system for a one-developer project.
 
-Shipped as `tools/release.js` — full behavior in `CLAUDE.md` §7a. Must be
+Shipped as `tools/release.js` — full behavior in `CLAUDE.md` §2a. Must be
 run on the user's own machine: this session's sandbox can't reach GitHub
 at all (proxy hard-blocks github.com) and has no `gh` CLI or Electron
 binary, confirmed by direct test before building. One deviation from the
