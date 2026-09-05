@@ -3,11 +3,103 @@
 Committed future work. Only definitive statements about planned functionality
 belong here; ideas still under consideration live in `TODO.md`.
 
-**As of 0.1.35 every entry below has shipped.** Each stays because it
-records standing design decisions that still govern its feature — the
-per-version detail lives in `HISTORY.md`, the current-state description in
-`CLAUDE.md`. There is no open commitment right now; the next candidate
-(Kalos onward) is still a `TODO.md` item.
+Most entries below have shipped and stay because they record standing
+design decisions that still govern their feature — the per-version detail
+lives in `HISTORY.md`, the current-state description in `CLAUDE.md`. **One
+open commitment right now: the Tauri migration, below** — shell swap and
+native resize lock shipped and user-confirmed (0.2.16); multi-target
+release script + Android prep shipped unverified (0.2.17); first local
+Android round and Electron cleanup remain.
+
+---
+
+## Electron → Tauri migration — committed 2026-09-05; shell + resize lock confirmed working (0.2.16)
+
+Promoted from `TODO.md` #1. User-approved switch away from Electron:
+Tauri 2.x builds desktop **and** mobile from one project — something
+Electron can't do at all — which the planned mobile version + separate
+pc/mac version needs, including the mobile codebase's own ability to
+compile to desktop (Electron's current trick).
+
+**Why Tauri over the alternatives checked**: Capacitor's desktop story is
+thin (usually just pairs with Electron anyway, doesn't collapse to one
+pipeline); React Native means rewriting the UI off plain HTML/CSS/JS
+entirely, the biggest rewrite of any option. Tauri is the only one that
+keeps VKDex's current zero-build-step frontend (`frontendDist` points
+straight at a source folder, no bundler) and covers both targets from one
+project. Numbers favor it hard for a mobile install specifically: ~3-10MB
+installer vs Electron's ~120-200MB, ~380ms cold start vs ~1.4s, ~42MB idle
+RAM vs ~168MB.
+
+**Real, accepted costs**:
+- Tauri renders through the OS's own webview, not a bundled Chromium —
+  WebView2 (Windows, Chromium-based, low risk here) vs WKWebView (macOS,
+  Safari engine) vs WebKitGTK (Linux). `SCOPE.md` §6-8's hand-tuned CSS
+  (`scrollbar-width`/`-color`, `mask-image` scroll fades) is the actual
+  exposure — a macOS build will need its own visual QA pass, not just "it
+  compiled."
+- **iOS packaging needs a Mac + full Xcode no matter which framework** — an
+  Apple platform rule, not a Tauri gap; the dev machine is Windows, so this
+  is an unavoidable capability gap either way. Android has no such
+  restriction.
+- Tauri's own docs call mobile "functional, less mature than desktop" —
+  fine for a data-browser app with no exotic native-API needs, but the
+  newer half of the framework.
+
+**Divergent desktop UI (user intends a genuinely different window/UI for
+pc/mac, not just the phone frame scaled up)**: not a Tauri problem — it's a
+content-agnostic shell like Electron, no opinion on what HTML it loads.
+Tauri has a purpose-built mechanism for exactly this: per-platform config
+files (`tauri.macos.conf.json`/`.windows.`/`.linux.` vs `.android.`/
+`.ios.`) can each point `frontendDist` at a **different** frontend folder —
+desktop targets load one UI tree, mobile targets load another, same Rust
+core/project (gotcha: a platform file *replaces* each field it touches
+rather than merging, so it must repeat every setting it wants kept).
+Implied structure for when that work starts: keep `src/data/*.js` (already
+presentation-agnostic, normalized) as the one shared source; today's `src/`
+phone-mockup stays the mobile frontend; a new `src-desktop/` becomes the
+desktop one. Electron has no equivalent since it never had a mobile target
+to diverge from — a genuine structural point in Tauri's favor, not just
+parity. **Not started** — this pass was shell-swap only.
+
+**Shipped and confirmed**: `src-tauri/` project + root `package.json`,
+`is-electron`→`is-tauri` detection swap (0.2.11, `coder`); a native
+Win32-subclass live resize/aspect-ratio lock (0.2.14, `overlord` — Tauri
+has no equivalent of Electron's `setAspectRatio`), corner-jitter fix
+(0.2.16, `overlord`) — **user-tested on real hardware, both rounds clean
+after the fix, "problem solved."** Full detail: `HISTORY.md` 0.2.11-0.2.16,
+`CLAUDE.md` §2b. `electron-app/` has a known transitional regression (the
+phone-frame scale-as-a-unit behavior breaks under a *new* Electron rebuild,
+since `window.isTauri` never fires there — `CLAUDE.md` §2), accepted since
+Electron's being retired.
+
+**Release tooling + Android first pass — shipped 0.2.17 (`overlord`),
+unverified**: `tools/release.js` now builds Windows (`tauri build`),
+Android (`tauri android build --debug`, debug-signed by user choice) or
+both, with a mandatory confirmation gate, and publishes every artifact on
+one GitHub Release (`CLAUDE.md` §2a). The crate got the `lib.rs`/`main.rs`
+mobile-entry-point split Tauri's Android project requires (`CLAUDE.md`
+§2b). **Still open, in order**: (1) the next local `npm run dev`/`build`
+proves the crate split didn't break desktop; (2) Android has never been
+initialized — the user runs `src-tauri/ANDROID_SETUP.md` once (Android
+Studio, SDK/NDK/JDK, env vars, `rustup target add`, `npx tauri android
+init`) before any Android build can even start, and that first round is
+expected to need its own fix pass like 0.2.12-0.2.16 did for desktop;
+(3) the first real `node tools/release.js` run, ideally `--dry-run` first;
+(4) then Electron cleanup — `electron-app/` and its dead references across
+the memory bank. macOS/Linux still have no live resize lock (JS fallback
+only) — not blocking, `TODO.md` #1. iOS stays out of scope (Mac + Xcode).
+
+**Not yet decided**: the `identifier` in `tauri.conf.json`
+(`com.vokaerian.vkdex`) is a placeholder — becomes the permanent OS-level
+app identity and the Android application id `tauri android init` bakes
+into `gen/android/`, worth settling **before** that init runs. **The app
+icon is also a placeholder** (0.2.12 — architect generated a Poké Ball
+motif in VKDex's colors after a real build blocked on `icons/icon.ico`
+being mandatory, `HISTORY.md` 0.2.12) — swap for real branding whenever it
+exists. **Android release signing** is a real future decision, not made:
+debug-signed APKs can't go to the Play Store and every later update must
+carry the same key as the first install — `TODO.md` #1.
 
 ---
 
@@ -236,8 +328,10 @@ already builds/tests Electron locally by design (`CLAUDE.md` §4, no
 Electron in any sandbox), so it matches the existing shape instead of
 standing up a parallel CI system for a one-developer project.
 
-Shipped as `tools/release.js` — full behavior in `CLAUDE.md` §2a. Must be
-run on the user's own machine: this session's sandbox can't reach GitHub
+Shipped as `tools/release.js` — full behavior in `CLAUDE.md` §2a
+(**rewritten 0.2.17** for Tauri's Windows/Android/both targets with a
+confirmation gate; the Tauri entry above tracks what's still unverified).
+Must be run on the user's own machine: this session's sandbox can't reach GitHub
 at all (proxy hard-blocks github.com) and has no `gh` CLI or Electron
 binary, confirmed by direct test before building. One deviation from the
 original spec, coder-flagged and accepted: the changelog-parser's

@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Core permissions, plus the window-resize call app.js uses to hand-hold the 360:800 aspect ratio Tauri has no native lock for.",
+  "windows": ["main"],
+  "permissions": ["core:default", "core:window:allow-set-size"]
+}

@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>VKDex</title>
 <script>
-  // Mark the document as running inside the packaged Electron app (vs. a
+  // Mark the document as running inside the packaged Tauri app (vs. a
   // plain browser tab) as early as possible, before first paint, so
   // styles.css can scale the phone frame up with the window there without
   // affecting the fixed-size mockup look when this is just opened in a
-  // regular browser.
-  if (navigator.userAgent.indexOf("Electron") !== -1) {
-    document.documentElement.classList.add("is-electron");
+  // regular browser. window.isTauri is Tauri 2's own global, set before
+  // any page script runs — no userAgent sniff needed (the Electron-era
+  // check this replaces had to use one).
+  if (window.isTauri) {
+    document.documentElement.classList.add("is-tauri");
   }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">

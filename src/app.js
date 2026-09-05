@@ -7,19 +7,19 @@
   var edgeZone = document.getElementById("edgeZone");
   var menuHeader = document.querySelector(".menu-header");
 
-  // --- Electron window scaling ---
-  // In the packaged app (see index.html's early "is-electron" check), the
+  // --- Tauri window scaling ---
+  // In the packaged app (see index.html's early "is-tauri" check), the
   // window's minimum size is locked to the phone frame's native 360x800
-  // and can only grow from there (main.js). --phone-scale (read by
-  // styles.css's `.is-electron .phone { transform: scale(...) }`) is what
-  // actually grows the frame to match: 1 at the 360x800 minimum, growing
-  // as the window does. Plain-browser usage never sets "is-electron", so
-  // phoneScale stays 1 and none of this changes anything there.
+  // and can only grow from there (src-tauri/tauri.conf.json). --phone-scale
+  // (read by styles.css's `.is-tauri .phone { transform: scale(...) }`) is
+  // what actually grows the frame to match: 1 at the 360x800 minimum,
+  // growing as the window does. Plain-browser usage never sets "is-tauri",
+  // so phoneScale stays 1 and none of this changes anything there.
   var PHONE_BASE_WIDTH = 360;
   var PHONE_BASE_HEIGHT = 800;
   var phoneScale = 1;
 
-  if (document.documentElement.classList.contains("is-electron")) {
+  if (document.documentElement.classList.contains("is-tauri")) {
     var scaleRafId = null;
     var applyPhoneScale = function () {
       scaleRafId = null;
@@ -31,6 +31,73 @@
       if (scaleRafId !== null) return;
       scaleRafId = requestAnimationFrame(applyPhoneScale);
     });
+
+    // --- 360:800 aspect-ratio lock ---
+    // Electron gave this for free (win.setAspectRatio, electron-app/main.js);
+    // Tauri has no equivalent window option, so hold the ratio by hand.
+    // Once a resize has settled, derive the dimension the user dragged LESS
+    // from the one they dragged more (so pulling a bottom edge grows the
+    // window instead of snapping straight back) and correct via Tauri's
+    // window API. Only fires when actually off-ratio, and the size it sets
+    // is on-ratio by construction, so the resize event that follows falls
+    // through the epsilon check instead of looping.
+    // Needs `core:window:allow-set-size` (src-tauri/capabilities/default.json)
+    // and the withGlobalTauri config flag that exposes window.__TAURI__.
+    // ponytail: post-drag correction, not a live per-frame lock — a live one
+    // would need the dragged edge, which Tauri doesn't report.
+    var tauriApi = window.__TAURI__;
+    var tauriWindow = tauriApi && tauriApi.window;
+    // LogicalSize lives in the dpi module in Tauri 2; window re-exports it.
+    var LogicalSize = tauriWindow && ((tauriApi.dpi && tauriApi.dpi.LogicalSize) || tauriWindow.LogicalSize);
+
+    if (tauriWindow && LogicalSize) {
+      var ASPECT = PHONE_BASE_WIDTH / PHONE_BASE_HEIGHT;
+      var ASPECT_EPSILON = 2; // px of drift tolerated before correcting
+      // 400ms, not 150: a border drag on Windows runs a modal OS resize loop,
+      // and setSize() called inside it can silently no-op (tauri-apps/tauri
+      // #7303). A real drag rarely pauses this long without ending, so the
+      // longer quiet period keeps most corrections outside that loop.
+      var SETTLE_MS = 400;
+      var COOLDOWN_MS = 600; // no second correction until this one has landed
+      var lastW = window.innerWidth;
+      var lastH = window.innerHeight;
+      var ratioTimer = null;
+      var correcting = false;
+
+      var lockAspect = function () {
+        if (correcting) return; // its own resize events are still arriving
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var byHeight = Math.abs(h - lastH) > Math.abs(w - lastW);
+        var targetW = byHeight ? Math.round(h * ASPECT) : w;
+        var targetH = byHeight ? h : Math.round(w / ASPECT);
+        lastW = targetW;
+        lastH = targetH;
+        if (Math.abs(targetW - w) <= ASPECT_EPSILON && Math.abs(targetH - h) <= ASPECT_EPSILON) return;
+        // ponytail: plain cooldown, not a settle-detector — it doubles as the
+        // unstick fallback if the expected follow-up resize never arrives.
+        correcting = true;
+        setTimeout(function () {
+          correcting = false;
+          clearTimeout(ratioTimer);
+          ratioTimer = setTimeout(lockAspect, SETTLE_MS); // retry anything skipped
+        }, COOLDOWN_MS);
+        var warn = function (err) {
+          console.warn("VKDex aspect-lock: setSize failed", err);
+        };
+        try {
+          var done = tauriWindow.getCurrentWindow().setSize(new LogicalSize(targetW, targetH));
+          if (done && done.catch) done.catch(warn);
+        } catch (err) {
+          warn(err);
+        }
+      };
+
+      window.addEventListener("resize", function () {
+        clearTimeout(ratioTimer);
+        ratioTimer = setTimeout(lockAspect, SETTLE_MS);
+      });
+    }
   }
 
   // The drawer must never stick out further than the "VKDex" header above it.
@@ -93,6 +160,12 @@
     clearInlineStyles();
     menu.classList.remove("open");
     overlay.classList.remove("active");
+    // Chromium refuses aria-hidden="true" on a container whose descendant
+    // still holds focus ("Blocked aria-hidden on an element because its
+    // descendant retained focus") — the drawer icon that triggered the close
+    // is inside `menu`, so drop focus first. Same guard at the other three
+    // aria-hidden close sites (closeDetailPopup/closeDetail/closeSettings).
+    if (menu.contains(document.activeElement)) document.activeElement.blur();
     menu.setAttribute("aria-hidden", "true");
   }
 
@@ -123,7 +196,7 @@
 
   // Pointer coordinates are real screen pixels, but the drag math below
   // (and MENU_WIDTH) works in the phone frame's own unscaled pixels — so
-  // when phoneScale isn't 1 (see Electron window scaling above), divide
+  // when phoneScale isn't 1 (see Tauri window scaling above), divide
   // every clientX by it first to keep the drag tracking 1:1 with the
   // cursor regardless of how large the window has been scaled up.
   function logicalX(clientX) {
@@ -206,8 +279,8 @@
     return String(regionId);
   }
 
-  // Local files under src/data/sprites/ (bundled with the app, both in dev
-  // and in the packaged Electron build via copy-app.js), relative to
+  // Local files under src/data/sprites/ (bundled with the app — Tauri
+  // embeds all of ../src via frontendDist, no copy step), relative to
   // index.html the same way the data/*.js <script> tags already are — no
   // network dependency, so no offline cache is needed for sprites anymore
   // (see the removed "Offline cache" section, 0.1.20).
@@ -1448,6 +1521,8 @@
 
   function closeDetailPopup() {
     detailPopupBackdrop.classList.remove("active");
+    // #detailPopupClose lives inside the popup — blur before hiding it.
+    if (detailPopup.contains(document.activeElement)) document.activeElement.blur();
     detailPopup.setAttribute("aria-hidden", "true");
   }
 
@@ -1656,6 +1731,8 @@
     detailHistory = [];
     closeDetailPopup();
     detailScreen.classList.remove("active");
+    // #detailBack (and every focusable row) lives inside the detail screen.
+    if (detailScreen.contains(document.activeElement)) document.activeElement.blur();
     detailScreen.setAttribute("aria-hidden", "true");
   }
 
@@ -1745,6 +1822,8 @@
   function closeSettings() {
     settingsBackdrop.classList.remove("active");
     settingsWindow.classList.remove("active");
+    // #settingsClose and every settings control live inside the window.
+    if (settingsWindow.contains(document.activeElement)) document.activeElement.blur();
     settingsWindow.setAttribute("aria-hidden", "true");
   }
 

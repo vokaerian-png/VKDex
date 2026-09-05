@@ -74,14 +74,14 @@ body {
   user-select: none;
 }
 
-/* In the packaged Electron app, the window's minimum size is locked to the
+/* In the packaged Tauri app, the window's minimum size is locked to the
    phone frame's own native 360x800, and app.js drives --phone-scale up
    from 1 as the window grows past that (via a resize listener) — this is
    what actually scales the frame up, keeping every pixel inside it (text,
    icons, borders, gaps) in the exact same proportion rather than just
-   reflowing into more whitespace. Plain-browser usage (no "is-electron"
+   reflowing into more whitespace. Plain-browser usage (no "is-tauri"
    class) is untouched — still the fixed-size mockup. */
-.is-electron .phone {
+.is-tauri .phone {
   transform: scale(var(--phone-scale, 1));
   transform-origin: center center;
 }
@@ -361,7 +361,7 @@ body {
   padding: 14px 2px 14px;
   /* Thin, rounded, semi-transparent scrollbar instead of the browser's
      default (Firefox/modern Chromium via scrollbar-width/-color; older
-     Chromium, including the packaged Electron app's bundled version, via
+     engines, including the WebView2 the packaged app runs on, via
      the ::-webkit-scrollbar-* rules below) — keeps the look identical
      between a plain browser tab and the packaged app rather than relying
      on each engine's own default styling. */

@@ -33,6 +33,7 @@ Cowork shell — the exact `/sessions/<name>/` prefix varies per session).
 ```
 VKDex/
   CLAUDE.md  SCOPE.md  PLAN.md  TODO.md  HISTORY.md   <- memory bank
+  package.json                                <- Tauri CLI/API devDeps, dev/build scripts
   src/                                       <- THE APP. All app edits go here.
     index.html
     styles.css
@@ -60,13 +61,16 @@ VKDex/
       sprites/         (local sprite files — SCOPE.md §2)
         pokemon/       (per-Pokemon sprites: normal/shiny/alt formes)
         items/         (item sprites)
-  electron-app/                              <- portable Windows build wrapper
+  electron-app/                              <- portable Windows build wrapper (being retired, §2b)
     main.js  copy-app.js  package.json  README.md
     app/         (generated copy of ../src, refreshed by copy-app.js)
     dist/        (electron-packager output)
-  tools/                                     <- Node data-pipeline scripts (SCOPE.md §2)
-  temp/                                      <- HANDOFF.md, handoff/, PokeAPI clone, SCRAP.md,
-                                                  clean_temp.sh, <task-slug>/ scratch
+  src-tauri/                                 <- Tauri build shell (§2b), replacing electron-app/
+    Cargo.toml  build.rs  tauri.conf.json  capabilities/default.json  icons/  ANDROID_SETUP.md
+    src/lib.rs  src/main.rs  src/resize_lock.rs  <- lib.rs: the app (shared desktop/mobile entry); main.rs: desktop shim; resize_lock.rs: native WM_SIZING lock (Windows)
+  releases/                                  <- tools/release.js output (windows/, android/), gitignored (§2a)
+  tools/                                     <- Node data-pipeline scripts (SCOPE.md §2) + release.js (§2a)
+  temp/                                      <- HANDOFF.md, handoff/, PokeAPI clone, SCRAP.md, clean_temp.sh, <task-slug>/ scratch
 ```
 
 **Any edit to the app goes to `src/`, never the project root** (the app
@@ -80,75 +84,112 @@ the task, so a later cleanup can judge a whole folder at a glance.
 `HANDOFF.md`, `handoff/`, and `PokeAPI-master/` stay at `temp/` root —
 fixed infrastructure (§6b, the CSV pipeline), not task scratch.
 
-**`SCRAP.md`/`clean_temp.sh`** (`temp/` root, fixed infrastructure like the
-above — shipped 2026-09-05): a user-run cleanup script that deletes
-whatever `SCRAP.md` lists. **Whenever a task finishes with a `temp/` file
-or folder it generated or used** — a task-slug scratch folder, a one-off
-source file like a hand-supplied CSV/txt — architect checks whether it's
-now safe to delete (the same diligence used to populate the list
-originally: cross-check `HISTORY.md`/`TODO.md`/`PLAN.md` for a live
-citation to a specific path inside it before listing it) and appends it to
-`SCRAP.md` if so, noting why in one line. Don't list anything still cited
-as "kept for reference" elsewhere in the memory bank. The user reviews and
-runs the script on their own machine at their own discretion — architect
-never runs it or deletes the files itself (§4's `EPERM` restriction would
-block it anyway). **Every time `SCRAP.md` is opened for this check**, also
-confirm each already-listed entry still exists on disk — the user runs
-`clean_temp.sh` independently, so a prior entry may already be gone — and
-remove any that aren't, keeping the list matched to reality.
+**`SCRAP.md`/`clean_temp.sh`** (`temp/` root, fixed infrastructure; shipped
+2026-09-05): a user-run cleanup script deleting whatever `SCRAP.md` lists.
+**Whenever a task finishes with a `temp/` file or folder it generated or
+used** (task-slug scratch folder, hand-supplied CSV/txt), architect checks
+it's safe to delete — no live citation to a path inside it in `HISTORY.md`/
+`TODO.md`/`PLAN.md`, not cited as "kept for reference" — and appends it with
+a one-line reason. Architect never runs the script or deletes files (§4
+`EPERM`); the user does, at their discretion. **Every time `SCRAP.md` is
+opened**, also drop entries that no longer exist on disk.
 
 **Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
-`.gitignore` excludes `electron-app/` and `temp/` wholesale — the Electron
-wrapper and its build output have never been version-controlled; only
-`src/`, `tools/`, `.claude/`, and the memory bank are tracked. Releases
-(§2a) publish built `.exe`s as GitHub Release assets, not commits.
+`.gitignore` excludes `electron-app/`, `temp/`, `/releases/`, `/node_modules`,
+`/src-tauri/target` and `/src-tauri/gen` (build output, regenerable).
+**Intent: `src-tauri/` source is tracked** — Tauri is the long-term
+mobile+desktop build system, not a wrapper afterthought like Electron. **As
+of 0.2.17 it isn't**: an uncommitted trailing `src-tauri/` line in
+`.gitignore` ignores the whole folder (`git ls-files src-tauri` is empty) —
+flagged by `overlord`, needs the user's call before the next commit.
+Releases (§2a) publish built artifacts as GitHub Release assets, not commits.
 
 ---
 
 ## 2. The portable Electron build
 
-`electron-app/` (sibling to `src/`) packages the app into a no-install
-portable `.exe` via `electron-packager`: `npm run package:win` →
-`dist/VKDex-win32-x64/VKDex.exe`.
+`electron-app/` packages the app into a no-install portable `.exe` via
+`electron-packager` (`npm run package:win` → `dist/VKDex-win32-x64/
+VKDex.exe`). `main.js` loads `../src/index.html` live in dev (`npm start`)
+or the self-contained `./app/` copy that `copy-app.js` refreshes from
+`../src` right before packaging (explicit `dataFiles` list for `data/*.js`
+— **extend it for every new data file** — plus `data/sprites/`); it nulls
+the application menu so no default accelerators (Ctrl+R) are live.
+Electron's postinstall needed npm's `allowScripts` approval (`package.json`).
 
-`main.js` loads `../src/index.html` live in dev (`npm start`), or a
-self-contained `./app/` copy once packaged; it sets no application menu
-(`Menu.setApplicationMenu(null)`) so no default accelerators (Ctrl+R etc.)
-are live. `copy-app.js` refreshes that copy from `../src` right before
-packaging (its explicit `dataFiles` list for `data/*.js` — **extend it for
-every new data file** — plus `data/sprites/` recursively), so dev needs no
-copy step. Electron's postinstall needed npm's allowScripts approval,
-recorded in `package.json`'s `allowScripts` field.
-
-Chosen over **Tauri** (needs a Rust toolchain — revisit once more
-finalized, `TODO.md` #1) and a bare browser-launcher script (not a real
-app). Window resize/scaling: `SCOPE.md` §8, "Window resize / scaling
-behavior."
+**Being retired in favor of Tauri** (§2b) — kept until Electron cleanup
+lands (`PLAN.md`); release tooling no longer touches it (§2a). Window
+resize/scaling: `SCOPE.md` §8. **Known regression as of 0.2.11**: a *new*
+Electron rebuild from current `src/` loses the phone-frame scale-as-a-unit
+behavior (`window.isTauri` never true under Electron) — window still locks
+to ratio, inner content stops scaling. Already-built `electron-app/dist/`
+exes unaffected; not being fixed.
 
 ---
 
-## 2a. Release pipeline
+## 2a. Release pipeline — multi-target (0.2.17)
 
-`tools/release.js` (`node tools/release.js [--dry-run|--check]`; no new
-dependencies, plain script per the `tools/` convention; shipped 2026-09-05)
-builds and publishes a GitHub Release for the current version. Checks
-`src/data.js`'s `APP_VERSION` against `electron-app/package.json`'s
-`"version"` (hard error on mismatch), requires a clean tracked working tree
-and an unused `vX.Y.Z` tag (checked local + remote), extracts that
-version's `HISTORY.md` entry with its leading attribution paragraph
-stripped (whatever text follows the heading before the first real `- `/
-`**` content line), runs `npm run package:win`, zips the output via
-Windows' built-in `tar.exe` (no npm zip dependency), then tags, pushes, and
-runs `gh release create` with the zip and changelog as release notes.
-`--dry-run` builds/zips but stops before tagging/pushing/publishing;
-`--check` runs only the changelog-parser self-test (no git, no build, no
-network). Requires the GitHub CLI (`gh`) installed and authenticated via
-`gh auth login` — the script never handles a token directly. Never commits
-on the user's behalf, never force-overwrites an existing tag.
+`tools/release.js` (`node tools/release.js [--target=android|windows|both]
+[--dry-run|--check]`; plain script, stdlib only) builds and publishes one
+GitHub Release for the current version. Order: `APP_VERSION` must equal
+`src-tauri/tauri.conf.json`'s and `Cargo.toml`'s versions (hard error
+naming the mismatch); clean tracked working tree; unused `vX.Y.Z` tag
+(local + remote); that version's `HISTORY.md` entry with its leading
+attribution paragraph stripped (text before the first `- `/`**` line);
+then a target menu (1 Android / 2 Windows / 3 Both — `--target=` skips
+it), a printed summary, and a **mandatory `Proceed? [y/N]` on every run,
+dry-run included** — anything but y/yes aborts with nothing built or
+touched. `--dry-run` only skips the final tag/push/publish. Non-dry runs
+check `gh` is installed and authenticated (`gh auth login`; the script
+never handles a token) before building.
+
+**Windows**: `npm run build` (`tauri build`, release profile) →
+`src-tauri/target/release/vkdex.exe` (case-insensitive match; Tauri may
+name it `VKDex.exe`) → zipped via Windows' `tar.exe -a` to
+`releases/windows/VKDex-vX.Y.Z-windows-x64.zip`. **Android**: refuses
+(pointing at `src-tauri/ANDROID_SETUP.md`) unless `src-tauri/gen/android/
+app` exists, else `npm run build:android` (`tauri android build --debug`,
+debug keystore) → first `.apk` under `gen/android/app/build/outputs/apk/`
+(universal preferred; lists the tree if none) → copied to
+`releases/android/VKDex-vX.Y.Z-android-debug.apk`. **Both** builds
+sequentially; every artifact goes on one `gh release create` with the
+changelog as notes. Never commits, never force-overwrites a tag. `--check`
+runs the self-tests only (changelog parser, target parsing, APK search).
+**Untested against a real Tauri build** (0.2.17: scratch-repo end-to-end
+only, `HISTORY.md`).
 
 **`release.bat`** (repo root, double-click launcher): `cd`s to the repo
-root regardless of launch context, runs `node tools\release.js` with any
-passed flags, then `pause`s so the window stays open to read the output.
+root, runs `node tools\release.js` with any passed flags, then `pause`s.
+
+---
+
+## 2b. Tauri scaffold — 0.2.11-0.2.17: desktop confirmed, mobile entry point prepped
+
+Replacing Electron (`TODO.md` #1 — Tauri 2.x builds desktop **and** mobile
+from one project); like-for-like shell swap only, no new desktop UI yet.
+
+`src-tauri/` + a new root `package.json` (`@tauri-apps/cli`+`api`, `npm run
+dev`/`build`). `frontendDist: "../src"` — Tauri embeds `src/` directly at
+build time, no `copy-app.js`-equivalent copy step. Shell-detection:
+`window.isTauri` global, not a `userAgent` sniff; hook renamed
+`is-electron` → `is-tauri`. Detail: `HISTORY.md` 0.2.11-0.2.14,
+`temp/handoff/2026-09-05-101708-tauri-scaffold.md`.
+
+**Build history** (`HISTORY.md` 0.2.12-0.2.16): `icons/icon.ico` is
+mandatory for `tauri-build`'s Windows step; `npm run dev` ran and the app
+worked from 0.2.13; the JS settle-after-drag `lockAspect` (upstream Tauri
+#7303) was replaced by a true live lock, `src-tauri/src/resize_lock.rs`
+(Windows-only; subclasses the window proc, rewrites the rect on every
+`WM_SIZING` step; corner rule stateless since 0.2.16 — smallest 360:800
+rect containing the proposal, because Windows proposes from the cursor's
+absolute position, not our last rect). **User-confirmed on real hardware
+(0.2.16): "Fix worked, problem solved."** `lockAspect` stays as a no-op
+safety net. **0.2.17 split the crate for mobile**: `src/lib.rs` = the app
+(`pub fn run()` under `#[cfg_attr(mobile, tauri::mobile_entry_point)]`,
+owns `mod resize_lock`), `src/main.rs` = desktop shim, `Cargo.toml` `[lib]
+vkdex_lib` staticlib/cdylib/rlib — **uncompiled** until the next local
+build; Android itself still needs `ANDROID_SETUP.md`'s one-time steps on
+the user's machine (§2a). Electron cleanup remains (`PLAN.md`).
 
 ---
 
@@ -159,10 +200,12 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.10.** Mirror on every bump, both together:
+**Current version: 0.2.17.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
-Settings, `#appVersion`) and `electron-app/package.json`'s `"version"` (so
-the packaged `.exe`'s Windows file properties match).
+Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
+and `src-tauri/Cargo.toml`. **`electron-app/package.json`'s `"version"` is
+no longer mirrored as of 0.2.11** (§2b) — frozen at 0.2.10 until Electron
+is formally retired, don't update it.
 
 **Exempt:** memory-bank-only edits (`CLAUDE.md`/`SCOPE.md`/`PLAN.md`/
 `TODO.md`/`HISTORY.md`) and `tools/`-only changes don't trigger a bump —
@@ -216,8 +259,8 @@ preference.**
   output into the memory bank. **Does not write to `src/`** — no
   `index.html`/`styles.css`/`app.js`/`data.js`/`data/*.js`, direct or via
   Bash. **Exception: `src/data/sprites/`** (asset curation, not code).
-  `electron-app/`/`tools/` aren't covered, though routing real code
-  changes there through `coder` too is good practice.
+  `electron-app/`/`src-tauri/`/`tools/` aren't covered, though routing real
+  code changes there through `coder` too is good practice.
 - **`coder`** (`.claude/agents/coder.md`, Opus,
   Read/Write/Edit/Bash/Grep/Glob) does **all code-related tasks** —
   everything architect is restricted from, full stop. Implements exactly
@@ -363,16 +406,17 @@ User-specified 2026-09-03; conciseness addendum 2026-09-04.
    instead — see the equivalent call made for `SCOPE.md`'s CSS-pitfalls/
    visual-polish/window-resize sections (2026-09-05, promoted from
    unnumbered to §6-§8 there).
-3. **Target: ≤400 lines total, standing cap** (reset 2026-09-05 from 850,
-   after the `SCOPE.md` split dropped this file's real content — the old
-   500→800→850 cap history is no longer load-bearing detail). `SCOPE.md`
-   carries its own independent standing cap of **≤600 lines**. Both raise
-   **50 lines at a time** if genuinely needed, noted here (this file) or
-   in `SCOPE.md`'s own intro (that file) when it happens — flagged to the
-   user in the same response, no longer needs asking first. Every future
-   addition gets an evaluate-and-compress pass in the same edit — look for
-   restated context, superseded detail, or process narration to cut before
-   the addition pushes either file over budget, per rule 4 below.
+3. **Target: ≤450 lines total, standing cap** (raised from 400, 2026-09-05,
+   the §2b Tauri-scaffold addition — flagged here per the raise rule below).
+   `SCOPE.md` carries its own independent standing cap of **≤650 lines**
+   (also already raised once, same day, for unrelated reasons — see that
+   file's own intro). Both raise **50 lines at a time** if genuinely
+   needed, noted here (this file) or in `SCOPE.md`'s own intro (that file)
+   when it happens — flagged to the user in the same response, no longer
+   needs asking first. Every future addition gets an evaluate-and-compress
+   pass in the same edit — look for restated context, superseded detail, or
+   process narration to cut before the addition pushes either file over
+   budget, per rule 4 below.
 4. **Applies to every memory-bank edit** (`SCOPE.md`/`PLAN.md`/`TODO.md`/
    `HISTORY.md` too, and architect's routine §6 updates, not just
    `overlord`'s condensing passes — user-specified 2026-09-05): cut

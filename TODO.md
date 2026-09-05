@@ -8,11 +8,26 @@ keep their number (they're cross-referenced from `CLAUDE.md`/`PLAN.md`/
 
 ---
 
-## 1. Revisit Tauri instead of Electron, later
+## 1. Revisit Tauri instead of Electron — RESOLVED, migration confirmed working (0.2.16)
 
-Electron was picked because it works **right now**, with no Rust toolchain.
-Tauri produces a smaller, leaner build — worth reconsidering **once the app
-itself is more finalized**. Not a commitment.
+Re-evaluated and user-approved 2026-09-05 (Tauri 2.x now covers desktop +
+mobile from one project, which Electron can't do at all — the evaluation
+itself, alternatives checked, and the divergent-desktop-UI mechanism are
+recorded in `PLAN.md`'s Tauri migration entry, not duplicated here). Shell
+swap (0.2.11) + native Windows live resize lock (0.2.14, corner-jitter fix
+0.2.16) both **user-confirmed working** on real hardware. macOS/Linux have
+no live lock yet, JS fallback only. Remaining work (first local Android
+round, Electron cleanup) tracked as a commitment in `PLAN.md`, not here.
+
+**Android release keystore** (new 0.2.17, uncommitted): APKs are
+debug-signed for now (Gradle's auto `debug.keystore`, sideload-only). A
+permanent release key means generating a keystore once, keeping it backed
+up forever (an update signed with a different key won't install over the
+old one; Play Store needs it too), and wiring it into `gen/android/`'s
+Gradle signing config — Tauri's docs cover the Gradle side. Decide when
+distribution beyond sideloading matters; `--debug` in `package.json`'s
+`build:android` and the `-android-debug.apk` name in `release.js` are the
+two places that change.
 
 ---
 

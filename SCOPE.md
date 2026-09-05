@@ -32,12 +32,14 @@ on a real screenshot).
 ## 1. What VKDex is
 
 A Pokédex app: plain HTML/CSS/JS (no framework, runs in any browser) plus a
-thin Electron wrapper packaging it as a portable Windows `.exe`.
+native packaging shell for a portable Windows `.exe` — Electron today,
+**being replaced by Tauri** (unverified pending the user's own machine,
+`CLAUDE.md` §2b) since Tauri can also target mobile from the same project.
 
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3). **Current version: 0.2.10** (`CLAUDE.md` §3 for
+and a Settings popup (§3). **Current version: 0.2.11** (`CLAUDE.md` §3 for
 the bump policy, `HISTORY.md` for the changelog).
 
 ---
@@ -601,25 +603,44 @@ Bundled local sprites (§2) made the IndexedDB blob cache redundant; the
 
 ---
 
-## 8. Window resize / scaling behavior (`CLAUDE.md` §2)
+## 8. Window resize / scaling behavior (`CLAUDE.md` §2/§2b)
 
-Resizable with a locked 360:800 aspect ratio (`win.setAspectRatio`),
-`minWidth`/`minHeight` exactly 360/800. Growing past that scales the
-**entire phone frame as a unit** (not padding around a fixed frame):
+Resizable, locked to a 360:800 aspect ratio, `minWidth`/`minHeight` exactly
+360/800. Growing past that scales the **entire phone frame as a unit** (not
+padding around a fixed frame) — this half is shell-agnostic and unchanged:
 
-- `index.html` adds an `is-electron` class to `<html>` before first paint
-  if `navigator.userAgent` contains "Electron"; plain-browser use is
-  untouched.
-- `styles.css`: `.is-electron .phone { transform:
-  scale(var(--phone-scale, 1)); transform-origin: center center; }`.
+- `styles.css`: `.is-tauri .phone { transform: scale(var(--phone-scale, 1));
+  transform-origin: center center; }` (renamed from `.is-electron` in
+  0.2.11 — same rule).
 - `app.js` computes `phoneScale = Math.min(innerWidth/360,
   innerHeight/800)`, sets `--phone-scale` on load and on resize
-  (rAF-throttled). `useContentSize:true` + the locked ratio means scale is
-  exactly 1 at minimum and grows evenly — never letterboxed.
+  (rAF-throttled). Scale is exactly 1 at minimum and grows evenly — never
+  letterboxed, as long as the OS window itself stays on-ratio (below).
 - **Coordinate-space fix**: drag math is in the phone's logical pixels but
   `e.clientX` is post-scale screen pixels — `logicalX(clientX) { return
   clientX / phoneScale; }` at every `e.clientX` read in the drag handlers.
-  No-op outside Electron (`phoneScale` stays 1).
+  No-op in a plain browser tab or under a shell that isn't detected
+  (`phoneScale` stays 1).
+
+**Locking the OS window to the ratio is shell-specific — Electron and Tauri
+diverge here:**
+
+- **Electron** (`electron-app/`, still the only confirmed-working build):
+  `is-electron` via a `navigator.userAgent` sniff; the window locked
+  natively via `main.js`'s `win.setAspectRatio()`.
+- **Tauri** (`src-tauri/`, **confirmed** — `CLAUDE.md` §2b): `is-tauri` via
+  the `window.isTauri` global. A live lock via `src-tauri/src/
+  resize_lock.rs`, Windows-only — subclasses the native window proc and
+  rewrites the proposed rect on every `WM_SIZING` step, keeping the window
+  on-ratio *during* the drag; the corner rule is a pure function of the
+  proposal (0.2.16, fixed a flip-flop bug). `app.js`'s `lockAspect`
+  (settle-after-drag via `window.__TAURI__`'s `set_size`/`LogicalSize`)
+  stays as a no-op safety net for platforms without the native lock. Full
+  detail: `HISTORY.md` 0.2.11-0.2.16.
+- **Known Electron regression, transitional**: `window.isTauri` is never
+  true under Electron, so a *new* Electron rebuild no longer scales the
+  inner content to fill (the window itself still resizes on-ratio).
+  Already-built exes unaffected; accepted until Electron's retired.
 
 ---
 

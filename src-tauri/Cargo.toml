@@ -1,0 +1,28 @@
+[package]
+name = "vkdex"
+version = "0.2.17"
+description = "VKDex - a portable Pokedex app"
+edition = "2021"
+rust-version = "1.77.2"
+
+# src/lib.rs holds the app; src/main.rs is the desktop shim. staticlib/cdylib
+# are what the generated Android (cdylib) and iOS (staticlib) projects link.
+[lib]
+name = "vkdex_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+
+# src/resize_lock.rs — native WM_SIZING aspect lock. Versions match what
+# tauri already pulls in (Cargo.lock: windows 0.61.3, raw-window-handle 0.6.2).
+[target.'cfg(target_os = "windows")'.dependencies]
+raw-window-handle = "0.6"
+windows = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }

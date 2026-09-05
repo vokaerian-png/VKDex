@@ -1,16 +1,356 @@
 # VKDex — Version History
 
 Versioning format is **major.minor.regular** (e.g. `0.1.0`): the last
-("regular") number is bumped by 1 for every `src/`/`electron-app/` change,
-up to a max of 999, mirrored in `src/data.js` (`APP_VERSION`) and
-`electron-app/package.json` (`"version"`). Memory-bank-only and `tools/`-
-only edits are exempt. The authoritative policy is `CLAUDE.md` §3 — this
-file is just the log, newest entry first. Current-state descriptions live
-in `CLAUDE.md`; entries here record what changed and why.
+("regular") number is bumped by 1 for every `src/`/`electron-app/`/
+`src-tauri/` change, up to a max of 999, mirrored across `src/data.js`
+(`APP_VERSION`), root `package.json`, `src-tauri/tauri.conf.json` and
+`src-tauri/Cargo.toml` (`electron-app/package.json` no longer mirrored as
+of 0.2.11 — `CLAUDE.md` §3). Memory-bank-only and `tools/`-only edits are
+exempt. The authoritative policy is `CLAUDE.md` §3 — this file is just the
+log, newest entry first. Current-state descriptions live in `CLAUDE.md`;
+entries here record what changed and why.
 
-**Current version: 0.2.10.**
+**Current version: 0.2.17.**
 
 ---
+
+## 0.2.16 → 0.2.17 — Release script retargeted for Tauri (Android / Windows / Both) + mobile entry-point split (`overlord`)
+
+`overlord` (fable), user-invoked. Spec'd by architect after two user
+answers: scope Android's never-done first-time setup in as *instructions*
+(not executed — no SDK anywhere reachable), and debug-signed APKs only.
+
+- **`src-tauri/` mobile entry point** (the `create-tauri-app` shape): new
+  `src/lib.rs` holds `mod resize_lock` (still `cfg(windows)`) and the
+  `tauri::Builder` block as `pub fn run()` under `#[cfg_attr(mobile,
+  tauri::mobile_entry_point)]`, menu-null/resize-lock comments moved with
+  it; `src/main.rs` is a shim calling `vkdex_lib::run()`; `Cargo.toml`
+  gains `[lib] name = "vkdex_lib"`, `crate-type = ["staticlib", "cdylib",
+  "rlib"]`. Windows-only deps block untouched. **Not compiled** (no Rust
+  here) — next local `npm run dev`/`build` is the real check that desktop
+  still works.
+- **`tools/release.js` rewrite** (`CLAUDE.md` §2a for the current
+  behavior): version check now `APP_VERSION` vs `tauri.conf.json` *and*
+  `Cargo.toml` (Electron comparison gone); after the unchanged git/tag/
+  changelog checks, a 3-way target menu (`--target=android|windows|both`
+  skips it), a printed summary, and a mandatory `Proceed? [y/N]` on every
+  run, dry-run included. Windows = `npm run build` → `src-tauri/target/
+  release/vkdex.exe` (matched case-insensitively — Tauri may name it
+  `VKDex.exe`) → `releases/windows/VKDex-vX-windows-x64.zip`. Android =
+  refuses without `src-tauri/gen/android/app`, else `npm run
+  build:android` → recursive search of `gen/android/app/build/outputs/apk/`
+  (prefers a `universal` APK, lists the tree if none) → copied to
+  `releases/android/VKDex-vX-android-debug.apk`. "Both" builds
+  sequentially and publishes both files on one `gh release create`. Prompts
+  read readline's async line iterator, not `rl.question()` — the latter
+  silently drops a piped second line and exits 0 (found by test). `gh`
+  check moved before the build (fail-fast). `--check` now also asserts
+  `parseTarget`/`walkFiles`/`pickApk` on a throwaway Gradle-shaped tree.
+  Verified: `node --check`, `--check` all green, and a full scratch-repo
+  end-to-end (fake exe/APK, local bare origin, stub npm scripts): abort,
+  garbage input, bad `--target`, dry-run "both", and the three failure
+  branches all behave.
+- **Root `package.json`**: `"build:android": "tauri android build
+  --debug"`. **`.gitignore`**: `/releases/`. **New
+  `src-tauri/ANDROID_SETUP.md`**: Android Studio → SDK/NDK/JDK → env vars →
+  `rustup target add` (4 Android targets — a step the spec lacked) → `npx
+  tauri android init` → build; debug-keystore note.
+- **Flagged, not changed**: `.gitignore`'s uncommitted trailing
+  `src-tauri/` line ignores the whole Tauri folder (`git ls-files
+  src-tauri` is empty), contradicting `CLAUDE.md` §1 "src-tauri/ is
+  tracked" and making the `/src-tauri/target`/`gen` lines dead — not in
+  this spec, needs the user's call. `--debug` flag / APK subpath are
+  assumptions until the first real Android build.
+  Handoff: `temp/handoff/2026-09-05-120133-release-multi-target.md`.
+
+---
+
+## 0.2.15 → 0.2.16 — Resize lock: stateless corner rule (`overlord`)
+
+**Local test round 1 of the native lock (0.2.15, user):** "Dragging from
+the side of the window, or the bottom of the window resulted in
+continuous, smooth resizing. Dragging from corner resulted in extreme
+jittering. No errors logged." So the subclass compiles, installs, and
+Windows honors the rewritten rect — only the corner branch was wrong.
+
+**Diagnosis:** `fit_rect` picked the corner's driving axis by comparing the
+proposed size against the live client size (`GetClientRect`) — the
+"larger per-step delta" rule inherited from `lockAspect`, valid only if
+Windows re-based each `WM_SIZING` proposal on the rect we returned last
+time (the module's ReactOS-derived assumption). Windows instead proposes
+each step from the cursor's absolute position while the live window
+carries our on-ratio rect, so the off-axis difference is huge every step
+and the axis flip-flopped (400x889 → 365x812 → ... on a bottom-right
+drag). Under the re-basing model an axis flip can only change growth
+*speed*, never direction — the extreme jitter alone rules that model out.
+The stash-the-last-returned-size fix pre-flagged in 0.2.14's handoff would
+not have helped: with DragFullWindows on, `GetClientRect` *already* equals
+the last returned rect, so a stash holds the same value and jitters the
+same way.
+
+**Fix (`src-tauri/src/resize_lock.rs`):** the corner rule is now a pure
+function of the proposal — `prop_h * ASPECT > prop_w` → height drives,
+else width — i.e. the smallest 360:800 client rect containing the
+proposal, which keeps the cursor on one of the two moving edges and is
+continuous in the cursor position. `fit_rect` loses its `cur_client`
+parameter (chrome measurement still uses `GetClientRect`); no static
+state, nothing to reset at drag boundaries, no `WM_ENTERSIZEMOVE`
+handling. Module doc rewritten to state the real Windows behavior. Tests:
+3 updated to the new signature, corner test gains a taller-than-ratio
+case, plus a new `corner_axis_is_stable_across_cursor_steps` regression
+test (two successive cursor positions; the old rule yields 365x812 on the
+second, the new one 402x893). Verified: arithmetic hand-checked and
+replicated in Node; brace balance; `windows` 0.61 type shapes unchanged
+from 0.2.14's cross-check. **Not compiled** (no Rust toolchain in-sandbox,
+`CLAUDE.md` §4) — the user's next `npm run dev` is local test round 2.
+Untouched: `src/app.js` `lockAspect`, `tauri.conf.json`, `main.rs`.
+
+**Local test round 2 (user, same day):** "Fix worked, problem solved."
+Native resize lock is confirmed on real hardware — the Tauri migration's
+last open item. `electron-app/` is no longer the fallback for this
+specifically (`CLAUDE.md` §2b/§2); next session retargets `tools/
+release.js` for Tauri, then cleans up Electron (`PLAN.md`).
+Handoff: `temp/handoff/2026-09-05-113806-corner-jitter-fix.md`.
+
+---
+
+## 0.2.14 → 0.2.15 — aria-hidden focus-retention fix (`coder`)
+
+Fixed 4 real Chromium console warnings ("Blocked aria-hidden on an element
+because its descendant retained focus"), unrelated to the Tauri migration:
+`closeMenu`/`closeDetailPopup`/`closeDetail`/`closeSettings` in `src/app.js`
+each set `aria-hidden="true"` on a container while a focusable child inside
+it (the button that triggered the close) still held focus. Fix: a 1-line
+guard before each `setAttribute` — `if (CONTAINER.contains(document.
+activeElement)) document.activeElement.blur();` — inline at all 4 sites, no
+shared helper (they share no common close path). Verified: `node --check`
+clean, plus a re-runnable structural check confirming all 4 sites are
+guarded (`temp/handoff/2026-09-05-112620-aria-hidden-fix.md`). **Needs
+local retest** — no browser in-sandbox to confirm the warnings are actually
+gone. Flagged, not acted on: `src-tauri/Cargo.lock` still reads `vkdex
+0.2.13` (stale since before this pass; `cargo` rewrites it on next build).
+
+---
+
+## 0.2.13 → 0.2.14 — Native Tauri resize lock (WM_SIZING), unconfirmed
+
+User chose a true live aspect lock over keeping 0.2.13's settle-then-snap
+JS fallback, knowing it needs native code that can't be compiled in the
+Cowork sandbox (no Rust toolchain, `CLAUDE.md` §4) and will take at least
+one local compile-fix round. `overlord` (fable) built it:
+
+- **New `src-tauri/src/resize_lock.rs`** (Windows-only, `#[cfg(target_os =
+  "windows")]` on the `mod` and the setup call): gets the main window's
+  HWND via `raw_window_handle::HasWindowHandle` on
+  `app.get_webview_window("main")`, then `SetWindowSubclass`es it. The
+  subclass proc handles `WM_SIZING` — the message Windows sends with the
+  *proposed* outer rect on every mouse step of a border drag — and rewrites
+  that rect before Windows applies it, so the window is on-ratio *during*
+  the drag, the way Electron's `setAspectRatio` felt. Everything else goes
+  to `DefSubclassProc`. Chrome size (`GetWindowRect` minus
+  `GetClientRect`) is re-measured per message, so DPI/monitor changes need
+  nothing special. Edge drags: the dragged axis drives, the other is
+  derived; corners: whichever axis this mouse step moved more (width on a
+  tie — same rule as `app.js`'s `lockAspect`; Windows re-bases each step
+  on the rect handed back last time, so per-step comparison is correct).
+  Only the dragged edge(s) move; client size floored at 360x800. The pure
+  `fit_rect` logic has three `#[cfg(test)]` cases (`cargo test` in
+  `src-tauri/`, Windows).
+- **`src-tauri/Cargo.toml`**: Windows-only deps `raw-window-handle = "0.6"`
+  and `windows = "0.61"` (features `Win32_Foundation`, `Win32_UI_Shell`,
+  `Win32_UI_WindowsAndMessaging`) — both versions already in `Cargo.lock`
+  via tauri, so no new crate sources.
+- **`src-tauri/src/main.rs`**: `.setup()` calling `resize_lock::install`.
+- **Untouched, deliberately**: `src/app.js`'s `lockAspect` stays as a
+  defense-in-depth no-op (window already on-ratio when its `resize` fires,
+  so the epsilon check passes); `tauri.conf.json`, capabilities, icons.
+- **Unverified** — no `cargo` here. Expected first-compile-error causes and
+  the local test procedure: `temp/handoff/2026-09-05-111229-native-resize-lock.md`.
+
+---
+
+## 0.2.12 → 0.2.13 — Resize-lock hardened against jitter (still unconfirmed live)
+
+First real `npm run dev` session (user's machine) got further than the
+icon fix — the app **ran and functioned correctly** — but window resizing
+was "erratic and at times seemingly random." Diagnosis, via the user's own
+DevTools check plus research, ruled out the two simplest causes: no
+console errors, and `window.__TAURI__.dpi.LogicalSize` **is** defined (so
+the resize-lock code is actually running, not silently no-op'ing on a
+missing API). A user screenshot mid-drag showed the window off-ratio with
+the `.phone` frame letterboxed inside it — **expected**, by design, since
+correction only fires after a quiet period, not live during the drag (no
+way to intercept an in-progress native resize from Tauri's JS API the way
+Electron's option did). The likelier real cause: a filed upstream Tauri
+bug (tauri-apps/tauri #7303) where calling `setSize()` while the OS's
+native border-drag modal loop is still active can silently no-op, no error
+thrown — very plausible to trigger with the original 150ms quiet-period
+debounce during a deliberate, slower drag.
+
+`coder` (opus, medium effort) hardened `app.js`'s `lockAspect` (the
+correction-on-settle function only — `byHeight`'s axis logic, the separate
+`--phone-scale` transform code, `tauri.conf.json`, and everything Rust-side
+are untouched):
+- **Debounce 150ms → 400ms** (`SETTLE_MS`) — a real drag gesture rarely
+  pauses that long without releasing or continuing, cutting the odds of a
+  correction landing mid-drag (the #7303 trigger condition).
+- **Re-entrancy guard**: a `correcting` flag blocks an overlapping
+  `setSize()` while a prior one's resize-event hasn't settled yet, cleared
+  by a flat 600ms timer that also re-arms the debounce so a suppressed
+  correction retries rather than being lost.
+- **`setSize` failures now visible**: wrapped in `try/catch` + `.catch()`
+  (Tauri 2's JS API returns `Promise<void>`), `console.warn`s on failure
+  instead of failing silently — if tauri#7303 is really the cause, it'll
+  now show up in DevTools instead of just looking random.
+- **Considered and rejected**: gating correction on the DOM `mouseup`
+  event (only correct after confirmed button release). Couldn't confirm
+  from research that WebView2's content reliably receives `mouseup` after
+  a *native, non-client-area* border-drag resize — that gesture is
+  captured by the OS window chrome, outside normal webview input handling.
+  Too risky to ship blind; if wrong, corrections would just stop firing
+  entirely, worse than today. Not implemented.
+- Verified: `node --check`; a `vm` harness
+  (`temp/2026-09-05-tauri-resize-hardening/check_aspect_lock.js`, kept —
+  cited here) brace-extracts the **real** `lockAspect` code from `app.js`
+  and drives it against a fake clock + mocked `setSize`: a resize burst
+  produces exactly one correction, not before 400ms; a second burst inside
+  the 600ms cooldown adds zero extra `setSize` calls and the suppressed
+  correction retries and lands on-ratio; a rejected and a
+  synchronously-throwing `setSize` both warn as expected.
+- **This reduces the odds of the jitter, doesn't guarantee eliminating
+  it** — the harness proves the JS state machine is now correct; it can't
+  test Windows' actual modal resize loop. No Rust toolchain/`cargo`/
+  WebView2 in this sandbox, same standing limitation as every Tauri
+  dispatch. **User needs to rebuild and re-test** — fast drags, slow
+  drags, deliberate mid-drag pauses, all edges/corners — and watch
+  DevTools for the new `setSize failed` warning, which would confirm
+  tauri#7303 specifically rather than leaving it a guess.
+
+---
+
+## 0.2.11 → 0.2.12 — Real build error fixed: `icons/icon.ico` is mandatory, not optional
+
+First real user test of `npm run dev` (their machine, Rust/VS Build Tools
+installed per the handoff's setup steps) hit a hard `cargo` build failure:
+`` failed to compile `icons/icon.ico` into a Windows Resource file during
+tauri-build: `icons/icon.ico` not found ``. **Corrects 0.2.11's research**:
+the "icons are optional, Tauri falls back to a default if `bundle.icon` is
+omitted" finding was true for the *bundler/installer* step, but wrong for
+`tauri-build`'s Windows resource-compile step in `build.rs` — that one
+unconditionally needs `icons/icon.ico` on disk at the conventional path,
+regardless of `bundle.icon`/`bundle.active`. A real, common Tauri Windows
+gotcha (confirmed via multiple upstream GitHub issues), not specific to
+this project's setup.
+
+Architect fixed directly (not routed through `coder` — placeholder-asset
+generation, not logic, and the user was actively blocked mid-test):
+generated a 1024x1024 Poké Ball-style placeholder icon (`PIL`, VKDex's own
+palette — dex-panel red, white, black band, `--accent` blue center) via the
+sandbox's Python/ImageMagick, then `convert`'s `icon:auto-resize` to a
+proper multi-layer `icons/icon.ico` (256/128/64/48/32/24/16px layers,
+satisfies the Windows Resource Compiler's requirement) plus the
+conventional `32x32.png`/`128x128.png`/`128x128@2x.png`/`icon.png`. All
+five land at `src-tauri/icons/`. `tauri.conf.json`'s `bundle.icon` now
+lists all four (`bundle.active` stays `false`, so this doesn't newly
+enable an installer). **Still a placeholder** — `PLAN.md`'s Tauri entry
+already flags the `identifier` as needing a real decision; this icon is
+the same kind of stand-in, swap it out whenever real branding exists.
+No `icon.icns` (macOS) — no way to generate one from this Linux sandbox
+(needs `iconutil`, Mac-only); not needed for a Windows build.
+- Verified: `python3`/ImageMagick's `identify` confirms the `.ico` carries
+  7 layers at the expected sizes; `node --check` on `data.js`;
+  `tauri.conf.json`/`package.json` still valid JSON; version mirrors
+  0.2.12 across all four files. **Could not verify**: whether `cargo`
+  actually accepts this specific `.ico` — no Rust toolchain here, same
+  standing limitation. Ask the user to re-run `npm run dev`/`npm run build`
+  and report back.
+
+---
+
+## 0.2.10 → 0.2.11 — Tauri scaffold added alongside Electron (unverified — needs the user's machine)
+
+`coder` (Cowork `general-purpose`+opus, high effort), user-directed switch
+away from Electron (`TODO.md` #1: Tauri 2.x builds desktop **and** mobile
+from one project, which the planned mobile+desktop split needs and
+Electron can't do at all). **This is a like-for-like shell swap only** — no
+new desktop UI yet, that's separate future work. Handoff:
+`temp/handoff/2026-09-05-101708-tauri-scaffold.md`.
+
+- **New `src-tauri/` project** (sibling to `src/`/`electron-app/`):
+  `Cargo.toml`, `build.rs`, `src/main.rs` (minimal `tauri::Builder`
+  entrypoint), `tauri.conf.json` (360x800 window, min 360x800, resizable;
+  `frontendDist: "../src"` — Tauri embeds `src/` directly, **no
+  `copy-app.js`-equivalent copy step needed**, unlike Electron), and
+  `capabilities/default.json` (Tauri 2's per-call permission gate — needed
+  because `core:default` covers window *reads* but not the `set_size` call
+  the resize lock needs). New root `package.json`
+  (`@tauri-apps/cli`+`@tauri-apps/api`, `dev`/`build` scripts). `bundle.active:
+  false` — ships the standalone `vkdex.exe` (assets embedded, system
+  WebView2) without an MSI/NSIS installer nobody asked for; flip on later
+  if an installer's wanted. No `bundle.icon` — none exists in this project
+  either shell; Tauri falls back to its own default, confirmed non-blocking.
+- **Detection swap**: `index.html`'s pre-paint check moved from
+  `navigator.userAgent.includes("Electron")` to Tauri 2's officially
+  supported `window.isTauri` global; the CSS/JS hook renamed `is-electron`
+  → `is-tauri` throughout `styles.css`/`app.js`. **Electron regression,
+  temporary and known**: since `electron-app/` never sets `window.isTauri`,
+  running the app under the existing Electron wrapper right now no longer
+  gets the phone-frame scale-as-a-unit behavior (`SCOPE.md` §8) — the OS
+  window still resizes locked to the right ratio (`electron-app/main.js`'s
+  `setAspectRatio` is untouched), but the inner `.phone` content stays
+  fixed-size instead of scaling to fill, leaving dead space. Already-built
+  exes in `electron-app/dist/` (compiled from pre-change `src/`) are
+  unaffected; only a *new* Electron rebuild from current `src/` would show
+  it. Accepted as transitional since Electron is being retired, not fixed.
+- **New resize-lock logic in `app.js`** (Tauri has no native equivalent of
+  Electron's `win.setAspectRatio()`, confirmed absent from Tauri's window
+  API): listens for resize, and once settled ~150ms later, corrects back to
+  the 360:800 ratio via `window.__TAURI__`'s `set_size`/`LogicalSize`
+  (reached through `withGlobalTauri: true`, not an ESM import — this
+  project has no bundler/build step, so `@tauri-apps/api`'s normal
+  `import` path isn't usable; the devDependency is present but effectively
+  unused). Corrects toward whichever axis the user dragged **more**, so a
+  bottom-edge-only drag grows the window instead of snapping back to the
+  original width (a real regression `setAspectRatio` wouldn't have had, if
+  it had preserved the wrong axis). Debounced, not live-during-drag, so
+  expect a visible snap on release rather than Electron's continuous
+  constrained resize.
+- **Tauri's Windows default has no application menu** (only macOS gets one
+  automatically), so no `Menu.setApplicationMenu(null)`-equivalent was
+  needed — from the crate's documented behavior, not confirmed by running
+  it.
+- Verified (everything sandbox-reachable): `node --check` on `app.js`/
+  `data.js`/the extracted inline script; `styles.css` braces 265/265;
+  all three new/touched JSON files parse; zero `is-electron` references
+  left in `src/`; version mirrors 0.2.11 across the four files above;
+  `verify_region_data.js` PASS (data untouched); a throwaway harness
+  (`temp/tauri-scaffold/check_aspect_lock.js`, kept until the lock is
+  confirmed working — not yet added to `SCRAP.md`) proved the resize-lock
+  **arithmetic** converges on 6 cases including a bottom-edge-only drag
+  growing rather than snapping back, and a 20-iteration bound that would
+  throw instead of hang on a feedback loop.
+- **Could not verify at all**: anything Rust (`Cargo.toml`/`build.rs`/
+  `main.rs` — no toolchain in-sandbox, same limitation Electron itself has
+  always had, `CLAUDE.md` §4), `tauri.conf.json` against Tauri's actual
+  schema (valid JSON only — `generate_context!()` catches a bad key at
+  Rust compile time), `cargo tauri dev`/`build` never run, nothing visual.
+  **First real verification has to happen on the user's own machine** —
+  needs Rust (`rustup`, MSVC target) + Visual Studio Build Tools ("Desktop
+  development with C++"); then `npm install && npm run dev`. Ordered
+  UNTESTED list (aspect lock first) is the handoff's §5.
+- **Flagged, not fixed here**: `tools/release.js` now hard-errors (checks
+  `electron-app/package.json`'s version against `APP_VERSION`, which now
+  differ by design, 0.2.10 vs 0.2.11) — needs its own update pass before
+  the next release, once Tauri's confirmed working and the release script
+  is retargeted at it. `identifier: "com.vokaerian.vkdex"` in
+  `tauri.conf.json` is a placeholder — becomes the permanent OS-level app
+  identity (and future Android/iOS bundle id), worth settling before it
+  ships anywhere real.
+- Also noted for later: `tauri android init`/`tauri ios init` will need a
+  `[lib]` target + `mobile_entry_point` restructure of `Cargo.toml`/
+  `main.rs` (~10 lines, standard `create-tauri-app` v2 shape) — not needed
+  for this desktop-only pass, flagged so it isn't a surprise when mobile
+  work starts.
 
 ## 0.2.4 → 0.2.10 — Found In popup rework: collapsible accordion, real in-game area order, "Grass" relabel
 
