@@ -646,6 +646,11 @@
   // The alt forme currently swapped in (its `key`), or null for base — kept
   // so a settings-driven re-render can restore it (0.1.34).
   var activeFormeKey = null;
+  // Which gender's art the Picture card is showing (0.2.3) — "male" is the
+  // default sprite every other screen uses, so a fresh openDetail() renders
+  // exactly as it always did. Only meaningful for a `hasFemaleSprite`
+  // species; every other entry renders no toggle at all.
+  var activeGender = "male";
   // Settings-driven display state (all persisted, see the Settings section):
   var useImperialUnits = false; // metric is the default
   var useShinyGrids = false;    // grid cells show shiny sprites
@@ -665,6 +670,19 @@
   function altFormSpriteUrl(sprite, shiny) {
     return "data/sprites/pokemon/" + (shiny ? "shiny/" : "") + "alt formes/" + sprite + ".png";
   }
+
+  // Female-specific art (0.2.3): 103 bundled files mirroring the default
+  // pokemon/ tree under a female/ subfolder (and shiny/female/ for shiny),
+  // same {id}.png naming. There is deliberately no male/ counterpart —
+  // PokeAPI ships none, because the default sprite already IS the male /
+  // non-dimorphic appearance. So "male" just means the normal sprite path.
+  function femaleSpriteUrl(id, shiny) {
+    return "data/sprites/pokemon/" + (shiny ? "shiny/" : "") + "female/" + id + ".png";
+  }
+
+  // Plain Unicode rather than more hand-drawn SVG (cf. EVO_HEART_SVG and
+  // friends): ♂/♀ are universally read, so there's nothing to draw.
+  var GENDER_GLYPH = { male: "♂", female: "♀" };
 
   // Evolution-item sprites (data/sprites/items/), named by item slug.
   function itemSpriteUrl(item) {
@@ -727,15 +745,40 @@
   }
 
   // --- Picture card ---
+  // The card's two sprites are driven by two independent bits of state: the
+  // active alt forme and the gender toggle. A forme wins outright — no
+  // gendered alt-forme art is bundled (the one file that exists, 10235.png
+  // for Hisuian Sneasel, isn't wired to anything) — and the gender choice
+  // re-applies as soon as the base forme is selected again.
+  function pictureSpriteUrl(entry, forme, shiny) {
+    if (forme) return altFormSpriteUrl(forme.sprite, shiny);
+    if (activeGender === "female" && entry.hasFemaleSprite) return femaleSpriteUrl(entry.id, shiny);
+    return shiny ? displayShinySpriteUrl(entry.id) : displaySpriteUrl(entry.id);
+  }
+
+  function genderBtnHtml(gender) {
+    var on = gender === activeGender;
+    return '<button class="gender-btn gender-' + gender + (on ? " gender-btn-active" : "") +
+      '" type="button" data-gender="' + gender + '" aria-pressed="' + on +
+      '" aria-label="Show ' + gender + ' sprite">' + GENDER_GLYPH[gender] + "</button>";
+  }
+
   function pictureCardHtml(entry) {
     var html = '<div class="detail-section picture-card">' +
       '<div class="detail-number">' + formatDexNumber(entry.id) + "</div>" +
       '<div class="sprite-pair">' +
       '<div class="sprite-slot"><span class="detail-sprite-wrap"><img class="detail-sprite" id="pictureMainSprite" src="' +
-      displaySpriteUrl(entry.id) + '" alt="' + escapeHtml(entry.name) + '"' + SPRITE_ONERROR_ATTR + '></span><span class="sprite-slot-label">Normal</span></div>' +
+      pictureSpriteUrl(entry, null, false) + '" alt="' + escapeHtml(entry.name) + '"' + SPRITE_ONERROR_ATTR + '></span><span class="sprite-slot-label">Normal</span></div>' +
       '<div class="sprite-slot"><span class="detail-sprite-wrap"><img class="detail-sprite" id="pictureShinySprite" src="' +
-      displayShinySpriteUrl(entry.id) + '" alt="' + escapeHtml(entry.name) + ' (shiny)"' + SPRITE_ONERROR_ATTR + '></span><span class="sprite-slot-label">Shiny</span></div>' +
+      pictureSpriteUrl(entry, null, true) + '" alt="' + escapeHtml(entry.name) + ' (shiny)"' + SPRITE_ONERROR_ATTR + '></span><span class="sprite-slot-label">Shiny</span></div>' +
       "</div>";
+    // Only a species with bundled female art gets the toggle at all —
+    // hasFemaleSprite IS the "has a female counterpart" test, so no separate
+    // genderRate check is needed. Absolutely positioned (below .detail-number),
+    // so this sits after .sprite-pair in the DOM without moving anything.
+    if (entry.hasFemaleSprite) {
+      html += '<div class="picture-gender-toggle">' + genderBtnHtml("male") + genderBtnHtml("female") + "</div>";
+    }
     if (entry.description) {
       html += '<div class="detail-description-flap">' + escapeHtml(entry.description) + "</div>";
     }
@@ -846,9 +889,9 @@
     activeFormeKey = tappable ? formeKey : null;
 
     var mainImg = document.getElementById("pictureMainSprite");
-    if (mainImg) mainImg.src = tappable ? altFormSpriteUrl(forme.sprite) : displaySpriteUrl(entry.id);
+    if (mainImg) mainImg.src = pictureSpriteUrl(entry, tappable ? forme : null, false);
     var shinyImg = document.getElementById("pictureShinySprite");
-    if (shinyImg) shinyImg.src = tappable ? altFormSpriteUrl(forme.sprite, true) : displayShinySpriteUrl(entry.id);
+    if (shinyImg) shinyImg.src = pictureSpriteUrl(entry, tappable ? forme : null, true);
     detailName.textContent = tappable ? forme.name : entry.name;
 
     var factsEl = detailBody.querySelector(".detail-facts");
@@ -872,6 +915,29 @@
     for (var j = 0; j < stages.length; j++) {
       stages[j].classList.toggle("altform-active", stages[j].getAttribute("data-forme-key") === (tappable ? formeKey : ""));
     }
+
+    // No gendered alt-forme art is bundled, so while a non-base forme is
+    // active the toggle has nothing to switch (0.2.4). Native `disabled`
+    // blocks both the click and keyboard activation on its own; CSS only
+    // dims it. Reverting to base clears it. A species with no ALT_FORMS
+    // never reaches here with tappable true, so its buttons stay live.
+    var genderBtns = detailBody.querySelectorAll(".gender-btn");
+    for (var k = 0; k < genderBtns.length; k++) genderBtns[k].disabled = tappable;
+  }
+
+  // Picture card gender toggle. Re-runs setActiveForme with the key that's
+  // already active rather than re-assigning the two <img> srcs here: that
+  // function is the single place both bits of state resolve into a sprite,
+  // and re-applying the current forme is a no-op for everything else.
+  function setActiveGender(gender) {
+    activeGender = gender === "female" ? "female" : "male";
+    var btns = detailBody.querySelectorAll(".gender-btn");
+    for (var i = 0; i < btns.length; i++) {
+      var on = btns[i].getAttribute("data-gender") === activeGender;
+      btns[i].classList.toggle("gender-btn-active", on);
+      btns[i].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    setActiveForme(activeFormeKey);
   }
 
   // --- Evolution line card ---
@@ -956,6 +1022,13 @@
     } else if (via.method === "level" && typeof via.level !== "number") {
       icons += EVO_HEART_SVG;
     }
+    // A gender-gated edge (0.2.3) shows its symbol *alongside* whatever it
+    // already had, not instead of it — Snorunt->Froslass reads as a Dawn
+    // Stone plus a ♀, and Combee->Vespiquen (no item, no friendship) gets
+    // the ♀ as its only icon.
+    if (GENDER_GLYPH[via.gender]) {
+      icons += '<span class="evo-gender gender-' + via.gender + '">' + GENDER_GLYPH[via.gender] + "</span>";
+    }
     if (via.timeOfDay === "day") icons += EVO_SUN_SVG;
     else if (via.timeOfDay === "night") icons += EVO_MOON_SVG;
     if (via.moveType) {
@@ -964,12 +1037,25 @@
     return icons ? '<span class="evo-arrow-icons">' + icons + "</span>" : "";
   }
 
-  function evoStageHtml(id) {
+  // spriteSrc overrides the bubble's art, same shape as renderGrid's
+  // spriteFn override (the Hisui grid's hisuiCellSprite); falsy keeps the
+  // default. Used for the gendered-parent case below.
+  function evoStageHtml(id, spriteSrc) {
     var mon = findPokemon(id);
     if (!mon) return "";
     return '<button class="evo-stage" type="button" data-id="' + id + '">' +
-      '<span class="evo-sprite-wrap"><img class="evo-sprite" src="' + displaySpriteUrl(id) + '" alt="' + escapeHtml(mon.name) + '"' + SPRITE_ONERROR_ATTR + '></span>' +
+      '<span class="evo-sprite-wrap"><img class="evo-sprite" src="' + (spriteSrc || displaySpriteUrl(id)) + '" alt="' + escapeHtml(mon.name) + '"' + SPRITE_ONERROR_ATTR + '></span>' +
       '<span class="evo-name">' + escapeHtml(mon.name) + "</span></button>";
+  }
+
+  // Art for the *source* stage of a gender-gated edge, or null to keep the
+  // default sprite. Only female art is bundled (the default sprite is the
+  // male/non-dimorphic one), so a "male" edge always falls through — the
+  // check is "is there bundled art for the gender this edge requires?",
+  // not a hardcoded "female", so male-specific art would just work.
+  function evoGenderSpriteUrl(id, gender) {
+    var mon = gender === "female" ? findPokemon(id) : null;
+    return mon && mon.hasFemaleSprite ? femaleSpriteUrl(id) : null;
   }
 
   // One plain-text line at the bottom of the Evolution Line card, for a
@@ -1045,7 +1131,13 @@
           html += '<span class="evo-arrow">' + evoArrowIconsHtml(step.via) + EVO_ARROW_SVG +
             '<span class="evo-level">' + escapeHtml(evoArrowLabel(step.via)) + "</span></span>";
         }
-        html += evoStageHtml(step.id);
+        // A stage that feeds a gender-gated edge shows that gender's art if
+        // it's bundled — keyed off the *next* step's edge, so it works at
+        // any depth in the row (Kirlia->Gallade sits at i === 1), and Burmy's
+        // two rows can differ from each other. Combee->Vespiquen is the only
+        // shipped case with art today.
+        var next = path[i + 1];
+        html += evoStageHtml(step.id, next && next.via && evoGenderSpriteUrl(step.id, next.via.gender));
       });
       html += "</div>";
     });
@@ -1382,6 +1474,9 @@
     var moveTab = e.target.closest ? e.target.closest(".move-tab") : null;
     if (moveTab) { setActiveMoveTab(detailBody, moveTab.getAttribute("data-tab")); return; }
 
+    var genderBtn = e.target.closest ? e.target.closest(".gender-btn") : null;
+    if (genderBtn) { setActiveGender(genderBtn.getAttribute("data-gender")); return; }
+
     var recolorBubble = e.target.closest ? e.target.closest(".altforms-recolor-bubble") : null;
     if (recolorBubble) {
       var recolorEntry = detailEntryId === null ? null : findPokemon(detailEntryId);
@@ -1449,6 +1544,11 @@
     if (!entry) return;
     detailEntryId = id;
     activeFormeKey = null;
+    // Same reset as activeFormeKey: a new Pokemon always opens on its
+    // default (male) art, whether via a grid tap, ArrowLeft/Right, or an
+    // evolution-stage jump — all of which land here. rerenderDetail()
+    // deliberately does NOT reset either one (a units change keeps both).
+    activeGender = "male";
     renderDetail(entry);
     if (autoForme) setActiveForme("hisui");
     syncFavoriteButton();

@@ -24,6 +24,10 @@
      they read as "not a mainline region" at a glance in the region bar. */
   --accent-purple: #9a6bd6;
   --accent-purple-grad: linear-gradient(180deg, #c49bf0 0%, var(--accent-purple) 100%);
+  /* Female half of the gender pair (0.2.3); the male half reuses --accent.
+     Light enough to read against --dex-panel-bg's dark red, and distinct
+     from the .evo-arrow-icons heart's warmer #ff9aa8. */
+  --accent-pink: #ff7fb3;
   /* Upscaled sprites (detail/evolution/item) stay crisp by default; the
      Settings "Pixel Sprites" toggle flips .phone.smooth-sprites (0.1.34). */
   --sprite-rendering: pixelated;
@@ -1228,6 +1232,81 @@ body {
   letter-spacing: 1.5px;
   color: #f4e3b4;
   opacity: 0.85;
+}
+
+/* Gender symbols (0.2.3), shared by the evolution arrow and the Picture
+   card toggle: plain Unicode ♂/♀ rather than more hand-drawn SVG (the
+   heart/sun/moon needed drawing because there's no standard glyph for
+   them; these are universally read). Blue/pink is the conventional pair
+   and both read clearly against the dark-red card. */
+.gender-male {
+  color: var(--accent);
+}
+
+.gender-female {
+  color: var(--accent-pink);
+}
+
+/* Sized between .evo-arrow-item (18px) and .evo-cond-icon (13px) so it
+   sits level with whichever icon it shares the row with. */
+.evo-gender {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Two stacked round buttons tucked under .detail-number, swapping both
+   Picture sprites between the default (male / non-dimorphic) art and the
+   bundled female art. Corner-positioned the same way .dex-cell-fav and
+   .altforms-recolor-badge are; .detail-section is already position:
+   relative, so .picture-card needs nothing extra. Rendered only for a
+   species that HAS female art, so there is no disabled state. */
+.picture-gender-toggle {
+  position: absolute;
+  top: 32px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gender-btn {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  transition: filter 0.12s ease;
+}
+
+.gender-btn:hover {
+  filter: brightness(1.25);
+}
+
+/* Dimmed while a non-base alt forme is active (0.2.4) — setActiveForme sets
+   the native `disabled`, which already blocks the click and keyboard
+   activation; this just makes that state readable. */
+.gender-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.gender-btn:disabled:hover {
+  filter: none;
+}
+
+/* Same "this one is picked" language as the segmented settings controls
+   (.units-btn.active), adapted to a round badge: the fill flips so the
+   coloured glyph reads as selected. */
+.gender-btn-active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.55);
+  box-shadow: var(--raised-shadow-sm);
 }
 
 /* Negative margins pull the flap out to the card's own edges so it reads

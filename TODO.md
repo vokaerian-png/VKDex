@@ -41,6 +41,11 @@ Kanto→Sinnoh population, the redesign itself) shipped 0.1.10-0.1.22 — see
   (0.1.28); a region pass upserts by id, so those entries are refreshed in
   place rather than duplicated. A refresh also emits Mega formes for any
   species not yet in `ALT_FORMS` (`--tables altforms`).
+- **7 ids already have bundled female-sprite art waiting** (0.2.3): 521,
+  592, 593, 668, 678, 876, 916 — `src/data/sprites/pokemon/female/` and
+  `shiny/female/` already hold their files, but `hasFemaleSprite` isn't
+  CSV-sourced (`SCOPE.md` §2), so whichever region pass adds these ids must
+  set the flag by hand or the art will sit unused.
 
 ---
 
@@ -90,6 +95,13 @@ re-cut as a segmented control).** The 9 rules below stay as the spec of
 record; `PLAN.md` records the confirmations, `SCOPE.md` §4 the current
 behavior. **Still open**: rule 5 (no real species needs it yet), the
 moves-card half of rule 9 (same), and Shellos/Gastrodon below.
+
+**Gendered alt-forme art, new 2026-09-05:** `src/data/sprites/pokemon/
+female/10235.png` (+ its shiny counterpart) is bundled but unwired —
+Hisuian Sneasel's own alt-forme id, not a species id, so it doesn't fit
+`pokemon.js`'s `hasFemaleSprite` mechanism (`SCOPE.md` §2/§4, shipped 0.2.3
+for base-species gender only). Would need `ALT_FORMS` entries to carry
+their own gender-sprite concept — its own scoping pass, not started.
 
 **Shellos/Gastrodon (#422/#423) explicitly deferred, 2026-09-04:** rule 6
 candidates on the surface (2 recolor forms each, West/East, no stat/type/

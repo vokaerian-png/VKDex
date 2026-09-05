@@ -1,22 +1,14 @@
 # VKDex — Scope & Design
 
 Scope and design decisions for the app itself: what it is, its UI/UX
-conventions, navigation and screen behavior, and the data model. Split out
-of `CLAUDE.md` on 2026-09-05 so app-facing decisions have their own file,
-separate from `CLAUDE.md`'s process/workflow/infra/versioning. **Read
-alongside `CLAUDE.md`** (still primary truth, read first — file layout,
-versioning, workflow, sandbox limits, and session process all stay there).
-`CLAUDE.md`'s intro points here.
+conventions, navigation and screen behavior, and the data model. **Read
+alongside `CLAUDE.md`** (primary truth, read first — file layout,
+versioning, workflow, sandbox limits, and session process live there; its
+intro points here).
 
-Section numbers below run sequentially (§1-§8), reset 2026-09-05 alongside
-`CLAUDE.md`'s own renumbering — every cross-reference in every memory-bank
-file was updated in the same pass (`CLAUDE.md` §6 has the full note on the
-convention: a sub-clause takes its main section's number plus a letter,
-a/b/c in order of appearance). The three technical sections at the bottom
-(§6-§8) were unnumbered until this pass; each documents a real standing
-constraint (a recurring CSS bug class, live design tokens, the Electron
-scaling mechanism) judged load-bearing enough to promote out of appendix
-status rather than stay as unlabeled bottom-of-file notes.
+Sections run sequentially §1-§8; a sub-clause takes its main section's
+number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
+full convention).
 
 **Standing cap: ≤600 lines**, same 50-line raise-at-a-time rule as
 `CLAUDE.md` (full shared rule: `CLAUDE.md` §7) — tracked independently of
@@ -24,19 +16,15 @@ that file's own ≤400-line cap.
 
 **Cards and their internal data blocks don't get reordered, restructured,
 or reshuffled unless the user explicitly asks for that specific change**
-(user-specified 2026-09-05, standing rule). A general review mandate
-("find issues," "audit for problems," "clean this up") is not itself
-permission to move something — a finding that recommends a reorder needs
-a real go-ahead for that specific move before it ships, not just a
-narrative sign-off in a handoff. If a reorder happens anyway and gets
-caught later (a verification pass, a reviewer, or the user noticing),
-**stop and ask whether it was correct** rather than assuming either way —
-don't silently keep it and don't silently revert it. Precedent: 0.1.34's
-`overlord` design-overhaul review moved the Facts card's Weakness/matchups
-block from the end of the card to directly under Type as one of its
-findings; this was never actually instructed by the user, got written up
-as settled, and had to be reverted (0.1.38) once the user caught it on a
-real screenshot.
+(standing rule). A general review mandate ("find issues," "audit for
+problems," "clean this up") is not itself permission to move something —
+a finding that recommends a reorder needs a real go-ahead for that
+specific move before it ships, not just a narrative sign-off in a
+handoff. If a reorder happens anyway and gets caught later, **stop and
+ask whether it was correct** rather than assuming either way — don't
+silently keep it and don't silently revert it. Precedent: `HISTORY.md`
+0.1.38 (an unauthorized reorder shipped, reverted once the user caught it
+on a real screenshot).
 
 ---
 
@@ -50,7 +38,7 @@ centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
 and a Settings popup (§3).
 
-**Current version: 0.2.2** (`CLAUDE.md` §3 for the bump policy,
+**Current version: 0.2.4** (`CLAUDE.md` §3 for the bump policy,
 `HISTORY.md` for the changelog).
 
 ---
@@ -87,6 +75,13 @@ ability sorted last), `hiddenAbility` (name or absent), `description`.
 sourced from `pokemon_species.csv`. `stats.js` gained the same-pass
 `baseHappiness` alongside `captureRate`/`expGrowth`. No detail-screen fact
 row renders any of these yet — future work, `TODO.md` #10.
+**`hasFemaleSprite: true`** (0.2.3, UI-wired — §4's gender toggle) on 95
+entries — hand-derived from the sprite folder below, **not** CSV-sourced,
+so (like `evolutions.js`'s `statCompare`/`note`) a `--refresh --tables
+pokemon` would silently drop it; `--audit` doesn't flag it either. A
+future region pass populating one of the 7 already-sprited-but-unpopulated
+ids (521/592/593/668/678/876/916 — `TODO.md` #2) must add this field by
+hand.
 
 **Population status:** `abilities.js` (179) and `moves.js` (622) hold
 Gen-9-era values with original paraphrase descriptions. The per-Pokémon
@@ -95,8 +90,8 @@ populated for ids 1-493 and the 29 Hisui additions**, including every
 Sinnoh `hiddenAbility` flag (backfilled 0.1.36) and all 5 previously-empty
 movesets — Pinsir/Tauros/Slowking/Sceptile/Rhyperior (0.1.38). Farfetch'd
 spelled with the CSV's curly apostrophe (`Farfetch’d`, 0.1.37 — user
-decision). Known gap: `TODO.md` #7's remaining 5 evolution-edge items.
-Next region (Unova onward) is not a `PLAN.md` commitment — `TODO.md` #2.
+decision). Next region (Unova onward) is not a `PLAN.md` commitment —
+`TODO.md` #2.
 
 **Data pipeline: `tools/populate_region.js`** (unified 2026-09-05; full
 scope in its header comment) is the one tool for CSV → `src/data/*.js`,
@@ -136,6 +131,14 @@ Powers the detail screen's live Weakness/Resist/Neutral computation (§4).
 copies the whole `sprites/` tree via one recursive `fs.cpSync` — a new
 sprite subfolder never needs a `copy-app.js` change.
 
+- **`pokemon/female/`** (and `pokemon/shiny/female/`, 0.2.3): 103 files
+  each, id-named same as the root — bundled art for species with a visible
+  gender difference. 95 map to real `POKEMON_DATA` entries (`hasFemaleSprite`
+  above); 8 don't (7 unpopulated species, plus `10235.png` — Hisuian
+  Sneasel's alt-forme id, not a species id, deliberately unwired — a
+  gendered-alt-forme extension would need `altforms.js`'s own scoping pass).
+  No `male/` folder exists anywhere upstream — the root sprite already *is*
+  the male/non-dimorphic art, so there's nothing to bundle for it.
 - **`pokemon/`** (and its `shiny/`): 1025 normal + 1025 shiny national-dex
   `{id}.png`, loaded via relative-path `<img src>`
   (`data/sprites/pokemon/{id}.png`, `.../pokemon/shiny/{id}.png`) — works
@@ -281,6 +284,20 @@ sprite subfolder never needs a `copy-app.js` change.
   `statsCardHtml()`. Name lives in the topbar (`#detailName`, a button;
   shows the active forme's name) — tapping opens `#detailPopup` with
   ja(+romaji)/fr/de/ko names from `data/names.js`.
+  - **Picture card, male/female toggle** (0.2.3/0.2.4): for a
+    `hasFemaleSprite` species only, two small absolutely-positioned
+    `.gender-btn` circles (♂ blue/`--accent`, ♀ pink/`--accent-pink`) sit in
+    the card's top-right, below `.detail-number`. `activeGender`
+    (`"male"`/`"female"`, default male) resets on every `openDetail()` but
+    survives a `rerenderDetail()`, same persistence pattern as
+    `activeFormeKey`. `pictureSpriteUrl(entry, forme, shiny)` is the one
+    resolver both `pictureCardHtml()` and `setActiveForme()` build sprite
+    `src`s through, so forme and gender choices can't disagree — **an
+    active non-base forme's sprite always wins** (no gendered alt-forme art
+    exists to show instead), and the gender buttons `disabled`/dim
+    (`opacity:0.35`, no click/keyboard) while that's the case, re-enabling
+    the instant base is reselected; the picked button's filled state is
+    kept underneath so the remembered choice stays visible.
   - **Alt Formes**: from `data/altforms.js`'s `ALT_FORMS[id]` — 79
     entries: Deoxys, Castform, 4 `recolorOnly` species (Unown/Burmy/
     Cherrim/Arceus — Arceus by explicit user override), 16 Hisuian-
@@ -370,7 +387,9 @@ sprite subfolder never needs a `copy-app.js` change.
       SVG when `timeOfDay` is `"day"`/`"night"`, and a `moveType` field
       (friendship only, e.g. Sylveon's `"fairy"`) reuses `pillHtml()` for
       a small type-pill tag, sized down via a `.evo-arrow-icons .type-pill`
-      parent selector.
+      parent selector. A `gender` field (0.2.3) appends a ♂/♀ glyph last in
+      the row, alongside whatever icon the edge already has — Combee→
+      Vespiquen (no item, no heart) shows only the glyph.
     - **Descriptor line** (`evoDescriptorHtml()`, 0.2.1/0.2.2): a plain-text
       line at the bottom of the card, inside `.detail-section` via the
       existing `.detail-section-note` class, for chains where sibling
@@ -392,6 +411,13 @@ sprite subfolder never needs a `copy-app.js` change.
       not tool-extracted — a `--refresh --tables evolutions` drops them;
       `gender` **is** tool-extracted/audited (`populate_region.js`), so it
       survives a refresh.
+    - **Gendered parent sprite** (0.2.3): a row's parent-stage bubble
+      (`evoStageHtml`) shows that edge's required gender's bundled sprite
+      instead of the default one, if the species has one (`hasFemaleSprite`,
+      §2) — today only Combee has bundled female art, so its row is the
+      only one that visibly changes (Burmy/Kirlia/Snorunt stay default).
+      Not wired for the fan-out layout (one shared root bubble by
+      construction — no shipped fan chain is gendered).
   - **Found In**: pill-chip row of every region key in `data/locations.js`
     with a non-empty area list (broader than `pokemon.js`'s single
     `region`, which only means "introduced in"). Tap opens `#detailPopup`

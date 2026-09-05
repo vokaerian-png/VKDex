@@ -8,9 +8,77 @@ only edits are exempt. The authoritative policy is `CLAUDE.md` §3 — this
 file is just the log, newest entry first. Current-state descriptions live
 in `CLAUDE.md`; entries here record what changed and why.
 
-**Current version: 0.2.2.**
+**Current version: 0.2.4.**
 
 ---
+
+## 0.2.3 → 0.2.4 — Gender toggle disabled while an alt forme is active
+
+`coder` only, small user-confirmed follow-up to 0.2.3 the same session: on
+the 16 species with both `hasFemaleSprite` and an `ALT_FORMS` entry,
+tapping the male/female toggle while a non-base forme was active changed
+nothing visible (no gendered alt-forme art exists) — confusing, not
+broken. The two `.gender-btn`s now get the native `disabled` attribute
+(blocks click/keyboard/tab-order, not just a CSS dim) whenever
+`setActiveForme()`'s forme isn't base, restored the moment base is
+reselected; `.gender-btn-active`'s filled state stays visible underneath
+so the remembered choice doesn't appear to reset. One `querySelectorAll`
+loop in `setActiveForme()`, naturally a no-op for species with no
+`ALT_FORMS` entry or no female sprite.
+
+- Verified: `node --check`; a 16-assertion harness (real `setActiveForme`
+  source, stub DOM) — all 16 overlap species looped (not just one),
+  Combee (female art, no alt formes) never dims, Charizard (alt formes, no
+  female art) unaffected, 0 buttons unchanged for every other species;
+  0.2.3's own 44-assertion harness re-run clean; `verify_region_data.js`/
+  `--audit` both PASS (expected no-ops, confirmed not assumed); `styles.css`
+  balanced.
+
+## 0.2.2 → 0.2.3 — Gender symbols on evolution arrows; male/female sprite toggle; 95 species get bundled female art
+
+`coder` only, user-specified feature (screenshots of a mocked-up Snorunt
+evolution card and a Combee detail screen with hand-drawn button
+placement). Architect moved the sprite assets into place directly first
+(the `src/data/sprites/` asset-curation carve-out, `CLAUDE.md` §5) —
+`temp/home/female/`+`shiny/female/` (103 files each) copied to
+`src/data/sprites/pokemon/female/`+`shiny/female/`, mirroring the existing
+normal/shiny layout.
+
+- **Gender glyph on evolution arrows**: any `gender`-field edge (5 shipped
+  — Wormadam/Mothim/Vespiquen/Gallade/Froslass) now shows a small ♂/♀
+  glyph (Unicode, not new SVG art — blue `--accent`/new `--accent-pink`) in
+  `evoArrowIconsHtml()`'s icon row, **alongside** any existing item/heart
+  icon rather than replacing it. Combee→Vespiquen (previously icon-less)
+  now shows just the glyph.
+- **Gendered parent sprite in the Evolution Line row**: a row's parent
+  bubble shows that edge's required gender's bundled art instead of the
+  default sprite, when the parent has one. Of the 4 gendered-edge parents
+  (Burmy/Kirlia/Snorunt/Combee), only **Combee** actually has bundled
+  female art — the only currently-visible case; the fan-out layout (one
+  shared root bubble) isn't wired for this, no shipped fan chain is
+  affected.
+- **95 `POKEMON_DATA` entries gain `hasFemaleSprite: true`** — cross-
+  referenced from the moved sprite files (103 total; 7 are real species not
+  yet populated, `TODO.md` #2; 1, `10235`, is Hisuian Sneasel's alt-forme
+  id, not a species id, deliberately left unwired, `TODO.md` #4). Hand-
+  derived, not CSV-sourced — won't survive a `--refresh --tables pokemon`.
+- **Male/female toggle on the Picture card**: two absolutely-positioned
+  `.gender-btn` circles, rendered only for a `hasFemaleSprite` species.
+  New `pictureSpriteUrl(entry, forme, shiny)` is the single resolver both
+  `pictureCardHtml()` and `setActiveForme()` now build sprite `src`s
+  through, so an active alt forme and the gender choice can't disagree —
+  forme wins the sprite (no gendered Mega/Gmax/regional art exists),
+  gender persists in state and re-applies on revert to base (dimmed while
+  a forme is active, fixed next in 0.2.4 above). `activeGender` resets on
+  `openDetail()`, survives `rerenderDetail()` — same pattern as
+  `activeFormeKey`.
+- Verified: `node --check`; a 44-assertion harness (real shipped source,
+  `vm`-run against real data) covering the 95-id set, both sprite files
+  per id, all 5 gendered edges' glyph+existing-icon, Combee's swapped
+  parent sprite vs. Burmy/Kirlia/Snorunt's unswapped ones, button
+  presence/absence, default-male state, and the forme/gender interaction;
+  `verify_region_data.js`/`--audit` PASS (expected no-ops); `styles.css`
+  balanced; UTF-8 byte-level check on both glyphs.
 
 ## 0.2.1 → 0.2.2 — Evolution `gender` descriptor extended to 3 more species
 
