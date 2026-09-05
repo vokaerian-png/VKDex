@@ -97,12 +97,12 @@ opened**, also drop entries that no longer exist on disk.
 **Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
 `.gitignore` excludes `electron-app/`, `temp/`, `/releases/`, `/node_modules`,
 `/src-tauri/target` and `/src-tauri/gen` (build output, regenerable).
-**Intent: `src-tauri/` source is tracked** — Tauri is the long-term
-mobile+desktop build system, not a wrapper afterthought like Electron. **As
-of 0.2.17 it isn't**: an uncommitted trailing `src-tauri/` line in
-`.gitignore` ignores the whole folder (`git ls-files src-tauri` is empty) —
-flagged by `overlord`, needs the user's call before the next commit.
-Releases (§2a) publish built artifacts as GitHub Release assets, not commits.
+**`src-tauri/` source is tracked** — Tauri is the long-term mobile+desktop
+build system, not a wrapper afterthought like Electron. (A stray trailing
+`src-tauri/` line in `.gitignore` briefly ignored the whole folder
+mid-0.2.17 — user fixed it and committed; `git ls-files src-tauri` now
+returns real source files.) Releases (§2a) publish built artifacts as
+GitHub Release assets, not commits.
 
 ---
 
@@ -155,8 +155,14 @@ debug keystore) → first `.apk` under `gen/android/app/build/outputs/apk/`
 sequentially; every artifact goes on one `gh release create` with the
 changelog as notes. Never commits, never force-overwrites a tag. `--check`
 runs the self-tests only (changelog parser, target parsing, APK search).
-**Untested against a real Tauri build** (0.2.17: scratch-repo end-to-end
-only, `HISTORY.md`).
+**Android confirmed end-to-end 2026-09-05** (real hardware, `--dry-run`):
+build → APK search → copy into `releases/android/` all worked. Needed two
+live fixes beyond `ANDROID_SETUP.md`'s original spec, both now documented
+there — `gradle.properties`'s `org.gradle.java.home` pinned to a JDK Gradle
+8.14.3 can actually run (Android Studio's bundled JBR was Java 25 on this
+machine, not the safe default first assumed) — and a Kotlin-daemon crash on
+cross-drive paths (project on `E:`, `cargo`'s registry on `C:`) that
+Gradle's own fallback silently handles. **Windows target still untested.**
 
 **`release.bat`** (repo root, double-click launcher): `cd`s to the repo
 root, runs `node tools\release.js` with any passed flags, then `pause`s.
@@ -176,20 +182,19 @@ build time, no `copy-app.js`-equivalent copy step. Shell-detection:
 `temp/handoff/2026-09-05-101708-tauri-scaffold.md`.
 
 **Build history** (`HISTORY.md` 0.2.12-0.2.16): `icons/icon.ico` is
-mandatory for `tauri-build`'s Windows step; `npm run dev` ran and the app
-worked from 0.2.13; the JS settle-after-drag `lockAspect` (upstream Tauri
-#7303) was replaced by a true live lock, `src-tauri/src/resize_lock.rs`
-(Windows-only; subclasses the window proc, rewrites the rect on every
-`WM_SIZING` step; corner rule stateless since 0.2.16 — smallest 360:800
-rect containing the proposal, because Windows proposes from the cursor's
-absolute position, not our last rect). **User-confirmed on real hardware
-(0.2.16): "Fix worked, problem solved."** `lockAspect` stays as a no-op
-safety net. **0.2.17 split the crate for mobile**: `src/lib.rs` = the app
-(`pub fn run()` under `#[cfg_attr(mobile, tauri::mobile_entry_point)]`,
-owns `mod resize_lock`), `src/main.rs` = desktop shim, `Cargo.toml` `[lib]
-vkdex_lib` staticlib/cdylib/rlib — **uncompiled** until the next local
-build; Android itself still needs `ANDROID_SETUP.md`'s one-time steps on
-the user's machine (§2a). Electron cleanup remains (`PLAN.md`).
+mandatory for `tauri-build`'s Windows step; `npm run dev` ran from 0.2.13.
+The JS settle-after-drag `lockAspect` (upstream Tauri #7303) was replaced
+by a true live lock, `src-tauri/src/resize_lock.rs` (Windows-only,
+subclasses the window proc on every `WM_SIZING` step; corner rule
+stateless since 0.2.16 — full diagnosis in `HISTORY.md`). **User-confirmed
+on real hardware (0.2.16): "Fix worked, problem solved."** `lockAspect`
+stays as a no-op safety net. **0.2.17 split the crate for mobile**:
+`src/lib.rs` = the app (`pub fn run()` under `#[cfg_attr(mobile, tauri::
+mobile_entry_point)]`, owns `mod resize_lock`), `src/main.rs` = desktop
+shim, `Cargo.toml` `[lib] vkdex_lib` staticlib/cdylib/rlib — **compiled and
+built successfully for Android (2026-09-05, real hardware, §2a)**; desktop
+(`npm run dev`) not yet re-tested since the split. Electron cleanup
+remains (`PLAN.md`).
 
 ---
 
