@@ -1,0 +1,1899 @@
+:root {
+  --phone-width: 360px;
+  --phone-height: 800px;
+  --menu-width: 230px;
+  --anim-speed: 0.25s;
+  --window-radius: 18px;
+  --screen-bg: #ffffff;
+  --screen-fg: #1b1b1b;
+  --chip-bg: #eef0f2;
+  --chip-fg: #33363b;
+  --divider: rgba(0, 0, 0, 0.08);
+  --accent: #4da3ff;
+  --dex-panel-bg: #4a1f20;
+  --grid-cols: 5;
+  --region-cols: 4;
+  --cell-border: 1px solid #000;
+  --panel-border: 2px solid #000;
+  /* Visual polish pass (0.1.5): shared raised-surface shadow + gradient
+     tokens so cards/cells/chips read as layered rather than flat fills. */
+  --raised-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  --raised-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.3);
+  --accent-grad: linear-gradient(180deg, #6db8ff 0%, var(--accent) 100%);
+  /* Hisui/Orre standalone-dex region chips (0.1.26) — a distinct purple so
+     they read as "not a mainline region" at a glance in the region bar. */
+  --accent-purple: #9a6bd6;
+  --accent-purple-grad: linear-gradient(180deg, #c49bf0 0%, var(--accent-purple) 100%);
+  /* Upscaled sprites (detail/evolution/item) stay crisp by default; the
+     Settings "Pixel Sprites" toggle flips .phone.smooth-sprites (0.1.34). */
+  --sprite-rendering: pixelated;
+}
+
+.phone.smooth-sprites {
+  --sprite-rendering: auto;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* Subtle vignette instead of a flat fill, for depth around the frame
+     (visible whenever the window/viewport is larger than the phone). */
+  background: radial-gradient(ellipse at center, #2a2a2a 0%, #1b1b1b 60%, #0d0d0d 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Phone frame sized to the Galaxy S20's CSS viewport (360 x 800) */
+.phone {
+  position: relative;
+  width: var(--phone-width);
+  height: var(--phone-height);
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 0 0 8px #000, 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+/* In the packaged Electron app, the window's minimum size is locked to the
+   phone frame's own native 360x800, and app.js drives --phone-scale up
+   from 1 as the window grows past that (via a resize listener) — this is
+   what actually scales the frame up, keeping every pixel inside it (text,
+   icons, borders, gaps) in the exact same proportion rather than just
+   reflowing into more whitespace. Plain-browser usage (no "is-electron"
+   class) is untouched — still the fixed-size mockup. */
+.is-electron .phone {
+  transform: scale(var(--phone-scale, 1));
+  transform-origin: center center;
+}
+
+/* Home screen (National Dex). Background/text follow the Dark Mode setting. */
+.screen {
+  position: absolute;
+  inset: 0;
+  background-color: var(--screen-bg);
+  /* Faint vignette for depth on the in-app background (see also the outer
+     html/body gradient) — subtle enough to work in both themes. */
+  background-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.05), transparent 65%);
+  color: var(--screen-fg);
+  z-index: 1;
+  transition: background var(--anim-speed) ease, color var(--anim-speed) ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.phone.theme-dark {
+  --screen-bg: #121212;
+  --screen-fg: #f2f2f2;
+  --chip-bg: #2a2c30;
+  --chip-fg: #e8e8e8;
+  --divider: rgba(255, 255, 255, 0.08);
+}
+
+/* Same "inset card" treatment as .dex-panel below: dark red background,
+   thicker black outline, rounded corners. */
+.dex-header {
+  margin: 12px 12px 8px;
+  padding: 14px 16px;
+  flex-shrink: 0;
+  text-align: center;
+  background: linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+  border: var(--panel-border);
+  border-radius: var(--window-radius);
+  box-shadow: var(--raised-shadow);
+}
+
+/* Styled to echo the Pokémon logo: bold display font, yellow fill, blue
+   outline. Doubles as the "National Dex" filter button — tap it to return
+   to the full list; it dims slightly whenever a region filter is active. */
+.dex-title {
+  display: inline-block;
+  margin: 0;
+  font-family: "Luckiest Guy", "Arial Black", sans-serif;
+  font-weight: 400;
+  font-size: 27px;
+  letter-spacing: 0.5px;
+  color: #ffcb05;
+  -webkit-text-stroke: 1.4px #2a75bb;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.5;
+  transition: opacity var(--anim-speed) ease, filter var(--anim-speed) ease, transform 0.12s ease;
+}
+
+.dex-title.active {
+  opacity: 1;
+  /* Accent-blue glow marks this as the active filter, echoing the accent
+     color used elsewhere rather than only on the Dark Mode toggle. */
+  filter: drop-shadow(0 0 6px rgba(77, 163, 255, 0.55));
+}
+
+.dex-title:active {
+  transform: scale(0.97);
+}
+
+/* Regional Pokédex shortcuts, stacked 4-to-a-row (wraps automatically).
+   Flexbox rather than grid so a short last row (fewer chips than columns)
+   centers itself instead of hugging the left edge. */
+.region-bar-row {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.region-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px 12px;
+}
+
+/* Floating quick-search toggle, pinned to the bottom-right of the region
+   bar block (see the comment on this button in index.html). Round,
+   translucent grey so it reads on both themes rather than a fixed
+   light/dark color. */
+.dex-search-toggle {
+  position: absolute;
+  right: 16px;
+  /* Vertically centered between the bottom of the Galar chip (end of the
+     region bar's last full row) and the top of .dex-panel below — computed
+     from this stylesheet's own row/gap/padding/margin values (a Paldea-row
+     height of 8px gap + 26.4px chip + 12px region-bar bottom padding + 4px
+     .dex-panel top margin = 50.4px total gap, centered), not eyeballed. */
+  bottom: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: rgba(128, 128, 128, 0.22);
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  cursor: pointer;
+  box-shadow: var(--raised-shadow-sm);
+  transition: filter 0.12s ease, transform 0.12s ease, background 0.15s ease;
+}
+
+.dex-search-toggle:hover {
+  filter: brightness(1.2);
+}
+
+.dex-search-toggle:active {
+  transform: scale(0.92);
+}
+
+.dex-search-toggle.active {
+  background: rgba(77, 163, 255, 0.22);
+  border-color: rgba(77, 163, 255, 0.5);
+}
+
+.dex-search-toggle svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dex-search-toggle .icon-search-close {
+  display: none;
+}
+
+.dex-search-toggle.active .icon-search-toggle {
+  display: none;
+}
+
+.dex-search-toggle.active .icon-search-close {
+  display: block;
+}
+
+/* Collapsible quick-search bar between the region bar and the dex grid.
+   Always in the DOM (not [hidden]) so the height can transition. The
+   app's only search since 0.1.34 (the standalone Search screen is gone). */
+.dex-quick-search {
+  flex-shrink: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--anim-speed) ease;
+}
+
+.dex-quick-search.open {
+  max-height: 64px;
+}
+
+.region-chip {
+  width: calc((100% - (var(--region-cols) - 1) * 8px) / var(--region-cols));
+  padding: 6px 8px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.04)), var(--chip-bg);
+  color: var(--chip-fg);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: var(--raised-shadow-sm);
+  transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+}
+
+.region-chip:hover {
+  filter: brightness(1.08);
+}
+
+.region-chip:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.region-chip.active {
+  background: var(--accent-grad);
+  color: #ffffff;
+}
+
+/* Hisui/Orre (REGIONS' standalone:true entries) — tinted purple instead of
+   the usual --chip-bg/--accent-grad, so the two standalone dexes read as
+   visually distinct from the 9 mainline region chips (TODO.md #6). */
+.region-chip.standalone {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.04)), var(--accent-purple);
+  color: #ffffff;
+}
+
+.region-chip.standalone.active {
+  background: var(--accent-purple-grad);
+}
+
+/* A region with no POKEMON_DATA entries yet (renderRegionBar) — dimmed so
+   "coming soon" is visible before the tap. Still tappable. */
+.region-chip.empty {
+  opacity: 0.45;
+  box-shadow: none;
+}
+
+.region-chip.empty.active {
+  opacity: 0.7;
+}
+
+/* Dark red card behind the dex grid — a thin frame of red shows around the
+   grid's edges, like the grid is inset into it. Fixed color, not
+   theme-dependent (a nod to the classic red Pokédex device). */
+.dex-panel {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 4px 12px 12px;
+  padding: 8px;
+  background: linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+  border: var(--panel-border);
+  border-radius: var(--window-radius);
+  box-shadow: var(--raised-shadow);
+  display: flex;
+}
+
+/* Low-opacity Poké Ball watermark, drawn in pure CSS (no image asset,
+   matching the rest of the app's hand-coded-icon convention: a ring +
+   center band, both as background layers on one pseudo-element so there's
+   no stacking-order risk of it painting over real content) — sits behind
+   the grid/empty-state content and only actually shows through when that
+   content is sparse (few favorites, a narrow search result, "coming soon"),
+   filling what would otherwise be flat dead space. Also used on
+   .detail-body below, for the same reason under a single fact row. */
+.dex-panel::before,
+.detail-body::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  transform: translate(-50%, -50%);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(#fff, #fff) center / 100% 9px no-repeat,
+    radial-gradient(circle, transparent 0 56px, #fff 56px 65px, transparent 65px 100%);
+}
+
+/* Scrollable "grid" of every Pokémon in the current filter, dex-number
+   order. Actually flexbox (not CSS grid) with fixed per-item widths
+   computed from --grid-cols: a short last row (fewer cells than columns)
+   centers itself via justify-content instead of hugging the left edge,
+   which plain CSS grid can't do without extra tricks. --grid-cols controls
+   the column count (5 by default; drop to 4 or 3 if that many columns
+   makes names/numbers too cramped to read). */
+.dex-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 8px;
+  /* Top/bottom padding must exceed the 14px mask fade below, or the first
+     row (and its favorite star) renders through the transparent band. */
+  padding: 14px 2px 14px;
+  /* Thin, rounded, semi-transparent scrollbar instead of the browser's
+     default (Firefox/modern Chromium via scrollbar-width/-color; older
+     Chromium, including the packaged Electron app's bundled version, via
+     the ::-webkit-scrollbar-* rules below) — keeps the look identical
+     between a plain browser tab and the packaged app rather than relying
+     on each engine's own default styling. */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  /* Fade the top/bottom couple pixels of the scroll area so content doesn't
+     cut off abruptly — a static mask (not scroll-position-driven), the
+     lazy version that still reads correctly since these lists always have
+     more padding than the fade height. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+}
+
+.dex-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dex-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dex-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.dex-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Slightly taller-than-wide card: sprite, then name, then dex number.
+   Height is intrinsic (content + padding) rather than a forced
+   aspect-ratio — CSS Grid + aspect-ratio on the item itself doesn't size
+   the row track correctly in some engines, causing rows to overlap (this
+   is now flexbox, not grid, but the cell is still sized intrinsically for
+   the same reason). */
+.dex-cell {
+  width: calc((100% - (var(--grid-cols) - 1) * 8px) / var(--grid-cols));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)), var(--chip-bg);
+  border: var(--cell-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px 6px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: var(--raised-shadow-sm);
+}
+
+/* Soft circular backdrop behind the sprite, separating the icon from the
+   flat cell background. Wraps the <img> (app.js cellHtml) rather than
+   living on the <img> itself, since aspect-ratio moved here. */
+.dex-sprite-wrap {
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.dex-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dex-name {
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.dex-number {
+  margin-top: auto;
+  padding-top: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--chip-fg);
+  opacity: 0.8; /* .65 failed light-mode small-text contrast (0.1.34) */
+}
+
+.dex-empty {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 48px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--chip-fg);
+  opacity: 0.8;
+}
+
+/* Zero-favorites empty state: icon + heading + subtext instead of a plain
+   line of text (renderFavorites() in app.js). */
+.dex-empty-favorites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 56px 24px;
+  opacity: 1;
+}
+
+.dex-empty-icon {
+  width: 40px;
+  height: 40px;
+  fill: none;
+  stroke: var(--chip-fg);
+  stroke-width: 1.4;
+  opacity: 0.35;
+}
+
+.dex-empty-text {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.dex-empty-subtext {
+  font-size: 12px;
+  opacity: 0.6;
+  max-width: 220px;
+  line-height: 1.4;
+}
+
+/* Invisible strip on the left edge that starts the swipe-to-open gesture.
+   12px (was 24px, 0.1.34): exactly the 12px gutter every screen keeps on
+   its left, so it no longer sits over the detail Back button or the Kanto
+   chip and swallows their taps as a zero-delta drag. Still covers the
+   drawer handle (left: 4px, 5.4px wide). */
+.edge-zone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 100%;
+  z-index: 5;
+  touch-action: none;
+}
+
+/* Visible tap target for the drawer, layered above .edge-zone so a tap on
+   it opens the menu directly rather than being read as a drag gesture. */
+.drawer-handle {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5.4px;
+  height: 140.4px;
+  border-radius: 999px;
+  background: rgba(150, 150, 150, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 6;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.drawer-handle:hover {
+  background: rgba(190, 190, 190, 0.55);
+}
+
+.drawer-handle:active {
+  transform: translateY(-50%) scale(0.85);
+}
+
+/* Dim background shown while the menu is open; tapping it closes the menu */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--anim-speed) ease;
+  z-index: 8;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Thin slide-out menu, hidden off-screen to the left by default */
+.side-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--menu-width);
+  height: 100%;
+  background: #202225;
+  color: #f2f2f2;
+  transform: translateX(-100%);
+  transition: transform var(--anim-speed) ease;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+  touch-action: none;
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+/* While the user is actively dragging, disable the transition so it tracks the finger */
+.side-menu.dragging,
+.overlay.dragging {
+  transition: none;
+}
+
+.menu-header {
+  padding: 24px 14px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+}
+
+/* Each setting is an icon-only "cube": dark grey square, blue icon outline */
+.icon-cube {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #35383d;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: filter 0.12s ease, transform 0.12s ease;
+}
+
+.icon-cube:hover {
+  filter: brightness(1.15);
+}
+
+.icon-cube:active {
+  transform: scale(0.93);
+}
+
+.icon {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: #4da3ff;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-gear {
+  stroke-linejoin: miter;
+}
+
+/* Shared style for every popup screen/window in the app — rounded corners */
+.window {
+  border-radius: var(--window-radius);
+}
+
+/* Dim backdrop behind the settings window; tapping it closes the window */
+.settings-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--anim-speed) ease;
+  z-index: 20;
+}
+
+.settings-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Small vertical rectangular settings window, centered on screen */
+.settings-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: auto;
+  max-height: 90%;
+  background: #24262b;
+  color: #f2f2f2;
+  padding: 18px 16px;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--anim-speed) ease, opacity var(--anim-speed) ease;
+  z-index: 21;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+}
+
+.window-body {
+  flex-shrink: 0;
+}
+
+.settings-window.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.window-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #f2f2f2;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.window-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.window-header {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 26px 18px 0;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+/* Grid-width segmented control: 3 rectangular boxes joined into one bar
+   (shared borders, only the outer corners rounded) rather than 3 separate
+   buttons, so it reads as one control. The selected box uses --accent-grad,
+   the same "currently selected" treatment as the active region chip, so
+   users learn one visual language for "this is picked". */
+.grid-width-control {
+  display: flex;
+}
+
+.grid-width-btn,
+.units-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: none;
+  background: #3a3d43;
+  color: #f2f2f2;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+  transition: filter 0.12s ease;
+}
+
+.grid-width-btn:first-child,
+.units-btn:first-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px 0 0 6px;
+}
+
+.grid-width-btn:last-child,
+.units-btn:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.grid-width-btn:hover,
+.units-btn:hover {
+  filter: brightness(1.15);
+}
+
+.grid-width-btn.active,
+.units-btn.active {
+  background: var(--accent-grad);
+  border-color: transparent;
+}
+
+/* Measurements (Metric/Imperial) reuses the segmented look under its own
+   class — app.js selects .grid-width-btn for the column count, so sharing
+   the class would feed the units buttons into that handler (the 0.1.34
+   Stat Level bug). Text labels don't fit beside a 14px label in the
+   178px-wide window body, so the row stacks: label above, control below,
+   each box taking half the width. */
+.settings-row.stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.units-btn {
+  width: auto;
+  flex: 1;
+}
+
+.settings-label {
+  font-size: 14px;
+  color: #e6e6e6;
+}
+
+/* Toggle switch */
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switch-track {
+  position: absolute;
+  inset: 0;
+  background: #55585e;
+  border-radius: 12px;
+  transition: background var(--anim-speed) ease;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform var(--anim-speed) ease;
+}
+
+.switch input:checked + .switch-track {
+  background: #4da3ff;
+}
+
+.switch input:checked + .switch-track .switch-thumb {
+  transform: translateX(20px);
+}
+
+/* Pinned to the bottom of the Settings window regardless of how much
+   sits above it — the Offline Cache section used to anchor this before
+   0.1.20 removed it (local sprites made it redundant); app-version now
+   carries that same margin-top:auto. */
+.app-version {
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 9px;
+  text-align: center;
+  color: #8a8d93;
+  opacity: 0.8;
+}
+
+/* =====================================================================
+   Screens beyond the dex home: Favorites and the Pokemon detail view.
+   All three live inside the same phone frame; app.js's showView() swaps
+   which of the two list screens is visible, and the detail screen slides
+   in over whichever one is showing.
+   ===================================================================== */
+
+/* .screen sets display:flex, which would otherwise beat the [hidden]
+   attribute's display:none — this restores it for the swapped screens. */
+.screen[hidden] {
+  display: none;
+}
+
+/* The Favorites header reuses .dex-title's Pokemon-logo styling but isn't
+   a button, so it doesn't dim and doesn't take a pointer cursor. */
+.dex-title-static {
+  cursor: default;
+}
+
+/* Dex cells are now tappable (they open the detail screen), so they get
+   press feedback, a keyboard focus ring, and room for the favorite badge
+   positioned in the corner. */
+.dex-cell {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+}
+
+.dex-cell:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.dex-cell:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.dex-cell:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Small yellow star in a cell's corner marking it as favorited. Purely an
+   indicator — favoriting happens on the detail screen. */
+.dex-cell-fav {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  fill: #ffcb05;
+  stroke: #b98f00;
+  stroke-width: 1.2;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.5));
+}
+
+/* --- Search bar (the dex quick-search) --- */
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px 12px;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 32px 9px 36px;
+  border: var(--cell-border);
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: var(--chip-fg);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  /* .phone sets user-select:none for the swipe gestures — text fields need
+     it back so selecting/editing the query works normally. */
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Magnifying-glass icon inside the field, matching the drawer's search
+   icon (same stroke-only SVG style, see index.html). */
+.search-icon {
+  position: absolute;
+  left: 30px;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--chip-fg);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.search-input::placeholder {
+  color: var(--chip-fg);
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.25);
+}
+
+.search-clear {
+  position: absolute;
+  right: 24px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--chip-fg);
+  opacity: 0.6;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.search-clear:hover {
+  opacity: 1;
+}
+
+/* .search-clear is display:flex, which would otherwise win over the
+   [hidden] attribute's display:none (same reason .screen[hidden] exists). */
+.search-clear[hidden] {
+  display: none;
+}
+
+/* --- Pokemon detail screen ---
+   Sits at z-index 4: above the list screens (1) but below the edge-zone
+   (5), overlay (8) and drawer (10), so the swipe-out menu still works
+   normally while a detail view is open. Slides in from the right rather
+   than being display-toggled, so the transition can actually animate. */
+.detail-screen {
+  z-index: 4;
+  background-color: var(--screen-bg);
+  background-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.05), transparent 65%);
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--anim-speed) ease,
+              background var(--anim-speed) ease,
+              color var(--anim-speed) ease,
+              visibility 0s linear var(--anim-speed);
+}
+
+.detail-screen.active {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform var(--anim-speed) ease,
+              background var(--anim-speed) ease,
+              color var(--anim-speed) ease,
+              visibility 0s;
+}
+
+.detail-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px 0;
+  flex-shrink: 0;
+}
+
+.detail-back,
+.detail-fav {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)), var(--chip-bg);
+  border: var(--cell-border);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--raised-shadow-sm);
+  transition: filter 0.12s ease, transform 0.12s ease;
+}
+
+.detail-back:hover,
+.detail-fav:hover {
+  filter: brightness(1.1);
+}
+
+.detail-back:active,
+.detail-fav:active {
+  transform: scale(0.92);
+}
+
+.detail-back .icon,
+.detail-fav .icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Star is hollow until the Pokemon is favorited, then fills in yellow */
+.detail-fav .icon-star {
+  fill: none;
+  transition: fill 0.15s ease, stroke 0.15s ease;
+}
+
+.detail-fav[aria-pressed="true"] .icon-star {
+  fill: #ffcb05;
+  stroke: #b98f00;
+}
+
+.detail-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* 14px top so the picture card clears the mask fade (same rule as .dex-list). */
+  padding: 14px 12px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+}
+
+.detail-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.detail-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.detail-body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* --- Detail screen sections (0.1.18 redesign) ---
+   PLAN.md's "Detail screen redesign": the body is a stack of dark-red
+   cards (picture / evolution / found-in / moves / stats) plus the facts
+   list. .detail-section is the shared card chrome the old single
+   .detail-card used, so the visual language is unchanged. */
+.detail-section {
+  position: relative;
+  padding: 12px;
+  background: linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+  border: var(--panel-border);
+  border-radius: var(--window-radius);
+  box-shadow: var(--raised-shadow);
+  flex-shrink: 0;
+}
+
+.detail-section-label {
+  margin: 0 0 8px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #f4e3b4;
+  opacity: 0.75;
+}
+
+/* Notes inside a section card (no evolution, no wild encounters, ...) —
+   same muted treatment as the old .detail-note, on the red card. */
+.detail-section-note {
+  font-size: 11.5px;
+  line-height: 1.5;
+  text-align: center;
+  color: #f4e3b4;
+  opacity: 0.7;
+}
+
+/* The name moved out of the picture card and into the topbar, where it
+   doubles as the button that opens the other-languages popup. */
+.topbar-name {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Luckiest Guy", "Arial Black", sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #ffcb05;
+  -webkit-text-stroke: 1px #2a75bb;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-name:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* 1. Picture card: normal + shiny side by side, dex number in the corner,
+      flavour text as a flap merged into the card's own bottom edge. */
+.picture-card {
+  overflow: hidden;
+}
+
+.sprite-pair {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.sprite-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.detail-sprite-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
+.sprite-slot-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #f4e3b4;
+  opacity: 0.8;
+}
+
+.detail-number {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #f4e3b4;
+  opacity: 0.85;
+}
+
+/* Negative margins pull the flap out to the card's own edges so it reads
+   as part of the same element rather than a separate box. */
+.detail-description-flap {
+  margin: 10px -12px -12px;
+  padding: 11px 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.18);
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-weight: 500;
+  text-align: left;
+  color: #f2f2f2;
+}
+
+/* 2. Evolution line: one row per root-to-leaf path (a branching family
+      such as Eevee's simply stacks one row per branch). */
+.evo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evo-row + .evo-row {
+  margin-top: 6px;
+}
+
+.evo-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 76px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.evo-stage:active {
+  transform: scale(0.95);
+}
+
+.evo-sprite-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 60%, rgba(255, 255, 255, 0) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evo-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
+.evo-name {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-align: center;
+  color: #f2f2f2;
+}
+
+.evo-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 2px 14px;
+  flex-shrink: 0;
+}
+
+.evo-arrow svg {
+  width: 20px;
+  height: 14px;
+}
+
+/* Condition icons above the arrow (item sprite / heart / sun / moon / a
+   known-move type pill). The .evo-arrow svg rule above is a blanket 20x14
+   sized for the arrow itself, so the inline condition SVGs override it. */
+.evo-arrow-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  max-width: 46px;
+  color: #f4e3b4;
+}
+
+.evo-arrow-item {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
+.evo-arrow svg.evo-cond-icon {
+  width: 13px;
+  height: 13px;
+}
+
+/* Hearts read better warm than gold against the dark-red card. */
+.evo-arrow-icons svg.evo-cond-icon:first-child {
+  color: #ff9aa8;
+}
+
+/* pillHtml() reuse (Sylveon's "Fairy" move-type tag) — the full-size
+   .type-pill is far too wide for the narrow arrow column. */
+.evo-arrow-icons .type-pill {
+  padding: 1px 5px;
+  font-size: 9.5px;
+  letter-spacing: 0.2px;
+}
+
+.evo-level {
+  font-size: 10px;
+  font-weight: 700;
+  /* Wraps instead of nowrap so a two-word move-trigger label ("Ancient
+     Power") can't push a 3-stage row (Swinub line) past the card's width.
+     Every other label is one word, so nothing else changes. */
+  max-width: 52px;
+  text-align: center;
+  color: #f4e3b4;
+  opacity: 0.8;
+}
+
+/* Fan-out layout: one root bubble, then every one-step branch below it
+   (Eevee, Tyrogue). Only the container structure and the arrow's direction
+   differ — the stage/arrow/icon pieces are the same ones .evo-row uses. */
+.evo-fan-branches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* No column gap: .evo-stage is a fixed 76px around a 60px sprite, so four
+     branches (304px) just fit the 308px card interior at the 360px base
+     width — Eevee reads 4+4 rather than 3+3+2. */
+  gap: 6px 0;
+  margin-top: 2px;
+}
+
+.evo-fan-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The arrow column is already vertical (icons / arrow / label), so pointing
+   it down is just rotating the chevron itself — never the condition icons
+   (heart, sun, moon), and .evo-arrow-item is an <img>, so it's excluded. */
+.evo-fan-branch .evo-arrow {
+  padding: 0 2px;
+}
+
+.evo-fan-branch .evo-arrow > svg:not(.evo-cond-icon) {
+  transform: rotate(90deg);
+  /* Rotation doesn't change the 20x14 layout box, so reserve the 6px the
+     now-20px-tall arrow gains vertically. */
+  margin: 3px 0;
+}
+
+/* Alt Formes module: reuses .evo-row/.evo-stage/.evo-sprite-wrap/.evo-name
+   as-is (rule 2's "same pattern as Evolution Line's stage bubbles") — only
+   .altforms-row's wrap (formes aren't a single connected chain, so they can
+   run past 3-per-row for a future species like Rotom's 5) and the
+   swap-on-tap active indicator (rule 9) are new. */
+.altforms-row {
+  flex-wrap: wrap;
+}
+
+.evo-stage.altform-active {
+  box-shadow: inset 0 0 0 2px var(--accent);
+  border-radius: 10px;
+}
+
+/* A forme with nothing to swap (stats-only) isn't a control — no pointer,
+   no press feedback (0.1.34). */
+.evo-stage.altform-inert {
+  cursor: default;
+}
+
+.evo-stage.altform-inert:active {
+  transform: none;
+}
+
+/* Rule 6: recolor-only formes collapse to one bubble + a "+N" badge,
+   corner-badged the same way .dex-cell-fav marks a favorited grid cell,
+   just text instead of a star. Tapping opens a popup gallery (below)
+   instead of anything inline, so there's no active/tap state to style. */
+.altforms-recolor-bubble .evo-sprite-wrap {
+  position: relative;
+}
+
+.altforms-recolor-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border-radius: 8px;
+  background: var(--accent-grad);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Popup gallery grid (rule 6) — same flexbox-with-calc sizing approach as
+   the home screen's .dex-list/.region-bar (§4 of CLAUDE.md), just at a
+   fixed 4-per-row count sized for the narrower popup rather than reading
+   --grid-cols/--region-cols. Non-interactive: sprite + name only. */
+.altforms-popup-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.altforms-popup-item {
+  width: calc((100% - 3 * 8px) / 4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.altforms-popup-item .evo-sprite-wrap {
+  width: 44px;
+  height: 44px;
+}
+
+.altforms-popup-item .evo-name {
+  font-size: 9px;
+}
+
+/* 3. Found In: the existing region chips, sized to their own text rather
+      than to the home screen's --region-cols grid. */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.region-chip.chip-auto {
+  width: auto;
+  padding: 6px 14px;
+}
+
+/* Key/value fact rows. */
+.detail-facts {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)), var(--chip-bg);
+  border: var(--cell-border);
+  border-radius: var(--window-radius);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: var(--raised-shadow-sm);
+}
+
+.detail-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+/* Rows whose value is a wrapping list (abilities, pill rows) stack the
+   label above the value instead of sitting beside it. */
+.detail-row.column {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.detail-key {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--chip-fg);
+  opacity: 0.8; /* .65 failed light-mode small-text contrast (0.1.34) */
+  white-space: nowrap;
+}
+
+.detail-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--chip-fg);
+  text-align: right;
+}
+
+/* --- Type pills (static reference colors, all 18 types) --- */
+.type-pills,
+.weak-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.weak-pills {
+  justify-content: flex-start;
+}
+
+.type-pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+  box-shadow: var(--raised-shadow-sm);
+}
+
+.type-normal   { background: #A8A878; }
+.type-fire     { background: #F08030; }
+.type-water    { background: #6890F0; }
+.type-electric { background: #F8D030; color: #2a2200; }
+.type-grass    { background: #78C850; }
+.type-ice      { background: #98D8D8; color: #1a3a3a; }
+.type-fighting { background: #C03028; }
+.type-poison   { background: #A040A0; }
+.type-ground   { background: #E0C068; color: #3a2c00; }
+.type-flying   { background: #A890F0; }
+.type-psychic  { background: #F85888; }
+.type-bug      { background: #A8B820; }
+.type-rock     { background: #B8A038; }
+.type-ghost    { background: #705898; }
+.type-dragon   { background: #7038F8; }
+.type-dark     { background: #705848; }
+.type-steel    { background: #B8B8D0; color: #2a2a35; }
+.type-fairy    { background: #EE99AC; color: #4a1a26; }
+
+/* A x4 ("extremely effective") weakness gets a thin gradient outline over
+   its normal type color, so it reads as more severe than a plain x2. */
+.type-pill.mult-4 {
+  border: 1.5px solid;
+  border-image: linear-gradient(120deg, #fff5b8, #ff3b3b, #fff5b8) 1;
+  box-shadow: var(--raised-shadow-sm), 0 0 4px rgba(255, 59, 59, 0.55);
+}
+
+/* Abilities: name + full description from data/abilities.js, hidden last */
+.ability-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ability-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--chip-fg);
+}
+
+.ability-name .hidden-tag {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  vertical-align: middle;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #10233a;
+  background: #f4e3b4;
+}
+
+/* Mega/Gmax formes' appended-ability tag: same pill, red/white/outlined so
+   it reads as a forme marker, not the tan "Hidden" badge. */
+.ability-name .mega-tag {
+  color: #fff;
+  background: #c0392b;
+  border: 1px solid #000;
+}
+
+.ability-desc {
+  margin-top: 1px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--chip-fg);
+  opacity: 0.8;
+}
+
+/* Capture rate: raw number + computed odds, with a Poke Ball glyph */
+.capture-val {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.ball-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* 5. Learnable Moves: four lists behind a tab bar */
+.move-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.move-tab {
+  flex: 1;
+  padding: 7px 4px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  color: #e8e8e8;
+  opacity: 0.6;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.move-tab.active {
+  opacity: 1;
+  background: var(--accent-grad);
+  color: #10233a;
+}
+
+.move-list {
+  display: none;
+  flex-direction: column;
+  max-height: 240px;
+  overflow-y: auto;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.18);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.move-list.active {
+  display: flex;
+}
+
+.move-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.move-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+/* Left-aligned fixed-width columns (level | type pill | name) rather than
+   space-between, so the list scans as a table (0.1.34). */
+.move-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 12px;
+}
+
+.move-row:last-child {
+  border-bottom: none;
+}
+
+.move-req {
+  min-width: 40px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #f4e3b4;
+  opacity: 0.8;
+}
+
+.move-name {
+  font-weight: 600;
+  color: #f2f2f2;
+}
+
+/* pillHtml() reuse per move row — same size-down as the arrow-icon pill. */
+.move-row .type-pill {
+  min-width: 58px;
+  padding: 1px 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.move-empty {
+  padding: 12px 10px;
+  font-size: 11.5px;
+  text-align: center;
+  color: #f4e3b4;
+  opacity: 0.7;
+}
+
+/* 6. Base stats: value table + hand-drawn hex radar (no chart library) */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  margin-bottom: 6px;
+}
+
+.stats-table th {
+  padding: 3px 4px;
+  text-align: right;
+  font-weight: 700;
+  color: #f4e3b4;
+  opacity: 0.7;
+}
+
+.stats-table th:first-child {
+  text-align: left;
+}
+
+.stats-table td {
+  padding: 3px 4px;
+  text-align: right;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #f2f2f2;
+}
+
+.stats-table td:first-child {
+  text-align: left;
+  font-weight: 700;
+}
+
+/* BST row: slightly larger than the 11.5px stat rows to highlight it. */
+.stats-table tr.stat-total-row td {
+  font-size: 13px;
+}
+
+.stats-note {
+  font-size: 9.5px;
+  line-height: 1.4;
+  text-align: center;
+  color: #f4e3b4;
+  opacity: 0.6;
+}
+
+.radar-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.stat-radar {
+  width: 280px;
+  height: 270px;
+}
+
+/* --- Detail popups (name languages / per-region locations) ---
+   Scoped inside .detail-screen, which is its own stacking context, so
+   these sit above the detail body without competing with the drawer. */
+.detail-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.detail-popup-backdrop.active {
+  display: flex;
+}
+
+/* Dark chrome regardless of theme, matching the Settings window. */
+.detail-popup {
+  width: 268px;
+  max-height: 78%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background: linear-gradient(180deg, #2e3036, #24262b);
+  border: var(--panel-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.detail-popup-title {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  color: #f4e3b4;
+}
+
+.detail-popup-body {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12.5px;
+}
+
+.popup-row:last-child {
+  border-bottom: none;
+}
+
+.popup-row .k {
+  color: #c9c9c9;
+}
+
+/* Explicit CJK fallback stack: the base font-family lists no CJK families,
+   so the Japanese/Korean name rows render as tofu without this. */
+.popup-row .v {
+  font-weight: 600;
+  text-align: right;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Yu Gothic", "Meiryo", "Hiragino Sans", "Noto Sans CJK JP",
+    "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR",
+    Helvetica, Arial, sans-serif;
+}
+
+.popup-note {
+  padding: 6px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  text-align: center;
+  color: #c9c9c9;
+}
+
+.popup-close {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px;
+  flex-shrink: 0;
+  border: var(--cell-border);
+  border-radius: 10px;
+  background: #35383d;
+  color: #e8e8e8;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- Drawer: highlight whichever screen is currently showing --- */
+.icon-cube.active {
+  background: #1d3a57;
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.icon-cube:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

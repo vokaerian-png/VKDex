@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VKDex</title>
+<script>
+  // Mark the document as running inside the packaged Electron app (vs. a
+  // plain browser tab) as early as possible, before first paint, so
+  // styles.css can scale the phone frame up with the window there without
+  // affecting the fixed-size mockup look when this is just opened in a
+  // regular browser.
+  if (navigator.userAgent.indexOf("Electron") !== -1) {
+    document.documentElement.classList.add("is-electron");
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Phone frame: matches Samsung Galaxy S20 viewport (360 x 800 CSS px).
+       "theme-dark" starts applied because Dark Mode defaults to on. -->
+  <div class="phone theme-dark" id="phone">
+
+    <!-- ================= Pokedex (home) screen: the National Dex =========
+         Header, region filter chips, then every known Pokemon in national
+         dex-number order. One of the two swappable ".screen" panels
+         (see app.js showView()); the drawer's Pokedex icon returns here. -->
+    <main class="screen" id="dexScreen" data-view="dex">
+      <div class="dex-header">
+        <h1 class="dex-title active" id="dexTitle" role="button" tabindex="0">National Dex</h1>
+      </div>
+      <div class="region-bar-row">
+        <div class="region-bar" id="regionBar"></div>
+        <!-- Floating quick-search toggle. Anchored to the bottom-right of
+             the region bar block (11 regions, 4-per-row -> rows of 4/4/3
+             as of 0.1.26's Hisui/Orre addition). The anchor math is a
+             fixed offset from the *last row's height*, not its chip count,
+             so this stays correct at 1, 3, or a full 4 chips in that row —
+             only revisit if a future region changes the row cadence
+             itself (currently one row per every 4 regions). -->
+        <button class="dex-search-toggle" id="dexSearchToggle" type="button"
+                aria-label="Search" aria-expanded="false">
+          <svg class="icon-search-toggle" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.3" cy="10.3" r="6"/>
+            <line x1="14.9" y1="14.9" x2="20.3" y2="20.3"/>
+          </svg>
+          <svg class="icon-search-close" viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18"/>
+            <line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <!-- Collapsible quick-search bar: filters the dex grid below in
+           place, scoped to whichever chip is active (National lifts the
+           hisuiOnly exclusion so all 522 entries stay findable). The
+           app's only search since 0.1.34; "/" focuses it from anywhere. -->
+      <div class="dex-quick-search" id="dexQuickSearch">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.3" cy="10.3" r="6"/>
+            <line x1="14.9" y1="14.9" x2="20.3" y2="20.3"/>
+          </svg>
+          <input type="text" class="search-input" id="dexQuickSearchInput"
+                 placeholder="Name or dex number"
+                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <button class="search-clear" id="dexQuickSearchClear" aria-label="Clear search" hidden>&times;</button>
+        </div>
+      </div>
+      <div class="dex-panel">
+        <div class="dex-list" id="dexList"></div>
+      </div>
+    </main>
+
+    <!-- ================= Favorites screen =================
+         Same grid, filtered to whatever the user has starred on a detail
+         screen. Empty until something is favorited. -->
+    <section class="screen" id="favoritesScreen" data-view="favorites" hidden>
+      <div class="dex-header">
+        <h1 class="dex-title dex-title-static active">Favorites</h1>
+      </div>
+      <div class="dex-panel">
+        <div class="dex-list" id="favoritesList"></div>
+      </div>
+    </section>
+
+    <!-- (The standalone Search screen was removed in 0.1.34 — the drawer's
+         Search icon opens the dex screen's quick-search bar instead.) -->
+
+    <!-- ================= Pokemon detail screen =================
+         Slides in over whichever screen is showing when a grid cell is
+         tapped. Back arrow returns; the star toggles Favorites; the name
+         between them opens the other-languages popup. The whole body is
+         built by app.js renderDetail() from src/data/*.js. -->
+    <section class="screen detail-screen" id="detailScreen" data-view="detail" aria-hidden="true">
+      <div class="detail-topbar">
+        <button class="detail-back" id="detailBack" aria-label="Back">
+          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+            <path d="M15 5 L8 12 L15 19"/>
+          </svg>
+        </button>
+        <button class="topbar-name" id="detailName" type="button" aria-label="Names in other languages"></button>
+        <button class="detail-fav" id="detailFav" aria-pressed="false" aria-label="Add to favorites">
+          <svg viewBox="0 0 24 24" class="icon icon-star" aria-hidden="true">
+            <path d="M12 3.4l2.47 5.28 5.78.63-4.32 4.02 1.18 5.77L12 16.9l-5.11 2.2 1.18-5.77-4.32-4.02 5.78-.63L12 3.4z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="detail-body" id="detailBody"></div>
+
+      <!-- One popup serves both the name-languages list and the per-region
+           location list (title + rows are filled in by app.js). It lives
+           inside .detail-screen so it layers over the detail body only —
+           the drawer/overlay still sit above the whole screen. -->
+      <div class="detail-popup-backdrop" id="detailPopupBackdrop">
+        <div class="detail-popup window" id="detailPopup" role="dialog" aria-label="Details" aria-hidden="true">
+          <p class="detail-popup-title" id="detailPopupTitle"></p>
+          <div class="detail-popup-body" id="detailPopupBody"></div>
+          <button class="popup-close" id="detailPopupClose" type="button">Close</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dark overlay shown behind the open menu; tapping it closes the menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Thin slide-out menu. Its width is capped at the "VKDex" header's own
+         width (computed in app.js) so the drawer never sticks out further
+         than the header above it. -->
+    <nav class="side-menu" id="sideMenu" aria-hidden="true">
+      <div class="menu-header"><span id="menuHeaderText">VKDex</span></div>
+
+      <ul class="menu-list">
+
+        <li class="menu-item" title="Pok&#233;dex">
+          <span class="icon-cube" id="dexIcon" role="button" tabindex="0" aria-label="Pok&#233;dex">
+            <!-- Open book -->
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+              <path d="M12 6.2c-1.6-1.3-3.8-1.9-6.3-1.9v13.4c2.5 0 4.7.6 6.3 1.9 1.6-1.3 3.8-1.9 6.3-1.9V4.3c-2.5 0-4.7.6-6.3 1.9z"/>
+              <path d="M12 6.2v13.4"/>
+            </svg>
+          </span>
+        </li>
+
+        <li class="menu-item" title="Favorites">
+          <span class="icon-cube" id="favoritesIcon" role="button" tabindex="0" aria-label="Favorites">
+            <!-- Star -->
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+              <path d="M12 3.4l2.47 5.28 5.78.63-4.32 4.02 1.18 5.77L12 16.9l-5.11 2.2 1.18-5.77-4.32-4.02 5.78-.63L12 3.4z"/>
+            </svg>
+          </span>
+        </li>
+
+        <li class="menu-item" title="Search">
+          <span class="icon-cube" id="searchIcon" role="button" tabindex="0" aria-label="Search">
+            <!-- Magnifying glass -->
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+              <circle cx="10.3" cy="10.3" r="6"/>
+              <line x1="14.9" y1="14.9" x2="20.3" y2="20.3"/>
+            </svg>
+          </span>
+        </li>
+
+        <li class="menu-item" title="Settings">
+          <span class="icon-cube" id="settingsIcon" role="button" tabindex="0" aria-label="Settings">
+            <!-- Gear / cog -->
+            <svg viewBox="0 0 24 24" class="icon icon-gear" aria-hidden="true">
+              <circle cx="12" cy="12" r="7.4"/>
+              <circle cx="12" cy="12" r="2.6"/>
+              <path d="M 13.60 4.60 L 10.40 4.60 L 10.40 1.80 L 13.60 1.80 Z"/>
+              <path d="M 18.36 7.90 L 16.10 5.64 L 18.08 3.66 L 20.34 5.92 Z"/>
+              <path d="M 19.40 13.60 L 19.40 10.40 L 22.20 10.40 L 22.20 13.60 Z"/>
+              <path d="M 16.10 18.36 L 18.36 16.10 L 20.34 18.08 L 18.08 20.34 Z"/>
+              <path d="M 10.40 19.40 L 13.60 19.40 L 13.60 22.20 L 10.40 22.20 Z"/>
+              <path d="M 5.64 16.10 L 7.90 18.36 L 5.92 20.34 L 3.66 18.08 Z"/>
+              <path d="M 4.60 10.40 L 4.60 13.60 L 1.80 13.60 L 1.80 10.40 Z"/>
+              <path d="M 7.90 5.64 L 5.64 7.90 L 3.66 5.92 L 5.92 3.66 Z"/>
+            </svg>
+          </span>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- Narrow strip along the left edge used to detect the open-swipe gesture -->
+    <div class="edge-zone" id="edgeZone"></div>
+
+    <!-- Visible affordance for the swipe-out drawer: a thin grey pill on
+         the left edge, tap to open (the edge-zone above still handles the
+         drag-to-open gesture across its whole strip). -->
+    <button class="drawer-handle" id="drawerHandle" type="button" aria-label="Open menu"></button>
+
+    <!-- Settings window: a small rounded-corner panel centered on screen.
+         Shares the ".window" styling every screen/window in the app uses. -->
+    <div class="settings-backdrop" id="settingsBackdrop"></div>
+    <div class="settings-window window" id="settingsWindow" role="dialog" aria-label="Settings" aria-hidden="true">
+      <button class="window-close" id="settingsClose" aria-label="Close settings">&times;</button>
+      <div class="window-header">Settings</div>
+      <div class="window-body">
+        <div class="settings-row">
+          <span class="settings-label">Dark Mode</span>
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" checked>
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+          </label>
+        </div>
+        <div class="settings-row stacked">
+          <span class="settings-label">Measurements</span>
+          <div class="grid-width-control" id="unitsControl" role="radiogroup" aria-label="Measurement units">
+            <button type="button" class="units-btn active" data-units="metric" role="radio" aria-checked="true">Metric</button>
+            <button type="button" class="units-btn" data-units="imperial" role="radio" aria-checked="false">Imperial</button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-label">Grid Width</span>
+          <div class="grid-width-control" id="gridWidthControl" role="radiogroup" aria-label="Grid width">
+            <button type="button" class="grid-width-btn" data-cols="3" role="radio" aria-checked="false">3</button>
+            <button type="button" class="grid-width-btn" data-cols="4" role="radio" aria-checked="false">4</button>
+            <button type="button" class="grid-width-btn active" data-cols="5" role="radio" aria-checked="true">5</button>
+          </div>
+        </div>
+        <!-- 0.1.34 additions (TODO #9 settings). Each persists in
+             localStorage; see app.js's Settings section for the keys. -->
+        <div class="settings-row">
+          <span class="settings-label">Shiny Grids</span>
+          <label class="switch">
+            <input type="checkbox" id="shinyGridsToggle">
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <span class="settings-label">Pixel Sprites</span>
+          <label class="switch">
+            <input type="checkbox" id="pixelSpritesToggle" checked>
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+          </label>
+        </div>
+      </div>
+      <div class="app-version" id="appVersion"></div>
+    </div>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="data/types.js"></script>
+  <script src="data/pokemon.js"></script>
+  <script src="data/abilities.js"></script>
+  <script src="data/moves.js"></script>
+  <script src="data/movesets.js"></script>
+  <script src="data/evolutions.js"></script>
+  <script src="data/locations.js"></script>
+  <script src="data/names.js"></script>
+  <script src="data/stats.js"></script>
+  <script src="data/altforms.js"></script>
+  <script src="data/hisui.js"></script>
+  <script src="data/orre.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
