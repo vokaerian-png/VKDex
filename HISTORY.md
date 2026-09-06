@@ -10,7 +10,71 @@ exempt. The authoritative policy is `CLAUDE.md` §3 — this file is just the
 log, newest entry first. Current-state descriptions live in `CLAUDE.md`;
 entries here record what changed and why.
 
-**Current version: 0.2.17.**
+**Current version: 0.2.18.**
+
+---
+
+## 0.2.17 → 0.2.18 — Legends: Arceus learnsets split from mainline movesets (`coder`)
+
+User-directed, from a real screenshot catching Bidoof (#399) missing TM/Egg
+tabs entirely. Root cause: `tools/populate_region.js`'s moveset extractor
+picked one "best" version group (highest `order`) per species for
+level-up/TM/egg/tutor alike; PLA (`legends-arceus`, `order=26`, the highest
+in the clone) structurally has zero TM/egg rows, so whenever it won that
+species' real TM/egg lists were silently wiped — **55 of 665 populated
+species** affected (Bidoof's real mainline data replaced by nothing).
+
+User's call after seeing the scope: don't just re-rank the selector — PLA's
+learnset data has genuinely different mechanics from every mainline game
+and should never be merged into mainline data again, full stop.
+
+- **`movesets.js`'s version-group selection** now excludes PLA unless a
+  species has zero non-PLA moveset rows at all (only the 7 `hisuiOnly`
+  species qualify, and their own `movesets.js` entries turned out to
+  already be SV/DLC-sourced, not PLA — unaffected). Fixes the 55-species
+  wipe as a side effect: all 55 now resolve to BDSP (`order` 25, beats
+  every other non-PLA group for these species), zero lost level-up data,
+  zero stray `mastery` fields left in mainline data. Bidoof: 30 TM / 7 egg,
+  from BDSP.
+- **New `src/data/movesets_hisui.js`** (`MOVESETS_HISUI`, 241 entries):
+  PLA's own level-up (with `mastery`) + tutor lists, extracted independently
+  of the mainline pick, `{levelUp, tutor}` per id with an empty key omitted
+  (`SCOPE.md` §2). 17 entries needed a non-default-form fallback (16
+  Hisuian regional forms + Giratina-Origin + Basculin-white-striped, whose
+  base species row carries no PLA data) — where a species has PLA rows on
+  *both* base and Hisuian form (7 cases, e.g. Sneasel), the base currently
+  wins; `TODO.md` #13 flags whether the Hisuian form should instead, given
+  the Hisui screen already defaults to that forme. Porygon2 (#233) has no
+  PLA rows in the source clone at all — 241/242, not a bug.
+- **Detail screen**: the Learnable Moves card reads `MOVESETS_HISUI` instead
+  of `MOVESETS` only when opened from the Hisui screen (`SCOPE.md` §4) —
+  reuses the existing Hisuian-auto-forme nav signal (`autoForme` in
+  `openDetail()`), no second context-tracking mechanism. Its own two-tab
+  list, `MOVE_TABS_HISUI` (Level-Up/Tutor) — kept separate from mainline's
+  `MOVE_TABS` (Level-Up/TM/Egg/Max) since `tutor` data has existed since
+  0.2.5 with no UI tab at all, and adding one to the shared list would have
+  put a new Tutor tab on 58 mainline Unova screens unrequested (`TODO.md`
+  #13's second item — a one-line change if wanted generally).
+- `index.html`/`electron-app/copy-app.js` updated for the new data file.
+  `tools/verify_region_data.js` extended (one shared move-resolution
+  checker reused for both files, per spec) and `--audit` extended with a
+  `movesets_hisui` block, verified to actually fire (a deliberate 1-row
+  deletion was caught and reported).
+- **+17 moves** newly surfaced (`data/moves.js` 651→668): 15 PLA-only, plus
+  2 (Parting Shot, Power Shift) surfaced by the mainline fix itself once
+  BDSP/PLA entries became writable — all hand-authored, house-style
+  original paraphrases.
+- Verified: `node --check` on all 8 touched files; `verify_region_data.js`
+  PASS (0 failures); `--audit` PASS both before and after (0 discrepancies);
+  the regeneration is idempotent (byte-identical on a 4th run);
+  `movesets.js` diffed against a pre-edit backup — 610/665 byte-identical,
+  the other 55 exactly the predicted PLA set, zero regressions; a
+  render-harness against the real `app.js` function bodies (15/15); a
+  clone-wide grep confirmed `legends-arceus` is the only version group with
+  moveset rows but no TM/egg rows that any populated species actually
+  resolves to.
+
+Handoff: `temp/handoff/2026-09-06-023418-pla-moveset-split.md`.
 
 ---
 

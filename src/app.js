@@ -724,6 +724,11 @@
   // exactly as it always did. Only meaningful for a `hasFemaleSprite`
   // species; every other entry renders no toggle at all.
   var activeGender = "male";
+  // Whether this detail screen was opened from the Hisui screen (0.2.18) —
+  // the same nav-origin signal openDetail()'s `autoForme` carries, held on
+  // so the Learnable Moves card can read data/movesets_hisui.js instead of
+  // data/movesets.js. Reset on every openDetail(), like activeFormeKey.
+  var fromHisuiScreen = false;
   // Settings-driven display state (all persisted, see the Settings section):
   var useImperialUnits = false; // metric is the default
   var useShinyGrids = false;    // grid cells show shiny sprites
@@ -1381,6 +1386,14 @@
     { key: "egg", label: "Egg" },
     { key: "max", label: "Max" }
   ];
+  // Legends: Arceus learnsets (0.2.18) are level-up + tutor only — no TMs,
+  // no breeding, no Dynamax. Its own tab list, so a mainline detail screen
+  // keeps exactly the four tabs above (58 Unova entries carry tutor data
+  // that has never been surfaced there).
+  var MOVE_TABS_HISUI = [
+    { key: "levelUp", label: "Level-Up" },
+    { key: "tutor", label: "Tutor" }
+  ];
 
   // Each row: level requirement (level-up tab only, fixed-width column),
   // the move's type pill from MOVES (0.1.34), then the name.
@@ -1399,9 +1412,14 @@
   // by design (no Dynamax in Gen 9), so "No Max moves" was pure noise. A
   // species with no moveset data at all gets no card.
   function movesCardHtml(entry) {
-    var set = MOVESETS[entry.id];
+    // Opened from the Hisui screen, and this species has PLA data? Then the
+    // card reads Legends: Arceus' own learnset instead of the mainline one
+    // (0.2.18) — same nav-origin signal that auto-activates the Hisuian
+    // forme. Anywhere else, or no PLA data, falls back to MOVESETS.
+    var hisuiSet = fromHisuiScreen ? MOVESETS_HISUI[entry.id] : null;
+    var set = hisuiSet || MOVESETS[entry.id];
     if (!set) return "";
-    var present = MOVE_TABS.filter(function (t) { return set[t.key] && set[t.key].length; });
+    var present = (hisuiSet ? MOVE_TABS_HISUI : MOVE_TABS).filter(function (t) { return set[t.key] && set[t.key].length; });
     if (!present.length) return "";
     var tabs = present.map(function (t, i) {
       return '<button class="move-tab' + (i === 0 ? " active" : "") + '" type="button" data-tab="' + t.key + '">' + t.label + "</button>";
@@ -1717,6 +1735,8 @@
     // evolution-stage jump — all of which land here. rerenderDetail()
     // deliberately does NOT reset either one (a units change keeps both).
     activeGender = "male";
+    // Set before renderDetail() — movesCardHtml() reads it (0.2.18).
+    fromHisuiScreen = !!autoForme;
     renderDetail(entry);
     if (autoForme) setActiveForme("hisui");
     syncFavoriteButton();

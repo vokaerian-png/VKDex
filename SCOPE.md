@@ -10,10 +10,10 @@ Sections run sequentially §1-§8; a sub-clause takes its main section's
 number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
 full convention).
 
-**Standing cap: ≤650 lines** (raised from 600, 2026-09-05, 0.2.8's
-per-game encounter/item shapes pushed past it), same 50-line
+**Standing cap: ≤700 lines** (raised from 650, 2026-09-06, the PLA/Hisui
+learnset split needed room for the new file's documentation), same 50-line
 raise-at-a-time rule as `CLAUDE.md` (full shared rule: `CLAUDE.md` §7) —
-tracked independently of that file's own ≤400-line cap.
+tracked independently of that file's own cap.
 
 **Cards and their internal data blocks don't get reordered, restructured,
 or reshuffled unless the user explicitly asks for that specific change**
@@ -39,7 +39,7 @@ native packaging shell for a portable Windows `.exe` — Electron today,
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3). **Current version: 0.2.11** (`CLAUDE.md` §3 for
+and a Settings popup (§3). **Current version: 0.2.18** (`CLAUDE.md` §3 for
 the bump policy, `HISTORY.md` for the changelog).
 
 ---
@@ -166,6 +166,22 @@ reading the `PokeAPI/pokeapi` clone at `temp/PokeAPI-master/data/v2/csv/`.
   exit 1 on any. **`--gaps`** lists CSV columns the schema lacks (`TODO.md`
   #10). `tools/populate_hisui_species.js` is the separate, already-run
   id-list fork for the Hisui/Orre standalone dexes.
+
+**`movesets_hisui.js` (0.2.18, `MOVESETS_HISUI`, 241 entries):** Legends:
+Arceus (PLA) has genuinely different move-learning mechanics — its CSV rows
+are level-up (with a `mastery` rank) and tutor only, never TM/egg — so PLA
+data is never merged into `movesets.js`'s mainline pick; it's extracted
+separately here, `{levelUp, tutor}` per id (either key omitted if empty),
+rendered only when the detail screen is opened from the Hisui screen (§4).
+`movesets.js`'s own version-group selection excludes PLA from "best" unless
+a species has no non-PLA moveset data at all (the 7 `hisuiOnly` species —
+unaffected either way, since their `movesets.js` entries were never
+PLA-sourced). 17 of the 241 entries fall back to a non-default form's PLA
+rows (the 16 Hisuian regional forms, Giratina-Origin, Basculin-white-striped)
+since their base species has none; where both a base and its Hisuian form
+have PLA rows (7 cases), the base's wins — `TODO.md` #13 if that should
+instead prefer the Hisuian form. Porygon2 (#233) has no PLA rows in the
+source clone at all — 241/242 Hisui-roster species, not a bug.
 
 `data/types.js`: `TYPE_CHART`, the full Gen 9 type-effectiveness chart
 (static, sparse — only non-1× pairs), keyed attacker→defender→multiplier.
@@ -500,7 +516,16 @@ sprite subfolder never needs a `copy-app.js` change.
   - **Moves**: up to four tabs (Level-Up/TM/Egg/Max) over
     `data/movesets.js` — an empty list gets no tab (Max always; no tabs →
     no card). Rows: level (level-up only) | type pill from `MOVES` | name.
-    One delegated click listener on `#detailBody`.
+    One delegated click listener on `#detailBody`. **Hisui override
+    (0.2.18)**: opened from the Hisui screen specifically (the same
+    `fromHisuiScreen` signal the auto-forme default already computes,
+    `autoForme` in `openDetail()`) — if `data/movesets_hisui.js`'s
+    `MOVESETS_HISUI` has an entry for that id, the card renders from it
+    instead, over its own two-tab list (`MOVE_TABS_HISUI`: Level-Up/Tutor
+    only, kept separate from mainline's `MOVE_TABS` so this doesn't put a
+    new Tutor tab on the 58 mainline Unova screens that already carry
+    unrendered tutor data since 0.2.5 — `TODO.md` #13 tracks surfacing that
+    generally). Falls back to `movesets.js` if the id has no Hisui entry.
   - **Stats**: Base / Lv.1 / Lv.100 columns (`calcStat()`: 31 IV, 0 EV,
     neutral nature, HP formula differs from the other five) plus a BST
     "Total:" row (`.stat-total-row`, 13px vs. the table's 11.5px base —

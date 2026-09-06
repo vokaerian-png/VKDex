@@ -308,15 +308,15 @@ var MOVESETS = {
     max: []
   },
   41: {
-    levelUp: [{level:1,move:"Gust",mastery:10},{level:6,move:"Hypnosis",mastery:15},{level:11,move:"Bite",mastery:20},{level:18,move:"Air Cutter",mastery:28},{level:25,move:"Cross Poison",mastery:35},{level:34,move:"Air Slash",mastery:45},{level:43,move:"Leech Life",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Supersonic"},{level:5,move:"Astonish"},{level:10,move:"Mean Look"},{level:15,move:"Poison Fang"},{level:20,move:"Quick Guard"},{level:25,move:"Air Cutter"},{level:30,move:"Bite"},{level:35,move:"Haze"},{level:40,move:"Venoshock"},{level:45,move:"Confuse Ray"},{level:50,move:"Air Slash"},{level:55,move:"Leech Life"}],
+    tm: ["Fly","Double Team","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Shadow Ball","Torment","Facade","Taunt","Aerial Ace","Roost","Pluck","U-turn","Payback","Nasty Plot","Defog"],
+    egg: ["Gust","Wing Attack","Whirlwind","Hypnosis","Quick Attack","Curse","Brave Bird","Zen Headbutt","Venom Drench"],
     tutor: [],
     max: []
   },
   42: {
-    levelUp: [{level:1,move:"Gust",mastery:10},{level:6,move:"Hypnosis",mastery:15},{level:11,move:"Bite",mastery:20},{level:18,move:"Air Cutter",mastery:28},{level:25,move:"Cross Poison",mastery:35},{level:34,move:"Air Slash",mastery:45},{level:43,move:"Leech Life",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Astonish"},{level:1,move:"Mean Look"},{level:1,move:"Screech"},{level:1,move:"Supersonic"},{level:15,move:"Poison Fang"},{level:20,move:"Quick Guard"},{level:27,move:"Air Cutter"},{level:34,move:"Bite"},{level:41,move:"Haze"},{level:48,move:"Venoshock"},{level:55,move:"Confuse Ray"},{level:62,move:"Air Slash"},{level:69,move:"Leech Life"}],
+    tm: ["Fly","Hyper Beam","Double Team","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Shadow Ball","Torment","Facade","Taunt","Aerial Ace","Roost","Pluck","U-turn","Payback","Giga Impact","Nasty Plot","Defog"],
     egg: [],
     tutor: [],
     max: []
@@ -343,15 +343,15 @@ var MOVESETS = {
     max: []
   },
   46: {
-    levelUp: [{level:1,move:"Absorb",mastery:9},{level:5,move:"Stun Spore",mastery:14},{level:9,move:"Poison Powder",mastery:18},{level:15,move:"Venoshock",mastery:25},{level:21,move:"Slash",mastery:31},{level:29,move:"Spore",mastery:40},{level:37,move:"X-Scissor",mastery:48},{level:47,move:"Energy Ball",mastery:59}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Scratch"},{level:6,move:"Poison Powder"},{level:6,move:"Stun Spore"},{level:11,move:"Absorb"},{level:17,move:"Fury Cutter"},{level:22,move:"Spore"},{level:27,move:"Slash"},{level:33,move:"Growth"},{level:38,move:"Giga Drain"},{level:43,move:"Aromatherapy"},{level:49,move:"Rage Powder"},{level:54,move:"X-Scissor"}],
+    tm: ["Swords Dance","Cut","Solar Beam","Dig","Double Team","Light Screen","Flash","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","False Swipe","Swagger","Attract","Sleep Talk","Sunny Day","Rock Smash","Facade","Brick Break","Bullet Seed","Aerial Ace","X-Scissor","Grass Knot"],
+    egg: ["Psybeam","Counter","Leech Seed","Agility","Screech","Flail","Sweet Scent","Metal Claw","Cross Poison","Bug Bite","Wide Guard","Fell Stinger","Grassy Terrain"],
     tutor: [],
     max: []
   },
   47: {
-    levelUp: [{level:1,move:"Absorb",mastery:9},{level:5,move:"Stun Spore",mastery:14},{level:9,move:"Poison Powder",mastery:18},{level:15,move:"Venoshock",mastery:25},{level:21,move:"Slash",mastery:31},{level:29,move:"Spore",mastery:40},{level:37,move:"X-Scissor",mastery:48},{level:47,move:"Energy Ball",mastery:59}],
-    tm: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Cross Poison"},{level:1,move:"Poison Powder"},{level:1,move:"Scratch"},{level:1,move:"Stun Spore"},{level:6,move:"Poison Powder"},{level:6,move:"Stun Spore"},{level:11,move:"Absorb"},{level:17,move:"Fury Cutter"},{level:22,move:"Spore"},{level:29,move:"Slash"},{level:37,move:"Growth"},{level:44,move:"Giga Drain"},{level:51,move:"Aromatherapy"},{level:59,move:"Rage Powder"},{level:66,move:"X-Scissor"}],
+    tm: ["Swords Dance","Cut","Hyper Beam","Solar Beam","Dig","Double Team","Light Screen","Flash","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","False Swipe","Swagger","Attract","Sleep Talk","Sunny Day","Rock Smash","Facade","Brick Break","Bullet Seed","Aerial Ace","X-Scissor","Energy Ball","Giga Impact","Grass Knot"],
     egg: [],
     tutor: [],
     max: []
@@ -463,42 +463,42 @@ var MOVESETS = {
   },
   63: {
     levelUp: [{level:1,move:"Teleport"}],
-    tm: [],
-    egg: [],
+    tm: ["Thunder Wave","Psychic","Double Team","Light Screen","Reflect","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Safeguard","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Focus Punch","Taunt","Recycle","Skill Swap","Calm Mind","Shock Wave","Fling","Drain Punch","Energy Ball","Trick Room","Grass Knot","Charge Beam","Dazzling Gleam"],
+    egg: ["Fire Punch","Ice Punch","Thunder Punch","Confusion","Encore","Magic Coat","Knock Off","Psycho Shift","Power Trick","Guard Swap","Guard Split","Ally Switch"],
     tutor: [],
     max: []
   },
   64: {
-    levelUp: [{level:0,move:"Confusion",mastery:15},{level:1,move:"Teleport"},{level:6,move:"Hypnosis",mastery:15},{level:11,move:"Calm Mind",mastery:20},{level:18,move:"Psycho Cut",mastery:28},{level:25,move:"Zen Headbutt",mastery:35},{level:34,move:"Recover",mastery:45},{level:43,move:"Psychic",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Confusion"},{level:1,move:"Confusion"},{level:1,move:"Disable"},{level:1,move:"Kinesis"},{level:1,move:"Teleport"},{level:5,move:"Psybeam"},{level:10,move:"Reflect"},{level:15,move:"Ally Switch"},{level:20,move:"Psycho Cut"},{level:25,move:"Recover"},{level:30,move:"Psyshock"},{level:35,move:"Psychic"},{level:40,move:"Role Play"},{level:45,move:"Future Sight"},{level:50,move:"Calm Mind"}],
+    tm: ["Thunder Wave","Psychic","Double Team","Light Screen","Reflect","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Safeguard","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Focus Punch","Taunt","Recycle","Skill Swap","Calm Mind","Shock Wave","Fling","Drain Punch","Energy Ball","Trick Room","Grass Knot","Charge Beam","Dazzling Gleam"],
     egg: [],
     tutor: [],
     max: []
   },
   65: {
-    levelUp: [{level:1,move:"Teleport"},{level:6,move:"Hypnosis",mastery:15},{level:6,move:"Confusion",mastery:15},{level:11,move:"Calm Mind",mastery:20},{level:18,move:"Psycho Cut",mastery:28},{level:25,move:"Zen Headbutt",mastery:35},{level:34,move:"Recover",mastery:45},{level:43,move:"Psychic",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Confusion"},{level:1,move:"Disable"},{level:1,move:"Kinesis"},{level:1,move:"Teleport"},{level:5,move:"Psybeam"},{level:10,move:"Reflect"},{level:15,move:"Ally Switch"},{level:20,move:"Psycho Cut"},{level:25,move:"Recover"},{level:30,move:"Psyshock"},{level:35,move:"Psychic"},{level:40,move:"Role Play"},{level:45,move:"Future Sight"},{level:50,move:"Calm Mind"}],
+    tm: ["Hyper Beam","Thunder Wave","Psychic","Double Team","Light Screen","Reflect","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Safeguard","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Focus Punch","Taunt","Recycle","Skill Swap","Calm Mind","Shock Wave","Fling","Drain Punch","Focus Blast","Energy Ball","Giga Impact","Nasty Plot","Trick Room","Grass Knot","Charge Beam","Dazzling Gleam"],
     egg: [],
     tutor: [],
     max: []
   },
   66: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Rock Smash",mastery:15},{level:11,move:"Bullet Punch",mastery:20},{level:18,move:"Double Hit",mastery:28},{level:22,move:"Mach Punch",mastery:32},{level:25,move:"Bulk Up",mastery:35},{level:34,move:"Double-Edge",mastery:45},{level:43,move:"Close Combat",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:4,move:"Focus Energy"},{level:8,move:"Revenge"},{level:12,move:"Low Sweep"},{level:16,move:"Knock Off"},{level:20,move:"Scary Face"},{level:24,move:"Vital Throw"},{level:29,move:"Strength"},{level:32,move:"Dual Chop"},{level:36,move:"Bulk Up"},{level:40,move:"Seismic Toss"},{level:44,move:"Dynamic Punch"},{level:48,move:"Cross Chop"},{level:52,move:"Double-Edge"}],
+    tm: ["Flamethrower","Strength","Earthquake","Dig","Double Team","Light Screen","Fire Blast","Rest","Rock Slide","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Rock Smash","Facade","Focus Punch","Brick Break","Rock Tomb","Bulk Up","Payback","Fling","Poison Jab","Focus Blast","Rock Climb","Low Sweep","Bulldoze","Work Up"],
+    egg: ["Fire Punch","Ice Punch","Thunder Punch","Submission","Counter","Encore","Knock Off","Tickle","Close Combat","Power Trick","Bullet Punch","Heavy Slam","Quick Guard"],
     tutor: [],
     max: []
   },
   67: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Rock Smash",mastery:15},{level:11,move:"Bullet Punch",mastery:20},{level:18,move:"Double Hit",mastery:28},{level:22,move:"Mach Punch",mastery:32},{level:25,move:"Bulk Up",mastery:35},{level:34,move:"Double-Edge",mastery:45},{level:43,move:"Close Combat",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Focus Energy"},{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:1,move:"Revenge"},{level:12,move:"Low Sweep"},{level:16,move:"Knock Off"},{level:20,move:"Scary Face"},{level:24,move:"Vital Throw"},{level:31,move:"Strength"},{level:36,move:"Dual Chop"},{level:42,move:"Bulk Up"},{level:48,move:"Seismic Toss"},{level:54,move:"Dynamic Punch"},{level:60,move:"Cross Chop"},{level:66,move:"Double-Edge"}],
+    tm: ["Flamethrower","Strength","Earthquake","Dig","Double Team","Light Screen","Fire Blast","Rest","Rock Slide","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Rock Smash","Facade","Focus Punch","Brick Break","Rock Tomb","Bulk Up","Payback","Fling","Poison Jab","Focus Blast","Rock Climb","Low Sweep","Bulldoze","Work Up"],
     egg: [],
     tutor: [],
     max: []
   },
   68: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Rock Smash",mastery:15},{level:11,move:"Bullet Punch",mastery:20},{level:18,move:"Double Hit",mastery:28},{level:22,move:"Mach Punch",mastery:32},{level:25,move:"Bulk Up",mastery:35},{level:30,move:"Drain Punch",mastery:41},{level:34,move:"Double-Edge",mastery:45},{level:43,move:"Close Combat",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Focus Energy"},{level:1,move:"Leer"},{level:1,move:"Low Kick"},{level:1,move:"Revenge"},{level:1,move:"Wide Guard"},{level:12,move:"Low Sweep"},{level:16,move:"Knock Off"},{level:20,move:"Scary Face"},{level:24,move:"Vital Throw"},{level:31,move:"Strength"},{level:36,move:"Dual Chop"},{level:42,move:"Bulk Up"},{level:48,move:"Seismic Toss"},{level:54,move:"Dynamic Punch"},{level:60,move:"Cross Chop"},{level:66,move:"Double-Edge"}],
+    tm: ["Flamethrower","Hyper Beam","Strength","Earthquake","Dig","Double Team","Light Screen","Fire Blast","Rest","Rock Slide","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Rock Smash","Facade","Focus Punch","Brick Break","Rock Tomb","Bulk Up","Payback","Fling","Poison Jab","Focus Blast","Giga Impact","Rock Climb","Stone Edge","Low Sweep","Bulldoze","Work Up"],
     egg: [],
     tutor: [],
     max: []
@@ -560,15 +560,15 @@ var MOVESETS = {
     max: []
   },
   77: {
-    levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Ember",mastery:14},{level:9,move:"Double Hit",mastery:18},{level:15,move:"Flame Wheel",mastery:25},{level:21,move:"Hypnosis",mastery:31},{level:29,move:"Fire Blast",mastery:40},{level:37,move:"Double-Edge",mastery:48},{level:47,move:"Flare Blitz",mastery:59}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Tackle"},{level:5,move:"Tail Whip"},{level:10,move:"Ember"},{level:15,move:"Flame Charge"},{level:20,move:"Agility"},{level:25,move:"Flame Wheel"},{level:30,move:"Stomp"},{level:35,move:"Fire Spin"},{level:41,move:"Take Down"},{level:45,move:"Inferno"},{level:50,move:"Fire Blast"},{level:55,move:"Flare Blitz"}],
+    tm: ["Flamethrower","Strength","Solar Beam","Double Team","Fire Blast","Rest","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Sunny Day","Will-O-Wisp","Facade","Overheat"],
+    egg: ["Double Kick","Horn Drill","Thrash","Double-Edge","Low Kick","Hypnosis","Flame Wheel","Charm","Morning Sun","Ally Switch","High Horsepower"],
     tutor: [],
     max: []
   },
   78: {
-    levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Ember",mastery:14},{level:9,move:"Double Hit",mastery:18},{level:15,move:"Flame Wheel",mastery:25},{level:21,move:"Hypnosis",mastery:31},{level:29,move:"Fire Blast",mastery:40},{level:37,move:"Double-Edge",mastery:48},{level:47,move:"Flare Blitz",mastery:59}],
-    tm: [],
+    levelUp: [{level:0,move:"Smart Strike"},{level:1,move:"Ember"},{level:1,move:"Growl"},{level:1,move:"Megahorn"},{level:1,move:"Poison Jab"},{level:1,move:"Quick Attack"},{level:1,move:"Smart Strike"},{level:1,move:"Tackle"},{level:1,move:"Tail Whip"},{level:15,move:"Flame Charge"},{level:20,move:"Agility"},{level:25,move:"Flame Wheel"},{level:30,move:"Stomp"},{level:35,move:"Fire Spin"},{level:43,move:"Take Down"},{level:49,move:"Inferno"},{level:56,move:"Fire Blast"},{level:63,move:"Flare Blitz"}],
+    tm: ["Swords Dance","Flamethrower","Hyper Beam","Strength","Solar Beam","Double Team","Fire Blast","Rest","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Sunny Day","Will-O-Wisp","Facade","Overheat","Poison Jab","Giga Impact"],
     egg: [],
     tutor: [],
     max: []
@@ -686,9 +686,9 @@ var MOVESETS = {
     max: []
   },
   95: {
-    levelUp: [{level:1,move:"Rollout",mastery:10},{level:6,move:"Tackle",mastery:15},{level:11,move:"Bulldoze",mastery:20},{level:18,move:"Rock Slide",mastery:28},{level:25,move:"Stealth Rock",mastery:35},{level:34,move:"High Horsepower",mastery:45},{level:43,move:"Iron Tail",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Bind"},{level:1,move:"Harden"},{level:1,move:"Rock Throw"},{level:1,move:"Tackle"},{level:4,move:"Smack Down"},{level:8,move:"Rock Polish"},{level:12,move:"Dragon Breath"},{level:16,move:"Curse"},{level:20,move:"Rock Slide"},{level:24,move:"Screech"},{level:28,move:"Sand Tomb"},{level:32,move:"Stealth Rock"},{level:36,move:"Slam"},{level:40,move:"Sandstorm"},{level:44,move:"Dig"},{level:48,move:"Iron Tail"},{level:52,move:"Stone Edge"},{level:56,move:"Double-Edge"}],
+    tm: ["Roar","Strength","Earthquake","Dig","Double Team","Explosion","Rest","Rock Slide","Substitute","Protect","Sandstorm","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Sunny Day","Psych Up","Rock Smash","Torment","Facade","Taunt","Rock Tomb","Gyro Ball","Payback","Rock Polish","Dragon Pulse","Flash Cannon","Rock Climb","Stone Edge","Stealth Rock","Bulldoze"],
+    egg: ["Defense Curl","Flail","Rollout","Block","Rock Blast","Head Smash","Wide Guard","Heavy Slam","Dragon Tail"],
     tutor: [],
     max: []
   },
@@ -777,9 +777,9 @@ var MOVESETS = {
     max: []
   },
   108: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Rest",mastery:15},{level:11,move:"Bulldoze",mastery:20},{level:18,move:"Zen Headbutt",mastery:28},{level:25,move:"Double-Edge",mastery:35},{level:34,move:"Rollout",mastery:45},{level:43,move:"Giga Impact",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Defense Curl"},{level:1,move:"Lick"},{level:6,move:"Rollout"},{level:12,move:"Supersonic"},{level:18,move:"Wrap"},{level:24,move:"Disable"},{level:30,move:"Stomp"},{level:36,move:"Knock Off"},{level:42,move:"Screech"},{level:48,move:"Slam"},{level:54,move:"Power Whip"},{level:60,move:"Belly Drum"}],
+    tm: ["Swords Dance","Cut","Flamethrower","Surf","Ice Beam","Blizzard","Hyper Beam","Strength","Solar Beam","Thunderbolt","Thunder","Earthquake","Dig","Double Team","Fire Blast","Dream Eater","Rest","Rock Slide","Substitute","Thief","Protect","Sandstorm","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Rock Smash","Facade","Focus Punch","Brick Break","Rock Tomb","Shock Wave","Water Pulse","Fling","Giga Impact","Rock Climb","Bulldoze","Work Up"],
+    egg: ["Body Slam","Thrash","Amnesia","Snore","Curse","Belly Drum","Muddy Water","Hammer Arm","Zen Headbutt","Belch"],
     tutor: [],
     max: []
   },
@@ -819,9 +819,9 @@ var MOVESETS = {
     max: []
   },
   114: {
-    levelUp: [{level:1,move:"Absorb",mastery:10},{level:6,move:"Stun Spore",mastery:15},{level:11,move:"Poison Powder",mastery:20},{level:15,move:"Acid Spray",mastery:24},{level:18,move:"Double Hit",mastery:28},{level:25,move:"Energy Ball",mastery:35},{level:34,move:"Ancient Power",mastery:45},{level:43,move:"Sleep Powder",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Bind"},{level:4,move:"Stun Spore"},{level:8,move:"Growth"},{level:12,move:"Mega Drain"},{level:16,move:"Vine Whip"},{level:20,move:"Poison Powder"},{level:24,move:"Ancient Power"},{level:28,move:"Knock Off"},{level:32,move:"Giga Drain"},{level:36,move:"Sleep Powder"},{level:40,move:"Slam"},{level:44,move:"Tickle"},{level:48,move:"Power Whip"},{level:52,move:"Ingrain"},{level:56,move:"Grassy Terrain"}],
+    tm: ["Swords Dance","Cut","Hyper Beam","Solar Beam","Double Team","Reflect","Flash","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Sunny Day","Psych Up","Rock Smash","Facade","Bullet Seed","Shock Wave","Energy Ball","Giga Impact","Grass Knot"],
+    egg: ["Mega Drain","Leech Seed","Confusion","Amnesia","Flail","Nature Power","Endeavor","Power Swap","Leaf Storm","Rage Powder"],
     tutor: [],
     max: []
   },
@@ -875,9 +875,9 @@ var MOVESETS = {
     max: []
   },
   122: {
-    levelUp: [{level:1,move:"Confusion",mastery:10},{level:6,move:"Hypnosis",mastery:15},{level:11,move:"Iron Defense",mastery:20},{level:18,move:"Zen Headbutt",mastery:28},{level:25,move:"Mimic"},{level:34,move:"Psychic",mastery:45},{level:43,move:"Calm Mind",mastery:54},{level:46,move:"Dazzling Gleam",mastery:58}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Baton Pass"},{level:1,move:"Copycat"},{level:1,move:"Encore"},{level:1,move:"Guard Swap"},{level:1,move:"Pound"},{level:1,move:"Power Swap"},{level:1,move:"Quick Guard"},{level:1,move:"Wide Guard"},{level:12,move:"Confusion"},{level:16,move:"Role Play"},{level:20,move:"Protect"},{level:24,move:"Recycle"},{level:28,move:"Psybeam"},{level:32,move:"Mimic"},{level:36,move:"Light Screen"},{level:36,move:"Reflect"},{level:36,move:"Safeguard"},{level:40,move:"Sucker Punch"},{level:44,move:"Dazzling Gleam"},{level:48,move:"Psychic"},{level:52,move:"Teeter Dance"}],
+    tm: ["Hyper Beam","Solar Beam","Thunderbolt","Thunder Wave","Thunder","Psychic","Double Team","Light Screen","Reflect","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Focus Punch","Taunt","Recycle","Brick Break","Skill Swap","Aerial Ace","Calm Mind","Shock Wave","Payback","Fling","Drain Punch","Focus Blast","Energy Ball","Giga Impact","Nasty Plot","Trick Room","Grass Knot","Charge Beam","Dazzling Gleam"],
+    egg: ["Hypnosis","Mimic","Confuse Ray","Icy Wind","Future Sight","Fake Out","Trick","Teeter Dance","Tickle","Power Split","Magic Room"],
     tutor: [],
     max: []
   },
@@ -1204,8 +1204,8 @@ var MOVESETS = {
     max: []
   },
   169: {
-    levelUp: [{level:1,move:"Gust",mastery:10},{level:6,move:"Hypnosis",mastery:15},{level:11,move:"Bite",mastery:20},{level:18,move:"Air Cutter",mastery:28},{level:25,move:"Cross Poison",mastery:35},{level:34,move:"Air Slash",mastery:45},{level:43,move:"Leech Life",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Cross Poison"},{level:1,move:"Absorb"},{level:1,move:"Astonish"},{level:1,move:"Cross Poison"},{level:1,move:"Mean Look"},{level:1,move:"Screech"},{level:1,move:"Supersonic"},{level:1,move:"Tailwind"},{level:1,move:"Toxic"},{level:15,move:"Poison Fang"},{level:20,move:"Quick Guard"},{level:27,move:"Air Cutter"},{level:34,move:"Bite"},{level:41,move:"Haze"},{level:48,move:"Venoshock"},{level:55,move:"Confuse Ray"},{level:62,move:"Air Slash"},{level:69,move:"Leech Life"}],
+    tm: ["Fly","Hyper Beam","Toxic","Double Team","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Shadow Ball","Torment","Facade","Taunt","Aerial Ace","Roost","Pluck","U-turn","Payback","Dark Pulse","X-Scissor","Giga Impact","Nasty Plot","Defog"],
     egg: [],
     tutor: [],
     max: []
@@ -1246,15 +1246,15 @@ var MOVESETS = {
     max: []
   },
   175: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Fairy Wind",mastery:15},{level:11,move:"Draining Kiss",mastery:20},{level:18,move:"Calm Mind",mastery:28},{level:25,move:"Baby-Doll Eyes",mastery:35},{level:34,move:"Extrasensory",mastery:45},{level:43,move:"Moonblast",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Pound"},{level:4,move:"Sweet Kiss"},{level:8,move:"Life Dew"},{level:12,move:"Charm"},{level:16,move:"Ancient Power"},{level:20,move:"Yawn"},{level:24,move:"Metronome"},{level:28,move:"After You"},{level:32,move:"Double-Edge"},{level:36,move:"Safeguard"},{level:40,move:"Follow Me"},{level:44,move:"Baton Pass"},{level:48,move:"Last Resort"},{level:52,move:"Wish"}],
+    tm: ["Flamethrower","Solar Beam","Thunder Wave","Psychic","Double Team","Light Screen","Reflect","Fire Blast","Dream Eater","Flash","Rest","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Rock Smash","Facade","Shock Wave","Water Pulse","Fling","Nasty Plot","Grass Knot","Work Up","Dazzling Gleam"],
+    egg: ["Peck","Present","Morning Sun","Future Sight","Extrasensory","Psycho Shift","Stored Power"],
     tutor: [],
     max: []
   },
   176: {
-    levelUp: [{level:0,move:"Air Cutter",mastery:20},{level:1,move:"Tackle",mastery:10},{level:6,move:"Fairy Wind",mastery:15},{level:11,move:"Draining Kiss",mastery:20},{level:18,move:"Calm Mind",mastery:28},{level:25,move:"Baby-Doll Eyes",mastery:35},{level:25,move:"Air Slash",mastery:35},{level:34,move:"Extrasensory",mastery:45},{level:43,move:"Moonblast",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Fairy Wind"},{level:1,move:"Fairy Wind"},{level:1,move:"Growl"},{level:1,move:"Life Dew"},{level:1,move:"Pound"},{level:1,move:"Sweet Kiss"},{level:12,move:"Charm"},{level:16,move:"Ancient Power"},{level:20,move:"Yawn"},{level:24,move:"Metronome"},{level:28,move:"After You"},{level:32,move:"Double-Edge"},{level:36,move:"Safeguard"},{level:40,move:"Follow Me"},{level:44,move:"Baton Pass"},{level:48,move:"Last Resort"},{level:52,move:"Wish"}],
+    tm: ["Fly","Flamethrower","Hyper Beam","Solar Beam","Thunder Wave","Psychic","Double Team","Light Screen","Reflect","Fire Blast","Dream Eater","Flash","Rest","Substitute","Protect","Endure","Swagger","Steel Wing","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Rock Smash","Facade","Focus Punch","Brick Break","Aerial Ace","Shock Wave","Water Pulse","Roost","Fling","Drain Punch","Giga Impact","Nasty Plot","Defog","Grass Knot","Work Up","Dazzling Gleam"],
     egg: [],
     tutor: [],
     max: []
@@ -1428,7 +1428,7 @@ var MOVESETS = {
     max: []
   },
   201: {
-    levelUp: [{level:1,move:"Hidden Power",mastery:10}],
+    levelUp: [{level:1,move:"Hidden Power"}],
     tm: [],
     egg: [],
     tutor: [],
@@ -1477,8 +1477,8 @@ var MOVESETS = {
     max: []
   },
   208: {
-    levelUp: [{level:1,move:"Rollout",mastery:10},{level:6,move:"Tackle",mastery:15},{level:11,move:"Bulldoze",mastery:20},{level:18,move:"Rock Slide",mastery:28},{level:25,move:"Stealth Rock",mastery:35},{level:34,move:"High Horsepower",mastery:45},{level:43,move:"Iron Tail",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Bind"},{level:1,move:"Crunch"},{level:1,move:"Fire Fang"},{level:1,move:"Harden"},{level:1,move:"Ice Fang"},{level:1,move:"Rock Polish"},{level:1,move:"Rock Throw"},{level:1,move:"Tackle"},{level:1,move:"Thunder Fang"},{level:4,move:"Smack Down"},{level:8,move:"Autotomize"},{level:12,move:"Dragon Breath"},{level:16,move:"Curse"},{level:20,move:"Rock Slide"},{level:24,move:"Screech"},{level:28,move:"Sand Tomb"},{level:32,move:"Stealth Rock"},{level:36,move:"Slam"},{level:40,move:"Sandstorm"},{level:44,move:"Dig"},{level:48,move:"Iron Tail"},{level:52,move:"Stone Edge"},{level:56,move:"Double-Edge"},{level:60,move:"Magnet Rise"}],
+    tm: ["Cut","Roar","Hyper Beam","Strength","Earthquake","Dig","Double Team","Explosion","Rest","Rock Slide","Substitute","Protect","Sandstorm","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Sunny Day","Psych Up","Rock Smash","Torment","Facade","Taunt","Rock Tomb","Gyro Ball","Payback","Rock Polish","Dark Pulse","Dragon Pulse","Giga Impact","Flash Cannon","Rock Climb","Stone Edge","Stealth Rock","Bulldoze"],
     egg: [],
     tutor: [],
     max: []
@@ -1582,15 +1582,15 @@ var MOVESETS = {
     max: []
   },
   223: {
-    levelUp: [{level:1,move:"Bubble",mastery:10},{level:6,move:"Acid Spray",mastery:15},{level:11,move:"Charge Beam",mastery:20},{level:18,move:"Water Pulse",mastery:28},{level:25,move:"Ice Beam",mastery:35},{level:34,move:"Hydro Pump",mastery:45},{level:43,move:"Hyper Beam",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Helping Hand"},{level:1,move:"Water Gun"},{level:4,move:"Water Pulse"},{level:8,move:"Focus Energy"},{level:12,move:"Psybeam"},{level:16,move:"Aurora Beam"},{level:20,move:"Bubble Beam"},{level:24,move:"Lock-On"},{level:28,move:"Bullet Seed"},{level:32,move:"Ice Beam"},{level:36,move:"Hydro Pump"},{level:40,move:"Soak"},{level:44,move:"Hyper Beam"}],
+    tm: ["Flamethrower","Surf","Ice Beam","Blizzard","Hyper Beam","Thunder Wave","Psychic","Double Team","Fire Blast","Waterfall","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Facade","Bullet Seed","Water Pulse","Brine","Charge Beam","Scald"],
+    egg: ["Supersonic","Aurora Beam","Screech","Haze","Swift","Snore","Flail","Octazooka","Water Spout","Mud Shot","Rock Blast","Acid Spray","Entrainment"],
     tutor: [],
     max: []
   },
   224: {
-    levelUp: [{level:0,move:"Octazooka",mastery:28},{level:1,move:"Bubble",mastery:10},{level:6,move:"Acid Spray",mastery:15},{level:11,move:"Charge Beam",mastery:20},{level:18,move:"Water Pulse",mastery:28},{level:25,move:"Ice Beam",mastery:35},{level:34,move:"Hydro Pump",mastery:45},{level:43,move:"Hyper Beam",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Octazooka"},{level:1,move:"Focus Energy"},{level:1,move:"Gunk Shot"},{level:1,move:"Helping Hand"},{level:1,move:"Octazooka"},{level:1,move:"Rock Blast"},{level:1,move:"Water Gun"},{level:1,move:"Water Pulse"},{level:1,move:"Wrap"},{level:12,move:"Psybeam"},{level:16,move:"Aurora Beam"},{level:20,move:"Bubble Beam"},{level:24,move:"Lock-On"},{level:30,move:"Bullet Seed"},{level:36,move:"Ice Beam"},{level:42,move:"Hydro Pump"},{level:48,move:"Soak"},{level:54,move:"Hyper Beam"}],
+    tm: ["Flamethrower","Surf","Ice Beam","Blizzard","Hyper Beam","Thunder Wave","Psychic","Double Team","Fire Blast","Waterfall","Rest","Substitute","Thief","Protect","Sludge Bomb","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Facade","Bullet Seed","Water Pulse","Brine","Payback","Energy Ball","Giga Impact","Flash Cannon","Charge Beam","Scald"],
     egg: [],
     tutor: [],
     max: []
@@ -1603,9 +1603,9 @@ var MOVESETS = {
     max: []
   },
   226: {
-    levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Bubble",mastery:14},{level:9,move:"Aerial Ace",mastery:18},{level:15,move:"Water Pulse",mastery:25},{level:21,move:"Air Slash",mastery:31},{level:29,move:"Roost",mastery:40},{level:37,move:"Hydro Pump",mastery:48},{level:47,move:"Double-Edge",mastery:59}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Bullet Seed"},{level:1,move:"Psybeam"},{level:1,move:"Roost"},{level:1,move:"Supersonic"},{level:1,move:"Tackle"},{level:1,move:"Water Gun"},{level:1,move:"Wing Attack"},{level:12,move:"Water Pulse"},{level:16,move:"Wide Guard"},{level:20,move:"Agility"},{level:24,move:"Bubble Beam"},{level:28,move:"Headbutt"},{level:32,move:"Air Slash"},{level:36,move:"Aqua Ring"},{level:40,move:"Bounce"},{level:44,move:"Take Down"},{level:48,move:"Hydro Pump"}],
+    tm: ["Surf","Ice Beam","Blizzard","Hyper Beam","Earthquake","Double Team","Waterfall","Rest","Rock Slide","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Hail","Facade","Rock Tomb","Bullet Seed","Aerial Ace","Water Pulse","Roost","Brine","Giga Impact","Defog","Scald","Bulldoze"],
+    egg: ["Slam","Hydro Pump","Confuse Ray","Haze","Amnesia","Splash","Twister","Mirror Coat","Tailwind","Wide Guard"],
     tutor: [],
     max: []
   },
@@ -1876,36 +1876,36 @@ var MOVESETS = {
     max: []
   },
   265: {
-    levelUp: [{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Tackle",mastery:15}],
+    levelUp: [{level:1,move:"String Shot"},{level:1,move:"Tackle"},{level:5,move:"Poison Sting"},{level:15,move:"Bug Bite"}],
     tm: [],
     egg: [],
     tutor: [],
     max: []
   },
   266: {
-    levelUp: [{level:0,move:"Iron Defense",mastery:15},{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Tackle",mastery:15}],
+    levelUp: [{level:0,move:"Harden"},{level:1,move:"Harden"}],
     tm: [],
     egg: [],
     tutor: [],
     max: []
   },
   267: {
-    levelUp: [{level:0,move:"Air Cutter",mastery:15},{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Tackle",mastery:15},{level:6,move:"Iron Defense",mastery:15},{level:11,move:"Stun Spore",mastery:20},{level:18,move:"Silver Wind",mastery:28},{level:25,move:"Venoshock",mastery:35},{level:34,move:"Air Slash",mastery:45},{level:43,move:"Bug Buzz",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Gust"},{level:1,move:"Bug Bite"},{level:1,move:"Gust"},{level:1,move:"Harden"},{level:1,move:"Poison Sting"},{level:1,move:"String Shot"},{level:1,move:"Tackle"},{level:12,move:"Absorb"},{level:15,move:"Stun Spore"},{level:17,move:"Morning Sun"},{level:20,move:"Air Cutter"},{level:22,move:"Mega Drain"},{level:25,move:"Leech Life"},{level:27,move:"Attract"},{level:30,move:"Whirlwind"},{level:32,move:"Giga Drain"},{level:35,move:"Bug Buzz"},{level:37,move:"Protect"},{level:40,move:"Quiver Dance"}],
+    tm: ["Hyper Beam","Solar Beam","Psychic","Double Team","Flash","Rest","Substitute","Thief","Protect","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Safeguard","Sunny Day","Shadow Ball","Facade","Aerial Ace","Roost","U-turn","Bug Buzz","Energy Ball","Giga Impact","Defog"],
     egg: [],
     tutor: [],
     max: []
   },
   268: {
-    levelUp: [{level:0,move:"Iron Defense",mastery:15},{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Tackle",mastery:15}],
+    levelUp: [{level:0,move:"Harden"},{level:1,move:"Harden"}],
     tm: [],
     egg: [],
     tutor: [],
     max: []
   },
   269: {
-    levelUp: [{level:0,move:"Confusion",mastery:15},{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Tackle",mastery:15},{level:6,move:"Iron Defense",mastery:15},{level:11,move:"Poison Powder",mastery:20},{level:18,move:"Silver Wind",mastery:28},{level:25,move:"Venoshock",mastery:35},{level:34,move:"Extrasensory",mastery:45},{level:43,move:"Bug Buzz",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Gust"},{level:1,move:"Bug Bite"},{level:1,move:"Gust"},{level:1,move:"Harden"},{level:1,move:"Poison Sting"},{level:1,move:"String Shot"},{level:1,move:"Tackle"},{level:12,move:"Confusion"},{level:15,move:"Poison Powder"},{level:17,move:"Moonlight"},{level:20,move:"Venoshock"},{level:22,move:"Psybeam"},{level:25,move:"Leech Life"},{level:27,move:"Light Screen"},{level:30,move:"Whirlwind"},{level:32,move:"Toxic"},{level:35,move:"Bug Buzz"},{level:37,move:"Protect"},{level:40,move:"Quiver Dance"}],
+    tm: ["Hyper Beam","Solar Beam","Toxic","Psychic","Double Team","Light Screen","Flash","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Sunny Day","Shadow Ball","Facade","Aerial Ace","Roost","U-turn","Bug Buzz","Energy Ball","Giga Impact","Defog"],
     egg: [],
     tutor: [],
     max: []
@@ -2226,9 +2226,9 @@ var MOVESETS = {
     max: []
   },
   315: {
-    levelUp: [{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Absorb",mastery:15},{level:11,move:"Poison Powder",mastery:20},{level:18,move:"Stun Spore",mastery:28},{level:25,move:"Venoshock",mastery:35},{level:34,move:"Poison Jab",mastery:45},{level:43,move:"Energy Ball",mastery:54},{level:52,move:"Petal Dance",mastery:64}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:0,move:"Poison Sting"},{level:1,move:"Absorb"},{level:1,move:"Growth"},{level:1,move:"Poison Sting"},{level:1,move:"Stun Spore"},{level:1,move:"Worry Seed"},{level:5,move:"Mega Drain"},{level:10,move:"Leech Seed"},{level:15,move:"Magical Leaf"},{level:20,move:"Toxic Spikes"},{level:25,move:"Sweet Scent"},{level:30,move:"Giga Drain"},{level:35,move:"Synthesis"},{level:40,move:"Toxic"},{level:45,move:"Petal Blizzard"},{level:50,move:"Aromatherapy"},{level:55,move:"Ingrain"},{level:60,move:"Petal Dance"}],
+    tm: ["Swords Dance","Cut","Solar Beam","Toxic","Double Team","Flash","Rest","Substitute","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Bullet Seed","Poison Jab","Energy Ball","Grass Knot","Dazzling Gleam"],
+    egg: ["Pin Missile","Razor Leaf","Sleep Powder","Mind Reader","Cotton Spore","Spikes","Synthesis","Extrasensory","Seed Bomb","Leaf Storm","Power Whip","Life Dew"],
     tutor: [],
     max: []
   },
@@ -2562,22 +2562,22 @@ var MOVESETS = {
     max: []
   },
   363: {
-    levelUp: [{level:1,move:"Rollout",mastery:10},{level:6,move:"Powder Snow",mastery:15},{level:11,move:"Water Pulse",mastery:20},{level:18,move:"Rest",mastery:28},{level:25,move:"Liquidation",mastery:35},{level:34,move:"Ice Beam",mastery:45},{level:43,move:"Blizzard",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Defense Curl"},{level:1,move:"Rollout"},{level:4,move:"Growl"},{level:8,move:"Water Gun"},{level:12,move:"Powder Snow"},{level:16,move:"Rest"},{level:20,move:"Snore"},{level:24,move:"Brine"},{level:28,move:"Aurora Beam"},{level:33,move:"Encore"},{level:36,move:"Body Slam"},{level:40,move:"Surf"},{level:44,move:"Blizzard"},{level:48,move:"Hail"},{level:52,move:"Sheer Cold"}],
+    tm: ["Surf","Ice Beam","Blizzard","Strength","Earthquake","Double Team","Waterfall","Rest","Rock Slide","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Rock Smash","Hail","Facade","Rock Tomb","Water Pulse","Brine","Bulldoze"],
+    egg: ["Fissure","Curse","Belly Drum","Rollout","Stockpile","Spit Up","Swallow","Yawn","Aqua Ring"],
     tutor: [],
     max: []
   },
   364: {
-    levelUp: [{level:1,move:"Rollout",mastery:10},{level:6,move:"Powder Snow",mastery:15},{level:11,move:"Water Pulse",mastery:20},{level:18,move:"Rest",mastery:28},{level:25,move:"Liquidation",mastery:35},{level:34,move:"Ice Beam",mastery:45},{level:43,move:"Blizzard",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Swagger"},{level:1,move:"Defense Curl"},{level:1,move:"Growl"},{level:1,move:"Rollout"},{level:1,move:"Swagger"},{level:1,move:"Water Gun"},{level:12,move:"Powder Snow"},{level:16,move:"Rest"},{level:20,move:"Snore"},{level:24,move:"Brine"},{level:28,move:"Aurora Beam"},{level:35,move:"Encore"},{level:40,move:"Body Slam"},{level:46,move:"Surf"},{level:52,move:"Blizzard"},{level:58,move:"Hail"},{level:64,move:"Sheer Cold"}],
+    tm: ["Roar","Surf","Ice Beam","Blizzard","Strength","Earthquake","Double Team","Waterfall","Rest","Rock Slide","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Rock Smash","Hail","Facade","Rock Tomb","Water Pulse","Brine","Bulldoze"],
     egg: [],
     tutor: [],
     max: []
   },
   365: {
-    levelUp: [{level:1,move:"Rollout",mastery:10},{level:6,move:"Powder Snow",mastery:15},{level:11,move:"Water Pulse",mastery:20},{level:18,move:"Rest",mastery:28},{level:25,move:"Liquidation",mastery:35},{level:34,move:"Ice Beam",mastery:45},{level:43,move:"Blizzard",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Crunch"},{level:1,move:"Defense Curl"},{level:1,move:"Growl"},{level:1,move:"Ice Fang"},{level:1,move:"Rollout"},{level:1,move:"Swagger"},{level:1,move:"Water Gun"},{level:12,move:"Powder Snow"},{level:16,move:"Rest"},{level:20,move:"Snore"},{level:24,move:"Brine"},{level:28,move:"Aurora Beam"},{level:35,move:"Encore"},{level:40,move:"Body Slam"},{level:48,move:"Surf"},{level:56,move:"Blizzard"},{level:64,move:"Hail"},{level:72,move:"Sheer Cold"}],
+    tm: ["Swords Dance","Roar","Surf","Ice Beam","Blizzard","Hyper Beam","Strength","Earthquake","Double Team","Waterfall","Rest","Rock Slide","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Rock Smash","Hail","Facade","Rock Tomb","Water Pulse","Brine","Giga Impact","Avalanche","Bulldoze"],
     egg: [],
     tutor: [],
     max: []
@@ -2814,15 +2814,15 @@ var MOVESETS = {
     max: []
   },
   399: {
-    levelUp: [{level:1,move:"Rollout",mastery:9},{level:5,move:"Tackle",mastery:14},{level:10,move:"Bite",mastery:19},{level:16,move:"Rest",mastery:26},{level:23,move:"Crunch",mastery:33},{level:31,move:"Swords Dance",mastery:42},{level:40,move:"Double-Edge",mastery:52}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Growl"},{level:1,move:"Tackle"},{level:5,move:"Defense Curl"},{level:9,move:"Rollout"},{level:13,move:"Headbutt"},{level:17,move:"Taunt"},{level:21,move:"Yawn"},{level:25,move:"Crunch"},{level:29,move:"Take Down"},{level:33,move:"Super Fang"},{level:37,move:"Swords Dance"},{level:41,move:"Amnesia"},{level:45,move:"Superpower"},{level:49,move:"Curse"}],
+    tm: ["Swords Dance","Cut","Ice Beam","Blizzard","Thunderbolt","Thunder Wave","Thunder","Dig","Double Team","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Rock Smash","Facade","Taunt","Shock Wave","Pluck","Stealth Rock","Grass Knot","Charge Beam","Work Up"],
+    egg: ["Double-Edge","Quick Attack","Defense Curl","Skull Bash","Fury Swipes","Rollout","Aqua Tail"],
     tutor: [],
     max: []
   },
   400: {
-    levelUp: [{level:0,move:"Water Pulse",mastery:19},{level:1,move:"Rollout",mastery:9},{level:5,move:"Tackle",mastery:14},{level:10,move:"Bite",mastery:19},{level:16,move:"Rest",mastery:26},{level:23,move:"Crunch",mastery:33},{level:23,move:"Aqua Tail",mastery:33},{level:31,move:"Swords Dance",mastery:42},{level:40,move:"Double-Edge",mastery:52}],
-    tm: [],
+    levelUp: [{level:0,move:"Water Gun"},{level:1,move:"Aqua Jet"},{level:1,move:"Growl"},{level:1,move:"Tackle"},{level:1,move:"Water Gun"},{level:5,move:"Defense Curl"},{level:9,move:"Rollout"},{level:13,move:"Headbutt"},{level:18,move:"Taunt"},{level:23,move:"Yawn"},{level:28,move:"Crunch"},{level:33,move:"Take Down"},{level:38,move:"Super Fang"},{level:43,move:"Swords Dance"},{level:48,move:"Amnesia"},{level:53,move:"Superpower"},{level:58,move:"Curse"}],
+    tm: ["Swords Dance","Cut","Surf","Ice Beam","Blizzard","Hyper Beam","Strength","Thunderbolt","Thunder Wave","Thunder","Dig","Double Team","Waterfall","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Rock Smash","Facade","Focus Punch","Taunt","Shock Wave","Water Pulse","Pluck","Fling","Giga Impact","Rock Climb","Stealth Rock","Grass Knot","Charge Beam","Scald","Bulldoze","Work Up"],
     egg: [],
     tutor: [],
     max: []
@@ -2863,15 +2863,15 @@ var MOVESETS = {
     max: []
   },
   406: {
-    levelUp: [{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Absorb",mastery:15},{level:11,move:"Poison Powder",mastery:20},{level:18,move:"Stun Spore",mastery:28},{level:25,move:"Venoshock",mastery:35},{level:34,move:"Poison Jab",mastery:45},{level:43,move:"Energy Ball",mastery:54},{level:52,move:"Petal Dance",mastery:64}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Growth"},{level:1,move:"Stun Spore"},{level:1,move:"Worry Seed"}],
+    tm: ["Swords Dance","Cut","Solar Beam","Double Team","Flash","Rest","Substitute","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Bullet Seed","Energy Ball","Grass Knot","Dazzling Gleam"],
+    egg: ["Pin Missile","Razor Leaf","Sleep Powder","Mind Reader","Cotton Spore","Spikes","Synthesis","Extrasensory","Seed Bomb","Leaf Storm","Life Dew"],
     tutor: [],
     max: []
   },
   407: {
-    levelUp: [{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Absorb",mastery:15},{level:11,move:"Poison Powder",mastery:20},{level:18,move:"Stun Spore",mastery:28},{level:25,move:"Venoshock",mastery:35},{level:34,move:"Poison Jab",mastery:45},{level:43,move:"Energy Ball",mastery:54},{level:52,move:"Petal Dance",mastery:64}],
-    tm: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Aromatherapy"},{level:1,move:"Giga Drain"},{level:1,move:"Grassy Terrain"},{level:1,move:"Growth"},{level:1,move:"Ingrain"},{level:1,move:"Leech Seed"},{level:1,move:"Magical Leaf"},{level:1,move:"Mega Drain"},{level:1,move:"Petal Blizzard"},{level:1,move:"Petal Dance"},{level:1,move:"Poison Sting"},{level:1,move:"Stun Spore"},{level:1,move:"Sweet Scent"},{level:1,move:"Synthesis"},{level:1,move:"Toxic"},{level:1,move:"Toxic Spikes"},{level:1,move:"Venom Drench"},{level:1,move:"Worry Seed"}],
+    tm: ["Swords Dance","Cut","Hyper Beam","Solar Beam","Toxic","Double Team","Flash","Rest","Substitute","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Bullet Seed","Poison Jab","Energy Ball","Giga Impact","Grass Knot","Dazzling Gleam"],
     egg: [],
     tutor: [],
     max: []
@@ -2905,22 +2905,22 @@ var MOVESETS = {
     max: []
   },
   412: {
-    levelUp: [{level:1,move:"Struggle Bug",mastery:10}],
-    tm: [],
+    levelUp: [{level:1,move:"Protect"},{level:10,move:"Tackle"},{level:15,move:"Bug Bite"},{level:20,move:"String Shot"}],
+    tm: ["Protect"],
     egg: [],
     tutor: [],
     max: []
   },
   413: {
-    levelUp: [{level:1,move:"Struggle Bug",mastery:10},{level:6,move:"Gust",mastery:15},{level:11,move:"Confusion",mastery:20},{level:18,move:"Silver Wind",mastery:28},{level:25,move:"Energy Ball",mastery:35},{level:34,move:"Psychic",mastery:45},{level:43,move:"Bug Buzz",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Quiver Dance"},{level:1,move:"Bug Bite"},{level:1,move:"Protect"},{level:1,move:"Quiver Dance"},{level:1,move:"Sucker Punch"},{level:1,move:"Tackle"},{level:10,move:"Protect"},{level:15,move:"Bug Bite"},{level:20,move:"String Shot"},{level:23,move:"Confusion"},{level:26,move:"Razor Leaf"},{level:29,move:"Growth"},{level:32,move:"Psybeam"},{level:35,move:"Infestation"},{level:38,move:"Flail"},{level:41,move:"Attract"},{level:44,move:"Psychic"},{level:47,move:"Leaf Storm"},{level:50,move:"Bug Buzz"}],
+    tm: ["Hyper Beam","Solar Beam","Dig","Psychic","Double Team","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Skill Swap","Bullet Seed","Bug Buzz","Energy Ball","Giga Impact","Grass Knot"],
     egg: [],
-    tutor: ["Magical Leaf","Rest","Energy Ball","Shadow Ball","Giga Impact","Hyper Beam","Psychic"],
+    tutor: [],
     max: []
   },
   414: {
-    levelUp: [{level:1,move:"Struggle Bug",mastery:10},{level:6,move:"Gust",mastery:15},{level:11,move:"Confusion",mastery:20},{level:18,move:"Silver Wind",mastery:28},{level:25,move:"Air Slash",mastery:35},{level:34,move:"Psychic",mastery:45},{level:43,move:"Bug Buzz",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Quiver Dance"},{level:1,move:"Bug Bite"},{level:1,move:"Protect"},{level:1,move:"Quiver Dance"},{level:1,move:"Tackle"},{level:10,move:"Protect"},{level:15,move:"Bug Bite"},{level:20,move:"String Shot"},{level:23,move:"Confusion"},{level:26,move:"Gust"},{level:29,move:"Poison Powder"},{level:32,move:"Psybeam"},{level:35,move:"Roost"},{level:38,move:"Struggle Bug"},{level:41,move:"Air Slash"},{level:44,move:"Psychic"},{level:47,move:"Lunge"},{level:50,move:"Bug Buzz"}],
+    tm: ["Hyper Beam","Solar Beam","Psychic","Double Team","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Facade","Skill Swap","Aerial Ace","Roost","U-turn","Bug Buzz","Energy Ball","Giga Impact","Defog"],
     egg: [],
     tutor: [],
     max: []
@@ -2961,15 +2961,15 @@ var MOVESETS = {
     max: []
   },
   420: {
-    levelUp: [{level:1,move:"Absorb",mastery:9},{level:5,move:"Tackle",mastery:14},{level:9,move:"Stun Spore",mastery:18},{level:15,move:"Draining Kiss",mastery:25},{level:21,move:"Energy Ball",mastery:31},{level:29,move:"Sleep Powder",mastery:40},{level:37,move:"Double-Edge",mastery:48},{level:47,move:"Petal Dance",mastery:59}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Morning Sun"},{level:1,move:"Tackle"},{level:5,move:"Leafage"},{level:10,move:"Growth"},{level:15,move:"Helping Hand"},{level:20,move:"Magical Leaf"},{level:26,move:"Leech Seed"},{level:30,move:"Take Down"},{level:35,move:"Petal Blizzard"},{level:40,move:"Worry Seed"},{level:45,move:"Solar Beam"}],
+    tm: ["Swords Dance","Solar Beam","Double Team","Flash","Rest","Substitute","Protect","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Safeguard","Sunny Day","Facade","Bullet Seed","Energy Ball","Grass Knot","Dazzling Gleam"],
+    egg: ["Razor Leaf","Defense Curl","Rollout","Sweet Scent","Nature Power","Weather Ball","Aromatherapy","Tickle","Healing Wish","Seed Bomb","Heal Pulse","Flower Shield","Grassy Terrain"],
     tutor: [],
     max: []
   },
   421: {
-    levelUp: [{level:1,move:"Absorb",mastery:9},{level:5,move:"Tackle",mastery:14},{level:9,move:"Stun Spore",mastery:18},{level:15,move:"Draining Kiss",mastery:25},{level:21,move:"Energy Ball",mastery:31},{level:29,move:"Sleep Powder",mastery:40},{level:37,move:"Double-Edge",mastery:48},{level:47,move:"Petal Dance",mastery:59}],
-    tm: [],
+    levelUp: [{level:0,move:"Sunny Day"},{level:1,move:"Flower Shield"},{level:1,move:"Growth"},{level:1,move:"Leafage"},{level:1,move:"Morning Sun"},{level:1,move:"Sunny Day"},{level:1,move:"Tackle"},{level:15,move:"Helping Hand"},{level:20,move:"Magical Leaf"},{level:28,move:"Leech Seed"},{level:34,move:"Take Down"},{level:41,move:"Petal Blizzard"},{level:48,move:"Worry Seed"},{level:55,move:"Solar Beam"},{level:62,move:"Petal Dance"}],
+    tm: ["Swords Dance","Hyper Beam","Solar Beam","Double Team","Flash","Rest","Substitute","Protect","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Safeguard","Sunny Day","Facade","Bullet Seed","Energy Ball","Giga Impact","Grass Knot","Dazzling Gleam"],
     egg: [],
     tutor: [],
     max: []
@@ -3010,15 +3010,15 @@ var MOVESETS = {
     max: []
   },
   427: {
-    levelUp: [{level:1,move:"Quick Attack",mastery:9},{level:5,move:"Baby-Doll Eyes",mastery:14},{level:10,move:"Swift",mastery:19},{level:16,move:"Draining Kiss",mastery:26},{level:23,move:"Double Hit",mastery:33},{level:31,move:"Play Rough",mastery:42},{level:40,move:"Double-Edge",mastery:52}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Pound"},{level:1,move:"Splash"},{level:4,move:"Defense Curl"},{level:8,move:"Baby-Doll Eyes"},{level:12,move:"After You"},{level:16,move:"Quick Attack"},{level:20,move:"Double Kick"},{level:24,move:"Charm"},{level:28,move:"Baton Pass"},{level:32,move:"Headbutt"},{level:36,move:"Agility"},{level:40,move:"Entrainment"},{level:44,move:"Flatter"},{level:48,move:"Bounce"},{level:52,move:"Healing Wish"}],
+    tm: ["Cut","Ice Beam","Solar Beam","Thunderbolt","Thunder Wave","Dig","Double Team","Rest","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Rock Smash","Facade","Focus Punch","Shock Wave","Water Pulse","Payback","Fling","Drain Punch","Grass Knot","Charge Beam","Low Sweep","Work Up"],
+    egg: ["Fire Punch","Ice Punch","Thunder Punch","Low Kick","Flail","Sweet Kiss","Encore","Fake Out","Teeter Dance","Fake Tears","Cosmic Power","Copycat","Switcheroo","Double Hit","Circle Throw","Power-Up Punch"],
     tutor: [],
     max: []
   },
   428: {
-    levelUp: [{level:1,move:"Quick Attack",mastery:9},{level:1,move:"Mach Punch",mastery:9},{level:5,move:"Baby-Doll Eyes",mastery:14},{level:10,move:"Swift",mastery:19},{level:16,move:"Draining Kiss",mastery:26},{level:23,move:"Double Hit",mastery:33},{level:31,move:"Play Rough",mastery:42},{level:40,move:"Double-Edge",mastery:52},{level:40,move:"Close Combat",mastery:52}],
-    tm: [],
+    levelUp: [{level:1,move:"Baby-Doll Eyes"},{level:1,move:"Defense Curl"},{level:1,move:"Magic Coat"},{level:1,move:"Mirror Coat"},{level:1,move:"Pound"},{level:1,move:"Splash"},{level:12,move:"After You"},{level:16,move:"Quick Attack"},{level:20,move:"Double Kick"},{level:24,move:"Charm"},{level:28,move:"Baton Pass"},{level:32,move:"Headbutt"},{level:36,move:"Agility"},{level:40,move:"Entrainment"},{level:44,move:"Flatter"},{level:48,move:"Bounce"},{level:52,move:"Healing Wish"},{level:56,move:"High Jump Kick"}],
+    tm: ["Cut","Ice Beam","Blizzard","Hyper Beam","Strength","Solar Beam","Thunderbolt","Thunder Wave","Thunder","Dig","Double Team","Rest","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Rock Smash","Facade","Focus Punch","Shock Wave","Water Pulse","U-turn","Payback","Fling","Drain Punch","Focus Blast","Giga Impact","Grass Knot","Charge Beam","Low Sweep","Work Up"],
     egg: [],
     tutor: [],
     max: []
@@ -3038,15 +3038,15 @@ var MOVESETS = {
     max: []
   },
   431: {
-    levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Hypnosis",mastery:14},{level:10,move:"Nasty Plot",mastery:19},{level:16,move:"Slash",mastery:26},{level:23,move:"Night Slash",mastery:33},{level:31,move:"Play Rough",mastery:42},{level:40,move:"Double-Edge",mastery:52}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Fake Out"},{level:5,move:"Scratch"},{level:8,move:"Growl"},{level:13,move:"Hypnosis"},{level:17,move:"Aerial Ace"},{level:20,move:"Fury Swipes"},{level:25,move:"Charm"},{level:29,move:"Taunt"},{level:32,move:"Retaliate"},{level:37,move:"Slash"},{level:41,move:"Sucker Punch"},{level:44,move:"Attract"},{level:48,move:"Hone Claws"},{level:50,move:"Play Rough"}],
+    tm: ["Cut","Thunderbolt","Thunder","Dig","Double Team","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Taunt","Aerial Ace","Shock Wave","Water Pulse","U-turn","Payback","Shadow Claw","Work Up"],
+    egg: ["Sand Attack","Tail Whip","Bite","Quick Attack","Flail","Fake Tears","Assurance","Last Resort"],
     tutor: [],
     max: []
   },
   432: {
-    levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Hypnosis",mastery:14},{level:10,move:"Nasty Plot",mastery:19},{level:16,move:"Slash",mastery:26},{level:23,move:"Night Slash",mastery:33},{level:31,move:"Play Rough",mastery:42},{level:40,move:"Double-Edge",mastery:52}],
-    tm: [],
+    levelUp: [{level:0,move:"Swagger"},{level:1,move:"Fake Out"},{level:1,move:"Growl"},{level:1,move:"Play Rough"},{level:1,move:"Scratch"},{level:1,move:"Sucker Punch"},{level:1,move:"Swagger"},{level:5,move:"Scratch"},{level:8,move:"Growl"},{level:13,move:"Hypnosis"},{level:17,move:"Aerial Ace"},{level:20,move:"Fury Swipes"},{level:25,move:"Charm"},{level:29,move:"Taunt"},{level:32,move:"Retaliate"},{level:37,move:"Slash"},{level:45,move:"Body Slam"},{level:52,move:"Attract"},{level:60,move:"Hone Claws"}],
+    tm: ["Cut","Roar","Hyper Beam","Thunderbolt","Thunder","Dig","Double Team","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Taunt","Aerial Ace","Shock Wave","Water Pulse","U-turn","Payback","Giga Impact","Shadow Claw","Bulldoze","Work Up"],
     egg: [],
     tutor: [],
     max: []
@@ -3094,9 +3094,9 @@ var MOVESETS = {
     max: []
   },
   439: {
-    levelUp: [{level:1,move:"Confusion",mastery:10},{level:6,move:"Hypnosis",mastery:15},{level:11,move:"Iron Defense",mastery:20},{level:18,move:"Zen Headbutt",mastery:28},{level:25,move:"Mimic"},{level:34,move:"Psychic",mastery:45},{level:43,move:"Calm Mind",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Copycat"},{level:1,move:"Pound"},{level:4,move:"Baton Pass"},{level:8,move:"Encore"},{level:12,move:"Confusion"},{level:16,move:"Role Play"},{level:20,move:"Protect"},{level:24,move:"Recycle"},{level:28,move:"Psybeam"},{level:32,move:"Mimic"},{level:36,move:"Light Screen"},{level:36,move:"Reflect"},{level:36,move:"Safeguard"},{level:40,move:"Sucker Punch"},{level:44,move:"Dazzling Gleam"},{level:48,move:"Psychic"},{level:52,move:"Teeter Dance"}],
+    tm: ["Solar Beam","Thunderbolt","Thunder Wave","Thunder","Psychic","Double Team","Light Screen","Reflect","Dream Eater","Flash","Rest","Substitute","Thief","Protect","Endure","Swagger","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Torment","Facade","Focus Punch","Taunt","Recycle","Brick Break","Skill Swap","Calm Mind","Shock Wave","Fling","Drain Punch","Nasty Plot","Trick Room","Grass Knot","Charge Beam","Dazzling Gleam"],
+    egg: ["Hypnosis","Mimic","Confuse Ray","Icy Wind","Charm","Future Sight","Fake Out","Trick","Teeter Dance","Tickle","Healing Wish","Power Split","Magic Room"],
     tutor: [],
     max: []
   },
@@ -3108,9 +3108,9 @@ var MOVESETS = {
     max: []
   },
   441: {
-    levelUp: [{level:1,move:"Gust",mastery:10},{level:6,move:"Swift",mastery:15},{level:11,move:"Air Cutter",mastery:20},{level:18,move:"Roost",mastery:28},{level:25,move:"Air Slash",mastery:35},{level:30,move:"Mimic"},{level:34,move:"Nasty Plot",mastery:45},{level:43,move:"Play Rough",mastery:54},{level:52,move:"Hurricane",mastery:64}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Chatter"},{level:1,move:"Confide"},{level:1,move:"Hyper Voice"},{level:1,move:"Taunt"},{level:5,move:"Peck"},{level:9,move:"Growl"},{level:13,move:"Sing"},{level:17,move:"Fury Attack"},{level:21,move:"Chatter"},{level:25,move:"Taunt"},{level:29,move:"Round"},{level:33,move:"Mimic"},{level:37,move:"Echoed Voice"},{level:41,move:"Roost"},{level:45,move:"Uproar"},{level:49,move:"Parting Shot"},{level:50,move:"Feather Dance"},{level:57,move:"Hyper Voice"}],
+    tm: ["Fly","Double Team","Rest","Substitute","Thief","Protect","Endure","Swagger","Steel Wing","Attract","Sleep Talk","Rain Dance","Sunny Day","Torment","Facade","Taunt","Aerial Ace","Roost","Pluck","U-turn","Nasty Plot","Defog","Work Up"],
+    egg: ["Supersonic","Agility","Night Shade","Encore","Air Cutter","Boomburst"],
     tutor: [],
     max: []
   },
@@ -3178,15 +3178,15 @@ var MOVESETS = {
     max: []
   },
   451: {
-    levelUp: [{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Bite",mastery:15},{level:11,move:"Venoshock",mastery:20},{level:18,move:"Cross Poison",mastery:28},{level:25,move:"Swords Dance",mastery:35},{level:34,move:"X-Scissor",mastery:45},{level:43,move:"Crunch",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Leer"},{level:1,move:"Poison Sting"},{level:3,move:"Hone Claws"},{level:6,move:"Fell Stinger"},{level:9,move:"Poison Fang"},{level:12,move:"Bite"},{level:15,move:"Toxic Spikes"},{level:18,move:"Bug Bite"},{level:21,move:"Venoshock"},{level:24,move:"Knock Off"},{level:27,move:"Scary Face"},{level:30,move:"Pin Missile"},{level:33,move:"Toxic"},{level:36,move:"Night Slash"},{level:39,move:"Cross Poison"},{level:42,move:"X-Scissor"},{level:45,move:"Acupressure"},{level:48,move:"Crunch"}],
+    tm: ["Swords Dance","Cut","Strength","Dig","Toxic","Double Team","Flash","Rest","Substitute","Thief","Protect","Sludge Bomb","Endure","False Swipe","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Rock Smash","Torment","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Payback","Fling","Poison Jab","Dark Pulse","X-Scissor","Bug Buzz"],
+    egg: ["Whirlwind","Sand Attack","Agility","Screech","Confuse Ray","Slash","Poison Tail","Night Slash"],
     tutor: [],
     max: []
   },
   452: {
-    levelUp: [{level:1,move:"Poison Sting",mastery:10},{level:6,move:"Bite",mastery:15},{level:11,move:"Venoshock",mastery:20},{level:18,move:"Cross Poison",mastery:28},{level:25,move:"Swords Dance",mastery:35},{level:34,move:"X-Scissor",mastery:45},{level:43,move:"Crunch",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Fell Stinger"},{level:1,move:"Fire Fang"},{level:1,move:"Hone Claws"},{level:1,move:"Ice Fang"},{level:1,move:"Leer"},{level:1,move:"Poison Sting"},{level:1,move:"Thunder Fang"},{level:9,move:"Poison Fang"},{level:12,move:"Bite"},{level:15,move:"Toxic Spikes"},{level:18,move:"Bug Bite"},{level:21,move:"Venoshock"},{level:24,move:"Knock Off"},{level:27,move:"Scary Face"},{level:30,move:"Pin Missile"},{level:33,move:"Toxic"},{level:36,move:"Night Slash"},{level:39,move:"Cross Poison"},{level:44,move:"X-Scissor"},{level:49,move:"Acupressure"},{level:54,move:"Crunch"}],
+    tm: ["Swords Dance","Cut","Roar","Hyper Beam","Strength","Earthquake","Dig","Toxic","Double Team","Flash","Rest","Rock Slide","Substitute","Thief","Protect","Sludge Bomb","Endure","False Swipe","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Shadow Ball","Rock Smash","Torment","Facade","Taunt","Brick Break","Rock Tomb","Aerial Ace","Payback","Fling","Poison Jab","Dark Pulse","X-Scissor","Bug Buzz","Giga Impact","Rock Climb","Bulldoze","Snarl"],
     egg: [],
     tutor: [],
     max: []
@@ -3206,9 +3206,9 @@ var MOVESETS = {
     max: []
   },
   455: {
-    levelUp: [{level:1,move:"Absorb",mastery:10},{level:6,move:"Acid Spray",mastery:15},{level:11,move:"Bite",mastery:20},{level:18,move:"Stun Spore",mastery:28},{level:25,move:"Crunch",mastery:35},{level:34,move:"Sleep Powder",mastery:45},{level:43,move:"Energy Ball",mastery:54}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Bind"},{level:1,move:"Growth"},{level:7,move:"Bite"},{level:11,move:"Vine Whip"},{level:17,move:"Sweet Scent"},{level:21,move:"Ingrain"},{level:27,move:"Grass Knot"},{level:31,move:"Leaf Tornado"},{level:37,move:"Spit Up"},{level:37,move:"Stockpile"},{level:37,move:"Swallow"},{level:41,move:"Crunch"},{level:47,move:"Seed Bomb"},{level:50,move:"Power Whip"}],
+    tm: ["Swords Dance","Cut","Hyper Beam","Solar Beam","Double Team","Flash","Rest","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Sunny Day","Facade","Bullet Seed","Payback","Fling","Energy Ball","Giga Impact","Grass Knot"],
+    egg: ["Slam","Leech Seed","Razor Leaf","Stun Spore","Sleep Powder","Synthesis","Magical Leaf","Worry Seed","Rage Powder","Acid Spray"],
     tutor: [],
     max: []
   },
@@ -3227,9 +3227,9 @@ var MOVESETS = {
     max: []
   },
   458: {
-    levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Bubble",mastery:14},{level:9,move:"Aerial Ace",mastery:18},{level:15,move:"Water Pulse",mastery:25},{level:21,move:"Air Slash",mastery:31},{level:29,move:"Roost",mastery:40},{level:37,move:"Hydro Pump",mastery:48},{level:47,move:"Double-Edge",mastery:59}],
-    tm: [],
-    egg: [],
+    levelUp: [{level:1,move:"Tackle"},{level:1,move:"Water Gun"},{level:4,move:"Supersonic"},{level:8,move:"Wing Attack"},{level:12,move:"Water Pulse"},{level:16,move:"Wide Guard"},{level:20,move:"Agility"},{level:24,move:"Bubble Beam"},{level:28,move:"Headbutt"},{level:32,move:"Air Slash"},{level:36,move:"Aqua Ring"},{level:40,move:"Bounce"},{level:44,move:"Take Down"},{level:48,move:"Hydro Pump"}],
+    tm: ["Surf","Ice Beam","Blizzard","Earthquake","Double Team","Waterfall","Rest","Rock Slide","Substitute","Protect","Endure","Swagger","Attract","Sleep Talk","Rain Dance","Hail","Facade","Aerial Ace","Water Pulse","Scald","Bulldoze"],
+    egg: ["Slam","Hydro Pump","Confuse Ray","Haze","Amnesia","Splash","Twister","Mirror Coat","Tailwind","Wide Guard"],
     tutor: [],
     max: []
   },
@@ -3262,8 +3262,8 @@ var MOVESETS = {
     max: []
   },
   463: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Rest",mastery:15},{level:11,move:"Bulldoze",mastery:20},{level:18,move:"Zen Headbutt",mastery:28},{level:25,move:"Double-Edge",mastery:35},{level:34,move:"Rollout",mastery:45},{level:43,move:"Giga Impact",mastery:54}],
-    tm: [],
+    levelUp: [{level:1,move:"Defense Curl"},{level:1,move:"Lick"},{level:1,move:"Rollout"},{level:1,move:"Supersonic"},{level:18,move:"Wrap"},{level:24,move:"Disable"},{level:30,move:"Stomp"},{level:36,move:"Knock Off"},{level:42,move:"Screech"},{level:48,move:"Slam"},{level:54,move:"Power Whip"},{level:60,move:"Belly Drum"}],
+    tm: ["Swords Dance","Cut","Flamethrower","Surf","Ice Beam","Blizzard","Hyper Beam","Strength","Solar Beam","Thunderbolt","Thunder","Earthquake","Dig","Double Team","Fire Blast","Dream Eater","Explosion","Rest","Rock Slide","Substitute","Thief","Protect","Sandstorm","Endure","Swagger","Attract","Sleep Talk","Iron Tail","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Rock Smash","Facade","Focus Punch","Brick Break","Rock Tomb","Shock Wave","Water Pulse","Gyro Ball","Fling","Focus Blast","Giga Impact","Rock Climb","Bulldoze","Work Up"],
     egg: [],
     tutor: [],
     max: []
@@ -3276,8 +3276,8 @@ var MOVESETS = {
     max: []
   },
   465: {
-    levelUp: [{level:1,move:"Absorb",mastery:10},{level:6,move:"Stun Spore",mastery:15},{level:11,move:"Poison Powder",mastery:20},{level:15,move:"Acid Spray",mastery:24},{level:18,move:"Double Hit",mastery:28},{level:25,move:"Energy Ball",mastery:35},{level:34,move:"Ancient Power",mastery:45},{level:43,move:"Sleep Powder",mastery:54},{level:52,move:"Sludge Bomb",mastery:64}],
-    tm: [],
+    levelUp: [{level:1,move:"Absorb"},{level:1,move:"Bind"},{level:1,move:"Block"},{level:1,move:"Growth"},{level:1,move:"Stun Spore"},{level:12,move:"Mega Drain"},{level:16,move:"Vine Whip"},{level:20,move:"Poison Powder"},{level:24,move:"Ancient Power"},{level:28,move:"Knock Off"},{level:32,move:"Giga Drain"},{level:36,move:"Sleep Powder"},{level:40,move:"Slam"},{level:44,move:"Tickle"},{level:48,move:"Power Whip"},{level:52,move:"Ingrain"},{level:56,move:"Grassy Terrain"}],
+    tm: ["Swords Dance","Cut","Hyper Beam","Strength","Solar Beam","Earthquake","Double Team","Reflect","Flash","Rest","Rock Slide","Substitute","Thief","Protect","Sludge Bomb","Giga Drain","Endure","Swagger","Attract","Sleep Talk","Sunny Day","Psych Up","Rock Smash","Facade","Brick Break","Rock Tomb","Bullet Seed","Aerial Ace","Shock Wave","Payback","Fling","Poison Jab","Focus Blast","Energy Ball","Giga Impact","Grass Knot","Bulldoze"],
     egg: [],
     tutor: [],
     max: []
@@ -3297,8 +3297,8 @@ var MOVESETS = {
     max: []
   },
   468: {
-    levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Fairy Wind",mastery:15},{level:11,move:"Draining Kiss",mastery:20},{level:11,move:"Air Cutter",mastery:20},{level:18,move:"Calm Mind",mastery:28},{level:25,move:"Baby-Doll Eyes",mastery:35},{level:25,move:"Air Slash",mastery:35},{level:34,move:"Extrasensory",mastery:45},{level:43,move:"Moonblast",mastery:54}],
-    tm: [],
+    levelUp: [{level:0,move:"Air Slash"},{level:1,move:"After You"},{level:1,move:"Air Slash"},{level:1,move:"Ancient Power"},{level:1,move:"Aura Sphere"},{level:1,move:"Baton Pass"},{level:1,move:"Charm"},{level:1,move:"Double-Edge"},{level:1,move:"Extreme Speed"},{level:1,move:"Fairy Wind"},{level:1,move:"Follow Me"},{level:1,move:"Growl"},{level:1,move:"Last Resort"},{level:1,move:"Life Dew"},{level:1,move:"Metronome"},{level:1,move:"Pound"},{level:1,move:"Safeguard"},{level:1,move:"Sky Attack"},{level:1,move:"Sweet Kiss"},{level:1,move:"Tri Attack"},{level:1,move:"Wish"},{level:1,move:"Yawn"}],
+    tm: ["Fly","Flamethrower","Hyper Beam","Solar Beam","Thunder Wave","Psychic","Double Team","Light Screen","Reflect","Fire Blast","Dream Eater","Flash","Rest","Substitute","Protect","Endure","Swagger","Steel Wing","Attract","Sleep Talk","Safeguard","Rain Dance","Sunny Day","Psych Up","Shadow Ball","Rock Smash","Facade","Focus Punch","Brick Break","Aerial Ace","Shock Wave","Water Pulse","Roost","Pluck","Fling","Drain Punch","Giga Impact","Nasty Plot","Defog","Grass Knot","Work Up","Dazzling Gleam"],
     egg: [],
     tutor: [],
     max: []

@@ -8,7 +8,9 @@
 // every evolvesTo[].id either resolves to a real POKEMON_DATA entry within
 // range, or is legitimately outside it (Gen 4+ evolution target — allowed,
 // just noted); every ALT_FORMS entry keys a real species, its ability names
-// resolve, and its sprite art exists on disk (normal + shiny).
+// resolve, and its sprite art exists on disk (normal + shiny); every
+// movesets_hisui.js key is a real species with no duplicate ids, carrying only
+// the levelUp/tutor categories PLA has and never an empty one.
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -30,6 +32,7 @@ const MAX_ID = Math.max(...POKEMON_DATA.map(p => p.id));
 const STATS = loadGlobal("stats.js", "STATS");
 const EVOLUTIONS = loadGlobal("evolutions.js", "EVOLUTIONS");
 const MOVESETS = loadGlobal("movesets.js", "MOVESETS");
+const MOVESETS_HISUI = loadGlobal("movesets_hisui.js", "MOVESETS_HISUI");
 const NAMES = loadGlobal("names.js", "NAMES");
 const LOCATIONS = loadGlobal("locations.js", "LOCATIONS");
 const MOVES = loadGlobal("moves.js", "MOVES");
@@ -121,14 +124,28 @@ for (const key of Object.keys(ALT_FORMS)) {
     for (const rel of rels) if (!fs.existsSync(path.join(SPRITE_DIR, rel))) fail(`altforms.js id ${id}/${f.key}: sprite missing ${rel}`);
   }
 }
-for (const id of IDS) {
-  const ms = MOVESETS[id];
-  if (!ms) continue;
-  for (const x of ms.levelUp || []) if (!MOVES[x.move]) fail(`movesets.js id ${id}: unknown move "${x.move}" (levelUp)`);
-  for (const x of ms.tm || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (tm)`);
-  for (const x of ms.egg || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (egg)`);
-  for (const x of ms.tutor || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (tutor)`);
-  for (const x of ms.max || []) if (!MOVES[x]) fail(`movesets.js id ${id}: unknown move "${x}" (max)`);
+// movesets.js has all five categories; movesets_hisui.js (0.2.18) only ever
+// has levelUp/tutor, and only for the Hisui-roster ids with real PLA data —
+// same move-resolution rule, driven off whichever keys are actually present.
+function checkMoveset(file, id, ms) {
+  for (const key of Object.keys(ms)) {
+    for (const x of ms[key] || []) {
+      const name = key === "levelUp" ? x.move : x;
+      if (!MOVES[name]) fail(`${file} id ${id}: unknown move "${name}" (${key})`);
+    }
+  }
+}
+for (const id of IDS) if (MOVESETS[id]) checkMoveset("movesets.js", id, MOVESETS[id]);
+findDuplicateKeys("movesets_hisui.js", /^\s{2}(\d+):\s*\{/gm);
+for (const key of Object.keys(MOVESETS_HISUI)) {
+  const id = Number(key);
+  if (!pokemonById.has(id)) fail(`movesets_hisui.js: key ${key} has no POKEMON_DATA entry`);
+  const ms = MOVESETS_HISUI[key];
+  const badKey = Object.keys(ms).find(k => k !== "levelUp" && k !== "tutor");
+  if (badKey) fail(`movesets_hisui.js id ${id}: unexpected category "${badKey}" (PLA has level-up and tutor only)`);
+  if (!Object.keys(ms).length) fail(`movesets_hisui.js id ${id}: empty entry`);
+  for (const k of Object.keys(ms)) if (!(ms[k] || []).length) fail(`movesets_hisui.js id ${id}: empty "${k}" — omit the key instead`);
+  checkMoveset("movesets_hisui.js", id, ms);
 }
 
 // ---- every evolvesTo[].id resolves to a real POKEMON_DATA entry, or is
@@ -147,7 +164,7 @@ for (const id of IDS) {
   }
 }
 
-console.log(`Checked ids ${MIN_ID}-${MAX_ID}: ${POKEMON_DATA.length} POKEMON_DATA entries, ${Object.keys(MOVES).length} MOVES, ${Object.keys(ABILITIES).length} ABILITIES, ${Object.keys(ITEMS_DATA).length} ITEMS_DATA, ${Object.keys(ALT_FORMS).length} ALT_FORMS species / ${altFormeCount} formes.`);
+console.log(`Checked ids ${MIN_ID}-${MAX_ID}: ${POKEMON_DATA.length} POKEMON_DATA entries, ${Object.keys(MOVES).length} MOVES, ${Object.keys(ABILITIES).length} ABILITIES, ${Object.keys(ITEMS_DATA).length} ITEMS_DATA, ${Object.keys(ALT_FORMS).length} ALT_FORMS species / ${altFormeCount} formes, ${Object.keys(MOVESETS_HISUI).length} MOVESETS_HISUI entries.`);
 console.log(`Evolution targets outside range (unexpected if >0): ${outOfRangeNoted}`);
 console.log(failures === 0 ? "PASS: no integrity failures." : `FAIL: ${failures} integrity failure(s) found.`);
 process.exit(failures === 0 ? 0 : 1);

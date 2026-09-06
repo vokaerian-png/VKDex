@@ -38,7 +38,8 @@
 //                       is skipped and reported instead of failing.
 //   --audit [--verbose] read-only: diff every populated id (or the target's
 //                       ids) in src/data/*.js against what the CSVs say —
-//                       pokemon/stats/evolutions/movesets/names/locations
+//                       pokemon/stats/evolutions/movesets/movesets_hisui/names/
+//                       locations
 //                       tables, Mega formes in altforms, and moves.js/
 //                       abilities.js keys + move stats. One line per
 //                       mismatch, summary count, exit 1 on any. hisui.js/
@@ -51,7 +52,7 @@
 //
 // Options:
 //   --tables a,b,c      which files to write (default: all). Any of
-//                       pokemon stats evolutions movesets names locations
+//                       pokemon stats evolutions movesets movesets_hisui names locations
 //                       altforms (plus moves/abilities additions, always).
 //                       altforms writes only Mega formes and only for a
 //                       species with no ALT_FORMS entry yet — an existing
@@ -119,7 +120,12 @@ const REGION_ORDER_GEN = {
 // both tiers. game_index tops out in the hundreds; the step just has to be
 // bigger than any of them.
 const TIER_STEP = 1e6;
-const ALL_TABLES = ["pokemon", "stats", "evolutions", "movesets", "names", "locations", "altforms"];
+const ALL_TABLES = ["pokemon", "stats", "evolutions", "movesets", "movesets_hisui", "names", "locations", "altforms"];
+// Legends: Arceus. The only version group in the clone with usable moveset
+// rows but structurally NO machine (4) or egg (2) rows at all — see the
+// moveset extractor for why that matters, and movesets_hisui.js for where
+// its learnsets go instead.
+const PLA_VG = "24";
 // genders.csv, static: 3 = genderless, deliberately absent (see the
 // evolution extractor) so it never writes a meaningless `gender` field.
 const GENDER = { 1: "female", 2: "male" };
@@ -335,6 +341,7 @@ function currentData() {
       stats: loadGlobal("stats.js", "STATS"),
       evolutions: loadGlobal("evolutions.js", "EVOLUTIONS"),
       movesets: loadGlobal("movesets.js", "MOVESETS"),
+      movesets_hisui: loadGlobal("movesets_hisui.js", "MOVESETS_HISUI"),
       names: loadGlobal("names.js", "NAMES"),
       locations: loadGlobal("locations.js", "LOCATIONS"),
       altforms: loadGlobal("altforms.js", "ALT_FORMS"),
@@ -416,7 +423,9 @@ function printTargets(t, current) {
     for (const id of t.ids) {
       const p = current.pokemonById.get(id);
       const have = ALL_TABLES.filter(tb => tb === "pokemon" ? !!p : !!current.tables[tb][id]);
-      const missing = ALL_TABLES.filter(tb => have.indexOf(tb) === -1 && tb !== "altforms");
+      // altforms/movesets_hisui only exist for a subset of species by design,
+      // so their absence isn't a gap.
+      const missing = ALL_TABLES.filter(tb => have.indexOf(tb) === -1 && tb !== "altforms" && tb !== "movesets_hisui");
       console.log(`  ${id}: ${p ? p.name : "(new)"} region=${t.regionOf(id) || (p && p.hisuiOnly ? "hisuiOnly" : "?")} tables present: ${have.join(",") || "none"}${missing.length ? ` — missing: ${missing.join(",")}` : ""}`);
     }
   }
@@ -514,6 +523,7 @@ function extract(t, csvs, current) {
   const statsByPokemon = groupBy(csvs.pStats, "pokemon_id");
   const evoByTarget = groupBy(csvs.pEvolution, "evolved_species_id");
   const movesByPokemon = groupBy(csvs.pMoves, "pokemon_id");
+  const pokemonBySpecies = groupBy(csvs.pokemon, "species_id");
   const encByPokemon = groupBy(csvs.encounters, "pokemon_id");
   // Encounter detail (0.2.7): slot -> method + rarity; condition values
   // (time of day, season, swarm, ...) key separate rate buckets so a Gen 2
@@ -543,7 +553,7 @@ function extract(t, csvs, current) {
 
   const results = {
     slug: t.slug, ids: t.ids,
-    pokemon: {}, stats: {}, evolutions: {}, movesets: {}, names: {}, locations: {}, altforms: {},
+    pokemon: {}, stats: {}, evolutions: {}, movesets: {}, movesetsHisui: {}, names: {}, locations: {}, altforms: {},
     flagged: [],
   };
   const statKeys = { "1": "hp", "2": "attack", "3": "defense", "4": "spAttack", "5": "spDefense", "6": "speed" };
@@ -705,40 +715,83 @@ function extract(t, csvs, current) {
     // by version-group order lands on those and yields an entirely empty
     // moveset (what left 92 of the shipped 1-493 entries empty, 0.1.28).
     const USABLE_METHODS = new Set(["1", "2", "4"]);
-    const mvRows = (movesByPokemon.get(sid) || []).filter(r => USABLE_METHODS.has(r.pokemon_move_method_id));
-    let bestVg = null, bestOrder = -1;
-    for (const r of mvRows) {
-      const vg = vgById.get(r.version_group_id);
-      if (!vg) continue;
-      const order = Number(vg.order);
-      if (order > bestOrder) { bestOrder = order; bestVg = r.version_group_id; }
-    }
-    const chosen = bestVg ? mvRows.filter(r => r.version_group_id === bestVg) : [];
-    const levelUp = [], tm = [], egg = [];
     const mvName = mid => moveNameById.get(mid) || `#${mid}`;
-    for (const r of chosen) {
-      if (r.pokemon_move_method_id === "1") {
-        const e = { level: Number(r.level), move: mvName(r.move_id) };
-        // Legends: Arceus move-mastery level (0.2.5). Only ever set on
-        // level-up rows, and only in PLA-era version groups — absent
-        // everywhere else, which is expected, not a gap.
-        if (r.mastery !== "" && r.mastery !== undefined) e.mastery = Number(r.mastery);
-        levelUp.push(e);
-      } else if (r.pokemon_move_method_id === "4") tm.push(mvName(r.move_id));
-      else if (r.pokemon_move_method_id === "2") egg.push(mvName(r.move_id));
-    }
-    levelUp.sort((a, b) => a.level - b.level);
-    // Tutor moves (method 3), from the SAME version group already chosen
-    // above — deliberately not part of the selection set, so adding them
-    // can't shift which game's levelUp/tm/egg lists get stored.
-    const tutor = bestVg ? (movesByPokemon.get(sid) || []).filter(r => r.version_group_id === bestVg && r.pokemon_move_method_id === "3").map(r => mvName(r.move_id)) : [];
     const dedupe = arr => [...new Set(arr)];
-    results.movesets[id] = {
-      levelUp, tm: dedupe(tm), egg: dedupe(egg), tutor: dedupe(tutor), max: [],
-      _sourceGeneration: bestVg ? vgById.get(bestVg).identifier : null,
+    const allMvRows = movesByPokemon.get(sid) || [];
+    const mvRows = allMvRows.filter(r => USABLE_METHODS.has(r.pokemon_move_method_id));
+    const pickVg = rows => {
+      let vg = null, best = -1;
+      for (const r of rows) {
+        const g = vgById.get(r.version_group_id);
+        if (!g) continue;
+        const order = Number(g.order);
+        if (order > best) { best = order; vg = r.version_group_id; }
+      }
+      return vg;
     };
+    // PLA is excluded from the mainline pick (0.2.18): its rows are level-up
+    // + tutor only, so winning on `order` silently wiped a species' real TM
+    // and egg lists (55 species, all of which really have BDSP data). The 7
+    // hisuiOnly species have no non-PLA rows at all, so the fallback keeps
+    // PLA as their sole mainline source, unchanged. PLA's own learnsets are
+    // extracted separately below, into movesets_hisui.js.
+    const bestVg = pickVg(mvRows.filter(r => r.version_group_id !== PLA_VG)) || pickVg(mvRows);
+    // One version group's rows -> the four learnset categories. `rows` is
+    // already scoped to one pokemon_id.
+    const buildSet = (rows, vg) => {
+      const levelUp = [], tm = [], egg = [], tutor = [];
+      for (const r of rows) {
+        if (r.version_group_id !== vg) continue;
+        if (r.pokemon_move_method_id === "1") {
+          const e = { level: Number(r.level), move: mvName(r.move_id) };
+          // Legends: Arceus move-mastery level (0.2.5). Only ever set on
+          // level-up rows, and only in PLA-era version groups — absent
+          // everywhere else, which is expected, not a gap.
+          if (r.mastery !== "" && r.mastery !== undefined) e.mastery = Number(r.mastery);
+          levelUp.push(e);
+        } else if (r.pokemon_move_method_id === "4") tm.push(mvName(r.move_id));
+        else if (r.pokemon_move_method_id === "2") egg.push(mvName(r.move_id));
+        // Tutor moves (method 3) ride along from the SAME version group —
+        // deliberately not part of the selection set above, so adding them
+        // can't shift which game's levelUp/tm/egg lists get stored.
+        else if (r.pokemon_move_method_id === "3") tutor.push(mvName(r.move_id));
+      }
+      levelUp.sort((a, b) => a.level - b.level);
+      return { levelUp, tm: dedupe(tm), egg: dedupe(egg), tutor: dedupe(tutor) };
+    };
+    const mainSet = bestVg ? buildSet(allMvRows, bestVg) : { levelUp: [], tm: [], egg: [], tutor: [] };
+    results.movesets[id] = Object.assign(mainSet, {
+      max: [],
+      _sourceGeneration: bestVg ? vgById.get(bestVg).identifier : null,
+    });
     if (bestVg && vgById.get(bestVg).generation_id !== "9") {
       results.flagged.push(`id ${id} (${pk.identifier}): no Gen 9 moveset data, used "${vgById.get(bestVg).identifier}" instead`);
+    }
+
+    // movesets_hisui.js (0.2.18): PLA's own learnset, kept out of the
+    // mainline data entirely — different game, different mechanics. Level-up
+    // (with `mastery`) and tutor only; TM/egg/max don't exist in PLA by
+    // construction, so those keys are never emitted. Read by the detail
+    // screen's Learnable Moves card only when it was opened from the Hisui
+    // screen (SCOPE.md §4).
+    // 17 Hisui-roster species appear in PLA only as a non-default form
+    // (the 16 Hisuian regional forms + Giratina-Origin, plus Basculin's
+    // white-striped form), whose learnset hangs off that form's own
+    // pokemon_id rather than the species row — fall back to it when the
+    // default form has no PLA rows of its own.
+    let plaRows = allMvRows;
+    if (!plaRows.some(r => r.version_group_id === PLA_VG)) {
+      const forms = (pokemonBySpecies.get(sid) || [])
+        .filter(f => f.id !== sid && (movesByPokemon.get(f.id) || []).some(r => r.version_group_id === PLA_VG))
+        .sort((a, b) => Number(a.id) - Number(b.id));
+      if (forms.length) {
+        plaRows = movesByPokemon.get(forms[0].id);
+        if (forms.length > 1) results.flagged.push(`id ${id} (${pk.identifier}): ${forms.length} PLA forms (${forms.map(f => f.identifier).join(", ")}), used "${forms[0].identifier}" for movesets_hisui`);
+      }
+    }
+    const plaSet = buildSet(plaRows, PLA_VG);
+    if (plaSet.levelUp.length || plaSet.tutor.length) {
+      results.movesetsHisui[id] = { levelUp: plaSet.levelUp, tutor: plaSet.tutor };
     }
 
     // names.js
@@ -839,6 +892,11 @@ function extract(t, csvs, current) {
     for (const x of ms.levelUp) neededMoves.add(x.move);
     for (const x of ms.tm) neededMoves.add(x);
     for (const x of ms.egg) neededMoves.add(x);
+    for (const x of ms.tutor) neededMoves.add(x);
+  }
+  for (const id in results.movesetsHisui) {
+    const ms = results.movesetsHisui[id];
+    for (const x of ms.levelUp) neededMoves.add(x.move);
     for (const x of ms.tutor) neededMoves.add(x);
   }
   const missingAbilities = [...neededAbilities].filter(a => !current.abilities[a]);
@@ -1117,6 +1175,26 @@ function assemble(results, descriptions, tables, strict, current) {
     upsertEntries("movesets.js", entries);
   }
 
+  // ---- movesets_hisui.js (0.2.18) ----
+  // Only ids with real PLA rows get an entry, and only the two categories
+  // PLA actually has — an absent key is how the Learnable Moves card knows
+  // not to render that tab.
+  if (want("movesets_hisui")) {
+    const entries = [];
+    for (const id of ids) {
+      const ms = results.movesetsHisui[id];
+      if (!ms) continue;
+      const bad = [...ms.levelUp.map(x => x.move), ...ms.tutor].find(m => unresolvedMoves.has(m));
+      if (bad) { skip(`movesets_hisui ${id}: move "${bad}" has no description yet`); continue; }
+      const lu = ms.levelUp.map(x => `{level:${x.level},move:"${escD(x.move)}"${x.mastery !== undefined ? `,mastery:${x.mastery}` : ""}}`).join(",");
+      const parts = [];
+      if (ms.levelUp.length) parts.push(`    levelUp: [${lu}]`);
+      if (ms.tutor.length) parts.push(`    tutor: [${ms.tutor.map(x => `"${escD(x)}"`).join(",")}]`);
+      entries.push({ id, text: `  ${id}: {\n${parts.join(",\n")}\n  }` });
+    }
+    upsertEntries("movesets_hisui.js", entries);
+  }
+
   // ---- names.js ----
   if (want("names")) upsertEntries("names.js", ids.map(id => {
     const n = results.names[id];
@@ -1244,6 +1322,17 @@ function audit(ids, csvs, current, verbose) {
       checkList(L, "movesets.egg", ems.egg, ms.egg || []);
       checkList(L, "movesets.tutor", ems.tutor, ms.tutor || []);
       if ((ms.max || []).length) report(L, "movesets.max", [], ms.max);
+    }
+
+    // movesets_hisui.js (0.2.18): same contract, but an id with no PLA rows
+    // is expected to have no entry at all — absence on both sides is a pass.
+    const hs = current.tables.movesets_hisui[id], ehs = r.movesetsHisui[id];
+    if (!ehs && hs) report(L, "movesets_hisui", undefined, "entry");
+    else if (ehs && !hs) report(L, "movesets_hisui", "entry", undefined);
+    else if (ehs) {
+      const lv = x => `${x.level}:${x.move}${x.mastery === undefined ? "" : ":m" + x.mastery}`;
+      checkList(L, "movesets_hisui.levelUp", ehs.levelUp.map(lv), (hs.levelUp || []).map(lv));
+      checkList(L, "movesets_hisui.tutor", ehs.tutor, hs.tutor || []);
     }
 
     const region = t.regionOf(id);

@@ -48,6 +48,9 @@ VKDex/
       moves.js         (MOVES, keyed by name — 651 entries)
       items.js         (ITEMS_DATA, keyed by slug — 130 referenced items, 0.2.7)
       movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/tutor/max)
+      movesets_hisui.js (MOVESETS_HISUI, keyed by id: Legends: Arceus-only
+                          learnsets split out of movesets.js, 0.2.18 —
+                          levelUp w/ mastery + tutor, 241 entries)
       evolutions.js    (EVOLUTIONS, keyed by id: evolvesTo chain)
       locations.js     (LOCATIONS, keyed by id -> region -> areas w/ encounter
                          method/level/rate lines — SCOPE.md §2)
@@ -209,7 +212,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.17.** Mirror on every bump, across all of:
+**Current version: 0.2.18.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml`. **`electron-app/package.json`'s `"version"` is
@@ -332,6 +335,38 @@ mid-batch, only at that boundary.
 
 ---
 
+## 5b. Parallel subagent dispatch — policy, untested (2026-09-06)
+
+Discussed after the 0.2.18 fix (one coherent change across a shared
+extractor/shared move table/shared render path — not a candidate for
+splitting). Default stays **one sequential `coder` per task**; parallel
+dispatch is the exception, for a batch of genuinely disjoint-file work
+(e.g. a future region pass split `pokemon`/`stats` vs. `evolutions`/
+`movesets` vs. `locations`) or independent read-only research fan-out.
+
+- **Partition by disjoint files, decided up front** — one file, one
+  writer, per parallel round. The normalized/shared files
+  (`abilities.js`/`moves.js`/`items.js`) are the real hazard: at most one
+  agent gets write access to any one of them per round; if two
+  workstreams both need one shared file, that step runs first and
+  sequentially, not in parallel.
+- **`reviewer` does not become a merge gate.** Its value is being an
+  independent, read-only checker (`CLAUDE.md` §5); giving it write access
+  to reconcile two agents' output would erase that and reverse its
+  cost-suspension by the back door. A real reconciliation is a normal
+  sequential `coder` dispatch reading both handoffs, if one's ever needed.
+- **`verify_region_data.js`/`--audit` stays the one post-hoc gate**
+  regardless of how many agents touched the result, run once over the
+  combined final state before anything is folded into the memory bank.
+- **Untested — the next genuinely suitable large job is the first real
+  trial.** Architect asks the user before initializing a parallel batch
+  (not a silent default yet); that first run is a deliberate benchmark —
+  track and report total token usage and wall-clock time spent, for
+  comparison against what an equivalent sequential dispatch would have
+  cost. Fold the result back into this section once it's run.
+
+---
+
 ## 6. How this memory bank is maintained
 
 These five files at the project root **are** the durable memory bank (the
@@ -399,6 +434,12 @@ pointer, not a re-summary. **Keep it concise** — "in detail" means no
 no scene-setting, no narration, no restating what the other files say.
 
 User-specified 2026-09-03; conciseness addendum 2026-09-04.
+
+**Proactively recommend a handoff before the session ends naturally**, once
+session token/context usage climbs high (roughly 70-80%+) — well before
+§8's hard 95% halt — rather than waiting for the user to ask or for a
+forced stop. A suggestion, not forced; the user can decline and keep
+working. User-specified 2026-09-06.
 
 ---
 

@@ -242,6 +242,43 @@ rows: `TODO.md` #6.
 
 ---
 
+## PLA (Legends: Arceus) learnsets split from mainline — shipped 0.2.18
+
+Legends: Arceus's move-learning mechanics are structurally different from
+every mainline game (level-up with a `mastery` rank, tutor "Move Shop"
+moves — never TMs or egg moves), so its data was silently winning the
+pipeline's "highest-order version group" pick for movesets and wiping
+TM/egg for 55 species with no mainline alternative shown (a real screenshot
+of Bidoof missing its TM/Egg tabs entirely surfaced it). Rather than just
+picking a better mainline group, the user's call: PLA data is never merged
+into mainline movesets again, full stop — captured into its own file and
+shown only in its own context.
+
+- `tools/populate_region.js`'s mainline version-group selection now
+  excludes PLA (`legends-arceus`) unless a species has no non-PLA moveset
+  rows at all.
+- PLA's own learnsets are extracted independently into
+  `src/data/movesets_hisui.js` (`MOVESETS_HISUI`, 241 of the 242
+  Hisui-roster species — Porygon2 has none in the source data), `{levelUp,
+  tutor}` only (TM/egg/max never apply to PLA).
+- The detail screen's Learnable Moves card reads from `MOVESETS_HISUI`
+  instead of `MOVESETS` only when opened from the Hisui screen (reusing
+  the existing Hisuian-auto-forme nav signal, `SCOPE.md` §4) — its own
+  two-tab list (Level-Up/Tutor), so mainline screens render identically to
+  before.
+- **Not decided, flagged by `coder`**: 17 entries needed a non-default-form
+  fallback (the 16 Hisuian regional forms, Giratina-Origin,
+  Basculin-white-striped); where both a species' base form and its Hisuian
+  form have PLA rows, the base currently wins — `TODO.md` #13 tracks
+  whether the Hisuian form should win instead when opened from the Hisui
+  screen. Also not done: surfacing Tutor as a real tab on mainline screens
+  generally (tutor data has existed, unrendered, since 0.2.5) — a one-line
+  `MOVE_TABS` change if wanted, deliberately not done unrequested.
+
+Full detail: `HISTORY.md` 0.2.18.
+
+---
+
 ## Data storage architecture — shipped 0.1.10
 
 Decided 2026-09-03; still the governing shape (`CLAUDE.md` §1, `SCOPE.md` §2).

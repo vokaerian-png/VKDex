@@ -405,7 +405,15 @@ items **with** UI (below).
   **Still open**: condition values
   (time of day, season, swarm) aren't stored or shown — the remaining half
   of the `SCHEMA_GAPS` `version_id` row. Gift/static/NPC-trade rows kept
-  on purpose.
+  on purpose. **Checked 2026-09-06**: the user cloned veekun/pokedex
+  (`temp/veekun-pokedex-master`), the project PokeAPI's CSVs descend from,
+  on the chance it had richer encounter-condition data — confirmed it
+  doesn't. Same schema, same `encounter_condition_value_map.csv` rows,
+  byte-identical condition definitions; veekun is strictly older (caps out
+  at Gen 8, PokeAPI's clone goes through Gen 9 + DLC) and a subset in every
+  other respect checked (file list, columns, row counts). The gap is in
+  this pipeline not consuming a field PokeAPI's clone already has, not a
+  missing source — don't re-check veekun for this or anything else again.
 - ~~Items~~ — **shipped 0.2.7**, see #8.
 - **Egg cycles / hatch steps** — `stats.js` `hatchCounter` (0.2.5) is still
   unwired; a natural companion to the new Egg Groups row if wanted.
@@ -453,3 +461,25 @@ audits `gender` for all 5 in-range rows (758 Salazzle is out of range).
 Tyrogue's `statCompare` and Wurmple's `note` — no CSV column backs either,
 so teaching the tool isn't possible the way `gender` was. `HISTORY.md`
 0.2.1/0.2.2 for the diffs.
+
+---
+
+## 13. PLA/Hisui learnset split — two follow-ups flagged by `coder` (0.2.18)
+
+Shipped: `PLAN.md`'s PLA/Hisui learnset entry, `SCOPE.md` §2/§4. Two real
+decisions surfaced during the pass, deliberately not decided unrequested:
+
+- **Hisuian-form vs. base-form PLA data, when a species has both** (7
+  species — Sneasel/#215 is the clearest case): today the base form's PLA
+  learnset wins in `movesets_hisui.js`, since the non-default-form fallback
+  only triggers when the base has no PLA rows at all. Given the Hisui
+  screen already auto-activates the Hisuian forme for these species
+  (`SCOPE.md` §4), the Hisuian form's own PLA learnset might be the more
+  intuitive one to show there instead — needs a user call, not a bug.
+- **Tutor tab on mainline screens**: `data/movesets.js`'s `tutor` moveset
+  category has existed since 0.2.5 but was never wired to a UI tab
+  (`MOVE_TABS` is Level-Up/TM/Egg/Max only) — the 0.2.18 pass gave the
+  Hisui-only view its own `MOVE_TABS_HISUI` rather than surface a new tab
+  on the 58 mainline Unova screens that already carry tutor data. Adding
+  `tutor` to the shared `MOVE_TABS` would be a one-line change if wanted
+  generally.
