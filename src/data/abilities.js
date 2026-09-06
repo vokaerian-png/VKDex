@@ -335,4 +335,6 @@ var ABILITIES = {
   "Curious Medicine": { description: "Resets the stat changes of every ally when the Pokémon enters battle.", names: { ja: "きみょうなくすり", fr: "Breuvage Suspect", de: "Kuriose Arznei", ko: "기묘한약" } },
   "Gorilla Tactics": { description: "Boosts the Pokémon's Attack, but locks it into the first move it uses.", names: { ja: "ごりむちゅう", fr: "Entêtement", de: "Affenfokus", ko: "무아지경" } },
   "Mimicry": { description: "Changes the Pokémon's type to match the terrain currently in effect.", names: { ja: "ぎたい", fr: "Mimétisme", de: "Mimese", ko: "의태" } },
+  "Tera Shell": { description: "Its shell holds the power of every type, so any damaging move that lands while its HP is full is not very effective.", names: { ja: "テラスシェル", fr: "Téra-Carapace", de: "Tera-Panzer", ko: "테라셸" } },
+  "Teraform Zero": { description: "Shifting into its Stellar Form wipes out every weather and terrain effect in play.", names: { ja: "ゼロフォーミング", fr: "Téraformation 0", de: "Teraforming Null", ko: "제로포밍" } },
 };

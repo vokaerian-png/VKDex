@@ -6,7 +6,13 @@
 //              and (absent an isMega/isGmax flag) as its ability-tag label
 //   name     - display name under the sprite bubble
 //   sprite   - filename (no extension) under data/sprites/pokemon/alt formes/
-//              and data/sprites/pokemon/shiny/alt formes/
+//              and data/sprites/pokemon/shiny/alt formes/. EXCEPTION: in a
+//              recolorOnly group (below) it is a path relative to
+//              data/sprites/pokemon/ instead, because rule 6's bubble and
+//              popup resolve it through spriteUrl() rather than
+//              altFormSpriteUrl() and never render a shiny variant — so a
+//              flat "201-a"/"493" works, and a form with its own PokeAPI
+//              pokemon id spells the subfolder out ("alt formes/...").
 //   types    - OPTIONAL: present only if this forme's type differs from the
 //              base entry's `types` in pokemon.js. Absence means "same as
 //              base" (e.g. Deoxys's formes never set this).
@@ -562,6 +568,81 @@ var ALT_FORMS = {
         types: ["Ground", "Steel"],
         stats: { hp: 109, attack: 81, defense: 99, spAttack: 66, spDefense: 84, speed: 32 },
         abilities: ["Mimicry"] }
+    ]
+  },
+  // --- Paldea species with their own alt formes (0.3.2) ---
+  // Not regional variants of an older species — these are formes the Gen 9
+  // species themselves ship with. All values CSV-authoritative (PokeAPI
+  // pokemon_types.csv / pokemon_abilities.csv / pokemon_stats.csv keyed to
+  // each FORM's own pokemon id); the default forme per pokemon.csv's
+  // is_default flag is the one already in POKEMON_DATA/STATS, so only the
+  // non-default ones get a forme entry here — except the two recolorOnly
+  // groups, which list the default too because rule 6's popup gallery is a
+  // gallery of the whole set (same as Burmy/Cherrim/Arceus).
+  // NOTE on recolorOnly sprites: `sprite` there is a path relative to
+  // sprites/pokemon/ (not sprites/pokemon/alt formes/) — see the header
+  // comment and verify_region_data.js's own recolorOnly branch. The Gen 9
+  // recolor formes have their own PokeAPI pokemon ids, so their art sits
+  // under "alt formes/" rather than as a flat {species}-{form}.png the way
+  // Unown's/Burmy's does; the path prefix is spelled out per forme.
+  925: { // Maushold — rule 6, 2 pure-recolor formes (Family of Four is the default)
+    recolorOnly: true,
+    formes: [
+      { key: "family-of-four", name: "Family of Four", sprite: "925" },
+      { key: "family-of-three", name: "Family of Three", sprite: "alt formes/maushold_family_of_three" }
+    ]
+  },
+  931: { // Squawkabilly — 4 plumages, identical types and stats; the split is
+    // purely the HIDDEN ability: Green (default) and Blue get Guts, Yellow
+    // and White get Sheer Force. Blue therefore differs from base in nothing
+    // but its sprite and stays an inert bubble (no types/abilities set).
+    formes: [
+      { key: "blue-plumage", name: "Blue Plumage", sprite: "squawkabilly_blue_plumage" },
+      { key: "yellow-plumage", name: "Yellow Plumage", sprite: "squawkabilly_yellow_plumage",
+        abilities: ["Intimidate", "Hustle", "Sheer Force"], hiddenAbility: "Sheer Force" },
+      { key: "white-plumage", name: "White Plumage", sprite: "squawkabilly_white_plumage",
+        abilities: ["Intimidate", "Hustle", "Sheer Force"], hiddenAbility: "Sheer Force" }
+    ]
+  },
+  982: { // Dudunsparce — rule 6, 2 pure-recolor formes (Two-Segment is the default)
+    recolorOnly: true,
+    formes: [
+      { key: "two-segment", name: "Two-Segment Form", sprite: "982" },
+      { key: "three-segment", name: "Three-Segment Form", sprite: "alt formes/dudunsparce_three_segment" }
+    ]
+  },
+  999: { // Gimmighoul — NOT a recolor: Roaming Form keeps Chest Form's Ghost
+    // typing but has its own base stats AND its own ability (Run Away vs the
+    // base's Rattled), so it's a rule 7 forme with swap-on-tap.
+    formes: [
+      { key: "roaming", name: "Roaming Form", sprite: "gimmighoul_roaming",
+        stats: { hp: 45, attack: 30, defense: 25, spAttack: 75, spDefense: 45, speed: 80 },
+        abilities: ["Run Away"] }
+    ]
+  },
+  1017: { // Ogerpon — rule 7: the 3 extra masks each add a second type AND
+    // carry their own single ability (base Teal Mask is pure Grass/Defiant).
+    // Base stats are byte-identical across all four masks, so none sets one.
+    formes: [
+      { key: "wellspring-mask", name: "Wellspring Mask", sprite: "ogerpon_wellspring_mask",
+        types: ["Grass", "Water"], abilities: ["Water Absorb"] },
+      { key: "hearthflame-mask", name: "Hearthflame Mask", sprite: "ogerpon_hearthflame_mask",
+        types: ["Grass", "Fire"], abilities: ["Mold Breaker"] },
+      { key: "cornerstone-mask", name: "Cornerstone Mask", sprite: "ogerpon_cornerstone_mask",
+        types: ["Grass", "Rock"], abilities: ["Sturdy"] }
+    ]
+  },
+  1024: { // Terapagos — rule 7: both extra forms keep the base's pure Normal
+    // typing but have their own stats and ability. Both are is_battle_only in
+    // the CSV; modelled anyway by explicit user decision 2026-09-06, unlike
+    // the excluded Zen Mode / Palafin / Koraidon / Miraidon transformations.
+    formes: [
+      { key: "terastal", name: "Terastal Form", sprite: "terapagos_terastal",
+        stats: { hp: 95, attack: 95, defense: 110, spAttack: 105, spDefense: 110, speed: 85 },
+        abilities: ["Tera Shell"] },
+      { key: "stellar", name: "Stellar Form", sprite: "terapagos_stellar",
+        stats: { hp: 160, attack: 105, defense: 110, spAttack: 130, spDefense: 110, speed: 85 },
+        abilities: ["Teraform Zero"] }
     ]
   },
   // --- Mega Evolutions (0.1.34, TODO.md #5) ---
@@ -1209,13 +1290,16 @@ var ALT_FORMS = {
         ability: "Adaptability" }
     ]
   },
-  978: { // Tatsugiri — Mega Evolutions (X/Y)
+  978: { // Tatsugiri — 2 cosmetic base formes (Droopy/Stretchy; Curly is the
+    // default) + Mega Evolution. The cosmetic pair can't use recolorOnly
+    // (that flag collapses the WHOLE entry, Mega included), so they render
+    // as ordinary inert bubbles — identical types/abilities/stats to base
+    // per pokemon_types/abilities/stats.csv, so they set no such fields.
+    // Inserted ahead of the Mega, matching the Raichu/Slowbro precedent.
     formes: [
-      { key: "mega-curly", name: "Mega Curly Tatsugiri", sprite: "mega/tatsugiri_curly", isMega: true,
-        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } },
-      { key: "mega-droopy", name: "Mega Droopy Tatsugiri", sprite: "mega/tatsugiri_droopy", isMega: true,
-        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } },
-      { key: "mega-stretchy", name: "Mega Stretchy Tatsugiri", sprite: "mega/tatsugiri_stretchy", isMega: true,
+      { key: "droopy", name: "Droopy Form", sprite: "tatsugiri_droopy" },
+      { key: "stretchy", name: "Stretchy Form", sprite: "tatsugiri_stretchy" },
+      { key: "mega", name: "Mega Tatsugiri", sprite: "mega/tatsugiri_curly", isMega: true,
         stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } }
     ]
   },

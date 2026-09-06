@@ -52,7 +52,7 @@ VKDex/
                          weight/abilities/hiddenAbility/description/eggGroups/
                          heldItems — 1025 entries, ids 1-1025 — full National
                          Dex populated as of 0.3.0, Alola/Galar/Paldea 2026-09-06)
-      abilities.js     (ABILITIES, keyed by name — 294 entries)
+      abilities.js     (ABILITIES, keyed by name — 305 entries)
       moves.js         (MOVES, keyed by name — 783 entries)
       items.js         (ITEMS_DATA, keyed by slug — 144 referenced items, 0.3.0)
       movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/tutor/max)
@@ -257,7 +257,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.22.** Mirror on every bump, across all of:
+**Current version: 0.3.2.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml`. (`electron-app/package.json` was the same kind
