@@ -464,22 +464,31 @@ so teaching the tool isn't possible the way `gender` was. `HISTORY.md`
 
 ---
 
-## 13. PLA/Hisui learnset split — two follow-ups flagged by `coder` (0.2.18)
+## 13. PLA/Hisui learnset split — both follow-ups RESOLVED 0.2.19
 
-Shipped: `PLAN.md`'s PLA/Hisui learnset entry, `SCOPE.md` §2/§4. Two real
-decisions surfaced during the pass, deliberately not decided unrequested:
+Shipped: `PLAN.md`'s PLA/Hisui learnset entry, `SCOPE.md` §2/§4. Two
+decisions flagged during the 0.2.18 pass, both answered by the user
+2026-09-06 and shipped the same session:
 
-- **Hisuian-form vs. base-form PLA data, when a species has both** (7
-  species — Sneasel/#215 is the clearest case): today the base form's PLA
-  learnset wins in `movesets_hisui.js`, since the non-default-form fallback
-  only triggers when the base has no PLA rows at all. Given the Hisui
-  screen already auto-activates the Hisuian forme for these species
-  (`SCOPE.md` §4), the Hisuian form's own PLA learnset might be the more
-  intuitive one to show there instead — needs a user call, not a bug.
-- **Tutor tab on mainline screens**: `data/movesets.js`'s `tutor` moveset
-  category has existed since 0.2.5 but was never wired to a UI tab
-  (`MOVE_TABS` is Level-Up/TM/Egg/Max only) — the 0.2.18 pass gave the
-  Hisui-only view its own `MOVE_TABS_HISUI` rather than surface a new tab
-  on the 58 mainline Unova screens that already carry tutor data. Adding
-  `tutor` to the shared `MOVE_TABS` would be a one-line change if wanted
-  generally.
+- **Hisuian-form vs. base-form PLA data, when a species has both** — user
+  chose the Hisuian form. Checking off the CSVs found this only ever
+  mattered for **one** species, not the "7" first assumed: Sneasel (#215)
+  is the sole case where both base and its Hisuian form carry PLA rows;
+  every other `-hisui` form's base has zero PLA rows, so the existing
+  fallback already picked the Hisuian form for those. Giratina-Origin/
+  Basculin-white-striped are unaffected (neither has an `ALT_FORMS` entry,
+  so nothing auto-activates for them on the Hisui screen — the user's
+  stated reasoning doesn't extend to them).
+- **Tutor tab on mainline screens** — user said yes, add it. `{ key:
+  "tutor", label: "Tutor" }` appended to `MOVE_TABS` (existing four tabs
+  unmoved); no render-function change needed, the tab-filter logic was
+  already generic. 58 mainline Unova species now show it. **User's
+  caveat, for future reference**: mainline games also have a "Move Tutor"
+  NPC mechanic (specific tutors teaching specific moves, sometimes gated
+  by which NPC/location/game version) — this tab just renders the existing
+  flat `tutor: string[]` field (mirrors `tm`/`egg`), not per-NPC
+  availability. A future feature tracking *which* tutor teaches a move
+  where would be additive to this shape, not blocked by it — confirmed no
+  naming/shape collision when this shipped.
+
+Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.

@@ -1379,17 +1379,17 @@
     return '<div class="detail-facts">' + rows + "</div>";
   }
 
-  // --- Learnable moves card (up to 4 tabs behind .move-tab / .move-list) ---
+  // --- Learnable moves card (up to 5 tabs behind .move-tab / .move-list) ---
   var MOVE_TABS = [
     { key: "levelUp", label: "Level-Up" },
     { key: "tm", label: "TM" },
     { key: "egg", label: "Egg" },
-    { key: "max", label: "Max" }
+    { key: "max", label: "Max" },
+    { key: "tutor", label: "Tutor" }
   ];
   // Legends: Arceus learnsets (0.2.18) are level-up + tutor only — no TMs,
-  // no breeding, no Dynamax. Its own tab list, so a mainline detail screen
-  // keeps exactly the four tabs above (58 Unova entries carry tutor data
-  // that has never been surfaced there).
+  // no breeding, no Dynamax. Its own tab list, kept separate from the
+  // mainline one above so the two can diverge freely.
   var MOVE_TABS_HISUI = [
     { key: "levelUp", label: "Level-Up" },
     { key: "tutor", label: "Tutor" }

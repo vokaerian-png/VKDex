@@ -10,7 +10,47 @@ exempt. The authoritative policy is `CLAUDE.md` §3 — this file is just the
 log, newest entry first. Current-state descriptions live in `CLAUDE.md`;
 entries here record what changed and why.
 
-**Current version: 0.2.18.**
+**Current version: 0.2.19.**
+
+---
+
+## 0.2.18 → 0.2.19 — Hisuian-form PLA priority + mainline Tutor tab (`coder`) — `TODO.md` #13 resolved
+
+User answered both follow-ups flagged by 0.2.18's PLA/Hisui learnset split.
+
+- **`tools/populate_region.js`**: a `-hisui`-suffixed alt form's own PLA
+  rows now win outright whenever it has any, even when the base species
+  also has PLA rows (previously base always won unless it had zero PLA
+  rows). Regenerated `src/data/movesets_hisui.js` and diffed against the
+  pre-change file: **only Sneasel (#215) changed** — checking off the CSVs
+  found the "7 species" assumed in 0.2.18 was actually 1; every other
+  `-hisui` form's base species has zero PLA rows, so the pre-existing
+  fallback already resolved those correctly. Sneasel's entry now reflects
+  Hisuian Sneasel's own learnset (Rock Smash/Close Combat/Drain Punch/Bulk
+  Up in, base's Ice Shard/Blizzard/Ice Beam out). Giratina-Origin (#487)
+  and Basculin-white-striped (#550) untouched by design — neither has an
+  `ALT_FORMS` entry, so nothing auto-activates for them on the Hisui
+  screen, and the user's stated reasoning (matching the Hisui screen's
+  default) doesn't extend to them.
+- **`src/app.js`**: `{ key: "tutor", label: "Tutor" }` appended to
+  `MOVE_TABS` (existing Level-Up/TM/Egg/Max order unchanged) — the
+  render path (`movesCardHtml`/`moveListHtml`) was already generic enough
+  that this needed no other code change. 58 mainline Unova species with
+  non-empty `movesets.js` `tutor` data now show the tab. `tutor` stays a
+  flat `string[]` (which moves are tutor-learnable, mirroring `tm`/`egg`)
+  — doesn't track which in-game NPC/location teaches them; user flagged a
+  future feature might want that, confirmed no shape/naming collision.
+- `SCOPE.md` §2/§4 corrected (the "7 cases" claim, `MOVE_TABS_HISUI`'s
+  stale "kept separate so this doesn't put a new Tutor tab on mainline"
+  reasoning).
+- Verified: `node --check` on all 4 touched files; `verify_region_data.js`
+  `--audit` PASS (0 discrepancies, 665 ids/668 moves/190 abilities/130
+  items match the CSVs); `movesets_hisui.js` diff confirmed 4 changed
+  lines total, all inside the `215:` block, still 241 entries; a render
+  harness (`temp/tutor-tab-hisuian-priority/render_check.js`, adapted from
+  0.2.18's) against real `app.js` function bodies, 18/18 PASS.
+
+Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.
 
 ---
 

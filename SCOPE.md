@@ -39,7 +39,7 @@ native packaging shell for a portable Windows `.exe` — Electron today,
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3). **Current version: 0.2.18** (`CLAUDE.md` §3 for
+and a Settings popup (§3). **Current version: 0.2.19** (`CLAUDE.md` §3 for
 the bump policy, `HISTORY.md` for the changelog).
 
 ---
@@ -178,10 +178,18 @@ a species has no non-PLA moveset data at all (the 7 `hisuiOnly` species —
 unaffected either way, since their `movesets.js` entries were never
 PLA-sourced). 17 of the 241 entries fall back to a non-default form's PLA
 rows (the 16 Hisuian regional forms, Giratina-Origin, Basculin-white-striped)
-since their base species has none; where both a base and its Hisuian form
-have PLA rows (7 cases), the base's wins — `TODO.md` #13 if that should
-instead prefer the Hisuian form. Porygon2 (#233) has no PLA rows in the
-source clone at all — 241/242 Hisui-roster species, not a bug.
+since their base species has none. **A `-hisui`-suffixed form's own PLA
+rows now win outright whenever it has any (0.2.19)** — checked directly
+off the CSVs, this only ever mattered for **one** species, not the 7
+originally assumed: Sneasel (#215) is the sole case where both base and its
+Hisuian form carry PLA rows (every other `-hisui` form's base has zero PLA
+rows, so the pre-existing fallback already picked the Hisuian form for
+those). Giratina-Origin/Basculin-white-striped are unaffected by this
+change — neither has an `ALT_FORMS` entry, so nothing auto-activates for
+them on the Hisui screen, and the user's reasoning for the flip (matching
+what the Hisui screen already shows by default) doesn't apply. Porygon2
+(#233) has no PLA rows in the source clone at all — 241/242 Hisui-roster
+species, not a bug.
 
 `data/types.js`: `TYPE_CHART`, the full Gen 9 type-effectiveness chart
 (static, sparse — only non-1× pairs), keyed attacker→defender→multiplier.
@@ -513,19 +521,21 @@ sprite subfolder never needs a `copy-app.js` change.
     real Gen 3+ formula** (full HP, no status, regular Poké Ball):
     `captureOddsPercent()` reduces to `catchRate/3` then the standard
     4-shake-check probability (45→5.9%, 255→33.3% — not a guaranteed catch).
-  - **Moves**: up to four tabs (Level-Up/TM/Egg/Max) over
-    `data/movesets.js` — an empty list gets no tab (Max always; no tabs →
-    no card). Rows: level (level-up only) | type pill from `MOVES` | name.
-    One delegated click listener on `#detailBody`. **Hisui override
-    (0.2.18)**: opened from the Hisui screen specifically (the same
-    `fromHisuiScreen` signal the auto-forme default already computes,
+  - **Moves**: up to five tabs (Level-Up/TM/Egg/Max/**Tutor**, the last
+    added 0.2.19 — `MOVE_TABS`, appended after Max, existing four order
+    unchanged) over `data/movesets.js` — an empty list gets no tab (Max
+    always; no tabs → no card). Rows: level (level-up only) | type pill
+    from `MOVES` | name. One delegated click listener on `#detailBody`.
+    Tutor is a flat move-name list like TM/Egg (which NPC/location teaches
+    it isn't tracked — a possible future feature, not this one). **Hisui
+    override (0.2.18)**: opened from the Hisui screen specifically (the
+    same `fromHisuiScreen` signal the auto-forme default already computes,
     `autoForme` in `openDetail()`) — if `data/movesets_hisui.js`'s
     `MOVESETS_HISUI` has an entry for that id, the card renders from it
     instead, over its own two-tab list (`MOVE_TABS_HISUI`: Level-Up/Tutor
-    only, kept separate from mainline's `MOVE_TABS` so this doesn't put a
-    new Tutor tab on the 58 mainline Unova screens that already carry
-    unrendered tutor data since 0.2.5 — `TODO.md` #13 tracks surfacing that
-    generally). Falls back to `movesets.js` if the id has no Hisui entry.
+    only — PLA has no TM/Egg/Max mechanic at all, so this list stays
+    shorter than mainline's regardless). Falls back to `movesets.js` if the
+    id has no Hisui entry.
   - **Stats**: Base / Lv.1 / Lv.100 columns (`calcStat()`: 31 IV, 0 EV,
     neutral nature, HP formula differs from the other five) plus a BST
     "Total:" row (`.stat-total-row`, 13px vs. the table's 11.5px base —

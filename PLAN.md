@@ -242,7 +242,7 @@ rows: `TODO.md` #6.
 
 ---
 
-## PLA (Legends: Arceus) learnsets split from mainline — shipped 0.2.18
+## PLA (Legends: Arceus) learnsets split from mainline — shipped 0.2.18, both follow-ups resolved 0.2.19
 
 Legends: Arceus's move-learning mechanics are structurally different from
 every mainline game (level-up with a `mastery` rank, tutor "Move Shop"
@@ -266,14 +266,14 @@ shown only in its own context.
   the existing Hisuian-auto-forme nav signal, `SCOPE.md` §4) — its own
   two-tab list (Level-Up/Tutor), so mainline screens render identically to
   before.
-- **Not decided, flagged by `coder`**: 17 entries needed a non-default-form
-  fallback (the 16 Hisuian regional forms, Giratina-Origin,
-  Basculin-white-striped); where both a species' base form and its Hisuian
-  form have PLA rows, the base currently wins — `TODO.md` #13 tracks
-  whether the Hisuian form should win instead when opened from the Hisui
-  screen. Also not done: surfacing Tutor as a real tab on mainline screens
-  generally (tutor data has existed, unrendered, since 0.2.5) — a one-line
-  `MOVE_TABS` change if wanted, deliberately not done unrequested.
+- **Both open follow-ups resolved 0.2.19** (`TODO.md` #13): a `-hisui`-
+  suffixed form's own PLA rows now win outright whenever it has any (only
+  Sneasel/#215 was actually affected — every other `-hisui` form's base
+  species had zero PLA rows already); Giratina-Origin/Basculin-white-
+  striped untouched, neither auto-activates on the Hisui screen. Tutor
+  shipped as a real `MOVE_TABS` tab on mainline screens too (58 Unova
+  species show it) — same generic render path, no special-casing needed.
+  `HISTORY.md` 0.2.19 for the diff.
 
 Full detail: `HISTORY.md` 0.2.18.
 

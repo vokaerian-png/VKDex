@@ -251,8 +251,8 @@ var MOVESETS_HISUI = {
     levelUp: [{level:1,move:"Tackle",mastery:9},{level:5,move:"Rock Smash",mastery:14},{level:9,move:"Pin Missile",mastery:18},{level:15,move:"Aerial Ace",mastery:25},{level:21,move:"Slash",mastery:31},{level:29,move:"Swords Dance",mastery:40},{level:37,move:"Double-Edge",mastery:48},{level:47,move:"Close Combat",mastery:59},{level:57,move:"Megahorn",mastery:71}]
   },
   215: {
-    levelUp: [{level:1,move:"Quick Attack",mastery:10},{level:6,move:"Ice Shard",mastery:15},{level:11,move:"Swift",mastery:20},{level:18,move:"Slash",mastery:28},{level:25,move:"Poison Jab",mastery:35},{level:34,move:"Swords Dance",mastery:45},{level:43,move:"Blizzard",mastery:54}],
-    tutor: ["False Swipe","Rock Smash","Aerial Ace","Swift","Calm Mind","Rest","Ice Punch","Poison Jab","Psycho Cut","X-Scissor","Shadow Claw","Iron Tail","Icy Wind","Shadow Ball","Snarl","Ice Beam","Dark Pulse"]
+    levelUp: [{level:1,move:"Quick Attack",mastery:10},{level:6,move:"Rock Smash",mastery:15},{level:11,move:"Swift",mastery:20},{level:18,move:"Slash",mastery:28},{level:25,move:"Poison Jab",mastery:35},{level:34,move:"Swords Dance",mastery:45},{level:43,move:"Close Combat",mastery:54}],
+    tutor: ["False Swipe","Rock Smash","Aerial Ace","Swift","Calm Mind","Rest","Poison Jab","X-Scissor","Shadow Claw","Iron Tail","Shadow Ball","Snarl","Focus Energy","Bulk Up","Drain Punch"]
   },
   216: {
     levelUp: [{level:1,move:"Tackle",mastery:10},{level:6,move:"Baby-Doll Eyes",mastery:15},{level:11,move:"Bulldoze",mastery:20},{level:18,move:"Slash",mastery:28},{level:25,move:"Play Rough",mastery:35},{level:34,move:"High Horsepower",mastery:45},{level:43,move:"Double-Edge",mastery:54}]

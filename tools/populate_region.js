@@ -779,15 +779,20 @@ function extract(t, csvs, current) {
     // white-striped form), whose learnset hangs off that form's own
     // pokemon_id rather than the species row — fall back to it when the
     // default form has no PLA rows of its own.
+    // A true Hisuian regional form ("-hisui") always wins outright (0.2.19,
+    // user call), even when the base species has PLA rows of its own — the
+    // Hisui screen auto-activates that forme by default (SCOPE.md §4), so
+    // its own learnset is the one to show there. Only Sneasel (#215) has
+    // both; the other 15 land on the same rows via the fallback below.
+    const altPlaForms = (pokemonBySpecies.get(sid) || [])
+      .filter(f => f.id !== sid && (movesByPokemon.get(f.id) || []).some(r => r.version_group_id === PLA_VG))
+      .sort((a, b) => Number(a.id) - Number(b.id));
+    const hisuiForm = altPlaForms.find(f => /-hisui$/.test(f.identifier));
     let plaRows = allMvRows;
-    if (!plaRows.some(r => r.version_group_id === PLA_VG)) {
-      const forms = (pokemonBySpecies.get(sid) || [])
-        .filter(f => f.id !== sid && (movesByPokemon.get(f.id) || []).some(r => r.version_group_id === PLA_VG))
-        .sort((a, b) => Number(a.id) - Number(b.id));
-      if (forms.length) {
-        plaRows = movesByPokemon.get(forms[0].id);
-        if (forms.length > 1) results.flagged.push(`id ${id} (${pk.identifier}): ${forms.length} PLA forms (${forms.map(f => f.identifier).join(", ")}), used "${forms[0].identifier}" for movesets_hisui`);
-      }
+    if (hisuiForm) plaRows = movesByPokemon.get(hisuiForm.id);
+    else if (!plaRows.some(r => r.version_group_id === PLA_VG) && altPlaForms.length) {
+      plaRows = movesByPokemon.get(altPlaForms[0].id);
+      if (altPlaForms.length > 1) results.flagged.push(`id ${id} (${pk.identifier}): ${altPlaForms.length} PLA forms (${altPlaForms.map(f => f.identifier).join(", ")}), used "${altPlaForms[0].identifier}" for movesets_hisui`);
     }
     const plaSet = buildSet(plaRows, PLA_VG);
     if (plaSet.levelUp.length || plaSet.tutor.length) {
