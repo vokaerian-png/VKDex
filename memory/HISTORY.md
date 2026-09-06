@@ -20,7 +20,85 @@ Entries prior to 0.2.10 live there now (0.1.0 through 0.2.9, 43 headings —
 0.2.5-0.2.9 were already folded under one 0.2.4→0.2.10 heading before
 archival and stayed folded as one compacted entry there).
 
-**Current version: 0.3.8.**
+**Current version: 0.3.10.**
+
+---
+
+## 0.3.8 → 0.3.9 — Phase 4 follow-ups: forme-aware Evolution Line, duplicate-area merge, DLC chip badge, rich encounter rendering (`coder` ×2)
+
+Closes all three `TODO.md` #14 Phase-4 follow-ups plus a user-reported
+Evolution Line bug (screenshot: Alolan Ninetales selected, card still
+showed base Vulpix/"Stone"/base Ninetales). One dispatch shipped all four;
+a same-day follow-up widened item 3's match rule after its own report
+flagged the gap.
+
+- **Evolution Line forme-blindness fixed** — `formeEvoEdges()` now tags
+  each edge with the forme key it came from (`fromFormeKey`); `evoEdgesFor()`
+  lets an ancestor's forme-specific edge (e.g. Alolan Vulpix's Ice Stone
+  route) *replace* the base edge to the same target instead of being
+  deduped away, keyed off the viewed species' active forme; a new
+  `evoStageForme()` resolves which forme (if any) a stage bubble should
+  render as, wired into `evoStageHtml()` (gained a `nameOverride` param)
+  at all 3 render sites (straight chain, fan-out root, fan-out leaves).
+  Base-view behavior unchanged (regression sweep: 0 differences across
+  every chain with no forme active). **Also closes the documented
+  Sirfetch'd limitation** (`TODO.md` #4/`SCOPE.md` §4) as a side effect —
+  its page now shows Galarian Farfetch'd, not base Farfetch'd, as its prior
+  stage — with no Sirfetch'd-specific code, purely from the same
+  `fromFormeKey` tag. **Still not built** (unchanged, deliberate): tapping
+  a forme-tagged ancestor bubble still opens the *base* species' page, not
+  its forme — target-forme auto-navigation remains explicitly out of scope.
+- **Duplicate Sinnoh area names merged** — `mergeAreasByName()` collapses
+  same-named area entries (PokeAPI-derived + PokeDB-derived, e.g. "Lake
+  Verity") into one, concatenating their `enc` arrays at the first
+  occurrence's position. Confirmed: exactly the documented 59 duplicate
+  rows across 40 species collapse, 0 enc lines lost.
+- **DLC-only Found In chips badged** — `isDlcOnlyRegion()` flags a region
+  chip "DLC" when every encounter line for it is DLC-gated, derived from
+  the existing per-line `games` field (no data/pipeline changes). First
+  pass used exact-match against 2 labels and missed 19 species using the
+  4 version-exclusive compound labels ("Violet: The Indigo Disk", etc.) —
+  same-day follow-up widened the check to a regex
+  (`/(?:^|: )The (?:Teal Mask|Indigo Disk)$/`), confirmed against a full
+  census of every `games` label in `locations.js` (9 real labels, all
+  correctly classified). 206 species now badge; mixed base+DLC species
+  (e.g. Pikachu) correctly stay unbadged.
+- **`NEW_ENC_SHAPE` fields now rendered** in the Found In popup instead of
+  degrading gracefully: forme (resolved via `ALT_FORMS` or title-cased
+  fallback), tera raid star level, LA alpha level range, terrain, weather,
+  time-of-day gate, per-time-of-day rate breakdown (2+ keys only), hidden-
+  ability flag, boulder-required flag, spawn group (raw slug, no lookup),
+  Way Home level range, trade-for target, and free-text note — each an
+  optional ` &middot; ` segment before the existing games sub-line. A
+  classic-shape line still renders byte-identical to before. Swept all
+  14,268 shipped `enc` lines with no throws/unescaped markup; 5 real
+  combinations hand-traced against actual data.
+- Verified (both dispatches): `node --check` clean throughout; a
+  brace-matched harness (`temp/phase4-followups/check.js`, evals the real
+  function sources out of `app.js` against shipped data, not a
+  re-implementation) — every check above is that harness's own output, not
+  a re-derivation. No `src/data/*.js` file touched, so
+  `verify_region_data.js --audit` wasn't re-run (nothing it checks could
+  have changed).
+- **Flagged, not fixed**: `group`/`tradeFor` render the raw PokeDB slug
+  verbatim (e.g. "with bulbasaur", lowercase beside title-cased neighbors)
+  — a real species-name lookup was deliberately skipped (hyphenated slugs
+  don't reliably match `pokemon.js` identifiers); `weight` (raw SV spawn
+  weight) deliberately not rendered, not independently meaningful outside
+  its own area. **No visual verification possible** (`CLAUDE.md` §4) —
+  Ninetales's Alolan bubble, Sirfetch'd's card, and a DLC chip on Ursaluna
+  would all benefit from a real screenshot confirming the traced/hand-
+  verified output actually renders as expected.
+
+**User-confirmed on real hardware, same day**: screenshots of Alolan
+Ninetales (Alolan Vulpix → Stone → Alolan Ninetales, all three forme-aware)
+and Galarian Farfetch'd's own page (its Evolution Line correctly shows the
+Galarian sprite feeding Sirfetch'd) — "alt forme evolutions now show
+properly." Items 3/4 (DLC badge, rich encounter rendering) not yet
+screenshot-confirmed but use the same verification standard.
+
+Handoffs: `temp/handoff/2026-09-06-160603-phase4-followups.md`,
+`-171240-dlc-badge-regex-fix.md`.
 
 ---
 
@@ -688,132 +766,61 @@ Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.
 
 ---
 
-## 0.2.17 → 0.2.18 — Legends: Arceus learnsets split from mainline movesets (`coder`)
+## 0.3.9 → 0.3.10 — Cross-region wild encounters: 7 mainline regions gain foreign-species Found In data (`coder` ×2)
 
-User-directed, from a real screenshot catching Bidoof (#399) missing TM/Egg
-tabs entirely. Root cause: `tools/populate_region.js`'s moveset extractor
-picked one "best" version group (highest `order`) per species for
-level-up/TM/egg/tutor alike; PLA (`legends-arceus`, `order=26`, the highest
-in the clone) structurally has zero TM/egg rows, so whenever it won that
-species' real TM/egg lists were silently wiped — **55 of 665 populated
-species** affected (Bidoof's real mainline data replaced by nothing).
+User noticed the Found In module only ever showed a species in its own
+native region and asked to scope out whether other regions' encounter data
+existed. Architect audit of `csv/encounters.csv` (joined against
+`pokemon.csv`/`species.csv`'s `origin_region`) confirmed: every mainline
+region's classic pipeline only ever extracted a species' *own*-region
+appearances, even though the source table is full of species reappearing
+in *other* regions' games (e.g. Pidgey — Kanto-native — has real encounter
+rows in X/Y's Kalos routes). Quantified per region (foreign species /
+foreign rows found): kanto 41/673, johto 231/17,453, hoenn 135/2,409,
+sinnoh 242/10,165, unova 219/3,971, kalos 314/2,548, alola 360/3,338.
+**Galar excluded by user decision** — its foreign rows are ~90% Max Raid
+Den/Dynamax Adventure (a rotating catch pool, not a fixed location),
+scoped as a separate future decision. Paldea/Hisui excluded by definition
+(zero PokeAPI `encounters.csv` rows exist for either).
 
-User's call after seeing the scope: don't just re-rank the selector — PLA's
-learnset data has genuinely different mechanics from every mainline game
-and should never be merged into mainline data again, full stop.
-
-- **`movesets.js`'s version-group selection** now excludes PLA unless a
-  species has zero non-PLA moveset rows at all (only the 7 `hisuiOnly`
-  species qualify, and their own `movesets.js` entries turned out to
-  already be SV/DLC-sourced, not PLA — unaffected). Fixes the 55-species
-  wipe as a side effect: all 55 now resolve to BDSP (`order` 25, beats
-  every other non-PLA group for these species), zero lost level-up data,
-  zero stray `mastery` fields left in mainline data. Bidoof: 30 TM / 7 egg,
-  from BDSP.
-- **New `src/data/movesets_hisui.js`** (`MOVESETS_HISUI`, 241 entries):
-  PLA's own level-up (with `mastery`) + tutor lists, extracted independently
-  of the mainline pick, `{levelUp, tutor}` per id with an empty key omitted
-  (`SCOPE.md` §2). 17 entries needed a non-default-form fallback (16
-  Hisuian regional forms + Giratina-Origin + Basculin-white-striped, whose
-  base species row carries no PLA data) — where a species has PLA rows on
-  *both* base and Hisuian form (7 cases, e.g. Sneasel), the base currently
-  wins; `TODO.md` #13 flags whether the Hisuian form should instead, given
-  the Hisui screen already defaults to that forme. Porygon2 (#233) has no
-  PLA rows in the source clone at all — 241/242, not a bug.
-- **Detail screen**: the Learnable Moves card reads `MOVESETS_HISUI` instead
-  of `MOVESETS` only when opened from the Hisui screen (`SCOPE.md` §4) —
-  reuses the existing Hisuian-auto-forme nav signal (`autoForme` in
-  `openDetail()`), no second context-tracking mechanism. Its own two-tab
-  list, `MOVE_TABS_HISUI` (Level-Up/Tutor) — kept separate from mainline's
-  `MOVE_TABS` (Level-Up/TM/Egg/Max) since `tutor` data has existed since
-  0.2.5 with no UI tab at all, and adding one to the shared list would have
-  put a new Tutor tab on 58 mainline Unova screens unrequested (`TODO.md`
-  #13's second item — a one-line change if wanted generally).
-- `index.html`/`electron-app/copy-app.js` updated for the new data file.
-  `tools/verify_region_data.js` extended (one shared move-resolution
-  checker reused for both files, per spec) and `--audit` extended with a
-  `movesets_hisui` block, verified to actually fire (a deliberate 1-row
-  deletion was caught and reported).
-- **+17 moves** newly surfaced (`data/moves.js` 651→668): 15 PLA-only, plus
-  2 (Parting Shot, Power Shift) surfaced by the mainline fix itself once
-  BDSP/PLA entries became writable — all hand-authored, house-style
-  original paraphrases.
-- Verified: `node --check` on all 8 touched files; `verify_region_data.js`
-  PASS (0 failures); `--audit` PASS both before and after (0 discrepancies);
-  the regeneration is idempotent (byte-identical on a 4th run);
-  `movesets.js` diffed against a pre-edit backup — 610/665 byte-identical,
-  the other 55 exactly the predicted PLA set, zero regressions; a
-  render-harness against the real `app.js` function bodies (15/15); a
-  clone-wide grep confirmed `legends-arceus` is the only version group with
-  moveset rows but no TM/egg rows that any populated species actually
-  resolves to.
+- **`tools/populate_from_csv.js`** extended: the existing native-region
+  byArea/method/games extraction (unchanged for the native case) was
+  lifted into a reusable `buildClassicAreas(ident, region)`, then called
+  once more per species for each of the 7 approved foreign regions
+  (`FOREIGN_REGIONS` constant) that isn't that species' own region,
+  prepending results into `extra[foreignRegion]` — reusing the exact
+  `extra`-merge mechanism `assemble()` already had for SV/BDSP/LA data (no
+  changes to `assemble()` itself; it already handled "any region key on
+  any species").
+- **Real numbers from the actual run**: alola 347 species/+1,188 enc
+  lines, kalos 313/+704, sinnoh 242/+1,455, johto 231/+2,447, unova
+  219/+896, hoenn 135/+480, kanto 41/+83. Total enc lines 14,268 → 21,521
+  across 564 changed ids. Six of seven region counts matched the pre-audit
+  estimate exactly; alola's estimate counted non-default forms the real
+  (default-form-only) extraction can't reach.
+- **Found In chips sorted into canonical region order** (`foundInRegions()`)
+  — a species can now carry 3-5 chips (was usually 1-2), so insertion
+  order (native region first, then whatever order extraction happened to
+  add foreign ones) stopped reading sensibly; sorted by `REGIONS`' own
+  array index instead, matching the region bar's left-to-right order.
+  478 of 707 multi-region species' chip order changed as a result.
+- Verified: native-case regression checked **byte-identical across all
+  1025 ids** (not a sample) via a harness re-running `extractFromCsv()`
+  before/after; every pre-existing area survives verbatim as the tail of
+  its region's array (new data strictly prepended, 0 keys lost/shrank);
+  Galar/Paldea/Hisui confirmed untouched (0 new keys); `verify_region_data.js`
+  PASS. Chip-sort verified across all 1025 species (region indices
+  monotonic, same key set/length before and after).
+- **Known, accepted, pre-existing (not new to this pass)**: a species'
+  foreign-region areas use that region's own PokeAPI-derived vocabulary
+  verbatim, so e.g. a Bulbasaur `johto` entry can legitimately read
+  "Pallet Town" (HGSS's Kanto post-game, filed under the `johto` version
+  groups) — the same convention the native pipeline has always used, just
+  newly visible at this scale. Sinnoh's duplicate-area-name count (item 2,
+  0.3.9's `mergeAreasByName()`) rose from 59/40 species to 229/119 —
+  already handled at render, not a new bug, just more collisions to merge.
 
 Handoff: `temp/handoff/2026-09-06-023418-pla-moveset-split.md`.
-
----
-
-## 0.2.16 → 0.2.17 — Release script retargeted for Tauri (Android / Windows / Both) + mobile entry-point split (`overlord`)
-
-`overlord` (fable), user-invoked. Spec'd by architect after two user
-answers: scope Android's never-done first-time setup in as *instructions*
-(not executed — no SDK anywhere reachable), and debug-signed APKs only.
-
-- **`src-tauri/` mobile entry point** (the `create-tauri-app` shape): new
-  `src/lib.rs` holds `mod resize_lock` (still `cfg(windows)`) and the
-  `tauri::Builder` block as `pub fn run()` under `#[cfg_attr(mobile,
-  tauri::mobile_entry_point)]`, menu-null/resize-lock comments moved with
-  it; `src/main.rs` is a shim calling `vkdex_lib::run()`; `Cargo.toml`
-  gains `[lib] name = "vkdex_lib"`, `crate-type = ["staticlib", "cdylib",
-  "rlib"]`. Windows-only deps block untouched. **Not compiled** (no Rust
-  here) — next local `npm run dev`/`build` is the real check that desktop
-  still works.
-- **`tools/release.js` rewrite** (`CLAUDE.md` §2a for the current
-  behavior): version check now `APP_VERSION` vs `tauri.conf.json` *and*
-  `Cargo.toml` (Electron comparison gone); after the unchanged git/tag/
-  changelog checks, a 3-way target menu (`--target=android|windows|both`
-  skips it), a printed summary, and a mandatory `Proceed? [y/N]` on every
-  run, dry-run included. Windows = `npm run build` → `src-tauri/target/
-  release/vkdex.exe` (matched case-insensitively — Tauri may name it
-  `VKDex.exe`) → `releases/windows/VKDex-vX-windows-x64.zip`. Android =
-  refuses without `src-tauri/gen/android/app`, else `npm run
-  build:android` → recursive search of `gen/android/app/build/outputs/apk/`
-  (prefers a `universal` APK, lists the tree if none) → copied to
-  `releases/android/VKDex-vX-android-debug.apk`. "Both" builds
-  sequentially and publishes both files on one `gh release create`. Prompts
-  read readline's async line iterator, not `rl.question()` — the latter
-  silently drops a piped second line and exits 0 (found by test). `gh`
-  check moved before the build (fail-fast). `--check` now also asserts
-  `parseTarget`/`walkFiles`/`pickApk` on a throwaway Gradle-shaped tree.
-  Verified: `node --check`, `--check` all green, and a full scratch-repo
-  end-to-end (fake exe/APK, local bare origin, stub npm scripts): abort,
-  garbage input, bad `--target`, dry-run "both", and the three failure
-  branches all behave.
-- **Root `package.json`**: `"build:android": "tauri android build
-  --debug"`. **`.gitignore`**: `/releases/`. **New
-  `src-tauri/ANDROID_SETUP.md`**: Android Studio → SDK/NDK/JDK → env vars →
-  `rustup target add` (4 Android targets — a step the spec lacked) → `npx
-  tauri android init` → build; debug-keystore note.
-- **Flagged, not changed**: `.gitignore`'s uncommitted trailing
-  `src-tauri/` line ignores the whole Tauri folder (`git ls-files
-  src-tauri` is empty), contradicting `CLAUDE.md` §1 "src-tauri/ is
-  tracked" and making the `/src-tauri/target`/`gen` lines dead — not in
-  this spec, needs the user's call. `--debug` flag / APK subpath are
-  assumptions until the first real Android build.
-  Handoff: `temp/handoff/2026-09-05-120133-release-multi-target.md`.
-
-**Real-world confirmation, same day**: user fixed the `.gitignore` issue
-above and committed `src-tauri/` for real. First-ever `ANDROID_SETUP.md`
-run hit two live gotchas, both folded back into that doc — Gradle 8.14.3
-can't run on this machine's JDK 25 installs (Android Studio's bundled JBR
-included, not the safe default first assumed; pinned via `gradle.
-properties`'s `org.gradle.java.home`), and a harmless Kotlin-daemon
-fallback on cross-drive paths (project `E:`, `cargo` registry `C:`). Both
-the Android and Windows `--dry-run` builds, then a real `--target=both`
-non-dry-run, all succeeded — `v0.2.17` tagged, pushed, and published with
-both assets on one GitHub Release. **User decision**: the debug-signed
-universal APK (731.9 MB) is too large to keep shipping — 0.2.17 is the
-only intentional Android release until that's fixed (`TODO.md` #1,
-`PLAN.md`'s Tauri entry).
 
 ---
 

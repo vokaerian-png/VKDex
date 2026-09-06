@@ -1,7 +1,7 @@
 {
   "name": "vkdex",
   "productName": "VKDex",
-  "version": "0.3.8",
+  "version": "0.3.10",
   "description": "VKDex - a portable Pokedex app",
   "private": true,
   "scripts": {

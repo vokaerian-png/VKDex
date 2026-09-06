@@ -10,15 +10,16 @@ Sections run sequentially §1-§8; a sub-clause takes its main section's
 number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
 full convention).
 
-**Standing cap: ≤850 lines** (raised from 800, 2026-09-06, the csv/-sourced
-data pipeline + new SV/BDSP/LA encounter shape + DLC-label fix
-documentation — real new behavior, not narration; previously raised from
-750 same day for the evolution per-forme-override mechanism +
-alt-forme-tappable-fix + tap-to-enlarge/needs-source documentation, from
-700 for the Alola/Galar/Paldea regional-forme mechanism, from 650 for the
-PLA/Hisui learnset split), same 50-line raise-at-a-time rule as `CLAUDE.md`
-(full shared rule: `CLAUDE.md` §7) — tracked independently of that file's
-own cap.
+**Standing cap: ≤900 lines** (raised from 850, 2026-09-06, the Phase 4
+follow-ups — forme-aware Evolution Line ancestor rendering, duplicate-area
+merge, DLC chip badge, rich `NEW_ENC_SHAPE` rendering — real new behavior,
+not narration; previously raised from 800 same day for the csv/-sourced
+pipeline + SV/BDSP/LA encounter shape + DLC-label fix, from 750 same day
+for the evolution per-forme-override mechanism + alt-forme-tappable-fix +
+tap-to-enlarge/needs-source documentation, from 700 for the Alola/Galar/
+Paldea regional-forme mechanism, from 650 for the PLA/Hisui learnset
+split), same 50-line raise-at-a-time rule as `CLAUDE.md` (full shared rule:
+`CLAUDE.md` §7) — tracked independently of that file's own cap.
 
 **Cards and their internal data blocks don't get reordered, restructured,
 or reshuffled unless the user explicitly asks for that specific change**
@@ -168,11 +169,13 @@ already has a hand-authored description, so nothing to manifest).
   Filed under the species' own existing region key (SV→`paldea`,
   BDSP→`sinnoh`, LA→`hisui`) as a block appended *after* that region's
   classic areas, which stay unchanged — avoids a confusing second Sinnoh
-  chip. **Known cosmetic issue**: where a PokeAPI- and a PokeDB-derived
-  area share an identical display name (40 Sinnoh species, 59 names — e.g.
-  "Lake Verity" for both DPPt/Platinum and BDSP), the Found In popup shows
-  two identically-labelled rows with nothing distinguishing them until
-  expanded. Not data corruption, deferred (`TODO.md` #14).
+  chip. **Duplicate-name rows merged (0.3.9)**: where a PokeAPI- and a
+  PokeDB-derived area share an identical display name (40 Sinnoh species,
+  59 names — e.g. "Lake Verity" for both DPPt/Platinum and BDSP),
+  `mergeAreasByName()` collapses them into one popup row (concatenated
+  `enc` lines, first-occurrence position kept) before `openLocationPopup()`
+  renders — was two identically-labelled rows, fixed without rejoining the
+  two area vocabularies.
 - **New per-line shape** for these three games' `enc` entries — real
   per-game rarity models, not squeezed into the classic
   `{method, games, min, max, rate}` shape (user decision): adds (all
@@ -180,19 +183,45 @@ already has a hand-authored description, so nothing to manifest).
   number), `weight` (raw SV spawn weight), `group`, `timeRates`, `times`,
   `weather`, `terrain`, `alphaMin`/`alphaMax`, `boulder`, `hiddenAbility`,
   `teraStars`, `homeMin`/`homeMax`, `tradeFor`, `note`. Full spec:
-  `NEW_ENC_SHAPE` atop `tools/populate_from_csv.js`. **Not yet rendered
-  richly** — `openLocationPopup()` (0.3.7) just degrades gracefully (omits
-  "Lv …" when `min` is absent, prints a string `rate` verbatim) rather than
-  showing terrain/group rates/tera stars/LA alpha-time-weather (`TODO.md` #14).
+  `NEW_ENC_SHAPE` atop `tools/populate_from_csv.js`. **Rendered richly since
+  0.3.9**: `openLocationPopup()` appends each present field (forme resolved
+  via `ALT_FORMS` or title-cased fallback; tera stars as "N★ Tera Raid";
+  alpha/Way-Home levels as a level-range segment like the classic `Lv`
+  one; terrain/weather/times title-cased and joined; a `timeRates`
+  breakdown only when 2+ keys are present; hidden-ability/boulder as fixed
+  labels; `group`/`tradeFor` as the raw PokeDB slug verbatim, no species-
+  name lookup) as its own ` &middot; ` segment before the games sub-line.
+  `weight` (raw SV spawn weight, meaningless outside its own area) is
+  deliberately skipped. A classic-shape line still renders byte-identical.
+- **Cross-region wild encounters (0.3.10)**: `LOCATIONS[id]` can now carry
+  a region key that ISN'T that species' own native region — a species'
+  appearances in *other* regions' games (e.g. Kanto-native Pidgey's real
+  encounter rows in X/Y's Kalos routes). `tools/populate_from_csv.js`'s
+  `buildClassicAreas()` runs once for the species' own region (unchanged
+  output) and once more per approved foreign region, feeding results into
+  the same `extra`-merge mechanism `assemble()` already used for SV/BDSP/
+  LA (any region key, any species — no `assemble()` changes needed).
+  Approved regions: kanto/johto/hoenn/sinnoh/unova/kalos/alola. **Galar
+  excluded** (its foreign rows are ~90% Max Raid Den/Dynamax Adventure, a
+  rotating pool, not a fixed location — `TODO.md` #15); Paldea/Hisui
+  excluded by definition (no PokeAPI `encounters.csv` rows for either).
+  `foundInRegions()` sorts the returned chip list into `REGIONS`' own
+  canonical order rather than data-insertion order, since a species can
+  now carry 3-5 Found In chips instead of the usual 1-2.
 - **SV's Kitakami (The Teal Mask)/Blueberry Academy (The Indigo Disk) DLC
   areas are correctly labelled** (0.3.8) — each line's `games` names the
   real DLC instead of a blanket "Scarlet/Violet", via a real join
   (`encounters_scarlet_violet.location_area` →
   `location_areas_pokedb.location` → `locations_pokedb.region_area` →
-  `region_areas_pokedb.identifier`), not a name heuristic. **The chip
-  label itself still just says "Paldea"** even for a DLC-only species (e.g.
-  901 Ursaluna) — splitting those into their own region keys is unstarted
-  (`TODO.md` #14).
+  `region_areas_pokedb.identifier`), not a name heuristic. **The Paldea
+  chip badges "DLC" for DLC-only species since 0.3.9** — `isDlcOnlyRegion()`
+  checks, at render time, whether every `enc` line for that region matches
+  a DLC label (bare `"The Teal Mask"`/`"The Indigo Disk"` or a version-
+  exclusive compound like `"Violet: The Indigo Disk"`, regex-matched
+  against a census of every real label in `locations.js`) — no new
+  `REGIONS` entries or pipeline changes, user's chosen (lighter) option
+  over splitting Kitakami/Blueberry Academy into their own chips. A mixed
+  base+DLC species (e.g. Pikachu) correctly stays unbadged.
 - `NEEDS_SOURCE_REGIONS` (0.3.3) **no longer includes `"paldea"`** (0.3.7) —
   104/120 native-Paldea species now have real SV data; the other 16 (9
   evolution-only, 7 static/event-only) correctly fall through to the
@@ -531,11 +560,26 @@ new sprite subfolder needs no build-config change (Electron's
       `.evolution-card` on forme tap, mirroring the Facts card's swap.
       **A form-restricted evolution row with no matching `ALT_FORMS`
       forme is never invented** — left on the base entry instead (one
-      real case: 550 Basculin/Basculegion). **Not built**: target-forme
-      auto-navigation in either direction (tapping evolve from Alolan
-      Vulpix opens base Ninetales, not its Alolan forme; Sirfetch'd's own
-      page shows Farfetch'd's base sprite as its prior stage) — explicit
-      scope decision, `TODO.md` #4.
+      real case: 550 Basculin/Basculegion). **Ancestor/self bubbles are
+      forme-aware (0.3.9)**: `formeEvoEdges()` tags every edge with the
+      forme key it came from (`fromFormeKey`); `evoEdgesFor()`'s ancestor
+      branch lets a forme sharing the *viewed* species' active forme key
+      replace the base edge to the same target (e.g. Alolan Vulpix's Ice
+      Stone route replaces base Vulpix's Fire Stone route when Alolan
+      Ninetales is active) instead of being deduped away; `evoStageForme()`
+      resolves which forme (if any) a given stage bubble should render as
+      (active forme on the viewed species, or the `fromFormeKey` of the
+      edge leading into the next step), consumed by `evoStageHtml()`'s
+      `nameOverride` param at all 3 render sites (straight chain, fan-out
+      root, fan-out leaves). Base view (no forme active) is unchanged. This
+      closed the Sirfetch'd case too, with no species-specific code:
+      Galarian Farfetch'd is Sirfetch'd's *only* route (base Farfetch'd has
+      no `evolvesTo` at all), so its `fromFormeKey`-tagged edge always wins,
+      and Sirfetch'd's page now shows the Galarian sprite/name as its prior
+      stage. **Not built**: target-forme auto-navigation in either
+      direction — tapping a forme-tagged ancestor bubble still opens the
+      *base* species' page (`data-id` stays the base id on purpose) —
+      explicit scope decision, `TODO.md` #4.
     - **Edge-level `note`, 0.3.5**: distinct from the pre-existing
       entry-level `EVOLUTIONS[id].note` (211/234/265/550/704 —
       chain-wide, rendered by `evoDescriptorHtml` as one line under the

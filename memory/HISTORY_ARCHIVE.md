@@ -11,7 +11,33 @@ record, not load-bearing documentation. Newest first, same as `HISTORY.md`.
 
 User-readability is secondary here — write for density, not prose.
 
+## 0.2.17 → 0.2.18 — Legends: Arceus learnsets split from mainline movesets
+
+User-directed (screenshot: Bidoof missing TM/Egg tabs). Root cause: the
+moveset extractor picked one "best" version group per species by highest
+`order`, and PLA (`order=26`, highest) has zero TM/egg rows — silently
+wiped 55/665 species' real mainline lists. Fix: exclude PLA from mainline
+selection unless a species has zero non-PLA rows (only 7 `hisuiOnly`
+qualify). New `src/data/movesets_hisui.js` (241 entries, `{levelUp,
+tutor}` with `mastery`) holds PLA's own learnset, shown only from the
+Hisui screen via its own 2-tab list. +17 moves surfaced. Verified
+idempotent, 610/665 `movesets.js` entries byte-identical, the other 55
+exactly the predicted PLA set.
+
 ---
+
+## 0.2.16 → 0.2.17 — Release script retargeted for Tauri (Android/Windows/Both) + mobile entry-point split
+
+`overlord`. `src-tauri/` split for mobile (`lib.rs` = shared app/
+`tauri::mobile_entry_point`, `main.rs` = desktop shim, `Cargo.toml` gained
+`vkdex_lib`); `tools/release.js` rewritten for a 3-way target menu +
+mandatory `Proceed? [y/N]` gate. Same-day real-world confirmation: user
+fixed a `.gitignore` line hiding `src-tauri/` from git, hit two Android
+build gotchas (JDK 25→8.14.3 pin, harmless cross-drive Kotlin-daemon
+fallback), then a real `--target=both` non-dry-run succeeded — `v0.2.17`
+tagged/pushed/published. Debug-signed universal APK was 731.9 MB — too
+large to ship again until fixed (closed 0.2.20-0.2.22's signing/size/
+arm64-only chain, `TODO.md` #1).
 
 ## 0.2.15 → 0.2.16 — Resize lock: stateless corner rule
 

@@ -55,6 +55,14 @@ const REGION_GEN = { kanto: 1, johto: 2, hoenn: 3, sinnoh: 4, unova: 5, kalos: 6
 const GEN_REGION = Object.fromEntries(Object.entries(REGION_GEN).map(([r, g]) => [String(g), r]));
 // Same two-tier area ordering rule as populate_region.js (SCOPE.md §2).
 const REGION_ORDER_GEN = { kanto: "3", johto: "4", hoenn: ["3", "6"], sinnoh: "4", unova: "5", kalos: "6", alola: "7", galar: "8", paldea: "9" };
+// Regions a species gets a cross-region encounter pass for (0.3.10) — its
+// rows in games OUTSIDE its native region. Galar is EXCLUDED on purpose:
+// ~90% of its foreign rows are Max Raid Den / Dynamax Adventure, a rotating
+// catch pool rather than a fixed location, scoped separately later (user
+// decision). Paldea/Hisui have zero encounters.csv rows at all (csv/
+// MANIFEST.md) — excluded by definition, their new-shape PokeDB data is
+// handled by NEW_ENC_SHAPE above.
+const FOREIGN_REGIONS = ["kanto", "johto", "hoenn", "sinnoh", "unova", "kalos", "alola"];
 const TIER_STEP = 1e6;
 const titleCase = s => String(s).split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 const DAMAGE_CLASS = { physical: "Physical", special: "Special", status: "Status" };
@@ -303,6 +311,53 @@ function extractFromCsv(ids, csvs, current) {
   };
   const METHOD_LABEL = { walk: "Grass", "npc-trade": "NPC Trade", sos: "SOS Call", "sos-from-bubbling-spot": "SOS Call (bubbling spot)" };
   const methodLabel = ident => METHOD_LABEL[ident] || titleCase(ident);
+
+  // Classic PokeAPI-derived areas for one pokemon identifier, as seen in one
+  // region's games — `[{ area, enc: [{ method, games, min, max, rate }] }]`.
+  // Called once for the species' own region (`areas`, unchanged behavior) and
+  // once per FOREIGN_REGIONS entry that isn't its own (0.3.10): a species is
+  // catchable in plenty of games outside its native region's, and those rows
+  // were simply never extracted before.
+  const buildClassicAreas = (ident, region) => {
+    if (!region) return [];
+    const versionIds = regionVersions(region);
+    const encRows = (encByPokemon.get(ident) || []).filter(r => versionIds.has(r.version));
+    const byArea = new Map();
+    const areaOrder = new Map();
+    for (const r of encRows) {
+      const area = locAreaById.get(r.location_area);
+      if (!area) continue;
+      const loc = locBy.get(area.location);
+      if (!loc) continue;
+      const name = loc.name_en || titleCase(loc.identifier);
+      if (!byArea.has(name)) byArea.set(name, new Map());
+      const ord = locOrder(region, loc.identifier);
+      if (ord !== null && (!areaOrder.has(name) || ord < areaOrder.get(name))) areaOrder.set(name, ord);
+      const method = encMethodBy.get(r.method);
+      if (!method) continue;
+      const methods = byArea.get(name);
+      if (!methods.has(r.method)) methods.set(r.method, { order: Number(method.order), method: methodLabel(r.method), byVer: new Map() });
+      const m = methods.get(r.method);
+      if (!m.byVer.has(r.version)) m.byVer.set(r.version, { min: Infinity, max: 0, buckets: new Map() });
+      const v = m.byVer.get(r.version);
+      v.min = Math.min(v.min, Number(r.min_level)); v.max = Math.max(v.max, Number(r.max_level));
+      const bucket = r.location_area + "|" + (r.conditions || "").split(";").filter(Boolean).sort().join("+");
+      v.buckets.set(bucket, (v.buckets.get(bucket) || 0) + Number(r.rarity));
+    }
+    return [...byArea.keys()].sort((a, b) => {
+      const oa = areaOrder.has(a) ? areaOrder.get(a) : null;
+      const ob = areaOrder.has(b) ? areaOrder.get(b) : null;
+      if (oa !== ob) return oa === null ? 1 : ob === null ? -1 : oa - ob;
+      return a < b ? -1 : a > b ? 1 : 0;
+    }).map(name => ({
+      area: name,
+      enc: [].concat(...[...byArea.get(name).values()].sort((a, b) => a.order - b.order).map(m => {
+        for (const v of m.byVer.values()) v.rate = Math.min(100, Math.max(...v.buckets.values()));
+        return groupByVersion(m.byVer, v => v.min + "," + v.max + "," + v.rate, vName, vOrder)
+          .map(g => ({ method: m.method, games: g.games, min: g.min, max: g.max, rate: g.rate }));
+      })),
+    }));
+  };
 
   // --- new-source (PokeDB) locations plumbing
   const pdbArea = by(csvs.location_areas_pokedb, "identifier");
@@ -618,43 +673,7 @@ function extractFromCsv(ids, csvs, current) {
     };
 
     // ---- locations.js (classic PokeAPI-derived areas) ----
-    const versionIds = region ? regionVersions(region) : new Set();
-    const encRows = (encByPokemon.get(ident) || []).filter(r => versionIds.has(r.version));
-    const byArea = new Map();
-    const areaOrder = new Map();
-    for (const r of encRows) {
-      const area = locAreaById.get(r.location_area);
-      if (!area) continue;
-      const loc = locBy.get(area.location);
-      if (!loc) continue;
-      const name = loc.name_en || titleCase(loc.identifier);
-      if (!byArea.has(name)) byArea.set(name, new Map());
-      const ord = locOrder(region, loc.identifier);
-      if (ord !== null && (!areaOrder.has(name) || ord < areaOrder.get(name))) areaOrder.set(name, ord);
-      const method = encMethodBy.get(r.method);
-      if (!method) continue;
-      const methods = byArea.get(name);
-      if (!methods.has(r.method)) methods.set(r.method, { order: Number(method.order), method: methodLabel(r.method), byVer: new Map() });
-      const m = methods.get(r.method);
-      if (!m.byVer.has(r.version)) m.byVer.set(r.version, { min: Infinity, max: 0, buckets: new Map() });
-      const v = m.byVer.get(r.version);
-      v.min = Math.min(v.min, Number(r.min_level)); v.max = Math.max(v.max, Number(r.max_level));
-      const bucket = r.location_area + "|" + (r.conditions || "").split(";").filter(Boolean).sort().join("+");
-      v.buckets.set(bucket, (v.buckets.get(bucket) || 0) + Number(r.rarity));
-    }
-    const areas = [...byArea.keys()].sort((a, b) => {
-      const oa = areaOrder.has(a) ? areaOrder.get(a) : null;
-      const ob = areaOrder.has(b) ? areaOrder.get(b) : null;
-      if (oa !== ob) return oa === null ? 1 : ob === null ? -1 : oa - ob;
-      return a < b ? -1 : a > b ? 1 : 0;
-    }).map(name => ({
-      area: name,
-      enc: [].concat(...[...byArea.get(name).values()].sort((a, b) => a.order - b.order).map(m => {
-        for (const v of m.byVer.values()) v.rate = Math.min(100, Math.max(...v.buckets.values()));
-        return groupByVersion(m.byVer, v => v.min + "," + v.max + "," + v.rate, vName, vOrder)
-          .map(g => ({ method: m.method, games: g.games, min: g.min, max: g.max, rate: g.rate }));
-      })),
-    }));
+    const areas = buildClassicAreas(ident, region);
 
     // ---- locations.js (new SV/BDSP/LA areas, NEW_ENC_SHAPE) ----
     const extra = {};
@@ -664,6 +683,19 @@ function extractFromCsv(ids, csvs, current) {
         extra[rg] = [...byAreaNew.keys()].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)) // locked: alphabetical
           .map(name => ({ area: name, enc: dedupeEnc(byAreaNew.get(name)) }));
       }
+    }
+
+    // ---- locations.js (cross-region: this species in OTHER regions' games) ----
+    // Same classic shape/pipeline, just a different version set. Filed under
+    // the foreign region's own key, BEFORE any new-shape data already there
+    // (same "classic first, new-shape appended" order assemble() gives the
+    // native region). Galar is deliberately excluded — its foreign rows are
+    // ~90% Max Raid Den / Dynamax Adventure, a rotating catch pool that isn't
+    // a fixed location; scoped separately (user decision).
+    for (const fr of FOREIGN_REGIONS) {
+      if (fr === region) continue; // native case, already built above
+      const foreignAreas = buildClassicAreas(ident, fr);
+      if (foreignAreas.length) extra[fr] = foreignAreas.concat(extra[fr] || []);
     }
     results.locations[id] = { region, areas, extra };
 
@@ -1101,11 +1133,12 @@ function report(ids, r, current, csvs, outDir) {
       }
       body.push("");
     }
-    // New SV/BDSP/LA data for this id
+    // Non-native region keys for this id: SV/BDSP/LA new-shape data plus
+    // (0.3.10) classic cross-region rows.
     const extra = r.locations[id].extra || {};
     const rgs = Object.keys(extra);
     if (rgs.length) {
-      body.push(`**New SV/BDSP/LA encounters** (NEW_ENC_SHAPE, additive — nothing existing changed):`, "");
+      body.push(`**Extra region keys** (SV/BDSP/LA NEW_ENC_SHAPE + cross-region classic rows, additive — nothing existing changed):`, "");
       for (const rg of rgs) {
         const areas = extra[rg];
         const encN = areas.reduce((n, a) => n + a.enc.length, 0);
@@ -1139,7 +1172,7 @@ function report(ids, r, current, csvs, outDir) {
     for (const f of r.flagged) lines.push("- " + f);
     lines.push("");
   }
-  lines.push("## New SV/BDSP/LA encounter data (NEW_ENC_SHAPE) — totals over this run", "", ...newEncSummary(ids, r, current), "");
+  lines.push("## Extra region keys — totals over this run", "", ...newEncSummary(ids, r, current), "");
   lines.push("## Shared tables — `moves.js` / `abilities.js` / `items.js`", "", ...shared.lines, "");
   lines.push("## Per-species detail", "", ...body);
 
@@ -1169,11 +1202,16 @@ function newEncSummary(ids, r, current) {
       for (const a of extra[k]) for (const e of a.enc) { per[k].enc++; for (const f in e) fields[f] = (fields[f] || 0) + 1; }
     }
   }
-  const out = [`${withNew} of ${ids.length} sampled species gain wild-encounter data that has no PokeAPI rows at all.`, ""];
-  out.push("| region key | source file | species | areas | enc lines |", "|---|---|---|---|---|");
+  const out = [`${withNew} of ${ids.length} sampled species gain a region key beyond their own: SV/BDSP/LA data with no PokeAPI rows at all, and (0.3.10) classic PokeAPI rows from OTHER regions' games. The table below counts BOTH per region key — the "source file" column names only the new-shape source, not the cross-region half.`, ""];
+  out.push("| region key | new-shape source file | species | areas | enc lines |", "|---|---|---|---|---|");
   for (const spec of NEW_ENC_FILES) {
     const p = per[spec.region] || { species: 0, areas: 0, enc: 0 };
     out.push(`| \`${spec.region}\` | \`csv/${spec.file}\` | ${p.species} | ${p.areas} | ${p.enc} |`);
+  }
+  // Cross-region-only keys (0.3.10) — no new-shape source file of their own.
+  for (const rg of Object.keys(per)) {
+    if (NEW_ENC_FILES.some(s => s.region === rg)) continue;
+    out.push(`| \`${rg}\` | — (cross-region only) | ${per[rg].species} | ${per[rg].areas} | ${per[rg].enc} |`);
   }
   out.push("");
   if (paldeaNative) out.push(`**Paldea gap** (\`NEEDS_SOURCE_REGIONS\`, SCOPE.md §4): ${paldeaCovered} of ${paldeaNative} native-Paldea species in this run now have real Scarlet/Violet encounters. The remainder are genuinely wild-uncatchable (starters/legendaries/evolution-only), so the list can't simply be emptied — Phase 4 decision.`, "");

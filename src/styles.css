@@ -1613,6 +1613,21 @@ body {
   padding: 6px 14px;
 }
 
+/* Found In chip badge for a species catchable only in SV's paid DLC
+   (0.3.9). Same small-badge pattern as .ability-name .hidden-tag, inverted
+   the way .mega-tag is so it reads against the chip's own fill. */
+.region-chip .chip-dlc-tag {
+  margin-left: 4px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  vertical-align: middle;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #10233a;
+  background: #f4e3b4;
+}
+
 /* Held Items chips (0.2.7): same raised pill as .region-chip.chip-auto,
    with the item sprite inline and the encounter rate dimmed. */
 .item-chip {

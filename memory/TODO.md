@@ -216,12 +216,22 @@ backward direction fixed 0.3.5. Mechanism: `SCOPE.md` §4; detail:
 `HISTORY.md` 0.3.4/0.3.5. **Flag for `SCOPE.md` if it recurs**: Galarian
 Slowpoke's two branches got a per-*edge* `note` (both would otherwise
 read "Stone") — a new shape, distinct from the entry-level `note` on
-211/234/265/550/704. **Known, accepted limitation**: no target-forme
-auto-navigation in either direction — tapping evolve from Alolan Vulpix
-opens Ninetales's *base* page, and Sirfetch'd's page shows Farfetch'd's
-base sprite as its prior stage. Explicit architect scope decision (would
-need cross-species forme state through `openDetail`/`detailHistory`);
-low-priority polish, revisit on request.
+211/234/265/550/704.
+
+**Second forme-blindness bug — RESOLVED 0.3.9** (another user screenshot,
+same Alolan Ninetales case, 2026-09-06 later same day): 0.3.4/0.3.5 only
+fixed the VIEWED species' own outgoing edges; ancestor/prior-stage bubbles
+in the Evolution Line still showed base sprites and the base edge even
+when the viewed species had a forme active (Ninetales's card kept showing
+base Vulpix/"Stone" with Alolan Ninetales selected). Fixed via
+`fromFormeKey`-tagged edges + a new `evoStageForme()` resolver — full
+detail `HISTORY.md` 0.3.9. **This also closed the Sirfetch'd half of the
+limitation below** as a side effect (no Sirfetch'd-specific code needed).
+**Still an open, deliberate limitation**: no target-forme auto-navigation
+— tapping the Alolan Vulpix bubble (or Galarian Farfetch'd's) still opens
+the *base* species' page, not its forme. Explicit architect scope decision
+(would need cross-species forme state through `openDetail`/
+`detailHistory`); low-priority polish, revisit on request.
 
 **Governing rules**, confirmed 2026-09-04:
 
@@ -505,7 +515,28 @@ Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.
 
 ---
 
-## 14. Wire `src/data/*.js` to the new `csv/` merge — core wiring RESOLVED 2026-09-06 (0.3.6-0.3.8); follow-ups open
+## 15. Galar cross-region encounters (Max Raid Den/Dynamax Adventure) — deferred by user choice, 2026-09-06
+
+`HISTORY.md` 0.3.10 shipped cross-region Found In data for 7 mainline
+regions (kanto/johto/hoenn/sinnoh/unova/kalos/alola) — a species can now
+show Found In chips for regions beyond its own native one. **Galar was
+explicitly excluded**: its foreign-species encounter rows in
+`csv/encounters.csv` are ~90% `max-raid`/`dynamax-adventure` (20,038 +
+478 of ~27,000 foreign rows) — a rotating catch-pool mechanic (Sword/
+Shield's Max Raid Dens, Crown Tundra's Dynamax Adventures can spawn nearly
+any species depending on rotation), structurally different from "walk
+around this route and find it." User chose to skip it for now rather than
+decide whether/how to handle that volume and mechanic distinctly. Revisit
+as its own scoping conversation whenever wanted — options not yet
+discussed: include as-is (matches the source's own treatment, would flood
+hundreds of species with a Galar chip for a rotating pool), filter to only
+Galar's ~7,800 ordinary-method foreign rows (overworld/wanderer/walk),
+or a distinct visual treatment (e.g. a "Raid Den" badge, mirroring the DLC
+badge precedent) instead of a plain region chip.
+
+---
+
+## 14. Wire `src/data/*.js` to the new `csv/` merge — core wiring RESOLVED 2026-09-06 (0.3.6-0.3.8); all 3 Phase 4 follow-ups RESOLVED 0.3.9
 
 `PLAN.md`'s CSV-merge entry has the full shipped-state record. `tools/
 populate_from_csv.js` reads `csv/` and is the live pipeline; real SV/BDSP/
@@ -514,25 +545,42 @@ empty. Two real `merge.js` bugs found and fixed along the way (an id-space
 bug threatening the per-forme evolution mechanism; a lost egg-group slot
 order). An independent audit confirmed the shipped data trustworthy.
 
-**Open follow-ups from the wiring itself:**
+**Phase 4 follow-ups — all shipped 0.3.9** (`HISTORY.md` 0.3.9 for detail):
 
-- **Rich rendering of the new encounter shape** (`NEW_ENC_SHAPE`, `SCOPE.md`
-  §2) — group rates, terrain, tera raid star level, LA alpha/time-of-day/
-  weather are extracted and stored but `openLocationPopup()` only degrades
-  gracefully today (omits what the classic shape can't express), doesn't
-  show it. Needs a real UI design pass, not just data plumbing.
-- **DLC-only species still show a plain "Paldea" chip** (e.g. 901 Ursaluna,
-  whose only areas are Kitakami/Blueberry Academy) — the per-line `games`
-  label is correct since 0.3.8, but the chip itself doesn't distinguish
-  DLC-only species from base-game ones. Splitting Kitakami/Blueberry Academy
-  onto their own region key(s) is a real `REGIONS`/chip-ordering change,
-  unscoped.
-- **Duplicate area names in the Sinnoh popup** (40 species, 59 names, e.g.
-  "Lake Verity" rendering twice — once for PokeAPI's DPPt/Platinum data,
-  once for PokeDB's BDSP data) — cosmetic, a consequence of the deliberate
-  decision not to join the two area vocabularies. Merging same-named rows
-  in the popup (the `enc` lines already state their own games) would fix
-  it without reopening that decision.
+- **Rich rendering of `NEW_ENC_SHAPE`** — `openLocationPopup()` now renders
+  forme/teraStars/alpha/terrain/weather/times/timeRates/hiddenAbility/
+  boulder/group/homeMin-Max/tradeFor/note as conditional segments. `group`/
+  `tradeFor` render the raw PokeDB slug verbatim (no species-name lookup —
+  hyphenated slugs don't reliably match `pokemon.js` identifiers, flagged
+  as a possible future polish item, not fixed). `weight` (raw SV spawn
+  weight) deliberately not rendered.
+- **DLC-only Found In chips badged** — user chose the lazy option (badge
+  the existing "Paldea" chip via a render-time check on the per-line
+  `games` field, no new `REGIONS` entries/pipeline changes) over splitting
+  Kitakami/Blueberry Academy into their own region keys. `isDlcOnlyRegion()`
+  matches a regex covering both bare ("The Teal Mask") and version-
+  exclusive ("Violet: The Indigo Disk") DLC labels — the first pass's
+  exact-match rule missed the 4 compound labels (19 species), caught and
+  fixed same-day. 206 species now badge; mixed base+DLC species correctly
+  don't.
+- **Duplicate Sinnoh area names merged** — `mergeAreasByName()` collapses
+  same-named rows (PokeAPI + PokeDB data for the same area, e.g. "Lake
+  Verity") before rendering, concatenating their `enc` lines. All 59
+  duplicates across 40 species confirmed collapsed, 0 lines lost.
+
+**Bonus, not originally scoped**: fixing the Evolution Line's forme-
+blindness (user screenshot, Alolan Ninetales) also closed the separately-
+documented Sirfetch'd-shows-base-Farfetch'd-as-prior-stage limitation
+(`TODO.md` #4/`SCOPE.md` §4) as a side effect of the same `fromFormeKey`
+fix — see `HISTORY.md` 0.3.9. **Still not built** (unchanged): tapping a
+forme-tagged ancestor bubble opens the base species' page, not its forme —
+target-forme auto-navigation stays explicitly out of scope.
+
+**User-confirmed on real hardware (2026-09-06)**: screenshots of Alolan
+Ninetales and Galarian Farfetch'd's own page both show the forme-aware
+Evolution Line rendering correctly — "alt forme evolutions now show
+properly." DLC chip badge and rich encounter rendering (items 3/4) not
+yet screenshot-confirmed.
 
 **Judgment calls `overlord` flagged at merge time, still not re-confirmed**
 (detail: `csv/MANIFEST.md`'s "Known gaps", the merge-build handoff — none

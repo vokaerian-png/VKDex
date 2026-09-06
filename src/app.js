@@ -1092,12 +1092,18 @@
   // render as one full root-to-leaf row per branch rather than a shared
   // tree layout — simplest thing that reads correctly for every case. The
   // one exception is evolutionCardHtml's fan-out (3+ one-step branches).
-  // Every per-forme `evolvesTo` override on a species, flattened.
+  // Every per-forme `evolvesTo` override on a species, flattened. Each edge
+  // is tagged with the forme key it came from (`fromFormeKey`) so a stage
+  // bubble downstream can show that forme's own sprite/name — the ancestor
+  // that actually produces the branch, not its base form (evoStageForme).
   function formeEvoEdges(id) {
     var alt = ALT_FORMS[id];
     if (!alt || !alt.formes) return [];
     return alt.formes.reduce(function (acc, f) {
-      return f.evolvesTo ? acc.concat(f.evolvesTo) : acc;
+      if (!f.evolvesTo) return acc;
+      return acc.concat(f.evolvesTo.map(function (e) {
+        return Object.assign({}, e, { fromFormeKey: f.key });
+      }));
     }, []);
   }
 
@@ -1133,12 +1139,18 @@
   // base view shows base edges only — that's what keeps Sirfetch'd off base
   // Farfetch'd's page.
   //
-  // Any OTHER species in the chain also contributes its forme-only routes, so
-  // long as the base entry can't already reach that target (0.3.5): the walk
-  // down from the root has to be able to re-enter the forme edge it walked up
-  // through, or Sirfetch'd's own page finds Farfetch'd as its root and then
-  // no way back. Deduping on target id is what stops Alolan Vulpix's Ice
-  // Stone route from adding a second Ninetales branch to Ninetales's page.
+  // Any OTHER species in the chain resolves in two steps (0.3.9):
+  //  1. If it has a forme under the SAME key as the viewed species' active
+  //     one, that forme's edges REPLACE the base edges to the same target —
+  //     an Alolan Ninetales page walks up through Alolan Vulpix's Ice Stone,
+  //     not base Vulpix's Fire Stone. (Before 0.3.9 the forme edge was just
+  //     deduped away on target id, so the card always drew the base route.)
+  //  2. Any remaining forme-only route to a target the base can't reach at
+  //     all is still appended (0.3.5) — the walk down from the root has to
+  //     be able to re-enter the forme edge it walked up through, or
+  //     Sirfetch'd's own page finds Farfetch'd as its root and then no way
+  //     back. Deduping on target id keeps a same-target forme route from
+  //     adding a second, duplicate branch.
   function evoEdgesFor(id) {
     var node = EVOLUTIONS[id];
     var base = node ? node.evolvesTo : [];
@@ -1146,13 +1158,30 @@
       var forme = findForme(id, activeFormeKey);
       return forme && forme.evolvesTo ? forme.evolvesTo : base;
     }
-    var seen = base.map(function (b) { return b.id; });
+    var sharedForme = activeFormeKey ? findForme(id, activeFormeKey) : null;
+    var sharedEdges = sharedForme && sharedForme.evolvesTo ? sharedForme.evolvesTo.map(function (e) {
+      return Object.assign({}, e, { fromFormeKey: activeFormeKey });
+    }) : [];
+    var sharedIds = sharedEdges.map(function (e) { return e.id; });
+    var merged = sharedEdges.concat(base.filter(function (b) { return sharedIds.indexOf(b.id) === -1; }));
+    var seen = merged.map(function (e) { return e.id; });
     var extra = formeEvoEdges(id).filter(function (e) {
       if (seen.indexOf(e.id) !== -1) return false;
       seen.push(e.id);
       return true;
     });
-    return extra.length ? base.concat(extra) : base;
+    return extra.length ? merged.concat(extra) : merged;
+  }
+
+  // A stage bubble shows a forme's own sprite/name when: it IS the viewed
+  // species and that forme is currently active (mirrors the Picture/Facts
+  // card swap), OR the edge leading INTO the next step in this path came
+  // from a specific forme of this species (fromFormeKey, set above) — the
+  // ancestor that actually produces that branch, not its base form.
+  function evoStageForme(id, nextStep) {
+    if (id === detailEntryId && activeFormeKey) return findForme(id, activeFormeKey);
+    if (nextStep && nextStep.via && nextStep.via.fromFormeKey) return findForme(id, nextStep.via.fromFormeKey);
+    return null;
   }
 
   function evolutionPaths(rootId) {
@@ -1240,13 +1269,17 @@
 
   // spriteSrc overrides the bubble's art, same shape as renderGrid's
   // spriteFn override (the region chips' regionalCellSprite); falsy keeps the
-  // default. Used for the gendered-parent case below.
-  function evoStageHtml(id, spriteSrc) {
+  // default. Used for the gendered-parent case below. nameOverride does the
+  // same for the label/alt text (an alt forme's own name, 0.3.9). `data-id`
+  // stays the BASE species id either way — tapping opens the base species'
+  // page; target-forme auto-navigation is a separate deferred item (TODO #4).
+  function evoStageHtml(id, spriteSrc, nameOverride) {
     var mon = findPokemon(id);
     if (!mon) return "";
+    var name = nameOverride || mon.name;
     return '<button class="evo-stage" type="button" data-id="' + id + '">' +
-      '<span class="evo-sprite-wrap"><img class="evo-sprite" src="' + (spriteSrc || displaySpriteUrl(id)) + '" alt="' + escapeHtml(mon.name) + '"' + SPRITE_ONERROR_ATTR + '></span>' +
-      '<span class="evo-name">' + escapeHtml(mon.name) + "</span></button>";
+      '<span class="evo-sprite-wrap"><img class="evo-sprite" src="' + (spriteSrc || displaySpriteUrl(id)) + '" alt="' + escapeHtml(name) + '"' + SPRITE_ONERROR_ATTR + '></span>' +
+      '<span class="evo-name">' + escapeHtml(name) + "</span></button>";
   }
 
   // Art for the *source* stage of a gender-gated edge, or null to keep the
@@ -1308,7 +1341,9 @@
       // Every branch leaves the same root, so the chevron is drawn once
       // between the root and the branches instead of repeated per branch;
       // each branch keeps only its own condition icons and label.
-      html += '<div class="evo-fan"><div class="evo-row">' + evoStageHtml(root) + "</div>" +
+      var rootForme = evoStageForme(root, null);
+      html += '<div class="evo-fan"><div class="evo-row">' +
+        evoStageHtml(root, rootForme && altFormSpriteUrl(rootForme.sprite, false), rootForme && rootForme.name) + "</div>" +
         '<span class="evo-arrow evo-fan-arrow">' + EVO_ARROW_SVG + "</span>";
       // Explicit row groups rather than one flex-wrap container: a wrap
       // line break can't carry a border, and the rows need dividers.
@@ -1316,9 +1351,10 @@
         html += '<div class="evo-fan-row">';
         paths.slice(r, r + FAN_ROW_SIZE).forEach(function (path) {
           var leaf = path[1];
+          var leafForme = evoStageForme(leaf.id, null);
           html += '<div class="evo-fan-branch"><span class="evo-arrow">' + evoArrowIconsHtml(leaf.via) +
             '<span class="evo-level">' + escapeHtml(evoArrowLabel(leaf.via)) + "</span></span>" +
-            evoStageHtml(leaf.id) + "</div>";
+            evoStageHtml(leaf.id, leafForme && altFormSpriteUrl(leafForme.sprite, false), leafForme && leafForme.name) + "</div>";
         });
         html += "</div>";
       }
@@ -1337,8 +1373,14 @@
         // any depth in the row (Kirlia->Gallade sits at i === 1), and Burmy's
         // two rows can differ from each other. Combee->Vespiquen is the only
         // shipped case with art today.
+        // An active/producing alt forme (0.3.9) takes priority over that:
+        // the two never co-occur in the shipped data.
         var next = path[i + 1];
-        html += evoStageHtml(step.id, next && next.via && evoGenderSpriteUrl(step.id, next.via.gender));
+        var stepForme = evoStageForme(step.id, next);
+        var spriteSrc = stepForme
+          ? altFormSpriteUrl(stepForme.sprite, false)
+          : evoGenderSpriteUrl(step.id, next && next.via && next.via.gender);
+        html += evoStageHtml(step.id, spriteSrc, stepForme && stepForme.name);
       });
       html += "</div>";
     });
@@ -1350,9 +1392,18 @@
   // Broader than the single `region` field on pokemon.js (which only says
   // where a species was introduced): every region key in LOCATIONS[id]
   // whose area list is non-empty is somewhere it can actually be caught.
+  // Sorted into REGIONS' canonical order (the region bar's), not LOCATIONS'
+  // insertion order — a species can carry 3-5 of these since 0.3.10's
+  // cross-region encounter pass. An unknown key sorts to the end.
   function foundInRegions(id) {
     var loc = LOCATIONS[id] || {};
-    return Object.keys(loc).filter(function (r) { return loc[r] && loc[r].length > 0; });
+    var keys = Object.keys(loc).filter(function (r) { return loc[r] && loc[r].length > 0; });
+    return keys.sort(function (a, b) {
+      var ia = REGION_IDS.indexOf(a), ib = REGION_IDS.indexOf(b);
+      if (ia === -1) ia = REGION_IDS.length;
+      if (ib === -1) ib = REGION_IDS.length;
+      return ia - ib;
+    });
   }
 
   // Regions whose *source* encounter data is missing wholesale, not
@@ -1364,6 +1415,24 @@
   // genuinely uncatchable (9 evolution-only, 7 static/event-only), so the
   // generic messages below are now the factually correct ones for them.
   var NEEDS_SOURCE_REGIONS = [];
+
+  // SV's two paid-DLC version-group names as they appear in an enc line's
+  // `games` field: either bare ("The Teal Mask") or version-exclusive
+  // ("Violet: The Indigo Disk"). Anchored both ends so the plain base-game
+  // labels ("Scarlet/Violet", "Violet") can never match.
+  var DLC_GAMES_RE = /(?:^|: )The (?:Teal Mask|Indigo Disk)$/;
+
+  // True when `region`'s encounter data for `id` exists and EVERY line is
+  // DLC-only (mixed base+DLC species just show the plain chip — only a
+  // species with NO base-game encounters at all is actually DLC-only).
+  // Kitakami/Blueberry sit under the plain "paldea" key (there are no
+  // separate REGIONS entries for them), so without this a DLC-exclusive
+  // species looks base-game-catchable in Scarlet/Violet (0.3.9).
+  function isDlcOnlyRegion(id, region) {
+    var areas = (LOCATIONS[id] || {})[region] || [];
+    var lines = areas.reduce(function (acc, a) { return acc.concat((a && a.enc) || []); }, []);
+    return lines.length > 0 && lines.every(function (e) { return DLC_GAMES_RE.test(e.games || ""); });
+  }
 
   function foundInCardHtml(entry) {
     var regions = foundInRegions(entry.id);
@@ -1382,7 +1451,8 @@
       }
     } else {
       html += '<div class="chip-row">' + regions.map(function (r) {
-        return '<button class="region-chip chip-auto" type="button" data-region="' + r + '">' + escapeHtml(regionLabel(r)) + "</button>";
+        return '<button class="region-chip chip-auto" type="button" data-region="' + r + '">' + escapeHtml(regionLabel(r)) +
+          (isDlcOnlyRegion(entry.id, r) ? ' <span class="chip-dlc-tag">DLC</span>' : "") + "</button>";
       }).join("") + "</div>";
     }
     html += "</div>";
@@ -1718,9 +1788,82 @@
     return '<span class="enc-games">' + escapeHtml(games).replace(/\//g, "/<wbr>") + "</span>";
   }
 
+  // Both source vocabularies (PokeAPI's classic areas, PokeDB's new-shape
+  // ones) can name the same place identically — ~40 Sinnoh species have a
+  // "Lake Verity" from each — which rendered as two indistinguishable
+  // collapsed rows (0.3.9). Merge on the exact name, keeping the FIRST
+  // occurrence's position so the in-game progression ordering the array
+  // already carries survives, and concatenating the enc lines behind it.
+  // A bare-string (pre-0.2.7) entry has no enc lines to carry.
+  function mergeAreasByName(areas) {
+    var out = [], byName = {};
+    areas.forEach(function (a) {
+      var name = typeof a === "string" ? a : a.area;
+      var hit = byName[name];
+      if (!hit) {
+        byName[name] = { area: name, enc: ((typeof a === "string" ? null : a.enc) || []).slice() };
+        out.push(byName[name]);
+        return;
+      }
+      if (typeof a !== "string" && a.enc) hit.enc = hit.enc.concat(a.enc);
+    });
+    return out;
+  }
+
+  // "harsh-sunlight" -> "Harsh Sunlight". Mirrors tools/populate_from_csv.js's
+  // titleCase; reimplemented here rather than shared (no build step).
+  function encTitleCase(s) {
+    return String(s).split("-").map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
+  }
+
+  function encSeg(html) {
+    return html ? " &middot; " + html : "";
+  }
+
+  function encRangeSeg(prefix, min, max) {
+    if (min === undefined) return "";
+    return encSeg(prefix + (min === max ? min : min + "&ndash;" + max));
+  }
+
+  var TIME_RATE_KEYS = ["morning", "day", "evening", "night"];
+
+  // The optional NEW_ENC_SHAPE fields (SV/BDSP/LA), rendered in a fixed
+  // order after the classic method/Lv/rate segments and before the games
+  // sub-line (0.3.9). Every one is conditional, so a classic-shape line
+  // still renders byte-identically. `group`/`tradeFor` are raw PokeDB
+  // species slugs — shown verbatim, no pokemon.js lookup.
+  function encExtrasHtml(e) {
+    var out = "";
+    if (e.forme) {
+      var forme = findForme(detailEntryId, e.forme);
+      out += encSeg(escapeHtml(forme ? forme.name : encTitleCase(e.forme)));
+    }
+    if (e.teraStars !== undefined) out += encSeg(e.teraStars + "&#9733; Tera Raid");
+    out += encRangeSeg("Alpha Lv ", e.alphaMin, e.alphaMax);
+    ["terrain", "weather", "times"].forEach(function (field) {
+      if (e[field] && e[field].length) out += encSeg(escapeHtml(e[field].map(encTitleCase).join("/")));
+    });
+    if (e.timeRates) {
+      var keys = TIME_RATE_KEYS.filter(function (k) { return e.timeRates[k] !== undefined; });
+      // A single key says nothing the plain `rate` segment doesn't already.
+      if (keys.length > 1) {
+        out += encSeg(escapeHtml(keys.map(function (k) {
+          return encTitleCase(k) + " " + String(e.timeRates[k]);
+        }).join(", ")));
+      }
+    }
+    if (e.hiddenAbility) out += encSeg("HA possible");
+    if (e.boulder) out += encSeg("Requires boulder");
+    if (e.group) out += encSeg(escapeHtml("with " + e.group));
+    out += encRangeSeg("Way Home Lv ", e.homeMin, e.homeMax);
+    if (e.tradeFor) out += encSeg(escapeHtml("Trade for " + e.tradeFor));
+    if (e.note) out += encSeg(escapeHtml(e.note));
+    return out;
+  }
+
   function openLocationPopup(regionId) {
     if (detailEntryId === null) return;
-    var areas = (LOCATIONS[detailEntryId] || {})[regionId] || [];
+    var areas = mergeAreasByName((LOCATIONS[detailEntryId] || {})[regionId] || []);
     // 0.2.8 shape: { area, enc: [{ method, games, min, max, rate }] } — one
     // line per method per game-group under the area name, games named on
     // their own sub-line so a long list ("Black 2/White 2") can't overflow
@@ -1744,11 +1887,11 @@
           // be a verbatim string ("varies", "one", "10%"). Both parts are
           // conditional so those degrade to just the method instead of
           // rendering "Lv undefined" / "varies%". A classic numeric line is
-          // byte-identical to what this always emitted. (Richer rendering of
-          // the other NEW_ENC_SHAPE fields is Phase 4.)
+          // byte-identical to what this always emitted. The rest of
+          // NEW_ENC_SHAPE's optional fields land in encExtrasHtml (0.3.9).
           var lv = e.min === undefined ? "" : " &middot; Lv " + (e.min === e.max ? e.min : e.min + "&ndash;" + e.max);
           var rate = e.rate === undefined ? "" : " &middot; " + (typeof e.rate === "number" ? e.rate + "%" : escapeHtml(e.rate));
-          return '<div class="enc-line">' + escapeHtml(e.method) + lv + rate +
+          return '<div class="enc-line">' + escapeHtml(e.method) + lv + rate + encExtrasHtml(e) +
             encGamesHtml(e.games) + "</div>";
         }).join("");
         if (!lines) return '<div class="popup-row column"><span class="v" style="text-align:left">' + escapeHtml(name) + "</span></div>";

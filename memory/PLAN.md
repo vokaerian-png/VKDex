@@ -112,10 +112,41 @@ against the raw CSVs) confirmed the shipped data trustworthy and caught two
 real presentation bugs, one fixed same day (SV's Kitakami/Blueberry Academy
 DLC areas were mislabeled as base-game "Scarlet/Violet" — now correctly
 labelled via a real join, not a heuristic), one deferred (`TODO.md` #14).
-**Still open**: the richer encounter shape's fuller rendering (group rates,
-terrain, tera star level, LA alpha/time/weather), splitting DLC-only
-species onto their own region chip instead of a mislabelled "Paldea" one,
-and the duplicate-Sinnoh-area-name cosmetic issue — all `TODO.md` #14.
+**All three Phase 4 follow-ups shipped 0.3.9** (`TODO.md` #14,
+`HISTORY.md` 0.3.9): the richer encounter shape now renders fully; the
+Paldea chip badges "DLC" for DLC-only species (render-time check on the
+existing `games` field, no new region chips — user's chosen option, lighter
+than the originally-envisioned `REGIONS` split); the duplicate-Sinnoh-
+area-name issue is fixed by merging same-named rows in the popup. Same
+dispatch also fixed a second, separately-reported Evolution Line
+forme-blindness bug (ancestor/prior-stage bubbles weren't forme-aware),
+which incidentally closed the long-standing Sirfetch'd-shows-base-
+Farfetch'd-sprite limitation too (`TODO.md` #4).
+
+---
+
+## Cross-region wild encounters — shipped 0.3.10; Galar deferred (`TODO.md` #15)
+
+User asked to scope out whether other regions had encounter data the
+Found In module wasn't showing. Confirmed: every mainline region's
+pipeline had only ever extracted a species' *own*-region encounters,
+never a species' appearances in *other* regions' games, despite
+`csv/encounters.csv` (the same PokeAPI source already in use) having
+abundant cross-region rows. Shipped for 7 regions (kanto/johto/hoenn/
+sinnoh/unova/kalos/alola); Galar excluded (user decision — its foreign
+rows are ~90% Max Raid Den/Dynamax Adventure, a rotating pool rather than
+a fixed location, deferred as its own scoping question, `TODO.md` #15);
+Paldea/Hisui excluded by definition (no PokeAPI encounter rows exist for
+either). Real numbers, mechanism, and verification: `HISTORY.md` 0.3.10.
+
+**Standing decision for any future pass in this area**: the extraction
+mechanism (`tools/populate_from_csv.js`'s `buildClassicAreas()` +
+`FOREIGN_REGIONS`) generalizes to any mainline region with real
+`encounters.csv` rows — adding Galar (or re-running after a source
+refresh) is a data re-run, not new code, once the Max Raid Den question
+above is answered. Found In chips render in `REGIONS`' canonical order
+(`foundInRegions()`, sorted 0.3.10) rather than data-insertion order, now
+that a species commonly carries 3-5 chips instead of 1-2.
 
 ---
 
