@@ -90,11 +90,11 @@ function walkFiles(dir) {
   return out;
 }
 
-// Gradle may emit one universal APK and/or one per ABI; take universal when
-// it's there, else whatever came first. null if no .apk at all.
-function pickApk(files) {
-  const apks = files.filter(f => f.toLowerCase().endsWith(".apk"));
-  return apks.find(f => /universal/i.test(f)) || apks[0] || null;
+// build:android passes --split-per-abi, so Gradle emits one release APK per
+// architecture (arm64/arm/x86/x86_64) and no universal APK. Returns every
+// non-universal .apk found, sorted for stable ordering; [] if none.
+function pickApks(files) {
+  return files.filter(f => f.toLowerCase().endsWith(".apk") && !/universal/i.test(f)).sort();
 }
 
 // ---------------------------------------------------------------- changelog
@@ -143,20 +143,22 @@ function selfCheck() {
     report(got === want, "parseTarget(" + JSON.stringify(input) + ")", got === want ? String(got) : "got " + got + ", want " + want);
   }
 
-  // 3. APK search over a throwaway tree shaped like Gradle's output
+  // 3. APK search over a throwaway tree shaped like split-per-abi Gradle output
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "vkdex-release-check-"));
   try {
-    fs.mkdirSync(path.join(tmp, "arm64-v8a", "debug"), { recursive: true });
-    fs.mkdirSync(path.join(tmp, "universal", "debug"), { recursive: true });
-    fs.writeFileSync(path.join(tmp, "arm64-v8a", "debug", "app-arm64-v8a-debug.apk"), "");
-    fs.writeFileSync(path.join(tmp, "arm64-v8a", "debug", "output-metadata.json"), "{}");
-    fs.writeFileSync(path.join(tmp, "universal", "debug", "app-universal-debug.apk"), "");
+    for (const abi of ["arm64", "arm", "x86", "x86_64"]) {
+      fs.mkdirSync(path.join(tmp, abi, "release"), { recursive: true });
+      fs.writeFileSync(path.join(tmp, abi, "release", "app-" + abi + "-release.apk"), "");
+      fs.writeFileSync(path.join(tmp, abi, "release", "output-metadata.json"), "{}");
+    }
+    fs.mkdirSync(path.join(tmp, "universal", "release"), { recursive: true });
+    fs.writeFileSync(path.join(tmp, "universal", "release", "app-universal-release.apk"), "");
     const files = walkFiles(tmp);
-    report(files.length === 3, "walkFiles finds 3 files", "got " + files.length);
-    const picked = pickApk(files);
-    report(!!picked && picked.endsWith("app-universal-debug.apk"), "pickApk prefers universal", String(picked));
-    report(pickApk(files.filter(f => !/universal/.test(f))).endsWith("app-arm64-v8a-debug.apk"), "pickApk falls back to first .apk");
-    report(pickApk(["x/output-metadata.json"]) === null, "pickApk null without .apk");
+    report(files.length === 9, "walkFiles finds 9 files", "got " + files.length);
+    const picked = pickApks(files);
+    report(picked.length === 4, "pickApks finds 4 per-ABI apks", "got " + picked.length);
+    report(picked.every(f => !/universal/i.test(f)), "pickApks excludes universal");
+    report(pickApks(["x/output-metadata.json"]).length === 0, "pickApks [] without any .apk");
     report(walkFiles(path.join(tmp, "nope")).length === 0, "walkFiles [] on missing dir");
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
@@ -287,21 +289,26 @@ function buildAndroid() {
   if (code !== 0) fail("`npm run build:android` exited with code " + code + " — build output is above.");
 
   const files = walkFiles(ANDROID_APK_OUT);
-  const apk = pickApk(files);
-  if (!apk) {
+  const apks = pickApks(files);
+  if (!apks.length) {
     fail(
-      "build reported success but no .apk was found under " + ANDROID_APK_OUT +
+      "build reported success but no per-ABI .apk was found under " + ANDROID_APK_OUT +
       (files.length ? "\nfound instead:\n  " + files.join("\n  ") : "\n(directory missing or empty)") +
-      "\nIf Gradle put the APK somewhere else, note the real path so the script can be pointed at it."
+      "\nIf Gradle put the APKs somewhere else, note the real path so the script can be pointed at it."
     );
   }
 
   const outDir = path.join(RELEASES_DIR, "android");
   fs.mkdirSync(outDir, { recursive: true });
-  const dest = path.join(outDir, "VKDex-" + TAG + "-android.apk");
-  fs.copyFileSync(apk, dest); // copy, not move — Gradle's own output stays put
-  console.log(apk + "\n  -> " + dest + " (" + (fs.statSync(dest).size / 1048576).toFixed(1) + " MB)");
-  return dest;
+  // Each apk lives at .../apk/<abi flavor>/release/app-<abi>-release.apk —
+  // the flavor name (arm64/arm/x86/x86_64) is two dirs up from the file.
+  return apks.map(apk => {
+    const abi = path.basename(path.dirname(path.dirname(apk)));
+    const dest = path.join(outDir, "VKDex-" + TAG + "-android-" + abi + ".apk");
+    fs.copyFileSync(apk, dest); // copy, not move — Gradle's own output stays put
+    console.log(apk + "\n  -> " + dest + " (" + (fs.statSync(dest).size / 1048576).toFixed(1) + " MB)");
+    return dest;
+  });
 }
 
 // ------------------------------------------------------- target + confirm
@@ -340,7 +347,7 @@ async function main() {
   step("Summary");
   console.log("Version:  " + VERSION + "  (tag " + TAG + ", branch " + branch + ")");
   console.log("Targets:  " + (wantWindows ? "Windows -> releases/windows/VKDex-" + TAG + "-windows-x64.zip\n          " : "") +
-                             (wantAndroid ? "Android -> releases/android/VKDex-" + TAG + "-android.apk (release-signed)" : ""));
+                             (wantAndroid ? "Android -> releases/android/VKDex-" + TAG + "-android-<abi>.apk x4 (arm64/arm/x86/x86_64, release-signed, split-per-abi)" : ""));
   console.log("Publish:  " + (DRY_RUN ? "NO (--dry-run: build only, no tag/push/release)" : "git tag + push + one GitHub release with the artifact(s) above"));
   console.log("Notes:    the changelog block printed above");
   const yes = await ask("\nProceed with build" + (DRY_RUN ? "" : " and release") + "? [y/N] ");
@@ -366,7 +373,7 @@ async function main() {
 
   const artifacts = [];
   if (wantWindows) artifacts.push(buildWindows());
-  if (wantAndroid) artifacts.push(buildAndroid());
+  if (wantAndroid) artifacts.push(...buildAndroid());
 
   // ----------------------------------------------------------------- publish
 

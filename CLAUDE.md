@@ -158,10 +158,12 @@ a token) before building.
 name it `VKDex.exe`) → zipped via Windows' `tar.exe -a` to
 `releases/windows/VKDex-vX.Y.Z-windows-x64.zip`. **Android**: refuses
 (pointing at `src-tauri/ANDROID_SETUP.md`) unless `src-tauri/gen/android/
-app` exists, else `npm run build:android` (`tauri android build --apk`,
-release-profile, real signing key — see below) → first `.apk` under
-`gen/android/app/build/outputs/apk/` (universal preferred; lists the tree
-if none) → copied to `releases/android/VKDex-vX.Y.Z-android.apk`. **Both** builds
+app` exists, else `npm run build:android` (`tauri android build --apk
+--split-per-abi`, release-profile, real signing key — see below) → one
+`.apk` per architecture under `gen/android/app/build/outputs/apk/`
+(universal excluded; lists the tree if none found) → each copied to
+`releases/android/VKDex-vX.Y.Z-android-<abi>.apk` (arm64/arm/x86/x86_64).
+**Both** builds
 sequentially; every artifact goes on one `gh release create` with the
 changelog as notes. Never commits, never force-overwrites a tag. `--check`
 runs the self-tests only (changelog parser, target parsing, APK search).
@@ -179,12 +181,21 @@ cross-drive paths (project `E:`, `cargo` registry `C:`).
 build:android` dropped `--debug` (now `tauri android build --apk`), so
 Gradle's already-configured `release` buildType (`isMinifyEnabled` +
 ProGuard) actually runs and produces an installable, real-key-signed APK
-instead of the unoptimized debug build. `release.js`'s artifact is
-`VKDex-vX.Y.Z-android.apk` (dropped the `-debug` suffix). **Not yet
-measured**: real release-profile APK size on hardware — the old 731.9 MB
-figure was the debug build; minify+ProGuard should cut it substantially,
-but per-ABI split APKs are still on the table as a follow-up if it's still
-too large (`TODO.md` #1).
+instead of the unoptimized debug build.
+
+**APK size, resolved 0.2.21 (2026-09-06)**: a stale/cached build first
+masked Cargo's new `[profile.release]` table (strip/lto/`codegen-units=1`/
+`opt-level="z"`, `src-tauri/Cargo.toml`) — a genuine clean rebuild
+(`cargo clean` + deleting `gen/android/app/build/`) confirmed it strips all
+4 `.so`s, cutting the (universal) APK 732 MB → 289 MB. The remainder traced
+to `frontendDist` (sprites included, ~70 MB) being compiled directly into
+*each* architecture's binary, so a universal APK paid for that 4x over.
+Fix: `build:android` now passes `--split-per-abi` — Tauri's own generated
+`gen/android/app/build.gradle.kts`/`RustPlugin.kt` already define per-arch
+product flavors (arm64/arm/x86/x86_64), no Gradle edits needed —
+`release.js`'s `pickApks`/`buildAndroid` collect and publish all 4 release
+APKs instead of one universal. Expected ~70-80 MB per architecture; not yet
+measured on hardware.
 
 **Release keystore, generated 2026-09-06**: RSA 2048, alias `vkdex`, valid
 to 2054 — lives entirely outside the repo, in a private Dropbox-synced
