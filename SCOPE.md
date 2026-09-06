@@ -32,9 +32,11 @@ on a real screenshot).
 ## 1. What VKDex is
 
 A Pokédex app: plain HTML/CSS/JS (no framework, runs in any browser) plus a
-native packaging shell for a portable Windows `.exe` — Electron today,
-**being replaced by Tauri** (unverified pending the user's own machine,
-`CLAUDE.md` §2b) since Tauri can also target mobile from the same project.
+native packaging shell for a portable Windows `.exe` — **Tauri** (`CLAUDE.md`
+§2/§2b; replaced Electron, retired 2026-09-06) since Tauri can also target
+mobile from the same project. Windows + Android are the only build targets
+being pursued — macOS/Linux/iOS aren't considered at this time (user
+decision 2026-09-06, `PLAN.md`'s Tauri migration entry).
 
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
@@ -196,9 +198,10 @@ species, not a bug.
 Powers the detail screen's live Weakness/Resist/Neutral computation (§4).
 
 **Sprites** (bundled locally since 0.1.20; folder split 0.1.32):
-`src/data/sprites/` = `pokemon/` + `items/`. `electron-app/copy-app.js`
-copies the whole `sprites/` tree via one recursive `fs.cpSync` — a new
-sprite subfolder never needs a `copy-app.js` change.
+`src/data/sprites/` = `pokemon/` + `items/`. Tauri's `frontendDist` embeds
+`src/` directly at build time (`CLAUDE.md` §2b) — no copy step at all, so a
+new sprite subfolder needs no build-config change (Electron's
+`copy-app.js` needed one; moot since its retirement, `CLAUDE.md` §2).
 
 - **`pokemon/female/`** (and `pokemon/shiny/female/`, 0.2.3): 103 files
   each, id-named same as the root — bundled art for species with a visible
@@ -248,8 +251,8 @@ sprite subfolder never needs a `copy-app.js` change.
 
 - **Phone frame**: `.phone`, 360x800 (`--phone-width`/`--phone-height`),
   centered. Every layout number (menu width, grid columns, paddings) is
-  calibrated at that base and scales up **as a unit** in Electron
-  (`CLAUDE.md` §2).
+  calibrated at that base and scales up **as a unit** in the packaged Tauri
+  app (`CLAUDE.md` §2/§2b, §8 below).
 - **Drawer menu** (left slide-out, Pointer Events so touch + mouse share one
   code path): a 12px edge-zone strip (the screens' left gutter; 24px
   swallowed Back-button/Kanto taps) starts the open-swipe, drag live-
@@ -316,8 +319,9 @@ sprite subfolder never needs a `copy-app.js` change.
   `.dex-panel`/`.dex-header` get `var(--panel-border)` (`2px solid #000`).
 - **Scrollbar styling** (`.dex-list`, `.detail-body`): thin/rounded/semi-
   transparent via `scrollbar-width`/`scrollbar-color` + `::-webkit-
-  scrollbar*` (Electron's Chromium otherwise renders a plain default). Not
-  scoped to `.is-electron` — right in a plain browser too.
+  scrollbar*` (WebView2's Chromium engine otherwise renders a plain
+  default on Windows — `CLAUDE.md` §2b/PLAN.md's Tauri entry). Not scoped
+  to `.is-tauri` — right in a plain browser too.
 - **Other `:root` tokens**: `--menu-width`, `--anim-speed` (0.25s),
   `--window-radius` (18px), `--accent` (`#4da3ff`), `--grid-cols` (5).
 
@@ -642,11 +646,11 @@ Bundled local sprites (§2) made the IndexedDB blob cache redundant; the
 
 Resizable, locked to a 360:800 aspect ratio, `minWidth`/`minHeight` exactly
 360/800. Growing past that scales the **entire phone frame as a unit** (not
-padding around a fixed frame) — this half is shell-agnostic and unchanged:
+padding around a fixed frame):
 
 - `styles.css`: `.is-tauri .phone { transform: scale(var(--phone-scale, 1));
   transform-origin: center center; }` (renamed from `.is-electron` in
-  0.2.11 — same rule).
+  0.2.11, back when Electron was still the packaged shell — same rule).
 - `app.js` computes `phoneScale = Math.min(innerWidth/360,
   innerHeight/800)`, sets `--phone-scale` on load and on resize
   (rAF-throttled). Scale is exactly 1 at minimum and grows evenly — never
@@ -657,25 +661,18 @@ padding around a fixed frame) — this half is shell-agnostic and unchanged:
   No-op in a plain browser tab or under a shell that isn't detected
   (`phoneScale` stays 1).
 
-**Locking the OS window to the ratio is shell-specific — Electron and Tauri
-diverge here:**
-
-- **Electron** (`electron-app/`, still the only confirmed-working build):
-  `is-electron` via a `navigator.userAgent` sniff; the window locked
-  natively via `main.js`'s `win.setAspectRatio()`.
-- **Tauri** (`src-tauri/`, **confirmed** — `CLAUDE.md` §2b): `is-tauri` via
-  the `window.isTauri` global. A live lock via `src-tauri/src/
-  resize_lock.rs`, Windows-only — subclasses the native window proc and
-  rewrites the proposed rect on every `WM_SIZING` step, keeping the window
-  on-ratio *during* the drag; the corner rule is a pure function of the
-  proposal (0.2.16, fixed a flip-flop bug). `app.js`'s `lockAspect`
-  (settle-after-drag via `window.__TAURI__`'s `set_size`/`LogicalSize`)
-  stays as a no-op safety net for platforms without the native lock. Full
-  detail: `HISTORY.md` 0.2.11-0.2.16.
-- **Known Electron regression, transitional**: `window.isTauri` is never
-  true under Electron, so a *new* Electron rebuild no longer scales the
-  inner content to fill (the window itself still resizes on-ratio).
-  Already-built exes unaffected; accepted until Electron's retired.
+**Locking the OS window to the ratio** (`src-tauri/`, **confirmed** —
+`CLAUDE.md` §2b): `is-tauri` via the `window.isTauri` global. A live lock
+via `src-tauri/src/resize_lock.rs`, Windows-only — subclasses the native
+window proc and rewrites the proposed rect on every `WM_SIZING` step,
+keeping the window on-ratio *during* the drag; the corner rule is a pure
+function of the proposal (0.2.16, fixed a flip-flop bug). `app.js`'s
+`lockAspect` (settle-after-drag via `window.__TAURI__`'s `set_size`/
+`LogicalSize`) stays as a no-op safety net for platforms without the
+native lock (macOS/Linux — JS fallback only, not currently pursued, §1).
+Full detail: `HISTORY.md` 0.2.11-0.2.16. Electron locked this the same way
+via `main.js`'s `win.setAspectRatio()`, retired along with the rest of that
+shell (`CLAUDE.md` §2).
 
 ---
 

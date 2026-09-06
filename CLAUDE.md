@@ -64,11 +64,7 @@ VKDex/
       sprites/         (local sprite files — SCOPE.md §2)
         pokemon/       (per-Pokemon sprites: normal/shiny/alt formes)
         items/         (item sprites)
-  electron-app/                              <- portable Windows build wrapper (being retired, §2b)
-    main.js  copy-app.js  package.json  README.md
-    app/         (generated copy of ../src, refreshed by copy-app.js)
-    dist/        (electron-packager output)
-  src-tauri/                                 <- Tauri build shell (§2b), replacing electron-app/
+  src-tauri/                                 <- Tauri build shell (§2b) — the only packaging shell now (§2)
     Cargo.toml  build.rs  tauri.conf.json  capabilities/default.json  icons/  ANDROID_SETUP.md
     src/lib.rs  src/main.rs  src/resize_lock.rs  <- lib.rs: the app (shared desktop/mobile entry); main.rs: desktop shim; resize_lock.rs: native WM_SIZING lock (Windows)
   releases/                                  <- tools/release.js output (windows/, android/), gitignored (§2a)
@@ -98,8 +94,9 @@ a one-line reason. Architect never runs the script or deletes files (§4
 opened**, also drop entries that no longer exist on disk.
 
 **Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
-`.gitignore` excludes `electron-app/`, `temp/`, `/releases/`, `/node_modules`,
-`/src-tauri/target` and `/src-tauri/gen` (build output, regenerable).
+`.gitignore` excludes `temp/`, `/releases/`, `/node_modules`,
+`/src-tauri/target` and `/src-tauri/gen` (build output, regenerable); its
+now-inert `electron-app/` line is harmless to leave (§2).
 **`src-tauri/` source is tracked** — Tauri is the long-term mobile+desktop
 build system, not a wrapper afterthought like Electron. (A stray trailing
 `src-tauri/` line in `.gitignore` briefly ignored the whole folder
@@ -109,24 +106,21 @@ GitHub Release assets, not commits.
 
 ---
 
-## 2. The portable Electron build
+## 2. Native packaging — Electron retired, Tauri (§2b) is the sole shell
 
-`electron-app/` packages the app into a no-install portable `.exe` via
-`electron-packager` (`npm run package:win` → `dist/VKDex-win32-x64/
-VKDex.exe`). `main.js` loads `../src/index.html` live in dev (`npm start`)
-or the self-contained `./app/` copy that `copy-app.js` refreshes from
-`../src` right before packaging (explicit `dataFiles` list for `data/*.js`
-— **extend it for every new data file** — plus `data/sprites/`); it nulls
-the application menu so no default accelerators (Ctrl+R) are live.
-Electron's postinstall needed npm's `allowScripts` approval (`package.json`).
-
-**Being retired in favor of Tauri** (§2b) — kept until Electron cleanup
-lands (`PLAN.md`); release tooling no longer touches it (§2a). Window
-resize/scaling: `SCOPE.md` §8. **Known regression as of 0.2.11**: a *new*
-Electron rebuild from current `src/` loses the phone-frame scale-as-a-unit
-behavior (`window.isTauri` never true under Electron) — window still locks
-to ratio, inner content stops scaling. Already-built `electron-app/dist/`
-exes unaffected; not being fixed.
+VKDex packaged as a portable Windows `.exe` via Electron
+(`electron-packager`) from 0.1.0 through the Tauri migration; **fully
+retired 2026-09-06** once Tauri's shell swap + resize lock + release
+pipeline were all confirmed working on real hardware (0.2.16/0.2.17,
+`PLAN.md`'s Tauri migration entry). `electron-app/` (the wrapper, its
+`node_modules/`, and old local `dist/` zips — ~1.6GB, always gitignored/
+untracked) needs manual deletion by the user; the sandbox mount can't
+delete a folder this old (§4's `EPERM`). Nothing is lost by removing it —
+old local build zips are superseded by GitHub Releases (§2a), and the
+shell-detection hook (`is-electron`) was already fully replaced by
+`is-tauri` in 0.2.11, confirmed no remnants left in `src/`. Full build
+mechanics are historical now — `HISTORY.md` 0.1.x-0.2.10 and the cleanup
+entry itself for what changed.
 
 ---
 
@@ -201,7 +195,7 @@ stays as a no-op safety net. **0.2.17 split the crate for mobile**:
 mobile_entry_point)]`, owns `mod resize_lock`), `src/main.rs` = desktop
 shim, `Cargo.toml` `[lib] vkdex_lib` staticlib/cdylib/rlib — confirmed
 compiling clean for both desktop (`tauri build`) and Android (§2a),
-2026-09-05, real hardware. Electron cleanup remains (`PLAN.md`).
+2026-09-05, real hardware. Electron cleanup shipped 2026-09-06 (§2).
 
 ---
 
@@ -215,14 +209,13 @@ version jump, not a +1 continuation; not a new standing pattern.
 **Current version: 0.2.19.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
-and `src-tauri/Cargo.toml`. **`electron-app/package.json`'s `"version"` is
-no longer mirrored as of 0.2.11** (§2b) — frozen at 0.2.10 until Electron
-is formally retired, don't update it.
+and `src-tauri/Cargo.toml`. (`electron-app/package.json` was the same kind
+of mirror target through 0.2.10, moot now that Electron's retired — §2.)
 
 **Exempt:** memory-bank-only edits (`CLAUDE.md`/`SCOPE.md`/`PLAN.md`/
 `TODO.md`/`HISTORY.md`) and `tools/`-only changes don't trigger a bump —
-only `src/`/`electron-app/` changes do. User-confirmed 2026-09-02. The
-changelog lives in `HISTORY.md`, not here.
+only `src/` changes do. User-confirmed 2026-09-02. The changelog lives in
+`HISTORY.md`, not here.
 
 ---
 
@@ -242,6 +235,16 @@ changelog lives in `HISTORY.md`, not here.
   deletion by the user. **Exception: the Dropbox MCP connector's `delete`**
   (§6a) goes through the real Dropbox API, not this mount — confirmed
   working 2026-09-05.
+- **Root cause of recurring `.git/index.lock` (found 2026-09-06)**: `git
+  status`/`git diff` opportunistically write-lock and refresh the index,
+  then unlink their own lock when done — that unlink hits the same `EPERM`
+  above, so **any plain `git status`/`git diff` run through this sandbox's
+  Bash tool leaves a fresh stale lock behind**, confirmed reproducing live.
+  Not a problem on the user's end. Fix: prefix `GIT_OPTIONAL_LOCKS=0` on
+  any read-only git invocation from this sandbox (`git status`/`diff`/etc.)
+  to skip the index refresh entirely — use it going forward instead of
+  plain `git status`/`git diff` here. A lock already left behind needs the
+  user to delete it directly (same manual step as other mount EPERM cases).
 
 ---
 
@@ -271,8 +274,8 @@ preference.**
   output into the memory bank. **Does not write to `src/`** — no
   `index.html`/`styles.css`/`app.js`/`data.js`/`data/*.js`, direct or via
   Bash. **Exception: `src/data/sprites/`** (asset curation, not code).
-  `electron-app/`/`src-tauri/`/`tools/` aren't covered, though routing real
-  code changes there through `coder` too is good practice.
+  `src-tauri/`/`tools/` aren't covered, though routing real code changes
+  there through `coder` too is good practice.
 - **`coder`** (`.claude/agents/coder.md`, Opus,
   Read/Write/Edit/Bash/Grep/Glob) does **all code-related tasks** —
   everything architect is restricted from, full stop. Implements exactly

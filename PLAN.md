@@ -14,7 +14,7 @@ pending a size fix (below), then Electron cleanup.
 
 ---
 
-## Electron → Tauri migration — committed 2026-09-05; shell + resize lock confirmed working (0.2.16)
+## Electron → Tauri migration — committed 2026-09-05; shipped end-to-end, Electron cleanup done 2026-09-06
 
 Promoted from `TODO.md` #1. User-approved switch away from Electron:
 Tauri 2.x builds desktop **and** mobile from one project — something
@@ -32,7 +32,10 @@ project. Numbers favor it hard for a mobile install specifically: ~3-10MB
 installer vs Electron's ~120-200MB, ~380ms cold start vs ~1.4s, ~42MB idle
 RAM vs ~168MB.
 
-**Real, accepted costs**:
+**Real, accepted costs** (macOS/Linux/iOS items below are dormant analysis,
+not active risk — **macOS/Linux/iOS builds aren't being pursued at this
+time**, user decision 2026-09-06; kept here for whenever that's revisited,
+not deleted since the reasoning doesn't go stale):
 - Tauri renders through the OS's own webview, not a bundled Chromium —
   WebView2 (Windows, Chromium-based, low risk here) vs WKWebView (macOS,
   Safari engine) vs WebKitGTK (Linux). `SCOPE.md` §6-8's hand-tuned CSS
@@ -69,10 +72,7 @@ Win32-subclass live resize/aspect-ratio lock (0.2.14, `overlord` — Tauri
 has no equivalent of Electron's `setAspectRatio`), corner-jitter fix
 (0.2.16, `overlord`) — **user-tested on real hardware, both rounds clean
 after the fix, "problem solved."** Full detail: `HISTORY.md` 0.2.11-0.2.16,
-`CLAUDE.md` §2b. `electron-app/` has a known transitional regression (the
-phone-frame scale-as-a-unit behavior breaks under a *new* Electron rebuild,
-since `window.isTauri` never fires there — `CLAUDE.md` §2), accepted since
-Electron's being retired.
+`CLAUDE.md` §2b.
 
 **Release tooling + Android first pass — shipped and confirmed 0.2.17**
 (`overlord` built it; `ANDROID_SETUP.md`'s first-ever run, the crate split,
@@ -92,10 +92,28 @@ debug-signed universal APK is 731.9 MB — too large to keep shipping.
 `TODO.md` #1 tracks the fix (a real release signing key plus a smaller
 build shape — release/optimized profile and/or per-ABI split APKs instead
 of universal). Don't use `--target=android`/`both` for a real release until
-that lands; Windows releases are unaffected. **Next commitment: Electron
-cleanup** — `electron-app/` and its dead references across the memory
-bank. macOS/Linux still have no live resize lock (JS fallback only) — not
-blocking, `TODO.md` #1. iOS stays out of scope (Mac + Xcode).
+that lands; Windows releases are unaffected.
+
+**Electron cleanup — shipped 2026-09-06** (memory-bank/agent-def-only,
+architect): `electron-app/`'s dead references retired across `CLAUDE.md`
+§2 (rewritten — was the Electron build section, now the packaging-shell
+overview), `SCOPE.md` §1/§2/§4/§8 (stale `.is-electron`/copy-step/
+regression mentions fixed), and `.claude/agents/coder.md`/`overlord.md`
+(dropped `electron-app/` from their write scope + version-bump bullets).
+No `src/` changes needed — `is-electron`→`is-tauri` was already complete
+(0.2.11), confirmed no remnants left. **The `electron-app/` folder itself
+(~1.6GB: `node_modules/`, old local `dist/` zips, the wrapper code) still
+needs manual deletion by the user** — always gitignored/untracked, so
+nothing is lost, but the sandbox mount can't delete a folder this old
+(`CLAUDE.md` §4). Old `dist/` zips are superseded by GitHub Releases
+(§2a). No version bump — no `src/`/`electron-app/` file was edited.
+
+**macOS/Linux/iOS builds are not being pursued at this time** (user
+decision 2026-09-06) — Windows + Android are the only active targets.
+macOS/Linux still have no live resize lock (JS fallback only, `SCOPE.md`
+§8) and iOS needs a Mac + Xcode (`TODO.md` #1) — neither is being worked
+on, not just "not blocking." Revisit if the user reopens either platform;
+the divergent-desktop-UI analysis above stays as the starting point.
 
 **Not yet decided**: the `identifier` in `tauri.conf.json`
 (`com.vokaerian.vkdex`) is a placeholder — becomes the permanent OS-level

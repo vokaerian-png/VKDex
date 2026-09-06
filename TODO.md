@@ -15,9 +15,11 @@ mobile from one project, which Electron can't do at all — the evaluation
 itself, alternatives checked, and the divergent-desktop-UI mechanism are
 recorded in `PLAN.md`'s Tauri migration entry, not duplicated here). Shell
 swap (0.2.11) + native Windows live resize lock (0.2.14, corner-jitter fix
-0.2.16) both **user-confirmed working** on real hardware. macOS/Linux have
-no live lock yet, JS fallback only. Remaining work (first local Android
-round, Electron cleanup) tracked as a commitment in `PLAN.md`, not here.
+0.2.16) both **user-confirmed working** on real hardware. Electron cleanup
+shipped 2026-09-06 (`PLAN.md`). macOS/Linux/iOS builds aren't being pursued
+at this time (user decision 2026-09-06, `PLAN.md`) — the no-live-resize-
+lock gap for macOS/Linux and iOS's Mac+Xcode requirement stay noted there
+for if that's revisited, not tracked as open work here.
 
 **Android release keystore + APK size** (0.2.17 debug build: 731.9 MB,
 **now the release blocker** — `PLAN.md`'s Tauri entry paused Android
