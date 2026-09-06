@@ -7,6 +7,8 @@ thin Tauri wrapper packaging it as a portable Windows `.exe` and android apk.
 Data & assets sources;
 PokeAPI - https://github.com/pokeapi/pokeapi
 PokeDB - https://pokedb.org/
+Bulbapedia - https://bulbapedia.bulbagarden.net/wiki/Main_Page
+Serebii - https://www.serebii.net/
 
 
 
