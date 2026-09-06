@@ -162,6 +162,15 @@ included** — anything but y/yes aborts with nothing built or touched.
 is installed and authenticated (`gh auth login`; the script never handles
 a token) before building.
 
+**README badges**: after a successful `gh release create`, the script rewrites
+root `README.md`'s Windows/Android badges (static `label-vX.Y.Z-color`, linking
+to `releases/tag/vX.Y.Z`) for whichever platform(s) this run actually built,
+then commits+pushes README.md if anything changed — **the one exception to
+"never commits" below**, since a real release with no matching README update
+leaves a stale badge (a single-target run's badge for the *other* platform
+still correctly points at whatever release last shipped that platform).
+No-ops (no commit) if the badge markup isn't found or nothing changed.
+
 **Windows**: `npm run build` (`tauri build`, release profile) →
 `src-tauri/target/release/vkdex.exe` (case-insensitive match; Tauri may
 name it `VKDex.exe`) → zipped via Windows' `tar.exe -a` to
@@ -173,8 +182,10 @@ emits one `.apk` per architecture under `gen/android/app/build/outputs/
 apk/`, but **only the arm64-v8a one is published** → `releases/android/
 VKDex-vX.Y.Z-android-arm64.apk`. **Both** builds sequentially; every
 artifact goes on one `gh release create` with the changelog as notes.
-Never commits, never force-overwrites a tag. `--check` runs the self-tests
-only (changelog parser, target parsing, APK search). Both targets confirmed
+Never force-overwrites a tag; the one commit it ever makes is the README
+badge update above, and only after a real release exists. `--check` runs the
+self-tests only (changelog parser, target parsing, APK search, README badge
+rewrite against a throwaway fixture). Both targets confirmed
 end-to-end on real hardware (`v0.2.17`, 2026-09-05). Two Android setup
 gotchas beyond `ANDROID_SETUP.md`'s original spec are documented there
 (pin `gradle.properties`'s `org.gradle.java.home` to a JDK Gradle 8.14.3
