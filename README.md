@@ -1,4 +1,6 @@
-![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) ![GitHub Release](https://img.shields.io/github/v/release/vokaerian-png/VKDex?style=for-the-badge&color=green&link=https%3A%2F%2Fgithub.com%2Fvokaerian-png%2FVKDex%2Freleases%2Flatest)
+![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) <img alt="GitHub Release" src="https://img.shields.io/github/v/release/vokaerian-png/VKDex?style=for-the-badge&color=green&link=https%3A%2F%2Fgithub.com%2Fvokaerian-png%2FVKDex%2Freleases%2Flatest">
+
+
 
 
 
