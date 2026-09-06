@@ -1,3 +1,6 @@
+![Static Badge](https://img.shields.io/badge/ClaudeAI-orange)
+
+
 # What VKDex is;
 
 A Pokédex app: plain HTML/CSS/JS (no framework) plus a Tauri shell packaging it as a portable Windows `.exe` and android apk.
