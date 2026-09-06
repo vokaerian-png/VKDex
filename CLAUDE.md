@@ -118,7 +118,12 @@ decides *which* `temp/` items are safe to add here in the first place.
 **Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
 `.gitignore` excludes `temp/`, `/releases/`, `/node_modules`,
 `/src-tauri/target` and `/src-tauri/gen` (build output, regenerable); its
-now-inert `electron-app/` line is harmless (§2). **`src-tauri/` source is
+now-inert `electron-app/` line is harmless (§2). **`memory/` and `tools/`
+are also gitignored — user-confirmed intentional 2026-09-06**, not an
+oversight to "fix": the memory bank's real persistence is the local mount
+plus the separate Dropbox backup (§6a), not git, and neither the memory
+bank nor the local data-pipeline scripts are meant to ship in the tracked
+repo. Don't add either back without asking. **`src-tauri/` source is
 tracked** — Tauri is the long-term mobile+desktop build system, not a
 wrapper afterthought (a stray `src-tauri/` ignore line briefly hid the
 whole folder mid-0.2.17; fixed). Releases (§2a) publish built artifacts as
@@ -241,7 +246,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.3.11.** Mirror on every bump, across all of:
+**Current version: 0.3.15.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml` (plus `Cargo.lock`'s own `vkdex` line — a build

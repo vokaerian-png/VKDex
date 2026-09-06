@@ -10,20 +10,13 @@ Sections run sequentially §1-§8; a sub-clause takes its main section's
 number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
 full convention).
 
-**Standing cap: ≤1000 lines** (raised from 950, 2026-09-06, for 0.3.12's
-grab-to-scroll + drawer-handle hit-box fixes — a real compress pass first
-brought the addition down to 1 line over 950 before this raise; from 900
-same day for 0.3.11's drawer redesign + walkthrough + the two reference
-screens; from 850 same
-day for the Phase 4 follow-ups — forme-aware Evolution Line ancestor
-rendering, duplicate-area merge, DLC chip badge, rich `NEW_ENC_SHAPE`
-rendering; previously raised from 800 same day for the csv/-sourced
-pipeline + SV/BDSP/LA encounter shape + DLC-label fix, from 750 same day
-for the evolution per-forme-override mechanism + alt-forme-tappable-fix +
-tap-to-enlarge/needs-source documentation, from 700 for the Alola/Galar/
-Paldea regional-forme mechanism, from 650 for the PLA/Hisui learnset
-split), same 50-line raise-at-a-time rule as `CLAUDE.md` (full shared rule:
-`CLAUDE.md` §7) — tracked independently of that file's own cap.
+**Standing cap: ≤1050 lines** (raised from 1000, 2026-09-06, for the header
+faceplate + dex-grid de-tint §7b addition — a compress pass first cut the
+new section by ~10 lines, still ~27 over; earlier raises: 950→1000 for
+0.3.12's drawer/grid fixes, 900→950 for 0.3.11's drawer redesign, and
+several more before that as real load-bearing content landed, each a
+50-line step), same rule as `CLAUDE.md` (`CLAUDE.md` §7) — tracked
+independently of that file's own cap.
 
 **Cards and their internal data blocks don't get reordered, restructured,
 or reshuffled unless the user explicitly asks for that specific change**
@@ -52,7 +45,7 @@ UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
 two static reference screens (Type Chart, Natures — 0.3.11), and a
-Settings popup (§3). **Current version: 0.3.11** (`CLAUDE.md` §3 for the
+Settings popup (§3). **Current version: 0.3.15** (`CLAUDE.md` §3 for the
 bump policy, `HISTORY.md` for the changelog).
 
 ---
@@ -894,8 +887,8 @@ Bundled local sprites (§2) made the IndexedDB blob cache redundant; the
 
 - **Tokens**: `--raised-shadow`/`--raised-shadow-sm` (raised-surface
   shadows), `--accent-grad` (gradient `--accent` — active region chip,
-  selected Grid Width box, recolor "+N" badge; deliberately *not*
-  `.icon-cube.active`, which stays flat).
+  selected Grid Width box; superseded on the recolor "+N" badge by
+  `--accent-warm-grad` since 0.3.13, below).
 - **Sprite markup**: grid-cell/detail sprites wrapped in
   `.dex-sprite-wrap`/`.detail-sprite-wrap` (radial-gradient circular
   backdrop); the wrap carries sizing, the `<img>` is `width:100%;
@@ -904,14 +897,87 @@ Bundled local sprites (§2) made the IndexedDB blob cache redundant; the
   draw a 5%-opacity silhouette as two `background-image` layers on **one**
   pseudo-element (`::after` paints after real children, so a second
   pseudo-element drew over live content). Both parents need
-  `position:relative`.
+  `position:relative`. **`.dex-panel`'s own watermark moved off-center,
+  0.3.13** (below) — `.detail-body`'s stays centered, unchanged.
 - **Scroll edge fades**: static `mask-image` on `.dex-list`/`.detail-body`
   (not scroll-position-driven) — correct as long as content padding
   exceeds the 14px fade height (both are 14px top since 0.1.34).
+
+---
+
+## 7a. Visual overhaul (0.3.13) — palette, type-tinted cards, drawer LEDs, background glow
+
+User-directed liveliness pass, mockup-reviewed per §5c before shipping
+(`HISTORY.md` 0.3.13 for full mechanism/verification; design reasoning in
+`temp/design-visual-overhaul-2026-09-06/DESIGN_PROPOSAL.md`).
+
+- **Two-accent palette**: `--accent` (blue) stays for chrome; new
+  `--accent-warm`/`--accent-warm-fg`/`--accent-warm-grad` (`#ffcb05`-based)
+  covers in-card selection that clashed with the red card —
+  `.move-tab.active`, `.altforms-recolor-badge`. **Exception**:
+  `.evo-stage.altform-active`'s ring stays blue (user call — yellow was
+  near-invisible against sprite art). Light mode overrides `--accent`
+  **and** `--accent-rgb` to a deeper `#2f8ae6`/`47 138 230` via
+  `.phone:not(.theme-dark)` (2.6:1 → below-minimum contrast on white,
+  fixed; dark mode unaffected).
+- **Type-tinted dex cards — superseded 0.3.15, see §7b.** Shipped here as
+  18 `--t-*` rgb-triple tokens driving a 60%-alpha per-cell type tint via
+  `app.js`'s `effectiveTypes()`/`typeTintStyle()`; a real-screenshot review
+  found it too visually noisy across the dense grid and it was replaced
+  entirely by a depth-only "molded key" treatment with no type colour —
+  both helpers were deleted as dead code. The `--t-*` tokens themselves
+  survive (still used by the detail-screen type glow below). `.dex-panel`
+  gained a diagonal-grain + bevel texture; its watermark moved to a
+  clipped top-right corner (`overflow: hidden` added to actually clip it)
+  — unaffected by the 0.3.15 reversal.
+- **Drawer LEDs**: 5 new `--row-accent` id rules on the drawer rows
+  (`#dexIcon` red / `#favoritesIcon` yellow / `#typeChartIcon` blue /
+  `#naturesIcon` green / `#settingsIcon` slate — user confirmed red for
+  Pokédex over keeping it blue). `.icon`'s stroke is
+  `var(--row-accent, var(--accent))` so the detail topbar's back/star
+  icons (same class, no row context) fall through unchanged.
+  `.menu-btn.active`/`.tour-target` use a dark glyph on the lit tile
+  (white fails contrast on the yellow/green rows).
+- **Background glow**: `.screen`'s near-invisible black-alpha vignette
+  (literally invisible in dark mode) replaced with a mid-grey dot-grille +
+  vignette visible in both themes. `.detail-screen` layers a per-viewed-
+  Pokémon-type glow on top (same `--t-*` tokens), driven by
+  `applyDetailTypeGlow()` from both `renderDetail()` (every navigation
+  path) and `setActiveForme()` (forme swaps). `background-color`/
+  `background-image` stay split (§7's rule, unbroken).
 - **`.screen`/`.detail-screen` backgrounds are split** into
   `background-color` (themed) and `background-image` (fixed vignette) —
   don't collapse into one `background:` shorthand or the vignette breaks
   across theme swaps.
+
+---
+
+## 7b. Header faceplate + dex-grid de-tint (0.3.15)
+
+Follow-up after real-device screenshots of 0.3.13: the header had missed
+the overhaul (still flat), and the grid's type tint (§7a) read as too
+noisy. `overlord` produced 3 options each
+(`temp/design-visual-overhaul-2026-09-06/DESIGN_PROPOSAL_ROUND2.md`);
+architect built 6 mockups; user picked one per aspect
+(`HISTORY.md` 0.3.15 for full detail).
+
+- **Header faceplate**: `.dex-header` (dex/Favorites/Type Chart/Natures)
+  gained `.dex-panel`'s hatch texture plus a CSS hardware ornament — blue
+  lens (`::before`, left), red/yellow/green LED strip (`::after`, right).
+  Lens dims via `.dex-header:has(.dex-title:not(.active))::before` (reuses
+  the header's existing National-Dex-filter active state, §3 — the three
+  static-title screens always show it lit). Padding widened to `44px`
+  sides so the wordmark clears the hardware at 360px.
+- **Dex-grid de-tint (reverses §7a)**: `.dex-sprite-wrap` drops all type
+  colour for a depth-only "molded key" socket, `rgba(0,0,0,0.12)` (user's
+  chosen depth vs. `.09`/`.16`) plus a soft highlight; `.dex-cell` gained a
+  matching raised-gradient base. `effectiveTypes()`/`typeTintStyle()`
+  (0.3.13) deleted as dead code — `applyDetailTypeGlow()` (§7a) resolves
+  its own types independently, unaffected. Type is no longer signaled at
+  the grid-cell level; the detail-screen glow and Facts pills remain the
+  in-app source of truth.
+
+Handoff: `temp/handoff/2026-09-06-191512-header-faceplate-grid-detint.md`.
 
 ---
 

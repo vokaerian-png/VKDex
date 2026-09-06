@@ -11,6 +11,59 @@ record, not load-bearing documentation. Newest first, same as `HISTORY.md`.
 
 User-readability is secondary here — write for density, not prose.
 
+## 0.2.22 → 0.3.0 — Full National Dex (1025/1025) + regional-form Alt Formes + Android single-APK policy
+
+Deliberate version jump (like 0.1.40→0.2.0). Alola/Galar/Paldea landed via
+a 3-way parallel `coder` dispatch (`CLAUDE.md` §5b's real trial — disjoint
+id ranges did NOT make the batch file-disjoint, `populate_region.js
+--assemble` whole-file read-modify-writes all 8 per-id tables regardless;
+worked out on write-timing luck, not design — don't repeat on id-range
+disjointness alone). `POKEMON_DATA` 731 → 1025. Sequential shared-table
+pre-pass first (94 moves/90 abilities/10 items, cross-region overlap
+confirmed); 13 evolution edges fixed post-parallel (cross-region deps:
+Applin→Dipplin, Duraludon→Archaludon). ~641,500 total subagent tokens,
+~39.8 min wall-clock vs. ~72.1 min estimated sequential (~45% reduction,
+token cost unchanged). `overlord` wired 36 species/41 Alolan/Galarian/
+Paldean regional formes into `ALT_FORMS` (109→145 species, 170→211
+formes; `ABILITIES` 294→303) — same rule-7 shape as the existing Hisuian
+formes, region-chip visibility/auto-default generalized, global search
+shows base+variant as separate rows. Android: arm64-v8a-only publish
+policy locked in (`pickApks()` filters `arm64`, `TODO.md` #1 closed).
+`CLAUDE.md`/`SCOPE.md` caps raised to 650/750 for this content.
+Handoffs: `temp/handoff/2026-09-06-093000-shared-tables-prepass.md`,
+`-101230-alola-region-pass.md`, `-081320-galar-region-pass.md`,
+`-081609-paldea-region-pass.md`, `-102332-evolution-edges-fix.md`,
+`-082535-missing-evolution-items-fix.md`,
+`-084148-regional-form-alt-formes.md`, `-version-bump-0.3.0.md`.
+
+---
+
+## 0.2.21 → 0.2.22 — Kalos region pass: 66 species, 12 Megas, Mega-forme tool bug fixed
+
+Standard `populate_region.js` pipeline, ids 650-721 (66 new). +21 MOVES,
++14 ABILITIES, +2 ITEMS_DATA. 12 new Kalos Megas (only Diancie mainline,
+11 Legends: Z-A). Meowstic's male/female Megas deduped to 1 (identical
+stats/ability, sprite-only difference). Tool fix: Mega sprite-key extractor
+now token-wise strips `-mega[-suffix]` instead of a fragile regex (was
+broken by `meowstic-male-mega`, would've broken hyphenated species slugs
+too). `POKEMON_DATA` 665 → 731. `--audit` 0 discrepancies. Git commit was
+blocked this session by a stale `.git/index.lock` (sandbox EPERM, `CLAUDE.md`
+§4) — resolved in a later session. Handoff:
+`temp/handoff/2026-09-06-064647-kalos-region-pass.md`.
+
+---
+
+## 0.2.20 → 0.2.21 — Cargo release profile for Android APK size
+
+0.2.20's signed/ProGuard'd build was still 732 MB (no real change from the
+731.9 MB debug build) — `Cargo.toml` had no `[profile.release]` at all, so
+Rust debug symbols/no-LTO shipped regardless of ProGuard. Added
+`strip/lto/codegen-units=1/opt-level="z"`. Real size impact unmeasured
+in-sandbox (no Android toolchain); per-ABI split deferred to 0.2.21/0.2.22.
+Handoff: `temp/handoff/2026-09-06-045953-cargo-release-profile.md`.
+
+---
+
 ## 0.2.19 → 0.2.20 — Android release signing key + release build profile
 
 Real RSA-2048 release keystore (alias `vkdex`, valid to 2054), stored

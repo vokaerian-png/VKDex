@@ -1106,6 +1106,9 @@
     var shinyImg = document.getElementById("pictureShinySprite");
     if (shinyImg) shinyImg.src = pictureSpriteUrl(entry, tappable ? forme : null, true);
     detailName.textContent = tappable ? forme.name : entry.name;
+    // Same resolution the Facts card's swapEntry uses below: a forme's own
+    // types only count while it actually swaps them.
+    applyDetailTypeGlow((swaps && forme.types) || entry.types);
 
     var factsEl = detailBody.querySelector(".detail-facts");
     if (factsEl) {
@@ -2084,8 +2087,24 @@
     if (itemTap) { e.preventDefault(); openItemPopup(itemTap.getAttribute("data-item")); }
   });
 
+  // Detail screen's per-Pokemon background glow (0.3.13): writes --t1/--t2
+  // on #detailScreen for styles.css's .detail-screen gradients. Called from
+  // renderDetail (every open, arrow step, evolution-tap jump and settings
+  // re-render funnel through it) and from setActiveForme (forme swaps),
+  // which is where the Facts card's own type swap already happens — so the
+  // two can't drift apart.
+  function applyDetailTypeGlow(types) {
+    var st = detailScreen.style;
+    st.removeProperty("--t1");
+    st.removeProperty("--t2");
+    if (!types || !types.length) return;
+    st.setProperty("--t1", "var(--t-" + types[0].toLowerCase() + ")");
+    st.setProperty("--t2", "var(--t-" + (types[1] || types[0]).toLowerCase() + ")");
+  }
+
   function renderDetail(entry) {
     detailName.textContent = entry.name;
+    applyDetailTypeGlow(entry.types);
     detailBody.innerHTML = pictureCardHtml(entry) +
       altFormsCardHtml(entry) +
       evolutionCardHtml(entry) +

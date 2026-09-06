@@ -10,6 +10,19 @@
   --chip-fg: #33363b;
   --divider: rgba(0, 0, 0, 0.08);
   --accent: #4da3ff;
+  /* Same blue as --accent, as a space-separated rgb triple so translucent
+     variants can be written rgb(var(--accent-rgb) / .25) instead of
+     repeating the literal. */
+  --accent-rgb: 77 163 255;
+  /* Second accent (0.3.13): the logo/star yellow, used for selection states
+     that sit INSIDE the dark-red cards, where cool blue on warm red clashed
+     (active Moves tab, recolor "+N" badge). Blue stays the chrome accent
+     (drawer, focus rings, switch, region chips). The Evolution Line's
+     active-forme ring is a deliberate exception and stays blue — yellow was
+     near-invisible against the sprites' own bright colors. */
+  --accent-warm: #ffcb05;
+  --accent-warm-fg: #3a2c00;
+  --accent-warm-grad: linear-gradient(180deg, #ffe066 0%, #ffcb05 100%);
   --dex-panel-bg: #4a1f20;
   --grid-cols: 5;
   --region-cols: 4;
@@ -31,6 +44,38 @@
   /* Upscaled sprites (detail/evolution/item) stay crisp by default; the
      Settings "Pixel Sprites" toggle flips .phone.smooth-sprites (0.1.34). */
   --sprite-rendering: pixelated;
+  /* The 18 type colors as space-separated rgb triples (0.3.13), so one set
+     serves both solid and alpha use without color-mix(): the detail
+     screen's per-Pokemon background glow reads them via rgb(var(--t1) / a).
+     (The dex grid's type-tinted disc also used these until 0.3.15.)
+     Deliberately ADDITIVE — the .type-TYPE pill rules keep their own hexes
+     and are not refactored to consume these. */
+  --t-normal: 168 168 120;
+  --t-fire: 240 128 48;
+  --t-water: 104 144 240;
+  --t-electric: 248 208 48;
+  --t-grass: 120 200 80;
+  --t-ice: 152 216 216;
+  --t-fighting: 192 48 40;
+  --t-poison: 160 64 160;
+  --t-ground: 224 192 104;
+  --t-flying: 168 144 240;
+  --t-psychic: 248 88 136;
+  --t-bug: 168 184 32;
+  --t-rock: 184 160 56;
+  --t-ghost: 112 88 152;
+  --t-dragon: 112 56 248;
+  --t-dark: 112 88 72;
+  --t-steel: 184 184 208;
+  --t-fairy: 238 153 172;
+}
+
+/* #4da3ff is only 2.6:1 on white — below the 3:1 minimum for UI components
+   (focus rings, the switch track, active chips). Light mode gets a slightly
+   deeper blue via the same theme mechanism; dark mode is unaffected. */
+.phone:not(.theme-dark) {
+  --accent: #2f8ae6;
+  --accent-rgb: 47 138 230;
 }
 
 .phone.smooth-sprites {
@@ -91,9 +136,16 @@ body {
   position: absolute;
   inset: 0;
   background-color: var(--screen-bg);
-  /* Faint vignette for depth on the in-app background (see also the outer
-     html/body gradient) — subtle enough to work in both themes. */
-  background-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.05), transparent 65%);
+  /* Casing texture: a fine dot grille over a soft vignette, reading as the
+     device's molded plastic (0.3.13, replaced a black-alpha vignette that
+     was invisible in dark mode by construction). Mid-grey alpha, so the
+     same one image darkens white and lightens near-black — which is why
+     background-color (themed) and background-image (fixed) must stay two
+     separate declarations here and on .detail-screen (SCOPE.md §7). */
+  background-image:
+    radial-gradient(circle, rgb(128 128 128 / 0.16) 1px, transparent 1.6px),
+    radial-gradient(ellipse at 50% 30%, rgb(128 128 128 / 0.10), transparent 65%);
+  background-size: 9px 9px, 100% 100%;
   color: var(--screen-fg);
   z-index: 1;
   transition: background var(--anim-speed) ease, color var(--anim-speed) ease;
@@ -111,16 +163,66 @@ body {
 }
 
 /* Same "inset card" treatment as .dex-panel below: dark red background,
-   thicker black outline, rounded corners. */
+   thicker black outline, rounded corners — plus .dex-panel's molded-tray
+   hatching and CSS-drawn device hardware (0.3.15): a blue lens on the left
+   and the classic red/yellow/green status LEDs on the right. Side padding
+   is widened to 44px so neither ornament reaches the centered wordmark. */
 .dex-header {
+  position: relative;
   margin: 12px 12px 8px;
-  padding: 14px 16px;
+  padding: 14px 44px;
   flex-shrink: 0;
   text-align: center;
-  background: linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
   border: var(--panel-border);
   border-radius: var(--window-radius);
-  box-shadow: var(--raised-shadow);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 0 rgba(0, 0, 0, 0.35), var(--raised-shadow);
+  overflow: hidden;
+}
+
+/* Blue lens. */
+.dex-header::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 2px solid #f2f2f2;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85) 0 3px, rgba(255, 255, 255, 0) 8px),
+    radial-gradient(circle, #8fd0ff 0%, var(--accent) 45%, #1c4f8a 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 8px rgb(var(--accent-rgb) / 0.6);
+  pointer-events: none;
+  transition: opacity var(--anim-speed) ease, box-shadow var(--anim-speed) ease;
+}
+
+/* Three status LEDs. */
+.dex-header::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 34px;
+  height: 8px;
+  transform: translateY(-50%);
+  background:
+    radial-gradient(circle at 4px 4px,  #ff5a5a 0 3px, rgba(0, 0, 0, 0.55) 3.5px 4px, transparent 4.5px),
+    radial-gradient(circle at 17px 4px, #ffcb05 0 3px, rgba(0, 0, 0, 0.55) 3.5px 4px, transparent 4.5px),
+    radial-gradient(circle at 30px 4px, #6ee06e 0 3px, rgba(0, 0, 0, 0.55) 3.5px 4px, transparent 4.5px);
+  pointer-events: none;
+}
+
+/* The lens dims with the title whenever a region filter is active, echoing
+   .dex-title's own inactive state. The three static-title screens keep
+   .active permanently, so their lens stays lit. */
+.dex-header:has(.dex-title:not(.active))::before {
+  opacity: 0.55;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
 }
 
 /* Styled to echo the Pokémon logo: bold display font, yellow fill, blue
@@ -146,7 +248,7 @@ body {
   opacity: 1;
   /* Accent-blue glow marks this as the active filter, echoing the accent
      color used elsewhere rather than only on the Dark Mode toggle. */
-  filter: drop-shadow(0 0 6px rgba(77, 163, 255, 0.55));
+  filter: drop-shadow(0 0 6px rgb(var(--accent-rgb) / 0.55));
 }
 
 .dex-title:active {
@@ -205,8 +307,8 @@ body {
 }
 
 .dex-search-toggle.active {
-  background: rgba(77, 163, 255, 0.22);
-  border-color: rgba(77, 163, 255, 0.5);
+  background: rgb(var(--accent-rgb) / 0.22);
+  border-color: rgb(var(--accent-rgb) / 0.5);
 }
 
 .dex-search-toggle svg {
@@ -307,11 +409,19 @@ body {
   min-height: 0;
   margin: 4px 12px 12px;
   padding: 8px;
-  background: linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+  /* Molded-tray treatment (0.3.13): a fine diagonal grain over the red
+     gradient, plus a top highlight / bottom shadow bevel so the panel
+     reads as a recessed tray the cells sit in rather than a flat fill. */
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
   border: var(--panel-border);
   border-radius: var(--window-radius);
-  box-shadow: var(--raised-shadow);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 0 rgba(0, 0, 0, 0.35), var(--raised-shadow);
   display: flex;
+  /* Clips ::before's corner watermark (below) to the rounded panel edge —
+     it is deliberately positioned past the corner. */
+  overflow: hidden;
 }
 
 /* Low-opacity Poké Ball watermark, drawn in pure CSS (no image asset,
@@ -337,6 +447,21 @@ body {
   background:
     linear-gradient(#fff, #fff) center / 100% 9px no-repeat,
     radial-gradient(circle, transparent 0 56px, #fff 56px 65px, transparent 65px 100%);
+}
+
+/* Dex panel only (0.3.13): the grid covers the centered position almost
+   always, so this one is clipped into the top-right corner where it reads
+   as an emboss on the tray. .detail-body::before keeps the shared centered
+   placement above. */
+.dex-panel::before {
+  top: -48px;
+  right: -48px;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  width: 220px;
+  height: 220px;
+  opacity: 0.07;
 }
 
 /* Scrollable "grid" of every Pokémon in the current filter, dex-number
@@ -423,7 +548,7 @@ body {
    the same reason). */
 .dex-cell {
   width: calc((100% - (var(--grid-cols) - 1) * 8px) / var(--grid-cols));
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)), var(--chip-bg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.06)), var(--chip-bg);
   border: var(--cell-border);
   border-radius: 10px;
   display: flex;
@@ -432,7 +557,7 @@ body {
   padding: 8px 4px 6px;
   text-align: center;
   overflow: hidden;
-  box-shadow: var(--raised-shadow-sm);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), var(--raised-shadow-sm);
 }
 
 /* Soft circular backdrop behind the sprite, separating the icon from the
@@ -442,7 +567,15 @@ body {
   width: 60%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0) 100%);
+  /* Depth-only "molded socket" (0.3.15): the 0.3.13 per-cell type tint was
+     dropped after a real-screenshot review found it too noisy across the
+     dense grid — type is one tap away on the detail screen instead. No
+     per-cell inline custom properties are written any more; this is a
+     recessed disc in both themes, sprite lit from above. */
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 68%),
+    rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.35), 0 1px 0 rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -696,13 +829,18 @@ body {
   justify-content: center;
   background: #35383d;
   border-radius: 10px;
+  /* Faint top gloss so the tile reads as a raised key (0.3.13). */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
+/* --row-accent is set per drawer row (see the id rules further down). The
+   fallback matters: .icon is shared with the detail topbar's back/star
+   buttons, which have no --row-accent in scope and stay accent-blue. */
 .icon {
   width: 22px;
   height: 22px;
   fill: none;
-  stroke: #4da3ff;
+  stroke: var(--row-accent, var(--accent));
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -906,7 +1044,7 @@ body {
 }
 
 .switch input:checked + .switch-track {
-  background: #4da3ff;
+  background: var(--accent);
 }
 
 .switch input:checked + .switch-track .switch-thumb {
@@ -1036,7 +1174,7 @@ body {
 
 .search-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.25);
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.25);
 }
 
 .search-clear {
@@ -1076,7 +1214,18 @@ body {
 .detail-screen {
   z-index: 4;
   background-color: var(--screen-bg);
-  background-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.05), transparent 65%);
+  /* Per-Pokemon type glow (0.3.13) layered over .screen's shared grille,
+     which is repeated as the last two layers since this rule replaces it
+     wholesale. --t1/--t2 are written on #detailScreen by app.js
+     (applyDetailTypeGlow) on every open / forme swap; unset falls back to
+     neutral grey, so a species with no types can't break the background.
+     background-color stays separately themed (SCOPE.md §7). */
+  background-image:
+    radial-gradient(ellipse 130% 42% at 50% -4%, rgb(var(--t1, 128 128 128) / 0.42), transparent 70%),
+    radial-gradient(ellipse 80% 40% at 100% 100%, rgb(var(--t2, var(--t1, 128 128 128)) / 0.22), transparent 70%),
+    radial-gradient(circle, rgb(128 128 128 / 0.16) 1px, transparent 1.6px),
+    radial-gradient(ellipse at 50% 30%, rgb(128 128 128 / 0.10), transparent 65%);
+  background-size: auto, auto, 9px 9px, 100% 100%;
   transform: translateX(100%);
   visibility: hidden;
   pointer-events: none;
@@ -1626,8 +1775,10 @@ body {
   height: 16px;
   padding: 0 3px;
   border-radius: 8px;
-  background: var(--accent-grad);
-  color: #fff;
+  /* Warm accent (0.3.13) — same reason as .move-tab.active: it sits on the
+     dark-red card. */
+  background: var(--accent-warm-grad);
+  color: var(--accent-warm-fg);
   font-size: 9px;
   font-weight: 800;
   display: flex;
@@ -1845,9 +1996,23 @@ body {
 /* A x4 ("extremely effective") weakness gets a thin gradient outline over
    its normal type color, so it reads as more severe than a plain x2. */
 .type-pill.mult-4 {
-  border: 1.5px solid;
-  border-image: linear-gradient(120deg, #fff5b8, #ff3b3b, #fff5b8) 1;
+  position: relative;
   box-shadow: var(--raised-shadow-sm), 0 0 4px rgba(255, 59, 59, 0.55);
+}
+
+/* border-image ignores border-radius (always paints square corners), so the
+   ring is a masked pseudo-element instead — it inherits the 999px rounding. */
+.type-pill.mult-4::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(120deg, #fff5b8, #ff3b3b, #fff5b8);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* Abilities: name + full description from data/abilities.js, hidden last */
@@ -1926,10 +2091,12 @@ body {
   cursor: pointer;
 }
 
+/* Warm accent (0.3.13): this tab sits inside a dark-red card, where the
+   blue accent gradient clashed. */
 .move-tab.active {
   opacity: 1;
-  background: var(--accent-grad);
-  color: #10233a;
+  background: var(--accent-warm-grad);
+  color: var(--accent-warm-fg);
 }
 
 .move-list {
@@ -2224,18 +2391,29 @@ body {
   cursor: pointer;
 }
 
+/* --- Drawer: one accent hue per row (0.3.13), the classic device's LEDs.
+   Every hue is one the app already ships. Inherited by .icon/.icon-cube
+   below; nothing outside a .menu-btn sets --row-accent. --- */
+#dexIcon       { --row-accent: #ff5a3c; }
+#favoritesIcon { --row-accent: #ffcb05; }
+#typeChartIcon { --row-accent: #4da3ff; }
+#naturesIcon   { --row-accent: #78c850; }
+#settingsIcon  { --row-accent: #b0b4bb; }
+
 /* --- Drawer: highlight whichever screen is currently showing --- */
 .menu-btn.active {
-  background: #1d3a57;
-  box-shadow: inset 0 0 0 1.5px var(--accent);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 0 0 1.5px var(--row-accent);
 }
 
 .menu-btn.active .icon-cube {
-  background: var(--accent-grad);
+  background: var(--row-accent);
 }
 
+/* Dark glyph on the lit tile rather than white: white fails on the yellow
+   and green rows, #16181c passes on all five. */
 .menu-btn.active .icon {
-  stroke: #fff;
+  stroke: #16181c;
 }
 
 .menu-btn:focus-visible {
@@ -2258,8 +2436,8 @@ body {
 
 .side-menu.tour-active .menu-btn.tour-target {
   opacity: 1;
-  background: #1d3a57;
-  box-shadow: 0 0 0 2px var(--accent), 0 0 14px rgba(77, 163, 255, 0.6);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 2px var(--row-accent), 0 0 14px var(--row-accent);
 }
 
 .drawer-tour {

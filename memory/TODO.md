@@ -177,6 +177,14 @@ species id, so it doesn't fit `hasFemaleSprite` (`SCOPE.md` §2/§4). Would
 need `ALT_FORMS` entries to carry their own gender-sprite concept — its
 own scoping pass, not started.
 
+**Vivillon/Alcremie confirmed still-missing, 2026-09-06** — surfaced by a
+real screenshot during the visual-overhaul session (both species render
+with no alt-forme/recolor selector at all). **User-decided: defer, not a
+priority right now** — no change made. Vivillon was already tracked below;
+**Alcremie (#869, Galar) is a newly-noted candidate**, not previously
+listed anywhere: 63 flavor/topping combinations (a rule-6 recolorOnly
+candidate like Vivillon, likely with a "+62" badge), no `ALT_FORMS` entry.
+
 **Kalos alt-forme candidates (0.2.22)** — populated species, no
 `ALT_FORMS` entry yet beyond the Megas; needs a user call per species:
 Vivillon's 20 cosmetic patterns (rule 6 — the v7 mockup below, just needs

@@ -22,11 +22,58 @@ lives at the cited reference, not here.
 Committed future work. Only definitive statements about planned functionality
 belong here; ideas still under consideration live in `TODO.md`.
 
-Most entries below have shipped and stay because they record standing
-design decisions that still govern their feature — the per-version detail
+Every entry below has shipped and stays because it records a standing
+design decision that still governs its feature — the per-version detail
 lives in `HISTORY.md`, the current-state description in `CLAUDE.md`/
-`SCOPE.md`. **One open commitment below** (CSV merge → `src/` pipeline
-wiring, not started); everything else has shipped.
+`SCOPE.md`.
+
+---
+
+## Visual overhaul (palette / dex cards / drawer icons / background / header) — shipped 0.3.13, dex-card tint superseded + header added 0.3.15
+
+User wanted the app to feel less flat/simplistic. First real end-to-end
+run of `CLAUDE.md` §5c's mockup-first workflow for a multi-aspect change:
+`overlord` (fable, high effort) read the live `src/styles.css`/`index.html`
+and produced grounded option sets; architect built interactive Cowork
+mockups; the user picked across review rounds; `coder` shipped exactly the
+confirmed picks. Two rounds: 0.3.13 (palette, dex cards, drawer icons,
+background) then a follow-up after real screenshots surfaced two gaps —
+0.3.15 (header, which the first round missed entirely, and a redo of the
+dex-card treatment, which read too noisy in practice). Current behavior:
+`SCOPE.md` §7a/§7b; full mechanism/verification: `HISTORY.md` 0.3.13/0.3.15.
+
+**Standing decisions locked by this pass, for any future design work in
+these areas**:
+- The Evolution Line's active-forme ring (`.evo-stage.altform-active`)
+  is a deliberate **exception** to the two-accent palette — it stays blue,
+  not the new warm yellow, because yellow read as near-invisible against
+  sprite art. Don't "fix" this as an inconsistency without asking first.
+- **Dex-grid cards carry no type colour, by design (0.3.15, reversing
+  0.3.13's type-tinted-disc approach)** — a real-screenshot review found
+  per-cell type tinting too noisy across the dense grid; cells now use a
+  depth-only "molded key" treatment (`rgba(0,0,0,0.12)` socket, user's
+  chosen depth) with no colour signal at all. Don't reintroduce a type-tint
+  disc on dex cards without asking — this was a considered reversal, not
+  an oversight. The `--t-*` type rgb-triple tokens survive for the
+  detail-screen glow only, still intentionally separate from the
+  `.type-TYPE` pill hex rules.
+- `--accent-rgb` must move together with `--accent` in any future
+  light/dark-specific override (both live in `.phone:not(.theme-dark)`
+  now) — a first pass shipped only `--accent` and had to be corrected
+  same-session once the translucent-halo mismatch was noticed.
+- Red was chosen for the Pokédex drawer row over keeping it blue,
+  matching the device's own chassis color — a real content decision, not
+  a default; don't revert without asking.
+- The header's lens/LED hardware dims via the header's own existing
+  National-Dex-filter active state, not a separate mechanism — any future
+  header change should keep reusing that state rather than adding a
+  parallel one.
+
+**Not yet screenshot-confirmed** (`CLAUDE.md` §4 — code-level verified
+only, as with every prior visual change): the clipped corner watermark,
+the 5 drawer LED hues on an active row, the detail-screen type glow, the
+header hardware against the real "Luckiest Guy" render, and the de-tinted
+grid in both themes.
 
 ---
 

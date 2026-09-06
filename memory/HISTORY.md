@@ -16,11 +16,186 @@ they ship, same as always. Once a 16th accumulates, the oldest is
 compacted (a few lines: what shipped, key numbers/decisions, not the full
 verification/mechanism detail) and moved into `HISTORY_ARCHIVE.md` — every
 version's entry still exists somewhere, just not at full length forever.
-Entries prior to 0.2.21 live there now (0.1.0 through 0.2.20 — 0.2.5-0.2.9
-were already folded under one 0.2.4→0.2.10 heading before archival and
-stayed folded as one compacted entry there).
+Entries prior to 0.3.0 live there now (0.1.0 through 0.2.22, plus 0.2.22→
+0.3.0 itself as of this bump — 0.2.5-0.2.9 were already folded under one
+0.2.4→0.2.10 heading before archival and stayed folded as one compacted
+entry there).
 
-**Current version: 0.3.12.**
+**Current version: 0.3.15.**
+
+---
+
+## 0.3.14 → 0.3.15 — Header faceplate + dex-grid de-tint (`overlord` reasoning + `coder`)
+
+Follow-up round after 6 real-device screenshots of 0.3.13: the National Dex
+header had been missed by that overhaul (still flat), and the dex-grid
+type tint read as too noisy in practice. Followed `CLAUDE.md` §5c again:
+`overlord` (fable, high effort) produced 3 concrete options per aspect
+(`temp/design-visual-overhaul-2026-09-06/DESIGN_PROPOSAL_ROUND2.md`);
+architect built 6 interactive mockups (3 header, 3 grid-tint); user picked
+Header Option A "Faceplate" and Grid-tint Option C "depth only" at the
+`.12` socket-alpha tuning (compared against `.09`/`.16` in the mockup);
+`coder` implemented exactly those two picks in one dispatch.
+
+- **Header faceplate**: `.dex-header` (shared by dex/Favorites/Type
+  Chart/Natures) gained `.dex-panel`'s hatch texture plus a CSS-drawn
+  hardware ornament — a blue lens (`::before`, left) and a red/yellow/green
+  3-LED strip (`::after`, right). Lens dims via
+  `.dex-header:has(.dex-title:not(.active))::before`, reusing the header's
+  existing National-Dex-filter-button active state — verified the three
+  static-title screens (Favorites/Type Chart/Natures) hardcode `active` so
+  their lens always stays lit. Padding widened `14px 16px` → `14px 44px`
+  so the hardware never collides with the centered wordmark; hand-traced
+  at the 360px base width (336px header, 244px content box after border/
+  padding) in both Luckiest Guy (~235px) and its Arial Black fallback
+  (~200px) — 4.5px/22px slack either side, no overlap in either font.
+- **Dex-grid de-tint (reverses 0.3.13's type-tinted cards)**:
+  `.dex-sprite-wrap`'s type-tint background replaced entirely by a
+  depth-only "molded key" socket, `rgba(0,0,0,0.12)` (the user's chosen
+  value) plus a soft radial highlight; `.dex-cell` gained a matching
+  raised-gradient base (alphas `.14`/`.06`) merged into its existing
+  `--raised-shadow-sm`. `cellHtml()`'s inline `--t1`/`--t2` style attribute
+  removed. **Dead-code check**: `effectiveTypes()`/`typeTintStyle()`
+  (added 0.3.13) had `cellHtml` as their only caller — both deleted;
+  `applyDetailTypeGlow()` (the separate detail-screen type glow, also
+  0.3.13) builds its own `--t-*` values independently and was confirmed
+  untouched. The `--t-*` tokens themselves survive (still feed that glow).
+- Verified: `node --check` on `app.js`; CSS braces 319/319 → 322/322 (+3
+  rules, expected for the header's 2 pseudo-elements + 1 `:has()` rule);
+  grep-confirmed zero remaining references to `effectiveTypes`/
+  `typeTintStyle`/any `style=` on `.dex-sprite-wrap`. **No visual
+  verification possible** (`CLAUDE.md` §4) — worth a real screenshot: the
+  header hardware against the actual "Luckiest Guy" render, the lens dim
+  state on a region-filtered dex, and the de-tinted grid in both themes.
+
+Handoff: `temp/handoff/2026-09-06-191512-header-faceplate-grid-detint.md`.
+Design proposal (round 2):
+`temp/design-visual-overhaul-2026-09-06/DESIGN_PROPOSAL_ROUND2.md`.
+
+---
+
+## 0.3.13 → 0.3.14 — Fixed ×4 weakness pill's square-corner outline bug (`coder`)
+
+User-reported from a real screenshot of 0.3.13: the "extremely effective"
+×4 weakness pill's rainbow-gradient outline (`.type-pill.mult-4`) rendered
+as a square box sitting on top of the rounded pill, instead of following
+its curve. Root cause: CSS's `border-image` property **ignores
+`border-radius` entirely** by spec — `.type-pill` is `border-radius:999px`
+(a true pill), but `border-image` always paints square corners regardless.
+This predates the 0.3.13 visual overhaul (the rule is untouched by that
+work) — a pre-existing bug the overhaul's screenshot round happened to
+surface.
+
+- Replaced the `border: 1.5px solid` + `border-image` combo with the
+  standard rounded-gradient-border technique: an absolutely-positioned
+  `::before` ring using `border-radius: inherit` (picks up the pill's
+  `999px` automatically) + `mask-composite: exclude` to punch out the
+  center, leaving a true curved ring. Well-supported on both of this
+  project's actual targets (Tauri's WebView2, Android WebView — both
+  Chromium; no Safari/WebKit concern since macOS/iOS aren't pursued,
+  `PLAN.md`'s Tauri migration entry).
+- **Sizing note**: the old real 1.5px border was making the ×4 pill 3px
+  wider/taller than a plain ×2 pill (`.type-pill` has no `box-sizing`
+  override). Removing it and drawing the ring via `inset:-1.5px` on the
+  pseudo-element instead makes the ×4 and ×2 pills the same size, ringed
+  vs. not — a size fix bundled with the shape fix, not a separate change.
+  A comment was left on the rule explaining why it's a pseudo-element, so
+  it doesn't get "simplified" back to `border-image` later.
+- Verified: CSS brace balance unchanged (319/319); `border-image` now has
+  zero occurrences repo-wide (it was the only instance — no sibling bug
+  elsewhere); traced by hand that the pill's own per-type `background`
+  (from its `.type-TYPE` class) is untouched, since the ring is a separate
+  absolutely-positioned layer. No browser in this sandbox (`CLAUDE.md`
+  §4) — not yet screenshot-confirmed.
+
+Handoff: `temp/handoff/2026-09-06-143000-mult4-pill-ring.md`.
+
+---
+
+## 0.3.12 → 0.3.13 — Visual overhaul: color palette, type-tinted dex cards, drawer LED icons, per-type detail background glow (`overlord` reasoning + `coder` ×2)
+
+User-directed: make the app feel less flat/simplistic across 4 aspects
+(colors, dex-screen cards, sidebar icons, background imagery). Followed
+`CLAUDE.md` §5c's mockup-first workflow in full: `overlord` (fable, high
+effort) read the real `src/styles.css`/`index.html` and produced a grounded
+proposal with 2-3 concrete options per aspect
+(`temp/design-visual-overhaul-2026-09-06/DESIGN_PROPOSAL.md`); architect
+built 4 interactive Cowork artifact mockups (one per aspect, each toggling
+between options live in a phone-frame preview) for user review; the user
+picked options across two rounds, then `coder` implemented exactly the
+confirmed picks in one dispatch, plus a same-chain one-line follow-up fix.
+
+- **Palette**: two-accent system. `--accent` (blue) stays for chrome
+  (drawer, search, region chips); new `--accent-warm`/`--accent-warm-fg`/
+  `--accent-warm-grad` (`#ffcb05`-based, the existing logo/star yellow)
+  takes over two in-card selection states that clashed with the dark-red
+  card background at only 2.1:1 contrast: `.move-tab.active` and
+  `.altforms-recolor-badge` (both now 9.2:1). **User-confirmed exception**:
+  `.evo-stage.altform-active` (the Evolution Line's active-forme ring) was
+  deliberately left blue — yellow read as almost invisible against the
+  sprite's own bright colors on the mockup. Also fixed light mode's
+  `--accent`/`--accent-rgb` (2.6:1 on white, below the 3:1 UI-contrast
+  minimum) to a deeper `#2f8ae6` via a new `.phone:not(.theme-dark)` rule —
+  dark mode unaffected. 7 previously-hardcoded `#4da3ff` sites tokenized in
+  the process (2 of them, both `#1d3a57`, fully replaced by the drawer
+  change below rather than just tokenized).
+- **Dex screen**: 18 new `--t-*` rgb-triple tokens (additive — the existing
+  `.type-TYPE` pill hex rules are untouched, not refactored to consume
+  them). `.dex-sprite-wrap` renders a 60%-alpha type-tinted disc per cell
+  (diagonal split for dual types) via a new `effectiveTypes()`/
+  `typeTintStyle()` pair in `app.js` feeding an inline `style` on each
+  cell's sprite wrap — user asked for this softened from the mockup's
+  full-saturation version. `.dex-panel` gained a diagonal-grain + bevel
+  "molded tray" texture; its Poké Ball watermark moved from centered to a
+  clipped top-right corner emboss (`overflow:hidden` added to `.dex-panel`
+  to actually clip it — a `coder`-flagged deviation, architect-confirmed as
+  correct given "clipped corner" was the explicit intent). `.detail-body`'s
+  own separate watermark is untouched.
+- **Drawer**: 5 new per-row `--row-accent` id rules
+  (`#dexIcon`/`#favoritesIcon`/`#typeChartIcon`/`#naturesIcon`/
+  `#settingsIcon` → red/yellow/blue/green/slate — all hues already used
+  elsewhere in the app). `.icon`'s stroke now reads
+  `var(--row-accent, var(--accent))` so the detail topbar's back/star
+  buttons (which share the `.icon` class but have no row context) fall
+  through to the normal accent unchanged. `.menu-btn.active`/`.tour-target`
+  rebuilt around the row's own color with a dark glyph on the lit tile
+  (light text fails contrast on the yellow/green rows). **User-confirmed**:
+  red for the Pokédex row (matching the device's own red chassis) over
+  keeping it blue.
+- **Backgrounds**: `.screen`'s near-invisible black-alpha vignette (was
+  literally invisible in dark mode, black-on-`#121212`) replaced with a
+  mid-grey dot-grille + vignette visible in both themes.
+  `.detail-screen` additionally layers a per-Pokémon-type glow on top
+  (`--t1`/`--t2`-driven, same tokens as the dex cards) via a new
+  `applyDetailTypeGlow()` called from both `renderDetail()` (covers every
+  navigation path: initial open, Prev/Next, evolution-stage taps, Back)
+  and `setActiveForme()` (forme swaps, using the same type resolution the
+  Facts card's pill swap uses, so they can't disagree). `background-color`/
+  `background-image` remain two separate declarations throughout — the
+  theme-swap-safety split (`SCOPE.md` §7) is intact.
+- **Deviation resolved same-chain**: the first `coder` dispatch left
+  `--accent-rgb` un-overridden in light mode (spec'd literally), meaning
+  translucent halos (title glow, search-toggle fill, search-focus ring)
+  would've stayed on the old blue's rgb triple while the solid accent moved
+  — architect confirmed this needed fixing, `coder` added
+  `--accent-rgb: 47 138 230;` to the same light-mode rule in a one-line
+  follow-up. No second version bump (same 0.3.13 change, not a new one).
+- Verified: `node --check` on `app.js`/`data.js`; CSS braces 318/318,
+  parens 461/461; a `vm`-loaded harness confirmed all 18 real type strings
+  across `pokemon.js`/`altforms.js` map to a defined `--t-*` token (0
+  missing/unused — the tint's one real failure mode); grep-confirmed no
+  `#1d3a57` or raw `rgba(77,163,255,…)` survives; `.icon` fallback traced
+  by hand (only the 2 detail-topbar icons fall outside a `--row-accent`
+  scope, confirmed unaffected in color). `index.html` untouched.
+- **No visual verification possible** (`CLAUDE.md` §4, as with every prior
+  design change) — this is code-level-verified only. Worth a real
+  screenshot: the 60% tint against dark-mode cells, the clipped corner
+  watermark, the 5 drawer LED hues on an active row, and the detail-screen
+  type glow.
+
+Handoff: `temp/handoff/2026-09-06-183543-visual-overhaul.md` (includes the
+same-chain follow-up). Design proposal:
+`temp/design-visual-overhaul-2026-09-06/DESIGN_PROPOSAL.md`.
 
 ---
 
@@ -652,208 +827,3 @@ Verified: `node --check` + `JSON.parse` on all touched files;
 `vm`-loaded real data confirms `ALT_FORMS[978].formes.length === 1`;
 `tools/verify_region_data.js` PASS, forme total 211 → 209 (expected −2);
 repo-wide grep for the removed keys/name outside `temp/` — no stragglers.
-
----
-
-## 0.2.22 → 0.3.0 — Full National Dex (1025/1025) + regional-form Alt Formes + Android single-APK policy
-
-**Deliberate version jump, not a +1 continuation** (user-directed, like the
-earlier 0.1.40→0.2.0 precedent) — one consolidated release bundling this
-entire session's work rather than several small bumps. Six dispatches
-(`coder` ×5, `overlord` ×1) plus architect's own memory-bank/tooling edits.
-
-**Android: single-APK release policy.** User confirmed the `--split-per-abi`
-Android build (4 real per-architecture APKs, 68-74 MB each, published as
-0.2.22) works as intended — but future releases publish **arm64-v8a only**,
-alongside Windows: it alone covers virtually every real device from 2018
-onward (Google Play's 64-bit mandate since 2019; armeabi-v7a/x86/x86_64 are
-legacy/emulator-only at this point). `tools/release.js`'s `pickApks()` now
-filters for `arm64` instead of "not universal" — Gradle still builds all 4
-flavors, only the arm64 one gets copied/published. `node tools/release.js
---check` updated and passing (1 apk picked, not 4). `CLAUDE.md` §2a.
-
-**Region population: Alola/Galar/Paldea landed — `POKEMON_DATA` 731 →
-1025, every mainline region now complete.** A real trial of `CLAUDE.md`
-§5b's parallel-dispatch policy, in 4 phases:
-1. **Sequential shared-table pre-pass**: a small `--tables none` extension
-   to `populate_region.js` (writes only `moves.js`/`abilities.js`/
-   `items.js`, skips every per-id table) landed the full cross-region union
-   of new content (94 moves, 90 abilities, 10 items — with confirmed real
-   name overlap across all three regions, e.g. "Fluffy"/"Stakeout" needed
-   by all three) before any parallel writes started. Also fixed a real
-   idempotency bug in `assemble()` found along the way (missing-entry check
-   was blind to a sibling pass's just-landed additions, causing duplicate
-   keys on first attempt — now checks live current data instead of the
-   stale `--generate`-time snapshot).
-2. **3-way parallel `coder` dispatch** (Alola ids 722-809/85 new, Galar
-   810-905/89 new, Paldea 906-1025/120 new) — all hand-authored original
-   descriptions, no copied flavor text. **Real finding, corrects `CLAUDE.md`
-   §5b's premise**: disjoint id ranges did NOT make the batch file-disjoint
-   — `populate_region.js --assemble` does whole-file read-modify-write on
-   all 8 per-id tables regardless of which ids it touches, so all three
-   dispatches wrote the same physical files concurrently. Nothing was
-   corrupted, but all three independently flagged the risk, and the clean
-   result came from real-world write timing serializing by luck, not from
-   the partitioning being safe by design. §5b corrected accordingly — don't
-   re-attempt true parallel writes to these files on id-range disjointness
-   alone.
-3. **Follow-up fixes**: 13 evolution edges restored (`--refresh --tables
-   evolutions` on the 13 affected source ids) after a real cross-region
-   dependency surfaced — Applin (Galar) → Dipplin (Paldea) and Duraludon
-   (Galar) → Archaludon (Paldea) reference targets that didn't exist yet
-   when Galar's own pass ran; 6 more pre-existing edges into Galar
-   (Meowth/Farfetch'd/Mr. Mime/Corsola/Linoone/Yamask → their Galarian-form
-   evolutions) also resolved as a side effect. Two evolution items
-   (`syrupy-apple`, `metal-alloy`) never in any manifest — added by hand,
-   `ITEMS_DATA` 142 → 144.
-4. **Benchmark result**: ~641,500 total subagent tokens across the 6
-   region-population dispatches; ~39.8 min wall-clock (pre-pass sequential
-   ~13.4 min → parallel phase ~19.3 min, the slowest of 3, not their sum →
-   follow-ups sequential ~7.1 min) versus an estimated ~72.1 min fully
-   sequential — a real ~45% wall-clock reduction at unchanged token cost.
-5. **Other data outcomes**: both of `TODO.md` #2's long-waiting
-   `hasFemaleSprite` ids finally set (876 Indeedee, 916 Oinkologne); all 120
-   Paldea `locations` entries are empty (confirmed upstream gap — the CSV
-   clone's `encounters.csv` has zero scarlet/violet rows, not a pipeline
-   bug); `TODO.md` #5's Z-A/Mega Dimension set grew from 35 to 48 formes/44
-   species (Alola +6/5, Galar +1/1, Paldea +6/4); 11 Megas now lack a CSV
-   ability row (was 3).
-
-**Regional-form `ALT_FORMS` wiring — new mechanism, `overlord`.** Two
-user-confirmed design decisions built in one dispatch:
-- **36 species / 41 formes added** — Alolan (18), Galarian (19, Meowth has
-  both an Alolan and a Galarian forme), Paldean (2 species, 4 formes:
-  Wooper + Tauros's 3 breeds) regional variants of pre-existing species,
-  CSV-derived via the same join method the sprite-folder sort already used
-  (`TODO.md` #3). Ordinary rule-7 differently-typed formes, same shape as
-  the 16 Hisuian ones (0.1.30/31) — 24 have their own stats, 38 a plural
-  ability swap. `ALT_FORMS` 109 → 145 species, 170 → 211 formes;
-  `ABILITIES` 294 → 303. Rule 7's "combined stat card for identical-stat
-  formes" clause built for real for the first time (Tauros's 3 breeds).
-  Explicitly left out: `darmanitan-galar-zen` (battle-only, paired with
-  base Darmanitan's own undecided Zen Mode), the 11 Paldea species with
-  their own new-species alt-formes (a different, still-undecided category,
-  `TODO.md` #4), Megas/Gmax, Shellos/Gastrodon.
-- **Region-chip visibility + auto-default, generalized from Hisui.**
-  Selecting the Alola/Galar/Paldea chip now also shows a species with a
-  variant there (not just species natively introduced there), with that
-  region's sprite; opening it from that chip auto-activates the regional
-  forme (`openDetail(id, fromRegion, formeKey)`, was `(id, autoForme)`).
-  Opened from anywhere else, still opens on base.
-- **New: global search shows both forms for regional variants.** A query
-  matching a species with any regional-variant alt forme (Hisuian or the
-  new Alolan/Galarian/Paldean ones) now returns both the base and the
-  variant as separate rows; tapping either opens straight to that forme.
-  Mega/Gmax formes are excluded — never get their own row. Retroactive to
-  the 16 already-shipped Hisuian forms.
-- Verified: `node --check` clean; `verify_region_data.js` PASS (145
-  species/211 formes/303 abilities); `--audit` PASS; a 33-check harness
-  covering chip visibility, auto-default, native-region fallback, search
-  dual-display (including the no-duplicate-in-active-chip and
-  Mega-excluded cases).
-
-**Memory bank**: `CLAUDE.md`/`SCOPE.md` both raised their standing line
-caps by 50 (650/750) for this real, load-bearing content — `CLAUDE.md` §7.
-`TODO.md` #2/#4/#5, `PLAN.md`'s region-population and Alt Formes entries,
-`SCOPE.md` §2/§4 all updated to current state.
-
-Handoffs: `temp/handoff/2026-09-06-093000-shared-tables-prepass.md`,
-`-101230-alola-region-pass.md`, `-081320-galar-region-pass.md`,
-`-081609-paldea-region-pass.md`, `-102332-evolution-edges-fix.md`,
-`-082535-missing-evolution-items-fix.md`,
-`-084148-regional-form-alt-formes.md`, `-version-bump-0.3.0.md`.
-
----
-
-## 0.2.21 → 0.2.22 — Kalos region pass: 66 species, 12 Megas, Mega-forme tool bug fixed (`coder`)
-
-User-directed: finish the Kalos dex (Alola/Galar/Paldea deliberately
-deferred — they need Hisuian-style regional-forme wiring first, not
-started). Standard `tools/populate_region.js` pipeline, ids 650-721 (72
-species; 700/704/705/706/712/713 already existed from the Hisui-29 pass
-and were upserted in place, not duplicated).
-
-- **66 new species**, every per-Pokémon table (`pokemon`/`stats`/
-  `evolutions`/`movesets`/`names`/`locations`/`altforms`); +21 `MOVES`,
-  +14 `ABILITIES`, +2 `ITEMS_DATA` (`sachet`, `whipped-dream`), all hand-
-  authored original paraphrases from the local PokeAPI CSV clone. `POKEMON_
-  DATA` 665 → 731.
-- **12 new Kalos Megas** surfaced via `--tables altforms`, not just
-  Diancie: Chesnaught/Delphox/Greninja/Pyroar/Floette/Meowstic/Malamar/
-  Barbaracle/Dragalge/Hawlucha/Zygarde/Diancie. Only Diancie's is a
-  mainline Gen 6 Mega; the other 11 are Legends: Z-A/Mega Dimension —
-  `TODO.md` #5's awaiting-a-keep/drop-call set grows 24 → 35. Mega Diancie:
-  no typing change (stays Rock/Fairy), stats 50/100/150/100/150/50 →
-  50/160/110/160/110/110 (BST unchanged), ability Magic Bounce tagged
-  "Mega" per rule 4. Mega Barbaracle changes typing, Rock/Water →
-  Rock/Fighting. Mega Zygarde has no ability in the CSVs — same gap as
-  Heatran/Darkrai (`TODO.md` #5), now a 3-item list.
-- **Meowstic's two Megas (male/female) are identical** in name/types/
-  stats/ability, differ only in sprite — shipping both would double the
-  Alt Formes bubble, the stats card, and the rule-4 ability row. `coder`
-  deduped in the extractor (first/default forme wins, male kept) rather
-  than hand-editing the data, so `--audit` stays at its documented 0-
-  discrepancy baseline instead of carrying 3 permanent false positives.
-  The bundled female Mega Meowstic art is now unreferenced — same shape as
-  `TODO.md` #4's already-deferred gendered-alt-forme gap. Reversible in
-  ~2 lines; **not yet confirmed with the user** — flagged, not decided.
-- **Tool fix**: the Mega sprite/key extractor assumed a `<species>-mega
-  [-suffix]` identifier shape (`.replace(/^[^-]+-mega/, "")`), which broke
-  on `meowstic-male-mega`/`meowstic-female-mega` (nothing stripped →
-  garbage path) and would have broken hyphenated species slugs (`ho-oh`,
-  `porygon-z`) too. Replaced with a token-wise strip. Fixed 6 forms clone-
-  wide (Meowstic ×2, Magearna, Tatsugiri ×3) — un-breaks the future Alola
-  and Paldea passes, not just this one.
-- **Two documented region-pass gotchas, both handled**: 704 Goomy's
-  `note` was dropped by the evolutions upsert as expected, restored byte-
-  identical by hand. `hasFemaleSprite: true` set by hand on 668 (Pyroar)
-  and 678 (Meowstic) — 2 of `TODO.md` #2's 4 waiting ids now closed;
-  876/916 remain for Alola/Galar.
-- Verified: `node --check` on all 13 touched files; `verify_region_data.js`
-  PASS (auto-run + re-run after hand fixes); full `--audit` over all 731
-  ids, 0 discrepancies; a purpose-written out-of-range diff confirmed
-  nothing outside 650-721 changed and no existing `MOVES`/`ABILITIES`/
-  `ITEMS_DATA` key was edited (covers the 211/234/236/265/550 hand-
-  authored-field sanity check). No `app.js`/`index.html`/`styles.css`
-  change needed or made; nothing reordered.
-- **Git commit blocked this session**: `git add -A` staged cleanly, but
-  `git commit` hung/left a stale `.git/index.lock` — the sandbox's
-  documented mount-EPERM failure mode (`CLAUDE.md` §4), not a data
-  problem. All Kalos data is on disk and verified; **the commit itself
-  still needs to happen** (delete the lock, then commit+push) on a
-  session/machine that can reach it.
-
-Handoff: `temp/handoff/2026-09-06-064647-kalos-region-pass.md`.
-
----
-
-## 0.2.20 → 0.2.21 — Cargo release profile for Android APK size (`coder`)
-
-User-directed follow-up: 0.2.20's real signed/minified/ProGuard'd Android
-build came out at 732 MB — essentially unchanged from the old 731.9 MB
-*debug* build. Root cause: `src-tauri/Cargo.toml` had no `[profile.release]`
-table at all, so every release build (all 4 ABIs bundled into the universal
-APK) shipped unstripped Rust debug symbols and no LTO — ProGuard/minify
-only ever touched the Kotlin/Java side.
-
-- **`src-tauri/Cargo.toml`**: added `[profile.release]` — `strip = true`,
-  `lto = true`, `codegen-units = 1`, `opt-level = "z"` — between `[package]`
-  and `[lib]`. Nothing else in the file touched; nothing under
-  `src-tauri/gen/` touched (per-ABI split APKs stay a separate, still-
-  unrequested lever, `TODO.md` #1).
-- **Tradeoff, not a defect**: `codegen-units = 1` + fat LTO will make
-  desktop `tauri build` noticeably slower too, not just Android — the
-  standard cost of this profile shape.
-- Verified: `node --check` on `src/data.js`; `package.json`/
-  `tauri.conf.json` re-parsed as JSON (both `0.2.21`); all four version
-  mirrors confirmed; `Cargo.toml` structure checked by script (table
-  count/order, bracket balance, no duplicate headers) — no TOML parser
-  available in-sandbox to do better, and no Rust/Android toolchain to
-  actually compile it (`CLAUDE.md` §4, permanent). **Unverified by build**:
-  the real size impact is unmeasured until the next `--target=android`
-  release run on the user's own machine.
-
-Handoff: `temp/handoff/2026-09-06-045953-cargo-release-profile.md`.
-
----
-
