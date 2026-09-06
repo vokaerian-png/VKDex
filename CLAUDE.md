@@ -4,10 +4,11 @@
 `memory/SCOPE.md` right after.** Primary truth for this project's file
 layout, versioning, workflow, and session process. This file alone stays at
 the project root (Cowork auto-loads project instructions from a root
-`CLAUDE.md`); its five companions live in `memory/` (§1): `SCOPE.md` (app
+`CLAUDE.md`); its six companions live in `memory/` (§1): `SCOPE.md` (app
 scope/design), `PLAN.md` (committed roadmap), `TODO.md` (ideas under
 consideration), `HISTORY.md` (version changelog), `HISTORY_ARCHIVE.md`
-(`HISTORY.md`'s compacted overflow, §6c).
+(`HISTORY.md`'s compacted overflow, §6c), `HISTORY_PUSH.md` (current-
+version release notes for the git pipeline, §6d).
 
 **Reflect changes back into the memory bank as part of the same task** —
 code changes here (+`HISTORY.md` for a version bump), design/scope
@@ -38,6 +39,7 @@ VKDex/
   memory/                                     <- rest of the memory bank (moved here 2026-09-06)
     SCOPE.md  PLAN.md  TODO.md  HISTORY.md
     HISTORY_ARCHIVE.md                        <- HISTORY.md's compacted overflow (§6c)
+    HISTORY_PUSH.md                            <- current-version release notes (§6d)
   package.json                                <- Tauri CLI/API devDeps, dev/build scripts
   src/                                       <- THE APP. All app edits go here.
     index.html
@@ -82,8 +84,8 @@ files lived at root before the move into `src/`).
 
 **`memory/`** (moved out of root 2026-09-06 to declutter file navigation;
 `CLAUDE.md` stays put — see intro) — every cross-reference elsewhere
-(`.claude/agents/*.md`, `tools/release.js`'s `HISTORY_MD` path, §6/§6a/§6c
-below) was updated in the same pass.
+(`.claude/agents/*.md`, `tools/release.js`'s memory-bank file paths,
+§6/§6a/§6c/§6d below) was updated in the same pass.
 
 **Task-scoped scratch goes in its own `temp/<task-slug>/` subfolder, never
 loose at `temp/` root** (user-specified 2026-09-05, after ~72MB of
@@ -141,14 +143,15 @@ entry itself for what changed.
 GitHub Release for the current version. Order: `APP_VERSION` must equal
 `src-tauri/tauri.conf.json`'s and `Cargo.toml`'s versions (hard error
 naming the mismatch); clean tracked working tree; unused `vX.Y.Z` tag
-(local + remote); that version's `HISTORY.md` entry with its leading
-attribution paragraph stripped (text before the first `- `/`**` line);
-then a target menu (1 Android / 2 Windows / 3 Both — `--target=` skips
-it), a printed summary, and a **mandatory `Proceed? [y/N]` on every run,
-dry-run included** — anything but y/yes aborts with nothing built or
-touched. `--dry-run` only skips the final tag/push/publish. Non-dry runs
-check `gh` is installed and authenticated (`gh auth login`; the script
-never handles a token) before building.
+(local + remote); `memory/HISTORY_PUSH.md`'s content, read verbatim as the
+release notes (§6d — fails loudly if it doesn't mention "→ `APP_VERSION`",
+catching a stale leftover entry from the previous bump); then a target
+menu (1 Android / 2 Windows / 3 Both — `--target=` skips it), a printed
+summary, and a **mandatory `Proceed? [y/N]` on every run, dry-run
+included** — anything but y/yes aborts with nothing built or touched.
+`--dry-run` only skips the final tag/push/publish. Non-dry runs check `gh`
+is installed and authenticated (`gh auth login`; the script never handles
+a token) before building.
 
 **Windows**: `npm run build` (`tauri build`, release profile) →
 `src-tauri/target/release/vkdex.exe` (case-insensitive match; Tauri may
@@ -405,10 +408,10 @@ dispatch is the exception, for a batch of genuinely disjoint-file work
 
 ## 6. How this memory bank is maintained
 
-These six files **are** the durable memory bank (the older `stack.md`/
+These seven files **are** the durable memory bank (the older `stack.md`/
 `version.md`/`workflow.md`/`navigation.md`/`MEMORY.md` store is superseded
 as of 2026-09-02, kept only as a possibly-stale record). `CLAUDE.md` stays
-at the project root; the other five live in `memory/` (moved 2026-09-06,
+at the project root; the other six live in `memory/` (moved 2026-09-06,
 §1) — a plain filename below (`SCOPE.md`, etc.) means `memory/SCOPE.md`
 unless stated otherwise.
 
@@ -426,6 +429,8 @@ unless stated otherwise.
 - **`HISTORY.md`**: the 15 most recent version-history entries, newest
   first, one heading per bump (§6c).
 - **`HISTORY_ARCHIVE.md`**: `HISTORY.md`'s compacted overflow (§6c).
+- **`HISTORY_PUSH.md`**: the current version's release notes for
+  `tools/release.js` (§6d).
 
 Section numbering across `CLAUDE.md`/`SCOPE.md` was reset 2026-09-05 to run
 sequentially (1, 2, 3, ...) with no gaps; a sub-clause of a main section
@@ -507,6 +512,25 @@ cutting `HISTORY.md` 1758 → 777 lines.
 
 ---
 
+## 6d. HISTORY_PUSH.md — release-notes staging file
+
+Added 2026-09-06. Holds exactly one entry — the current/latest version's
+changelog, written at the same compact density as `HISTORY_ARCHIVE.md`
+(not `HISTORY.md`'s full mechanism/verification detail), since its literal
+content is what `tools/release.js` writes as the GitHub Release notes body
+(§2a) — no more extracting/stripping an entry out of `HISTORY.md`.
+**Overwritten, not appended**, same convention as `HANDOFF.md` (§6b):
+whoever bumps the version rewrites this file's single entry for that
+version, as part of the same task that updates `HISTORY.md`/
+`HISTORY_ARCHIVE.md`. An HTML comment at the top explains the file to a
+human editor without leaking into the rendered release notes (GitHub
+strips markdown comments). `release.js`'s real changelog step and its
+`--check` self-test both fail loudly if the file doesn't mention "→
+`<current APP_VERSION>`" — catching a stale leftover entry from the
+previous bump before it ships as this release's notes.
+
+---
+
 ## 7. Documentation conventions for this file
 
 1. **Concise, but human-readable.** Sections should read easily and let a
@@ -559,4 +583,6 @@ resumes without re-deriving state.
 **Siblings:** `SCOPE.md` = app scope & design (UI, navigation, data model)
 · `PLAN.md` = committed roadmap · `TODO.md` = ideas under consideration ·
 `HISTORY.md` = version changelog (15-entry rolling window, §6c) ·
-`HISTORY_ARCHIVE.md` = `HISTORY.md`'s compacted overflow.
+`HISTORY_ARCHIVE.md` = `HISTORY.md`'s compacted overflow ·
+`HISTORY_PUSH.md` = current-version release notes for the git pipeline
+(§6d).

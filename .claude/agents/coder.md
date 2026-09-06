@@ -47,9 +47,10 @@ Ground rules:
   any change to `src/` — unless architect's prompt says otherwise (e.g. a
   multi-step task architect wants bumped once at the end).
 - **You do not touch `CLAUDE.md`/`PLAN.md`/`TODO.md`/`HISTORY.md`/
-  `HISTORY_ARCHIVE.md`.** Reflecting a shipped change into the memory bank
-  is architect's job, from your handoff report — don't do it yourself, even
-  if you can see exactly what the `HISTORY.md` entry should say.
+  `HISTORY_ARCHIVE.md`/`HISTORY_PUSH.md`.** Reflecting a shipped change
+  into the memory bank is architect's job, from your handoff report —
+  don't do it yourself, even if you can see exactly what the `HISTORY.md`
+  entry should say.
 - **Write a handoff report** to `VKDex/temp/handoff/` (project-relative —
   reachable from both a full Claude Code CLI session and a Cowork
   sandbox's mounted folder; the original `~/.claude/handoff/` convention

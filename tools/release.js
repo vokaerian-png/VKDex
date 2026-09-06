@@ -1,5 +1,5 @@
 // Local build-and-publish script: version-check -> clean-tree check -> tag check
-// -> changelog extraction -> pick target(s) -> confirm -> Tauri build(s) ->
+// -> read memory/HISTORY_PUSH.md -> pick target(s) -> confirm -> Tauri build(s) ->
 // git tag/push -> one GitHub release carrying every built artifact.
 // Run from anywhere: `node tools/release.js [--target=android|windows|both] [--dry-run|--check]`.
 //
@@ -7,9 +7,9 @@
 //   --dry-run   everything except the git tag/push and `gh release create` steps
 //               (still builds locally, still prints the changelog). The
 //               "Proceed?" confirmation is asked on every run, dry-run included.
-//   --check     run the self-checks (changelog parser against known HISTORY.md
-//               entries, target parsing, APK search) and exit. No git, no
-//               network, no build.
+//   --check     run the self-checks (live memory/HISTORY_PUSH.md against the
+//               real APP_VERSION, target parsing, APK search) and exit. No git,
+//               no network, no build.
 //
 // Meant to be run on the user's own Windows machine: needs node, git, npm,
 // Windows' built-in tar.exe (zip via `-a`), the Tauri CLI (root package.json
@@ -28,7 +28,7 @@ const ROOT = path.join(__dirname, "..");
 const DATA_JS = path.join(ROOT, "src", "data.js");
 const TAURI_CONF = path.join(ROOT, "src-tauri", "tauri.conf.json");
 const CARGO_TOML = path.join(ROOT, "src-tauri", "Cargo.toml");
-const HISTORY_MD = path.join(ROOT, "memory", "HISTORY.md");
+const HISTORY_PUSH_MD = path.join(ROOT, "memory", "HISTORY_PUSH.md");
 const RELEASES_DIR = path.join(ROOT, "releases");
 const WIN_RELEASE_DIR = path.join(ROOT, "src-tauri", "target", "release");
 const ANDROID_APP_DIR = path.join(ROOT, "src-tauri", "gen", "android", "app");
@@ -99,34 +99,21 @@ function pickApk(files) {
 
 // ---------------------------------------------------------------- changelog
 
-// Pull one version's entry out of HISTORY.md. Headings are
-// `## <old> → <new> — <title>`; the entry runs to the next `## ` or `---`.
-// The first block after the heading is the attribution/process paragraph
-// (`coder` only, ... / `overlord` pass, ...) and is dropped — unless it starts
-// with `- ` or `**`, which means the entry has no attribution and that block is
-// real changelog content.
-function extractChangelog(md, version) {
-  const v = version.replace(/\./g, "\\.");
-  const heading = new RegExp("^## [^\\n]*\u2192\\s*" + v + "\\s*\u2014[^\\n]*$", "m");
-  const m = heading.exec(md);
-  if (!m) return null;
-
-  const after = md.slice(m.index + m[0].length);
-  const end = /^(## |---\s*$)/m.exec(after);
-  let body = end ? after.slice(0, end.index) : after;
-
-  // Skip every leading prose paragraph (blank-line separated), not just the
-  // first — an entry can carry more than one attribution/context paragraph
-  // before the real changelog content starts (e.g. 0.2.18: a root-cause
-  // paragraph, then a separate "user's call" paragraph, then the bullets).
-  const lines = body.replace(/\r\n/g, "\n").split("\n");
-  let i = 0;
-  while (i < lines.length) {
-    while (i < lines.length && lines[i].trim() === "") i++;
-    if (i >= lines.length || /^(- |\*\*)/.test(lines[i])) break;
-    while (i < lines.length && lines[i].trim() !== "") i++;
+// memory/HISTORY_PUSH.md holds exactly one entry — the version about to be
+// tagged — behind a leading explanatory HTML comment. Everything after that
+// comment is the GitHub Release notes body, used verbatim. Returns
+// { text, problems }; a non-empty problems array means don't release.
+function readPushChangelog(version) {
+  if (!fs.existsSync(HISTORY_PUSH_MD)) return { text: "", problems: ["file not found: " + HISTORY_PUSH_MD] };
+  const text = fs.readFileSync(HISTORY_PUSH_MD, "utf8").replace(/^\s*(?:<!--[\s\S]*?-->\s*)+/, "").trim();
+  const problems = [];
+  if (!text) {
+    problems.push("empty after stripping the leading HTML comment");
+  } else if (!new RegExp("→\\s*" + version.replace(/\./g, "\\.")).test(text)) {
+    // Catches a stale entry left over from the previous bump.
+    problems.push("no \"→ " + version + "\" heading anywhere in it");
   }
-  return lines.slice(i).join("\n").trim();
+  return { text, problems };
 }
 
 function selfCheck() {
@@ -136,27 +123,16 @@ function selfCheck() {
     console.log((ok ? "PASS  " : "FAIL  ") + label + (detail ? " — " + detail : ""));
   };
 
-  // 1. changelog parser, sampled live off HISTORY.md's own headings — not
-  // hardcoded version strings, since HISTORY.md is a 15-entry rolling
-  // window (CLAUDE.md §6c) and any pinned old version eventually ages out
-  // into HISTORY_ARCHIVE.md, which would silently break this test forever.
-  const md = fs.readFileSync(HISTORY_MD, "utf8");
-  const headingRe = /^## [^\n]*→\s*(\S+)\s*—/gm;
-  const versions = [];
-  let hm;
-  while ((hm = headingRe.exec(md)) && versions.length < 3) versions.push(hm[1]);
-  if (!versions.length) report(false, "changelog sampling", "no headings found in " + HISTORY_MD);
-  for (const version of versions) {
-    const out = extractChangelog(md, version);
-    const problems = [];
-    if (out === null) {
-      problems.push("no entry found");
-    } else {
-      if (!out.length) problems.push("empty body");
-      if (/^`[a-z]+`/.test(out)) problems.push("output starts with a backtick agent name: " + out.split("\n")[0]);
-      if (!out.startsWith("- ") && !out.startsWith("**")) problems.push("output does not start with changelog content: " + out.split("\n")[0]);
-    }
-    report(!problems.length, "changelog " + version, problems.length ? problems.join("; ") : out.split("\n")[0].slice(0, 70));
+  // 1. the real release notes — live HISTORY_PUSH.md against the real
+  // APP_VERSION, i.e. exactly what the release step will do. Nothing
+  // hardcoded, so nothing here can go stale.
+  const checkVm = /APP_VERSION\s*=\s*["']([^"']+)["']/.exec(fs.readFileSync(DATA_JS, "utf8"));
+  if (!checkVm) {
+    report(false, "APP_VERSION", "not found in " + DATA_JS);
+  } else {
+    const { text, problems } = readPushChangelog(checkVm[1]);
+    report(!problems.length, "HISTORY_PUSH.md for " + checkVm[1],
+      problems.length ? problems.join("; ") : text.split("\n")[0].slice(0, 70));
   }
 
   // 2. target parsing
@@ -256,14 +232,15 @@ console.log("free locally and on origin");
 
 // --------------------------------------------------------------- changelog
 
-step("Changelog (HISTORY.md, " + VERSION + ")");
-const changelog = extractChangelog(fs.readFileSync(HISTORY_MD, "utf8"), VERSION);
-if (changelog === null) {
-  fail("no HISTORY.md entry for version " + VERSION + " — expected a heading like \"## <old> \u2192 " + VERSION + " \u2014 <title>\". Write the entry first.");
+step("Changelog (memory/HISTORY_PUSH.md, " + VERSION + ")");
+const push = readPushChangelog(VERSION);
+if (push.problems.length) {
+  fail(
+    "memory/HISTORY_PUSH.md: " + push.problems.join("; ") +
+    "\nWrite this version's entry there first — an HTML comment, then \"## <old> → " + VERSION + "\" and the compact paragraph."
+  );
 }
-if (changelog === "") {
-  fail("HISTORY.md entry for " + VERSION + " is empty after stripping its attribution paragraph.");
-}
+const changelog = push.text;
 console.log("-".repeat(60));
 console.log(changelog);
 console.log("-".repeat(60));
