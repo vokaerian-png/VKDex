@@ -1123,10 +1123,16 @@ function assemble(results, descriptions, tables, strict, current) {
   const want = tb => tables.indexOf(tb) !== -1;
 
   // ---- moves.js / abilities.js additions (only those with a description) ----
-  const addableMoves = results.missingMoves.filter(m => d.moves[m.name]);
-  const addableAbilities = results.missingAbilities.filter(a => d.abilities[a.name]);
-  const unresolvedMoves = new Set(results.missingMoves.filter(m => !d.moves[m.name]).map(m => m.name));
-  const unresolvedAbilities = new Set(results.missingAbilities.filter(a => !d.abilities[a.name]).map(a => a.name));
+  // "missing" is a snapshot taken at --generate time; another region's pass
+  // may have landed the same entry since, so re-check moves.js/abilities.js/
+  // items.js as they stand now — otherwise a second pass writes a duplicate
+  // key (and an entry present but undescribed here isn't unresolved at all).
+  const newMoves = results.missingMoves.filter(m => !current.moves[m.name]);
+  const newAbilities = results.missingAbilities.filter(a => !current.abilities[a.name]);
+  const addableMoves = newMoves.filter(m => d.moves[m.name]);
+  const addableAbilities = newAbilities.filter(a => d.abilities[a.name]);
+  const unresolvedMoves = new Set(newMoves.filter(m => !d.moves[m.name]).map(m => m.name));
+  const unresolvedAbilities = new Set(newAbilities.filter(a => !d.abilities[a.name]).map(a => a.name));
   const passLabel = results.slug[0].toUpperCase() + results.slug.slice(1);
   if (addableMoves.length) {
     const lines = addableMoves.map(mv => moveEntryText(mv, d.moves[mv.name]) + ",");
@@ -1141,13 +1147,21 @@ function assemble(results, descriptions, tables, strict, current) {
   // ---- items.js additions (0.2.7) — same rule as moves/abilities: a
   // referenced item with no description is an error in strict mode; in
   // lenient mode the pokemon entry that needs it is skipped below.
-  const missingItems = results.missingItems || [];
+  const missingItems = (results.missingItems || []).filter(i => !current.items[i.slug]);
   const addableItems = missingItems.filter(i => d.items[i.slug]);
   const unresolvedItems = new Set(missingItems.filter(i => !d.items[i.slug]).map(i => i.slug));
   if (addableItems.length) {
     const lines = addableItems.map(it => itemEntryText(it, d.items[it.slug]) + ",");
     const block = `\n  // Items added during the ${passLabel} CSV-pipeline pass.\n${lines.join("\n")}\n};`;
     fs.writeFileSync(path.join(DATA_DIR, "items.js"), fs.readFileSync(path.join(DATA_DIR, "items.js"), "utf8").replace(/\n\};\s*$/, block + "\n"));
+  }
+
+  // --tables none: shared moves/abilities/items only, no per-id tables. Lets
+  // the shared-file writes above be landed once, up front, so a later
+  // parallel per-id dispatch can't race on them (they become no-ops).
+  if (tables.length === 1 && tables[0] === "none") {
+    console.log(`--tables none: shared files only. New moves added: ${addableMoves.length}, abilities: ${addableAbilities.length}, items: ${addableItems.length}. No per-id tables written.`);
+    return;
   }
 
   const ids = results.ids.filter(id => results.pokemon[id]);
@@ -1483,6 +1497,7 @@ function usageAndExit(msg) {
     "       node tools/populate_region.js --gaps",
     `Regions: ${Object.keys(REGION_GEN).join(", ")}`,
     `Tables:  ${ALL_TABLES.join(", ")} (default all; moves/abilities additions always)`,
+    "         none — shared moves/abilities/items additions only, skip every per-id table",
     "  --dry-run   resolve + print all auto-derived params, no writes",
     "  --generate  extract CSV data -> temp/<slug>_results.json + temp/<slug>_needs_descriptions.json",
     "  --assemble  consume temp/<slug>_results.json + descriptions.json -> upsert src/data/*.js, then verify (strict)",
@@ -1501,7 +1516,7 @@ function parseArgs(argv) {
     else if (a === "--audit" || a === "--gaps") out.action = a;
     else if (a in REGION_GEN) out.target = { region: a };
     else if (a === "--ids") { const v = argv[++i] || ""; out.target = { ids: v.split(",").map(s => Number(s.trim())).filter(n => Number.isInteger(n) && n > 0) }; if (!out.target.ids.length) usageAndExit("--ids needs a comma-separated id list"); }
-    else if (a === "--tables") { out.tables = (argv[++i] || "").split(",").map(s => s.trim()).filter(Boolean); const bad = out.tables.filter(t => ALL_TABLES.indexOf(t) === -1); if (bad.length || !out.tables.length) usageAndExit("unknown table(s): " + bad.join(", ")); }
+    else if (a === "--tables") { out.tables = (argv[++i] || "").split(",").map(s => s.trim()).filter(Boolean); const bad = out.tables.filter(t => ALL_TABLES.indexOf(t) === -1); if (!(out.tables.length === 1 && out.tables[0] === "none") && (bad.length || !out.tables.length)) usageAndExit("unknown table(s): " + bad.join(", ")); }
     else if (["--dry-run", "--generate", "--assemble", "--refresh"].indexOf(a) !== -1) { out.action = a; if ((a === "--assemble" || a === "--refresh") && argv[i + 1] && !argv[i + 1].startsWith("--")) out.descriptions = argv[++i]; }
     else usageAndExit("unrecognized argument: " + a);
   }

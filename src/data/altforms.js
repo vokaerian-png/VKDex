@@ -273,6 +273,297 @@ var ALT_FORMS = {
         abilities: ["Overgrow", "Scrappy"], hiddenAbility: "Scrappy" }
     ]
   },
+  // --- Alolan / Galarian / Paldean regional forms (2026-09-06) ---
+  // Same shape as the Hisui block above: one forme per regional variant,
+  // keyed by the region's REGIONS id ("alola"/"galar"/"paldea"; Paldean
+  // Tauros's three breeds key "paldea-combat"/"-blaze"/"-aqua"), every one
+  // differently-typed from its base (rule 7, tap-to-swap). Types/stats/
+  // abilities CSV-authoritative off the form's own pokemon id; `stats`/
+  // `abilities` omitted where identical to the base. Battle-only sub-forms
+  // (pokemon_forms.csv is_battle_only — Galarian Darmanitan's Zen Mode) are
+  // not modeled, same as base Darmanitan's own Zen Mode. Raichu (26) and
+  // Slowbro (80) already had Mega entries — their regional forme sits inside
+  // those entries in the Mega block below.
+  19: { // Rattata — Alolan Rattata, Dark/Normal, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Rattata", sprite: "alola/rattata",
+        types: ["Dark", "Normal"],
+        abilities: ["Gluttony", "Hustle", "Thick Fat"], hiddenAbility: "Thick Fat" }
+    ]
+  },
+  20: { // Raticate — Alolan Raticate, Dark/Normal, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Raticate", sprite: "alola/raticate",
+        types: ["Dark", "Normal"],
+        stats: { hp: 75, attack: 71, defense: 70, spAttack: 40, spDefense: 80, speed: 77 },
+        abilities: ["Gluttony", "Hustle", "Thick Fat"], hiddenAbility: "Thick Fat" }
+    ]
+  },
+  27: { // Sandshrew — Alolan Sandshrew, Ice/Steel, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Sandshrew", sprite: "alola/sandshrew",
+        types: ["Ice", "Steel"],
+        stats: { hp: 50, attack: 75, defense: 90, spAttack: 10, spDefense: 35, speed: 40 },
+        abilities: ["Snow Cloak", "Slush Rush"], hiddenAbility: "Slush Rush" }
+    ]
+  },
+  28: { // Sandslash — Alolan Sandslash, Ice/Steel, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Sandslash", sprite: "alola/sandslash",
+        types: ["Ice", "Steel"],
+        stats: { hp: 75, attack: 100, defense: 120, spAttack: 25, spDefense: 65, speed: 65 },
+        abilities: ["Snow Cloak", "Slush Rush"], hiddenAbility: "Slush Rush" }
+    ]
+  },
+  37: { // Vulpix — Alolan Vulpix, Ice, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Vulpix", sprite: "alola/vulpix",
+        types: ["Ice"],
+        abilities: ["Snow Cloak", "Snow Warning"], hiddenAbility: "Snow Warning" }
+    ]
+  },
+  38: { // Ninetales — Alolan Ninetales, Ice/Fairy, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Ninetales", sprite: "alola/ninetales",
+        types: ["Ice", "Fairy"],
+        stats: { hp: 73, attack: 67, defense: 75, spAttack: 81, spDefense: 100, speed: 109 },
+        abilities: ["Snow Cloak", "Snow Warning"], hiddenAbility: "Snow Warning" }
+    ]
+  },
+  50: { // Diglett — Alolan Diglett, Ground/Steel, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Diglett", sprite: "alola/diglett",
+        types: ["Ground", "Steel"],
+        stats: { hp: 10, attack: 55, defense: 30, spAttack: 35, spDefense: 45, speed: 90 },
+        abilities: ["Sand Veil", "Tangling Hair", "Sand Force"], hiddenAbility: "Sand Force" }
+    ]
+  },
+  51: { // Dugtrio — Alolan Dugtrio, Ground/Steel, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Dugtrio", sprite: "alola/dugtrio",
+        types: ["Ground", "Steel"],
+        stats: { hp: 35, attack: 100, defense: 60, spAttack: 50, spDefense: 70, speed: 110 },
+        abilities: ["Sand Veil", "Tangling Hair", "Sand Force"], hiddenAbility: "Sand Force" }
+    ]
+  },
+  52: { // Meowth — Alolan Meowth, Dark, own base stats; Galarian Meowth, Steel, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Meowth", sprite: "alola/meowth",
+        types: ["Dark"],
+        stats: { hp: 40, attack: 35, defense: 35, spAttack: 50, spDefense: 40, speed: 90 },
+        abilities: ["Pickup", "Technician", "Rattled"], hiddenAbility: "Rattled" },
+      { key: "galar", name: "Galarian Meowth", sprite: "galar/meowth",
+        types: ["Steel"],
+        stats: { hp: 50, attack: 65, defense: 55, spAttack: 40, spDefense: 40, speed: 40 },
+        abilities: ["Pickup", "Tough Claws", "Unnerve"], hiddenAbility: "Unnerve" }
+    ]
+  },
+  53: { // Persian — Alolan Persian, Dark, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Persian", sprite: "alola/persian",
+        types: ["Dark"],
+        stats: { hp: 65, attack: 60, defense: 60, spAttack: 75, spDefense: 65, speed: 115 },
+        abilities: ["Fur Coat", "Technician", "Rattled"], hiddenAbility: "Rattled" }
+    ]
+  },
+  74: { // Geodude — Alolan Geodude, Rock/Electric, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Geodude", sprite: "alola/geodude",
+        types: ["Rock", "Electric"],
+        abilities: ["Magnet Pull", "Sturdy", "Galvanize"], hiddenAbility: "Galvanize" }
+    ]
+  },
+  75: { // Graveler — Alolan Graveler, Rock/Electric, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Graveler", sprite: "alola/graveler",
+        types: ["Rock", "Electric"],
+        abilities: ["Magnet Pull", "Sturdy", "Galvanize"], hiddenAbility: "Galvanize" }
+    ]
+  },
+  76: { // Golem — Alolan Golem, Rock/Electric, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Golem", sprite: "alola/golem",
+        types: ["Rock", "Electric"],
+        abilities: ["Magnet Pull", "Sturdy", "Galvanize"], hiddenAbility: "Galvanize" }
+    ]
+  },
+  77: { // Ponyta — Galarian Ponyta, Psychic, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Ponyta", sprite: "galar/ponyta",
+        types: ["Psychic"],
+        abilities: ["Run Away", "Pastel Veil", "Anticipation"], hiddenAbility: "Anticipation" }
+    ]
+  },
+  78: { // Rapidash — Galarian Rapidash, Psychic/Fairy, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Rapidash", sprite: "galar/rapidash",
+        types: ["Psychic", "Fairy"],
+        abilities: ["Run Away", "Pastel Veil", "Anticipation"], hiddenAbility: "Anticipation" }
+    ]
+  },
+  79: { // Slowpoke — Galarian Slowpoke, Psychic, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Slowpoke", sprite: "galar/slowpoke",
+        types: ["Psychic"],
+        abilities: ["Gluttony", "Own Tempo", "Regenerator"], hiddenAbility: "Regenerator" }
+    ]
+  },
+  83: { // Farfetch’d — Galarian Farfetch’d, Fighting, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Farfetch’d", sprite: "galar/farfetch'd",
+        types: ["Fighting"],
+        stats: { hp: 52, attack: 95, defense: 55, spAttack: 58, spDefense: 62, speed: 55 },
+        abilities: ["Steadfast", "Scrappy"], hiddenAbility: "Scrappy" }
+    ]
+  },
+  88: { // Grimer — Alolan Grimer, Poison/Dark, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Grimer", sprite: "alola/grimer",
+        types: ["Poison", "Dark"],
+        abilities: ["Poison Touch", "Gluttony", "Power Of Alchemy"], hiddenAbility: "Power Of Alchemy" }
+    ]
+  },
+  89: { // Muk — Alolan Muk, Poison/Dark, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Muk", sprite: "alola/muk",
+        types: ["Poison", "Dark"],
+        abilities: ["Poison Touch", "Gluttony", "Power Of Alchemy"], hiddenAbility: "Power Of Alchemy" }
+    ]
+  },
+  103: { // Exeggutor — Alolan Exeggutor, Grass/Dragon, own base stats
+    formes: [
+      { key: "alola", name: "Alolan Exeggutor", sprite: "alola/exeggutor",
+        types: ["Grass", "Dragon"],
+        stats: { hp: 95, attack: 105, defense: 85, spAttack: 125, spDefense: 75, speed: 45 },
+        abilities: ["Frisk", "Harvest"], hiddenAbility: "Harvest" }
+    ]
+  },
+  105: { // Marowak — Alolan Marowak, Fire/Ghost, stats identical to base
+    formes: [
+      { key: "alola", name: "Alolan Marowak", sprite: "alola/marowak",
+        types: ["Fire", "Ghost"],
+        abilities: ["Cursed Body", "Lightning Rod", "Rock Head"], hiddenAbility: "Rock Head" }
+    ]
+  },
+  110: { // Weezing — Galarian Weezing, Poison/Fairy, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Weezing", sprite: "galar/weezing",
+        types: ["Poison", "Fairy"],
+        abilities: ["Levitate", "Neutralizing Gas", "Misty Surge"], hiddenAbility: "Misty Surge" }
+    ]
+  },
+  122: { // Mr. Mime — Galarian Mr. Mime, Ice/Psychic, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Mr. Mime", sprite: "galar/mr_mime",
+        types: ["Ice", "Psychic"],
+        stats: { hp: 50, attack: 65, defense: 65, spAttack: 90, spDefense: 90, speed: 100 },
+        abilities: ["Vital Spirit", "Screen Cleaner", "Ice Body"], hiddenAbility: "Ice Body" }
+    ]
+  },
+  128: { // Tauros — Paldean Tauros x3 breeds: Combat (Fighting), Blaze (Fighting/Fire), Aqua (Fighting/Water); one shared stat line, own abilities
+    formes: [
+      { key: "paldea-combat", name: "Paldean Tauros (Combat Breed)", sprite: "paldea/tauros_combat_breed",
+        types: ["Fighting"],
+        stats: { hp: 75, attack: 110, defense: 105, spAttack: 30, spDefense: 70, speed: 100 },
+        abilities: ["Intimidate", "Anger Point", "Cud Chew"], hiddenAbility: "Cud Chew" },
+      { key: "paldea-blaze", name: "Paldean Tauros (Blaze Breed)", sprite: "paldea/tauros_blaze_breed",
+        types: ["Fighting", "Fire"],
+        stats: { hp: 75, attack: 110, defense: 105, spAttack: 30, spDefense: 70, speed: 100 },
+        abilities: ["Intimidate", "Anger Point", "Cud Chew"], hiddenAbility: "Cud Chew" },
+      { key: "paldea-aqua", name: "Paldean Tauros (Aqua Breed)", sprite: "paldea/tauros_aqua_breed",
+        types: ["Fighting", "Water"],
+        stats: { hp: 75, attack: 110, defense: 105, spAttack: 30, spDefense: 70, speed: 100 },
+        abilities: ["Intimidate", "Anger Point", "Cud Chew"], hiddenAbility: "Cud Chew" }
+    ]
+  },
+  144: { // Articuno — Galarian Articuno, Psychic/Flying, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Articuno", sprite: "galar/articuno",
+        types: ["Psychic", "Flying"],
+        stats: { hp: 90, attack: 85, defense: 85, spAttack: 125, spDefense: 100, speed: 95 },
+        abilities: ["Competitive"] }
+    ]
+  },
+  145: { // Zapdos — Galarian Zapdos, Fighting/Flying, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Zapdos", sprite: "galar/zapdos",
+        types: ["Fighting", "Flying"],
+        stats: { hp: 90, attack: 125, defense: 90, spAttack: 85, spDefense: 90, speed: 100 },
+        abilities: ["Defiant"] }
+    ]
+  },
+  146: { // Moltres — Galarian Moltres, Dark/Flying, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Moltres", sprite: "galar/moltres",
+        types: ["Dark", "Flying"],
+        stats: { hp: 90, attack: 85, defense: 90, spAttack: 100, spDefense: 125, speed: 90 },
+        abilities: ["Berserk"] }
+    ]
+  },
+  194: { // Wooper — Paldean Wooper, Poison/Ground, stats identical to base
+    formes: [
+      { key: "paldea", name: "Paldean Wooper", sprite: "paldea/wooper",
+        types: ["Poison", "Ground"],
+        abilities: ["Poison Point", "Water Absorb", "Unaware"], hiddenAbility: "Unaware" }
+    ]
+  },
+  199: { // Slowking — Galarian Slowking, Poison/Psychic, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Slowking", sprite: "galar/slowking",
+        types: ["Poison", "Psychic"],
+        stats: { hp: 95, attack: 65, defense: 80, spAttack: 110, spDefense: 110, speed: 30 },
+        abilities: ["Curious Medicine", "Own Tempo", "Regenerator"], hiddenAbility: "Regenerator" }
+    ]
+  },
+  222: { // Corsola — Galarian Corsola, Ghost, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Corsola", sprite: "galar/corsola",
+        types: ["Ghost"],
+        stats: { hp: 60, attack: 55, defense: 100, spAttack: 65, spDefense: 100, speed: 30 },
+        abilities: ["Weak Armor", "Cursed Body"], hiddenAbility: "Cursed Body" }
+    ]
+  },
+  263: { // Zigzagoon — Galarian Zigzagoon, Dark/Normal, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Zigzagoon", sprite: "galar/zigzagoon",
+        types: ["Dark", "Normal"] }
+    ]
+  },
+  264: { // Linoone — Galarian Linoone, Dark/Normal, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Linoone", sprite: "galar/linoone",
+        types: ["Dark", "Normal"] }
+    ]
+  },
+  554: { // Darumaka — Galarian Darumaka, Ice, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Darumaka", sprite: "galar/darumaka",
+        types: ["Ice"] }
+    ]
+  },
+  555: { // Darmanitan — Galarian Darmanitan, Ice, stats identical to base
+    formes: [
+      { key: "galar", name: "Galarian Darmanitan", sprite: "galar/darmanitan_standard",
+        types: ["Ice"],
+        abilities: ["Gorilla Tactics", "Zen Mode"], hiddenAbility: "Zen Mode" }
+    ]
+  },
+  562: { // Yamask — Galarian Yamask, Ground/Ghost, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Yamask", sprite: "galar/yamask",
+        types: ["Ground", "Ghost"],
+        stats: { hp: 38, attack: 55, defense: 85, spAttack: 30, spDefense: 65, speed: 30 },
+        abilities: ["Wandering Spirit"] }
+    ]
+  },
+  618: { // Stunfisk — Galarian Stunfisk, Ground/Steel, own base stats
+    formes: [
+      { key: "galar", name: "Galarian Stunfisk", sprite: "galar/stunfisk",
+        types: ["Ground", "Steel"],
+        stats: { hp: 109, attack: 81, defense: 99, spAttack: 66, spDefense: 84, speed: 32 },
+        abilities: ["Mimicry"] }
+    ]
+  },
   // --- Mega Evolutions (0.1.34, TODO.md #5) ---
   // Every Mega forme for a species in POKEMON_DATA, CSV-authoritative
   // (pokemon_forms.csv is_mega=1, joined to pokemon.csv species_id; stats/
@@ -321,8 +612,12 @@ var ALT_FORMS = {
         ability: "No Guard" }
     ]
   },
-  26: { // Raichu — Mega Evolutions (X/Y)
+  26: { // Raichu — Alolan Raichu (Electric/Psychic, own base stats) + Mega Evolutions (X/Y)
     formes: [
+      { key: "alola", name: "Alolan Raichu", sprite: "alola/raichu",
+        types: ["Electric", "Psychic"],
+        stats: { hp: 60, attack: 85, defense: 50, spAttack: 95, spDefense: 85, speed: 110 },
+        abilities: ["Surge Surfer"] },
       { key: "mega-x", name: "Mega Raichu X", sprite: "mega/raichu_x", isMega: true,
         stats: { hp: 60, attack: 135, defense: 95, spAttack: 90, spDefense: 95, speed: 110 },
         ability: "Electric Surge" },
@@ -353,8 +648,12 @@ var ALT_FORMS = {
         ability: "Innards Out" }
     ]
   },
-  80: { // Slowbro — Mega Evolution
+  80: { // Slowbro — Galarian Slowbro (Poison/Psychic, own base stats) + Mega Evolution
     formes: [
+      { key: "galar", name: "Galarian Slowbro", sprite: "galar/slowbro",
+        types: ["Poison", "Psychic"],
+        stats: { hp: 95, attack: 100, defense: 95, spAttack: 100, spDefense: 70, speed: 30 },
+        abilities: ["Quick Draw", "Own Tempo", "Regenerator"], hiddenAbility: "Regenerator" },
       { key: "mega", name: "Mega Slowbro", sprite: "mega/slowbro", isMega: true,
         stats: { hp: 95, attack: 75, defense: 180, spAttack: 130, spDefense: 80, speed: 30 },
         ability: "Shell Armor" }
@@ -852,6 +1151,78 @@ var ALT_FORMS = {
       { key: "mega", name: "Mega Diancie", sprite: "mega/diancie", isMega: true,
         stats: { hp: 50, attack: 160, defense: 110, spAttack: 160, spDefense: 110, speed: 110 },
         ability: "Magic Bounce" }
+    ]
+  },
+  740: { // Crabominable — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Crabominable", sprite: "mega/crabominable", isMega: true,
+        stats: { hp: 97, attack: 157, defense: 122, spAttack: 62, spDefense: 107, speed: 33 },
+        ability: "Iron Fist" }
+    ]
+  },
+  768: { // Golisopod — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Golisopod", sprite: "mega/golisopod", isMega: true,
+        types: ["Bug", "Steel"],
+        stats: { hp: 75, attack: 150, defense: 175, spAttack: 70, spDefense: 120, speed: 40 } }
+    ]
+  },
+  780: { // Drampa — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Drampa", sprite: "mega/drampa", isMega: true,
+        stats: { hp: 78, attack: 85, defense: 110, spAttack: 160, spDefense: 116, speed: 36 },
+        ability: "Berserk" }
+    ]
+  },
+  801: { // Magearna — Mega Evolutions (X/Y)
+    formes: [
+      { key: "mega", name: "Mega Magearna", sprite: "mega/magearna", isMega: true,
+        stats: { hp: 80, attack: 125, defense: 115, spAttack: 170, spDefense: 115, speed: 95 } },
+      { key: "mega-original", name: "Mega Original Magearna", sprite: "mega/magearna_original", isMega: true,
+        stats: { hp: 80, attack: 125, defense: 115, spAttack: 170, spDefense: 115, speed: 95 } }
+    ]
+  },
+  807: { // Zeraora — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Zeraora", sprite: "mega/zeraora", isMega: true,
+        stats: { hp: 88, attack: 157, defense: 75, spAttack: 147, spDefense: 80, speed: 153 } }
+    ]
+  },
+  870: { // Falinks — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Falinks", sprite: "mega/falinks", isMega: true,
+        stats: { hp: 65, attack: 135, defense: 135, spAttack: 70, spDefense: 65, speed: 100 },
+        ability: "Defiant" }
+    ]
+  },
+  952: { // Scovillain — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Scovillain", sprite: "mega/scovillain", isMega: true,
+        stats: { hp: 65, attack: 138, defense: 85, spAttack: 138, spDefense: 85, speed: 75 },
+        ability: "Spicy Spray" }
+    ]
+  },
+  970: { // Glimmora — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Glimmora", sprite: "mega/glimmora", isMega: true,
+        stats: { hp: 83, attack: 90, defense: 105, spAttack: 150, spDefense: 96, speed: 101 },
+        ability: "Adaptability" }
+    ]
+  },
+  978: { // Tatsugiri — Mega Evolutions (X/Y)
+    formes: [
+      { key: "mega-curly", name: "Mega Curly Tatsugiri", sprite: "mega/tatsugiri_curly", isMega: true,
+        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } },
+      { key: "mega-droopy", name: "Mega Droopy Tatsugiri", sprite: "mega/tatsugiri_droopy", isMega: true,
+        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } },
+      { key: "mega-stretchy", name: "Mega Stretchy Tatsugiri", sprite: "mega/tatsugiri_stretchy", isMega: true,
+        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } }
+    ]
+  },
+  998: { // Baxcalibur — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Baxcalibur", sprite: "mega/baxcalibur", isMega: true,
+        stats: { hp: 115, attack: 175, defense: 117, spAttack: 105, spDefense: 101, speed: 87 } }
     ]
   }
 };

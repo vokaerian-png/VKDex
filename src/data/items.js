@@ -152,4 +152,21 @@ var ITEMS_DATA = {
   // Items added during the Kalos CSV-pipeline pass.
   "sachet": { name: "Sachet", description: "A pouch of concentrated perfume; Spritzee evolves into Aromatisse when traded holding it." },
   "whipped-dream": { name: "Whipped Dream", description: "A mound of sweet, springy cream; Swirlix evolves into Slurpuff when traded holding it." },
+  // Items added during the Alola CSV-pipeline pass.
+  "electric-seed": { name: "Electric Seed", description: "Raises the holder's Defense once while Electric Terrain covers the field, then is used up." },
+  "grassy-seed": { name: "Grassy Seed", description: "Raises the holder's Defense once while Grassy Terrain covers the field, then is used up." },
+  "misty-seed": { name: "Misty Seed", description: "Raises the holder's Sp. Defense once while Misty Terrain covers the field, then is used up." },
+  // Items added during the Galar CSV-pipeline pass.
+  "cracked-pot": { name: "Cracked Pot", description: "A chipped teapot with an odd presence; Sinistea evolves into Polteageist when given it." },
+  "scroll-of-darkness": { name: "Scroll of Darkness", description: "A scroll of shadowy secrets; Kubfu masters it to become Single Strike Style Urshifu." },
+  "sweet-apple": { name: "Sweet Apple", description: "An apple so sweet that Applin evolves into Appletun when given it." },
+  "tart-apple": { name: "Tart Apple", description: "An apple so tart that Applin evolves into Flapple when given it." },
+  // Items added during the Paldea CSV-pipeline pass.
+  "auspicious-armor": { name: "Auspicious Armor", description: "Armour steeped in the spirit of a warrior; Charcadet evolves into Armarouge when given it." },
+  "malicious-armor": { name: "Malicious Armor", description: "Armour bound with the malice of its maker; Charcadet evolves into Ceruledge when given it." },
+  "unremarkable-teacup": { name: "Unremarkable Teacup", description: "A plain-looking antique teacup; Poltchageist evolves into Sinistcha when given it." },
+  // Items reached only through a cross-generation evolution edge (no species
+  // lists them as a held item), so no region pass picked them up.
+  "metal-alloy": { name: "Metal Alloy", description: "A lump of rare blended metals; Duraludon evolves into Archaludon when given it." },
+  "syrupy-apple": { name: "Syrupy Apple", description: "An apple heavy with sticky syrup; Applin evolves into Dipplin when given it." },
 };

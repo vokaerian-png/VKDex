@@ -91,10 +91,13 @@ function walkFiles(dir) {
 }
 
 // build:android passes --split-per-abi, so Gradle emits one release APK per
-// architecture (arm64/arm/x86/x86_64) and no universal APK. Returns every
-// non-universal .apk found, sorted for stable ordering; [] if none.
+// architecture (arm64/arm/x86/x86_64) and no universal APK. Only arm64-v8a is
+// published — it alone covers virtually every real device from 2018 onward
+// (Play's 64-bit mandate since 2019, armeabi-v7a/x86/x86_64 are legacy/
+// emulator-only at this point) — so this picks just that one, sorted for
+// stable ordering; [] if none.
 function pickApks(files) {
-  return files.filter(f => f.toLowerCase().endsWith(".apk") && !/universal/i.test(f)).sort();
+  return files.filter(f => f.toLowerCase().endsWith(".apk") && /arm64/i.test(f)).sort();
 }
 
 // ---------------------------------------------------------------- changelog
@@ -156,8 +159,8 @@ function selfCheck() {
     const files = walkFiles(tmp);
     report(files.length === 9, "walkFiles finds 9 files", "got " + files.length);
     const picked = pickApks(files);
-    report(picked.length === 4, "pickApks finds 4 per-ABI apks", "got " + picked.length);
-    report(picked.every(f => !/universal/i.test(f)), "pickApks excludes universal");
+    report(picked.length === 1, "pickApks finds exactly 1 (arm64) apk", "got " + picked.length);
+    report(picked.every(f => /arm64/i.test(f)), "pickApks only returns arm64");
     report(pickApks(["x/output-metadata.json"]).length === 0, "pickApks [] without any .apk");
     report(walkFiles(path.join(tmp, "nope")).length === 0, "walkFiles [] on missing dir");
   } finally {
@@ -292,7 +295,7 @@ function buildAndroid() {
   const apks = pickApks(files);
   if (!apks.length) {
     fail(
-      "build reported success but no per-ABI .apk was found under " + ANDROID_APK_OUT +
+      "build reported success but no arm64 .apk was found under " + ANDROID_APK_OUT +
       (files.length ? "\nfound instead:\n  " + files.join("\n  ") : "\n(directory missing or empty)") +
       "\nIf Gradle put the APKs somewhere else, note the real path so the script can be pointed at it."
     );
@@ -347,7 +350,7 @@ async function main() {
   step("Summary");
   console.log("Version:  " + VERSION + "  (tag " + TAG + ", branch " + branch + ")");
   console.log("Targets:  " + (wantWindows ? "Windows -> releases/windows/VKDex-" + TAG + "-windows-x64.zip\n          " : "") +
-                             (wantAndroid ? "Android -> releases/android/VKDex-" + TAG + "-android-<abi>.apk x4 (arm64/arm/x86/x86_64, release-signed, split-per-abi)" : ""));
+                             (wantAndroid ? "Android -> releases/android/VKDex-" + TAG + "-android-arm64.apk (release-signed, arm64-v8a only)" : ""));
   console.log("Publish:  " + (DRY_RUN ? "NO (--dry-run: build only, no tag/push/release)" : "git tag + push + one GitHub release with the artifact(s) above"));
   console.log("Notes:    the changelog block printed above");
   const yes = await ask("\nProceed with build" + (DRY_RUN ? "" : " and release") + "? [y/N] ");

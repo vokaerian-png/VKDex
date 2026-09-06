@@ -368,16 +368,20 @@
   // own numbering/tag instead of the plain national dex number every other
   // screen displays. Undefined for every other caller (favorites,
   // national/regional dex), so formatDexNumber(p.id) is the default.
-  // spriteSrc: optional override for the cell's sprite — used by the Hisui
-  // standalone screen to show a species' Hisuian regional form instead of
-  // its base sprite. Undefined everywhere else, so gridSpriteUrl(p.id)
-  // (the base form, shiny if the Settings toggle says so) is the default.
+  // spriteSrc: optional override for the cell's sprite — used by the region
+  // chips (Hisui/Alola/Galar/Paldea) to show a species' regional variant
+  // instead of its base sprite. Undefined everywhere else, so
+  // gridSpriteUrl(p.id) (base form, shiny if the Settings toggle says so)
+  // is the default.
   function gridSpriteUrl(id) {
     return useShinyGrids ? spriteShinyUrl(id) : spriteUrl(id);
   }
 
+  // p.forme: a quick-search variant row (renderDexList) — that forme's own
+  // sprite, and data-forme so openDetailFromCell pre-activates it.
   function cellHtml(p, numberText, spriteSrc) {
-    return '<div class="dex-cell" role="button" tabindex="0" data-id="' + p.id + '">' +
+    if (p.forme) spriteSrc = altFormSpriteUrl(p.forme.sprite, useShinyGrids);
+    return '<div class="dex-cell" role="button" tabindex="0" data-id="' + p.id + '"' + (p.forme ? ' data-forme="' + escapeHtml(p.forme.key) + '"' : "") + '>' +
       (isFavorite(p.id) ? STAR_BADGE : "") +
       '<span class="dex-sprite-wrap"><img class="dex-sprite" src="' + (spriteSrc || gridSpriteUrl(p.id)) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"' + SPRITE_ONERROR_ATTR + '></span>' +
       '<span class="dex-name">' + escapeHtml(p.name) + "</span>" +
@@ -499,17 +503,33 @@
   // number instead of national dex id. Orre: real national dex numbers,
   // just a membership list (data/orre.js) with a per-entry C/XD/C-XD tag
   // appended, per TODO.md #6's confirmed numbering rules for each.
-  // Sprite override for the Hisui screen: 16 of its 242 members have a real
-  // Hisuian regional form (ALT_FORMS[id] with a "hisui" forme), so the grid
-  // shows that sprite there. Null for the other 226 — renderGrid falls back
-  // to the base sprite. Only the Hisui screen passes this.
-  function hisuiCellSprite(p) {
-    var data = ALT_FORMS[p.id];
-    var formes = (data && data.formes) || [];
-    for (var i = 0; i < formes.length; i++) {
-      if (formes[i].key === "hisui") return altFormSpriteUrl(formes[i].sprite, useShinyGrids);
-    }
-    return null;
+  // Regional-variant formes (Hisuian/Alolan/Galarian/Paldean, 2026-09-06 —
+  // generalized from the Hisui-only version): an ALT_FORMS forme whose key
+  // is a REGIONS id, or starts with one ("paldea-combat"), is that region's
+  // variant of the species. Megas/Gmax never count, nor do recolorOnly
+  // galleries. Returns every such forme, or only `region`'s when given —
+  // [0] is the one a region chip shows/auto-activates (Tauros's 3 Paldean
+  // breeds: Combat, the first).
+  var REGION_IDS = REGIONS.map(function (r) { return r.id; });
+
+  function regionalFormes(id, region) {
+    var data = ALT_FORMS[id];
+    if (!data || data.recolorOnly || !data.formes) return [];
+    return data.formes.filter(function (f) {
+      if (f.isMega || f.isGmax) return false;
+      var r = f.key.split("-")[0];
+      return REGION_IDS.indexOf(r) !== -1 && (!region || r === region);
+    });
+  }
+
+  // Sprite override for a region chip: a species with that region's variant
+  // shows the variant's sprite in the grid instead of its base one. Null
+  // for every other cell — renderGrid falls back to the base sprite.
+  function regionalCellSprite(region) {
+    return function (p) {
+      var f = regionalFormes(p.id, region)[0];
+      return f ? altFormSpriteUrl(f.sprite, useShinyGrids) : null;
+    };
   }
 
   // The active chip's membership rule, sort order, number label and sprite
@@ -530,7 +550,7 @@
         sort: function (a, b) { return HISUI_DEX_NUMBERS[a.id] - HISUI_DEX_NUMBERS[b.id]; },
         label: "Hisui",
         numberFn: function (p) { return formatDexNumber(HISUI_DEX_NUMBERS[p.id]); },
-        spriteFn: hisuiCellSprite
+        spriteFn: regionalCellSprite("hisui")
       };
     }
     if (filter === "orre") {
@@ -548,20 +568,40 @@
         label: hasQuery ? "" : "This"
       };
     }
+    // Mainline chip: species introduced there, plus any species with that
+    // region's variant forme (Alolan Raichu under Alola, ...) shown with the
+    // variant's sprite — same display-only extension the Hisui chip has.
     return {
-      match: function (p) { return p.region === filter; },
+      match: function (p) { return p.region === filter || regionalFormes(p.id, filter).length > 0; },
       sort: byDexNumber,
-      label: regionLabel(filter)
+      label: regionLabel(filter),
+      spriteFn: regionalCellSprite(filter)
     };
   }
 
+  // A query surfaces each regional-variant forme as its own extra row right
+  // after its base (2026-09-06, user rule): "sneasel" lists Sneasel and
+  // Hisuian Sneasel, "raichu" Raichu and Alolan Raichu — a variant row is a
+  // synthetic { id, name, forme } entry cellHtml() renders with the forme's
+  // sprite/name and a data-forme attribute so the tap opens that forme.
+  // The active chip's own variant is skipped (the base cell already shows
+  // and opens it); Mega/Gmax never get a row (regionalFormes excludes them).
   function renderDexList(filter) {
     var query = dexQuickSearchInput.value.trim();
     var set = dexSetFor(filter, !!query);
     var matchQuery = queryMatcher(query);
-    var entries = POKEMON_DATA.filter(function (p) {
-      return set.match(p) && (!matchQuery || matchQuery(p));
-    }).sort(set.sort);
+    var entries = [];
+    POKEMON_DATA.forEach(function (p) {
+      if (!set.match(p)) return;
+      var baseHit = !matchQuery || matchQuery(p);
+      if (baseHit) entries.push(p);
+      if (!matchQuery) return;
+      var chipForme = regionalFormes(p.id, filter)[0];
+      regionalFormes(p.id).forEach(function (f) {
+        if (f !== chipForme && (baseHit || matchQuery({ id: p.id, name: f.name }))) entries.push({ id: p.id, name: f.name, forme: f });
+      });
+    });
+    entries.sort(set.sort);
     var empty = query
       ? "No " + (set.label ? set.label + " " : "") + "Pokémon match “" + query + "”."
       : set.label + " Pokédex coming soon.";
@@ -725,7 +765,7 @@
   // species; every other entry renders no toggle at all.
   var activeGender = "male";
   // Whether this detail screen was opened from the Hisui screen (0.2.18) —
-  // the same nav-origin signal openDetail()'s `autoForme` carries, held on
+  // the same nav-origin signal openDetail()'s `fromRegion` carries, held on
   // so the Learnable Moves card can read data/movesets_hisui.js instead of
   // data/movesets.js. Reset on every openDetail(), like activeFormeKey.
   var fromHisuiScreen = false;
@@ -1120,7 +1160,7 @@
   }
 
   // spriteSrc overrides the bubble's art, same shape as renderGrid's
-  // spriteFn override (the Hisui grid's hisuiCellSprite); falsy keeps the
+  // spriteFn override (the region chips' regionalCellSprite); falsy keeps the
   // default. Used for the gendered-parent case below.
   function evoStageHtml(id, spriteSrc) {
     var mon = findPokemon(id);
@@ -1522,9 +1562,19 @@
     var html = statsTableAndRadarHtml("Base Stats", stats);
     var altData = ALT_FORMS[entry.id];
     if (altData && altData.formes) {
+      // Rule 7: non-Mega/Gmax formes sharing one identical stat line get a
+      // single combined card (Paldean Tauros's 3 breeds); every Mega/Gmax
+      // keeps its own card (rule 3).
+      var cards = [], shared = {};
       altData.formes.forEach(function (forme) {
-        if (forme.stats) html += statsTableAndRadarHtml("Base Stats — " + forme.name, forme.stats);
+        if (!forme.stats) return;
+        var sig = forme.isMega || forme.isGmax ? null : JSON.stringify(forme.stats);
+        if (sig && shared[sig]) { shared[sig].names.push(forme.name); return; }
+        var card = { names: [forme.name], stats: forme.stats };
+        if (sig) shared[sig] = card;
+        cards.push(card);
       });
+      cards.forEach(function (c) { html += statsTableAndRadarHtml("Base Stats — " + c.names.join(" / "), c.stats); });
     }
     return html;
   }
@@ -1719,13 +1769,13 @@
     detailFav.setAttribute("aria-label", on ? "Remove from favorites" : "Add to favorites");
   }
 
-  // autoForme: opened from the Hisui screen, so show the Hisuian regional
-  // form up front instead of the base form. setActiveForme resets to base
-  // when the species has no "hisui" forme, so no guard is needed here.
-  // Every other entry point (quick-search, Favorites, National, mainline
-  // regions, evolution-line taps) omits it and keeps the base form as the
-  // default.
-  function openDetail(id, autoForme) {
+  // fromRegion: the dex chip a #dexList tap came from (null from Favorites,
+  // ArrowLeft/Right, evolution-line taps, Back) — the species' variant forme
+  // for that region, if it has one, opens active instead of base (Hisui
+  // since 0.1.30; Alola/Galar/Paldea 2026-09-06). formeKey: an explicit
+  // forme to open on (a quick-search variant row), wins over fromRegion.
+  // Everything else opens on base.
+  function openDetail(id, fromRegion, formeKey) {
     var entry = findPokemon(id);
     if (!entry) return;
     detailEntryId = id;
@@ -1736,9 +1786,10 @@
     // deliberately does NOT reset either one (a units change keeps both).
     activeGender = "male";
     // Set before renderDetail() — movesCardHtml() reads it (0.2.18).
-    fromHisuiScreen = !!autoForme;
+    fromHisuiScreen = fromRegion === "hisui";
     renderDetail(entry);
-    if (autoForme) setActiveForme("hisui");
+    var auto = formeKey || (fromRegion && regionalFormes(id, fromRegion)[0] || {}).key;
+    if (auto) setActiveForme(auto);
     syncFavoriteButton();
     detailScreen.classList.add("active");
     detailScreen.setAttribute("aria-hidden", "false");
@@ -1805,10 +1856,10 @@
   });
 
   // Any grid cell, on either screen, opens that Pokemon's detail view. Only
-  // the dex grid can be showing the Hisui standalone dex, and only then does
-  // a cell open straight to that species' Hisuian forme.
+  // a dex-grid tap carries the active chip (regional auto-forme); a
+  // quick-search variant row carries its forme key outright.
   function openDetailFromCell(cell, list) {
-    openDetail(Number(cell.getAttribute("data-id")), list === dexList && currentRegionFilter === "hisui");
+    openDetail(Number(cell.getAttribute("data-id")), list === dexList ? currentRegionFilter : null, cell.getAttribute("data-forme"));
   }
 
   [dexList, favoritesList].forEach(function (list) {
@@ -1909,7 +1960,7 @@
     set(saved, true);
   }
 
-  // Shiny sprites in grids (vkdex-shiny-grids): cellHtml/hisuiCellSprite
+  // Shiny sprites in grids (vkdex-shiny-grids): cellHtml/regionalCellSprite
   // read useShinyGrids; the detail screen's own sprite pair is unaffected.
   wireToggleSetting(document.getElementById("shinyGridsToggle"), "vkdex-shiny-grids", false, function (on, init) {
     useShinyGrids = on;

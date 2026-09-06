@@ -50,10 +50,11 @@ VKDex/
       types.js         (TYPE_CHART: Gen 9 type-effectiveness chart, static)
       pokemon.js       (POKEMON_DATA: id, name, region, +types/category/height/
                          weight/abilities/hiddenAbility/description/eggGroups/
-                         heldItems — 731 entries, ids 1-721 + Hisui-29)
-      abilities.js     (ABILITIES, keyed by name — 204 entries)
-      moves.js         (MOVES, keyed by name — 689 entries)
-      items.js         (ITEMS_DATA, keyed by slug — 132 referenced items, 0.2.22)
+                         heldItems — 1025 entries, ids 1-1025 — full National
+                         Dex populated as of 0.3.0, Alola/Galar/Paldea 2026-09-06)
+      abilities.js     (ABILITIES, keyed by name — 294 entries)
+      moves.js         (MOVES, keyed by name — 783 entries)
+      items.js         (ITEMS_DATA, keyed by slug — 144 referenced items, 0.3.0)
       movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/tutor/max)
       movesets_hisui.js (MOVESETS_HISUI, keyed by id: Legends: Arceus-only
                           learnsets split out of movesets.js, 0.2.18 —
@@ -159,11 +160,11 @@ name it `VKDex.exe`) → zipped via Windows' `tar.exe -a` to
 `releases/windows/VKDex-vX.Y.Z-windows-x64.zip`. **Android**: refuses
 (pointing at `src-tauri/ANDROID_SETUP.md`) unless `src-tauri/gen/android/
 app` exists, else `npm run build:android` (`tauri android build --apk
---split-per-abi`, release-profile, real signing key — see below) → one
-`.apk` per architecture under `gen/android/app/build/outputs/apk/`
-(universal excluded; lists the tree if none found) → each copied to
-`releases/android/VKDex-vX.Y.Z-android-<abi>.apk` (arm64/arm/x86/x86_64).
-**Both** builds
+--split-per-abi`, release-profile, real signing key — see below) → Gradle
+still emits one `.apk` per architecture under `gen/android/app/build/
+outputs/apk/`, but **only the arm64-v8a one is published** (user decision
+2026-09-06, below) → copied to `releases/android/VKDex-vX.Y.Z-android-
+arm64.apk`. **Both** builds
 sequentially; every artifact goes on one `gh release create` with the
 changelog as notes. Never commits, never force-overwrites a tag. `--check`
 runs the self-tests only (changelog parser, target parsing, APK search).
@@ -192,10 +193,14 @@ to `frontendDist` (sprites included, ~70 MB) being compiled directly into
 *each* architecture's binary, so a universal APK paid for that 4x over.
 Fix: `build:android` now passes `--split-per-abi` — Tauri's own generated
 `gen/android/app/build.gradle.kts`/`RustPlugin.kt` already define per-arch
-product flavors (arm64/arm/x86/x86_64), no Gradle edits needed —
-`release.js`'s `pickApks`/`buildAndroid` collect and publish all 4 release
-APKs instead of one universal. Expected ~70-80 MB per architecture; not yet
-measured on hardware.
+product flavors (arm64/arm/x86/x86_64), no Gradle edits needed. **0.2.22
+real release confirmed all 4 land at 68-74 MB each** (user-verified, real
+hardware). **Publish scope narrowed the same day (0.2.22, user decision)**:
+future releases publish arm64-v8a only, not all 4 — it alone covers
+virtually every real device from 2018 onward (Play's 64-bit mandate since
+2019; the other 3 ABIs are legacy/emulator-only now). Gradle still builds
+all 4 flavors; `release.js`'s `pickApks()` just filters for `arm64` instead
+of "not universal" before copying/publishing.
 
 **Release keystore, generated 2026-09-06**: RSA 2048, alias `vkdex`, valid
 to 2054 — lives entirely outside the repo, in a private Dropbox-synced
@@ -385,14 +390,13 @@ mid-batch, only at that boundary.
 
 ---
 
-## 5b. Parallel subagent dispatch — policy, untested (2026-09-06)
+## 5b. Parallel subagent dispatch — first real trial run 2026-09-06; premise corrected
 
 Discussed after the 0.2.18 fix (one coherent change across a shared
 extractor/shared move table/shared render path — not a candidate for
 splitting). Default stays **one sequential `coder` per task**; parallel
-dispatch is the exception, for a batch of genuinely disjoint-file work
-(e.g. a future region pass split `pokemon`/`stats` vs. `evolutions`/
-`movesets` vs. `locations`) or independent read-only research fan-out.
+dispatch is the exception, for a batch of genuinely disjoint-file work or
+independent read-only research fan-out.
 
 - **Partition by disjoint files, decided up front** — one file, one
   writer, per parallel round. The normalized/shared files
@@ -408,12 +412,45 @@ dispatch is the exception, for a batch of genuinely disjoint-file work
 - **`verify_region_data.js`/`--audit` stays the one post-hoc gate**
   regardless of how many agents touched the result, run once over the
   combined final state before anything is folded into the memory bank.
-- **Untested — the next genuinely suitable large job is the first real
-  trial.** Architect asks the user before initializing a parallel batch
-  (not a silent default yet); that first run is a deliberate benchmark —
-  track and report total token usage and wall-clock time spent, for
-  comparison against what an equivalent sequential dispatch would have
-  cost. Fold the result back into this section once it's run.
+
+**First real trial (2026-09-06, the Alola/Galar/Paldea region passes,
+`TODO.md` #2) — result: real wall-clock savings, but the safety premise
+above was wrong for this tool, and it worked out on luck, not design.**
+
+- **Shared-table hazard handled correctly**: a sequential pre-pass landed
+  the full cross-region union of new moves/abilities/items (94/90/10, with
+  confirmed real name overlap across all three regions) before the
+  parallel phase started, via a small `--tables none` tool extension that
+  writes only those three shared files. This part of the design held.
+- **"Genuinely disjoint id ranges" ≠ file-disjoint for this tool, and that
+  premise above is corrected here.** `populate_region.js --assemble` does
+  a whole-file read-modify-write on every per-id table
+  (`pokemon.js`/`stats.js`/`evolutions.js`/`movesets.js`/
+  `movesets_hisui.js`/`names.js`/`locations.js`/`altforms.js`) regardless
+  of which ids it's touching — there is no per-id or per-region file
+  split, no locking. Three dispatches with disjoint id ranges (722-809/
+  810-905/906-1025) still all wrote the *same 8 files* concurrently. All
+  three independently flagged this mid-task as a real race risk; nothing
+  was actually corrupted, but each dispatch's own account of *when* it saw
+  `POKEMON_DATA`'s length change (731→816→905→1025, strictly stepwise, not
+  jumping around) indicates the three processes' writes happened to
+  serialize by real-world timing luck, not because the file layout made
+  concurrent writes safe. **Don't re-run true parallel writes to these 8
+  files based on id-range disjointness alone** — either serialize the
+  per-id writes too (loses most of the wall-clock benefit) or wait until
+  the tool has real per-file/per-id locking before trying this again for
+  a write-heavy batch. Read-only parallel fan-out (research, `--dry-run`
+  scans) is unaffected by any of this.
+- **Real numbers**: ~641,500 total subagent tokens across the 6 dispatches
+  this trial needed (shared pre-pass + 3 parallel region passes + 2
+  small sequential follow-up fixes for a cross-region evolution-edge gap).
+  Wall-clock: pre-pass ~13.4 min (sequential) → parallel phase ~19.3 min
+  (the slowest of the 3, not their sum) → follow-up fixes ~7.1 min
+  (sequential) ≈ **~39.8 min total**, versus an estimated **~72.1 min** if
+  all 6 dispatches had run strictly sequentially — a real ~45% wall-clock
+  reduction, at unchanged total token cost (parallelism doesn't reduce
+  token spend, only wall-clock). The saving is real; the risk that made it
+  possible wasn't understood correctly going in.
 
 ---
 
@@ -555,14 +592,16 @@ previous bump before it ships as this release's notes.
    instead — see the equivalent call made for `SCOPE.md`'s CSS-pitfalls/
    visual-polish/window-resize sections (2026-09-05, promoted from
    unnumbered to §6-§8 there).
-3. **Target: ≤600 lines total, standing cap** (raised from 550, 2026-09-06,
-   the memory/ folder restructure — flagged here per the raise rule below;
-   previously raised from 500 same day for the Android release-signing
-   keystore documentation, and from 450, 2026-09-05, the real multi-target
-   release confirmation + Android-pause decision).
-   `SCOPE.md` carries its own independent standing cap of **≤700 lines**
-   (raised twice now, both same-day, see that file's own intro for the
-   second raise). Both raise **50 lines at a time** if genuinely
+3. **Target: ≤650 lines total, standing cap** (raised from 600, 2026-09-06,
+   the Alola/Galar/Paldea region-population completion + §5b's
+   parallel-dispatch correction — both real, load-bearing content, not
+   narration to cut; previously raised from 550 same day for the memory/
+   folder restructure, from 500 for the Android release-signing keystore
+   documentation, and from 450, 2026-09-05, the real multi-target release
+   confirmation + Android-pause decision).
+   `SCOPE.md` carries its own independent standing cap of **≤750 lines**
+   (raised three times now, see that file's own intro for the latest).
+   Both raise **50 lines at a time** if genuinely
    needed, noted here (this file) or in `SCOPE.md`'s own intro (that file)
    when it happens — flagged to the user in the same response, no longer
    needs asking first. Every future addition gets an evaluate-and-compress
