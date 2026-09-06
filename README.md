@@ -13,7 +13,7 @@ Desktop front-end planned, not implemented.
 Design & Data Sourcing & Structuring by @vokaerian-png
 Code & Implementation by @Claude.AI
 
-##
+
 
 ## Data & assets sources
 [PokeAPI](https://github.com/pokeapi/pokeapi)  -  [PokeDB](https://pokedb.org/)
