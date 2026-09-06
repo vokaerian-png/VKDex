@@ -1,4 +1,5 @@
-![Static Badge](https://img.shields.io/badge/ClaudeAI-orange)
+![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) ![GitHub Release](https://img.shields.io/github/v/release/vokaerian-png/VKDex?style=for-the-badge&color=green)
+
 
 
 # What VKDex is;
