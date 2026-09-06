@@ -41,6 +41,25 @@
 //              `abilities` array, marking which slot is hidden. Same
 //              convention as pokemon.js's own `hiddenAbility` field.
 //              Meaningless without `abilities`.
+//   evolvesTo - OPTIONAL (0.3.4, TODO.md #4): this forme's OWN evolution
+//              edges, exactly the shape of an entry's `evolvesTo` array in
+//              data/evolutions.js. Written only where the variant's route
+//              genuinely differs from the base species' (Alolan Vulpix needs
+//              an Ice Stone, not a Fire Stone; Galarian Farfetch'd becomes
+//              Sirfetch'd, which base Farfetch'd never does) — a variant that
+//              differs only in which FORME of the target it produces gets
+//              nothing here, since the app doesn't model target formes.
+//              While this forme is active the Evolution Line card uses this
+//              array in place of EVOLUTIONS[id].evolvesTo, falling back to
+//              it when absent. Since 0.3.5 these edges are also read in the
+//              BACKWARD direction, so the target species' own page finds its
+//              chain (Sirfetch'd -> Galarian Farfetch'd) even though no base
+//              EVOLUTIONS entry points at it.
+//              An edge may carry a hand-authored `note` string (0.3.5), which
+//              replaces the arrow's derived label — used where two sibling
+//              branches would otherwise render identically (Galarian
+//              Slowpoke's Galarica Cuff vs. Wreath, both spriteless stones).
+//              Nothing in tools/ writes this field; keep it on a re-derive.
 //   isMega / isGmax - OPTIONAL booleans. isMega is set on all 63 Mega
 //              formes at the bottom of this file; isGmax on nothing yet
 //              (no Gigantamax data populated). Rendering branches on them
@@ -180,7 +199,8 @@ var ALT_FORMS = {
   100: { // Voltorb — Hisuian Voltorb, Electric/Grass, stats identical to base
     formes: [
       { key: "hisui", name: "Hisuian Voltorb", sprite: "hisui/voltorb",
-        types: ["Electric", "Grass"] }
+        types: ["Electric", "Grass"],
+        evolvesTo: [{ id: 101, method: "stone", item: "leaf-stone" }] }
     ]
   },
   101: { // Electrode — Hisuian Electrode, Electric/Grass, stats identical to base
@@ -200,13 +220,15 @@ var ALT_FORMS = {
   211: { // Qwilfish — Hisuian Qwilfish, Dark/Poison, stats identical to base
     formes: [
       { key: "hisui", name: "Hisuian Qwilfish", sprite: "hisui/qwilfish",
-        types: ["Dark", "Poison"] }
+        types: ["Dark", "Poison"],
+        evolvesTo: [{ id: 904, method: "other" }] }
     ]
   },
   215: { // Sneasel — Hisuian Sneasel, Fighting/Poison, stats identical to base
     formes: [
       { key: "hisui", name: "Hisuian Sneasel", sprite: "hisui/sneasel",
-        types: ["Fighting", "Poison"] }
+        types: ["Fighting", "Poison"],
+        evolvesTo: [{ id: 903, method: "held", item: "razor-claw", timeOfDay: "day" }] }
     ]
   },
   503: { // Samurott — Hisuian Samurott, Water/Dark, own base stats
@@ -310,7 +332,8 @@ var ALT_FORMS = {
       { key: "alola", name: "Alolan Sandshrew", sprite: "alola/sandshrew",
         types: ["Ice", "Steel"],
         stats: { hp: 50, attack: 75, defense: 90, spAttack: 10, spDefense: 35, speed: 40 },
-        abilities: ["Snow Cloak", "Slush Rush"], hiddenAbility: "Slush Rush" }
+        abilities: ["Snow Cloak", "Slush Rush"], hiddenAbility: "Slush Rush",
+        evolvesTo: [{ id: 28, method: "stone", item: "ice-stone" }] }
     ]
   },
   28: { // Sandslash — Alolan Sandslash, Ice/Steel, own base stats
@@ -325,7 +348,8 @@ var ALT_FORMS = {
     formes: [
       { key: "alola", name: "Alolan Vulpix", sprite: "alola/vulpix",
         types: ["Ice"],
-        abilities: ["Snow Cloak", "Snow Warning"], hiddenAbility: "Snow Warning" }
+        abilities: ["Snow Cloak", "Snow Warning"], hiddenAbility: "Snow Warning",
+        evolvesTo: [{ id: 38, method: "stone", item: "ice-stone" }] }
     ]
   },
   38: { // Ninetales — Alolan Ninetales, Ice/Fairy, own base stats
@@ -357,11 +381,13 @@ var ALT_FORMS = {
       { key: "alola", name: "Alolan Meowth", sprite: "alola/meowth",
         types: ["Dark"],
         stats: { hp: 40, attack: 35, defense: 35, spAttack: 50, spDefense: 40, speed: 90 },
-        abilities: ["Pickup", "Technician", "Rattled"], hiddenAbility: "Rattled" },
+        abilities: ["Pickup", "Technician", "Rattled"], hiddenAbility: "Rattled",
+        evolvesTo: [{ id: 53, method: "level" }] },
       { key: "galar", name: "Galarian Meowth", sprite: "galar/meowth",
         types: ["Steel"],
         stats: { hp: 50, attack: 65, defense: 55, spAttack: 40, spDefense: 40, speed: 40 },
-        abilities: ["Pickup", "Tough Claws", "Unnerve"], hiddenAbility: "Unnerve" }
+        abilities: ["Pickup", "Tough Claws", "Unnerve"], hiddenAbility: "Unnerve",
+        evolvesTo: [{ id: 863, method: "level", level: 28 }] }
     ]
   },
   53: { // Persian — Alolan Persian, Dark, own base stats
@@ -411,7 +437,10 @@ var ALT_FORMS = {
     formes: [
       { key: "galar", name: "Galarian Slowpoke", sprite: "galar/slowpoke",
         types: ["Psychic"],
-        abilities: ["Gluttony", "Own Tempo", "Regenerator"], hiddenAbility: "Regenerator" }
+        abilities: ["Gluttony", "Own Tempo", "Regenerator"], hiddenAbility: "Regenerator",
+        // Hand-authored `note`s (0.3.5): both routes are `stone` with a
+        // spriteless item, so without them both arrows just read "Stone".
+        evolvesTo: [{ id: 80, method: "stone", item: "galarica-cuff", note: "Galarica Cuff" }, { id: 199, method: "stone", item: "galarica-wreath", note: "Galarica Wreath" }] }
     ]
   },
   83: { // Farfetch’d — Galarian Farfetch’d, Fighting, own base stats
@@ -419,7 +448,8 @@ var ALT_FORMS = {
       { key: "galar", name: "Galarian Farfetch’d", sprite: "galar/farfetch'd",
         types: ["Fighting"],
         stats: { hp: 52, attack: 95, defense: 55, spAttack: 58, spDefense: 62, speed: 55 },
-        abilities: ["Steadfast", "Scrappy"], hiddenAbility: "Scrappy" }
+        abilities: ["Steadfast", "Scrappy"], hiddenAbility: "Scrappy",
+        evolvesTo: [{ id: 865, method: "other" }] }
     ]
   },
   88: { // Grimer — Alolan Grimer, Poison/Dark, stats identical to base
@@ -463,7 +493,8 @@ var ALT_FORMS = {
       { key: "galar", name: "Galarian Mr. Mime", sprite: "galar/mr_mime",
         types: ["Ice", "Psychic"],
         stats: { hp: 50, attack: 65, defense: 65, spAttack: 90, spDefense: 90, speed: 100 },
-        abilities: ["Vital Spirit", "Screen Cleaner", "Ice Body"], hiddenAbility: "Ice Body" }
+        abilities: ["Vital Spirit", "Screen Cleaner", "Ice Body"], hiddenAbility: "Ice Body",
+        evolvesTo: [{ id: 866, method: "level", level: 42 }] }
     ]
   },
   128: { // Tauros — Paldean Tauros x3 breeds: Combat (Fighting), Blaze (Fighting/Fire), Aqua (Fighting/Water); one shared stat line, own abilities
@@ -510,7 +541,8 @@ var ALT_FORMS = {
     formes: [
       { key: "paldea", name: "Paldean Wooper", sprite: "paldea/wooper",
         types: ["Poison", "Ground"],
-        abilities: ["Poison Point", "Water Absorb", "Unaware"], hiddenAbility: "Unaware" }
+        abilities: ["Poison Point", "Water Absorb", "Unaware"], hiddenAbility: "Unaware",
+        evolvesTo: [{ id: 980, method: "level", level: 20 }] }
     ]
   },
   199: { // Slowking — Galarian Slowking, Poison/Psychic, own base stats
@@ -526,7 +558,8 @@ var ALT_FORMS = {
       { key: "galar", name: "Galarian Corsola", sprite: "galar/corsola",
         types: ["Ghost"],
         stats: { hp: 60, attack: 55, defense: 100, spAttack: 65, spDefense: 100, speed: 30 },
-        abilities: ["Weak Armor", "Cursed Body"], hiddenAbility: "Cursed Body" }
+        abilities: ["Weak Armor", "Cursed Body"], hiddenAbility: "Cursed Body",
+        evolvesTo: [{ id: 864, method: "level", level: 38 }] }
     ]
   },
   263: { // Zigzagoon — Galarian Zigzagoon, Dark/Normal, stats identical to base
@@ -538,13 +571,15 @@ var ALT_FORMS = {
   264: { // Linoone — Galarian Linoone, Dark/Normal, stats identical to base
     formes: [
       { key: "galar", name: "Galarian Linoone", sprite: "galar/linoone",
-        types: ["Dark", "Normal"] }
+        types: ["Dark", "Normal"],
+        evolvesTo: [{ id: 862, method: "level", level: 35 }] }
     ]
   },
   554: { // Darumaka — Galarian Darumaka, Ice, stats identical to base
     formes: [
       { key: "galar", name: "Galarian Darumaka", sprite: "galar/darumaka",
-        types: ["Ice"] }
+        types: ["Ice"],
+        evolvesTo: [{ id: 555, method: "stone", item: "ice-stone" }] }
     ]
   },
   555: { // Darmanitan — Galarian Darmanitan, Ice, stats identical to base
@@ -559,7 +594,8 @@ var ALT_FORMS = {
       { key: "galar", name: "Galarian Yamask", sprite: "galar/yamask",
         types: ["Ground", "Ghost"],
         stats: { hp: 38, attack: 55, defense: 85, spAttack: 30, spDefense: 65, speed: 30 },
-        abilities: ["Wandering Spirit"] }
+        abilities: ["Wandering Spirit"],
+        evolvesTo: [{ id: 867, method: "other" }] }
     ]
   },
   618: { // Stunfisk — Galarian Stunfisk, Ground/Steel, own base stats

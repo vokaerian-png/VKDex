@@ -59,6 +59,8 @@ var ITEMS_DATA = {
   "fire-stone": { name: "Fire Stone", description: "An evolution stone burning with an inner flame; evolves certain Fire-type Pokémon." },
   "flame-orb": { name: "Flame Orb", description: "Burns the holder at the end of the turn it is first held in battle." },
   "focus-band": { name: "Focus Band", description: "Gives the holder a small chance to survive a knockout blow with 1 HP." },
+  "galarica-cuff": { name: "Galarica Cuff", description: "A bracelet woven from Galarica twigs; Galarian Slowpoke evolves into Galarian Slowbro when given it." },
+  "galarica-wreath": { name: "Galarica Wreath", description: "A wreath woven from Galarica twigs; Galarian Slowpoke evolves into Galarian Slowking when given it." },
   "green-shard": { name: "Green Shard", description: "A small green shard of an ancient tool, tradeable for goods in some places." },
   "grip-claw": { name: "Grip Claw", description: "Makes the holder's binding moves last a full seven turns." },
   "haban-berry": { name: "Haban Berry", description: "Halves the damage of one super-effective Dragon-type hit, then is eaten." },

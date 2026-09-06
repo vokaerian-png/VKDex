@@ -57,7 +57,10 @@
 //                       altforms writes only Mega formes and only for a
 //                       species with no ALT_FORMS entry yet — an existing
 //                       hand-curated entry is never touched; the extracted
-//                       block is printed for hand-merging instead.
+//                       block is printed for hand-merging instead. Per-forme
+//                       `evolvesTo` overrides (0.3.4) print the same way,
+//                       whenever `evolutions` is written — see the evolution
+//                       row helpers in extract().
 //
 // Examples:
 //   node tools/populate_region.js unova --dry-run
@@ -554,7 +557,88 @@ function extract(t, csvs, current) {
   const results = {
     slug: t.slug, ids: t.ids,
     pokemon: {}, stats: {}, evolutions: {}, movesets: {}, movesetsHisui: {}, names: {}, locations: {}, altforms: {},
+    // Per-forme evolution overrides (0.3.4) — { id: { formeKey: [edge] } }.
+    // Printed for hand-merging into altforms.js, never auto-written (same
+    // rule as the Mega block: this tool doesn't edit an existing entry).
+    formeEvolutions: {},
     flagged: [],
+  };
+
+  // ---- evolution row helpers (0.3.4, TODO.md #4) ----
+  // A "plain" row applies to the species itself. A `base_form_id` pointing
+  // at a NON-DEFAULT pokemon.csv row restricts that path to one regional
+  // variant (Alolan Vulpix's Ice Stone route to Ninetales, Galarian
+  // Farfetch'd's Sirfetch'd) and must never feed the base species' entry;
+  // one pointing at the species' own default row (Eevee's) is redundant
+  // bookkeeping, not a restriction.
+  const isPlainEvoRow = row => {
+    if (!row.base_form_id) return true;
+    const pk = pokemonById.get(row.base_form_id);
+    return !pk || pk.is_default === "1";
+  };
+  // altforms.js forme key for a form-restricted row's source form:
+  // "vulpix-alola" -> "alola", "mr-mime-galar" -> "galar". Token-wise so a
+  // hyphenated species slug isn't mis-stripped (same reason as the Mega
+  // sprite naming below).
+  const evoRowFormeKey = (row, sp) => {
+    const pk = pokemonById.get(row.base_form_id);
+    if (!pk) return null;
+    const spTok = sp.identifier.split("-");
+    let tokens = pk.identifier.split("-");
+    if (spTok.every((tok, i) => tokens[i] === tok)) tokens = tokens.slice(spTok.length);
+    return tokens.join("-") || null;
+  };
+  // Among a candidate set, the row carrying an item wins, so a species with
+  // both a legacy and a modern method (Feebas->Milotic, Nosepass->Probopass)
+  // shows the modern item one.
+  const pickEvoRow = rows => rows.find(r => r.trigger_item_id) || rows.find(r => r.held_item_id) || rows[0];
+  // One pokemon_evolution.csv row -> one evolutions.js edge. A pure function
+  // of the row, shared by the base species' `evolvesTo` and by the per-forme
+  // overrides, so the two shapes can't drift apart.
+  const buildEvoEdge = (row, targetNum) => {
+    const trigger = row.evolution_trigger_id;
+    let method = "other", level;
+    if (trigger === "1") { method = "level"; level = row.minimum_level ? Number(row.minimum_level) : undefined; }
+    else if (trigger === "2") method = "trade";
+    else if (trigger === "3") method = "stone";
+    else if (trigger === "4") method = "level"; // shed (Nincada)
+    const edge = { id: targetNum, method };
+    if (level !== undefined) edge.level = level;
+    // Item/condition fields, mirroring evolutions.js's optional keys.
+    if (row.trigger_item_id) { edge.method = "stone"; edge.item = itemSlug(row.trigger_item_id); }
+    else if (row.held_item_id && trigger === "2") edge.item = itemSlug(row.held_item_id);
+    else if (row.held_item_id && trigger === "1") {
+      // Held while leveling up, no trade — its own method, since "Lv N" /
+      // "Friendship" would both be wrong labels.
+      edge.method = "held";
+      delete edge.level;
+      edge.item = itemSlug(row.held_item_id);
+    }
+    // Friendship = happiness OR affection (Sylveon's selected row is the
+    // Gen 6 affection one; both mean the same "Friendship" label here).
+    const friendship = edge.method === "level" && (row.minimum_happiness || row.minimum_affection);
+    if (row.time_of_day && (edge.method === "held" || friendship)) edge.timeOfDay = row.time_of_day;
+    if (friendship && row.known_move_type_id) edge.moveType = typeSlug(row.known_move_type_id);
+    // gender_id restricts which sex evolves (genders.csv 1/2/3) — a branch
+    // descriptor, see the src/data/evolutions.js header. Genderless (3)
+    // never appears on a real row; skip it rather than write a no-op field.
+    if (GENDER[row.gender_id]) edge.gender = GENDER[row.gender_id];
+    // "Knows a specific move" (Aipom, Yanma, Lickitung, ...) does have a
+    // representation as of 0.1.39: the stone shape with the shared
+    // tm-normal icon and the move name as the arrow label (see the
+    // src/data/evolutions.js header). Must precede the "other" fallback.
+    if (edge.method === "level" && edge.level === undefined && !friendship && row.known_move_id) {
+      edge.method = "stone";
+      edge.item = "tm-normal";
+      edge.move = moveNameById.get(row.known_move_id);
+    }
+    // A level-up trigger with neither a level nor a friendship condition
+    // is something the app has no label for (shed, known move, special
+    // location, party species, beauty, ...) — "other" renders a blank
+    // arrow instead of a wrong "Lv" one (TODO.md #7; matches the 8 edges
+    // 0.1.30 hand-flipped).
+    if (edge.method === "level" && edge.level === undefined && !friendship) edge.method = "other";
+    return edge;
   };
   const statKeys = { "1": "hp", "2": "attack", "3": "defense", "4": "spAttack", "5": "spDefense", "6": "speed" };
   const statsOf = pokemonId => {
@@ -643,70 +727,53 @@ function extract(t, csvs, current) {
     const growth = GROWTH[sp.growth_rate_id] || { curve: "?", points: null };
     results.stats[id] = Object.assign(st, { captureRate: Number(sp.capture_rate), baseHappiness: Number(sp.base_happiness), expGrowth: { points: growth.points, curve: growth.curve }, hatchCounter: Number(sp.hatch_counter), effort: effortOf(sid) });
 
-    // evolutions.js: species that evolve FROM this one
+    // evolutions.js: species that evolve FROM this one, plus (0.3.4) the
+    // per-forme overrides for the regional variants that reach a target by
+    // their own route. Helpers above the id loop.
     const evolvesTo = [];
+    const formeEvos = {};
+    const formeKeys = new Set((((current.tables.altforms || {})[id] || {}).formes || []).map(f => f.key));
     for (const [targetId, rows] of evoByTarget) {
       if (!rows.length) continue;
       const targetSpecies = speciesById.get(targetId);
       if (!targetSpecies || targetSpecies.evolves_from_species_id !== sid) continue;
       const targetNum = Number(targetId);
       if (!allowedTargets.has(targetNum)) { results.flagged.push(`evolution ${id}->${targetId}: target not in POKEMON_DATA or this batch, omitted`); continue; }
-      // Row selection: a set `base_form_id` marks a regional-variant-only
-      // path to the same target (Alolan Vulpix's Ice Stone route to
-      // Ninetales) — prefer a plain row, but keep a form-restricted one if
-      // it's all there is (this is what keeps Sneasler reachable). Among
-      // what's left, the row carrying an item wins, so a species with both
-      // a legacy and a modern method (Feebas->Milotic, Nosepass->Probopass)
-      // shows the modern item one.
-      const plain = rows.filter(r => !r.base_form_id);
-      const cands = plain.length ? plain : rows;
-      const row = cands.find(r => r.trigger_item_id) || cands.find(r => r.held_item_id) || cands[0];
-      const trigger = row.evolution_trigger_id;
-      let method = "other", level;
-      if (trigger === "1") { method = "level"; level = row.minimum_level ? Number(row.minimum_level) : undefined; }
-      else if (trigger === "2") method = "trade";
-      else if (trigger === "3") method = "stone";
-      else if (trigger === "4") method = "level"; // shed (Nincada)
-      const edge = { id: targetNum, method };
-      if (level !== undefined) edge.level = level;
-      // Item/condition fields, mirroring evolutions.js's optional keys.
-      if (row.trigger_item_id) { edge.method = "stone"; edge.item = itemSlug(row.trigger_item_id); }
-      else if (row.held_item_id && trigger === "2") edge.item = itemSlug(row.held_item_id);
-      else if (row.held_item_id && trigger === "1") {
-        // Held while leveling up, no trade — its own method, since "Lv N" /
-        // "Friendship" would both be wrong labels.
-        edge.method = "held";
-        delete edge.level;
-        edge.item = itemSlug(row.held_item_id);
+      const plain = rows.filter(isPlainEvoRow);
+      const basePlain = plain.length ? buildEvoEdge(pickEvoRow(plain), targetNum) : null;
+      // Form-restricted rows, grouped by the forme they belong to.
+      const byForme = new Map();
+      for (const r of rows) {
+        if (isPlainEvoRow(r)) continue;
+        const key = evoRowFormeKey(r, sp);
+        if (!key) continue;
+        if (!byForme.has(key)) byForme.set(key, []);
+        byForme.get(key).push(r);
       }
-      // Friendship = happiness OR affection (Sylveon's selected row is the
-      // Gen 6 affection one; both mean the same "Friendship" label here).
-      const friendship = edge.method === "level" && (row.minimum_happiness || row.minimum_affection);
-      if (row.time_of_day && (edge.method === "held" || friendship)) edge.timeOfDay = row.time_of_day;
-      if (friendship && row.known_move_type_id) edge.moveType = typeSlug(row.known_move_type_id);
-      // gender_id restricts which sex evolves (genders.csv 1/2/3) — a branch
-      // descriptor, see the src/data/evolutions.js header. Genderless (3)
-      // never appears on a real row; skip it rather than write a no-op field.
-      if (GENDER[row.gender_id]) edge.gender = GENDER[row.gender_id];
-      // "Knows a specific move" (Aipom, Yanma, Lickitung, ...) does have a
-      // representation as of 0.1.39: the stone shape with the shared
-      // tm-normal icon and the move name as the arrow label (see the
-      // src/data/evolutions.js header). Must precede the "other" fallback.
-      if (edge.method === "level" && edge.level === undefined && !friendship && row.known_move_id) {
-        edge.method = "stone";
-        edge.item = "tm-normal";
-        edge.move = moveNameById.get(row.known_move_id);
+      let captured = false;
+      for (const [key, fRows] of byForme) {
+        if (!formeKeys.has(key)) { results.flagged.push(`evolution ${id}->${targetId}: form-restricted row for "${key}" has no altforms.js forme — override skipped`); continue; }
+        captured = true;
+        const edge = buildEvoEdge(pickEvoRow(fRows), targetNum);
+        // An override identical to what the base already shows would render
+        // the exact same arrow — don't write a no-op.
+        if (basePlain && JSON.stringify(basePlain) === JSON.stringify(edge)) continue;
+        (formeEvos[key] || (formeEvos[key] = [])).push(edge);
       }
-      // A level-up trigger with neither a level nor a friendship condition
-      // is something the app has no label for (shed, known move, special
-      // location, party species, beauty, ...) — "other" renders a blank
-      // arrow instead of a wrong "Lv" one (TODO.md #7; matches the 8 edges
-      // 0.1.30 hand-flipped).
-      if (edge.method === "level" && edge.level === undefined && !friendship) edge.method = "other";
-      evolvesTo.push(edge);
+      // A target reachable ONLY by a form-restricted route is not the base
+      // species' evolution at all (base Farfetch'd never becomes Sirfetch'd,
+      // base Yamask only becomes Cofagrigus) — drop it, but only once a
+      // forme override has actually captured it, so a variant altforms.js
+      // doesn't model (Basculin's white-striped -> Basculegion) doesn't lose
+      // the edge from the app entirely.
+      if (!plain.length && !captured) results.flagged.push(`evolution ${id}->${targetId}: only form-restricted rows exist and no altforms.js forme carries them — left on the base entry`);
+      const cands = plain.length ? plain : (captured ? [] : rows);
+      if (cands.length) evolvesTo.push(basePlain || buildEvoEdge(pickEvoRow(cands), targetNum));
     }
     evolvesTo.sort((a, b) => a.id - b.id);
     results.evolutions[id] = evolvesTo;
+    for (const key in formeEvos) formeEvos[key].sort((a, b) => a.id - b.id);
+    if (Object.keys(formeEvos).length) results.formeEvolutions[id] = formeEvos;
 
     // movesets.js: pick the highest-`order` version_group that has data for
     // this species. Only level-up (1) / egg (2) / machine (4) rows count —
@@ -1284,6 +1351,18 @@ function assemble(results, descriptions, tables, strict, current) {
       entries.push({ id, text });
     }
     upsertEntries("altforms.js", entries);
+  }
+
+  // Per-forme evolution overrides (0.3.4): altforms.js is hand-curated and
+  // this writer never edits an existing entry, so these are printed for
+  // hand-merging, exactly like the Mega block above.
+  const feIds = ids.filter(id => (results.formeEvolutions || {})[id]);
+  if (feIds.length) {
+    console.log("\nPer-forme evolvesTo overrides (hand-merge into altforms.js):");
+    for (const id of feIds) {
+      const fe = results.formeEvolutions[id];
+      for (const key in fe) console.log(`  ${id}/${key}: evolvesTo: [${fe[key].map(evoStepText).join(", ")}]`);
+    }
   }
 
   console.log(`Assembly complete: ${ids.length} id(s), tables ${tables.join(",")}.`);

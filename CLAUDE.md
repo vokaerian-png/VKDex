@@ -257,7 +257,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.3.2.** Mirror on every bump, across all of:
+**Current version: 0.3.5.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml`. (`electron-app/package.json` was the same kind
@@ -599,8 +599,8 @@ previous bump before it ships as this release's notes.
    folder restructure, from 500 for the Android release-signing keystore
    documentation, and from 450, 2026-09-05, the real multi-target release
    confirmation + Android-pause decision).
-   `SCOPE.md` carries its own independent standing cap of **≤750 lines**
-   (raised three times now, see that file's own intro for the latest).
+   `SCOPE.md` carries its own independent standing cap of **≤800 lines**
+   (raised four times now, see that file's own intro for the latest).
    Both raise **50 lines at a time** if genuinely
    needed, noted here (this file) or in `SCOPE.md`'s own intro (that file)
    when it happens — flagged to the user in the same response, no longer

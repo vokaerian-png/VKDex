@@ -104,6 +104,12 @@ for (const id of IDS) for (const region of Object.keys(LOCATIONS[id] || {})) {
   }
 }
 for (const id of IDS) for (const step of (EVOLUTIONS[id] || {}).evolvesTo || []) if (step.item && step.item !== "tm-normal") itemRefs.add(step.item);
+// Per-forme evolution overrides (0.3.4, altforms.js's `evolvesTo`) are the
+// same edge shape, so the same target/item resolution has to hold for them.
+for (const key of Object.keys(ALT_FORMS)) for (const f of ALT_FORMS[key].formes || []) for (const step of f.evolvesTo || []) {
+  if (!pokemonById.has(step.id)) fail(`altforms.js id ${key}/${f.key}: evolvesTo target ${step.id} has no POKEMON_DATA entry`);
+  if (step.item && step.item !== "tm-normal") itemRefs.add(step.item);
+}
 for (const slug of itemRefs) if (!ITEMS_DATA[slug]) fail(`items.js: referenced item "${slug}" has no ITEMS_DATA entry`);
 const noItemArt = Object.keys(ITEMS_DATA).filter(slug => !fs.existsSync(path.join(ITEM_SPRITE_DIR, slug + ".png")));
 if (noItemArt.length) console.log(`NOTE: ${noItemArt.length} ITEMS_DATA entries have no sprite under data/sprites/items/: ${noItemArt.join(", ")}`);

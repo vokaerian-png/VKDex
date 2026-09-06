@@ -29,6 +29,15 @@
 // stay HAND-AUTHORED and are NOT emitted, so a `--refresh --tables
 // evolutions` will still drop those two — re-add by hand after one
 // (`--audit` ignores them, so it won't flag the loss either).
+// FORME-SPECIFIC ROUTES LIVE IN altforms.js (0.3.4, TODO.md #4). A route
+// that only exists for a regional variant is NOT in this table — it's an
+// `evolvesTo` on that forme in data/altforms.js, which replaces this entry's
+// array while the forme is active. So a species that only ever evolves as a
+// variant has an empty array here: 83 Farfetch'd, 122 Mr. Mime, 211
+// Qwilfish, 222 Corsola, 264 Linoone (and 52/194/215/562 lose one branch
+// each). Sole exception: 550 Basculin, whose White-Striped form has no
+// ALT_FORMS entry to carry the edge, so it stays here rather than vanishing
+// from the app — populate_region.js flags that case instead of dropping it.
 // A Pokémon with no further evolution just has an empty evolvesTo array.
 //
 // 1: { evolvesTo: [{ id: 2, method: "level", level: 16 }] }
@@ -86,7 +95,7 @@ var EVOLUTIONS = {
   49: { evolvesTo: [] },
   50: { evolvesTo: [{ id: 51, method: "level", level: 26 }] },
   51: { evolvesTo: [] },
-  52: { evolvesTo: [{ id: 53, method: "level", level: 28 }, { id: 863, method: "level", level: 28 }] },
+  52: { evolvesTo: [{ id: 53, method: "level", level: 28 }] },
   53: { evolvesTo: [] },
   54: { evolvesTo: [{ id: 55, method: "level", level: 33 }] },
   55: { evolvesTo: [] },
@@ -117,7 +126,7 @@ var EVOLUTIONS = {
   80: { evolvesTo: [] },
   81: { evolvesTo: [{ id: 82, method: "level", level: 30 }] },
   82: { evolvesTo: [{ id: 462, method: "stone", item: "thunder-stone" }] },
-  83: { evolvesTo: [{ id: 865, method: "other" }] },
+  83: { evolvesTo: [] },
   84: { evolvesTo: [{ id: 85, method: "level", level: 31 }] },
   85: { evolvesTo: [] },
   86: { evolvesTo: [{ id: 87, method: "level", level: 34 }] },
@@ -156,7 +165,7 @@ var EVOLUTIONS = {
   119: { evolvesTo: [] },
   120: { evolvesTo: [{ id: 121, method: "stone", item: "water-stone" }] },
   121: { evolvesTo: [] },
-  122: { evolvesTo: [{ id: 866, method: "level", level: 42 }] },
+  122: { evolvesTo: [] },
   123: { evolvesTo: [{ id: 212, method: "trade", item: "metal-coat" }, { id: 900, method: "stone", item: "black-augurite" }] },
   124: { evolvesTo: [] },
   125: { evolvesTo: [{ id: 466, method: "trade", item: "electirizer" }] },
@@ -228,7 +237,7 @@ var EVOLUTIONS = {
   191: { evolvesTo: [{ id: 192, method: "stone", item: "sun-stone" }] },
   192: { evolvesTo: [] },
   193: { evolvesTo: [{ id: 469, method: "stone", item: "tm-normal", move: "Ancient Power" }] },
-  194: { evolvesTo: [{ id: 195, method: "level", level: 20 }, { id: 980, method: "level", level: 20 }] },
+  194: { evolvesTo: [{ id: 195, method: "level", level: 20 }] },
   195: { evolvesTo: [] },
   196: { evolvesTo: [] },
   197: { evolvesTo: [] },
@@ -245,18 +254,18 @@ var EVOLUTIONS = {
   208: { evolvesTo: [] },
   209: { evolvesTo: [{ id: 210, method: "level", level: 23 }] },
   210: { evolvesTo: [] },
-  211: { evolvesTo: [{ id: 904, method: "other" }], note: "Evolves after using Barb Barrage in Strong Style 20 times." },
+  211: { evolvesTo: [], note: "Evolves after using Barb Barrage in Strong Style 20 times." },
   212: { evolvesTo: [] },
   213: { evolvesTo: [] },
   214: { evolvesTo: [] },
-  215: { evolvesTo: [{ id: 903, method: "held", item: "razor-claw", timeOfDay: "day" }, { id: 461, method: "held", item: "razor-claw", timeOfDay: "night" }] },
+  215: { evolvesTo: [{ id: 461, method: "held", item: "razor-claw", timeOfDay: "night" }] },
   216: { evolvesTo: [{ id: 217, method: "level", level: 30 }] },
   217: { evolvesTo: [{ id: 901, method: "stone", item: "peat-block" }] },
   218: { evolvesTo: [{ id: 219, method: "level", level: 38 }] },
   219: { evolvesTo: [] },
   220: { evolvesTo: [{ id: 221, method: "level", level: 33 }] },
   221: { evolvesTo: [{ id: 473, method: "stone", item: "tm-normal", move: "Ancient Power" }] },
-  222: { evolvesTo: [{ id: 864, method: "level", level: 38 }] },
+  222: { evolvesTo: [] },
   223: { evolvesTo: [{ id: 224, method: "level", level: 25 }] },
   224: { evolvesTo: [] },
   225: { evolvesTo: [] },
@@ -298,7 +307,7 @@ var EVOLUTIONS = {
   261: { evolvesTo: [{ id: 262, method: "level", level: 18 }] },
   262: { evolvesTo: [] },
   263: { evolvesTo: [{ id: 264, method: "level", level: 20 }] },
-  264: { evolvesTo: [{ id: 862, method: "level", level: 35 }] },
+  264: { evolvesTo: [] },
   265: { evolvesTo: [{ id: 266, method: "level", level: 7 }, { id: 268, method: "level", level: 7 }], note: "Which one it evolves into is decided by a hidden value the player can't see or influence." },
   266: { evolvesTo: [{ id: 267, method: "level", level: 10 }] },
   267: { evolvesTo: [] },
@@ -596,7 +605,7 @@ var EVOLUTIONS = {
   559: { evolvesTo: [{ id: 560, method: "level", level: 39 }] },
   560: { evolvesTo: [] },
   561: { evolvesTo: [] },
-  562: { evolvesTo: [{ id: 563, method: "level", level: 34 }, { id: 867, method: "other" }] },
+  562: { evolvesTo: [{ id: 563, method: "level", level: 34 }] },
   563: { evolvesTo: [] },
   564: { evolvesTo: [{ id: 565, method: "level", level: 37 }] },
   565: { evolvesTo: [] },

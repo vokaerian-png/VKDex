@@ -1149,6 +1149,15 @@ body {
   opacity: 0.7;
 }
 
+/* A confirmed missing-source-data gap, not a fact about the Pokemon
+   (0.3.3) — warmer/fuller than the plain muted note so it reads as
+   "we don't know yet" rather than "there's nothing here". */
+.detail-section-note.needs-source {
+  color: #ffcb05;
+  opacity: 0.85;
+  font-style: italic;
+}
+
 /* The name moved out of the picture card and into the topbar, where it
    doubles as the button that opens the other-languages popup. */
 .topbar-name {
@@ -1207,11 +1216,14 @@ body {
   justify-content: center;
 }
 
+/* Only the Picture card uses .detail-sprite, and both of its sprites tap
+   open the enlarged view (0.3.3) — hence the pointer here. */
 .detail-sprite {
   width: 100%;
   height: 100%;
   object-fit: contain;
   image-rendering: var(--sprite-rendering);
+  cursor: pointer;
 }
 
 .sprite-slot-label {
@@ -1646,6 +1658,15 @@ body {
 .item-popup-sprite {
   width: 48px;
   height: 48px;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
+/* Picture card sprite, enlarged in the popup (0.3.3). Sized to fill the
+   268px-wide .detail-popup without crowding its title/close row. */
+.sprite-zoom-img {
+  width: 220px;
+  height: 220px;
   object-fit: contain;
   image-rendering: var(--sprite-rendering);
 }

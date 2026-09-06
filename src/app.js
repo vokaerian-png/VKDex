@@ -909,12 +909,10 @@
   // Sits between the Picture and Evolution Line cards. Each forme is a
   // sprite bubble (same shape as an evolution stage bubble, .evo-stage
   // reused directly rather than duplicated). Two independent tap effects
-  // (decoupled 0.1.35): a *tappable* forme swaps the Picture card sprites
-  // and topbar name; one that also overrides `types` and/or `abilities`
-  // additionally swaps the information card (rule 9). Every Mega/Gmax is
-  // tappable regardless (a stat-only Mega still has its own art); any
-  // other forme overriding neither (Deoxys's stats-only formes) stays
-  // inert and styled as such (.altform-inert). When at least one forme is
+  // (decoupled 0.1.35): every forme swaps the Picture card sprites and
+  // topbar name (0.3.3 — see altFormeTappable); one that also overrides
+  // `types` and/or `abilities` additionally swaps the information card
+  // (rule 9). When at least one forme is
   // tappable, the base forme renders as bubble 0 (data-forme-key="") so
   // the module reads as a segmented control and tapping it reverts
   // (0.1.34; replaced the hidden tap-the-main-sprite revert).
@@ -933,8 +931,13 @@
     return !!(forme.types || forme.abilities);
   }
 
+  // Every forme is tappable (0.3.3): a forme that overrides nothing but its
+  // sprite (Squawkabilly's plumages, Tatsugiri's forms, Deoxys's stats-only
+  // formes) still has its own art, so tapping it must at least swap the
+  // Picture card. Kept as a named predicate — setActiveForme/altFormeSwaps
+  // still distinguish "swaps art" from "swaps facts".
   function altFormeTappable(forme) {
-    return !!(forme.isMega || forme.isGmax) || altFormeSwaps(forme);
+    return true;
   }
 
   function altFormStageHtml(key, name, src, cls) {
@@ -991,17 +994,22 @@
   // one that overrides `types`/`abilities` (rule 9) — a stat-only Mega
   // shows its own art over the base's unchanged facts. An unresolved/
   // inert key resolves to base.
+  // The ALT_FORMS forme object for a key, or null. Shared by setActiveForme
+  // and the evolution card's per-forme override lookup (evoEdgesFor).
+  function findForme(id, formeKey) {
+    var altData = ALT_FORMS[id];
+    if (!formeKey || !altData || !altData.formes) return null;
+    for (var i = 0; i < altData.formes.length; i++) {
+      if (altData.formes[i].key === formeKey) return altData.formes[i];
+    }
+    return null;
+  }
+
   function setActiveForme(formeKey) {
     if (detailEntryId === null) return;
     var entry = findPokemon(detailEntryId);
     if (!entry) return;
-    var altData = ALT_FORMS[entry.id];
-    var forme = null;
-    if (formeKey && altData && altData.formes) {
-      for (var i = 0; i < altData.formes.length; i++) {
-        if (altData.formes[i].key === formeKey) { forme = altData.formes[i]; break; }
-      }
-    }
+    var forme = findForme(entry.id, formeKey);
     var tappable = !!(forme && altFormeTappable(forme));
     var swaps = tappable && altFormeSwaps(forme);
     activeFormeKey = tappable ? formeKey : null;
@@ -1026,6 +1034,25 @@
         }
       }
       factsEl.innerHTML = factsRowsHtml(swapEntry);
+    }
+
+    // Evolution Line: the active forme can override this species' own
+    // outgoing edges (evoEdgesFor), so the card is rebuilt wholesale rather
+    // than patched — it may also appear or disappear entirely (base
+    // Farfetch'd doesn't evolve at all; Galarian Farfetch'd becomes
+    // Sirfetch'd). Runs after activeFormeKey is set, which is what
+    // evolutionCardHtml reads through.
+    var evoEl = detailBody.querySelector(".evolution-card");
+    var evoHtml = evolutionCardHtml(entry);
+    if (evoEl) {
+      if (evoHtml) evoEl.outerHTML = evoHtml;
+      else evoEl.parentNode.removeChild(evoEl);
+    } else if (evoHtml) {
+      // Card order is fixed in renderDetail: Alt Formes, then Evolution
+      // Line. Reaching here means this species has an ALT_FORMS entry, so
+      // the Alt Formes card is always present to hang the new card off.
+      var altCard = detailBody.querySelector(".altforms-card");
+      if (altCard) altCard.insertAdjacentHTML("afterend", evoHtml);
     }
 
     // Bubble 0 (data-forme-key="") is the base and lights up on revert.
@@ -1065,14 +1092,31 @@
   // render as one full root-to-leaf row per branch rather than a shared
   // tree layout — simplest thing that reads correctly for every case. The
   // one exception is evolutionCardHtml's fan-out (3+ one-step branches).
+  // Every per-forme `evolvesTo` override on a species, flattened.
+  function formeEvoEdges(id) {
+    var alt = ALT_FORMS[id];
+    if (!alt || !alt.formes) return [];
+    return alt.formes.reduce(function (acc, f) {
+      return f.evolvesTo ? acc.concat(f.evolvesTo) : acc;
+    }, []);
+  }
+
+  // The backward walk has to see forme overrides too: a regional variant can
+  // be the ONLY parent of a species (Galarian Farfetch'd -> Sirfetch'd), and
+  // scanning EVOLUTIONS alone left those 9 targets rootless, so their own
+  // page showed no card at all (0.3.5). ALT_FORMS keys are scanned as well
+  // as EVOLUTIONS' so a forme edge on a species with no EVOLUTIONS entry
+  // still resolves; duplicate keys are harmless, first match wins.
   function evolutionRootId(id) {
     var current = id, guard = 0;
     while (guard++ < 10) {
       var parent = null;
-      for (var key in EVOLUTIONS) {
-        var node = EVOLUTIONS[key];
-        for (var i = 0; i < node.evolvesTo.length; i++) {
-          if (node.evolvesTo[i].id === current) { parent = Number(key); break; }
+      var keys = Object.keys(EVOLUTIONS).concat(Object.keys(ALT_FORMS));
+      for (var k = 0; k < keys.length; k++) {
+        var node = EVOLUTIONS[keys[k]];
+        var edges = (node ? node.evolvesTo : []).concat(formeEvoEdges(Number(keys[k])));
+        for (var i = 0; i < edges.length; i++) {
+          if (edges[i].id === current) { parent = Number(keys[k]); break; }
         }
         if (parent !== null) break;
       }
@@ -1082,12 +1126,40 @@
     return current;
   }
 
+  // Evolution edges to draw for `id` in the chain currently on screen.
+  //
+  // The VIEWED species is strict: its active forme overrides its own outgoing
+  // edges (Alolan Vulpix needs an Ice Stone, not the base's Fire Stone) and
+  // base view shows base edges only — that's what keeps Sirfetch'd off base
+  // Farfetch'd's page.
+  //
+  // Any OTHER species in the chain also contributes its forme-only routes, so
+  // long as the base entry can't already reach that target (0.3.5): the walk
+  // down from the root has to be able to re-enter the forme edge it walked up
+  // through, or Sirfetch'd's own page finds Farfetch'd as its root and then
+  // no way back. Deduping on target id is what stops Alolan Vulpix's Ice
+  // Stone route from adding a second Ninetales branch to Ninetales's page.
+  function evoEdgesFor(id) {
+    var node = EVOLUTIONS[id];
+    var base = node ? node.evolvesTo : [];
+    if (id === detailEntryId) {
+      var forme = findForme(id, activeFormeKey);
+      return forme && forme.evolvesTo ? forme.evolvesTo : base;
+    }
+    var seen = base.map(function (b) { return b.id; });
+    var extra = formeEvoEdges(id).filter(function (e) {
+      if (seen.indexOf(e.id) !== -1) return false;
+      seen.push(e.id);
+      return true;
+    });
+    return extra.length ? base.concat(extra) : base;
+  }
+
   function evolutionPaths(rootId) {
     var paths = [];
     function walk(id, via, path) {
       var stepPath = path.concat([{ id: id, via: via }]);
-      var node = EVOLUTIONS[id];
-      var children = node ? node.evolvesTo : [];
+      var children = evoEdgesFor(id);
       if (children.length === 0) { paths.push(stepPath); return; }
       children.forEach(function (edge) {
         // The whole edge is the `via` — evoArrowIconsHtml reads its optional
@@ -1100,6 +1172,13 @@
   }
 
   function evoArrowLabel(via) {
+    // Hand-authored per-edge override (0.3.5), for a branch the derived label
+    // can't tell apart from its sibling: Galarian Slowpoke's two routes are
+    // both `stone` with an item that has no bundled sprite, so both read
+    // "Stone" with no icon. Same `note` field name as an EVOLUTIONS entry's
+    // chain-wide note, but on the edge, so it renders as the arrow's own
+    // label rather than the card's bottom line.
+    if (via.note) return via.note;
     // A "level" edge with no `level` is a happiness/affection evolution
     // (Eevee->Sylveon, Sneasel->Sneasler, ...) — 23 of them; without this
     // it rendered a literal "Lv undefined".
@@ -1276,6 +1355,13 @@
     return Object.keys(loc).filter(function (r) { return loc[r] && loc[r].length > 0; });
   }
 
+  // Regions whose *source* encounter data is missing wholesale, not
+  // regions where the Pokemon genuinely can't be caught: PokeAPI ships zero
+  // encounter rows for Paldea's version group, so all 120 native-Paldea
+  // species come out blank. Add a region here only for a confirmed
+  // upstream gap — a legitimately empty field is not "needs source".
+  var NEEDS_SOURCE_REGIONS = ["paldea"];
+
   function foundInCardHtml(entry) {
     var regions = foundInRegions(entry.id);
     var html = '<div class="detail-section found-in-card"><p class="detail-section-label">Found In</p>';
@@ -1283,9 +1369,14 @@
       // "Evolution only" is only a safe claim when something actually
       // evolves into this species; otherwise (Enamorus, a non-evolving
       // species with no encounter data) just say no data (0.1.34).
-      html += '<p class="detail-section-note">' + (evolutionRootId(entry.id) !== entry.id
-        ? "Not found in the wild &mdash; evolution only."
-        : "No wild encounter data recorded.") + "</p>";
+      if (NEEDS_SOURCE_REGIONS.indexOf(entry.region) !== -1) {
+        html += '<p class="detail-section-note needs-source">No wild encounter data &mdash; needs source ' +
+          "(" + escapeHtml(regionLabel(entry.region)) + " encounter data isn&rsquo;t in our source yet).</p>";
+      } else {
+        html += '<p class="detail-section-note">' + (evolutionRootId(entry.id) !== entry.id
+          ? "Not found in the wild &mdash; evolution only."
+          : "No wild encounter data recorded.") + "</p>";
+      }
     } else {
       html += '<div class="chip-row">' + regions.map(function (r) {
         return '<button class="region-chip chip-auto" type="button" data-region="' + r + '">' + escapeHtml(regionLabel(r)) + "</button>";
@@ -1701,6 +1792,18 @@
 
     var genderBtn = e.target.closest ? e.target.closest(".gender-btn") : null;
     if (genderBtn) { setActiveGender(genderBtn.getAttribute("data-gender")); return; }
+
+    // Picture card sprites only (0.3.3): tap either to see it enlarged. The
+    // <img>'s own src/alt already reflect the active forme + gender, so
+    // there's nothing to re-derive; detailName is kept in sync by
+    // setActiveForme.
+    var zoomSprite = e.target.closest ? e.target.closest("#pictureMainSprite, #pictureShinySprite") : null;
+    if (zoomSprite) {
+      openDetailPopup(detailName.textContent + (zoomSprite.id === "pictureShinySprite" ? " (Shiny)" : ""),
+        '<div class="item-popup"><img class="sprite-zoom-img" src="' + zoomSprite.src +
+        '" alt="' + escapeHtml(zoomSprite.alt) + '"' + SPRITE_ONERROR_ATTR + "></div>");
+      return;
+    }
 
     var recolorBubble = e.target.closest ? e.target.closest(".altforms-recolor-bubble") : null;
     if (recolorBubble) {
