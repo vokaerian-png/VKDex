@@ -149,4 +149,7 @@ var ITEMS_DATA = {
   "wide-lens": { name: "Wide Lens", description: "A magnifying lens that slightly raises the accuracy of the holder's moves." },
   "yache-berry": { name: "Yache Berry", description: "Halves the damage of one super-effective Ice-type hit, then is eaten." },
   "yellow-shard": { name: "Yellow Shard", description: "A small yellow shard of an ancient tool, tradeable for goods in some places." },
+  // Items added during the Kalos CSV-pipeline pass.
+  "sachet": { name: "Sachet", description: "A pouch of concentrated perfume; Spritzee evolves into Aromatisse when traded holding it." },
+  "whipped-dream": { name: "Whipped Dream", description: "A mound of sweet, springy cream; Swirlix evolves into Slurpuff when traded holding it." },
 };

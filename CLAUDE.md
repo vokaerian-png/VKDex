@@ -50,10 +50,10 @@ VKDex/
       types.js         (TYPE_CHART: Gen 9 type-effectiveness chart, static)
       pokemon.js       (POKEMON_DATA: id, name, region, +types/category/height/
                          weight/abilities/hiddenAbility/description/eggGroups/
-                         heldItems — 665 entries, ids 1-649 + Hisui-29)
-      abilities.js     (ABILITIES, keyed by name — 190 entries)
-      moves.js         (MOVES, keyed by name — 651 entries)
-      items.js         (ITEMS_DATA, keyed by slug — 130 referenced items, 0.2.7)
+                         heldItems — 731 entries, ids 1-721 + Hisui-29)
+      abilities.js     (ABILITIES, keyed by name — 204 entries)
+      moves.js         (MOVES, keyed by name — 689 entries)
+      items.js         (ITEMS_DATA, keyed by slug — 132 referenced items, 0.2.22)
       movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/tutor/max)
       movesets_hisui.js (MOVESETS_HISUI, keyed by id: Legends: Arceus-only
                           learnsets split out of movesets.js, 0.2.18 —
@@ -252,7 +252,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.2.20.** Mirror on every bump, across all of:
+**Current version: 0.2.22.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml`. (`electron-app/package.json` was the same kind
@@ -560,9 +560,9 @@ previous bump before it ships as this release's notes.
    previously raised from 500 same day for the Android release-signing
    keystore documentation, and from 450, 2026-09-05, the real multi-target
    release confirmation + Android-pause decision).
-   `SCOPE.md` carries its own independent standing cap of **≤650 lines**
-   (also already raised once, same day, for unrelated reasons — see that
-   file's own intro). Both raise **50 lines at a time** if genuinely
+   `SCOPE.md` carries its own independent standing cap of **≤700 lines**
+   (raised twice now, both same-day, see that file's own intro for the
+   second raise). Both raise **50 lines at a time** if genuinely
    needed, noted here (this file) or in `SCOPE.md`'s own intro (that file)
    when it happens — flagged to the user in the same response, no longer
    needs asking first. Every future addition gets an evaluate-and-compress

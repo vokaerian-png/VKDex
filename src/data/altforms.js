@@ -769,5 +769,89 @@ var ALT_FORMS = {
         stats: { hp: 89, attack: 159, defense: 105, spAttack: 70, spDefense: 105, speed: 55 },
         ability: "Unseen Fist" }
     ]
+  },
+  652: { // Chesnaught — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Chesnaught", sprite: "mega/chesnaught", isMega: true,
+        stats: { hp: 88, attack: 137, defense: 172, spAttack: 74, spDefense: 115, speed: 44 },
+        ability: "Bulletproof" }
+    ]
+  },
+  655: { // Delphox — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Delphox", sprite: "mega/delphox", isMega: true,
+        stats: { hp: 75, attack: 69, defense: 72, spAttack: 159, spDefense: 125, speed: 134 },
+        ability: "Levitate" }
+    ]
+  },
+  658: { // Greninja — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Greninja", sprite: "mega/greninja", isMega: true,
+        stats: { hp: 72, attack: 125, defense: 77, spAttack: 133, spDefense: 81, speed: 142 },
+        ability: "Protean" }
+    ]
+  },
+  668: { // Pyroar — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Pyroar", sprite: "mega/pyroar", isMega: true,
+        stats: { hp: 86, attack: 88, defense: 92, spAttack: 129, spDefense: 86, speed: 126 },
+        ability: "Fire Mane" }
+    ]
+  },
+  670: { // Floette — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Floette", sprite: "mega/floette", isMega: true,
+        stats: { hp: 74, attack: 85, defense: 87, spAttack: 155, spDefense: 148, speed: 102 },
+        ability: "Fairy Aura" }
+    ]
+  },
+  678: { // Meowstic — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Meowstic", sprite: "mega/meowstic_male", isMega: true,
+        stats: { hp: 74, attack: 48, defense: 76, spAttack: 143, spDefense: 101, speed: 124 },
+        ability: "Trace" }
+    ]
+  },
+  687: { // Malamar — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Malamar", sprite: "mega/malamar", isMega: true,
+        stats: { hp: 86, attack: 102, defense: 88, spAttack: 98, spDefense: 120, speed: 88 },
+        ability: "Contrary" }
+    ]
+  },
+  689: { // Barbaracle — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Barbaracle", sprite: "mega/barbaracle", isMega: true,
+        types: ["Rock", "Fighting"],
+        stats: { hp: 72, attack: 140, defense: 130, spAttack: 64, spDefense: 106, speed: 88 },
+        ability: "Tough Claws" }
+    ]
+  },
+  691: { // Dragalge — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Dragalge", sprite: "mega/dragalge", isMega: true,
+        stats: { hp: 65, attack: 85, defense: 105, spAttack: 132, spDefense: 163, speed: 44 },
+        ability: "Regenerator" }
+    ]
+  },
+  701: { // Hawlucha — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Hawlucha", sprite: "mega/hawlucha", isMega: true,
+        stats: { hp: 78, attack: 137, defense: 100, spAttack: 74, spDefense: 93, speed: 118 },
+        ability: "No Guard" }
+    ]
+  },
+  718: { // Zygarde — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Zygarde", sprite: "mega/zygarde", isMega: true,
+        stats: { hp: 216, attack: 70, defense: 91, spAttack: 216, spDefense: 85, speed: 100 } }
+    ]
+  },
+  719: { // Diancie — Mega Evolution
+    formes: [
+      { key: "mega", name: "Mega Diancie", sprite: "mega/diancie", isMega: true,
+        stats: { hp: 50, attack: 160, defense: 110, spAttack: 160, spDefense: 110, speed: 110 },
+        ability: "Magic Bounce" }
+    ]
   }
 };

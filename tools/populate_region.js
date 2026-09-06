@@ -868,13 +868,20 @@ function extract(t, csvs, current) {
       const baseTypes = results.pokemon[id].types.join("/");
       results.altforms[id] = megas.map(({ form, pk: mpk }) => {
         const fn = formNameByForm.get(form.id);
-        const tokens = mpk.identifier.replace(/^[^-]+-mega/, "").split("-").filter(Boolean);
+        // Leftover form tokens = the pokemon.csv identifier minus the species
+        // slug minus the "mega" token, whatever order they appear in. The old
+        // `^[^-]+-mega` strip assumed a `<species>-mega[-suffix]` shape and
+        // broke on the 6 forms that aren't (2026-09-06, Kalos pass): Meowstic
+        // (`meowstic-male-mega`), Magearna, Tatsugiri x3 — plus any
+        // hyphenated species slug (`ho-oh`, `porygon-z`), which it would have
+        // mis-stripped too. Species slug comes off token-wise for that reason.
+        const spTok = sp.identifier.split("-");
+        let tokens = mpk.identifier.split("-");
+        if (spTok.every((t, i) => tokens[i] === t)) tokens = tokens.slice(spTok.length);
+        tokens = tokens.filter(t => t && t !== "mega");
         const sprite = "mega/" + baseName.toLowerCase().replace(/\./g, "").replace(/[\s-]+/g, "_").replace(/’/g, "'") + (tokens.length ? "_" + tokens.join("_") : "");
         const types = (typesByPokemon.get(mpk.id) || []).sort((a, b) => a.slot - b.slot).map(r => typeName(r.type_id));
         const abilities = (abilitiesByPokemon.get(mpk.id) || []).map(r => abilityName(r.ability_id));
-        for (const kind of ["", "shiny/"]) {
-          if (!fs.existsSync(path.join(SPRITE_DIR, kind + "alt formes", sprite + ".png"))) results.flagged.push(`id ${id} Mega: no ${kind || "normal "}sprite at alt formes/${sprite}.png`);
-        }
         return {
           key: "mega" + (tokens.length ? "-" + tokens.join("-") : ""),
           name: fn && fn.pokemon_name ? fn.pokemon_name : "Mega " + baseName,
@@ -884,6 +891,32 @@ function extract(t, csvs, current) {
           ability: abilities[0] || null,
         };
       });
+      // A species whose *cosmetic* base formes each get their own Mega row in
+      // the CSVs produces two-plus formes that are identical in everything the
+      // app shows except the sprite — Meowstic (male/female) is the only such
+      // case in the whole clone; Magearna's and Tatsugiri's per-forme Megas all
+      // carry distinct display names and survive this. Keeping both would give
+      // the detail screen two identically-named bubbles, two identical "Base
+      // Stats — Mega X" cards and a doubled rule-4 ability row, so the first
+      // (the species' default forme) wins and the rest are dropped. Done before
+      // the sprite check so a dropped forme can't flag a missing sprite.
+      // Added 2026-09-06, Kalos pass.
+      const seen = new Set();
+      results.altforms[id] = results.altforms[id].filter(f => {
+        const sig = JSON.stringify([f.name, f.types, f.stats, f.ability]);
+        if (seen.has(sig)) return false;
+        seen.add(sig);
+        return true;
+      });
+      for (const f of results.altforms[id]) {
+        // A deduped forme keeps its own key, but a species left with exactly
+        // one Mega should key it plainly "mega" like every other single-Mega
+        // species — nothing else distinguishes it any more.
+        if (results.altforms[id].length === 1) f.key = "mega";
+        for (const kind of ["", "shiny/"]) {
+          if (!fs.existsSync(path.join(SPRITE_DIR, kind + "alt formes", f.sprite + ".png"))) results.flagged.push(`id ${id} Mega: no ${kind || "normal "}sprite at alt formes/${f.sprite}.png`);
+        }
+      }
     }
   }
 
