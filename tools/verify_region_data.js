@@ -99,7 +99,16 @@ for (const id of IDS) for (const region of Object.keys(LOCATIONS[id] || {})) {
     if (typeof a === "string") continue; // pre-0.2.7 bare-string area, tolerated
     for (const e of a.enc || []) {
       if (!e.games) fail(`locations.js id ${id}/${region}/"${a.area}": enc line has no games (pre-0.2.8 shape?)`);
-      if (!(e.rate > 0 && e.rate <= 100) || !(e.min >= 1) || !(e.max >= e.min)) fail(`locations.js id ${id}/${region}/"${a.area}": bad enc line ${JSON.stringify(e)}`);
+      // 0.3.7: NEW_ENC_SHAPE (SV/BDSP/LA) lines may omit min/max entirely and
+      // may carry `rate` as a verbatim string ("varies", "one", "10%"). Those
+      // shapes pass; the classic numeric shape is still checked exactly as
+      // strictly as before whenever the fields are present as numbers.
+      const bad =
+        (e.rate !== undefined && typeof e.rate !== "string" && !(e.rate > 0 && e.rate <= 100)) ||
+        (e.min !== undefined && !(e.min >= 1)) ||
+        (e.max !== undefined && !(e.max >= e.min)) ||
+        ((e.min === undefined) !== (e.max === undefined));
+      if (bad) fail(`locations.js id ${id}/${region}/"${a.area}": bad enc line ${JSON.stringify(e)}`);
     }
   }
 }

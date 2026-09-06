@@ -30,7 +30,7 @@ wiring, not started); everything else has shipped.
 
 ---
 
-## PokeAPI + PokeDB CSV merge — analysis + merge tool shipped 2026-09-06; pipeline wiring to `src/` NOT started
+## PokeAPI + PokeDB CSV merge — shipped 2026-09-06; pipeline wiring to `src/` SHIPPED same day (0.3.6-0.3.8)
 
 User-directed, definitive replacement data source for the app going
 forward. `temp/PokeDB-CSV/` (pokedb.org export, acquired 2026-09-06) has
@@ -95,12 +95,27 @@ merged (PokeAPI already "has" that version, per the conflict rule); SV DLC
 areas aren't split from base Scarlet/Violet (no area→DLC map exists yet).
 Full list: `csv/MANIFEST.md`'s "Known gaps" section.
 
-**Not started — the actual open commitment**: no `src/data/*.js` file
-reads from `csv/` yet; the app's pipeline still runs on
-`temp/PokeAPI-master/` via `populate_region.js`. Wiring a
-`populate_region.js` successor to read `csv/` instead — and deciding how
-the newly-available SV/BDSP/LA encounter data reaches `locations.js`
-(`NEEDS_SOURCE_REGIONS`) — is separate, unscoped future work (`TODO.md`).
+**Wiring shipped 2026-09-06, same day as the merge** (`HISTORY.md`
+0.3.6-0.3.8, `TODO.md` #14 for what's still open): `tools/
+populate_from_csv.js` now reads `csv/` and is the live pipeline;
+`populate_region.js` (the old single-source tool) stays as a permanent
+independent cross-check. Real Scarlet/Violet, Brilliant Diamond/Shining
+Pearl, and Legends: Arceus wild-encounter data is live (768 species gained
+data the app never had; `NEEDS_SOURCE_REGIONS` emptied of `paldea`), in a
+new richer per-game shape (`NEW_ENC_SHAPE`, documented in `SCOPE.md` §2)
+rather than forced into the classic shape. Two real bugs surfaced and were
+fixed in `merge.js` itself along the way (an id-space bug that would have
+broken the 0.3.4/0.3.5 per-forme evolution mechanism; a lost egg-group slot
+order for 161 species) — `csv/` was regenerated with both fixed. A
+user-requested independent audit (fresh, context-free re-verification
+against the raw CSVs) confirmed the shipped data trustworthy and caught two
+real presentation bugs, one fixed same day (SV's Kitakami/Blueberry Academy
+DLC areas were mislabeled as base-game "Scarlet/Violet" — now correctly
+labelled via a real join, not a heuristic), one deferred (`TODO.md` #14).
+**Still open**: the richer encounter shape's fuller rendering (group rates,
+terrain, tera star level, LA alpha/time/weather), splitting DLC-only
+species onto their own region chip instead of a mislabelled "Paldea" one,
+and the duplicate-Sinnoh-area-name cosmetic issue — all `TODO.md` #14.
 
 ---
 

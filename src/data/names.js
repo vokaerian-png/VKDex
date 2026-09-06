@@ -473,7 +473,7 @@ var NAMES = {
   466: { ja: "エレキブル", jaRomaji: "Elekible", fr: "Élekable", de: "Elevoltek", ko: "에레키블" },
   467: { ja: "ブーバーン", jaRomaji: "Booburn", fr: "Maganon", de: "Magbrant", ko: "마그마번" },
   468: { ja: "トゲキッス", jaRomaji: "Togekiss", fr: "Togekiss", de: "Togekiss", ko: "토게키스" },
-  469: { ja: "メガヤンマ", jaRomaji: "Megayanma", fr: "Yanmega", de: "Yanmega", ko: "메가자리" },
+  469: { ja: "メガヤンマ", jaRomaji: "Megayanma", fr: "Yanméga", de: "Yanmega", ko: "메가자리" },
   470: { ja: "リーフィア", jaRomaji: "Leafia", fr: "Phyllali", de: "Folipurba", ko: "리피아" },
   471: { ja: "グレイシア", jaRomaji: "Glacia", fr: "Givrali", de: "Glaziola", ko: "글레이시아" },
   472: { ja: "グライオン", jaRomaji: "Glion", fr: "Scorvol", de: "Skorgro", ko: "글라이온" },

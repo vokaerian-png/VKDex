@@ -1356,11 +1356,14 @@
   }
 
   // Regions whose *source* encounter data is missing wholesale, not
-  // regions where the Pokemon genuinely can't be caught: PokeAPI ships zero
-  // encounter rows for Paldea's version group, so all 120 native-Paldea
-  // species come out blank. Add a region here only for a confirmed
-  // upstream gap — a legitimately empty field is not "needs source".
-  var NEEDS_SOURCE_REGIONS = ["paldea"];
+  // regions where the Pokemon genuinely can't be caught. Add a region here
+  // only for a confirmed upstream gap — a legitimately empty field is not
+  // "needs source". Empty since 0.3.7: "paldea" was the sole entry (PokeAPI
+  // ships no encounter rows for Scarlet/Violet), and the csv/ rewire gave
+  // 104 of the 120 native-Paldea species real SV data. The remaining 16 are
+  // genuinely uncatchable (9 evolution-only, 7 static/event-only), so the
+  // generic messages below are now the factually correct ones for them.
+  var NEEDS_SOURCE_REGIONS = [];
 
   function foundInCardHtml(entry) {
     var regions = foundInRegions(entry.id);
@@ -1736,7 +1739,16 @@
       ? areas.map(function (a) {
         var name = typeof a === "string" ? a : a.area;
         var lines = (a.enc || []).map(function (e) {
-          return '<div class="enc-line">' + escapeHtml(e.method) + " &middot; Lv " + (e.min === e.max ? e.min : e.min + "&ndash;" + e.max) + " &middot; " + e.rate + "%" +
+          // 0.3.7: the SV/BDSP/LA lines don't all fit the classic numeric
+          // (min, max, rate) shape — `min`/`max` can be absent and `rate` can
+          // be a verbatim string ("varies", "one", "10%"). Both parts are
+          // conditional so those degrade to just the method instead of
+          // rendering "Lv undefined" / "varies%". A classic numeric line is
+          // byte-identical to what this always emitted. (Richer rendering of
+          // the other NEW_ENC_SHAPE fields is Phase 4.)
+          var lv = e.min === undefined ? "" : " &middot; Lv " + (e.min === e.max ? e.min : e.min + "&ndash;" + e.max);
+          var rate = e.rate === undefined ? "" : " &middot; " + (typeof e.rate === "number" ? e.rate + "%" : escapeHtml(e.rate));
+          return '<div class="enc-line">' + escapeHtml(e.method) + lv + rate +
             encGamesHtml(e.games) + "</div>";
         }).join("");
         if (!lines) return '<div class="popup-row column"><span class="v" style="text-align:left">' + escapeHtml(name) + "</span></div>";

@@ -168,8 +168,8 @@
   "party_type": "types.identifier",
   "trade_species": "species.species",
   "region": "regions.identifier",
-  "base_form": "pokemon_forms.identifier",
-  "evolved_form": "pokemon_forms.identifier",
+  "base_form": "pokemon.identifier",
+  "evolved_form": "pokemon.identifier",
   "used_move": "moves.identifier"
  },
  "pokemon.csv": {

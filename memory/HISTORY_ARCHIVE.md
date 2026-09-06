@@ -13,6 +13,33 @@ User-readability is secondary here — write for density, not prose.
 
 ---
 
+## 0.2.15 → 0.2.16 — Resize lock: stateless corner rule
+
+`overlord`. Round-1 local test found corner-drag jitter; root cause was a
+re-basing assumption invalid under Windows' real `WM_SIZING` behavior (each
+step proposes from cursor position, not the last returned rect). Fix: the
+corner rule became a pure function of the proposal (`prop_h*ASPECT > prop_w`
+→ height drives). Round-2 local test: "Fix worked, problem solved" — native
+resize lock confirmed on real hardware, closing the Tauri migration's last
+open item.
+
+## 0.2.14 → 0.2.15 — aria-hidden focus-retention fix
+
+`coder`. Fixed 4 Chromium "Blocked aria-hidden" console warnings: blur any
+focused element before setting `aria-hidden` on its container, at all 4
+close handlers (`closeMenu`/`closeDetailPopup`/`closeDetail`/
+`closeSettings`). Unverified live at ship time (no browser in-sandbox).
+
+## 0.2.13 → 0.2.14 — Native Tauri resize lock (WM_SIZING), unconfirmed
+
+`overlord`. Replaced the settle-then-snap JS fallback with a true live
+aspect lock: `src-tauri/src/resize_lock.rs` subclasses the window proc,
+rewriting the proposed rect on every `WM_SIZING` step (Windows-only).
+Unverified at ship time (no Rust toolchain in-sandbox); the corner-jitter
+bug found and fixed next version (0.2.16 above).
+
+---
+
 ## 0.2.12 → 0.2.13 — Resize-lock hardened against jitter
 
 `coder`. First real user `npm run dev` test: app ran correctly but window

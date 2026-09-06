@@ -505,23 +505,39 @@ Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.
 
 ---
 
-## 14. Wire `src/data/*.js` to the new `csv/` merge — not started
+## 14. Wire `src/data/*.js` to the new `csv/` merge — core wiring RESOLVED 2026-09-06 (0.3.6-0.3.8); follow-ups open
 
-`PLAN.md`'s CSV-merge entry shipped the merged data source itself
-(`csv/`, 149 files, `csv/MANIFEST.md`); this entry is the follow-up: no
-`populate_region.js` successor exists yet to actually read `csv/` and
-regenerate `src/data/*.js` from it. Candidates once that's scoped:
+`PLAN.md`'s CSV-merge entry has the full shipped-state record. `tools/
+populate_from_csv.js` reads `csv/` and is the live pipeline; real SV/BDSP/
+LA wild-encounter data is live in `locations.js`; `NEEDS_SOURCE_REGIONS` is
+empty. Two real `merge.js` bugs found and fixed along the way (an id-space
+bug threatening the per-forme evolution mechanism; a lost egg-group slot
+order). An independent audit confirmed the shipped data trustworthy.
 
-- **Wire `locations.js`'s `NEEDS_SOURCE_REGIONS`** (currently just
-  `["paldea"]`) to the real data now available: `csv/
-  encounters_scarlet_violet.csv` (4,296 rows, 371 areas incl. Kitakami/
-  Blueberry), `csv/encounters_legends_arceus.csv` (1,756), `csv/
-  encounters_brilliant_diamond_shining_pearl.csv` (2,178, a gap the app
-  didn't previously know it had). Needs a shape decision — these use
-  PokeDB's area vocabulary (`csv/location_areas_pokedb.csv`), not
-  `locations.js`'s existing PokeAPI-derived one.
-- **Judgment calls `overlord` flagged but the user hasn't re-confirmed**
-  (detail: `csv/MANIFEST.md`'s "Known gaps", the merge-build handoff):
+**Open follow-ups from the wiring itself:**
+
+- **Rich rendering of the new encounter shape** (`NEW_ENC_SHAPE`, `SCOPE.md`
+  §2) — group rates, terrain, tera raid star level, LA alpha/time-of-day/
+  weather are extracted and stored but `openLocationPopup()` only degrades
+  gracefully today (omits what the classic shape can't express), doesn't
+  show it. Needs a real UI design pass, not just data plumbing.
+- **DLC-only species still show a plain "Paldea" chip** (e.g. 901 Ursaluna,
+  whose only areas are Kitakami/Blueberry Academy) — the per-line `games`
+  label is correct since 0.3.8, but the chip itself doesn't distinguish
+  DLC-only species from base-game ones. Splitting Kitakami/Blueberry Academy
+  onto their own region key(s) is a real `REGIONS`/chip-ordering change,
+  unscoped.
+- **Duplicate area names in the Sinnoh popup** (40 species, 59 names, e.g.
+  "Lake Verity" rendering twice — once for PokeAPI's DPPt/Platinum data,
+  once for PokeDB's BDSP data) — cosmetic, a consequence of the deliberate
+  decision not to join the two area vocabularies. Merging same-named rows
+  in the popup (the `enc` lines already state their own games) would fix
+  it without reopening that decision.
+
+**Judgment calls `overlord` flagged at merge time, still not re-confirmed**
+(detail: `csv/MANIFEST.md`'s "Known gaps", the merge-build handoff — none
+of these blocked the wiring above, since the pipeline just reads whatever
+`csv/` currently says):
   whether per-species stat/type/ability *history* should really be 9
   per-generation snapshot files instead of the shipped current+delta
   shape; Max Moves/Tera Blast/Shell Side Arm `damage_class` kept as

@@ -50,10 +50,10 @@ VKDex/
       types.js         (TYPE_CHART: Gen 9 type-effectiveness chart, static)
       pokemon.js       (POKEMON_DATA: id, name, region, +types/category/height/
                          weight/abilities/hiddenAbility/description/eggGroups/
-                         heldItems — 1025 entries, the full National Dex, 0.3.0)
+                         heldItems — 1025 entries, sourced from csv/ since 0.3.6)
       abilities.js     (ABILITIES, keyed by name — 305 entries)
-      moves.js         (MOVES, keyed by name — 783 entries)
-      items.js         (ITEMS_DATA, keyed by slug — 144 referenced items, 0.3.0)
+      moves.js         (MOVES, keyed by name — 783 entries, incl. jaRomaji since 0.3.6)
+      items.js         (ITEMS_DATA, keyed by slug — 146 referenced items)
       movesets.js      (MOVESETS, keyed by id: levelUp/tm/egg/tutor/max)
       movesets_hisui.js (MOVESETS_HISUI, keyed by id: Legends: Arceus-only
                           learnsets split out of movesets.js, 0.2.18 —
@@ -77,9 +77,12 @@ VKDex/
   releases/                                  <- tools/release.js output (windows/, android/), gitignored (§2a)
   csv/                                        <- merged PokeAPI+PokeDB data source, one CSV per table
                                                  (csv/MANIFEST.md is the schema doc) — built 2026-09-06,
-                                                 not yet wired to src/ (PLAN.md's CSV-merge entry, TODO.md)
+                                                 the live source for src/data/*.js since 0.3.6-0.3.8
+                                                 (PLAN.md's CSV-merge entry)
   tools/                                     <- Node data-pipeline scripts (SCOPE.md §2) + release.js (§2a)
                                                  + csv_merge/ (analysis/compare/merge tooling behind csv/)
+                                                 + populate_from_csv.js (live pipeline, reads csv/, 0.3.6+;
+                                                 populate_region.js kept as the old-source cross-check tool)
   temp/                                      <- HANDOFF.md, handoff/, PokeAPI + PokeDB clones, SCRAP.md, <task-slug>/ scratch
   cleanup.bat                                <- double-click launcher for tools/cleanup.js (below)
 ```
@@ -238,7 +241,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.3.5.** Mirror on every bump, across all of:
+**Current version: 0.3.8.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml`.

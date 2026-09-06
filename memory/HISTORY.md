@@ -20,7 +20,130 @@ Entries prior to 0.2.10 live there now (0.1.0 through 0.2.9, 43 headings —
 0.2.5-0.2.9 were already folded under one 0.2.4→0.2.10 heading before
 archival and stayed folded as one compacted entry there).
 
-**Current version: 0.3.5.**
+**Current version: 0.3.8.**
+
+---
+
+## 0.3.7 → 0.3.8 — Independent audit + SV DLC-area mislabeling fixed (`coder` + independent audit dispatch)
+
+Closes out the CSV-rewire arc (0.3.6/0.3.7 below) with the user-requested
+secondary error-checking pass. A fresh, context-free dispatch independently
+re-verified the whole rewire from raw `csv/` files (not by re-running the
+implementers' own tooling) — see `PLAN.md`'s CSV-merge entry for the full
+verdict. Result: **data trustworthy, 0 extraction errors found**, but 2 real
+presentation bugs surfaced.
+
+- **SV DLC areas were being labelled as base-game Paldea** — Kitakami (The
+  Teal Mask) and Blueberry Academy (The Indigo Disk) areas landed in
+  `LOCATIONS[id].paldea` tagged `games: "Scarlet/Violet"`, indistinguishable
+  from real base-game content. 116 species' entire Paldea entry was
+  DLC-only; 201 more mixed DLC and base-game areas undivided. Fixed via a
+  real join (not a name heuristic): `encounters_scarlet_violet.location_area`
+  → `location_areas_pokedb.location` → `locations_pokedb.region_area` →
+  `region_areas_pokedb.identifier` (2,763 paldea / 826 blueberry-academy /
+  707 kitakami rows, 0 unresolved). Each affected line's `games` now reads
+  "The Teal Mask"/"The Indigo Disk" (or e.g. "Violet: The Teal Mask" for 95
+  version-exclusive rows, `versions.csv`'s own English names). 1,533 lines
+  relabelled across 336 species (audit's own eyeballed estimate of 116/201
+  undercounted — the join also catches areas with no self-identifying name,
+  e.g. Timeless Woods, Crystal Pool). Pure `games`-field edit: 0 structural
+  diffs, areas/order/counts unchanged.
+- **Known, deferred**: the Found In chip itself still reads "Paldea" even
+  for a DLC-only species (e.g. 901 Ursaluna) — splitting Kitakami/Blueberry
+  into their own region keys is unstarted (`TODO.md` #14). Also unfixed:
+  40 Sinnoh species show a duplicate area-name row (once for PokeAPI's
+  DPPt/Platinum data, once for PokeDB's BDSP data, e.g. "Lake Verity" ×2)
+  since the two area vocabularies were deliberately kept unjoined —
+  cosmetic, deferred to the same future pass.
+- Verified: `node --check`; `verify_region_data.js` PASS (1025/783/305/146/
+  151/224/241, unchanged); `--self-test` OK; every audit-flagged species
+  (Bulbasaur, Charmander, Clefairy, Poliwag, 4 `hisuiOnly` DLC-only cases)
+  re-checked showing correct labels; `sinnoh`/`hisui` data confirmed
+  byte-identical (untouched by this change).
+
+Handoffs: `temp/handoff/2026-09-06-150254-csv-rewire-phase3-independent-audit.md`,
+`-151207-csv-rewire-phase3b-dlc-label-fix.md`.
+
+---
+
+## 0.3.6 → 0.3.7 — Real Scarlet/Violet, BDSP and Legends: Arceus wild encounters go live (`coder`)
+
+Follow-up to 0.3.6's rewire: lands the new encounter data 0.3.6 extracted
+but held back. `src/app.js`'s `openLocationPopup()` assumed every encounter
+line had a numeric `min`/`max`/`rate`; the new per-game shape often lacks
+`min`/`max` and can carry a string `rate` (`"varies"`, `"10%"`) — rendering
+as-is produced `undefined%`/`Lv undefined`/`varies%` garbage. Fixed with a
+minimal conditional (omit "Lv …" when `min` is absent; print a string
+`rate` verbatim, a numeric one as "N%" as before) — the fuller rich render
+(terrain, group rates, tera stars, LA alpha/time/weather) stays deferred,
+`TODO.md` #14. `verify_region_data.js`'s enc-line check widened to accept
+the new shape (string `rate`, absent `min`/`max`) without loosening the
+classic numeric-shape validation.
+
+- **768 of 1025 species gain wild-encounter data the app never had**:
+  `paldea` 625 species/3,900 areas/4,234 lines (Scarlet/Violet), `sinnoh`
+  317/1,887/2,138 (Brilliant Diamond/Shining Pearl), `hisui` 235/1,381/1,725
+  (Legends: Arceus). `NEEDS_SOURCE_REGIONS` emptied of `"paldea"` — the
+  other 16 native-Paldea species (9 evolution-only, 7 static/event-only)
+  correctly fall through to the existing accurate messages.
+- Two more bugs found and fixed along the way: a `populate_region.js`
+  locations-writer idempotency bug (a re-run duplicated a species' own new
+  areas rather than replacing them) and one inverted LA level range
+  upstream (Prinplup/Spring Path `32 - 25`, fixed by sorting rather than
+  relaxing the verifier).
+- Verified: `node --check`; `verify_region_data.js` PASS; whole-corpus
+  render check — 14,268 enc lines, 0 contain `undefined`/`NaN`/`%%`; 6,171
+  classic lines confirmed byte-identical to the pre-change template; 7
+  real lines hand-traced to their rendered HTML in the handoff.
+
+Handoff: `temp/handoff/2026-09-06-145141-csv-rewire-phase2b-minimal-encounter-fix.md`.
+
+---
+
+## 0.3.5 → 0.3.6 — Data pipeline rewired onto merged `csv/` source (`coder` ×2) — `TODO.md` #14's core wiring shipped
+
+Replaces the app's single-source PokeAPI pipeline with one reading last
+session's merged `csv/` source (`PLAN.md`'s CSV-merge entry). Two
+dispatches: build+validate (dry-run only), then the full write.
+
+- **New `tools/populate_from_csv.js`** validated on a 30-id sample and the
+  full 1025-id set before any write — **0 unexplained differences** either
+  time. `tools/populate_region.js` (the old pipeline) is kept as a
+  permanent independent cross-check, not retired.
+- **Two real bugs found in `tools/csv_merge/merge.js` itself**, both fixed
+  and `csv/` regenerated: (1) `pokemon_evolution.csv`'s `base_form`/
+  `evolved_form` were resolved through the wrong id space (`pokemon_forms.id`
+  instead of `pokemon.id`), silently pointing 34 of 58 form-restricted
+  evolution rows at unrelated species/formes — left unfixed, this would
+  have broken the 0.3.4/0.3.5 per-forme `evolvesTo` mechanism outright
+  (Perrserker would've hung off base Meowth). (2) `pokemon_egg_groups.csv`
+  lost PokeAPI's real slot order for 161 species (alphabetised instead of
+  preserved) — e.g. Bulbasaur read Grass/Monster instead of Monster/Grass.
+- **Full 1025-id write** (both bugs fixed, 3 user-confirmed decisions
+  applied): `moves.js` +`jaRomaji` on all 783 entries; `pokemon.js`
+  `baseExperience` switched to the current Gen 7+ era value (139 species,
+  e.g. Charizard 240→267 — still data-only/unwired); `stats.js`/`names.js`/
+  `evolutions.js` picked up a handful of `species_field_overrides.csv`
+  corrections. **0 object-literal field-order changes anywhere** across
+  5,900+ entries (checked programmatically). One flagged, approved reorder:
+  133 Eevee's evolution branches now sort in the pipeline's canonical
+  ascending-id order (Sylveon 6th→8th in the fan-out) — confirmed
+  pre-existing legacy drift, not a rewire regression (both source CSVs
+  agree on the corrected order), user confirmed keeping it.
+- **`assemble()` now auto-carries hand-authored evolution `note`/
+  `statCompare` fields** (211/234/236/265/550/704) on every run instead of
+  silently dropping them — closes a fragility that had already bitten
+  twice (0.2.7, 0.2.22), user-approved as permanent pipeline behavior.
+- Verified: `node --check`; `verify_region_data.js` PASS; a second dry run
+  against the freshly-written data is a fixed point (only the pre-existing
+  978 Tatsugiri `altforms` drift, already known); named regression cases
+  (215 Sneasel, 399 Bidoof, 37 Vulpix's per-forme override, 128 Tauros,
+  899-905 `hisuiOnly`) all confirmed intact; `populate_region.js --audit`
+  cross-check against the old source reports exactly the documented
+  discrepancies, no surprises.
+
+Handoffs: `temp/handoff/2026-09-06-161600-csv-rewire-phase1.md`,
+`-144022-csv-rewire-phase2.md`.
 
 ---
 
@@ -693,108 +816,6 @@ only intentional Android release until that's fixed (`TODO.md` #1,
 `PLAN.md`'s Tauri entry).
 
 ---
-
-## 0.2.15 → 0.2.16 — Resize lock: stateless corner rule (`overlord`)
-
-**Local test round 1 of the native lock (0.2.15, user):** "Dragging from
-the side of the window, or the bottom of the window resulted in
-continuous, smooth resizing. Dragging from corner resulted in extreme
-jittering. No errors logged." So the subclass compiles, installs, and
-Windows honors the rewritten rect — only the corner branch was wrong.
-
-**Diagnosis:** `fit_rect` picked the corner's driving axis by comparing the
-proposed size against the live client size (`GetClientRect`) — the
-"larger per-step delta" rule inherited from `lockAspect`, valid only if
-Windows re-based each `WM_SIZING` proposal on the rect we returned last
-time (the module's ReactOS-derived assumption). Windows instead proposes
-each step from the cursor's absolute position while the live window
-carries our on-ratio rect, so the off-axis difference is huge every step
-and the axis flip-flopped (400x889 → 365x812 → ... on a bottom-right
-drag). Under the re-basing model an axis flip can only change growth
-*speed*, never direction — the extreme jitter alone rules that model out.
-The stash-the-last-returned-size fix pre-flagged in 0.2.14's handoff would
-not have helped: with DragFullWindows on, `GetClientRect` *already* equals
-the last returned rect, so a stash holds the same value and jitters the
-same way.
-
-**Fix (`src-tauri/src/resize_lock.rs`):** the corner rule is now a pure
-function of the proposal — `prop_h * ASPECT > prop_w` → height drives,
-else width — i.e. the smallest 360:800 client rect containing the
-proposal, which keeps the cursor on one of the two moving edges and is
-continuous in the cursor position. `fit_rect` loses its `cur_client`
-parameter (chrome measurement still uses `GetClientRect`); no static
-state, nothing to reset at drag boundaries, no `WM_ENTERSIZEMOVE`
-handling. Module doc rewritten to state the real Windows behavior. Tests:
-3 updated to the new signature, corner test gains a taller-than-ratio
-case, plus a new `corner_axis_is_stable_across_cursor_steps` regression
-test (two successive cursor positions; the old rule yields 365x812 on the
-second, the new one 402x893). Verified: arithmetic hand-checked and
-replicated in Node; brace balance; `windows` 0.61 type shapes unchanged
-from 0.2.14's cross-check. **Not compiled** (no Rust toolchain in-sandbox,
-`CLAUDE.md` §4) — the user's next `npm run dev` is local test round 2.
-Untouched: `src/app.js` `lockAspect`, `tauri.conf.json`, `main.rs`.
-
-**Local test round 2 (user, same day):** "Fix worked, problem solved."
-Native resize lock is confirmed on real hardware — the Tauri migration's
-last open item. `electron-app/` is no longer the fallback for this
-specifically (`CLAUDE.md` §2b/§2); next session retargets `tools/
-release.js` for Tauri, then cleans up Electron (`PLAN.md`).
-Handoff: `temp/handoff/2026-09-05-113806-corner-jitter-fix.md`.
-
----
-
-## 0.2.14 → 0.2.15 — aria-hidden focus-retention fix (`coder`)
-
-Fixed 4 real Chromium console warnings ("Blocked aria-hidden on an element
-because its descendant retained focus"), unrelated to the Tauri migration:
-`closeMenu`/`closeDetailPopup`/`closeDetail`/`closeSettings` in `src/app.js`
-each set `aria-hidden="true"` on a container while a focusable child inside
-it (the button that triggered the close) still held focus. Fix: a 1-line
-guard before each `setAttribute` — `if (CONTAINER.contains(document.
-activeElement)) document.activeElement.blur();` — inline at all 4 sites, no
-shared helper (they share no common close path). Verified: `node --check`
-clean, plus a re-runnable structural check confirming all 4 sites are
-guarded (`temp/handoff/2026-09-05-112620-aria-hidden-fix.md`). **Needs
-local retest** — no browser in-sandbox to confirm the warnings are actually
-gone. Flagged, not acted on: `src-tauri/Cargo.lock` still reads `vkdex
-0.2.13` (stale since before this pass; `cargo` rewrites it on next build).
-
----
-
-## 0.2.13 → 0.2.14 — Native Tauri resize lock (WM_SIZING), unconfirmed
-
-User chose a true live aspect lock over keeping 0.2.13's settle-then-snap
-JS fallback, knowing it needs native code that can't be compiled in the
-Cowork sandbox (no Rust toolchain, `CLAUDE.md` §4) and will take at least
-one local compile-fix round. `overlord` (fable) built it:
-
-- **New `src-tauri/src/resize_lock.rs`** (Windows-only, `#[cfg(target_os =
-  "windows")]` on the `mod` and the setup call): gets the main window's
-  HWND via `raw_window_handle::HasWindowHandle` on
-  `app.get_webview_window("main")`, then `SetWindowSubclass`es it. The
-  subclass proc handles `WM_SIZING` — the message Windows sends with the
-  *proposed* outer rect on every mouse step of a border drag — and rewrites
-  that rect before Windows applies it, so the window is on-ratio *during*
-  the drag, the way Electron's `setAspectRatio` felt. Everything else goes
-  to `DefSubclassProc`. Chrome size (`GetWindowRect` minus
-  `GetClientRect`) is re-measured per message, so DPI/monitor changes need
-  nothing special. Edge drags: the dragged axis drives, the other is
-  derived; corners: whichever axis this mouse step moved more (width on a
-  tie — same rule as `app.js`'s `lockAspect`; Windows re-bases each step
-  on the rect handed back last time, so per-step comparison is correct).
-  Only the dragged edge(s) move; client size floored at 360x800. The pure
-  `fit_rect` logic has three `#[cfg(test)]` cases (`cargo test` in
-  `src-tauri/`, Windows).
-- **`src-tauri/Cargo.toml`**: Windows-only deps `raw-window-handle = "0.6"`
-  and `windows = "0.61"` (features `Win32_Foundation`, `Win32_UI_Shell`,
-  `Win32_UI_WindowsAndMessaging`) — both versions already in `Cargo.lock`
-  via tauri, so no new crate sources.
-- **`src-tauri/src/main.rs`**: `.setup()` calling `resize_lock::install`.
-- **Untouched, deliberately**: `src/app.js`'s `lockAspect` stays as a
-  defense-in-depth no-op (window already on-ratio when its `resize` fires,
-  so the epsilon check passes); `tauri.conf.json`, capabilities, icons.
-- **Unverified** — no `cargo` here. Expected first-compile-error causes and
-  the local test procedure: `temp/handoff/2026-09-05-111229-native-resize-lock.md`.
 
 ---
 

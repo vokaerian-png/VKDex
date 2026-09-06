@@ -536,7 +536,17 @@ function build() {
     if (ovr(key, "evolution_chain_id")) usedOvr.add(ovr(key, "evolution_chain_id"));
     const nrow = { species: dex }; for (const [l, v] of Object.entries(nm)) if (v) nrow[col("name", l)] = v; speciesNameRows.push(nrow);
     const grow = { species: dex }; for (const [l, v] of Object.entries(n)) if (v.genus) grow[col("genus", l)] = l === "en" ? ch.genus : v.genus; genusRows.push(grow);
-    const eg = ch.egg_groups.split("/").filter(Boolean).map(dbEgg); eggRows.push({ species: dex, egg_group_1: eg[0] || "", egg_group_2: eg[1] || "" });
+    // BUGFIX 2026-09-06 (Phase 1 csv/ rewire): ch.egg_groups is alphabetized
+    // by display name so the two sources can be compared, but that string
+    // was then stored verbatim — losing PokeAPI's row order, which IS the
+    // real slot order (Bulbasaur is Monster/Grass, not Grass/Monster;
+    // Bulbapedia agrees). 12 species came out reversed. Re-order the
+    // adjudicated set back into A's row order, appending anything only
+    // PokeDB had.
+    const egSet = new Set(ch.egg_groups.split("/").filter(Boolean).map(dbEgg));
+    const egInA = (aEggs[dex] || []).filter(x => egSet.has(x));
+    const eg = egInA.concat([...egSet].filter(x => egInA.indexOf(x) === -1));
+    eggRows.push({ species: dex, egg_group_1: eg[0] || "", egg_group_2: eg[1] || "" });
     // base friendship: PokeDB owns both era columns; PokeAPI's era-mixed base_happiness cross-checked against the era its species belongs to
     const f37 = clean(np1.base_friendship_gen3_7), f8 = clean(np1.base_friendship_gen8);
     const era = +s.generation_id <= 7 ? ["base_friendship_gen3-7", f37] : ["base_friendship_gen8plus", f8];
@@ -570,9 +580,19 @@ function build() {
   out("pokemon_dex_numbers.csv", A("pokemon_dex_numbers.csv").map(r => ({ species: r.species_id, pokedex: POKEDEX.get(r.pokedex_id), number: r.pokedex_number })), ["species", "pokedex", "number"], { ...SPFK, pokedex: "pokedexes.identifier" });
   out("pal_park.csv", A("pal_park.csv").map(r => ({ species: r.species_id, area: PPAREA.get(r.area_id), base_score: r.base_score, rate: r.rate })), ["species", "area", "base_score", "rate"], { ...SPFK, area: "pal_park_areas.identifier" });
   // evolution: ids -> identifiers
-  out("pokemon_evolution.csv", A("pokemon_evolution.csv").map(r => ({ id: r.id, evolved_species: r.evolved_species_id, trigger: ETRIG.get(r.evolution_trigger_id), version_group: vgId.get(r.version_group_id) || "", is_default: r.is_default, trigger_item: ITEM.get(r.trigger_item_id) || "", minimum_level: r.minimum_level, gender: GENDER.get(r.gender_id) || "", location: LOC.get(r.location_id) || "", held_item: ITEM.get(r.held_item_id) || "", time_of_day: r.time_of_day, known_move: MOVE.get(r.known_move_id) || "", known_move_type: TYPE.get(r.known_move_type_id) || "", minimum_happiness: r.minimum_happiness, minimum_beauty: r.minimum_beauty, minimum_affection: r.minimum_affection, relative_physical_stats: r.relative_physical_stats, party_species: r.party_species_id, party_type: TYPE.get(r.party_type_id) || "", trade_species: r.trade_species_id, needs_overworld_rain: r.needs_overworld_rain, turn_upside_down: r.turn_upside_down, needs_multiplayer: r.needs_multiplayer, near_special_rock: r.near_special_rock, region: REGION.get(r.region_id) || "", base_form: r.base_form_id ? formIdent(r.base_form_id) : "", evolved_form: r.evolved_form_id ? formIdent(r.evolved_form_id) : "", used_move: MOVE.get(r.used_move_id) || "", minimum_move_count: r.minimum_move_count, minimum_steps: r.minimum_steps, minimum_damage_taken: r.minimum_damage_taken })),
+  out("pokemon_evolution.csv", A("pokemon_evolution.csv").map(r => ({ id: r.id, evolved_species: r.evolved_species_id, trigger: ETRIG.get(r.evolution_trigger_id), version_group: vgId.get(r.version_group_id) || "", is_default: r.is_default, trigger_item: ITEM.get(r.trigger_item_id) || "", minimum_level: r.minimum_level, gender: GENDER.get(r.gender_id) || "", location: LOC.get(r.location_id) || "", held_item: ITEM.get(r.held_item_id) || "", time_of_day: r.time_of_day, known_move: MOVE.get(r.known_move_id) || "", known_move_type: TYPE.get(r.known_move_type_id) || "", minimum_happiness: r.minimum_happiness, minimum_beauty: r.minimum_beauty, minimum_affection: r.minimum_affection, relative_physical_stats: r.relative_physical_stats, party_species: r.party_species_id, party_type: TYPE.get(r.party_type_id) || "", trade_species: r.trade_species_id, needs_overworld_rain: r.needs_overworld_rain, turn_upside_down: r.turn_upside_down, needs_multiplayer: r.needs_multiplayer, near_special_rock: r.near_special_rock, region: REGION.get(r.region_id) || "", // BUGFIX 2026-09-06 (Phase 1 csv/ rewire): pokemon_evolution's
+    // base_form_id/evolved_form_id reference **pokemon.id**, not
+    // pokemon_forms.id — the two id spaces only coincide below 10000, so
+    // every alt-form reference (Meowth-Galar 10161, Slowpoke-Galar 10164,
+    // Farfetch'd-Galar 10166, Qwilfish-Hisui 10234, Sneasel-Hisui 10235...)
+    // resolved to an unrelated form (vivillon-fancy, latias-mega,
+    // swampert-mega, silvally-*). 34 of 58 base_form cells were wrong.
+    // The FK check passed because the wrong values are still valid
+    // pokemon_forms identifiers. pokemon_form_changes.csv (below) keeps
+    // formIdent — ITS base_form_id really is a pokemon_forms.id.
+    base_form: r.base_form_id ? (PKID.get(r.base_form_id) || {}).identifier || "" : "", evolved_form: r.evolved_form_id ? (PKID.get(r.evolved_form_id) || {}).identifier || "" : "", used_move: MOVE.get(r.used_move_id) || "", minimum_move_count: r.minimum_move_count, minimum_steps: r.minimum_steps, minimum_damage_taken: r.minimum_damage_taken })),
     ["id", "evolved_species", "trigger", "version_group", "is_default", "trigger_item", "minimum_level", "gender", "location", "held_item", "time_of_day", "known_move", "known_move_type", "minimum_happiness", "minimum_beauty", "minimum_affection", "relative_physical_stats", "party_species", "party_type", "trade_species", "needs_overworld_rain", "turn_upside_down", "needs_multiplayer", "near_special_rock", "region", "base_form", "evolved_form", "used_move", "minimum_move_count", "minimum_steps", "minimum_damage_taken"],
-    { evolved_species: "species.species", trigger: "evolution_triggers.identifier", version_group: "version_groups.identifier", trigger_item: "items.identifier", location: "locations.identifier", held_item: "items.identifier", known_move: "moves.identifier", known_move_type: "types.identifier", party_species: "species.species", party_type: "types.identifier", trade_species: "species.species", region: "regions.identifier", base_form: "pokemon_forms.identifier", evolved_form: "pokemon_forms.identifier", used_move: "moves.identifier" });
+    { evolved_species: "species.species", trigger: "evolution_triggers.identifier", version_group: "version_groups.identifier", trigger_item: "items.identifier", location: "locations.identifier", held_item: "items.identifier", known_move: "moves.identifier", known_move_type: "types.identifier", party_species: "species.species", party_type: "types.identifier", trade_species: "species.species", region: "regions.identifier", base_form: "pokemon.identifier", evolved_form: "pokemon.identifier", used_move: "moves.identifier" });
   // ---- pokemon (forms) + per-form tables
   const bFormByPk = new Map();   // PokeAPI pokemon identifier -> PokeDB form row (first non-cosmetic alias)
   for (const f of BFORMS) { const a = formAlias.get(f.identifier); if (a && a.how !== "cosmetic" && !bFormByPk.has(a.pokemon)) bFormByPk.set(a.pokemon, f); }

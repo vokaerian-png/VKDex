@@ -1159,14 +1159,38 @@ function evoStepText(s) {
   if (s.moveType) parts.push(`moveType: "${s.moveType}"`);
   if (s.move) parts.push(`move: "${escD(s.move)}"`);
   if (s.gender) parts.push(`gender: "${s.gender}"`);
+  if (s.statCompare) parts.push(`statCompare: "${s.statCompare}"`);
   return `{ ${parts.join(", ")} }`;
 }
 // One locations.js area entry (0.2.8 shape: one enc line per method per
 // game-group). A bare string is a pre-0.2.7 area (populate_hisui_species.js
 // still writes those) — passed through.
+//
+// ENC_KEYS is the serialisation order for an enc line. The first five are
+// the classic 0.2.8 shape and always come out in that order, so a
+// PokeAPI-derived line is byte-identical to what this function has always
+// written. The rest are populate_from_csv.js's NEW_ENC_SHAPE (SV/BDSP/LA,
+// 2026-09-06) — all optional, all absent on a classic line, ordered exactly
+// as that tool's NEW_ENC_SHAPE block documents them. An enc line carrying a
+// key not listed here is a bug in whatever produced it, so it throws rather
+// than dropping data silently.
+const ENC_KEYS = ["method", "games", "min", "max", "forme", "rate", "weight", "group", "timeRates",
+  "times", "weather", "terrain", "alphaMin", "alphaMax", "boulder", "hiddenAbility", "teraStars",
+  "homeMin", "homeMax", "tradeFor", "note"];
+function encVal(v) {
+  if (typeof v === "string") return `"${escD(v)}"`;
+  if (Array.isArray(v)) return `[${v.map(encVal).join(", ")}]`;
+  if (v && typeof v === "object") return `{ ${Object.keys(v).map(k => `${k}: ${encVal(v[k])}`).join(", ")} }`;
+  return String(v); // number | boolean | null
+}
+function encText(e) {
+  const unknown = Object.keys(e).filter(k => ENC_KEYS.indexOf(k) === -1);
+  if (unknown.length) throw new Error(`locations.js enc line: unknown field(s) ${unknown.join(", ")} — add them to ENC_KEYS in NEW_ENC_SHAPE order`);
+  return `{ ${ENC_KEYS.filter(k => e[k] !== undefined).map(k => `${k}: ${encVal(e[k])}`).join(", ")} }`;
+}
 function areaText(a) {
   if (typeof a === "string") return `"${escD(a)}"`;
-  return `{ area: "${escD(a.area)}", enc: [${a.enc.map(e => `{ method: "${escD(e.method)}", games: "${escD(e.games)}", min: ${e.min}, max: ${e.max}, rate: ${e.rate} }`).join(", ")}] }`;
+  return `{ area: "${escD(a.area)}", enc: [${a.enc.map(encText).join(", ")}] }`;
 }
 function altFormsText(id, baseName, formes) {
   const lines = [`  ${id}: { // ${baseName} — Mega Evolution${formes.length > 1 ? "s (X/Y)" : ""}`, "    formes: ["];
@@ -1276,7 +1300,22 @@ function assemble(results, descriptions, tables, strict, current) {
   }));
 
   // ---- evolutions.js ----
-  if (want("evolutions")) upsertEntries("evolutions.js", ids.map(id => ({ id, text: `  ${id}: { evolvesTo: [${results.evolutions[id].map(evoStepText).join(", ")}] }` })));
+  // The entry-level `note` (211/234/265/550/704) and the per-edge
+  // `statCompare` (236 Tyrogue) are hand-authored — no CSV column backs
+  // either (TODO.md #12) — and every write here used to silently drop them
+  // (0.2.7, 0.2.22, and again on the 2026-09-06 csv/ rewire before this).
+  // Carried over from the existing entry instead, the same way pokemon.js
+  // carries `hasFemaleSprite`.
+  if (want("evolutions")) upsertEntries("evolutions.js", ids.map(id => {
+    const prev = current.tables.evolutions[id] || {};
+    const prevEdge = new Map((prev.evolvesTo || []).map(e => [e.id, e]));
+    const steps = results.evolutions[id].map(s => {
+      const p = prevEdge.get(s.id);
+      return p && p.statCompare && !s.statCompare ? Object.assign({}, s, { statCompare: p.statCompare }) : s;
+    });
+    const note = prev.note ? `, note: "${escD(prev.note)}"` : "";
+    return { id, text: `  ${id}: { evolvesTo: [${steps.map(evoStepText).join(", ")}]${note} }` };
+  }));
 
   // ---- movesets.js ----
   if (want("movesets")) {
@@ -1325,9 +1364,25 @@ function assemble(results, descriptions, tables, strict, current) {
   if (want("locations")) {
     const entries = [];
     for (const id of ids) {
-      const { region, areas } = results.locations[id];
+      const { region, areas, extra } = results.locations[id];
       const merged = Object.assign({}, current.tables.locations[id] || {});
       if (region && (areas.length || merged[region] === undefined)) merged[region] = areas;
+      // `extra` (populate_from_csv.js only — absent from populate_region.js's
+      // own extract()) is the SV/BDSP/LA data, keyed by the region key it
+      // belongs under: SV -> paldea, BDSP -> sinnoh, LA -> hisui. It is
+      // APPENDED after that region's classic PokeAPI-derived areas, never
+      // merged into them by name (the two use different area vocabularies —
+      // locked user decision). Rebuilt from scratch every run: the classic
+      // half comes from `areas` and the new half from `extra`, so a re-run
+      // replaces rather than appends. Foreign region keys already in the file
+      // are only ever empty placeholders (verified across all 1025 entries).
+      // The classic half is `areas`, NOT merged[rg] — for a species whose own
+      // region is one of the three (a Paldea native), `areas` is empty, so
+      // line 1369's preserve-what's-there guard leaves the PREVIOUS run's
+      // already-appended new data in merged[rg] and concat would duplicate
+      // every area on each re-run (0.3.7: caught on the 104 native-Paldea
+      // species after a re-run).
+      for (const rg in (extra || {})) merged[rg] = (rg === region ? areas : []).concat(extra[rg]);
       if (!Object.keys(merged).length) merged[region || "hisui"] = [];
       const body = Object.keys(merged).map(r => `${r}: [${merged[r].map(areaText).join(", ")}]`).join(", ");
       entries.push({ id, text: `  ${id}: { ${body} }` });
@@ -1649,4 +1704,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { parseCSV, loadCSV, loadAllCSVs, currentData, resolveTargets, extract, upsertEntries, assemble, audit, gaps, GROWTH, NAME_LANGS, names5, regionalPokedexes, moveDataBuilder, abilityDataBuilder, moveEntryText, abilityEntryText, namesText, escD };
+module.exports = { parseCSV, loadCSV, loadAllCSVs, currentData, resolveTargets, extract, upsertEntries, assemble, audit, gaps, GROWTH, NAME_LANGS, names5, regionalPokedexes, moveDataBuilder, abilityDataBuilder, moveEntryText, abilityEntryText, namesText, areaText, encText, escD };

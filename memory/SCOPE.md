@@ -10,13 +10,15 @@ Sections run sequentially §1-§8; a sub-clause takes its main section's
 number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
 full convention).
 
-**Standing cap: ≤800 lines** (raised from 750, 2026-09-06, the evolution
-per-forme-override mechanism + alt-forme tappable-fix + tap-to-enlarge/
-needs-source documentation — real new behavior, not narration; previously
-raised from 700 same day for the Alola/Galar/Paldea regional-forme
-mechanism, from 650 for the PLA/Hisui learnset split), same 50-line
-raise-at-a-time rule as `CLAUDE.md` (full shared rule: `CLAUDE.md` §7) —
-tracked independently of that file's own cap.
+**Standing cap: ≤850 lines** (raised from 800, 2026-09-06, the csv/-sourced
+data pipeline + new SV/BDSP/LA encounter shape + DLC-label fix
+documentation — real new behavior, not narration; previously raised from
+750 same day for the evolution per-forme-override mechanism +
+alt-forme-tappable-fix + tap-to-enlarge/needs-source documentation, from
+700 for the Alola/Galar/Paldea regional-forme mechanism, from 650 for the
+PLA/Hisui learnset split), same 50-line raise-at-a-time rule as `CLAUDE.md`
+(full shared rule: `CLAUDE.md` §7) — tracked independently of that file's
+own cap.
 
 **Cards and their internal data blocks don't get reordered, restructured,
 or reshuffled unless the user explicitly asks for that specific change**
@@ -44,7 +46,7 @@ decision 2026-09-06, `PLAN.md`'s Tauri migration entry).
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3). **Current version: 0.3.5** (`CLAUDE.md` §3 for
+and a Settings popup (§3). **Current version: 0.3.8** (`CLAUDE.md` §3 for
 the bump policy, `HISTORY.md` for the changelog).
 
 ---
@@ -145,9 +147,67 @@ prior alphabetical position rather than a guessed slot (~20 areas
 project-wide). `tools/populate_region.js`'s `REGION_ORDER_GEN` holds
 either a single generation string or (Hoenn only) a list.
 
-**Data pipeline: `tools/populate_region.js`** (unified 2026-09-05; full
-scope in its header comment) is the one tool for CSV → `src/data/*.js`,
-reading the `PokeAPI/pokeapi` clone at `temp/PokeAPI-master/data/v2/csv/`.
+**Data pipeline, since 0.3.6: `tools/populate_from_csv.js`** reads the
+merged `csv/` source (`csv/MANIFEST.md`, PokeAPI+PokeDB, built 2026-09-06)
+and is now the live path from data source → `src/data/*.js`.
+`tools/populate_region.js` (below) still reads the old single-source
+`temp/PokeAPI-master/` clone and is kept as an independent cross-check, not
+retired. `populate_from_csv.js` reuses `populate_region.js`'s `assemble()`/
+`upsertEntries()` writers unchanged for 7 of 8 per-id tables; only
+`locations.js`'s writer gained real new logic (below). `--ids`/`--all`/
+`--assemble`/`--tables`/`--dry-run`/`--self-test` mirror the old tool's
+verbs; no `--generate`/`--refresh`/`--gaps` equivalent yet (every species
+already has a hand-authored description, so nothing to manifest).
+
+- **New capability: real Scarlet/Violet, Brilliant Diamond/Shining Pearl,
+  and Legends: Arceus wild encounters** (zero PokeAPI-derived rows existed
+  for any of the three). Areas use PokeDB's own vocabulary verbatim,
+  deliberately **not** joined to the existing PokeAPI-derived area names
+  (user decision); sorted alphabetically (no real in-game-progression data
+  exists for these areas yet — known-approximate, revisit if ever sourced).
+  Filed under the species' own existing region key (SV→`paldea`,
+  BDSP→`sinnoh`, LA→`hisui`) as a block appended *after* that region's
+  classic areas, which stay unchanged — avoids a confusing second Sinnoh
+  chip. **Known cosmetic issue**: where a PokeAPI- and a PokeDB-derived
+  area share an identical display name (40 Sinnoh species, 59 names — e.g.
+  "Lake Verity" for both DPPt/Platinum and BDSP), the Found In popup shows
+  two identically-labelled rows with nothing distinguishing them until
+  expanded. Not data corruption, deferred (`TODO.md` #14).
+- **New per-line shape** for these three games' `enc` entries — real
+  per-game rarity models, not squeezed into the classic
+  `{method, games, min, max, rate}` shape (user decision): adds (all
+  optional) `forme`, a **string** `rate` (`"varies"`/`"30%"`, not a
+  number), `weight` (raw SV spawn weight), `group`, `timeRates`, `times`,
+  `weather`, `terrain`, `alphaMin`/`alphaMax`, `boulder`, `hiddenAbility`,
+  `teraStars`, `homeMin`/`homeMax`, `tradeFor`, `note`. Full spec:
+  `NEW_ENC_SHAPE` atop `tools/populate_from_csv.js`. **Not yet rendered
+  richly** — `openLocationPopup()` (0.3.7) just degrades gracefully (omits
+  "Lv …" when `min` is absent, prints a string `rate` verbatim) rather than
+  showing terrain/group rates/tera stars/LA alpha-time-weather (`TODO.md` #14).
+- **SV's Kitakami (The Teal Mask)/Blueberry Academy (The Indigo Disk) DLC
+  areas are correctly labelled** (0.3.8) — each line's `games` names the
+  real DLC instead of a blanket "Scarlet/Violet", via a real join
+  (`encounters_scarlet_violet.location_area` →
+  `location_areas_pokedb.location` → `locations_pokedb.region_area` →
+  `region_areas_pokedb.identifier`), not a name heuristic. **The chip
+  label itself still just says "Paldea"** even for a DLC-only species (e.g.
+  901 Ursaluna) — splitting those into their own region keys is unstarted
+  (`TODO.md` #14).
+- `NEEDS_SOURCE_REGIONS` (0.3.3) **no longer includes `"paldea"`** (0.3.7) —
+  104/120 native-Paldea species now have real SV data; the other 16 (9
+  evolution-only, 7 static/event-only) correctly fall through to the
+  existing "evolution only"/"no wild encounter data" messages, both now
+  accurate rather than a source gap.
+- **`baseExperience` reads the Gen 7+/current era** (0.3.6, was Gen 5-6);
+  **`moves.js` entries gained `jaRomaji`** (0.3.6, all 783) — both
+  data-only/unwired. Hand-authored evolution `note`/`statCompare`
+  (211/234/236/265/550/704) are now **carried over automatically** by
+  `assemble()` every run (0.3.6), closing the fragility hit in 0.2.7/0.2.22.
+
+**`tools/populate_region.js`** (unified 2026-09-05; full scope in its
+header comment; superseded as the live pipeline by the above, 0.3.6, but
+still the cross-check) reads the `PokeAPI/pokeapi` clone at
+`temp/PokeAPI-master/data/v2/csv/`.
 
 - **Target** = a region name (whole generation) or `--ids 1,2,3`.
   **Action** = `--dry-run` / `--generate` (results + descriptions-needed
@@ -387,9 +447,10 @@ new sprite subfolder needs no build-config change (Electron's
     `.alt` so it automatically reflects whatever forme/gender is active.
     Scoped to these two sprites only — not alt-forme bubbles, item
     sprites, or evo-stage/dex-grid sprites.
-  - **Alt Formes**: from `data/altforms.js`'s `ALT_FORMS[id]` — 145
-    species / 211 formes: Deoxys, Castform, 4 `recolorOnly` species
-    (Unown/Burmy/Cherrim/Arceus — Arceus by explicit user override), 16
+  - **Alt Formes**: from `data/altforms.js`'s `ALT_FORMS[id]` — 151
+    species / 224 formes: Deoxys, Castform, 6 `recolorOnly` species
+    (Unown/Burmy/Cherrim/Arceus — Arceus by explicit user override —
+    plus Maushold/Dudunsparce, 0.3.2), 16
     Hisuian regional-form species, **36 Alolan/Galarian/Paldean
     regional-form species** (2026-09-06 — 18 Alola/19 Galar/2 Paldea, one
     species — Meowth — with both an Alolan and a Galarian forme), and 39
@@ -570,13 +631,11 @@ new sprite subfolder needs no build-config change (Electron's
     uses the same helper). Zero regions → "Not found in the wild —
     evolution only." when a prior evolution exists (`evolutionRootId()`),
     else "No wild encounter data recorded." — **unless** the species'
-    region is in `NEEDS_SOURCE_REGIONS` (0.3.3; currently just
-    `["paldea"]`, all 120 native-Paldea species — the CSV clone has zero
-    encounter rows for the whole region, a confirmed source gap, not a
-    "no wild encounters" fact), in which case a distinct
-    `.needs-source`-styled note renders instead. Hand-extend the list for
-    a future confirmed whole-region gap; not a general blank-field
-    heuristic (`TODO.md` #2).
+    region is in `NEEDS_SOURCE_REGIONS` (0.3.3; **empty since 0.3.7** — its
+    one entry, `"paldea"`, was cleared once real SV encounter data landed;
+    see above), in which case a distinct `.needs-source`-styled note
+    renders instead. Hand-extend the list for a future confirmed
+    whole-region gap; not a general blank-field heuristic (`TODO.md` #2).
   - **Facts list**: Type (colored `.type-TYPE` pills), Abilities (name +
     description, hidden ability tagged), Category, **Egg Groups** (0.2.7,
     "Monster / Grass" text — sits here since 0.2.8, user-directed move),

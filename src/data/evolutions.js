@@ -176,7 +176,7 @@ var EVOLUTIONS = {
   130: { evolvesTo: [] },
   131: { evolvesTo: [] },
   132: { evolvesTo: [] },
-  133: { evolvesTo: [{ id: 134, method: "stone", item: "water-stone" }, { id: 135, method: "stone", item: "thunder-stone" }, { id: 136, method: "stone", item: "fire-stone" }, { id: 196, method: "level", timeOfDay: "day" }, { id: 197, method: "level", timeOfDay: "night" }, { id: 700, method: "level", moveType: "fairy" }, { id: 470, method: "stone", item: "leaf-stone" }, { id: 471, method: "stone", item: "ice-stone" }] },
+  133: { evolvesTo: [{ id: 134, method: "stone", item: "water-stone" }, { id: 135, method: "stone", item: "thunder-stone" }, { id: 136, method: "stone", item: "fire-stone" }, { id: 196, method: "level", timeOfDay: "day" }, { id: 197, method: "level", timeOfDay: "night" }, { id: 470, method: "stone", item: "leaf-stone" }, { id: 471, method: "stone", item: "ice-stone" }, { id: 700, method: "level", moveType: "fairy" }] },
   134: { evolvesTo: [] },
   135: { evolvesTo: [] },
   136: { evolvesTo: [] },
