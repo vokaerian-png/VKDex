@@ -215,7 +215,7 @@ function loadCSV(name) {
 }
 function loadAllCSVs() {
   if (!fs.existsSync(CSV_DIR)) {
-    throw new Error(`CSV clone not found at ${CSV_DIR} — re-supply temp/PokeAPI-master this session (see CLAUDE.md §9).`);
+    throw new Error(`CSV clone not found at ${CSV_DIR} — re-supply temp/PokeAPI-master this session (see CLAUDE.md §1).`);
   }
   return {
     pokemon: loadCSV("pokemon.csv"),

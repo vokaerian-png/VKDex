@@ -6,3 +6,4 @@ release.bat
 /src-tauri/gen
 /releases/
 memory/
+cleanup.bat

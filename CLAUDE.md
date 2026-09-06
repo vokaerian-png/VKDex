@@ -50,8 +50,7 @@ VKDex/
       types.js         (TYPE_CHART: Gen 9 type-effectiveness chart, static)
       pokemon.js       (POKEMON_DATA: id, name, region, +types/category/height/
                          weight/abilities/hiddenAbility/description/eggGroups/
-                         heldItems — 1025 entries, ids 1-1025 — full National
-                         Dex populated as of 0.3.0, Alola/Galar/Paldea 2026-09-06)
+                         heldItems — 1025 entries, the full National Dex, 0.3.0)
       abilities.js     (ABILITIES, keyed by name — 305 entries)
       moves.js         (MOVES, keyed by name — 783 entries)
       items.js         (ITEMS_DATA, keyed by slug — 144 referenced items, 0.3.0)
@@ -77,63 +76,60 @@ VKDex/
     src/lib.rs  src/main.rs  src/resize_lock.rs  <- lib.rs: the app (shared desktop/mobile entry); main.rs: desktop shim; resize_lock.rs: native WM_SIZING lock (Windows)
   releases/                                  <- tools/release.js output (windows/, android/), gitignored (§2a)
   tools/                                     <- Node data-pipeline scripts (SCOPE.md §2) + release.js (§2a)
-  temp/                                      <- HANDOFF.md, handoff/, PokeAPI clone, SCRAP.md, clean_temp.sh, <task-slug>/ scratch
+  temp/                                      <- HANDOFF.md, handoff/, PokeAPI + PokeDB clones, SCRAP.md, <task-slug>/ scratch
+  cleanup.bat                                <- double-click launcher for tools/cleanup.js (below)
 ```
 
 **Any edit to the app goes to `src/`, never the project root** (the app
-files lived at root before the move into `src/`).
-
-**`memory/`** (moved out of root 2026-09-06 to declutter file navigation;
-`CLAUDE.md` stays put — see intro) — every cross-reference elsewhere
-(`.claude/agents/*.md`, `tools/release.js`'s memory-bank file paths,
-§6/§6a/§6c/§6d below) was updated in the same pass.
+files lived at root before the move into `src/`). **`memory/`** holds the
+rest of the memory bank (moved out of root 2026-09-06 to declutter
+navigation; `CLAUDE.md` stays put — see intro).
 
 **Task-scoped scratch goes in its own `temp/<task-slug>/` subfolder, never
 loose at `temp/` root** (user-specified 2026-09-05, after ~72MB of
-undocumented one-off files had piled up there). Pipeline intermediates,
+undocumented one-offs had piled up there): pipeline intermediates,
 throwaway check scripts, pre-edit backups — all under a folder named for
 the task, so a later cleanup can judge a whole folder at a glance.
-`HANDOFF.md`, `handoff/`, and `PokeAPI-master/` stay at `temp/` root —
-fixed infrastructure (§6b, the CSV pipeline), not task scratch.
+`HANDOFF.md`, `handoff/`, `PokeAPI-master/`, and `PokeDB-CSV/` (a second
+CSV data-source clone, user-designated permanent exclusion 2026-09-06) stay
+at `temp/` root — fixed infrastructure (§6b, the CSV pipeline), not scratch.
 
-**`SCRAP.md`/`clean_temp.sh`** (`temp/` root, fixed infrastructure; shipped
-2026-09-05): a user-run cleanup script deleting whatever `SCRAP.md` lists.
-**Whenever a task finishes with a `temp/` file or folder it generated or
-used** (task-slug scratch folder, hand-supplied CSV/txt), architect checks
-it's safe to delete — no live citation to a path inside it in `HISTORY.md`/
-`TODO.md`/`PLAN.md`, not cited as "kept for reference" — and appends it with
-a one-line reason. Architect never runs the script or deletes files (§4
-`EPERM`); the user does, at their discretion. **Every time `SCRAP.md` is
-opened**, also drop entries that no longer exist on disk.
+**`SCRAP.md`** (`temp/` root, fixed infrastructure) + **`tools/cleanup.js`**
+/**`cleanup.bat`** (repo root; shipped 2026-09-06, absorbing the retired
+`clean_temp.sh`): double-click `cleanup.bat` (or `node tools/cleanup.js
+[--dry-run|--yes]`) to delete whatever `SCRAP.md` lists, then **prune those
+entries out of `SCRAP.md` itself** — including any entry already deleted by
+other means. Full mechanism (block-parsing rule, protected list, flags):
+`SCRAP.md`'s own header. **Whenever a task finishes with a `temp/` file or
+folder it generated or used**, architect checks it's safe to delete — no
+live citation to a path inside it in `HISTORY.md`/`TODO.md`/`PLAN.md`, not
+cited as "kept for reference" — and appends it with a one-line reason.
+Architect never runs the script or deletes files (§4 `EPERM`); the user
+does, at their discretion. **§6e** is the separate, on-demand routine that
+decides *which* `temp/` items are safe to add here in the first place.
 
 **Git**: a real repo, `origin` → `github.com/vokaerian-png/VKDex`.
 `.gitignore` excludes `temp/`, `/releases/`, `/node_modules`,
 `/src-tauri/target` and `/src-tauri/gen` (build output, regenerable); its
-now-inert `electron-app/` line is harmless to leave (§2).
-**`src-tauri/` source is tracked** — Tauri is the long-term mobile+desktop
-build system, not a wrapper afterthought like Electron. (A stray trailing
-`src-tauri/` line in `.gitignore` briefly ignored the whole folder
-mid-0.2.17 — user fixed it and committed; `git ls-files src-tauri` now
-returns real source files.) Releases (§2a) publish built artifacts as
+now-inert `electron-app/` line is harmless (§2). **`src-tauri/` source is
+tracked** — Tauri is the long-term mobile+desktop build system, not a
+wrapper afterthought (a stray `src-tauri/` ignore line briefly hid the
+whole folder mid-0.2.17; fixed). Releases (§2a) publish built artifacts as
 GitHub Release assets, not commits.
 
 ---
 
 ## 2. Native packaging — Electron retired, Tauri (§2b) is the sole shell
 
-VKDex packaged as a portable Windows `.exe` via Electron
-(`electron-packager`) from 0.1.0 through the Tauri migration; **fully
-retired 2026-09-06** once Tauri's shell swap + resize lock + release
-pipeline were all confirmed working on real hardware (0.2.16/0.2.17,
-`PLAN.md`'s Tauri migration entry). `electron-app/` (the wrapper, its
-`node_modules/`, and old local `dist/` zips — ~1.6GB, always gitignored/
-untracked) needs manual deletion by the user; the sandbox mount can't
-delete a folder this old (§4's `EPERM`). Nothing is lost by removing it —
-old local build zips are superseded by GitHub Releases (§2a), and the
-shell-detection hook (`is-electron`) was already fully replaced by
-`is-tauri` in 0.2.11, confirmed no remnants left in `src/`. Full build
-mechanics are historical now — `HISTORY.md` 0.1.x-0.2.10 and the cleanup
-entry itself for what changed.
+VKDex packaged as a portable Windows `.exe` via Electron from 0.1.0
+through the Tauri migration; **fully retired 2026-09-06** once Tauri's
+shell swap + resize lock + release pipeline were all confirmed on real
+hardware (0.2.16/0.2.17, `PLAN.md`'s Tauri migration entry). No `src/`
+remnants — `is-electron` → `is-tauri` completed in 0.2.11. `electron-app/`
+(wrapper + `node_modules/` + old local `dist/` zips, ~1.6GB, always
+gitignored) still needs manual deletion by the user (§4 `EPERM`); nothing
+is lost — old zips are superseded by GitHub Releases (§2a). Build mechanics
+are historical now: `HISTORY_ARCHIVE.md` 0.1.x-0.2.10.
 
 ---
 
@@ -160,62 +156,46 @@ name it `VKDex.exe`) → zipped via Windows' `tar.exe -a` to
 `releases/windows/VKDex-vX.Y.Z-windows-x64.zip`. **Android**: refuses
 (pointing at `src-tauri/ANDROID_SETUP.md`) unless `src-tauri/gen/android/
 app` exists, else `npm run build:android` (`tauri android build --apk
---split-per-abi`, release-profile, real signing key — see below) → Gradle
-still emits one `.apk` per architecture under `gen/android/app/build/
-outputs/apk/`, but **only the arm64-v8a one is published** (user decision
-2026-09-06, below) → copied to `releases/android/VKDex-vX.Y.Z-android-
-arm64.apk`. **Both** builds
-sequentially; every artifact goes on one `gh release create` with the
-changelog as notes. Never commits, never force-overwrites a tag. `--check`
-runs the self-tests only (changelog parser, target parsing, APK search).
-**Both targets confirmed end-to-end 2026-09-05** (real hardware): a
-`--target=both` run built Windows (`tauri build` release profile, clean
-post-crate-split compile) and Android, then a real non-dry-run publish
-tagged `v0.2.17` and released both assets together. Android needed two live
-fixes beyond `ANDROID_SETUP.md`'s original spec, both documented there —
-`gradle.properties`'s `org.gradle.java.home` pinned to a JDK Gradle 8.14.3
-can actually run (Android Studio's bundled JBR was Java 25, not the safe
-default first assumed) — and a harmless Kotlin-daemon fallback on
-cross-drive paths (project `E:`, `cargo` registry `C:`).
+--split-per-abi`, release profile, real signing key — below) → Gradle
+emits one `.apk` per architecture under `gen/android/app/build/outputs/
+apk/`, but **only the arm64-v8a one is published** → `releases/android/
+VKDex-vX.Y.Z-android-arm64.apk`. **Both** builds sequentially; every
+artifact goes on one `gh release create` with the changelog as notes.
+Never commits, never force-overwrites a tag. `--check` runs the self-tests
+only (changelog parser, target parsing, APK search). Both targets confirmed
+end-to-end on real hardware (`v0.2.17`, 2026-09-05). Two Android setup
+gotchas beyond `ANDROID_SETUP.md`'s original spec are documented there
+(pin `gradle.properties`'s `org.gradle.java.home` to a JDK Gradle 8.14.3
+can actually run — the machine's JDK 25 installs can't; a harmless
+Kotlin-daemon fallback on cross-drive paths).
 
-**Android releases resumed 0.2.20** (`TODO.md` #1 closed): `npm run
-build:android` dropped `--debug` (now `tauri android build --apk`), so
-Gradle's already-configured `release` buildType (`isMinifyEnabled` +
-ProGuard) actually runs and produces an installable, real-key-signed APK
-instead of the unoptimized debug build.
-
-**APK size, resolved 0.2.21 (2026-09-06)**: a stale/cached build first
-masked Cargo's new `[profile.release]` table (strip/lto/`codegen-units=1`/
-`opt-level="z"`, `src-tauri/Cargo.toml`) — a genuine clean rebuild
-(`cargo clean` + deleting `gen/android/app/build/`) confirmed it strips all
-4 `.so`s, cutting the (universal) APK 732 MB → 289 MB. The remainder traced
-to `frontendDist` (sprites included, ~70 MB) being compiled directly into
-*each* architecture's binary, so a universal APK paid for that 4x over.
-Fix: `build:android` now passes `--split-per-abi` — Tauri's own generated
-`gen/android/app/build.gradle.kts`/`RustPlugin.kt` already define per-arch
-product flavors (arm64/arm/x86/x86_64), no Gradle edits needed. **0.2.22
-real release confirmed all 4 land at 68-74 MB each** (user-verified, real
-hardware). **Publish scope narrowed the same day (0.2.22, user decision)**:
-future releases publish arm64-v8a only, not all 4 — it alone covers
-virtually every real device from 2018 onward (Play's 64-bit mandate since
-2019; the other 3 ABIs are legacy/emulator-only now). Gradle still builds
-all 4 flavors; `release.js`'s `pickApks()` just filters for `arm64` instead
-of "not universal" before copying/publishing.
+**Android release builds (0.2.20-0.2.22)**: `build:android` runs without
+`--debug`, so Gradle's `release` buildType (`isMinifyEnabled` + ProGuard)
+produces a real-key-signed APK. **APK size** (`TODO.md` #1): Cargo's
+`[profile.release]` (strip/lto/`codegen-units=1`/`opt-level="z"`) strips
+the `.so`s (universal APK 732 → 289 MB — a stale cached build masked this
+at first; do a genuine clean rebuild before trusting a size figure), and
+`--split-per-abi` fixes the rest: `frontendDist` (sprites included, ~70 MB)
+compiles into *each* architecture's binary, so a universal APK paid for it
+4x. Tauri's generated Gradle project already defines per-arch flavors, no
+Gradle edits needed; each per-ABI APK lands at 68-74 MB (user-verified,
+0.2.22). **Publish scope (user decision 2026-09-06)**: arm64-v8a only —
+it covers virtually every real device from 2018 onward (Play's 64-bit
+mandate since 2019; the other 3 ABIs are legacy/emulator-only). Gradle
+still builds all 4; `release.js`'s `pickApks()` filters for `arm64`.
 
 **Release keystore, generated 2026-09-06**: RSA 2048, alias `vkdex`, valid
 to 2054 — lives entirely outside the repo, in a private Dropbox-synced
 location (off-machine backup by construction; a `.properties` copy of the
-password sits alongside it there — exact path deliberately not recorded in
-this file, see note below). `src-tauri/gen/android/keystore.properties`
-(gitignored, plus a belt-and-suspenders `*.keystore`/`*.jks` `.gitignore`
-line) is the local pointer Gradle reads — regenerated by hand from the
-Dropbox backup after a fresh `tauri android init` wipes the folder. **This
-key must sign every future update** — losing it means the app can never be
+password sits alongside it). `src-tauri/gen/android/keystore.properties`
+(gitignored, plus a belt-and-suspenders `*.keystore`/`*.jks` ignore line)
+is the local pointer Gradle reads — regenerated by hand from the Dropbox
+backup after a fresh `tauri android init` wipes the folder. **This key
+must sign every future update** — losing it means the app can never be
 updated again under `com.vokaerian.vkdex`, only republished as a new
 listing. **The real storage path is intentionally kept out of the memory
-bank** (2026-09-06, user direction) — this is a checked-into-git file, and
-a signing key's location is exactly the kind of detail that shouldn't be
-in a repo, private or not. The user knows where it is.
+bank** (user direction) — a signing key's location doesn't belong in a
+repo, private or not. The user knows where it is.
 
 **`release.bat`** (repo root, double-click launcher): `cd`s to the repo
 root, runs `node tools\release.js` with any passed flags, then `pause`s.
@@ -227,26 +207,23 @@ root, runs `node tools\release.js` with any passed flags, then `pause`s.
 Replacing Electron (`TODO.md` #1 — Tauri 2.x builds desktop **and** mobile
 from one project); like-for-like shell swap only, no new desktop UI yet.
 
-`src-tauri/` + a new root `package.json` (`@tauri-apps/cli`+`api`, `npm run
+`src-tauri/` + root `package.json` (`@tauri-apps/cli`+`api`, `npm run
 dev`/`build`). `frontendDist: "../src"` — Tauri embeds `src/` directly at
-build time, no `copy-app.js`-equivalent copy step. Shell-detection:
-`window.isTauri` global, not a `userAgent` sniff; hook renamed
-`is-electron` → `is-tauri`. Detail: `HISTORY.md` 0.2.11-0.2.14,
-`temp/handoff/2026-09-05-101708-tauri-scaffold.md`.
+build time, no copy step. Shell-detection: the `window.isTauri` global
+(not a `userAgent` sniff), hook `is-tauri`. `icons/icon.ico` is mandatory
+for `tauri-build`'s Windows step. Detail: `HISTORY.md`/`HISTORY_ARCHIVE.md`
+0.2.11-0.2.14, `temp/handoff/2026-09-05-101708-tauri-scaffold.md`.
 
-**Build history** (`HISTORY.md` 0.2.12-0.2.16): `icons/icon.ico` is
-mandatory for `tauri-build`'s Windows step; `npm run dev` ran from 0.2.13.
-The JS settle-after-drag `lockAspect` (upstream Tauri #7303) was replaced
-by a true live lock, `src-tauri/src/resize_lock.rs` (Windows-only,
-subclasses the window proc on every `WM_SIZING` step; corner rule
-stateless since 0.2.16 — full diagnosis in `HISTORY.md`). **User-confirmed
-on real hardware (0.2.16): "Fix worked, problem solved."** `lockAspect`
-stays as a no-op safety net. **0.2.17 split the crate for mobile**:
-`src/lib.rs` = the app (`pub fn run()` under `#[cfg_attr(mobile, tauri::
-mobile_entry_point)]`, owns `mod resize_lock`), `src/main.rs` = desktop
-shim, `Cargo.toml` `[lib] vkdex_lib` staticlib/cdylib/rlib — confirmed
-compiling clean for both desktop (`tauri build`) and Android (§2a),
-2026-09-05, real hardware. Electron cleanup shipped 2026-09-06 (§2).
+**Resize lock**: the JS settle-after-drag `lockAspect` (upstream Tauri
+#7303) was replaced by a true live lock, `src-tauri/src/resize_lock.rs`
+(Windows-only, subclasses the window proc on every `WM_SIZING` step;
+corner rule stateless since 0.2.16 — full diagnosis in `HISTORY.md`).
+**User-confirmed on real hardware (0.2.16): "Fix worked, problem solved."**
+`lockAspect` stays as a no-op safety net. **0.2.17 split the crate for
+mobile**: `src/lib.rs` = the app (`pub fn run()` under `#[cfg_attr(mobile,
+tauri::mobile_entry_point)]`, owns `mod resize_lock`), `src/main.rs` =
+desktop shim, `Cargo.toml` `[lib] vkdex_lib` staticlib/cdylib/rlib —
+compiles clean for both desktop and Android (§2a).
 
 ---
 
@@ -260,8 +237,7 @@ version jump, not a +1 continuation; not a new standing pattern.
 **Current version: 0.3.5.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
-and `src-tauri/Cargo.toml`. (`electron-app/package.json` was the same kind
-of mirror target through 0.2.10, moot now that Electron's retired — §2.)
+and `src-tauri/Cargo.toml`.
 
 **Exempt:** memory-bank-only edits (`CLAUDE.md`/`SCOPE.md`/`PLAN.md`/
 `TODO.md`/`HISTORY.md`) and `tools/`-only changes don't trigger a bump —
@@ -286,16 +262,13 @@ only `src/` changes do. User-confirmed 2026-09-02. The changelog lives in
   deletion by the user. **Exception: the Dropbox MCP connector's `delete`**
   (§6a) goes through the real Dropbox API, not this mount — confirmed
   working 2026-09-05.
-- **Root cause of recurring `.git/index.lock` (found 2026-09-06)**: `git
+- **Recurring `.git/index.lock` (root cause found 2026-09-06)**: `git
   status`/`git diff` opportunistically write-lock and refresh the index,
-  then unlink their own lock when done — that unlink hits the same `EPERM`
-  above, so **any plain `git status`/`git diff` run through this sandbox's
-  Bash tool leaves a fresh stale lock behind**, confirmed reproducing live.
+  then can't unlink their own lock (the same `EPERM`) — so **any plain
+  `git status`/`git diff` from this sandbox leaves a stale lock behind**.
   Not a problem on the user's end. Fix: prefix `GIT_OPTIONAL_LOCKS=0` on
-  any read-only git invocation from this sandbox (`git status`/`diff`/etc.)
-  to skip the index refresh entirely — use it going forward instead of
-  plain `git status`/`git diff` here. A lock already left behind needs the
-  user to delete it directly (same manual step as other mount EPERM cases).
+  every read-only git invocation here to skip the index refresh. A lock
+  already left behind needs the user to delete it by hand.
 
 ---
 
@@ -390,13 +363,11 @@ mid-batch, only at that boundary.
 
 ---
 
-## 5b. Parallel subagent dispatch — first real trial run 2026-09-06; premise corrected
+## 5b. Parallel subagent dispatch — one real trial 2026-09-06; premise corrected
 
-Discussed after the 0.2.18 fix (one coherent change across a shared
-extractor/shared move table/shared render path — not a candidate for
-splitting). Default stays **one sequential `coder` per task**; parallel
-dispatch is the exception, for a batch of genuinely disjoint-file work or
-independent read-only research fan-out.
+Default stays **one sequential `coder` per task**; parallel dispatch is
+the exception, for a batch of genuinely disjoint-file work or independent
+read-only research fan-out.
 
 - **Partition by disjoint files, decided up front** — one file, one
   writer, per parallel round. The normalized/shared files
@@ -405,52 +376,42 @@ independent read-only research fan-out.
   workstreams both need one shared file, that step runs first and
   sequentially, not in parallel.
 - **`reviewer` does not become a merge gate.** Its value is being an
-  independent, read-only checker (`CLAUDE.md` §5); giving it write access
-  to reconcile two agents' output would erase that and reverse its
-  cost-suspension by the back door. A real reconciliation is a normal
-  sequential `coder` dispatch reading both handoffs, if one's ever needed.
+  independent, read-only checker (§5); giving it write access to reconcile
+  two agents' output would erase that and reverse its cost-suspension by
+  the back door. A real reconciliation is a normal sequential `coder`
+  dispatch reading both handoffs, if one's ever needed.
 - **`verify_region_data.js`/`--audit` stays the one post-hoc gate**
   regardless of how many agents touched the result, run once over the
   combined final state before anything is folded into the memory bank.
 
-**First real trial (2026-09-06, the Alola/Galar/Paldea region passes,
-`TODO.md` #2) — result: real wall-clock savings, but the safety premise
-above was wrong for this tool, and it worked out on luck, not design.**
+**The one real trial (the Alola/Galar/Paldea region passes, `TODO.md`
+#2): real wall-clock savings, but the safety premise was wrong for this
+tool, and it worked out on luck, not design.**
 
 - **Shared-table hazard handled correctly**: a sequential pre-pass landed
   the full cross-region union of new moves/abilities/items (94/90/10, with
-  confirmed real name overlap across all three regions) before the
-  parallel phase started, via a small `--tables none` tool extension that
-  writes only those three shared files. This part of the design held.
-- **"Genuinely disjoint id ranges" ≠ file-disjoint for this tool, and that
-  premise above is corrected here.** `populate_region.js --assemble` does
-  a whole-file read-modify-write on every per-id table
-  (`pokemon.js`/`stats.js`/`evolutions.js`/`movesets.js`/
-  `movesets_hisui.js`/`names.js`/`locations.js`/`altforms.js`) regardless
-  of which ids it's touching — there is no per-id or per-region file
-  split, no locking. Three dispatches with disjoint id ranges (722-809/
-  810-905/906-1025) still all wrote the *same 8 files* concurrently. All
-  three independently flagged this mid-task as a real race risk; nothing
-  was actually corrupted, but each dispatch's own account of *when* it saw
-  `POKEMON_DATA`'s length change (731→816→905→1025, strictly stepwise, not
-  jumping around) indicates the three processes' writes happened to
-  serialize by real-world timing luck, not because the file layout made
-  concurrent writes safe. **Don't re-run true parallel writes to these 8
-  files based on id-range disjointness alone** — either serialize the
-  per-id writes too (loses most of the wall-clock benefit) or wait until
-  the tool has real per-file/per-id locking before trying this again for
-  a write-heavy batch. Read-only parallel fan-out (research, `--dry-run`
-  scans) is unaffected by any of this.
-- **Real numbers**: ~641,500 total subagent tokens across the 6 dispatches
-  this trial needed (shared pre-pass + 3 parallel region passes + 2
-  small sequential follow-up fixes for a cross-region evolution-edge gap).
-  Wall-clock: pre-pass ~13.4 min (sequential) → parallel phase ~19.3 min
-  (the slowest of the 3, not their sum) → follow-up fixes ~7.1 min
-  (sequential) ≈ **~39.8 min total**, versus an estimated **~72.1 min** if
-  all 6 dispatches had run strictly sequentially — a real ~45% wall-clock
-  reduction, at unchanged total token cost (parallelism doesn't reduce
-  token spend, only wall-clock). The saving is real; the risk that made it
-  possible wasn't understood correctly going in.
+  real name overlap across all three regions) via a small `--tables none`
+  extension that writes only those three shared files. This part held.
+- **"Disjoint id ranges" ≠ file-disjoint for this tool.**
+  `populate_region.js --assemble` does a whole-file read-modify-write on
+  every per-id table (`pokemon.js`/`stats.js`/`evolutions.js`/
+  `movesets.js`/`movesets_hisui.js`/`names.js`/`locations.js`/
+  `altforms.js`) regardless of which ids it touches — no per-id split, no
+  locking. Three dispatches with disjoint id ranges still all wrote the
+  *same 8 files* concurrently. Nothing was corrupted, but each dispatch
+  saw `POKEMON_DATA`'s length change strictly stepwise (731→816→905→1025),
+  i.e. the writes happened to serialize by timing luck. **Don't re-run
+  true parallel writes to these 8 files on id-range disjointness alone** —
+  either serialize the per-id writes too (loses most of the wall-clock
+  benefit) or wait until the tool has real per-file/per-id locking.
+  Read-only parallel fan-out (research, `--dry-run` scans) is unaffected.
+- **Real numbers**: ~641,500 total subagent tokens across 6 dispatches
+  (pre-pass + 3 parallel region passes + 2 small sequential follow-ups).
+  Wall-clock: pre-pass ~13.4 min → parallel phase ~19.3 min (the slowest
+  of the 3, not their sum) → follow-ups ~7.1 min ≈ **~39.8 min total**,
+  versus an estimated **~72.1 min** strictly sequential — a real ~45%
+  wall-clock reduction at unchanged token cost (parallelism doesn't reduce
+  token spend, only wall-clock).
 
 ---
 
@@ -480,11 +441,9 @@ unless stated otherwise.
 - **`HISTORY_PUSH.md`**: the current version's release notes for
   `tools/release.js` (§6d).
 
-Section numbering across `CLAUDE.md`/`SCOPE.md` was reset 2026-09-05 to run
-sequentially (1, 2, 3, ...) with no gaps; a sub-clause of a main section
-(e.g. this section's own §6a/§6b) takes that section's number plus a
-letter, ordered a/b/c by where it appears. Every cross-reference in every
-memory-bank file was updated in the same pass.
+Section numbering across `CLAUDE.md`/`SCOPE.md` runs sequentially with no
+gaps; a sub-clause of a main section (e.g. §6a/§6b) takes that section's
+number plus a letter, ordered a/b/c by where it appears.
 
 ---
 
@@ -542,40 +501,75 @@ working. User-specified 2026-09-06.
 
 ## 6c. HISTORY.md rolling window + HISTORY_ARCHIVE.md
 
-Added 2026-09-06 (user-directed — `HISTORY.md`'s unbounded growth was
-flagged as a token/speed concern). `HISTORY.md` keeps only its **15** most
-recent version entries; new entries are still written there in full, same
-as always. Once a 16th accumulates, architect compacts the oldest entry —
+User-directed 2026-09-06 (token/speed concern). `HISTORY.md` keeps only
+its **15** most recent version entries; new entries are still written
+there in full. Once a 16th accumulates, architect compacts the oldest —
 a few lines: what shipped, key numbers, any decision a later session might
 need to cite, not the full mechanism/verification detail — and moves it
-into sibling `HISTORY_ARCHIVE.md`. Compact entries are written for
-density, not readability, since user-readability matters less there than
-in `HISTORY.md` proper; `PLAN.md`/`TODO.md`/`SCOPE.md` already carry the
-durable "what was decided and why" for anything that still matters, so the
-archive is a forensic record, not load-bearing documentation.
-`HISTORY_ARCHIVE.md` carries no line cap of its own — an ever-growing log,
-not something read every session the way `HISTORY.md`/`SCOPE.md` are.
-First pass (2026-09-06) archived all 41 pre-0.2.0 entries (0.1.0-0.1.40),
-cutting `HISTORY.md` 1758 → 777 lines.
+into `HISTORY_ARCHIVE.md`. Compact entries are written for density, not
+readability: `PLAN.md`/`TODO.md`/`SCOPE.md` already carry the durable
+"what was decided and why," so the archive is a forensic record, not
+load-bearing documentation, and carries no line cap of its own (an
+ever-growing log, not read every session).
 
 ---
 
 ## 6d. HISTORY_PUSH.md — release-notes staging file
 
-Added 2026-09-06. Holds exactly one entry — the current/latest version's
-changelog, written at the same compact density as `HISTORY_ARCHIVE.md`
-(not `HISTORY.md`'s full mechanism/verification detail), since its literal
-content is what `tools/release.js` writes as the GitHub Release notes body
-(§2a) — no more extracting/stripping an entry out of `HISTORY.md`.
-**Overwritten, not appended**, same convention as `HANDOFF.md` (§6b):
-whoever bumps the version rewrites this file's single entry for that
-version, as part of the same task that updates `HISTORY.md`/
-`HISTORY_ARCHIVE.md`. An HTML comment at the top explains the file to a
-human editor without leaking into the rendered release notes (GitHub
-strips markdown comments). `release.js`'s real changelog step and its
-`--check` self-test both fail loudly if the file doesn't mention "→
-`<current APP_VERSION>`" — catching a stale leftover entry from the
-previous bump before it ships as this release's notes.
+Added 2026-09-06. Holds exactly one entry — the current version's
+changelog at `HISTORY_ARCHIVE.md`'s compact density — whose literal
+content `tools/release.js` writes as the GitHub Release notes body (§2a).
+**Overwritten, not appended** (same convention as `HANDOFF.md`, §6b):
+whoever bumps the version rewrites this file's single entry as part of the
+same task that updates `HISTORY.md`. An HTML comment at the top explains
+the file to a human editor without leaking into the rendered notes.
+`release.js` (real run and `--check`) fails loudly if the file doesn't
+mention "→ `<current APP_VERSION>`" — catching a stale leftover entry
+before it ships as this release's notes.
+
+---
+
+## 6e. temp/ relevance audit — on-demand, not per-session
+
+User-specified 2026-09-06. Invoked by name when the user asks (e.g. "run
+the temp audit," "clean up temp") — unlike §6a/§6b, not automatic every
+session. Checks every direct child of `temp/` against `PLAN.md`/`TODO.md`
+(and `HISTORY.md`/`HISTORY_ARCHIVE.md` for an existing "kept for reference"
+citation) so nothing sits there unaudited indefinitely — every item ends up
+either recorded as still-needed or queued for deletion, never just ignored.
+
+**Scope**: every file/folder directly under `temp/`, except the standing
+protected list (`SCRAP.md`, `HANDOFF.md`, `handoff/`, `PokeAPI-master/`,
+`PokeDB-CSV/`) plus whatever the user names for that specific run.
+**Exclusions beyond the standing list are stated fresh each invocation** —
+never inferred from a file merely looking like fixed infrastructure (worked
+example: `PokeDB-CSV/`'s two companion PDFs landed the same day it did but
+weren't named, so they went through the audit like anything else).
+
+**Per item, one of three outcomes**:
+- **Still relevant** (an open `PLAN.md` commitment or `TODO.md` candidate
+  cites it, or it's a revert/verification point for something not yet
+  fully settled) → one concise line in `PLAN.md`'s new top section (below).
+  The citation itself is the context — don't re-explain it.
+- **No longer relevant** → a new `SCRAP.md` entry, in the file's existing
+  bullet shape (`- \`name\` — reason`). **The target name(s) must come
+  before the entry's first em dash** — `tools/cleanup.js` parses SCRAP.md
+  that way (§1), so a differently-shaped entry silently won't be picked up.
+- **Can't tell** → flag it to the user rather than guessing — this file's
+  standing rule (intro), not a special case for this routine.
+
+**`PLAN.md`'s section `## Active temp/ scratch — still relevant`** sits
+directly under the title, above everything else. Refreshed on each run,
+not appended to: a resolved item drops off, a newly-flagged one gets
+added. One line per item — target plus which `PLAN.md`/`TODO.md` entry
+cites it, nothing more (user instruction: a reference index, not
+documentation in its own right).
+
+**One-time migration, due whenever this routine is first actually run**:
+`SCRAP.md`'s "Deliberately excluded — still cited as reference" section
+duplicates what `PLAN.md`'s section now owns — fold those entries into
+`PLAN.md` and retire that `SCRAP.md` section, so "still relevant" has
+exactly one home.
 
 ---
 
@@ -587,27 +581,18 @@ previous bump before it ships as this release's notes.
    every session, so it can afford prose that's actually load-bearing.
 2. **Unnumbered (`###`) subsections, if any, live at the bottom of the
    file**, sorted after every numbered section rather than nested under
-   their parent section, which links down to them. Reconsider on
-   creation whether the content is actually load-bearing enough to number
-   instead — see the equivalent call made for `SCOPE.md`'s CSS-pitfalls/
-   visual-polish/window-resize sections (2026-09-05, promoted from
-   unnumbered to §6-§8 there).
-3. **Target: ≤650 lines total, standing cap** (raised from 600, 2026-09-06,
-   the Alola/Galar/Paldea region-population completion + §5b's
-   parallel-dispatch correction — both real, load-bearing content, not
-   narration to cut; previously raised from 550 same day for the memory/
-   folder restructure, from 500 for the Android release-signing keystore
-   documentation, and from 450, 2026-09-05, the real multi-target release
-   confirmation + Android-pause decision).
-   `SCOPE.md` carries its own independent standing cap of **≤800 lines**
-   (raised four times now, see that file's own intro for the latest).
-   Both raise **50 lines at a time** if genuinely
-   needed, noted here (this file) or in `SCOPE.md`'s own intro (that file)
-   when it happens — flagged to the user in the same response, no longer
-   needs asking first. Every future addition gets an evaluate-and-compress
-   pass in the same edit — look for restated context, superseded detail, or
-   process narration to cut before the addition pushes either file over
-   budget, per rule 4 below.
+   their parent, which links down to them. Reconsider on creation whether
+   the content is load-bearing enough to number instead (as `SCOPE.md`'s
+   §6-§8 were, 2026-09-05).
+3. **Target: ≤700 lines total, standing cap** (raised 50 at a time from
+   450 over 2026-09-05/06 as real load-bearing sections landed — release
+   pipeline, keystore, `memory/` restructure, §5b, §6e; last raise to 700
+   on 2026-09-06; an `overlord` condensing pass the same day brought it
+   back well under). `SCOPE.md` carries its own independent cap of **≤800
+   lines** (see its intro). Both raise **50 lines at a time** if genuinely
+   needed, noted here or in `SCOPE.md`'s intro when it happens — flagged
+   to the user in the same response, no need to ask first. Every addition
+   gets an evaluate-and-compress pass in the same edit, per rule 4.
 4. **Applies to every memory-bank edit** (`SCOPE.md`/`PLAN.md`/`TODO.md`/
    `HISTORY.md` too, and architect's routine §6 updates, not just
    `overlord`'s condensing passes — user-specified 2026-09-05): cut
