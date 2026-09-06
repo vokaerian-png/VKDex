@@ -155,21 +155,26 @@ debug keystore) → first `.apk` under `gen/android/app/build/outputs/apk/`
 sequentially; every artifact goes on one `gh release create` with the
 changelog as notes. Never commits, never force-overwrites a tag. `--check`
 runs the self-tests only (changelog parser, target parsing, APK search).
-**Android confirmed end-to-end 2026-09-05** (real hardware, `--dry-run`):
-build → APK search → copy into `releases/android/` all worked. Needed two
-live fixes beyond `ANDROID_SETUP.md`'s original spec, both now documented
-there — `gradle.properties`'s `org.gradle.java.home` pinned to a JDK Gradle
-8.14.3 can actually run (Android Studio's bundled JBR was Java 25 on this
-machine, not the safe default first assumed) — and a Kotlin-daemon crash on
-cross-drive paths (project on `E:`, `cargo`'s registry on `C:`) that
-Gradle's own fallback silently handles. **Windows target still untested.**
+**Both targets confirmed end-to-end 2026-09-05** (real hardware): a
+`--target=both` run built Windows (`tauri build` release profile, clean
+post-crate-split compile) and Android, then a real non-dry-run publish
+tagged `v0.2.17` and released both assets together. Android needed two live
+fixes beyond `ANDROID_SETUP.md`'s original spec, both documented there —
+`gradle.properties`'s `org.gradle.java.home` pinned to a JDK Gradle 8.14.3
+can actually run (Android Studio's bundled JBR was Java 25, not the safe
+default first assumed) — and a harmless Kotlin-daemon fallback on
+cross-drive paths (project `E:`, `cargo` registry `C:`). **Android releases
+paused after 0.2.17** (user decision): the debug-signed universal APK is
+731.9 MB, too large to keep shipping. `TODO.md` #1 tracks the fix (real
+release signing + a smaller build shape) — don't use `--target=android`/
+`both` for a real release until that lands.
 
 **`release.bat`** (repo root, double-click launcher): `cd`s to the repo
 root, runs `node tools\release.js` with any passed flags, then `pause`s.
 
 ---
 
-## 2b. Tauri scaffold — 0.2.11-0.2.17: desktop confirmed, mobile entry point prepped
+## 2b. Tauri scaffold — 0.2.11-0.2.17: desktop + Android both confirmed
 
 Replacing Electron (`TODO.md` #1 — Tauri 2.x builds desktop **and** mobile
 from one project); like-for-like shell swap only, no new desktop UI yet.
@@ -191,10 +196,9 @@ on real hardware (0.2.16): "Fix worked, problem solved."** `lockAspect`
 stays as a no-op safety net. **0.2.17 split the crate for mobile**:
 `src/lib.rs` = the app (`pub fn run()` under `#[cfg_attr(mobile, tauri::
 mobile_entry_point)]`, owns `mod resize_lock`), `src/main.rs` = desktop
-shim, `Cargo.toml` `[lib] vkdex_lib` staticlib/cdylib/rlib — **compiled and
-built successfully for Android (2026-09-05, real hardware, §2a)**; desktop
-(`npm run dev`) not yet re-tested since the split. Electron cleanup
-remains (`PLAN.md`).
+shim, `Cargo.toml` `[lib] vkdex_lib` staticlib/cdylib/rlib — confirmed
+compiling clean for both desktop (`tauri build`) and Android (§2a),
+2026-09-05, real hardware. Electron cleanup remains (`PLAN.md`).
 
 ---
 
@@ -411,8 +415,9 @@ User-specified 2026-09-03; conciseness addendum 2026-09-04.
    instead — see the equivalent call made for `SCOPE.md`'s CSS-pitfalls/
    visual-polish/window-resize sections (2026-09-05, promoted from
    unnumbered to §6-§8 there).
-3. **Target: ≤450 lines total, standing cap** (raised from 400, 2026-09-05,
-   the §2b Tauri-scaffold addition — flagged here per the raise rule below).
+3. **Target: ≤500 lines total, standing cap** (raised from 450, 2026-09-05,
+   the real multi-target release confirmation + Android-pause decision —
+   flagged here per the raise rule below).
    `SCOPE.md` carries its own independent standing cap of **≤650 lines**
    (also already raised once, same day, for unrelated reasons — see that
    file's own intro). Both raise **50 lines at a time** if genuinely

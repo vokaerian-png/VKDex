@@ -19,15 +19,19 @@ swap (0.2.11) + native Windows live resize lock (0.2.14, corner-jitter fix
 no live lock yet, JS fallback only. Remaining work (first local Android
 round, Electron cleanup) tracked as a commitment in `PLAN.md`, not here.
 
-**Android release keystore** (new 0.2.17, uncommitted): APKs are
-debug-signed for now (Gradle's auto `debug.keystore`, sideload-only). A
-permanent release key means generating a keystore once, keeping it backed
-up forever (an update signed with a different key won't install over the
-old one; Play Store needs it too), and wiring it into `gen/android/`'s
-Gradle signing config — Tauri's docs cover the Gradle side. Decide when
-distribution beyond sideloading matters; `--debug` in `package.json`'s
-`build:android` and the `-android-debug.apk` name in `release.js` are the
-two places that change.
+**Android release keystore + APK size** (0.2.17 debug build: 731.9 MB,
+**now the release blocker** — `PLAN.md`'s Tauri entry paused Android
+releases over it, 2026-09-05). APKs are debug-signed for now (Gradle's auto
+`debug.keystore`, sideload-only) via an unoptimized debug build; a real fix
+likely needs both: a permanent release key (generate once, back up forever
+— an update signed with a different key won't install over the old one;
+Play Store needs it too) wired into `gen/android/`'s Gradle signing config
+(Tauri's docs cover the Gradle side), **and** switching the build itself
+from `--debug` to a release/optimized profile (stripped, likely far
+smaller on its own) — per-ABI split APKs instead of one universal build is
+worth checking too if size is still an issue after that. `--debug` in
+`package.json`'s `build:android` and the `-android-debug.apk` name in
+`release.js` are the places that change once this is decided.
 
 ---
 

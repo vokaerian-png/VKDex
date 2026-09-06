@@ -6,10 +6,11 @@ belong here; ideas still under consideration live in `TODO.md`.
 Most entries below have shipped and stay because they record standing
 design decisions that still govern their feature — the per-version detail
 lives in `HISTORY.md`, the current-state description in `CLAUDE.md`. **One
-open commitment right now: the Tauri migration, below** — shell swap and
-native resize lock shipped and user-confirmed (0.2.16); multi-target
-release script + Android prep shipped unverified (0.2.17); first local
-Android round and Electron cleanup remain.
+open commitment right now: the Tauri migration, below** — shell swap,
+native resize lock, and the multi-target release pipeline (Windows +
+Android) are all shipped and user-confirmed on real hardware, including a
+real published v0.2.17 release. Remaining: Android releases are paused
+pending a size fix (below), then Electron cleanup.
 
 ---
 
@@ -73,22 +74,28 @@ phone-frame scale-as-a-unit behavior breaks under a *new* Electron rebuild,
 since `window.isTauri` never fires there — `CLAUDE.md` §2), accepted since
 Electron's being retired.
 
-**Release tooling + Android first pass — shipped 0.2.17 (`overlord`),
-unverified**: `tools/release.js` now builds Windows (`tauri build`),
-Android (`tauri android build --debug`, debug-signed by user choice) or
-both, with a mandatory confirmation gate, and publishes every artifact on
-one GitHub Release (`CLAUDE.md` §2a). The crate got the `lib.rs`/`main.rs`
-mobile-entry-point split Tauri's Android project requires (`CLAUDE.md`
-§2b). **Still open, in order**: (1) the next local `npm run dev`/`build`
-proves the crate split didn't break desktop; (2) Android has never been
-initialized — the user runs `src-tauri/ANDROID_SETUP.md` once (Android
-Studio, SDK/NDK/JDK, env vars, `rustup target add`, `npx tauri android
-init`) before any Android build can even start, and that first round is
-expected to need its own fix pass like 0.2.12-0.2.16 did for desktop;
-(3) the first real `node tools/release.js` run, ideally `--dry-run` first;
-(4) then Electron cleanup — `electron-app/` and its dead references across
-the memory bank. macOS/Linux still have no live resize lock (JS fallback
-only) — not blocking, `TODO.md` #1. iOS stays out of scope (Mac + Xcode).
+**Release tooling + Android first pass — shipped and confirmed 0.2.17**
+(`overlord` built it; `ANDROID_SETUP.md`'s first-ever run, the crate split,
+and a real `--target=both` build + publish all confirmed 2026-09-05 on real
+hardware): `tools/release.js` builds Windows (`tauri build`), Android
+(`tauri android build --debug`) or both, with a mandatory confirmation
+gate, and publishes every artifact on one GitHub Release (`CLAUDE.md` §2a).
+The `lib.rs`/`main.rs` mobile-entry-point split (`CLAUDE.md` §2b) compiles
+clean for both targets. Two real Android setup gotchas surfaced and are now
+documented in `ANDROID_SETUP.md`: Gradle 8.14.3 can't run on this machine's
+JDK 25 installs (including Android Studio's own bundled JBR — pin
+`gradle.properties`'s `org.gradle.java.home` at a real JDK 17-21 instead),
+and a harmless Kotlin-daemon fallback on cross-drive paths.
+
+**Android releases paused after 0.2.17** (user decision, 2026-09-05): the
+debug-signed universal APK is 731.9 MB — too large to keep shipping.
+`TODO.md` #1 tracks the fix (a real release signing key plus a smaller
+build shape — release/optimized profile and/or per-ABI split APKs instead
+of universal). Don't use `--target=android`/`both` for a real release until
+that lands; Windows releases are unaffected. **Next commitment: Electron
+cleanup** — `electron-app/` and its dead references across the memory
+bank. macOS/Linux still have no live resize lock (JS fallback only) — not
+blocking, `TODO.md` #1. iOS stays out of scope (Mac + Xcode).
 
 **Not yet decided**: the `identifier` in `tauri.conf.json`
 (`com.vokaerian.vkdex`) is a placeholder — becomes the permanent OS-level
@@ -97,9 +104,7 @@ into `gen/android/`, worth settling **before** that init runs. **The app
 icon is also a placeholder** (0.2.12 — architect generated a Poké Ball
 motif in VKDex's colors after a real build blocked on `icons/icon.ico`
 being mandatory, `HISTORY.md` 0.2.12) — swap for real branding whenever it
-exists. **Android release signing** is a real future decision, not made:
-debug-signed APKs can't go to the Play Store and every later update must
-carry the same key as the first install — `TODO.md` #1.
+exists. (Android release signing is covered above, `TODO.md` #1.)
 
 ---
 

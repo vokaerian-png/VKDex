@@ -63,6 +63,20 @@ answers: scope Android's never-done first-time setup in as *instructions*
   assumptions until the first real Android build.
   Handoff: `temp/handoff/2026-09-05-120133-release-multi-target.md`.
 
+**Real-world confirmation, same day**: user fixed the `.gitignore` issue
+above and committed `src-tauri/` for real. First-ever `ANDROID_SETUP.md`
+run hit two live gotchas, both folded back into that doc — Gradle 8.14.3
+can't run on this machine's JDK 25 installs (Android Studio's bundled JBR
+included, not the safe default first assumed; pinned via `gradle.
+properties`'s `org.gradle.java.home`), and a harmless Kotlin-daemon
+fallback on cross-drive paths (project `E:`, `cargo` registry `C:`). Both
+the Android and Windows `--dry-run` builds, then a real `--target=both`
+non-dry-run, all succeeded — `v0.2.17` tagged, pushed, and published with
+both assets on one GitHub Release. **User decision**: the debug-signed
+universal APK (731.9 MB) is too large to keep shipping — 0.2.17 is the
+only intentional Android release until that's fixed (`TODO.md` #1,
+`PLAN.md`'s Tauri entry).
+
 ---
 
 ## 0.2.15 → 0.2.16 — Resize lock: stateless corner rule (`overlord`)
