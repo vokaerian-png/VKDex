@@ -87,12 +87,15 @@ JDK 25 installs (including Android Studio's own bundled JBR — pin
 `gradle.properties`'s `org.gradle.java.home` at a real JDK 17-21 instead),
 and a harmless Kotlin-daemon fallback on cross-drive paths.
 
-**Android releases paused after 0.2.17** (user decision, 2026-09-05): the
-debug-signed universal APK is 731.9 MB — too large to keep shipping.
-`TODO.md` #1 tracks the fix (a real release signing key plus a smaller
-build shape — release/optimized profile and/or per-ABI split APKs instead
-of universal). Don't use `--target=android`/`both` for a real release until
-that lands; Windows releases are unaffected.
+**Android releases resumed 0.2.20** (`TODO.md` #1 closed, 2026-09-06): a
+real RSA-2048 release keystore was generated (alias `vkdex`, valid to
+2054, stored outside the repo — `CLAUDE.md` §2a has the full location/
+backup story) and wired into `src-tauri/gen/android/app/build.gradle.kts`'s
+`release` buildType, which already had `isMinifyEnabled`+ProGuard
+configured. `npm run build:android` now runs `tauri android build --apk`
+(no `--debug`) — real size on hardware isn't measured yet; per-ABI split
+APKs remain a follow-up lever if the release-profile universal APK is
+still too large.
 
 **Electron cleanup — shipped 2026-09-06** (memory-bank/agent-def-only,
 architect): `electron-app/`'s dead references retired across `CLAUDE.md`

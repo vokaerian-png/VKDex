@@ -116,23 +116,52 @@ needed; if you want to get rid of the warning entirely, the whole project
 same drive as `%USERPROFILE%` — not worth the disruption for a cosmetic
 warning.
 
+## 6c. Release signing (one-time, done 2026-09-06)
+
+`gen/android/app/build.gradle.kts`'s `release` buildType is signed via
+`gen/android/keystore.properties` (gitignored, plus a `*.keystore`/`*.jks`
+`.gitignore` line — never commit any of this). The real keystore + a
+`.properties` backup of its password live in a private Dropbox-synced
+location (off-machine by construction — **this is the only copy that
+matters if the dev machine is lost**). Exact path deliberately not
+recorded in this file (2026-09-06, user direction, since this is a
+checked-into-git document) — the user knows where it is.
+
+**If `gen/android/keystore.properties` is missing** (fresh clone, or wiped
+by re-running `tauri android init` — step 6 regenerates the whole folder),
+recreate it from the private backup:
+
+```properties
+storePassword=<from the private .properties backup>
+keyPassword=<same value>
+keyAlias=vkdex
+storeFile=<full path to your private vkdex-release.keystore backup>
+```
+
+`build.gradle.kts`'s `signingConfigs { create("release") {...} }` block
+also gets wiped by a fresh `tauri android init` — re-add it (`HISTORY.md`
+0.2.20 has the exact block) before the next release build.
+
+**This key must sign every future update** — losing the keystore file or
+its password means the app can never be updated again under
+`com.vokaerian.vkdex`, only republished as a new Play Store listing (if
+ever published there at all; current distribution is GitHub Releases
+sideload, `CLAUDE.md` §2a).
+
 ## 7. Build
 
 ```
-npm run build:android        # = tauri android build --debug
+npm run build:android        # = tauri android build --apk (release profile, signed)
 node tools/release.js        # menu: 1 (Android) / 2 (Windows) / 3 (Both)
 ```
 
-The debug build is signed with Gradle's auto-generated debug keystore
-(`%USERPROFILE%\.android\debug.keystore`) — installable on a phone via
-"Install unknown apps" for the browser/file manager used to open it, not
-publishable to the Play Store. A release keystore is a separate future
-decision (`TODO.md`); every later update of an installed app must be signed
-with the same key, so it isn't something to generate casually.
+Release-signed as of 0.2.20 (§6c) — `isMinifyEnabled`+ProGuard (already
+configured by `tauri android init`) now actually run, unlike the old debug
+build. **Not yet measured on real hardware**: how much smaller than the old
+731.9 MB debug APK this actually is. If still too large, per-ABI split APKs
+(`TODO.md` #1) are the next lever — not built yet, no `splits { abi {} }`
+block exists in `build.gradle.kts`.
 
-Assumption to confirm on the first real run: `--debug` is the Tauri 2 CLI
-flag for a debug build (it is in the CLI reference as of Tauri 2.x; `--apk`
-can be added to skip the AAB Gradle also produces by default). The APK is
-expected under `src-tauri/gen/android/app/build/outputs/apk/universal/
-debug/` — `release.js` searches that whole `apk/` tree rather than
-hardcoding the leaf, and lists what it found if no `.apk` turns up.
+The APK is expected under `src-tauri/gen/android/app/build/outputs/apk/
+universal/release/` — `release.js` searches the whole `apk/` tree rather
+than hardcoding the leaf, and lists what it found if no `.apk` turns up.

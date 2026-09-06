@@ -1,14 +1,14 @@
 {
   "name": "vkdex",
   "productName": "VKDex",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "description": "VKDex - a portable Pokedex app",
   "private": true,
   "scripts": {
     "tauri": "tauri",
     "dev": "tauri dev",
     "build": "tauri build",
-    "build:android": "tauri android build --debug"
+    "build:android": "tauri android build --apk"
   },
   "devDependencies": {
     "@tauri-apps/api": "^2",

@@ -21,19 +21,17 @@ at this time (user decision 2026-09-06, `PLAN.md`) — the no-live-resize-
 lock gap for macOS/Linux and iOS's Mac+Xcode requirement stay noted there
 for if that's revisited, not tracked as open work here.
 
-**Android release keystore + APK size** (0.2.17 debug build: 731.9 MB,
-**now the release blocker** — `PLAN.md`'s Tauri entry paused Android
-releases over it, 2026-09-05). APKs are debug-signed for now (Gradle's auto
-`debug.keystore`, sideload-only) via an unoptimized debug build; a real fix
-likely needs both: a permanent release key (generate once, back up forever
-— an update signed with a different key won't install over the old one;
-Play Store needs it too) wired into `gen/android/`'s Gradle signing config
-(Tauri's docs cover the Gradle side), **and** switching the build itself
-from `--debug` to a release/optimized profile (stripped, likely far
-smaller on its own) — per-ABI split APKs instead of one universal build is
-worth checking too if size is still an issue after that. `--debug` in
-`package.json`'s `build:android` and the `-android-debug.apk` name in
-`release.js` are the places that change once this is decided.
+**Android release keystore + APK size — RESOLVED 0.2.20** (signing half;
+size half partially addressed, not yet measured). A real RSA-2048 release
+keystore was generated and wired into `gen/android/app/build.gradle.kts`'s
+`release` buildType (`isMinifyEnabled`+ProGuard already configured there);
+`package.json`'s `build:android` dropped `--debug` (now `tauri android
+build --apk`); `release.js`'s artifact renamed `VKDex-vX.Y.Z-android.apk`
+(no more `-debug` suffix). Full location/backup story: `CLAUDE.md` §2a.
+**Still open**: the old 731.9 MB figure was the debug build — the real
+release-profile size on hardware hasn't been measured yet. If minify+
+ProGuard alone don't get it small enough, per-ABI split APKs instead of one
+universal build is the next lever to check.
 
 ---
 

@@ -315,7 +315,7 @@ function buildAndroid() {
 
   const outDir = path.join(RELEASES_DIR, "android");
   fs.mkdirSync(outDir, { recursive: true });
-  const dest = path.join(outDir, "VKDex-" + TAG + "-android-debug.apk");
+  const dest = path.join(outDir, "VKDex-" + TAG + "-android.apk");
   fs.copyFileSync(apk, dest); // copy, not move — Gradle's own output stays put
   console.log(apk + "\n  -> " + dest + " (" + (fs.statSync(dest).size / 1048576).toFixed(1) + " MB)");
   return dest;
@@ -357,7 +357,7 @@ async function main() {
   step("Summary");
   console.log("Version:  " + VERSION + "  (tag " + TAG + ", branch " + branch + ")");
   console.log("Targets:  " + (wantWindows ? "Windows -> releases/windows/VKDex-" + TAG + "-windows-x64.zip\n          " : "") +
-                             (wantAndroid ? "Android -> releases/android/VKDex-" + TAG + "-android-debug.apk (debug-signed)" : ""));
+                             (wantAndroid ? "Android -> releases/android/VKDex-" + TAG + "-android.apk (release-signed)" : ""));
   console.log("Publish:  " + (DRY_RUN ? "NO (--dry-run: build only, no tag/push/release)" : "git tag + push + one GitHub release with the artifact(s) above"));
   console.log("Notes:    the changelog block printed above");
   const yes = await ask("\nProceed with build" + (DRY_RUN ? "" : " and release") + "? [y/N] ");

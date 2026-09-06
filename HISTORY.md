@@ -10,7 +10,56 @@ exempt. The authoritative policy is `CLAUDE.md` §3 — this file is just the
 log, newest entry first. Current-state descriptions live in `CLAUDE.md`;
 entries here record what changed and why.
 
-**Current version: 0.2.19.**
+**Current version: 0.2.20.**
+
+---
+
+## 0.2.19 → 0.2.20 — Android release signing key + release build profile (architect + `coder`) — `TODO.md` #1's signing half resolved
+
+User-directed: move forward on the Android release blocker flagged since
+0.2.17 (debug-signed 731.9 MB universal APK, sideload-only).
+
+- **Generated a real RSA-2048 release keystore** (alias `vkdex`, 10000-day
+  validity, valid to 2054) via `keytool`, at the user's direction stored
+  outside the repo in a private Dropbox-synced location (durable,
+  off-machine backup by construction; a `.properties` copy of the password
+  sits alongside it there for recovery independent of chat scrollback).
+  Exact path deliberately not recorded in the memory bank (2026-09-06,
+  user direction) — the user knows where it is.
+- **`src-tauri/gen/android/app/build.gradle.kts`**: added a `signingConfigs
+  { create("release") {...} }` block reading `gen/android/keystore.
+  properties` (gitignored, already excluded before this change — the
+  Tauri scaffold anticipated this convention), wired to the existing
+  `release` buildType via `signingConfig = signingConfigs.getByName
+  ("release")`. That buildType already had `isMinifyEnabled = true` +
+  ProGuard configured from `tauri android init` — only the missing signing
+  config was blocking a real release build from producing an installable
+  APK. `gen/android/.gitignore` also got a belt-and-suspenders `*.keystore`/
+  `*.jks` line.
+- **`package.json`**: `build:android` dropped `--debug` → `tauri android
+  build --apk` (release profile, `--apk` to get an installable APK instead
+  of the AAB Gradle also produces by default — matches the project's
+  GitHub-Releases sideload distribution, not a Play Store submission).
+- **`tools/release.js`**: output artifact renamed `VKDex-vX.Y.Z-android.apk`
+  (dropped the `-debug` suffix) in both the copy step and the pre-build
+  summary line. `pickApk`'s universal-preferred search logic needed no
+  change — already generic over the Gradle output tree.
+- **Deliberately not done this pass**: per-ABI split APKs (`TODO.md` #1) —
+  the release buildType's minify+ProGuard alone hasn't been measured on
+  real hardware yet; splitting is the next lever only if size is still an
+  issue after that.
+- Version bump (`src/data.js` APP_VERSION) done by `coder` per `CLAUDE.md`
+  §5 — the one file architect is hard-blocked from editing directly;
+  everything else in this entry was architect's own edit (`src-tauri`/
+  `tools`/`package.json` aren't hard-restricted, just "good practice" to
+  route through `coder`).
+- Verified: `node --check` on `tools/release.js` and `src/data.js`;
+  `node tools/release.js --check` all-pass; `package.json`/`tauri.conf.json`
+  JSON-valid; a `keytool -list -v` self-check against the generated
+  keystore confirmed alias/fingerprint/validity; manual brace-balance read
+  of the edited `build.gradle.kts` (no Gradle/Android SDK in this sandbox
+  to actually run a build — `CLAUDE.md` §4, first real build is on the
+  user's machine).
 
 ---
 

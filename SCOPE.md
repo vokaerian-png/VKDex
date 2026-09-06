@@ -41,7 +41,7 @@ decision 2026-09-06, `PLAN.md`'s Tauri migration entry).
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3). **Current version: 0.2.19** (`CLAUDE.md` §3 for
+and a Settings popup (§3). **Current version: 0.2.20** (`CLAUDE.md` §3 for
 the bump policy, `HISTORY.md` for the changelog).
 
 ---
