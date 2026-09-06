@@ -1,6 +1,6 @@
 <img src="image.png" align="right" width="220" hspace="20" alt="VKDex screenshot">
 
-![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) [<img alt="Windows Release" src="https://img.shields.io/badge/Windows-v0.3.15-0078D6?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.15) [<img alt="Android Release" src="https://img.shields.io/badge/Android-v0.3.15-3DDC84?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.15)
+![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) [<img alt="Windows Release" src="https://img.shields.io/badge/Windows-v0.3.18-0078D6?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.18) [<img alt="Android Release" src="https://img.shields.io/badge/Android-v0.3.15-3DDC84?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.15)
 
 
 
