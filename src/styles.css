@@ -1,7 +1,7 @@
 :root {
   --phone-width: 360px;
   --phone-height: 800px;
-  --menu-width: 230px;
+  --menu-width: 180px; /* floored at the header's measured width in app.js */
   --anim-speed: 0.25s;
   --window-radius: 18px;
   --screen-bg: #ffffff;
@@ -375,6 +375,27 @@ body {
   mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
 }
 
+/* Grab-to-scroll (0.3.12): mouse/pen can drag the grid itself instead of
+   hunting the 8px scrollbar (app.js drives scrollTop; touch keeps the
+   browser's own native scrolling). The cursor is the affordance, and
+   -webkit-user-drag stops a press on a sprite starting a native image drag,
+   which would cancel the pointer stream mid-scroll. */
+.dex-list {
+  cursor: grab;
+}
+
+/* .dex-cell keeps cursor: pointer when idle (it is clickable), so the
+   grabbing cursor has to be restated for it or the cells would stay
+   "pointer" for the whole drag. */
+.dex-list.drag-scrolling,
+.dex-list.drag-scrolling .dex-cell {
+  cursor: grabbing;
+}
+
+.dex-list img {
+  -webkit-user-drag: none;
+}
+
 .dex-list::-webkit-scrollbar {
   width: 8px;
 }
@@ -516,9 +537,29 @@ body {
   touch-action: none;
 }
 
-/* Visible tap target for the drawer, layered above .edge-zone so a tap on
-   it opens the menu directly rather than being read as a drag gesture. */
+/* Tap/drag target for the drawer, layered above .edge-zone so it takes the
+   gesture first. 0.3.12: the *button* is 28px wide (it used to be the pill
+   itself at 5.4px — unhittable on touch, which is why taps near the handle
+   felt inconsistent); the visible pill is now ::before, drawn at exactly the
+   same place and size as before (left: 4px, 5.4 x 140.4). touch-action: none
+   matches .edge-zone so a drag off this strip isn't stolen by .phone's pan-y. */
 .drawer-handle {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 160px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 6;
+  touch-action: none;
+}
+
+.drawer-handle::before {
+  content: "";
   position: absolute;
   left: 4px;
   top: 50%;
@@ -527,18 +568,14 @@ body {
   height: 140.4px;
   border-radius: 999px;
   background: rgba(150, 150, 150, 0.35);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 6;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.drawer-handle:hover {
+.drawer-handle:hover::before {
   background: rgba(190, 190, 190, 0.55);
 }
 
-.drawer-handle:active {
+.drawer-handle:active::before {
   transform: translateY(-50%) scale(0.85);
 }
 
@@ -596,45 +633,74 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Drawer rows (0.3.11): icon cube + text label, grouped under small
+   captions; the list fills the drawer so Settings can pin to the bottom. */
 .menu-list {
   list-style: none;
   margin: 0;
-  padding: 20px 0;
+  padding: 10px 8px 12px;
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  gap: 4px;
 }
 
-.menu-item {
+.menu-group-label {
+  padding: 12px 10px 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(242, 242, 242, 0.45);
+}
+
+.menu-item-bottom {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.12s ease;
 }
 
-/* Each setting is an icon-only "cube": dark grey square, blue icon outline */
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.menu-btn:active {
+  transform: scale(0.97);
+}
+
+.menu-label {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* The row's icon: dark grey square, blue icon outline (decoration only —
+   the whole .menu-btn row is the button). */
 .icon-cube {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #35383d;
   border-radius: 10px;
-  cursor: pointer;
-  transition: filter 0.12s ease, transform 0.12s ease;
-}
-
-.icon-cube:hover {
-  filter: brightness(1.15);
-}
-
-.icon-cube:active {
-  transform: scale(0.93);
 }
 
 .icon {
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   fill: none;
   stroke: #4da3ff;
   stroke-width: 1.6;
@@ -2159,12 +2225,259 @@ body {
 }
 
 /* --- Drawer: highlight whichever screen is currently showing --- */
-.icon-cube.active {
+.menu-btn.active {
   background: #1d3a57;
   box-shadow: inset 0 0 0 1.5px var(--accent);
 }
 
-.icon-cube:focus-visible {
+.menu-btn.active .icon-cube {
+  background: var(--accent-grad);
+}
+
+.menu-btn.active .icon {
+  stroke: #fff;
+}
+
+.menu-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* --- First-launch drawer walkthrough (0.3.11) ---
+   The drawer stays open and inert; every row dims except the one being
+   explained, and a caption card sits beside it, vertically tracked by
+   app.js. Lives above the drawer (z-index 10). */
+.side-menu.tour-active {
+  pointer-events: none;
+}
+
+.side-menu.tour-active .menu-btn {
+  opacity: 0.3;
+  transition: opacity var(--anim-speed) ease;
+}
+
+.side-menu.tour-active .menu-btn.tour-target {
+  opacity: 1;
+  background: #1d3a57;
+  box-shadow: 0 0 0 2px var(--accent), 0 0 14px rgba(77, 163, 255, 0.6);
+}
+
+.drawer-tour {
+  position: absolute;
+  left: calc(var(--menu-width) + 10px);
+  right: 10px;
+  top: 0;
+  z-index: 11;
+  padding: 12px 12px 10px;
+  background: #24262b;
+  color: #f2f2f2;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  transition: top var(--anim-speed) ease;
+}
+
+.drawer-tour[hidden] {
+  display: none;
+}
+
+/* Little pointer on the card's left edge, aimed at the highlighted row */
+.drawer-tour::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #24262b;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.tour-step {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tour-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tour-text {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(242, 242, 242, 0.85);
+}
+
+.tour-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.tour-btn {
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: #f2f2f2;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tour-btn-primary {
+  border-color: transparent;
+  background: var(--accent-grad);
+  color: #fff;
+}
+
+/* --- Reference screens: Type Chart + Natures (0.3.11) ---
+   Same scroll container treatment as .detail-body. */
+.ref-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 12px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.ref-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ref-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ref-body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.ref-note {
+  margin: 0;
+  padding: 0 6px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--chip-fg);
+  opacity: 0.7;
+}
+
+/* Natures rows: reuse .detail-facts/.detail-row; the value is two tags. */
+.nature-up,
+.nature-down,
+.nature-neutral {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nature-up {
+  background: rgba(63, 185, 80, 0.18);
+  color: #3fb950;
+  margin-right: 4px;
+}
+
+.nature-down {
+  background: rgba(214, 69, 69, 0.18);
+  color: #e0575a;
+}
+
+.nature-neutral {
+  background: rgba(128, 128, 128, 0.18);
+  color: var(--chip-fg);
+  opacity: 0.75;
+}
+
+/* Type chart: a 19x19 CSS grid (corner + 18 defenders across, 18 attackers
+   down) sized to fit the 360px frame with no horizontal scroll — cells are
+   ~15px, so column headers are written vertically and every label is a
+   3-letter abbreviation in its type color. Explicit row heights on
+   purpose (no aspect-ratio — SCOPE.md §6). */
+.type-chart-card {
+  padding: 10px 8px 8px;
+}
+
+.type-grid {
+  display: grid;
+  grid-template-columns: 36px repeat(18, minmax(0, 1fr));
+  grid-template-rows: 34px repeat(18, 15px);
+  gap: 1px;
+}
+
+.tc-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.tc-1 { background: rgba(255, 255, 255, 0.07); }
+.tc-2 { background: #3fb950; }
+.tc-half { background: #d64545; }
+.tc-0 { background: #17181c; color: #9a9a9a; }
+
+/* Row/column labels are shrunk .type-pill instances, so the per-type
+   background AND text colors (electric/ice/ground/steel/fairy use dark
+   text) come from the one existing set of .type-TYPE rules. */
+.tc-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 8px;
+  letter-spacing: 0.3px;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.tc-label.tc-col {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.type-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 12px;
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: #f4e3b4;
+}
+
+.type-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.type-legend .tc-cell {
+  width: 14px;
+  height: 14px;
+}
+
+.type-legend .tc-1 {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
 }

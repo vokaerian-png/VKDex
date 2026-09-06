@@ -10,10 +10,14 @@ Sections run sequentially §1-§8; a sub-clause takes its main section's
 number plus a letter, a/b/c in order of appearance (`CLAUDE.md` §6 has the
 full convention).
 
-**Standing cap: ≤900 lines** (raised from 850, 2026-09-06, the Phase 4
-follow-ups — forme-aware Evolution Line ancestor rendering, duplicate-area
-merge, DLC chip badge, rich `NEW_ENC_SHAPE` rendering — real new behavior,
-not narration; previously raised from 800 same day for the csv/-sourced
+**Standing cap: ≤1000 lines** (raised from 950, 2026-09-06, for 0.3.12's
+grab-to-scroll + drawer-handle hit-box fixes — a real compress pass first
+brought the addition down to 1 line over 950 before this raise; from 900
+same day for 0.3.11's drawer redesign + walkthrough + the two reference
+screens; from 850 same
+day for the Phase 4 follow-ups — forme-aware Evolution Line ancestor
+rendering, duplicate-area merge, DLC chip badge, rich `NEW_ENC_SHAPE`
+rendering; previously raised from 800 same day for the csv/-sourced
 pipeline + SV/BDSP/LA encounter shape + DLC-label fix, from 750 same day
 for the evolution per-forme-override mechanism + alt-forme-tappable-fix +
 tap-to-enlarge/needs-source documentation, from 700 for the Alola/Galar/
@@ -47,8 +51,9 @@ decision 2026-09-06, `PLAN.md`'s Tauri migration entry).
 UI is a **phone mockup** — a 360x800 "phone frame" (Galaxy S20 CSS viewport)
 centered on the page, with a swipe-out left drawer, National Dex home
 screen (with an in-place quick-search), Pokémon detail view, Favorites,
-and a Settings popup (§3). **Current version: 0.3.8** (`CLAUDE.md` §3 for
-the bump policy, `HISTORY.md` for the changelog).
+two static reference screens (Type Chart, Natures — 0.3.11), and a
+Settings popup (§3). **Current version: 0.3.11** (`CLAUDE.md` §3 for the
+bump policy, `HISTORY.md` for the changelog).
 
 ---
 
@@ -353,9 +358,29 @@ new sprite subfolder needs no build-config change (Electron's
   code path): a 12px edge-zone strip (the screens' left gutter; 24px
   swallowed Back-button/Kanto taps) starts the open-swipe, drag live-
   follows the pointer, snaps open/closed at a half-width threshold. Width
-  capped to the "VKDex" header's rendered width (`measureHeaderWidth()`,
-  ~83px). Menu items are icon-only 48px "cubes" (dark grey `#35383d`, blue
-  `#4da3ff` stroke SVG, hand-coded): Pokédex/Favorites/Search/Settings.
+  = `--menu-width` (180px since 0.3.11), **floored** at the "VKDex"
+  header's rendered width (`measureHeaderWidth()`, ~83px — the cap it was
+  for the old icon-only strip, flipped once labels arrived). **Rows
+  (0.3.11)**: `.menu-btn` = 36px `.icon-cube` (dark grey `#35383d`, blue
+  `#4da3ff` hand-coded stroke SVG) + always-visible `.menu-label` text, in
+  two captioned groups (`.menu-group-label`): *Browse* — Pokédex/
+  Favorites; *Reference* — Type Chart/Natures; then Settings pinned
+  to the bottom (`.menu-item-bottom`, `margin-top:auto` + divider). The
+  original four's relative order is unchanged; the grouping/pinning was
+  overlord's call under a user deferral, reversible in HTML alone.
+  **Search row removed (0.3.12)** — redundant with the dex screen's own
+  `#dexSearchToggle` quick-search and the `/` shortcut (both unaffected,
+  §4/below); Browse is now just Pokédex/Favorites, 5 rows total.
+  `.menu-btn.active` (accent-gradient cube, white stroke) marks the
+  current screen. **First-launch walkthrough**: 600ms after init, unless
+  `vkdex-drawer-tour-seen` is `"yes"`, the drawer opens pointer-inert
+  (`.side-menu.tour-active`), each row dims except the `.tour-target`, and
+  `#drawerTour` (a `.window` card beside the drawer, title from the row's
+  label, text from its `data-tour` attribute, "N / 5" — computed from the
+  live row count, not hard-coded, so it tracked the Search-row removal
+  with no JS change) steps through with Next/Done/Skip; `backOut()` ends
+  it first, overlay click is guarded; the flag is written on any exit.
+  Delete the key to replay.
 - **Design system rule**: every popup/modal gets rounded corners via shared
   `.window` class (`border-radius: var(--window-radius)`, 18px).
 - **Settings window** (`#settingsIcon` → `#settingsWindow`): 210px wide,
@@ -412,6 +437,14 @@ new sprite subfolder needs no build-config change (Electron's
   sprite → name → dex number, **intrinsic height, never forced
   `aspect-ratio`** (see §6); carries `data-id`, `role="button"`,
   `tabindex="0"`. Favorites reuses the same markup and `renderGrid()`.
+  **Grab-to-scroll (0.3.12)**: `.dex-list` (both grids) supports
+  press-and-drag scrolling for mouse/pen only — touch is excluded on
+  purpose, since native touch scrolling already works (`.phone`'s
+  `touch-action: pan-y`) and a manual scroll would fight the browser's own
+  momentum scroll. 5px slop before a drag "counts," gating the existing
+  delegated cell-click handler (`dragScrolled`) so a real drag doesn't also
+  open the cell underneath; `-webkit-user-drag: none` on cell sprites stops
+  a mouse-press starting a native image-drag mid-gesture.
 - **Outlines**: `.dex-cell` gets `var(--cell-border)` (`1px solid #000`);
   `.dex-panel`/`.dex-header` get `var(--panel-border)` (`2px solid #000`).
 - **Scrollbar styling** (`.dex-list`, `.detail-body`): thin/rounded/semi-
@@ -426,15 +459,40 @@ new sprite subfolder needs no build-config change (Electron's
 
 ## 4. Navigation & screens
 
-- **Screen router**: `showView(name)` in app.js. Two swappable `.screen`
+- **Screen router**: `showView(name)` in app.js. Four swappable `.screen`
   elements (`data-view`) live side by side in `.phone`: `#dexScreen`,
-  `#favoritesScreen`. Exactly one visible; the other carries `hidden`
-  (needs explicit `.screen[hidden]{display:none}` — see §6).
-- **Drawer icons** (`#dexIcon`/`#favoritesIcon`/`#searchIcon`/
-  `#settingsIcon`) wired by `wireNavIcon(el, view, then)`: close drawer,
-  close any open detail, switch view. `#searchIcon` targets the dex view
-  with `then = openDexQuickSearch`. `.icon-cube.active` marks the current
-  screen; Settings/Search never take that state.
+  `#favoritesScreen`, `#typeChartScreen`, `#naturesScreen` (the last two
+  0.3.11). Exactly one visible; the others carry `hidden` (needs explicit
+  `.screen[hidden]{display:none}` — see §6).
+- **Drawer rows** (`#dexIcon`/`#favoritesIcon`/`#typeChartIcon`/
+  `#naturesIcon`/`#settingsIcon` — ids sit on the `.menu-btn` row, §3;
+  `#searchIcon` removed 0.3.12) wired by `wireNavIcon(el, view, then)`:
+  close drawer, close any open detail, switch view. `.menu-btn.active`
+  marks the current screen; Settings never takes that state.
+- **Reference screens (0.3.11)** — static data, rendered once at init,
+  no per-Pokémon linkage (tap-through from a Type pill or nature is
+  `TODO.md` #16). Both: `.dex-header` + `.dex-title-static`, then a
+  `.ref-body` scroll container (same thin-scrollbar rules as
+  `.detail-body`).
+  - **Type Chart** (`renderTypeChart()`): a 19×19 CSS grid in a
+    `.detail-section` card — attackers down, defenders across, in
+    `TYPE_CHART`'s own key order, unlisted pairs defaulted to 1×.
+    **Fit-to-width, no horizontal scroll** (a deliberate legibility
+    tradeoff, unconfirmed on a real screen): ~14.5px cells with 9px glyphs
+    (`2`/`½`/`0`, blank for 1×) on green/red/near-black/faint-grey
+    (`.tc-2`/`.tc-half`/`.tc-0`/`.tc-1`); 3-letter labels (unique across
+    all 18 types, `slice(0,3)`) as shrunk `.type-pill`s so the one set of
+    `.type-TYPE` rules supplies bg + text color, column ones written
+    vertically (`writing-mode: vertical-rl`). Explicit `grid-template-rows`
+    (§6's `aspect-ratio` pitfall). Each cell carries a `title` tooltip;
+    a 4-item legend sits under the grid. Fallback if 9px proves too
+    small: horizontally-scrolling 22px cells.
+  - **Natures** (`renderNatures()`): a `.detail-facts` card of 25
+    `.detail-row`s in `NATURES`' order, key capitalized; value = green
+    `+ Stat` / red `− Stat` tags (`.nature-up`/`.nature-down`, labels from
+    `STAT_ROWS` so "Sp. Atk" matches the stats card) or a grey
+    `.nature-neutral` "Neutral" for the 5 empty entries; a one-line
+    `.ref-note` footnote.
 - **Detail screen** (`#detailScreen`): slides in from the right, not
   display-toggled (`transform: translateX(100%); visibility: hidden` +
   `.active`). **`z-index:4` is deliberate** — above list screens (1),
@@ -794,8 +852,19 @@ new sprite subfolder needs no build-config change (Electron's
   Escape, Backspace outside a text field, and mouse button 3. `/` (outside
   a text field) opens the dex quick-search from anywhere.
 - **Drawer handle**: `#drawerHandle`, thin vertical grey pill on the
-  phone's left edge (`z-index:6`, between edge-zone and drawer) for a
-  direct-tap open alongside the edge-zone drag. 5.4px wide, 140.4px tall.
+  phone's left edge (`z-index:6`, between edge-zone and drawer). **Hit box
+  widened 0.3.12** — the tiny 5.4×140.4px visible pill (now drawn via
+  `::before`, pixel-identical to before) sat inside a real 5.4px-wide
+  `<button>`, an unreliable touch target; the interactive box is now
+  28×160px at the phone's left edge, the visible pill unchanged. Also
+  0.3.12: the handle supports press-and-drag-to-open through the same
+  `startDrag`/`endDrag` machinery `#edgeZone` uses (tagged `dragSource:
+  "handle"` so a tap-length press still force-opens — `#edgeZone` stays
+  drag-only, unchanged), replacing the old plain `click` listener; a
+  `keydown` handler keeps Enter/Space working now pointer events drive it.
+  **Unconfirmed tradeoff** (`TODO.md` #16): the wider band overlaps the
+  grid's leftmost ~28px, so a grab right at the edge drags the drawer
+  instead of scrolling — narrowing to 24px is a one-value fix if needed.
 
 ---
 

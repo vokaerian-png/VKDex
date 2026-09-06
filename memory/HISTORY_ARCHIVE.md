@@ -11,6 +11,32 @@ record, not load-bearing documentation. Newest first, same as `HISTORY.md`.
 
 User-readability is secondary here — write for density, not prose.
 
+## 0.2.19 → 0.2.20 — Android release signing key + release build profile
+
+Real RSA-2048 release keystore (alias `vkdex`, valid to 2054), stored
+outside the repo in a private Dropbox location (path deliberately not
+recorded, `CLAUDE.md` §2a). `build.gradle.kts` `signingConfigs` wired to
+the existing `release` buildType (minify+ProGuard already present from
+`tauri android init`); `build:android` dropped `--debug`; `release.js`
+output renamed `VKDex-vX.Y.Z-android.apk`. Per-ABI split deferred
+(`TODO.md` #1, done 0.2.21/0.2.22). Verified: `node --check`, `release.js
+--check`, `keytool -list -v` self-check; no real Gradle build possible
+in-sandbox.
+
+---
+
+## 0.2.18 → 0.2.19 — Hisuian-form PLA priority + mainline Tutor tab
+
+`TODO.md` #13's two follow-ups. `populate_region.js`: a `-hisui` alt
+form's own PLA rows now win outright over the base species' — checked off
+the CSVs, only Sneasel (#215) actually changes (the "7 species" assumed in
+0.2.18 was 1; Giratina-Origin/Basculin-white-striped untouched by design,
+no `ALT_FORMS` entry). `app.js`: `{ key: "tutor", label: "Tutor" }`
+appended to `MOVE_TABS` (58 Unova species show it; flat move list, no
+NPC/location tracking). `--audit` PASS, render harness 18/18.
+
+---
+
 ## 0.2.17 → 0.2.18 — Legends: Arceus learnsets split from mainline movesets
 
 User-directed (screenshot: Bidoof missing TM/Egg tabs). Root cause: the

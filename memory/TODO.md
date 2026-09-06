@@ -515,6 +515,35 @@ Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.
 
 ---
 
+## 16. Reference-screen tap-throughs + drawer follow-ups (0.3.11-0.3.12)
+
+The Type Chart and Natures screens (`SCOPE.md` §4) are deliberately
+standalone — explicitly out of scope for the pass that built them.
+Natural next connections, none committed:
+- Tap a Type pill on a detail screen (Facts row or a move row) → open the
+  Type Chart with that type's row/column highlighted. Needs a highlight
+  mechanism the grid doesn't have yet (one class per row/col, trivial).
+- Natures ↔ stats: `calcStat()` still assumes a neutral nature
+  (`data/natures.js`'s header) — a nature picker on the Stats card would
+  make the Natures screen more than a lookup. Bigger scope; nothing
+  designed.
+- Type Chart legibility: shipped fit-to-width with 9px cell glyphs
+  (`HISTORY.md` 0.3.11's tradeoff). If a real screenshot says it's too
+  small, switch to a horizontally-scrolling grid with ~22px cells — CSS
+  only. Blind choice, not screenshot-confirmed.
+- The walkthrough has no replay entry point (clear `vkdex-drawer-tour-seen`
+  by hand). A "Show menu tour" row in Settings would be a few lines if
+  wanted.
+- **Drawer-handle hit box (0.3.12)**: widened to 28×160px to fix an
+  unreliable tap target, but that band now overlaps the dex grid's
+  leftmost ~28px — a grab right at the screen edge drags the drawer
+  instead of scrolling. Narrowing to 24px is a one-value CSS change if a
+  real screenshot says it's intrusive. `HANDLE_TAP_SLOP` (6px) and
+  `DRAG_SCROLL_SLOP` (5px, the new grab-to-scroll gesture) are both chosen
+  constants, not measured on a device.
+
+---
+
 ## 15. Galar cross-region encounters (Max Raid Den/Dynamax Adventure) — deferred by user choice, 2026-09-06
 
 `HISTORY.md` 0.3.10 shipped cross-region Found In data for 7 mainline

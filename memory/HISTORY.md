@@ -16,11 +16,191 @@ they ship, same as always. Once a 16th accumulates, the oldest is
 compacted (a few lines: what shipped, key numbers/decisions, not the full
 verification/mechanism detail) and moved into `HISTORY_ARCHIVE.md` — every
 version's entry still exists somewhere, just not at full length forever.
-Entries prior to 0.2.10 live there now (0.1.0 through 0.2.9, 43 headings —
-0.2.5-0.2.9 were already folded under one 0.2.4→0.2.10 heading before
-archival and stayed folded as one compacted entry there).
+Entries prior to 0.2.21 live there now (0.1.0 through 0.2.20 — 0.2.5-0.2.9
+were already folded under one 0.2.4→0.2.10 heading before archival and
+stayed folded as one compacted entry there).
 
-**Current version: 0.3.10.**
+**Current version: 0.3.12.**
+
+---
+
+## 0.3.11 → 0.3.12 — Drawer Search row removed, dex-grid grab-to-scroll, drawer-handle hit box + drag-to-open (`coder`)
+
+User feedback on 0.3.11's drawer, seen on a real screenshot. Direct
+implementation, no mockup pass (`CLAUDE.md` §5c's new mockup-vs-direct
+rule — user confirmed direct was fine for these three functional fixes).
+
+- **Search row removed** — redundant with `#dexSearchToggle`/the `/`
+  shortcut, both untouched. `wireNavIcon`'s dead `then` parameter (Search
+  was its only caller) removed too. The tour step counter was never
+  hard-coded to 6 — it reads `tourSteps.length` live, so it now shows
+  "N / 5" with no JS change.
+- **Grab-to-scroll on `.dex-list`** (dex + Favorites) — traced first:
+  native touch scrolling was already working (`.phone`'s `touch-action:
+  pan-y`, zero touch listeners anywhere in `app.js`), so this shipped as a
+  mouse/pen-only manual `scrollTop` drag layered on top; touch is
+  untouched to avoid fighting the browser's own momentum scroll. 5px slop
+  before a drag "counts"; the existing delegated cell-click handler gained
+  one gating line (`dragScrolled`) instead of being duplicated, so a real
+  drag no longer also opens the cell underneath. `-webkit-user-drag: none`
+  on grid sprites — without it a mouse-press on an `<img>` started a
+  native image-drag and killed the gesture mid-stream.
+- **Drawer handle** — real hit box widened 5.4×140.4px → 28×160px (the
+  `<button>` is now the box; the visible pill moved to `::before`, pixel-
+  identical to before) — the old target was reportedly inconsistent to
+  tap. The handle now also supports press-and-drag-to-open via the same
+  `startDrag`/`endDrag` machinery `#edgeZone` uses, tagged with a new
+  `dragSource: "handle"` so a tap-length press still force-opens —
+  `#edgeZone`'s own "zero-delta drag stays closed" behavior (fixed
+  0.1.34) is untouched, proved by a 22-delta×2-mode regression sweep, not
+  just inspection. The old standalone `click` listener is gone; a small
+  `keydown` handler was added to keep Enter/Space working on the now
+  pointer-driven button (accessibility preservation, the one addition
+  beyond the literal spec).
+- **Flagged, not resolved** (`TODO.md` #16): the widened 28px handle band
+  overlaps the dex grid's leftmost ~28px (cells start around x=2) — a
+  grab right at the screen's left edge now drags the drawer instead of
+  scrolling the grid. Needs a real screenshot; narrowing to 24px is a
+  one-value CSS change if it reads intrusive.
+- Verified: `node --check`; HTML tag balance + CSS brace balance; a
+  runnable harness (`temp/0312-fixes/drag_logic_check.js`) extracting the
+  real `endDrag`/gating expressions out of `app.js` by source match (not a
+  retyped copy) — 13 named cases, the 22×2 edge-zone-parity sweep, and
+  gating assertions for the grab-to-scroll gating. All pass.
+
+Handoff: `temp/handoff/2026-09-06-173754-drawer-search-row-grid-drag-handle-hitbox.md`.
+
+---
+
+## 0.3.10 → 0.3.11 — Drawer redesign (labelled rows, grouped, first-launch walkthrough) + Type Chart and Natures reference screens (`overlord`)
+
+User-directed, dispatched by name: the icon-only drawer didn't communicate
+what its buttons did. Every row now shows icon + always-visible text
+label; two new reference screens hang off two new rows.
+
+- **Drawer** (`index.html`/`styles.css`/`app.js`): `--menu-width` 180px
+  (was an unreachable 230px token, the real width being capped at the
+  "VKDex" header's measured ~83px). `measureHeaderWidth()` kept, but
+  flipped from cap to **floor** — `MENU_WIDTH = max(css token, header
+  width)`, so the header can never overflow the drawer; a wider drawer is
+  the unavoidable consequence of labels. Rows are `.menu-btn` (the ids
+  `#dexIcon`/`#favoritesIcon`/`#searchIcon`/`#settingsIcon` moved onto the
+  row; the inner `.icon-cube` is a 36px decoration now, 22px `.icon`),
+  `.menu-btn.active` replaces `.icon-cube.active` (accent-gradient cube +
+  white stroke while active). **Grouping decision (overlord's call, user
+  deferred)**: two captioned groups — *Browse* (Pokédex/Favorites/Search)
+  and *Reference* (Type Chart/Natures) — with **Settings pinned to the
+  bottom** (`.menu-item-bottom`, `margin-top:auto` + divider). The
+  original four keep their relative order; the new pair is inserted
+  between Search and Settings. Reasoning: 6 rows of three different kinds
+  (navigation / static reference / a modal) read better with 10px captions
+  than as one flat list, and bottom-pinned Settings is the convention
+  every phone drawer users already know. Reversible in HTML alone if the
+  user prefers a flat list.
+- **First-launch walkthrough** (`#drawerTour`, `.drawer-tour window`):
+  600ms after init, if `vkdex-drawer-tour-seen` isn't `"yes"`, the drawer
+  slides open, goes pointer-inert (`.side-menu.tour-active`), every row
+  dims to 0.3 except the `.tour-target`, and a 160px caption card (title
+  from the row's `.menu-label`, text from its `data-tour` attribute, "N /
+  6" step counter) sits beside it, vertically tracked via `offsetTop`
+  (drawer-relative, no scale math). Next/Done/Skip; Escape/Backspace/
+  mouse-back end it via a new first check in `backOut()`; the overlay
+  click is guarded. Flag written on any exit, so Skip doesn't nag. Clear
+  the key to replay it.
+- **Type Chart screen** (`#typeChartScreen`, view `typechart`):
+  `renderTypeChart()` builds a 19×19 CSS grid once at init from
+  `TYPE_CHART` in its own key order (the games' canonical chart order),
+  defaulting unlisted pairs to 1×. **Layout tradeoff**: fit-to-width with
+  no horizontal scroll — ~14.5px cells, 9px glyphs (`2`/`½`/`0`, blank for
+  1×), 3-letter row labels (36px) and vertically-written column labels
+  (`writing-mode: vertical-rl`), every label a shrunk `.type-pill` so the
+  existing `.type-TYPE` rules supply both bg and text color. Green/red/
+  near-black/faint-grey cells + a 4-item legend; each cell carries a
+  `title` ("Fire → Grass: ×2"). Explicit `grid-template-rows` (no
+  `aspect-ratio`, `SCOPE.md` §6). If a real-device screenshot says 9px is
+  too small, the fallback is a horizontally-scrolling grid with 22px
+  cells — one CSS change.
+- **Natures screen** (`#naturesScreen`, view `natures`): `renderNatures()`
+  fills a `.detail-facts` card with 25 `.detail-row`s in `NATURES`' own
+  order, key capitalized; value is a green `+ Stat` / red `− Stat` tag pair
+  (labels from `STAT_ROWS`, so "Sp. Atk" matches the stats card) or a grey
+  "Neutral" tag for the 5 empty entries; one-line footnote.
+- Both screens: `screens`/`navIcons` entries + `wireNavIcon()`, nothing
+  else — the router already generalized. Shared `.ref-body` scroll
+  container (same thin-scrollbar rules as `.detail-body`). No per-Pokémon
+  linkage (`TODO.md` #16 for the tap-through idea).
+- Verified: `node --check` on `app.js`/`data.js`; tag/brace balance and
+  duplicate-id scan on `index.html`/`styles.css`; a harness
+  (`temp/sidebar-redesign/check.js`) evaluating the real `renderTypeChart`/
+  `renderNatures` sources against the real data — 324 cells, split
+  51 super-effective / 61 not-very / 8 immune / 204 neutral (the canonical
+  Gen 6+ counts), 18 unique abbreviations, 25 nature rows / 5 neutral,
+  spot-checked cells and Adamant's row. Also fixed `HISTORY.md`'s 0.3.10
+  entry having been appended at the bottom instead of the top.
+  **No visual verification possible** (`CLAUDE.md` §4) — drawer
+  proportions, the tour card's placement, and above all the type grid's
+  legibility at 9px are hand-traced only and need a real screenshot.
+  `Cargo.lock`'s own `vkdex` version line bumped alongside the 4 mirrors.
+
+Handoff: `temp/handoff/2026-09-06-171320-sidebar-redesign-type-chart-natures.md`.
+
+---
+
+## 0.3.9 → 0.3.10 — Cross-region wild encounters: 7 mainline regions gain foreign-species Found In data (`coder` ×2)
+
+User noticed the Found In module only ever showed a species in its own
+native region and asked to scope out whether other regions' encounter data
+existed. Architect audit of `csv/encounters.csv` (joined against
+`pokemon.csv`/`species.csv`'s `origin_region`) confirmed: every mainline
+region's classic pipeline only ever extracted a species' *own*-region
+appearances, even though the source table is full of species reappearing
+in *other* regions' games (e.g. Pidgey — Kanto-native — has real encounter
+rows in X/Y's Kalos routes). Quantified per region (foreign species /
+foreign rows found): kanto 41/673, johto 231/17,453, hoenn 135/2,409,
+sinnoh 242/10,165, unova 219/3,971, kalos 314/2,548, alola 360/3,338.
+**Galar excluded by user decision** — its foreign rows are ~90% Max Raid
+Den/Dynamax Adventure (a rotating catch pool, not a fixed location),
+scoped as a separate future decision. Paldea/Hisui excluded by definition
+(zero PokeAPI `encounters.csv` rows exist for either).
+
+- **`tools/populate_from_csv.js`** extended: the existing native-region
+  byArea/method/games extraction (unchanged for the native case) was
+  lifted into a reusable `buildClassicAreas(ident, region)`, then called
+  once more per species for each of the 7 approved foreign regions
+  (`FOREIGN_REGIONS` constant) that isn't that species' own region,
+  prepending results into `extra[foreignRegion]` — reusing the exact
+  `extra`-merge mechanism `assemble()` already had for SV/BDSP/LA data (no
+  changes to `assemble()` itself; it already handled "any region key on
+  any species").
+- **Real numbers from the actual run**: alola 347 species/+1,188 enc
+  lines, kalos 313/+704, sinnoh 242/+1,455, johto 231/+2,447, unova
+  219/+896, hoenn 135/+480, kanto 41/+83. Total enc lines 14,268 → 21,521
+  across 564 changed ids. Six of seven region counts matched the pre-audit
+  estimate exactly; alola's estimate counted non-default forms the real
+  (default-form-only) extraction can't reach.
+- **Found In chips sorted into canonical region order** (`foundInRegions()`)
+  — a species can now carry 3-5 chips (was usually 1-2), so insertion
+  order (native region first, then whatever order extraction happened to
+  add foreign ones) stopped reading sensibly; sorted by `REGIONS`' own
+  array index instead, matching the region bar's left-to-right order.
+  478 of 707 multi-region species' chip order changed as a result.
+- Verified: native-case regression checked **byte-identical across all
+  1025 ids** (not a sample) via a harness re-running `extractFromCsv()`
+  before/after; every pre-existing area survives verbatim as the tail of
+  its region's array (new data strictly prepended, 0 keys lost/shrank);
+  Galar/Paldea/Hisui confirmed untouched (0 new keys); `verify_region_data.js`
+  PASS. Chip-sort verified across all 1025 species (region indices
+  monotonic, same key set/length before and after).
+- **Known, accepted, pre-existing (not new to this pass)**: a species'
+  foreign-region areas use that region's own PokeAPI-derived vocabulary
+  verbatim, so e.g. a Bulbasaur `johto` entry can legitimately read
+  "Pallet Town" (HGSS's Kanto post-game, filed under the `johto` version
+  groups) — the same convention the native pipeline has always used, just
+  newly visible at this scale. Sinnoh's duplicate-area-name count (item 2,
+  0.3.9's `mergeAreasByName()`) rose from 59/40 species to 229/119 —
+  already handled at render, not a new bug, just more collisions to merge.
+
+Handoff: `temp/handoff/2026-09-06-023418-pla-moveset-split.md`.
 
 ---
 
@@ -674,155 +854,6 @@ only ever touched the Kotlin/Java side.
   release run on the user's own machine.
 
 Handoff: `temp/handoff/2026-09-06-045953-cargo-release-profile.md`.
-
----
-
-## 0.2.19 → 0.2.20 — Android release signing key + release build profile (architect + `coder`) — `TODO.md` #1's signing half resolved
-
-User-directed: move forward on the Android release blocker flagged since
-0.2.17 (debug-signed 731.9 MB universal APK, sideload-only).
-
-- **Generated a real RSA-2048 release keystore** (alias `vkdex`, 10000-day
-  validity, valid to 2054) via `keytool`, at the user's direction stored
-  outside the repo in a private Dropbox-synced location (durable,
-  off-machine backup by construction; a `.properties` copy of the password
-  sits alongside it there for recovery independent of chat scrollback).
-  Exact path deliberately not recorded in the memory bank (2026-09-06,
-  user direction) — the user knows where it is.
-- **`src-tauri/gen/android/app/build.gradle.kts`**: added a `signingConfigs
-  { create("release") {...} }` block reading `gen/android/keystore.
-  properties` (gitignored, already excluded before this change — the
-  Tauri scaffold anticipated this convention), wired to the existing
-  `release` buildType via `signingConfig = signingConfigs.getByName
-  ("release")`. That buildType already had `isMinifyEnabled = true` +
-  ProGuard configured from `tauri android init` — only the missing signing
-  config was blocking a real release build from producing an installable
-  APK. `gen/android/.gitignore` also got a belt-and-suspenders `*.keystore`/
-  `*.jks` line.
-- **`package.json`**: `build:android` dropped `--debug` → `tauri android
-  build --apk` (release profile, `--apk` to get an installable APK instead
-  of the AAB Gradle also produces by default — matches the project's
-  GitHub-Releases sideload distribution, not a Play Store submission).
-- **`tools/release.js`**: output artifact renamed `VKDex-vX.Y.Z-android.apk`
-  (dropped the `-debug` suffix) in both the copy step and the pre-build
-  summary line. `pickApk`'s universal-preferred search logic needed no
-  change — already generic over the Gradle output tree.
-- **Deliberately not done this pass**: per-ABI split APKs (`TODO.md` #1) —
-  the release buildType's minify+ProGuard alone hasn't been measured on
-  real hardware yet; splitting is the next lever only if size is still an
-  issue after that.
-- Version bump (`src/data.js` APP_VERSION) done by `coder` per `CLAUDE.md`
-  §5 — the one file architect is hard-blocked from editing directly;
-  everything else in this entry was architect's own edit (`src-tauri`/
-  `tools`/`package.json` aren't hard-restricted, just "good practice" to
-  route through `coder`).
-- Verified: `node --check` on `tools/release.js` and `src/data.js`;
-  `node tools/release.js --check` all-pass; `package.json`/`tauri.conf.json`
-  JSON-valid; a `keytool -list -v` self-check against the generated
-  keystore confirmed alias/fingerprint/validity; manual brace-balance read
-  of the edited `build.gradle.kts` (no Gradle/Android SDK in this sandbox
-  to actually run a build — `CLAUDE.md` §4, first real build is on the
-  user's machine).
-
----
-
-## 0.2.18 → 0.2.19 — Hisuian-form PLA priority + mainline Tutor tab (`coder`) — `TODO.md` #13 resolved
-
-User answered both follow-ups flagged by 0.2.18's PLA/Hisui learnset split.
-
-- **`tools/populate_region.js`**: a `-hisui`-suffixed alt form's own PLA
-  rows now win outright whenever it has any, even when the base species
-  also has PLA rows (previously base always won unless it had zero PLA
-  rows). Regenerated `src/data/movesets_hisui.js` and diffed against the
-  pre-change file: **only Sneasel (#215) changed** — checking off the CSVs
-  found the "7 species" assumed in 0.2.18 was actually 1; every other
-  `-hisui` form's base species has zero PLA rows, so the pre-existing
-  fallback already resolved those correctly. Sneasel's entry now reflects
-  Hisuian Sneasel's own learnset (Rock Smash/Close Combat/Drain Punch/Bulk
-  Up in, base's Ice Shard/Blizzard/Ice Beam out). Giratina-Origin (#487)
-  and Basculin-white-striped (#550) untouched by design — neither has an
-  `ALT_FORMS` entry, so nothing auto-activates for them on the Hisui
-  screen, and the user's stated reasoning (matching the Hisui screen's
-  default) doesn't extend to them.
-- **`src/app.js`**: `{ key: "tutor", label: "Tutor" }` appended to
-  `MOVE_TABS` (existing Level-Up/TM/Egg/Max order unchanged) — the
-  render path (`movesCardHtml`/`moveListHtml`) was already generic enough
-  that this needed no other code change. 58 mainline Unova species with
-  non-empty `movesets.js` `tutor` data now show the tab. `tutor` stays a
-  flat `string[]` (which moves are tutor-learnable, mirroring `tm`/`egg`)
-  — doesn't track which in-game NPC/location teaches them; user flagged a
-  future feature might want that, confirmed no shape/naming collision.
-- `SCOPE.md` §2/§4 corrected (the "7 cases" claim, `MOVE_TABS_HISUI`'s
-  stale "kept separate so this doesn't put a new Tutor tab on mainline"
-  reasoning).
-- Verified: `node --check` on all 4 touched files; `verify_region_data.js`
-  `--audit` PASS (0 discrepancies, 665 ids/668 moves/190 abilities/130
-  items match the CSVs); `movesets_hisui.js` diff confirmed 4 changed
-  lines total, all inside the `215:` block, still 241 entries; a render
-  harness (`temp/tutor-tab-hisuian-priority/render_check.js`, adapted from
-  0.2.18's) against real `app.js` function bodies, 18/18 PASS.
-
-Handoff: `temp/handoff/2026-09-06-031550-tutor-tab-hisuian-priority.md`.
-
----
-
-## 0.3.9 → 0.3.10 — Cross-region wild encounters: 7 mainline regions gain foreign-species Found In data (`coder` ×2)
-
-User noticed the Found In module only ever showed a species in its own
-native region and asked to scope out whether other regions' encounter data
-existed. Architect audit of `csv/encounters.csv` (joined against
-`pokemon.csv`/`species.csv`'s `origin_region`) confirmed: every mainline
-region's classic pipeline only ever extracted a species' *own*-region
-appearances, even though the source table is full of species reappearing
-in *other* regions' games (e.g. Pidgey — Kanto-native — has real encounter
-rows in X/Y's Kalos routes). Quantified per region (foreign species /
-foreign rows found): kanto 41/673, johto 231/17,453, hoenn 135/2,409,
-sinnoh 242/10,165, unova 219/3,971, kalos 314/2,548, alola 360/3,338.
-**Galar excluded by user decision** — its foreign rows are ~90% Max Raid
-Den/Dynamax Adventure (a rotating catch pool, not a fixed location),
-scoped as a separate future decision. Paldea/Hisui excluded by definition
-(zero PokeAPI `encounters.csv` rows exist for either).
-
-- **`tools/populate_from_csv.js`** extended: the existing native-region
-  byArea/method/games extraction (unchanged for the native case) was
-  lifted into a reusable `buildClassicAreas(ident, region)`, then called
-  once more per species for each of the 7 approved foreign regions
-  (`FOREIGN_REGIONS` constant) that isn't that species' own region,
-  prepending results into `extra[foreignRegion]` — reusing the exact
-  `extra`-merge mechanism `assemble()` already had for SV/BDSP/LA data (no
-  changes to `assemble()` itself; it already handled "any region key on
-  any species").
-- **Real numbers from the actual run**: alola 347 species/+1,188 enc
-  lines, kalos 313/+704, sinnoh 242/+1,455, johto 231/+2,447, unova
-  219/+896, hoenn 135/+480, kanto 41/+83. Total enc lines 14,268 → 21,521
-  across 564 changed ids. Six of seven region counts matched the pre-audit
-  estimate exactly; alola's estimate counted non-default forms the real
-  (default-form-only) extraction can't reach.
-- **Found In chips sorted into canonical region order** (`foundInRegions()`)
-  — a species can now carry 3-5 chips (was usually 1-2), so insertion
-  order (native region first, then whatever order extraction happened to
-  add foreign ones) stopped reading sensibly; sorted by `REGIONS`' own
-  array index instead, matching the region bar's left-to-right order.
-  478 of 707 multi-region species' chip order changed as a result.
-- Verified: native-case regression checked **byte-identical across all
-  1025 ids** (not a sample) via a harness re-running `extractFromCsv()`
-  before/after; every pre-existing area survives verbatim as the tail of
-  its region's array (new data strictly prepended, 0 keys lost/shrank);
-  Galar/Paldea/Hisui confirmed untouched (0 new keys); `verify_region_data.js`
-  PASS. Chip-sort verified across all 1025 species (region indices
-  monotonic, same key set/length before and after).
-- **Known, accepted, pre-existing (not new to this pass)**: a species'
-  foreign-region areas use that region's own PokeAPI-derived vocabulary
-  verbatim, so e.g. a Bulbasaur `johto` entry can legitimately read
-  "Pallet Town" (HGSS's Kanto post-game, filed under the `johto` version
-  groups) — the same convention the native pipeline has always used, just
-  newly visible at this scale. Sinnoh's duplicate-area-name count (item 2,
-  0.3.9's `mergeAreasByName()`) rose from 59/40 species to 229/119 —
-  already handled at render, not a new bug, just more collisions to merge.
-
-Handoff: `temp/handoff/2026-09-06-023418-pla-moveset-split.md`.
-
----
 
 ---
 

@@ -100,9 +100,12 @@
     }
   }
 
-  // The drawer must never stick out further than the "VKDex" header above it.
-  // Measure the header's own natural width (padding + text, independent of
-  // the menu's width) and use that as the menu width everywhere below.
+  // The "VKDex" header must never overflow the drawer. Measure the header's
+  // own natural width (padding + text, independent of the menu's width) and
+  // use it as a floor under styles.css's --menu-width (0.3.11: the drawer
+  // grew past the header once every row gained a text label, so the
+  // header's width is a minimum now, not the cap it was for the icon-only
+  // strip).
   function measureHeaderWidth() {
     var clone = menuHeader.cloneNode(true);
     clone.style.position = "absolute";
@@ -116,7 +119,10 @@
     return width;
   }
 
-  var MENU_WIDTH = measureHeaderWidth();
+  var MENU_WIDTH = Math.max(
+    parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--menu-width")) || 0,
+    measureHeaderWidth()
+  );
   document.documentElement.style.setProperty("--menu-width", MENU_WIDTH + "px");
 
   var OPEN_THRESHOLD = MENU_WIDTH / 2;
@@ -124,8 +130,12 @@
   var isOpen = false;
   var dragging = false;
   var dragMode = null; // "open" | "close"
+  var dragSource = null; // "handle" when the drag started on #drawerHandle
   var startX = 0;
   var activePointerId = null;
+  // Movement under this (logical px) counts as a tap, not a drag. Only the
+  // drawer handle uses it — see endDrag.
+  var HANDLE_TAP_SLOP = 6;
 
   function setDragging(on) {
     menu.classList.toggle("dragging", on);
@@ -169,9 +179,10 @@
     menu.setAttribute("aria-hidden", "true");
   }
 
-  function startDrag(pointerId, clientX, mode) {
+  function startDrag(pointerId, clientX, mode, source) {
     dragging = true;
     dragMode = mode;
+    dragSource = source || null;
     startX = clientX;
     activePointerId = pointerId;
     setDragging(true);
@@ -181,13 +192,21 @@
     if (!dragging) return;
     var delta = clientX - startX;
     var finalOffset = dragMode === "open" ? (-MENU_WIDTH + Math.max(0, delta)) : Math.min(0, delta);
+    // A press-and-release on the drawer handle that barely moved is a tap:
+    // open regardless of the threshold math, which would otherwise read a
+    // zero-delta open-drag as "didn't get far enough" and close instead.
+    // Scoped to the handle on purpose — .edge-zone stays drag-only, which is
+    // what 0.1.34's 24px -> 12px narrowing was for (it must not swallow taps
+    // meant for the Back button / region chips behind it).
+    var handleTap = dragSource === "handle" && Math.abs(delta) < HANDLE_TAP_SLOP;
 
     dragging = false;
     dragMode = null;
+    dragSource = null;
     activePointerId = null;
     setDragging(false);
 
-    if (finalOffset > -OPEN_THRESHOLD) {
+    if (handleTap || finalOffset > -OPEN_THRESHOLD) {
       openMenu();
     } else {
       closeMenu();
@@ -234,6 +253,7 @@
     // Snap back to whatever state we were already in
     dragging = false;
     dragMode = null;
+    dragSource = null;
     activePointerId = null;
     setDragging(false);
     clearInlineStyles();
@@ -242,12 +262,25 @@
 
   // --- Tap anywhere outside the menu closes it ---
   overlay.addEventListener("click", function () {
-    if (isOpen) closeMenu();
+    if (isOpen && !isTourActive()) closeMenu();
   });
 
-  // --- Visible drawer handle: a direct tap opens the menu, no drag needed ---
+  // --- Visible drawer handle: same open-drag as the edge zone, plus tap ---
+  // 0.3.12: the handle used to have only a `click` listener, so pressing and
+  // dragging from it did nothing. It now feeds the shared drag (the document
+  // pointermove/pointerup listeners above finish it generically), and
+  // endDrag's handle-tap slop covers the plain-tap case that `click` used to
+  // handle — one mechanism, not two racing ones. Keyboard activation still
+  // needs its own path, since no pointer events fire for Enter/Space.
   var drawerHandle = document.getElementById("drawerHandle");
-  drawerHandle.addEventListener("click", function () {
+  drawerHandle.addEventListener("pointerdown", function (e) {
+    if (isOpen) return;
+    startDrag(e.pointerId, logicalX(e.clientX), "open", "handle");
+    applyDragPosition(-MENU_WIDTH);
+  });
+  drawerHandle.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
     if (!isOpen) openMenu();
   });
 
@@ -416,17 +449,22 @@
   // --- Screen router ---------------------------------------------------
   // Two swappable list screens (only one visible at a time) plus the
   // detail screen, which slides in over whichever one is showing. The
-  // standalone Search screen was deleted in 0.1.34 — the drawer's Search
-  // icon now opens the dex view with the quick-search bar focused.
+  // standalone Search screen was deleted in 0.1.34; the drawer's Search row
+  // (a shortcut into the same quick-search) followed in 0.3.12 as redundant
+  // — #dexSearchToggle and the "/" shortcut both already open it.
 
   var screens = {
     dex: document.getElementById("dexScreen"),
-    favorites: document.getElementById("favoritesScreen")
+    favorites: document.getElementById("favoritesScreen"),
+    typechart: document.getElementById("typeChartScreen"),
+    natures: document.getElementById("naturesScreen")
   };
 
   var navIcons = {
     dex: document.getElementById("dexIcon"),
-    favorites: document.getElementById("favoritesIcon")
+    favorites: document.getElementById("favoritesIcon"),
+    typechart: document.getElementById("typeChartIcon"),
+    natures: document.getElementById("naturesIcon")
   };
 
   var currentView = "dex";
@@ -444,13 +482,13 @@
   }
 
   // Each drawer icon: close the drawer, drop any open detail view, switch.
-  // `then` is an optional follow-up (the Search icon's quick-search open).
-  function wireNavIcon(el, view, then) {
+  // (The optional `then` follow-up existed only for the Search row's
+  // quick-search open, removed in 0.3.12 — no caller needs it now.)
+  function wireNavIcon(el, view) {
     function go() {
       closeMenu();
       closeDetail();
       showView(view);
-      if (then) then();
     }
     el.addEventListener("click", go);
     el.addEventListener("keydown", function (e) {
@@ -460,7 +498,56 @@
 
   wireNavIcon(navIcons.dex, "dex");
   wireNavIcon(navIcons.favorites, "favorites");
-  wireNavIcon(document.getElementById("searchIcon"), "dex", function () { openDexQuickSearch(); });
+  wireNavIcon(navIcons.typechart, "typechart");
+  wireNavIcon(navIcons.natures, "natures");
+
+  // --- Reference screens: Type Chart + Natures (0.3.11) ----------------
+  // Pure static-data presentation, rendered once at startup. Neither links
+  // to a Pokemon (a Type pill / nature tap-through is a possible follow-up).
+
+  // 18x18 grid, attackers down / defenders across, in TYPE_CHART's own key
+  // order (the games' canonical chart order). TYPE_CHART is sparse — any
+  // pair it doesn't list is 1x. 3-letter abbreviations happen to be unique
+  // across all 18 types, so no lookup table.
+  function renderTypeChart() {
+    var types = Object.keys(TYPE_CHART);
+    function abbr(t) { return t.slice(0, 3).toUpperCase(); }
+    var html = "<span></span>" + types.map(function (t) {
+      return '<span class="type-pill tc-label tc-col type-' + t.toLowerCase() + '">' + abbr(t) + "</span>";
+    }).join("");
+    types.forEach(function (atk) {
+      html += '<span class="type-pill tc-label type-' + atk.toLowerCase() + '">' + abbr(atk) + "</span>";
+      types.forEach(function (def) {
+        var m = TYPE_CHART[atk][def];
+        if (m === undefined) m = 1;
+        var cls = m === 0 ? "tc-0" : m === 2 ? "tc-2" : m === 0.5 ? "tc-half" : "tc-1";
+        var glyph = m === 0.5 ? "&frac12;" : m === 1 ? "" : String(m);
+        html += '<span class="tc-cell ' + cls + '" title="' + atk + " → " + def + ": ×" + m + '">' + glyph + "</span>";
+      });
+    });
+    document.getElementById("typeGrid").innerHTML = html;
+  }
+
+  // One .detail-row per nature, in NATURES' own order. Stat labels come from
+  // STAT_ROWS (the stats card's own naming) so "Sp. Atk" reads the same here.
+  function renderNatures() {
+    function statLabel(key) {
+      for (var i = 0; i < STAT_ROWS.length; i++) {
+        if (STAT_ROWS[i].key === key) return STAT_ROWS[i].label;
+      }
+      return key;
+    }
+    document.getElementById("naturesList").innerHTML = Object.keys(NATURES).map(function (key) {
+      var n = NATURES[key];
+      var name = key.charAt(0).toUpperCase() + key.slice(1);
+      var val = n.increasedStat
+        ? '<span class="nature-up">+ ' + escapeHtml(statLabel(n.increasedStat)) + '</span>' +
+          '<span class="nature-down">− ' + escapeHtml(statLabel(n.decreasedStat)) + "</span>"
+        : '<span class="nature-neutral">Neutral</span>';
+      return '<div class="detail-row"><span class="detail-key">' + escapeHtml(name) +
+        '</span><span class="detail-val">' + val + "</span></div>";
+    }).join("");
+  }
 
   // --- Pokedex (home) screen ------------------------------------------
 
@@ -2120,8 +2207,55 @@
     openDetail(Number(cell.getAttribute("data-id")), list === dexList ? currentRegionFilter : null, cell.getAttribute("data-forme"));
   }
 
+  // Grab-to-scroll (0.3.12). Touch already scrolls these grids natively —
+  // .dex-list is overflow-y:auto and .phone's touch-action is pan-y, and
+  // nothing in the drawer's pointer handling reaches inside the grid — so
+  // this only runs for mouse/pen, where there was no way to scroll except
+  // the 8px scrollbar or a wheel. Running it for touch too would fight the
+  // browser's own momentum scrolling.
+  // A drag and a tap start identically, so movement past DRAG_SCROLL_SLOP
+  // flips dragScrolled, which the click handler below uses to swallow the
+  // click that would otherwise open a cell. Reset on every pointerdown, so
+  // a stale true can't survive into the next press.
+  var DRAG_SCROLL_SLOP = 5; // logical px
+  var dragScrolled = false;
+
   [dexList, favoritesList].forEach(function (list) {
+    var scrollPointerId = null;
+    var scrollStartY = 0;
+    var scrollStartTop = 0;
+
+    list.addEventListener("pointerdown", function (e) {
+      dragScrolled = false;
+      if (e.pointerType === "touch" || e.button !== 0) return;
+      scrollPointerId = e.pointerId;
+      scrollStartY = e.clientY / phoneScale;
+      scrollStartTop = list.scrollTop;
+    });
+
+    list.addEventListener("pointermove", function (e) {
+      if (e.pointerId !== scrollPointerId) return;
+      var delta = e.clientY / phoneScale - scrollStartY;
+      if (!dragScrolled) {
+        if (Math.abs(delta) < DRAG_SCROLL_SLOP) return;
+        dragScrolled = true;
+        list.classList.add("drag-scrolling");
+        // Keep receiving moves once the cursor leaves the grid mid-drag.
+        list.setPointerCapture(e.pointerId);
+      }
+      list.scrollTop = scrollStartTop - delta;
+    });
+
+    function endDragScroll(e) {
+      if (e.pointerId !== scrollPointerId) return;
+      scrollPointerId = null;
+      list.classList.remove("drag-scrolling");
+    }
+    list.addEventListener("pointerup", endDragScroll);
+    list.addEventListener("pointercancel", endDragScroll);
+
     list.addEventListener("click", function (e) {
+      if (dragScrolled) return; // that press was a scroll, not a cell tap
       var cell = e.target.closest ? e.target.closest(".dex-cell") : null;
       if (!cell) return;
       openDetailFromCell(cell, list);
@@ -2327,6 +2461,7 @@
   // Shared by Escape, Backspace (outside a text field) and the mouse's
   // back button (0.1.34). Returns true when it closed something.
   function backOut() {
+    if (isTourActive()) { endTour(); return true; }
     if (isSettingsOpen()) { closeSettings(); return true; }
     if (isOpen) { closeMenu(); return true; }
     if (isDetailPopupOpen()) { closeDetailPopup(); return true; }
@@ -2419,9 +2554,68 @@
     rerenderDetail();
   }
 
+  // --- First-launch drawer walkthrough (0.3.11) ------------------------
+  // Opens the drawer, dims every row but one, and shows a caption card
+  // beside it (text from each row's data-tour attribute); Next/Skip step
+  // through or end it. Shown once — vkdex-drawer-tour-seen is written on
+  // either exit, same localStorage convention as the settings above. The
+  // drawer is pointer-inert while it runs (.side-menu.tour-active) and the
+  // overlay/backOut close paths are guarded below, so the drawer can't be
+  // closed out from under the card; Escape ends the tour instead.
+  var TOUR_SEEN_KEY = "vkdex-drawer-tour-seen";
+  var tourCard = document.getElementById("drawerTour");
+  var tourSteps = Array.prototype.slice.call(menu.querySelectorAll(".menu-btn[data-tour]"));
+  var tourIndex = -1;
+
+  function isTourActive() {
+    return tourIndex >= 0;
+  }
+
+  function showTourStep(i) {
+    tourSteps.forEach(function (el, j) { el.classList.toggle("tour-target", j === i); });
+    var el = tourSteps[i];
+    tourIndex = i;
+    document.getElementById("tourStep").textContent = (i + 1) + " / " + tourSteps.length;
+    document.getElementById("tourTitle").textContent = el.querySelector(".menu-label").textContent;
+    document.getElementById("tourText").textContent = el.getAttribute("data-tour");
+    document.getElementById("tourNext").textContent = i === tourSteps.length - 1 ? "Done" : "Next";
+    tourCard.hidden = false;
+    // Center the card on the highlighted row (offsetTop is relative to the
+    // drawer, which sits at the phone's top — no scale math needed), kept
+    // inside the frame.
+    var top = el.offsetTop + el.offsetHeight / 2 - tourCard.offsetHeight / 2;
+    top = Math.max(12, Math.min(top, phone.clientHeight - tourCard.offsetHeight - 12));
+    tourCard.style.top = top + "px";
+  }
+
+  function endTour() {
+    tourIndex = -1;
+    tourCard.hidden = true;
+    menu.classList.remove("tour-active");
+    tourSteps.forEach(function (el) { el.classList.remove("tour-target"); });
+    try { window.localStorage.setItem(TOUR_SEEN_KEY, "yes"); } catch (e) {}
+    closeMenu();
+  }
+
+  function startDrawerTour() {
+    var seen = false;
+    try { seen = window.localStorage.getItem(TOUR_SEEN_KEY) === "yes"; } catch (e) {}
+    if (seen || !tourSteps.length) return;
+    openMenu();
+    menu.classList.add("tour-active");
+    showTourStep(0);
+  }
+
+  document.getElementById("tourNext").addEventListener("click", function () {
+    if (tourIndex + 1 < tourSteps.length) showTourStep(tourIndex + 1); else endTour();
+  });
+  document.getElementById("tourSkip").addEventListener("click", endTour);
+
   // --- Initial state ---------------------------------------------------
 
   loadFavoritesFromLocalStorage();
+  renderTypeChart();
+  renderNatures();
 
   renderRegionBar();
   // Last-used chip (vkdex-region), validated against REGIONS; setRegionFilter
@@ -2447,4 +2641,7 @@
   // Menu closed, settings closed, no detail open
   closeMenu();
   closeSettings();
+  // First launch only: slide the drawer open and walk through its rows,
+  // after a beat so the slide-in is visible rather than instant.
+  setTimeout(startDrawerTour, 600);
 })();

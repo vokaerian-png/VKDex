@@ -241,10 +241,11 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.3.8.** Mirror on every bump, across all of:
+**Current version: 0.3.11.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
-and `src-tauri/Cargo.toml`.
+and `src-tauri/Cargo.toml` (plus `Cargo.lock`'s own `vkdex` line — a build
+regenerates it anyway, but hand-bumping keeps the tree clean).
 
 **Exempt:** memory-bank-only edits (`CLAUDE.md`/`SCOPE.md`/`PLAN.md`/
 `TODO.md`/`HISTORY.md`) and `tools/`-only changes don't trigger a bump —
@@ -419,6 +420,35 @@ tool, and it worked out on luck, not design.**
   versus an estimated **~72.1 min** strictly sequential — a real ~45%
   wall-clock reduction at unchanged token cost (parallelism doesn't reduce
   token spend, only wall-clock).
+
+---
+
+## 5c. Mockup vs. direct implementation for design work
+
+User-specified 2026-09-06, after the drawer/Type Chart/Natures pass shipped
+straight to `src/` with no interactive review first. **"Mockup" specifically
+means a reviewable interactive artifact iterated with the user before any
+real code lands** (the precedent: the detail-screen redesign's
+`vkdex-detail-mockup` Cowork artifact, four review rounds, `PLAN.md`'s
+detail-screen entry) — it does not mean "have `overlord`/`coder` build the
+real thing directly," even when the result turns out fine. That 0.3.11 pass
+was user-confirmed acceptable after the fact, but that's not permission to
+assume direct-to-`src/` next time.
+
+**Before any visual/design change** — a new screen, a layout overhaul, a
+new UI module, anything not already a locked-in `SCOPE.md` convention —
+architect asks the user which they want:
+- a **mockup**: architect (not a subagent — only architect has the
+  artifact/visualize tools) builds an interactive preview for review/
+  iteration, and real `src/` implementation (via `coder`, or `overlord` if
+  named) only starts once the user signs off on it; or
+  a **direct implementation**: skip the preview, ship straight to `src/`
+  with no visual pre-review (verification stays code-level only, `CLAUDE.md`
+  §4) — faster, but the user won't see it rendered until a real screenshot.
+
+Don't infer which one is wanted from "design," "mockup," "redesign," or
+similar wording alone — ask when it's ambiguous, same as the intro's
+general "stop and ask" rule.
 
 ---
 

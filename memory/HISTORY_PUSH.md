@@ -4,18 +4,28 @@
      GitHub Release notes body, so keep it release-note quality: what
      shipped and why it matters, not internal verification/handoff detail. -->
 
-## 0.3.5 → 0.3.8
+## 0.3.8 → 0.3.12
 
-VKDex's data now comes from a richer, merged data source, and it shows most
-in Found In: Scarlet/Violet, Brilliant Diamond/Shining Pearl, and Legends:
-Arceus wild encounters are real for the first time — 768 Pokémon gained
-wild-encounter data the app never had, including most of Paldea, which
-previously just said its data was missing.
+The side menu has been redesigned: every button now shows its name next to
+its icon, the buttons are grouped into Browse and Reference, and Settings
+sits at the bottom. On first launch after this update, a short walkthrough
+opens the menu and explains each button in turn (tap Next or Skip; it only
+shows once). The redundant Search button was removed (use the magnifying
+glass on the Pokédex screen, or press "/"). The side-menu handle is now
+easier to tap and can also be dragged open, and the Pokédex/Favorites grid
+can be scrolled by clicking and dragging it directly, not just the scrollbar.
 
-Scarlet/Violet's DLC areas (The Teal Mask's Kitakami, The Indigo Disk's
-Blueberry Academy) are correctly labelled as DLC rather than lumped in with
-the base game. A handful of other values were corrected using the richer
-source: base experience now reflects the current generation instead of an
-older one, and a few capture rates, hatch counts, and other details were
-fixed against more accurate data. Move names also gained their Japanese
-romanization.
+Two new reference screens: **Type Chart** — the full 18×18 type
+effectiveness grid, color-coded (super effective / not very effective / no
+effect), sized to fit the screen with no sideways scrolling — and
+**Natures** — all 25 natures with the stat each one raises and lowers.
+
+Also since 0.3.8: the Found In section now lists every region a Pokémon
+can be caught in, not just its home region — 7 mainline regions gained
+wild-encounter data for species that originate elsewhere (0.3.10). The
+Evolution Line follows the selected regional forme (Alolan Vulpix → Alolan
+Ninetales, Galarian Farfetch'd → Sirfetch'd), duplicate Sinnoh area names
+are merged into one row, DLC-only Paldea locations are badged "DLC", and
+Scarlet/Violet, BDSP and Legends: Arceus encounter details (tera raid
+stars, alpha levels, weather, time of day, ...) are now shown in full
+(0.3.9).
