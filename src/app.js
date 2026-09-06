@@ -2016,6 +2016,21 @@
     if (e.target === detailPopupBackdrop) closeDetailPopup();
   });
 
+  // #detailPopupBody is shared by every popup (names, found-in, item
+  // details, the rule-6 recolor grid), and it sits outside #detailBody, so
+  // detailBody's delegated listener never sees clicks in here. This one
+  // exists solely to give the recolor grid's sprites the same
+  // tap-to-enlarge as the picture card's (0.3.3): it must ignore every
+  // other popup's content, hence the .altforms-popup-item scoping. The
+  // zoomed view replaces the grid in the same modal — no way back, same as
+  // the picture-card case; closing is the existing close/backdrop wiring.
+  detailPopupBody.addEventListener("click", function (e) {
+    var formeSprite = e.target.closest ? e.target.closest(".altforms-popup-item .evo-sprite") : null;
+    if (!formeSprite) return;
+    openDetailPopup(formeSprite.alt, '<div class="item-popup"><img class="sprite-zoom-img" src="' +
+      formeSprite.src + '" alt="' + escapeHtml(formeSprite.alt) + '"' + SPRITE_ONERROR_ATTR + "></div>");
+  });
+
   detailName.addEventListener("click", function () {
     if (detailEntryId === null) return;
     var entry = findPokemon(detailEntryId);

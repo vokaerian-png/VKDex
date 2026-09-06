@@ -171,6 +171,186 @@ var ALT_FORMS = {
       { key: "unknown", name: "??? Type", sprite: "493-unknown" }
     ]
   },
+  585: { // Deerling — rule 6, 4 pure-recolor seasonal formes
+    recolorOnly: true,
+    formes: [
+      { key: "spring", name: "Spring Form", sprite: "585-spring" },
+      { key: "summer", name: "Summer Form", sprite: "585-summer" },
+      { key: "autumn", name: "Autumn Form", sprite: "585-autumn" },
+      { key: "winter", name: "Winter Form", sprite: "585-winter" }
+    ]
+  },
+  586: { // Sawsbuck — rule 6, 4 pure-recolor seasonal formes
+    recolorOnly: true,
+    formes: [
+      { key: "spring", name: "Spring Form", sprite: "586-spring" },
+      { key: "summer", name: "Summer Form", sprite: "586-summer" },
+      { key: "autumn", name: "Autumn Form", sprite: "586-autumn" },
+      { key: "winter", name: "Winter Form", sprite: "586-winter" }
+    ]
+  },
+  649: { // Genesect — rule 6, 4 pure-recolor Drive formes (base has no Drive)
+    recolorOnly: true,
+    formes: [
+      { key: "normal", name: "Genesect", sprite: "649" },
+      { key: "douse", name: "Douse Drive", sprite: "649-douse" },
+      { key: "shock", name: "Shock Drive", sprite: "649-shock" },
+      { key: "burn", name: "Burn Drive", sprite: "649-burn" },
+      { key: "chill", name: "Chill Drive", sprite: "649-chill" }
+    ]
+  },
+  666: { // Vivillon — rule 6, 20 pure-recolor wing-pattern formes
+    recolorOnly: true,
+    formes: [
+      { key: "icy-snow", name: "Icy Snow Pattern", sprite: "666-icy-snow" },
+      { key: "polar", name: "Polar Pattern", sprite: "666-polar" },
+      { key: "tundra", name: "Tundra Pattern", sprite: "666-tundra" },
+      { key: "continental", name: "Continental Pattern", sprite: "666-continental" },
+      { key: "garden", name: "Garden Pattern", sprite: "666-garden" },
+      { key: "elegant", name: "Elegant Pattern", sprite: "666-elegant" },
+      { key: "meadow", name: "Meadow Pattern", sprite: "666-meadow" },
+      { key: "modern", name: "Modern Pattern", sprite: "666-modern" },
+      { key: "marine", name: "Marine Pattern", sprite: "666-marine" },
+      { key: "archipelago", name: "Archipelago Pattern", sprite: "666-archipelago" },
+      { key: "high-plains", name: "High Plains Pattern", sprite: "666-high-plains" },
+      { key: "sandstorm", name: "Sandstorm Pattern", sprite: "666-sandstorm" },
+      { key: "river", name: "River Pattern", sprite: "666-river" },
+      { key: "monsoon", name: "Monsoon Pattern", sprite: "666-monsoon" },
+      { key: "savanna", name: "Savanna Pattern", sprite: "666-savanna" },
+      { key: "sun", name: "Sun Pattern", sprite: "666-sun" },
+      { key: "ocean", name: "Ocean Pattern", sprite: "666-ocean" },
+      { key: "jungle", name: "Jungle Pattern", sprite: "666-jungle" },
+      { key: "fancy", name: "Fancy Pattern", sprite: "666-fancy" },
+      { key: "poke-ball", name: "Poké Ball Pattern", sprite: "666-poke-ball" }
+    ]
+  },
+  669: { // Flabébé — rule 6, 5 pure-recolor flower-color formes (family: Floette 670, Florges 671)
+    recolorOnly: true,
+    formes: [
+      { key: "red", name: "Red Flower", sprite: "669-red" },
+      { key: "yellow", name: "Yellow Flower", sprite: "669-yellow" },
+      { key: "orange", name: "Orange Flower", sprite: "669-orange" },
+      { key: "blue", name: "Blue Flower", sprite: "669-blue" },
+      { key: "white", name: "White Flower", sprite: "669-white" }
+    ]
+  },
+  671: { // Florges — rule 6, 5 pure-recolor flower-color formes (family: Flabébé 669, Floette 670)
+    recolorOnly: true,
+    formes: [
+      { key: "red", name: "Red Flower", sprite: "671-red" },
+      { key: "yellow", name: "Yellow Flower", sprite: "671-yellow" },
+      { key: "orange", name: "Orange Flower", sprite: "671-orange" },
+      { key: "blue", name: "Blue Flower", sprite: "671-blue" },
+      { key: "white", name: "White Flower", sprite: "671-white" }
+    ]
+  },
+  676: { // Furfrou — rule 6, 9 pure-recolor trim formes (Natural is the default)
+    recolorOnly: true,
+    formes: [
+      { key: "natural", name: "Natural Form", sprite: "676-natural" },
+      { key: "heart", name: "Heart Trim", sprite: "676-heart" },
+      { key: "star", name: "Star Trim", sprite: "676-star" },
+      { key: "diamond", name: "Diamond Trim", sprite: "676-diamond" },
+      { key: "debutante", name: "Debutante Trim", sprite: "676-debutante" },
+      { key: "matron", name: "Matron Trim", sprite: "676-matron" },
+      { key: "dandy", name: "Dandy Trim", sprite: "676-dandy" },
+      { key: "la-reine", name: "La Reine Trim", sprite: "676-la-reine" },
+      { key: "kabuki", name: "Kabuki Trim", sprite: "676-kabuki" },
+      { key: "pharaoh", name: "Pharaoh Trim", sprite: "676-pharaoh" }
+    ]
+  },
+  773: { // Silvally — rule 6 per Arceus (493) precedent: Memory formes really
+    // do change type in-game, treated as recolor-only here, same override
+    recolorOnly: true,
+    formes: [
+      { key: "normal", name: "Type: Normal", sprite: "773-normal" },
+      { key: "fighting", name: "Type: Fighting", sprite: "773-fighting" },
+      { key: "flying", name: "Type: Flying", sprite: "773-flying" },
+      { key: "poison", name: "Type: Poison", sprite: "773-poison" },
+      { key: "ground", name: "Type: Ground", sprite: "773-ground" },
+      { key: "rock", name: "Type: Rock", sprite: "773-rock" },
+      { key: "bug", name: "Type: Bug", sprite: "773-bug" },
+      { key: "ghost", name: "Type: Ghost", sprite: "773-ghost" },
+      { key: "steel", name: "Type: Steel", sprite: "773-steel" },
+      { key: "fire", name: "Type: Fire", sprite: "773-fire" },
+      { key: "water", name: "Type: Water", sprite: "773-water" },
+      { key: "grass", name: "Type: Grass", sprite: "773-grass" },
+      { key: "electric", name: "Type: Electric", sprite: "773-electric" },
+      { key: "psychic", name: "Type: Psychic", sprite: "773-psychic" },
+      { key: "ice", name: "Type: Ice", sprite: "773-ice" },
+      { key: "dragon", name: "Type: Dragon", sprite: "773-dragon" },
+      { key: "dark", name: "Type: Dark", sprite: "773-dark" },
+      { key: "fairy", name: "Type: Fairy", sprite: "773-fairy" }
+    ]
+  },
+  869: { // Alcremie — rule 6, 63 pure-recolor Sweet/Cream/Swirl formes
+    recolorOnly: true,
+    formes: [
+      { key: "vanilla-cream-strawberry-sweet", name: "Vanilla Cream Strawberry Sweet", sprite: "869-vanilla-cream-strawberry-sweet" },
+      { key: "ruby-cream-strawberry-sweet", name: "Ruby Cream Strawberry Sweet", sprite: "869-ruby-cream-strawberry-sweet" },
+      { key: "matcha-cream-strawberry-sweet", name: "Matcha Cream Strawberry Sweet", sprite: "869-matcha-cream-strawberry-sweet" },
+      { key: "mint-cream-strawberry-sweet", name: "Mint Cream Strawberry Sweet", sprite: "869-mint-cream-strawberry-sweet" },
+      { key: "lemon-cream-strawberry-sweet", name: "Lemon Cream Strawberry Sweet", sprite: "869-lemon-cream-strawberry-sweet" },
+      { key: "salted-cream-strawberry-sweet", name: "Salted Cream Strawberry Sweet", sprite: "869-salted-cream-strawberry-sweet" },
+      { key: "ruby-swirl-strawberry-sweet", name: "Ruby Swirl Strawberry Sweet", sprite: "869-ruby-swirl-strawberry-sweet" },
+      { key: "caramel-swirl-strawberry-sweet", name: "Caramel Swirl Strawberry Sweet", sprite: "869-caramel-swirl-strawberry-sweet" },
+      { key: "rainbow-swirl-strawberry-sweet", name: "Rainbow Swirl Strawberry Sweet", sprite: "869-rainbow-swirl-strawberry-sweet" },
+      { key: "vanilla-cream-berry-sweet", name: "Vanilla Cream Berry Sweet", sprite: "869-vanilla-cream-berry-sweet" },
+      { key: "ruby-cream-berry-sweet", name: "Ruby Cream Berry Sweet", sprite: "869-ruby-cream-berry-sweet" },
+      { key: "matcha-cream-berry-sweet", name: "Matcha Cream Berry Sweet", sprite: "869-matcha-cream-berry-sweet" },
+      { key: "mint-cream-berry-sweet", name: "Mint Cream Berry Sweet", sprite: "869-mint-cream-berry-sweet" },
+      { key: "lemon-cream-berry-sweet", name: "Lemon Cream Berry Sweet", sprite: "869-lemon-cream-berry-sweet" },
+      { key: "salted-cream-berry-sweet", name: "Salted Cream Berry Sweet", sprite: "869-salted-cream-berry-sweet" },
+      { key: "ruby-swirl-berry-sweet", name: "Ruby Swirl Berry Sweet", sprite: "869-ruby-swirl-berry-sweet" },
+      { key: "caramel-swirl-berry-sweet", name: "Caramel Swirl Berry Sweet", sprite: "869-caramel-swirl-berry-sweet" },
+      { key: "rainbow-swirl-berry-sweet", name: "Rainbow Swirl Berry Sweet", sprite: "869-rainbow-swirl-berry-sweet" },
+      { key: "vanilla-cream-love-sweet", name: "Vanilla Cream Love Sweet", sprite: "869-vanilla-cream-love-sweet" },
+      { key: "ruby-cream-love-sweet", name: "Ruby Cream Love Sweet", sprite: "869-ruby-cream-love-sweet" },
+      { key: "matcha-cream-love-sweet", name: "Matcha Cream Love Sweet", sprite: "869-matcha-cream-love-sweet" },
+      { key: "mint-cream-love-sweet", name: "Mint Cream Love Sweet", sprite: "869-mint-cream-love-sweet" },
+      { key: "lemon-cream-love-sweet", name: "Lemon Cream Love Sweet", sprite: "869-lemon-cream-love-sweet" },
+      { key: "salted-cream-love-sweet", name: "Salted Cream Love Sweet", sprite: "869-salted-cream-love-sweet" },
+      { key: "ruby-swirl-love-sweet", name: "Ruby Swirl Love Sweet", sprite: "869-ruby-swirl-love-sweet" },
+      { key: "caramel-swirl-love-sweet", name: "Caramel Swirl Love Sweet", sprite: "869-caramel-swirl-love-sweet" },
+      { key: "rainbow-swirl-love-sweet", name: "Rainbow Swirl Love Sweet", sprite: "869-rainbow-swirl-love-sweet" },
+      { key: "vanilla-cream-star-sweet", name: "Vanilla Cream Star Sweet", sprite: "869-vanilla-cream-star-sweet" },
+      { key: "ruby-cream-star-sweet", name: "Ruby Cream Star Sweet", sprite: "869-ruby-cream-star-sweet" },
+      { key: "matcha-cream-star-sweet", name: "Matcha Cream Star Sweet", sprite: "869-matcha-cream-star-sweet" },
+      { key: "mint-cream-star-sweet", name: "Mint Cream Star Sweet", sprite: "869-mint-cream-star-sweet" },
+      { key: "lemon-cream-star-sweet", name: "Lemon Cream Star Sweet", sprite: "869-lemon-cream-star-sweet" },
+      { key: "salted-cream-star-sweet", name: "Salted Cream Star Sweet", sprite: "869-salted-cream-star-sweet" },
+      { key: "ruby-swirl-star-sweet", name: "Ruby Swirl Star Sweet", sprite: "869-ruby-swirl-star-sweet" },
+      { key: "caramel-swirl-star-sweet", name: "Caramel Swirl Star Sweet", sprite: "869-caramel-swirl-star-sweet" },
+      { key: "rainbow-swirl-star-sweet", name: "Rainbow Swirl Star Sweet", sprite: "869-rainbow-swirl-star-sweet" },
+      { key: "vanilla-cream-clover-sweet", name: "Vanilla Cream Clover Sweet", sprite: "869-vanilla-cream-clover-sweet" },
+      { key: "ruby-cream-clover-sweet", name: "Ruby Cream Clover Sweet", sprite: "869-ruby-cream-clover-sweet" },
+      { key: "matcha-cream-clover-sweet", name: "Matcha Cream Clover Sweet", sprite: "869-matcha-cream-clover-sweet" },
+      { key: "mint-cream-clover-sweet", name: "Mint Cream Clover Sweet", sprite: "869-mint-cream-clover-sweet" },
+      { key: "lemon-cream-clover-sweet", name: "Lemon Cream Clover Sweet", sprite: "869-lemon-cream-clover-sweet" },
+      { key: "salted-cream-clover-sweet", name: "Salted Cream Clover Sweet", sprite: "869-salted-cream-clover-sweet" },
+      { key: "ruby-swirl-clover-sweet", name: "Ruby Swirl Clover Sweet", sprite: "869-ruby-swirl-clover-sweet" },
+      { key: "caramel-swirl-clover-sweet", name: "Caramel Swirl Clover Sweet", sprite: "869-caramel-swirl-clover-sweet" },
+      { key: "rainbow-swirl-clover-sweet", name: "Rainbow Swirl Clover Sweet", sprite: "869-rainbow-swirl-clover-sweet" },
+      { key: "vanilla-cream-flower-sweet", name: "Vanilla Cream Flower Sweet", sprite: "869-vanilla-cream-flower-sweet" },
+      { key: "ruby-cream-flower-sweet", name: "Ruby Cream Flower Sweet", sprite: "869-ruby-cream-flower-sweet" },
+      { key: "matcha-cream-flower-sweet", name: "Matcha Cream Flower Sweet", sprite: "869-matcha-cream-flower-sweet" },
+      { key: "mint-cream-flower-sweet", name: "Mint Cream Flower Sweet", sprite: "869-mint-cream-flower-sweet" },
+      { key: "lemon-cream-flower-sweet", name: "Lemon Cream Flower Sweet", sprite: "869-lemon-cream-flower-sweet" },
+      { key: "salted-cream-flower-sweet", name: "Salted Cream Flower Sweet", sprite: "869-salted-cream-flower-sweet" },
+      { key: "ruby-swirl-flower-sweet", name: "Ruby Swirl Flower Sweet", sprite: "869-ruby-swirl-flower-sweet" },
+      { key: "caramel-swirl-flower-sweet", name: "Caramel Swirl Flower Sweet", sprite: "869-caramel-swirl-flower-sweet" },
+      { key: "rainbow-swirl-flower-sweet", name: "Rainbow Swirl Flower Sweet", sprite: "869-rainbow-swirl-flower-sweet" },
+      { key: "vanilla-cream-ribbon-sweet", name: "Vanilla Cream Ribbon Sweet", sprite: "869-vanilla-cream-ribbon-sweet" },
+      { key: "ruby-cream-ribbon-sweet", name: "Ruby Cream Ribbon Sweet", sprite: "869-ruby-cream-ribbon-sweet" },
+      { key: "matcha-cream-ribbon-sweet", name: "Matcha Cream Ribbon Sweet", sprite: "869-matcha-cream-ribbon-sweet" },
+      { key: "mint-cream-ribbon-sweet", name: "Mint Cream Ribbon Sweet", sprite: "869-mint-cream-ribbon-sweet" },
+      { key: "lemon-cream-ribbon-sweet", name: "Lemon Cream Ribbon Sweet", sprite: "869-lemon-cream-ribbon-sweet" },
+      { key: "salted-cream-ribbon-sweet", name: "Salted Cream Ribbon Sweet", sprite: "869-salted-cream-ribbon-sweet" },
+      { key: "ruby-swirl-ribbon-sweet", name: "Ruby Swirl Ribbon Sweet", sprite: "869-ruby-swirl-ribbon-sweet" },
+      { key: "caramel-swirl-ribbon-sweet", name: "Caramel Swirl Ribbon Sweet", sprite: "869-caramel-swirl-ribbon-sweet" },
+      { key: "rainbow-swirl-ribbon-sweet", name: "Rainbow Swirl Ribbon Sweet", sprite: "869-rainbow-swirl-ribbon-sweet" }
+    ]
+  },
   // --- Hisuian regional forms (Legends: Arceus) ---
   // One "hisui" forme each; every one is differently-typed from its base
   // (so all 16 are tap-to-swap per rule 7), and 12 of the 16 also carry
@@ -1214,8 +1394,25 @@ var ALT_FORMS = {
         ability: "Fire Mane" }
     ]
   },
-  670: { // Floette — Mega Evolution
+  670: { // Floette — 4 cosmetic color formes (Yellow/Orange/Blue/White; Red
+    // is the default, not listed — same convention as Tatsugiri 978's
+    // Curly) + Eternal Flower (event-only, own PokeAPI form id) + Mega
+    // Evolution. Can't use recolorOnly here (that flag collapses the WHOLE
+    // entry, Mega included — same reasoning as Tatsugiri 978's comment).
+    // The 4 color sprites (+shiny) were copied from their flat pokemon/
+    // root location into pokemon/alt formes/ (and shiny/alt formes/) as
+    // floette_yellow/orange/blue/white.png, since ordinary (non-
+    // recolorOnly) formes resolve sprites under alt formes/, not the flat
+    // root recolorOnly formes use — floette_eternal.png already existed
+    // there. Flabébé (669) and Florges (671) have no Mega, so their
+    // identical 5-color family ships as ordinary recolorOnly groups
+    // instead — this asymmetry is intentional, not a mistake.
     formes: [
+      { key: "yellow", name: "Yellow Flower", sprite: "floette_yellow" },
+      { key: "orange", name: "Orange Flower", sprite: "floette_orange" },
+      { key: "blue", name: "Blue Flower", sprite: "floette_blue" },
+      { key: "white", name: "White Flower", sprite: "floette_white" },
+      { key: "eternal", name: "Eternal Flower", sprite: "floette_eternal" },
       { key: "mega", name: "Mega Floette", sprite: "mega/floette", isMega: true,
         stats: { hp: 74, attack: 85, defense: 87, spAttack: 155, spDefense: 148, speed: 102 },
         ability: "Fairy Aura" }
