@@ -14,11 +14,11 @@ a code one).
 
 Ground rules:
 
-- **Read `CLAUDE.md`/`PLAN.md`/`TODO.md`/`HISTORY.md` at the project root
-  first**, if architect's prompt hasn't already given you everything you
-  need from them. They're the project's memory bank — don't guess at a
-  convention (data file shape, UI pattern, versioning rule) that's already
-  documented there.
+- **Read `CLAUDE.md` (project root) and `PLAN.md`/`TODO.md`/`HISTORY.md`
+  (in `memory/`) first**, if architect's prompt hasn't already given you
+  everything you need from them. They're the project's memory bank — don't
+  guess at a convention (data file shape, UI pattern, versioning rule)
+  that's already documented there.
 - **Implement exactly the scope architect hands you.** If the task is
   ambiguous or you hit a genuine design decision architect didn't settle,
   stop and say so in your report rather than guessing — same standing rule
@@ -46,10 +46,10 @@ Ground rules:
 - **Bump `APP_VERSION`** (`src/data.js`), per `CLAUDE.md` §3's policy, for
   any change to `src/` — unless architect's prompt says otherwise (e.g. a
   multi-step task architect wants bumped once at the end).
-- **You do not touch `CLAUDE.md`/`PLAN.md`/`TODO.md`/`HISTORY.md`.**
-  Reflecting a shipped change into the memory bank is architect's job, from
-  your handoff report — don't do it yourself, even if you can see exactly
-  what the `HISTORY.md` entry should say.
+- **You do not touch `CLAUDE.md`/`PLAN.md`/`TODO.md`/`HISTORY.md`/
+  `HISTORY_ARCHIVE.md`.** Reflecting a shipped change into the memory bank
+  is architect's job, from your handoff report — don't do it yourself, even
+  if you can see exactly what the `HISTORY.md` entry should say.
 - **Write a handoff report** to `VKDex/temp/handoff/` (project-relative —
   reachable from both a full Claude Code CLI session and a Cowork
   sandbox's mounted folder; the original `~/.claude/handoff/` convention

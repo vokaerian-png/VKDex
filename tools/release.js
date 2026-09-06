@@ -28,7 +28,7 @@ const ROOT = path.join(__dirname, "..");
 const DATA_JS = path.join(ROOT, "src", "data.js");
 const TAURI_CONF = path.join(ROOT, "src-tauri", "tauri.conf.json");
 const CARGO_TOML = path.join(ROOT, "src-tauri", "Cargo.toml");
-const HISTORY_MD = path.join(ROOT, "HISTORY.md");
+const HISTORY_MD = path.join(ROOT, "memory", "HISTORY.md");
 const RELEASES_DIR = path.join(ROOT, "releases");
 const WIN_RELEASE_DIR = path.join(ROOT, "src-tauri", "target", "release");
 const ANDROID_APP_DIR = path.join(ROOT, "src-tauri", "gen", "android", "app");
@@ -115,11 +115,15 @@ function extractChangelog(md, version) {
   const end = /^(## |---\s*$)/m.exec(after);
   let body = end ? after.slice(0, end.index) : after;
 
+  // Skip every leading prose paragraph (blank-line separated), not just the
+  // first — an entry can carry more than one attribution/context paragraph
+  // before the real changelog content starts (e.g. 0.2.18: a root-cause
+  // paragraph, then a separate "user's call" paragraph, then the bullets).
   const lines = body.replace(/\r\n/g, "\n").split("\n");
   let i = 0;
-  while (i < lines.length && lines[i].trim() === "") i++;
-  const first = lines[i] || "";
-  if (!/^(- |\*\*)/.test(first)) {
+  while (i < lines.length) {
+    while (i < lines.length && lines[i].trim() === "") i++;
+    if (i >= lines.length || /^(- |\*\*)/.test(lines[i])) break;
     while (i < lines.length && lines[i].trim() !== "") i++;
   }
   return lines.slice(i).join("\n").trim();
@@ -132,25 +136,27 @@ function selfCheck() {
     console.log((ok ? "PASS  " : "FAIL  ") + label + (detail ? " — " + detail : ""));
   };
 
-  // 1. changelog parser against known past entries
+  // 1. changelog parser, sampled live off HISTORY.md's own headings — not
+  // hardcoded version strings, since HISTORY.md is a 15-entry rolling
+  // window (CLAUDE.md §6c) and any pinned old version eventually ages out
+  // into HISTORY_ARCHIVE.md, which would silently break this test forever.
   const md = fs.readFileSync(HISTORY_MD, "utf8");
-  const cases = [
-    { version: "0.1.40", expect: "One shared arrow, not one per branch" },
-    { version: "0.1.39", expect: "New evolution trigger" },
-    { version: "0.1.38", expect: "Facts-card order reverted" }
-  ];
-  for (const c of cases) {
-    const out = extractChangelog(md, c.version);
+  const headingRe = /^## [^\n]*→\s*(\S+)\s*—/gm;
+  const versions = [];
+  let hm;
+  while ((hm = headingRe.exec(md)) && versions.length < 3) versions.push(hm[1]);
+  if (!versions.length) report(false, "changelog sampling", "no headings found in " + HISTORY_MD);
+  for (const version of versions) {
+    const out = extractChangelog(md, version);
     const problems = [];
     if (out === null) {
       problems.push("no entry found");
     } else {
-      if (/user-spec'd/.test(out)) problems.push("attribution paragraph not stripped (contains \"user-spec'd\")");
+      if (!out.length) problems.push("empty body");
       if (/^`[a-z]+`/.test(out)) problems.push("output starts with a backtick agent name: " + out.split("\n")[0]);
-      if (!out.includes(c.expect)) problems.push("missing expected content: " + JSON.stringify(c.expect));
       if (!out.startsWith("- ") && !out.startsWith("**")) problems.push("output does not start with changelog content: " + out.split("\n")[0]);
     }
-    report(!problems.length, "changelog " + c.version, problems.length ? problems.join("; ") : out.split("\n")[0].slice(0, 70));
+    report(!problems.length, "changelog " + version, problems.length ? problems.join("; ") : out.split("\n")[0].slice(0, 70));
   }
 
   // 2. target parsing

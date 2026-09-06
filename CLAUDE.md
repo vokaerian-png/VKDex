@@ -1,11 +1,13 @@
 # VKDex — Project Memory Bank
 
-**Read this file first, at the start of every session — then `SCOPE.md`
-right after.** Primary truth for this project's file layout, versioning,
-workflow, and session process. Companion files: `SCOPE.md` (what the app
-is, its UI/design conventions, navigation, and data model), `PLAN.md`
-(committed roadmap), `TODO.md` (ideas under consideration), `HISTORY.md`
-(version changelog).
+**Read this file first, at the start of every session — then
+`memory/SCOPE.md` right after.** Primary truth for this project's file
+layout, versioning, workflow, and session process. This file alone stays at
+the project root (Cowork auto-loads project instructions from a root
+`CLAUDE.md`); its five companions live in `memory/` (§1): `SCOPE.md` (app
+scope/design), `PLAN.md` (committed roadmap), `TODO.md` (ideas under
+consideration), `HISTORY.md` (version changelog), `HISTORY_ARCHIVE.md`
+(`HISTORY.md`'s compacted overflow, §6c).
 
 **Reflect changes back into the memory bank as part of the same task** —
 code changes here (+`HISTORY.md` for a version bump), design/scope
@@ -32,7 +34,10 @@ Cowork shell — the exact `/sessions/<name>/` prefix varies per session).
 
 ```
 VKDex/
-  CLAUDE.md  SCOPE.md  PLAN.md  TODO.md  HISTORY.md   <- memory bank
+  CLAUDE.md                                  <- memory bank; stays at root (Cowork auto-load)
+  memory/                                     <- rest of the memory bank (moved here 2026-09-06)
+    SCOPE.md  PLAN.md  TODO.md  HISTORY.md
+    HISTORY_ARCHIVE.md                        <- HISTORY.md's compacted overflow (§6c)
   package.json                                <- Tauri CLI/API devDeps, dev/build scripts
   src/                                       <- THE APP. All app edits go here.
     index.html
@@ -74,6 +79,11 @@ VKDex/
 
 **Any edit to the app goes to `src/`, never the project root** (the app
 files lived at root before the move into `src/`).
+
+**`memory/`** (moved out of root 2026-09-06 to declutter file navigation;
+`CLAUDE.md` stays put — see intro) — every cross-reference elsewhere
+(`.claude/agents/*.md`, `tools/release.js`'s `HISTORY_MD` path, §6/§6a/§6c
+below) was updated in the same pass.
 
 **Task-scoped scratch goes in its own `temp/<task-slug>/` subfolder, never
 loose at `temp/` root** (user-specified 2026-09-05, after ~72MB of
@@ -304,8 +314,9 @@ preference.**
   what architect specs, verifies its own work (`node --check` at minimum),
   writes a handoff report to `VKDex/temp/handoff/`
   (`YYYY-MM-DD-HHmmSS-short-slug.md`) per task — architect reads that
-  rather than re-deriving what happened. Never touches the five memory-bank
-  files; that stays architect's job.
+  rather than re-deriving what happened. Never touches the six memory-bank
+  files (`CLAUDE.md` at root, the rest in `memory/`); that stays
+  architect's job.
 - **`reviewer`** (`.claude/agents/reviewer.md`, Opus, read-only:
   Read/Grep/Glob/Bash) reviews `coder`'s output for errors and real
   optimizations only; findings go back to `coder` to apply. **Suspended
@@ -320,7 +331,7 @@ preference.**
   reviewer, **invoked only when the user calls for it by name** — not part
   of architect's normal delegation. The sole exception to "architect edits
   the memory bank, coder doesn't": on request it may review and condense
-  the five memory-bank files, and it folds a shipped code change's own
+  the six memory-bank files, and it folds a shipped code change's own
   memory-bank update in directly rather than reporting back.
 
 **Effort setting, user-specified 2026-09-04** (each agent's `.md`
@@ -394,12 +405,15 @@ dispatch is the exception, for a batch of genuinely disjoint-file work
 
 ## 6. How this memory bank is maintained
 
-These five files at the project root **are** the durable memory bank (the
-older `stack.md`/`version.md`/`workflow.md`/`navigation.md`/`MEMORY.md`
-store is superseded as of 2026-09-02, kept only as a possibly-stale record).
+These six files **are** the durable memory bank (the older `stack.md`/
+`version.md`/`workflow.md`/`navigation.md`/`MEMORY.md` store is superseded
+as of 2026-09-02, kept only as a possibly-stale record). `CLAUDE.md` stays
+at the project root; the other five live in `memory/` (moved 2026-09-06,
+§1) — a plain filename below (`SCOPE.md`, etc.) means `memory/SCOPE.md`
+unless stated otherwise.
 
-- **`CLAUDE.md`**: primary truth, read first every session, updated
-  whenever something here becomes true or stops being true.
+- **`CLAUDE.md`** (project root): primary truth, read first every session,
+  updated whenever something here becomes true or stops being true.
 - **`SCOPE.md`**: app scope and design — what VKDex is, UI/UX conventions,
   navigation and screen behavior, the data model. Split out of `CLAUDE.md`
   2026-09-05 so app-facing decisions don't compete with process/workflow
@@ -409,8 +423,9 @@ store is superseded as of 2026-09-02, kept only as a possibly-stale record).
   commitments.
 - **`PLAN.md`**: definitive statements about planned/future functionality.
   Only actual commitments; unpromoted ideas stay in `TODO.md`.
-- **`HISTORY.md`**: every version-history entry, newest first, one heading
-  per bump.
+- **`HISTORY.md`**: the 15 most recent version-history entries, newest
+  first, one heading per bump (§6c).
+- **`HISTORY_ARCHIVE.md`**: `HISTORY.md`'s compacted overflow (§6c).
 
 Section numbering across `CLAUDE.md`/`SCOPE.md` was reset 2026-09-05 to run
 sequentially (1, 2, 3, ...) with no gaps; a sub-clause of a main section
@@ -422,7 +437,8 @@ memory-bank file was updated in the same pass.
 
 ## 6a. Session-start memory-bank backup
 
-At the start of every session: zip the five memory-bank files and write the
+At the start of every session: zip all six memory-bank files — `CLAUDE.md`
+from the project root plus the five in `memory/` (§1) — and write the
 archive directly (file tools — the Dropbox MCP connector can only make
 plain-text files) to the user's **local Dropbox folder**,
 `%USERPROFILE%\Dropbox\Apps\VKDex\backup_memory\` (Cowork sessions get the
@@ -471,6 +487,26 @@ working. User-specified 2026-09-06.
 
 ---
 
+## 6c. HISTORY.md rolling window + HISTORY_ARCHIVE.md
+
+Added 2026-09-06 (user-directed — `HISTORY.md`'s unbounded growth was
+flagged as a token/speed concern). `HISTORY.md` keeps only its **15** most
+recent version entries; new entries are still written there in full, same
+as always. Once a 16th accumulates, architect compacts the oldest entry —
+a few lines: what shipped, key numbers, any decision a later session might
+need to cite, not the full mechanism/verification detail — and moves it
+into sibling `HISTORY_ARCHIVE.md`. Compact entries are written for
+density, not readability, since user-readability matters less there than
+in `HISTORY.md` proper; `PLAN.md`/`TODO.md`/`SCOPE.md` already carry the
+durable "what was decided and why" for anything that still matters, so the
+archive is a forensic record, not load-bearing documentation.
+`HISTORY_ARCHIVE.md` carries no line cap of its own — an ever-growing log,
+not something read every session the way `HISTORY.md`/`SCOPE.md` are.
+First pass (2026-09-06) archived all 41 pre-0.2.0 entries (0.1.0-0.1.40),
+cutting `HISTORY.md` 1758 → 777 lines.
+
+---
+
 ## 7. Documentation conventions for this file
 
 1. **Concise, but human-readable.** Sections should read easily and let a
@@ -484,10 +520,11 @@ working. User-specified 2026-09-06.
    instead — see the equivalent call made for `SCOPE.md`'s CSS-pitfalls/
    visual-polish/window-resize sections (2026-09-05, promoted from
    unnumbered to §6-§8 there).
-3. **Target: ≤550 lines total, standing cap** (raised from 500, 2026-09-06,
-   the Android release-signing keystore documentation — flagged here per
-   the raise rule below; previously raised from 450, 2026-09-05, the real
-   multi-target release confirmation + Android-pause decision).
+3. **Target: ≤600 lines total, standing cap** (raised from 550, 2026-09-06,
+   the memory/ folder restructure — flagged here per the raise rule below;
+   previously raised from 500 same day for the Android release-signing
+   keystore documentation, and from 450, 2026-09-05, the real multi-target
+   release confirmation + Android-pause decision).
    `SCOPE.md` carries its own independent standing cap of **≤650 lines**
    (also already raised once, same day, for unrelated reasons — see that
    file's own intro). Both raise **50 lines at a time** if genuinely
@@ -521,4 +558,5 @@ resumes without re-deriving state.
 
 **Siblings:** `SCOPE.md` = app scope & design (UI, navigation, data model)
 · `PLAN.md` = committed roadmap · `TODO.md` = ideas under consideration ·
-`HISTORY.md` = version changelog.
+`HISTORY.md` = version changelog (15-entry rolling window, §6c) ·
+`HISTORY_ARCHIVE.md` = `HISTORY.md`'s compacted overflow.
