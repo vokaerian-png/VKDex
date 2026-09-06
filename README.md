@@ -7,7 +7,7 @@
 # What VKDex is;
 
 A Pokédex app: plain HTML/CSS/JS (no framework) plus a Tauri shell packaging it as a portable Windows `.exe` and android apk.
-Coding and design implementation done by Claude.ai to try out Ai driven development.
+Design implementation & coding done by Claude.ai to try out Ai driven development.
 
 Currently, mobile front-end only, works on desktop.
 Desktop front-end planned, not implemented.
