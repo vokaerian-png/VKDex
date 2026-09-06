@@ -8,3 +8,4 @@ release.bat
 cleanup.bat
 memory/
 tools/
+package-lock.json

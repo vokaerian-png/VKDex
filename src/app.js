@@ -843,6 +843,10 @@
   // Back-history for in-detail navigation (evolution-stage taps): ids to
   // return to, innermost last. Empty means Back closes the screen.
   var detailHistory = [];
+  // One-step back-history for the shared detail popup (0.3.18): {title, html}
+  // of the popup a dismiss should return to, or null to dismiss outright.
+  // Set per openDetailPopup() call — see that function.
+  var popupBackTo = null;
   // The alt forme currently swapped in (its `key`), or null for base — kept
   // so a settings-driven re-render can restore it (0.1.34).
   var activeFormeKey = null;
@@ -1834,14 +1838,32 @@
   }
 
   // --- Name-languages / found-in-location popup (one popup, two uses) ---
-  function openDetailPopup(title, bodyHtml) {
+  // One modal is reused by every popup, so "closing" is ambiguous when one
+  // popup replaced another in place (the recolor grid -> zoomed forme case,
+  // 0.3.18). Optional `backTo` = {title, html}: a dismiss returns there
+  // instead of closing. Passing nothing clears it, so every other call site
+  // (and the grid's own fresh open) keeps closing outright, unchanged.
+  function openDetailPopup(title, bodyHtml, backTo) {
+    popupBackTo = backTo || null;
     detailPopupTitle.textContent = title;
     detailPopupBody.innerHTML = bodyHtml;
     detailPopupBackdrop.classList.add("active");
     detailPopup.setAttribute("aria-hidden", "false");
   }
 
-  function closeDetailPopup() {
+  // Dismiss: steps back to popupBackTo if one is pending, else really
+  // closes. `force` skips the step-back — for callers tearing down or
+  // navigating away from the whole detail screen (closeDetail/backDetail),
+  // where leaving a stepped-back popup floating would be a bug. User
+  // dismissals (close button, backdrop, Escape) pass nothing.
+  function closeDetailPopup(force) {
+    if (!force && popupBackTo) {
+      var backTo = popupBackTo;
+      popupBackTo = null;
+      openDetailPopup(backTo.title, backTo.html);
+      return;
+    }
+    popupBackTo = null;
     detailPopupBackdrop.classList.remove("active");
     // #detailPopupClose lives inside the popup — blur before hiding it.
     if (detailPopup.contains(document.activeElement)) document.activeElement.blur();
@@ -2011,7 +2033,8 @@
       (rates ? '<div class="held-rates"><span class="held-rates-label">Held in the wild</span>' + rates + "</div>" : "") + "</div>");
   }
 
-  detailPopupClose.addEventListener("click", closeDetailPopup);
+  // Wrapped, not passed by reference: the Event arg would land in `force`.
+  detailPopupClose.addEventListener("click", function () { closeDetailPopup(); });
   detailPopupBackdrop.addEventListener("click", function (e) {
     if (e.target === detailPopupBackdrop) closeDetailPopup();
   });
@@ -2022,13 +2045,19 @@
   // exists solely to give the recolor grid's sprites the same
   // tap-to-enlarge as the picture card's (0.3.3): it must ignore every
   // other popup's content, hence the .altforms-popup-item scoping. The
-  // zoomed view replaces the grid in the same modal — no way back, same as
-  // the picture-card case; closing is the existing close/backdrop wiring.
+  // zoomed view replaces the grid in the same modal, so it passes a backTo
+  // (0.3.18) — dismissing it re-renders the grid it came from rather than
+  // closing the modal; a second dismiss closes for real. The grid HTML is
+  // regenerated from the same function that opened it, so "back" always
+  // lands on a byte-identical grid.
   detailPopupBody.addEventListener("click", function (e) {
     var formeSprite = e.target.closest ? e.target.closest(".altforms-popup-item .evo-sprite") : null;
     if (!formeSprite) return;
+    var recolorEntry = detailEntryId === null ? null : findPokemon(detailEntryId);
+    var recolorData = recolorEntry && ALT_FORMS[recolorEntry.id];
+    var backTo = recolorData ? { title: recolorEntry.name + " Formes", html: altFormsRecolorPopupHtml(recolorData) } : null;
     openDetailPopup(formeSprite.alt, '<div class="item-popup"><img class="sprite-zoom-img" src="' +
-      formeSprite.src + '" alt="' + escapeHtml(formeSprite.alt) + '"' + SPRITE_ONERROR_ATTR + "></div>");
+      formeSprite.src + '" alt="' + escapeHtml(formeSprite.alt) + '"' + SPRITE_ONERROR_ATTR + "></div>", backTo);
   });
 
   detailName.addEventListener("click", function () {
@@ -2179,7 +2208,7 @@
     if (detailEntryId === null) return;
     detailEntryId = null;
     detailHistory = [];
-    closeDetailPopup();
+    closeDetailPopup(true);
     detailScreen.classList.remove("active");
     // #detailBack (and every focusable row) lives inside the detail screen.
     if (detailScreen.contains(document.activeElement)) document.activeElement.blur();
@@ -2198,7 +2227,7 @@
   var lastBackAt = 0;
 
   function backDetail() {
-    closeDetailPopup();
+    closeDetailPopup(true);
     var now = Date.now();
     var isDouble = now - lastBackAt < BACK_DOUBLE_MS;
     lastBackAt = now;

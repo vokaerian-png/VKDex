@@ -1439,6 +1439,11 @@ body {
   object-fit: contain;
   image-rendering: var(--sprite-rendering);
   cursor: pointer;
+  transition: filter 0.12s ease;
+}
+
+.detail-sprite:hover {
+  filter: brightness(1.08);
 }
 
 .sprite-slot-label {
@@ -1594,6 +1599,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: filter 0.12s ease;
+}
+
+/* Hover feedback matching .region-chip's, for every clickable sprite bubble
+   — shared by the Evolution Line and the Alt Formes module, which reuses
+   these classes. Inert alt-forme bubbles aren't clickable, so they're out. */
+.evo-stage:not(.altform-inert):hover .evo-sprite-wrap {
+  filter: brightness(1.08);
 }
 
 .evo-sprite {
@@ -1807,9 +1820,16 @@ body {
   gap: 2px;
 }
 
+/* Grid items aren't .evo-stage buttons, so they need their own hover rule
+   (the transition comes from .evo-sprite-wrap). Clickable since 0.3.17. */
 .altforms-popup-item .evo-sprite-wrap {
   width: 44px;
   height: 44px;
+  cursor: pointer;
+}
+
+.altforms-popup-item:hover .evo-sprite-wrap {
+  filter: brightness(1.08);
 }
 
 .altforms-popup-item .evo-name {
