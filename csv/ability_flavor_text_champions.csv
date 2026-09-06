@@ -1,0 +1,19 @@
+ability,version_group,language,flavor_text
+piercing-drill,champions,en,"When the Pokémon uses contact moves, it can hit even targets that are protecting themselves, dealing 1/4 of the damage that the move would otherwise deal. Everything aside from the target's protective effects is still triggered."
+piercing-drill,champions,ja,"接触技を使う時
+相手の守りの効果を無視して
+本来の1/4のダメージを与える。
+相手の守りの効果以外は発動される。"
+dragonize,champions,en,The Pokémon's Normal-type moves become Dragon-type moves and their power is boosted by 20%.
+dragonize,champions,ja,"ノーマルタイプの技がドラゴンタイプになり
+威力が1.2倍になる。"
+mega-sol,champions,en,"Even when the sunlight has not turned harsh, the Pokémon can use its moves as if the weather were harsh sunlight."
+mega-sol,champions,ja,"天気が　にほんばれ状態でなくても
+にほんばれ状態として
+技を使うことができる。"
+spicy-spray,champions,en,"When the Pokémon takes damage from a move, it burns the attacker."
+spicy-spray,champions,ja,"技のダメージを受けると
+相手をやけど状態にする。"
+eelevate,champions,en,"The Pokémon floats off the ground, making it immune to Ground-type moves, as well as the Spikes, Toxic Spikes, and Sticky Web statuses. When the Pokémon knocks out a target with an attack, its highest stat is boosted by 1 stage."
+fire-mane,champions,en,Boosts the power of the Pokémon's Fire-type moves by 50%.
+aura-guard,champions,en,A Pokémon with Aura Guard takes half damage from moves that make contact. Moves affected by Long Reach which make contact will deal regular damage.

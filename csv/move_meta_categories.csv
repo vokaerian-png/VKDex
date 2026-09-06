@@ -1,0 +1,15 @@
+identifier,id,description_en,description_fr
+damage,0,Inflicts damage,Inflige des dégâts
+ailment,1,No damage; inflicts status ailment,Pas de dégât; inflige une altération de statut
+net-good-stats,2,No damage; lowers target’s stats or raises user’s stats,Pas de dégât; diminue les stats de la cible ou augmente les stats du lanceur
+heal,3,No damage; heals the user,Pas de dégât; soigne l’utilisateur
+damage-ailment,4,Inflicts damage; inflicts status ailment,Inflige des dégâts; inflige une altération de statut
+swagger,5,No damage; inflicts status ailment; raises target’s stats,Pas de dégât; inflige une altération de statut; augmente les stats de la cible
+damage-lower,6,Inflicts damage; lowers target’s stats,Inflige des dégâts; diminue les stats de la cible
+damage-raise,7,Inflicts damage; raises user’s stats,Inflige des dégâts; augmente les stats du lanceur
+damage-heal,8,Inflicts damage; absorbs damage done to heal the user,Inflige des dégâts; absorbe les dégâts infligés pour soigner l’utilisateur
+ohko,9,One-hit KO,K.O. en un coup
+whole-field-effect,10,Effect on the whole field,Affecte tout le terrain
+field-effect,11,Effect on one side of the field,Affecte un côté du terrain
+force-switch,12,Forces target to switch out,Oblige la cible à être remplacée
+unique,13,Unique effect,Effet unique

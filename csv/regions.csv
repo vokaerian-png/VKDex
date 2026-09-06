@@ -1,0 +1,13 @@
+identifier,id,source,name_en,name_ja_hrkt,name_fr,name_de,name_it,name_ko,name_zh_hant,name_zh_hans
+kanto,1,both,Kanto,カントー,Kanto,Kanto,Kanto,관동,關都,关都
+johto,2,both,Johto,ジョウト,Johto,Johto,Johto,성도,城都,城都
+hoenn,3,both,Hoenn,ホウエン,Hoenn,Hoenn,Hoenn,호연,豐緣,丰缘
+sinnoh,4,both,Sinnoh,シンオウ,Sinnoh,Sinnoh,Sinnoh,신오,神奧,神奥
+unova,5,both,Unova,イッシュ,Unys,Einall,Unima,하나,合眾,合众
+kalos,6,both,Kalos,カロス,Kalos,Kalos,Kalos,칼로스,卡洛斯,卡洛斯
+alola,7,both,Alola,アローラ,Alola,Alola,Alola,알로라,阿羅拉,阿罗拉
+galar,8,both,Galar,ガラル,Galar,Galar,Galar,가라르,伽勒爾,伽勒尔
+hisui,9,both,Hisui,ヒスイ,Hisui,Hisui,Hisui,히스이,洗翠,洗翠
+paldea,10,both,Paldea,パルデア,Paldea,Paldea,Paldea,팔데아,帕底亞,帕底亚
+orre,11,pokeapi,Orre,,,,,,,
+sevii-islands,,pokedb,Sevii Islands,,,,,,,

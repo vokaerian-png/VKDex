@@ -1,0 +1,7 @@
+identifier,id,name_en
+held-item,1,Held item
+consumed-item,2,Consumed item
+key-item,3,Key item
+ability,4,Ability
+gigantamax-factor,5,Gigantamax factor
+move,6,Move

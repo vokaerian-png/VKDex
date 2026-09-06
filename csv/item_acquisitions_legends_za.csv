@@ -1,0 +1,193 @@
+item,version_group,version,type,subtype,location_area_pokedb,location_detail,is_repeatable,is_hidden,is_guaranteed,quantity,probability,cost_amount,currency,required_badge,unlock_condition,notes
+abomasite,legends-za,legends-za,shop,specialty-shop,stone-emporium,Stone Emporium,0,0,1,,,50000,poke-dollar,,"After completing Main Mission 09: ""Chase That Mysterious Pokémon!""",
+absolite,legends-za,legends-za,story,,,Defeat the Rogue Mega Absol in Main Mission 09,0,0,1,,,,,,Main Mission 09: Chase That Mysterious Pokémon!,
+absolite-z,legends-za,legends-za,story,,,"Hyperspace Mission 01: ""Hyperspace Lumiose Survey No. 1""",0,0,1,,,,,,Obtained upon defeating and catching the Rogue Mega Absol Z,
+aerodactylite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,240,,,,Costs Mega Shards.
+altarianite,legends-za,legends-za,story,,,Main Mission 28: A Rogue Mega Altaria,0,0,1,,,,,,After defeating the Rogue Mega Altaria,
+amazing-butter,legends-za,legends-za,story,,hyperspace-sushi-paradise,"After defeating the Rogue Mega Tatsugiri during Hyperspace Mission 06: ""Hyperspace Lumiose Survey No. 2""",0,0,1,,,,,,,
+ampharosite,legends-za,legends-za,story,,,Defeat Rogue Mega Ampharos (Main Mission 23),0,0,1,,,,,,,
+arboliva-oil,legends-za,legends-za,story,,hotel-z,"Obtained from Corbeau during Hyperspace Mission 12: ""The Greatest Gift""",0,0,1,,,,,,,
+audinite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,180,,,,Requires Mega Shards
+auspicious-armor,legends-za,legends-za,story,,,Side Mission 132: Bitter Blue Flames vs. Blazing Crimson,0,0,1,,,,,,Given by Adver if chosen over Malicious Armor,
+autographed-plush,legends-za,legends-za,npc-gift,,racine-construction,"Obtained during Main Mission 14: ""Reaching Rank E"" from Canari",0,0,1,,,,,,After battling and defeating Canari in the Z-A Royale,
+banettite,legends-za,legends-za,npc-defeat,,,Rogue Mega Banette (Main Mission 18),0,0,1,,,,,,After completing Main Mission 18,
+barbaracite,legends-za,legends-za,npc-defeat,,,"Rogue Mega Barbaracle (Main Mission 22: ""A Rogue Mega Barbaracle"")",0,0,1,,,,,,During Main Mission 22,
+baxcalibrite,legends-za,legends-za,tournament,,,Ranked Battles Season 4,0,0,1,,,,,,"Reach Rank S in Ranked Battles Season 4 (December 18, 2025 – January 8, 2026)",
+beedrillite,legends-za,legends-za,story,,,Defeat the Rogue Mega Beedrill in Main Mission 16,0,0,1,,,,,,Main Mission 16: A Rogue Mega Beedrill,
+black-augurite,legends-za,legends-za,dropped,,hyperspace-zone-4-star,Destroy Floating Poké Ball in 4★ and 5★ Hyperspace Zones with Item Power: Special,1,0,0,,,,,,,
+black-augurite,legends-za,legends-za,dropped,,hyperspace-zone-5-star,Destroy Floating Poké Ball in 4★ and 5★ Hyperspace Zones with Item Power: Special,1,0,0,,,,,,,
+blastoisinite,legends-za,legends-za,shop,specialty-shop,stone-emporium,,1,0,1,,,100000,poke-dollar,,"After completing Main Mission 09: ""Chase That Mysterious Pokémon!""",
+blue-canari-plush-lv-1,legends-za,legends-za,exchange,craftworks,racine-construction,Colorful Screw Exchange,1,0,1,,,3,colorful-screws,,,Requires Colorful Screws
+blue-canari-plush-lv-2,legends-za,legends-za,exchange,craftworks,racine-construction,Colorful Screw Exchange,1,0,1,,,5,colorful-screws,,,Requires Colorful Screws
+blue-canari-plush-lv-3,legends-za,legends-za,exchange,craftworks,racine-construction,Colorful Screw Exchange,1,0,1,,,8,colorful-screws,,,Requires Colorful Screws
+burn-drive,legends-za,legends-za,exchange,,vert-sector-7,540 Mega Shards,1,0,1,,,540,,,"After initiating Side Mission 191: ""Collecting Four Drives""",
+cameruptite,legends-za,legends-za,story,,,Main Mission 12: A Rogue Mega Camerupt,0,0,1,,,,,,Defeat the Rogue Mega Camerupt,
+canari-bread,legends-za,legends-za,shop,vendor,racine-construction,Racine Construction,1,0,1,1,,,,,,Available once per day.
+chandelurite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,360,,,"After completing Main Mission 19: ""Reaching Rank D""",Requires Mega Shards
+charizardite-x,legends-za,legends-za,shop,specialty-shop,stone-emporium,,1,0,1,,,100000,poke-dollar,,After completing Main Mission 09: Chase That Mysterious Pokémon!,
+cherished-ring-first,legends-za,legends-za,npc-defeat,,,Side Mission 003: Sableye in the Cemetery,0,0,1,,,,,,After fighting Sableye,
+cherished-ring-second,legends-za,legends-za,npc-defeat,,,Side Mission 140: A Message from Across Dimensions,0,0,1,,,,,,After fighting Tarragon,
+chesnaughtite,legends-za,legends-za,event,,,Ranked Battles Season 3 reward,0,0,1,,,,,,"Reach Rank S in Ranked Battles Season 3 (November 27 – December 18, 2025)",
+chimechite,legends-za,legends-za,story,,,Calming down Rogue Mega Chimecho in a 2-star unknown hyperspace distortion,0,0,1,,,,,,,
+clefablite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,240,,,"After completing Main Mission 30: ""Reaching Rank B""",Costs 240 Mega Shards
+colorful-screw,legends-za,legends-za,overworld,visible,lumiose-city,Rooftops and scaffolding obstacle courses,1,0,1,,,,,,,There are 100 Colorful Screws scattered around the city.
+crabominite,legends-za,legends-za,story,,,Side Mission 141: Rogue Mega Showdown,0,0,1,,,,,,Upon completing Side Mission 141,
+darkranite,legends-za,legends-za,story,,,"Defeat and catch the Rogue Mega Darkrai in Hyperspace Mission 11: ""Hyperspace Lumiose Survey No. 6""",0,0,1,,,,,,,
+delphoxite,legends-za,legends-za,achievement,,,Ranked Battles Season 2,0,0,1,,,,,,"Reach Rank S in Ranked Battles Season 2 (November 6–26, 2025)",
+delphoxite,legends-za,legends-za,achievement,,,Ranked Battles Season 3,0,0,1,,,,,,"Reach Rank V in Ranked Battles Season 3 (November 27–December 18, 2025)",
+diancite,legends-za,legends-za,event,,,,0,0,1,,,,,,,
+douse-drive,legends-za,legends-za,exchange,,vert-sector-7,Mega Shard exchange after Side Mission 191,1,0,1,,,540,,,After initiating Side Mission 191: Collecting Four Drives,
+dragalgite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,240,,,"After completing Main Mission 30: ""Reaching Rank B""",Exchanged for 240 Mega Shards
+dragoninite,legends-za,legends-za,npc-defeat,,,"Defeating the Rogue Mega Dragonite in Main Mission 32: ""A Rogue Mega Dragonite""",0,0,1,,,,,,,
+drampanite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,1,0,1,,,360,,,,Costs 360 Mega Shards
+eelektrossite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,240,,,"After completing Main Mission 14: ""Reaching Rank E""",Requires Mega Shards
+elevator-key,legends-za,legends-za,story,,lysandre-labs,,0,0,1,,,,,,,
+emboarite,legends-za,legends-za,story,,,"Obtained from AZ during Main Mission 10: ""The Secrets of Mega Evolution""",0,0,1,,,,,,If the player's first partner Pokémon was Tepig,
+emboarite,legends-za,legends-za,shop,specialty-shop,,Stone Emporium,1,0,1,,,,,,"If the player's first partner Pokémon was not Tepig, after completing Main Mission 37: ""Operation Protect Lumiose""",
+epice-noire,legends-za,legends-za,story,,lumiose-city,"Corbeau at Hotel Z during Hyperspace Mission 11: ""Hyperspace Lumiose Survey No. 6""",0,0,1,,,,,,,
+excadrite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,360,,,"After completing Main Mission 14: ""Reaching Rank E""",Requires Mega Shards
+fairy-feather,legends-za,legends-za,shop,specialty-shop,,Racine Construction Shop,1,0,1,,,4980,poke-dollar,,,
+fairy-feather,legends-za,legends-za,story,,,Side Mission 042: A Fan of Fairy Types,0,0,1,,,,,,,
+falinksite,legends-za,legends-za,exchange,,quasartico-inc-building,Exchange for 240 Mega Shards,0,0,1,,,240,,,"After completing Main Mission 19: ""Reaching Rank D""",
+feraligite,legends-za,legends-za,npc-gift,,,AZ,0,0,1,,,,,,"During Main Mission 10: ""The Secrets of Mega Evolution"" if the player's first partner Pokémon was Totodile",
+feraligite,legends-za,legends-za,shop,specialty-shop,,Stone Emporium,1,0,1,,,,,,"Available if the player's first partner Pokémon was not Totodile, after completing Main Mission 37: ""Operation Protect Lumiose""",
+floettite,legends-za,legends-za,trainer-reward,trainer,,Defeating Urbain/Taunie as the fifteenth opponent in the Infinite Z-A Royale during Main Mission 39,0,0,1,,,,,,During Main Mission 39: The Infinite Z-A Royale,
+froslassite,legends-za,legends-za,npc-defeat,,,"Defeating the Rogue Mega Froslass in Main Mission 27: ""A Rogue Mega Froslass""",0,0,1,,,,,,,
+galarica-cuff,legends-za,legends-za,story,,vert-sector-9,Side Mission 75: Some Unusual Pokémon,0,0,1,,,,,,Complete Side Mission 75,
+galarica-cuff,legends-za,legends-za,dropped,,,Floating Poké Ball in Hyperspace Zones,1,0,0,,,,,,2★ or higher Hyperspace Zones with Item Power: Special,
+galarica-wreath,legends-za,legends-za,request,,vert-sector-9,Side Mission 75: Some Unusual Pokémon,0,0,1,,,,,,Complete Side Mission 75,
+galladite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,240,,,After completing Main Mission 24: Reaching Rank C,Requires Mega Shards
+garchompite,legends-za,legends-za,shop,specialty-shop,stone-emporium,,1,0,1,,,70000,poke-dollar,,After completing Main Mission 09: Chase That Mysterious Pokémon!,
+garchompite-z,legends-za,legends-za,event,,,Calming down Rogue Mega Garchomp Z in an unknown hyperspace distortion,0,0,1,,,,,,Requires Mystery Gift activation,
+gardevoirite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,240,,,After completing Main Mission 24: Reaching Rank C,Requires Mega Shards
+gengarite,legends-za,legends-za,shop,specialty-shop,stone-emporium,,0,0,1,,,50000,poke-dollar,,After completing Main Mission 09: Chase That Mysterious Pokémon!,
+glalitite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,240,,,After completing Main Mission 14: Reaching Rank E,Requires Mega Shards.
+glimmoranite,legends-za,legends-za,story,,,Obtained upon calming down Rogue Mega Glimmora in a 4-star unknown hyperspace distortion,0,0,1,,,,,,,
+gold-canari-plush-lv-1,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,1,0,1,,,3,,,,Requires Colorful Screws
+gold-canari-plush-lv-2,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,1,0,1,,,5,,,,Requires Colorful Screws
+gold-canari-plush-lv-3,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,1,0,1,,,8,,,,Requires Colorful Screws
+golisopite,legends-za,legends-za,story,,,Calming a Rogue Mega Golisopod in a 3-star unknown hyperspace distortion,0,0,1,,,,,,,
+golurkite,legends-za,legends-za,npc-defeat,,,Calming down Rogue Mega Golurk in a 3-star unknown hyperspace distortion,0,0,1,,,,,,,
+great-butter,legends-za,legends-za,story,,hyperspace-hunting-grounds,"Reward for defeating the Rogue Mega Staraptor during Hyperspace Mission 03: ""Hyperspace Lumiose Survey No. 2""",0,0,1,,,,,,,
+green-canari-plush-lv-1,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,0,0,1,1,,3,,,,Requires Colorful Screws
+green-canari-plush-lv-2,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,0,0,1,1,,5,,,,Requires Colorful Screws
+green-canari-plush-lv-3,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,0,0,1,1,,8,,,,Requires Colorful Screws
+greninjite,legends-za,legends-za,tournament,,,Ranked Battles,0,0,1,,,,,,Reach Rank K in Ranked Battles Season 1 (2025-10-16 to 2025-11-05) or Rank Y in Ranked Battles Season 2 (2025-11-06 to 2025-11-26) or Season 3 (2025-11-27 to 2025-12-18),
+hawluchanite,legends-za,legends-za,npc-defeat,,,"Rogue Mega Hawlucha (Main Mission 17: ""A Rogue Mega Hawlucha"")",0,0,1,,,,,,,
+heatranite,legends-za,legends-za,story,,,"Hyperspace Mission 09: ""Hyperspace Lumiose Survey No. 5""",0,0,1,,,,,,After defeating and catching the Rogue Mega Heatran,
+heracronite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,240,,,,Requires Mega Shards
+hoennian-salt,legends-za,legends-za,npc-gift,,nouveau-cafe,"Grisham during Hyperspace Mission 12: ""The Greatest Gift""",0,0,1,,,,,,,
+houndoominite,legends-za,legends-za,exchange,,quasartico-inc-building,180 Mega Shards,0,0,1,,,180,,,,
+hyper-aspear-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-babiri-berry,legends-za,legends-za,overworld,,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-charti-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-cheri-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-chesto-berry,legends-za,legends-za,overworld,visible,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-chilan-berry,legends-za,legends-za,overworld,visible,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-chople-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-coba-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-colbur-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-grepa-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-haban-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-hondew-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-kasib-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-kebia-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-kelpsy-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-lum-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-occa-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-oran-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-passho-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-payapa-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-pecha-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-persim-berry,legends-za,legends-za,overworld,visible,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-pomeg-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-qualot-berry,legends-za,legends-za,overworld,visible,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-rawst-berry,legends-za,legends-za,overworld,visible,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-rindo-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-roseli-berry,legends-za,legends-za,overworld,,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-shuca-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-sitrus-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-tamato-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-tanga-berry,legends-za,legends-za,overworld,visible,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-wacan-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyper-yache-berry,legends-za,legends-za,overworld,recurring,hyperspace-lumiose,,1,0,1,,,,,,,
+hyperspace-butter,legends-za,legends-za,npc-defeat,,hyperspace-infernal-arena,"After defeating the Rogue Mega Heatran during Hyperspace Mission 09: ""Hyperspace Lumiose Survey No. 5""",0,0,1,,,,,,,
+kangaskhanite,legends-za,legends-za,shop,specialty-shop,stone-emporium,,0,0,1,,,70000,poke-dollar,,After completing Main Mission 09: Chase That Mysterious Pokémon!,
+key-stone,legends-za,legends-za,npc-gift,,jaune-sector-10,From AZ before facing the Rogue Mega Absol (Mega Ring),0,0,1,,,,,,Before facing the Rogue Mega Absol,
+key-to-room-202,legends-za,legends-za,npc-gift,,hotel-z,"Received from AZ during Main Mission 2: ""Escape from the Battle Zone!""",0,0,1,,,,,,During Main Mission 2,
+lab-key-card-a,legends-za,legends-za,overworld,visible,lysandre-labs,,0,0,1,,,,,,,
+lab-key-card-b,legends-za,legends-za,story,,lysandre-labs,,0,0,1,,,,,,,
+lab-key-card-c,legends-za,legends-za,story,,lysandre-labs,,0,0,1,,,,,,,
+latiasite,legends-za,legends-za,story,,,Side Mission 189: Siblings of the Sky,0,0,1,,,,,,After defeating Brother and Sister,
+latiosite,legends-za,legends-za,story,,,Side Mission 189: Siblings of the Sky,0,0,1,,,,,,After defeating Brother and Sister,
+lidas-things,legends-za,legends-za,npc-gift,,hotel-z,Obtained from AZ,0,0,1,,,,,,,
+lopunnite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,180,,,,Requires Mega Shards
+lucarionite,legends-za,legends-za,exchange,,quasartico-inc-building,Mega Shard exchange,0,0,1,,,240,,,,Requires Mega Shards
+lucarionite-z,legends-za,legends-za,request,,,"Side Mission 197: ""Ultra-Hardcore Lucario Showdown""",0,0,1,,,,,,Upon completing Side Mission 197,
+lumiosian-butter,legends-za,legends-za,request,,magenta-sector-6,"Baker's stall during Side Mission 120: ""Donuts of Unworldly Deliciousness!""",0,0,1,,,,,,,
+magearnite,legends-za,legends-za,request,,,Side Mission 195: Restarting Magearna,0,0,1,,,,,,,
+malamarite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,240,,,"After completing Main Mission 35: ""Reaching Rank A""",Exchanged for 240 Mega Shards
+malicious-armor,legends-za,legends-za,story,,,"Given by Adver in Side Mission 132: ""Bitter Blue Flames vs. Blazing Crimson""",0,0,1,,,,,,If chosen over Auspicious Armor,
+malicious-armor,legends-za,legends-za,dropped,,,Destroy Floating Poké Ball in 5 Star Hyperspace Zones with Item Power: Special,1,0,0,,,,,,,
+manectite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,180,,,,Requires Mega Shards
+mawilite,legends-za,legends-za,story,,,Defeat the Rogue Mega Mawile in Main Mission 21,0,0,1,,,,,,Main Mission 21: A Rogue Mega Mawile,
+medichamite,legends-za,legends-za,shop,specialty-shop,stone-emporium,,1,0,1,,,50000,poke-dollar,,After completing Main Mission 09,
+mega-ring,legends-za,legends-za,story,,jaune-sector-10,From AZ before facing the Rogue Mega-Evolved Absol,0,0,1,,,,,,,
+mega-shard,legends-za,legends-za,overworld,recurring,,Destroying Mega Crystals using damaging moves,1,0,1,,,,,,,
+meganiumite,legends-za,legends-za,npc-gift,,,AZ,0,0,1,,,,,,"During Main Mission 10: ""The Secrets of Mega Evolution"" if the player's first partner Pokémon was Chikorita",
+meganiumite,legends-za,legends-za,shop,specialty-shop,,Stone Emporium,1,0,1,,,,,,"After completing Main Mission 37: ""Operation Protect Lumiose"" if the player's first partner Pokémon was not Chikorita",
+meowsticite,legends-za,legends-za,story,,,"Obtained upon defeating and catching the Rogue Mega Meowstic in Hyperspace Mission 08: ""Hyperspace Lumiose Survey No. 4""",0,0,1,,,,,,,
+metagrossite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,360,,,After completing Main Mission 30: Reaching Rank B,Cost listed as Mega Shards
+mewtwonite-y,legends-za,legends-za,event,,,,0,0,1,,,,,,,
+nice-butter,legends-za,legends-za,story,,hyperspace-disaster-arena,"After defeating Rogue Mega Absol Z during Hyperspace Mission 01: ""Hyperspace Lumiose Survey No. 1""",0,0,1,,,,,,,
+pebble,legends-za,legends-za,npc-gift,,,Given by 10% Forme Zygarde,0,0,1,1,,,,,At the end of Main Mission 10: The Secrets of Mega Evolution,
+pidgeotite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,180,,,,Requires Mega Shards
+pink-canari-plush-lv-1,legends-za,legends-za,exchange,vendor,,Colorful Screw Exchange at Racine Construction,1,0,1,,,3,,,,Costs Colorful Screws
+pink-canari-plush-lv-2,legends-za,legends-za,exchange,vendor,,Colorful Screw Exchange at Racine Construction,1,0,1,,,5,,,,Costs Colorful Screws
+pink-canari-plush-lv-3,legends-za,legends-za,exchange,vendor,,Colorful Screw Exchange at Racine Construction,1,0,1,,,8,,,,Costs Colorful Screws
+pinsirite,legends-za,legends-za,exchange,,quasartico-inc-building,240 Mega Shards,0,0,1,,,240,,,After completing Main Mission 14: Reaching Rank E,
+popping-candy,legends-za,legends-za,exchange,,vert-sector-3,Given to a boy in exchange for a Canari Bread,0,0,1,,,,,,,
+pyroarite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,1,0,1,,,240,,,"After completing Main Mission 35: ""Reaching Rank A""",Requires Mega Shards
+raichunite-x,legends-za,legends-za,story,,,"Side Mission 139: ""The Dauntless Raichu Duo""",0,0,1,,,,,,Upon completing Side Mission 139,
+raichunite-y,legends-za,legends-za,story,,,"Side Mission 139: ""The Dauntless Raichu Duo""",0,0,1,,,,,,Complete Side Mission 139,
+red-canari-plush-lv-1,legends-za,legends-za,story,,hotel-z,"Main Mission 5: The City in the Shadow of Prism Tower, from Tarragon",0,0,1,,,,,,,
+red-canari-plush-lv-2,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,1,0,1,,,5,,,,Requires Colorful Screws
+red-canari-plush-lv-3,legends-za,legends-za,exchange,,racine-construction,Colorful Screw Exchange,1,0,1,,,8,,,,Requires Colorful Screws
+revitalizing-twig,legends-za,legends-za,story,,wild-zone-5,"Side Mission 008: Get Well, Fennekin",0,0,1,,,,,,,
+rotom-catalog,legends-za,legends-za,request,,,"Side Mission 170: ""Rotom Showcase!""",0,0,1,,,,,,,Given by Lyons
+sablenite,legends-za,legends-za,exchange,,,Quasartico Inc. headquarters,0,0,1,,,180,,,,Cost is paid in Mega Shards
+sachet,legends-za,legends-za,story,,,"Side Mission 010: ""Skiddo's Fragrant Leaves""",0,0,1,,,,,,,
+salamencite,legends-za,legends-za,exchange,,quasartico-inc-building,,0,0,1,,,360,,,After completing Main Mission 30: Reaching Rank B,Requires Mega Shards
+sceptilite,legends-za,legends-za,tournament,,,Ranked Battles Season 5,0,0,1,,,,,,Reach Rank ?,
+scizorite,legends-za,legends-za,shop,specialty-shop,stone-emporium,Stone Emporium,1,0,1,,,50000,poke-dollar,,"After completing Main Mission 09: ""Chase That Mysterious Pokémon!""",
+scolipite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,1,0,1,,,240,,,"After completing Main Mission 24: ""Reaching Rank C""",Requires Mega Shards
+scovillainite,legends-za,legends-za,npc-defeat,,,Calming down Rogue Mega Scovillain in a 2-star unknown hyperspace distortion,0,0,1,,,,,,,
+scraftinite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,240,,,"After completing Main Mission 30: ""Reaching Rank B""",Requires Mega Shards
+seed-of-mastery,legends-za,legends-za,request,,vert-sector-8,Reward for completing Side Mission 074: Delibird Gets in a Flap,0,0,1,5,,,,,,
+seed-of-mastery,legends-za,legends-za,dropped,,,Dropped by wild alpha Pokémon,1,0,0,1,,,,,,
+sharpedonite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,180,,,,Requires Mega Shards
+shiny-charm,legends-za,legends-za,achievement,,,,0,0,1,,,,,,Reward for maxing out research level,
+shock-drive,legends-za,legends-za,exchange,,vert-sector-7,Side Mission 191 reward,1,0,1,,,540,,,After initiating Side Mission 191: Collecting Four Drives,
+skarmorite,legends-za,legends-za,exchange,,quasartico-inc-building,Quasartico Inc. headquarters,0,0,1,,,240,,,"After completing Main Mission 24: ""Reaching Rank C""",Requires Mega Shards
+slowbronite,legends-za,legends-za,npc-defeat,,,Defeat the Rogue Mega Slowbro in Main Mission 11,0,0,1,,,,,,,
+staraptite,legends-za,legends-za,wild-pokemon,static,,"Hyperspace Mission 03: ""Hyperspace Lumiose Survey No. 2""",0,0,1,,,,,,Obtained upon defeating and catching the Rogue Mega Staraptor,
+starminite,legends-za,legends-za,npc-defeat,,,"Rogue Mega Starmie (Main Mission 34: ""A Rogue Mega Starmie"")",0,0,1,,,,,,,
+steelixite,legends-za,legends-za,shop,specialty-shop,stone-emporium,,0,0,1,,,70000,poke-dollar,,"After completing Main Mission 09: ""Chase That Mysterious Pokémon!""",
+super-lumiose-galette,legends-za,legends-za,story,,cafe-gallant,"Obtained during Main Mission 14: ""Reaching Rank E"" as part of the Canari Quiz Whiz Contest",0,0,1,,,,,,,
+supreme-butter,legends-za,legends-za,story,,hyperspace-second-sight-arena,"After defeating the Rogue Mega Meowstic during Hyperspace Mission 08: ""Hyperspace Lumiose Survey No. 4""",0,0,1,,,,,,,
+swampertite,legends-za,legends-za,tournament,,,Ranked Battles Season 6,0,0,1,,,,,,Reach Rank ?,
+tasty-trash,legends-za,legends-za,request,,,Side Mission 025: Trubblesome Patrons,0,0,1,,,,,,Obtained at the beginning of Side Mission 025: Trubblesome Patrons,
+tatsugirinite,legends-za,legends-za,npc-defeat,,,"Defeat and catch the Rogue Mega Tatsugiri in Hyperspace Mission 06: ""Hyperspace Lumiose Survey No. 3""",0,0,1,,,,,,,
+tm83,legends-za,legends-za,achievement,,,Research level reward,0,0,1,,,,,,Attain research level 38,
+tm96,legends-za,legends-za,achievement,,,,0,0,1,,,,,,Reward for attaining research level 40,
+tm97,legends-za,legends-za,achievement,,,Reward for attaining research level 31,0,0,1,,,,,,,
+tm99,legends-za,legends-za,request,,jaune-sector-7,Side Mission 079 reward,0,0,1,,,,,,Complete Side Mission 079,
+tm102,legends-za,legends-za,achievement,,,Reward for attaining research level 44,0,0,1,,,,,,After attaining research level 44,
+tm104,legends-za,legends-za,npc-defeat,,,Grisham,0,0,1,,,,,,,Prize for defeating Grisham
+tm105,legends-za,legends-za,achievement,,,,0,0,1,,,,,,Reward for attaining research level 42,
+tm106,legends-za,legends-za,achievement,,,,0,0,1,,,,,,Reward for attaining research level 33,
+tm107,legends-za,legends-za,achievement,,,Reward for attaining research level 37,0,0,1,,,,,,After reaching research level 37,
+tyranitarite,legends-za,legends-za,npc-defeat,,,"Rogue Mega Tyranitar, Main Mission 33",0,0,1,,,,,,Main Mission 33,
+victreebelite,legends-za,legends-za,npc-defeat,,,"Rogue Mega Victreebel (Main Mission 13: ""A Rogue Mega Victreebel"")",0,0,1,,,,,,,
+zeraorite,legends-za,legends-za,story,,,"Side Mission EX3: ""Raging Lightning""",0,0,1,,,,,,Obtained upon defeating and catching the Rogue Mega Zeraora,
+zygardite,legends-za,legends-za,story,,,Main Mission 37: Operation Protect Lumiose,0,0,1,,,,,,Obtained upon gripping the pebble tightly when prompted,

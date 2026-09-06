@@ -1,0 +1,322 @@
+status_condition,short_effect,long_effect
+burn,"Deals <span style=""font-size: 1.3rem"">¹⁄₁₆</span> of maximum {HP;STAT;HP} each turn and reduces damage of {PHYSICAL;CATEGORY;physical} moves by 50%.","The <i>Burn</i> status condition (BRN) has 2 primary effects:
+<ul>
+  <li>deals damage equal to <span style=""font-size: 1.3rem"">¹⁄₁₆</span> of the target's maximum {HP;STAT;HP} each turn</li>
+  <li>reduces the damage dealt by the target's {physical;CATEGORY;physical} moves by 50%<br/>
+  </li>
+</ul>
+Most <i>Burn</i> causing moves are {FIRE;TYPE;Fire}-type.<br/>
+{FIRE;TYPE;Fire}-type Pokémon can not be burned.<br/><br/>
+Direct damage dealing moves and effects are not affected by the damage reduction.<br/>
+<br>
+<h4>
+  Effects that interact with the <i>Burn</i> status condition:
+</h4>
+Pokémon with the ability {Water Veil;ABILITY;water-veil}, {Water Bubble;ABILITY;water-bubble}, {Comatose;ABILITY;comatose} or {Purifying Salt;ABILITY;purifying-salt} are completely immune to <i>Burn</i>.<br/>
+Pokémon with the ability {Guts;ABILITY;guts} or after using the move {Facade;MOVE;facade} ignore the damage reduction.<br/>
+Pokémon with the ability {Heatproof;ABILITY;heatproof} only take half of the <i>burn</i> damage.<br/>
+Pokémon with the ability {Magic Guard;ABILITY;magic-guard} are immune to the damage but not the damage reducing effect.<br/>
+Pokémon with the ability {Leaf Guard;ABILITY;leaf-guard} only prevents <i>burns</i> during {harsh sunlight;WEATHER;HARSHSUNLIGHT}<br/>
+Pokémon with the ability {Flame Body;ABILITY;flame-body} have a 30% chance to <i>burn</i> enemies that make contact with them.<br/>
+Pokémon with the ability {Natural Cure;ABILITY;natural-cure} are cured after switching out.<br/>
+Pokémon with the ability {Hydration;ABILITY;hydration} are cured during {rain;WEATHER;RAIN}<br/>
+Pokémon with the ability {Shed Skin;ABILITY;shed-skin} have a 30% chance to be cured at the end of each turn.<br/>
+If the target has the ability {Synchronize;ABILITY;synchronize}, the user will also be <i>burned</i>.<br/>
+A Pokémon holding a {Flame Orb;ITEM;flame-orb} will be <i>burned</i> at the end of the turn.<br/>
+{Safeguard;MOVE;safeguard} and {Misty Terrain;MOVE;misty-terrain} protect the user's party from being burned.<br/>
+Pokémon behind a {Substitute;MOVE;substitute} can only receive <i>burn</i> through Synchronize or a held Flame Orb.<br/><br/>
+Pokémon with the abilities Guts, {Marvel Scale;ABILITY;marvel-scale}, {Quick Feet;ABILITY;quick-feet} and {Flare Boost;ABILITY;flare-boost} can receive benefits by being <i>burned</i>.<br/><br/>
+{Rest;MOVE;rest}, {Refresh;MOVE;refresh} cure the user.<br/>
+{Aromatherapy;MOVE;aromatherapy} and {Heal Bell;MOVE;heal-bell} cure the user's entire party.<br/>
+{Sparkling Aria;MOVE;sparkling-aria} cures any Pokémon that receives damage.<br/>
+<br/>
+<h4>
+  Other Effects
+</h4>
+A <i>burned</i> wild Pokémon receives a 1.5x multiplier to its catch rate.
+<br/>
+<h4>
+  Changes
+</h4>
+<ul>
+  <li>In Gen 1 here are a few bugs with this status conditions:
+  <ul>
+    <li>A burned target does not receive any damage on the turn it causes an enemy to faint.</li>
+    <li><i>Burn's</i> damage is increased by the target's {badly poisened;STATUS;poison} if the target received that status condition and cured itself.</li>
+    <li>The move {Swords Dance;MOVE;swords-dance} resets the {Attack;STAT;ATTACK} reduction.</li>
+    <li>The {Attack;STAT;ATTACK} reduction stay even after the target was cured.</li>
+    </ul></li>
+  <li>In Gen 1-2 <i>Burn</i> reduces the target's {Attack;STAT;ATTACK} by 50% stat instead of reducing the damage of {PHYSICAL;CATEGORY;physical} moves by 50%.<br/>
+  {FIRE;TYPE;Fire}-type Pokémon can also be burned by non-{FIRE;TYPE;Fire}-type moves or effects.</li>
+  <li>In Gen 1-4 <i>Burn's</i> {ATTACK;STAT;ATTACK} reduction also lowers the damage caused by {confusion;STATUS;confusion}</li>
+  <li>In Gen 2-6 <i>Burn</i> deals damage equal to <span style=""font-size: 1.3rem"">⅛</span> of the target's maximum {HP;STAT;HP}</li>
+  <li>In Gen 3-4 {Heal Bell;MOVE;heal-bell} does not cure the <i>burn</i> of any Pokémon with the ability {Soundproof;ABILITY;soundproof}.</li>
+  <li>In Gen 5 <i>burned</i> Pokémon have a red glow.</li>
+</ul>"
+freeze,"Prevents a Pokémon from using almost all moves, except for those that have a chance to thaw it out. Has a 20% chance to thaw itself out every turn.","A <i>frozen</i> (FRZ) Pokémon is unable to use any move.<br/>
+Each turn, it has a 20% chance to thaw itself out.<br/>
+<i>Frozen</i> Pokémon can be thawed out by:
+<ul>
+  <li>using various items</li>
+  <li>being hit by {FIRE;TYPE;Fire}-type move</li>
+  <li>using certain moves such as {Scald;MOVE;scald}</li>
+</ul>
+{ICE;TYPE;Ice}-type Pokémon can not become <i>frozen</i>.<br/>
+<h4>
+  Effects that interact with the <i>Freeze</i> status condition:
+</h4>
+Pokémon with the ability {Magma Armor;ABILITY;magma-armor}, {Comatose;ABILITY;comatose} or {Purifying Salt;ABILITY;purifying-salt} are completely immune to <i>Freeze</i>.<br/>
+Pokémon with the ability {Shield Dust;ABILITY;shield-dust} or those holding {Covert Cloak;ITEM;covert-cloak} can only be <i>frozen</i> it the freeze is a side-effect of the move.<br/>
+A Pokémon can be frozen during {harsh sunlight;WEATHER;HARSHSUNLIGHT}.<br/>
+{Aromatherapy;MOVE;aromatherapy} and {Heal Bell;MOVE;heal-bell} cure the user's entire party.<br/>
+Pokémon with the ability {Natural Cure;ABILITY;natural-cure} are cured after switching out.<br/>
+Pokémon with the ability {Hydration;ABILITY;hydration} are cured during {rain;WEATHER;RAIN}<br/>
+Pokémon with the ability {Shed Skin;ABILITY;shed-skin} have a 30% chance to be cured at the end of each turn.<br/>
+<br/>
+{Safeguard;MOVE;safeguard} and {Misty Terrain;MOVE;misty-terrain} protect the user's party from being burned.<br/>
+<h4>
+  Other Effects
+</h4>
+A <i>frozen</i> Sky Form {Shaymin;POKEMON;shaymin} will return to its Land Form.
+A <i>frozen</i> wild Pokémon receives a 1.5x multiplier to its catch rate.
+<h4>
+  Changes
+</h4>
+<ul>
+  <li>In Gen 1 Pokémon have a 0% chance to thaw themselves automatically.<br/>
+  There are also a various bugs with this status condition including:
+    <ul>
+      <li>PP rolling over from 0 to 63 when using 0 PP move directly after thawing out</li>
+      <li>Link battles being desynchronized</li>
+      <li>Using a glitch move instead of the selected move if using a move without every hovering over another move right after thawing out in Link battles.</li>
+    </ul></li>
+  <li>In Gen 1-2 only {FIRE;TYPE;Fire}-type moves that have a chance to {burn;STATUS;burn} the target can thaw out <i>frozen</i> Pokémon.</li>
+  <li>In Gen 2 Pokémon have a ~10% chance to thaw themselves out after each turn.<br/>
+  An {ICE;TYPE;Ice}-type Pokémon can be <i>frozen</i> by {Tri-Attack;MOVE;tri-attack}.</li>
+  <li>In Gen 2-3 a {FIRE;TYPE;Fire}-type move produced by {Hidden Power;MOVE;hidden-power} can not thaw out a Pokémon.</li>
+  <li>In Gen 3-4 {Heal Bell;MOVE;heal-bell} does not cure the <i>freeze</i> of any Pokémon with the ability {Soundproof;ABILITY;soundproof}.</li>
+  <li>In Gen 4 the ability {Flash Fire;ABILITY;flash-fire} is disabled when the user is <i>frozen</i>.</li>
+  <li>In Gen 5 <i>frozen</i> Pokémon have a blue glow.</li>
+</ul>"
+paralysis,Has a 25% chance to prevent a move from being used and decreases {Speed;STAT;SPEED} by 50%.,"<i>Paralysis</i> (PAR) has 2 primary effects:
+<ul>
+  <li>25% chance to prevent a Pokémon from using any move</li>
+  <li>50% reduction of a Pokémon {Speed;STAT;SPEED} stat.</li>
+</ul>
+Most <i>Paralysis</i> causing moves are {ELECTRIC;TYPE;Electric}-type.<br/>
+{ELECTRIC;TYPE;Electric}-type Pokémon can not become <i>paralyzed</i>.
+<h4>
+  Effects that interact with the <i>Burn</i> status condition:
+</h4>
+Pokémon with the ability {Limber;ABILITY;limber}, {Comatose;ABILITY;comatose} or {Purifying Salt;ABILITY;purifying-salt} are completely immune to <i>Paralysis</i>.<br/>
+Pokémon with the ability {Static;ABILITY;static} have a 30% chance and Pokémon with the ability {Effect Spore;ABILITY;effect-spore} have a 10% chance to <i>paralyze</i> Pokémon that make contact with them.<br/>
+If the target has the ability {Synchronize;ABILITY;synchronize}, the user will also be <i>paralyzed</i>.<br/>
+Pokémon with the ability {Natural Cure;ABILITY;natural-cure} are cured after switching out.<br/>
+Pokémon with the ability {Hydration;ABILITY;hydration} are cured during {rain;WEATHER;RAIN}<br/>
+Pokémon with the ability {Shed Skin;ABILITY;shed-skin} have a 30% chance to be cured at the end of each turn.<br/>
+Pokémon with the ability {Healer;ABILITY;healer} have a 30% chance to cure their allies.<br/>
+Pokémon with the ability {Magic Guard;ABILITY;magic-guard} are immune to the move prevention but not the {Speed;STAT;SPEED} reducing effect.<br/>
+Pokémon with the ability {Leaf Guard;ABILITY;leaf-guard} only prevents <i>paralysis</i> during {harsh sunlight;WEATHER;HARSHSUNLIGHT}<br/>
+<br/>
+If a Gorging Form {Cramorant;POKEMON;cramorant} is attacked, its {Gulp Missile;ABILITY;gulp-missile} ability will <i>paralyze</i> the target.<br/>
+{Rest;MOVE;rest}, {Refresh;MOVE;refresh} cure the user.<br/>
+{Aromatherapy;MOVE;aromatherapy} and {Heal Bell;MOVE;heal-bell} cure the user's entire party.<br/>
+{Psycho Shift;MOVE;psycho-shift} will transfer the <i>paralysis</i> to its target.<br/>
+{Smelling Salts;MOVE;smelling-salts} will also cure the target.<br/>
+{Safeguard;MOVE;safeguard} and {Misty Terrain;MOVE;misty-terrain} protect the user's party from being <i>paralyzed</i>.<br/><br/>
+Pokémon with the abilities {Guts;ABILITY;guts}, {Marvel Scale;ABILITY;marvel-scale} and {Quick Feet;ABILITY;quick-feet} can receive benefits by being <i>paralyzed</i>.<br/><br/>
+<h4>
+  Other Effects
+</h4>
+<i>Paralyzed</i> Pokémon have a yellow glow and slower animations.
+<br/>
+<h4>
+  Changes
+</h4>
+<ul>
+  <li>In Gen 1 there is a bug that causes the {Speed;STAT;SPEED} decrease to persist after the Pokémon was cured.<br/>
+  Using {Haze;MOVE;haze} cures the target's <i>paralysis</i>.</li>
+  <li>In Gen 1-5 <i>paralyzed</i> Pokémon do not glow and their animations play at normal speed.<br/>
+  {ELECTRIC;TYPE;Electric}-type Pokémon can also become <i>paralyzed</i>.</li>
+  <li>In Gen 1-6 <i>Paralysis</i> decreases a Pokémon's {Speed;STAT;SPEED} by 75%.</li>
+  <li>In Gen 3-4 {Heal Bell;MOVE;heal-bell} does not cure the <i>paralysis</i> of any Pokémon with the ability {Soundproof;ABILITY;soundproof}.</li>
+</ul>"
+poison,"Deals damage equal to <span style=""font-size: 1.3rem"">⅛</span> of the Pokémon's maximum {HP;STAT;HP} at the end of each turn.","<i>Poison</i> (PSN) deals damage equal to <span style=""font-size: 1.3rem"">⅛</span> of the Pokémon's maximum {HP;STAT;HP} at the end of each turn.<br/>
+There is also a stronger version of this status condition called <i>bad poison</i> where the damage increases by the original amount each turn.<br/>
+Most moves that apply <i>poison</i> are {POISON;TYPE;Poison}-type.<br/>
+{POISON;TYPE;Poison} and {STEEL;TYPE;Steel}-type Pokémon are immune to <i>poison</i> except when caused by Pokémon with the {Corrosion;ABILITY;corrosion} ability.
+<h4>
+  Effects that interact with the <i>Burn</i> status condition:
+</h4>
+Pokémon with the ability {Immunity;ABILITY;immunity}, {Comatose;ABILITY;comatose} or {Purifying Salt;ABILITY;purifying-salt} are completely immune to <i>poison</i>.<br/>
+{Minior;POKEMON;minior} in its Meteor Form can not be <i>poisoned</i>.<br/>
+Pokémon with the ability {Pastel Veil;ABILITY;pastel-veil} will prevent itself and its allies from being <i>poisoned</i>.<br/>
+Pokémon with the ability {Leaf Guard;ABILITY;leaf-guard} only prevents <i>poison</i> during {harsh sunlight;WEATHER;HARSHSUNLIGHT}<br/>
+Pokémon with the ability {Magic Guard;ABILITY;magic-guard} are immune to the damage but does not prevent it outside of combat.<br/>
+Pokémon with the ability {Poison Point;ABILITY;poison-point} have a 30% chance to <i>poison</i> enemies that make contact with them.<br/>
+Pokémon with the ability {Poison Touch;ABILITY;poison-touch} have a 30% chance to <i>poison</i> enemies that they make contact with.<br/>
+Pokémon with the ability {Effect Spore;ABILITY;effect-spore} have a 9% chance to <i>poison</i> enemies that they make contact with.<br/>
+If the target has the ability {Synchronize;ABILITY;synchronize}, the user will also be <i>poisoned</i> or <i>badly poisoned</i>.<br/>
+Pokémon with the ability {Natural Cure;ABILITY;natural-cure} are cured after switching out.<br/>
+Pokémon with the ability {Hydration;ABILITY;hydration} are cured during {rain;WEATHER;RAIN}<br/>
+Pokémon with the ability {Shed Skin;ABILITY;shed-skin} have a 30% chance to be cured at the end of each turn.<br/>
+Pokémon with the ability {Healer;ABILITY;healer} have a 30% chance to cure their allies.<br/>
+Pokémon with the ability {Toxic Boost;ABILITY;toxic-boost} have their {Attack;STAT;ATTACK} raised by 50% when <i>poisoned</i>.
+<br/>
+{Psycho Shift;MOVE;psycho-shift} will transfer the <i>poison</i> to its target.<br/>
+{Safeguard;MOVE;safeguard} and {Misty Terrain;MOVE;misty-terrain} protect the user's party from being poisoned.<br/>
+A Pokémon holding a {Toxic Orb;ITEM;toxic-orb} will <i>badly poison</i> itself at the end of each turn.<br/>
+Pokémon behind a {Substitute;MOVE;substitute} can only receive <i>poison</i> through Synchronize or a held Toxic Orb.<br/><br/>
+Pokémon with the abilities {Guts;ABILITY;guts}, {Marvel Scale;ABILITY;marvel-scale}, {Quick Feet;ABILITY;quick-feet} and {Flare Boost;ABILITY;flare-boost} can receive benefits by being <i>poisoned</i>.<br/>
+<h4>
+  Other Effects
+</h4>
+<i>Poisoned</i> Pokémon release bubbles from the main image every few seconds.
+<h4>
+  Changes
+</h4>
+<ul>
+  <li>In Gen 1 <i>poison</i> deals damage equal to <span style=""font-size: 1.3rem"">¹⁄₁₆</span> of the Pokémon's maximum {HP;STAT;HP} at the end of each turn.<br/>
+    There is a bug with the <i>bad poison</i> version of this status condition where its damage increasing multiplier is further increased by {Leech Seed;MOVE;leech-seed}.<br/>
+  Using {Haze;MOVE;haze} cures the target's <i>poison</i>.</li>
+  <li>In Gen 1-3 <i>poisoned</i> Pokémon take damage outside of combat until they feint.</li>
+  <li>In Gen 1-4 <i>poisoned</i> Pokémon also take damage outside of combat (1 {HP;STAT;HP} every 4 steps / 5 steps in {FRLG;GAME;firered-leafgreen})<br/>
+  A Pokémon can not be <i>badly poisoned</i> when receiving a poison caused by {Synchronize;ABILITY;synchronize}.</li>
+  <li>In Gen 2 {STEEL;TYPE;Steel}-type Pokémon can be <i>poisoned</i> by {Twineedle;MOVE;twineedle}.</li>
+  <li>In Gen 4 <i>poisoned</i> Pokémon are cured when they reach 1 {HP;STAT;HP} outside of combat.</li>
+  <li>In Gen 5 <i>poisoned</i> Pokémon have a purple glow instead of releasing bubbles.</li>
+  <li>In the japanese version of {BW;GAME;black-white} {Poison Touch;ABILITY;poison-touch} has only a 20% chance to <i>poison</i> an enemy.</li>
+</ul>"
+sleep,Prevents a Pokémon from using any move for 1-3 turns.,"<i>Sleep</i> (SLP) prevents an affected Pokémon from using any moves for 1-3 turns.<br/>
+After the required number of turns passes, the Pokémon will wake itself up naturally.<br/>
+<h4>
+  Effects that interact with the <i>Sleep</i> status condition:
+</h4>
+Pokémon with the ability {Effect Spore;ABILITY;effect-spore} have a 11% chance to make enemies that make contact with them fall <i>asleep</i>.<br/>
+Pokémon with the ability {Insomnia;ABILITY;insomnia}, {Vital Spriti;ABILITY;vital-spirit}, {Comatose;ABILITY;comatose} or {Purifying Salt;ABILITY;purifying-salt} will not fall <i>asleep</i>.<br/>
+Pokémon with the ability {Leaf Guard;ABILITY;leaf-guard} only prevents <i>sleep</i> during {harsh sunlight;WEATHER;HARSHSUNLIGHT}<br/>
+Pokémon with the ability {Natural Cure;ABILITY;natural-cure} are cured after switching out.<br/>
+Pokémon with the ability {Hydration;ABILITY;hydration} are cured during {rain;WEATHER;RAIN}<br/>
+Pokémon with the ability {Shed Skin;ABILITY;shed-skin} have a 30% chance to be cured at the end of each turn.<br/>
+Pokémon with the ability {Healer;ABILITY;healer} have a 30% chance to wake up their allies.<br/>
+Pokémon with the ability {Sweet Veil;ABILITY;sweet-veil} and their allies will not fall <i>asleep</i>.<br/>
+Pokémon with the ability {Eearly Bird;ABILITY;early-bird} are only <i>asleep</i> for half the usual amount.<br/>
+<br/>
+{Uproar;MOVE;uproar} will wake any <i>sleeping</i> Pokémon.<br/>
+{Aromatherapy;MOVE;aromatherapy} and {Heal Bell;MOVE;heal-bell} cure the user's entire party.<br/>
+{Wake-Up Slap;MOVE;wake-up-slap} always wakes a <i>sleeping</i> Pokémon up.<br/>
+{Worry Seed;MOVE;worry-seed} changes the target's ability to {Insomnia;ABILITY;insomnia} and wakes it up immediately.<br/>
+{Electric Terrain;MOVE;electric-terrain} and {Misty Terrain;MOVE;misty-terrain} protect the user's party from being burned.<br/>
+<br/>
+The moves {Snore;MOVE;snore} and {Sleep Talk;MOVE;sleep-talk} can only be used while <i>asleep</i>.<br/>
+Pokémon with the abilities Guts, {Marvel Scale;ABILITY;marvel-scale}, {Quick Feet;ABILITY;quick-feet} can receive benefits by being <i>asleep</i>.<br/>
+<h4>
+  Changes
+</h4>
+<ul>
+  <li>In Gen 1 <i>Sleep</i> lasts for 1-7 turns.<br/>
+{Haze;MOVE;haze} wakes up <i>sleeping</i> Pokémon.</li>
+  <li>In Gen 2 <i>Sleep</i> lasts for 1-6 turns.</li>
+  <li>In Gen 3-4 <i>Sleep</i> lasts for 1-4 turns.<br/>
+    {Heal Bell;MOVE;heal-bell} does not cure the <i>burn</i> of any Pokémon with the ability {Soundproof;ABILITY;soundproof}.</li>
+  <li>In Gen 5 <i>sleeping</i> Pokémon have their counter reset when switching out.</li>
+</ul>"
+frostbite,"Exclusive to {PKMN-LA;GAME;legends-arceus}. Similar to {Burn;STATUS;burn}, it deals damage equal to <span style=""font-size: 1.3rem"">¹⁄₁₆</span> of the Pokémon's maximum {HP;STAT;HP} at the end of each turn and reduces the damage done by its {Special;CATEGORY;special}-category moves by 50%.<br/>
+During {snow;WEATHER;SNOW} moves that apply <i>Frostbite</i> have an increased chance to apply its effect.<br/>
+{ICE;TYPE;Ice}-type Pokémon are immune to <i>Frostbite</i>.",
+badly-poisoned,"Stronger version of {Poison;STATUS;poison}, its damage increases by <span style=""font-size: 1.3rem"">⅛</span> of the Pokémon's maximum {HP;STAT;HP} every turn.",
+drowsy-la,"Exclusive to {PKMN-LA;GAME;legends-arceus}. Similar to {paralysis;STATUS;paralysis} and has a chance to make a Pokémon unable to use a selected move.<br/>
+Increases damage taken from direct damage dealing moves and is more likely to prevent a move during {snow;WEATHER;SNOW}<br/>
+{Spark;MOVE;spark}, {Volt Tackle;MOVE;volt-tackle} and {Wild Charge;MOVE;wild-charge} cure the user, {Rest;MOVE;rest} applied <i>drowsiness</i> to the user for 4 turns.",
+ability-changed,Changes a Pokémon's original ability to another one.,
+ability-suppressed,Disables the effect of a Pokémon's ability.,
+type-change,Changes or adds a Pokémon type.,
+transform,Transformed into another Pokémon by using {Transform;MOVE;transform} or {Imposter;ABILITY;imposter}.,
+illusion,Has taken the appearance of another Pokémon through {Illusion;ABILITY;illusion}. The user takes the appearance of the last non-egg Pokémon in the user's party.,
+bind,Takes damage at the end of each turn and can not switch out or flee.,
+curse,Affected by {Curse;MOVE;curse} used by a {GHOST;TYPE;Ghost}-type Pokémon.,
+nightmare,Affected by {Nightmare;MOVE;nightmare}. Has to be {asleep;STATUS;sleep}.,
+doomed,Affected by {Perish Song;MOVE;perish-song}. The Pokémon will faint after 3 turns.,
+seeded,"Affected by {Leech Seed;MOVE;leech-seed} or {Sappy Seed;MOVE;sappy-seed}, draining {HP;STAT;HP} every turn and healing the enemy who used the move.",
+salted,"Affected by {Salt Cure;MOVE;salt-cure}, losing <span style=""font-size: 1.3rem"">⅛</span> of maximum {HP;STAT;HP} each turn or <span style=""font-size: 1.3rem""><span style=""font-size: 1.3rem"">¼</span></span> of maximum {HP;STAT;HP} each turn if its a {WATER;TYPE;Water} or {STEEL;TYPE;Steel}-type.",
+splinters,"Exclusive to {PKMN-LA;GAME;legends-arceus}. Receives damage at the end of each turn equal to a 25 power move. Lasts 3 turns (2 turns in agile style, 4 turns in strong style).<br/>
+Applied by the moves {Ceaseless Edge;MOVE;ceaseless-edge}, {Pin Missile;MOVE;pin-missile}, {Stealth Rock;MOVE;stealth-rock} nad {Stone Axe;MOVE;stone-axe}.",
+identify,"Unable to dodge the next move through the regular {evasion;STAT;EVASION} and {accuracy;STAT;ACCURACY} checks after being targeted by {Foresight;MOVE;foresight}, {Odor Sleuth;MOVE;odor-sleuth} or {Miracle Eye;MOVE;miracle-eye}.<br/>
+Additionally loses immunity to {NORMAL;TYPE;Normal} and {FIGHTING;TYPE;Fighting}-type moves if it's a {GHOST;TYPE;Ghost}-type or {PSYCHIC;TYPE;Psychic}-type if it's a {DARK;TYPE;Dark}-type Pokémon.",
+autotomize,Increased {Speed;STAT;SPEED} by two stages and weight reduction by 100kg (220lbs) when successfully using the move {Autotomize;MOVE;autotomize}.,
+minimize,"After using {Minimize;MOVE;minimize} a Pokémon will be more vulnerable to {Stomp;MOVE;stomp}, {Steamroller;MOVE;steamroller}, {Body Slam;MOVE;body-slam}, {Dragon Rush;MOVE;dragon-rush}, {Flying Press;MOVE;flying-press} and {Phantom Force;MOVE;phantom-force}.<br/>
+In Gen 4 all of these moves ignore {evasion;STAT;EVASION} and {accuracy;STAT;ACCURACY} checks against minimized targets.",
+tar,After being hit by {Tar Shot;MOVE;tar-shot} the Pokémon has a doubled weakness to {FIRE;TYPE;Fire}-type moves.,
+grounded,"All Pokémon are by default grounded, vulnerable to moves and effects that target Pokémon that make contact with the ground. Some Pokémon are 'raised' and immune to {GROUND;TYPE;Ground}-type moves if they have one of the following conditions:
+<ul>
+  <li>it is {FLYING;TYPE;Flying}-type.</li>
+  <li>it has the ability {Levitate;ABILITY;levitate}.</li>
+  <li>it is holding an {Air Balloon;ITEM;air-balloon}</li>
+  <li>it is affected by {Magnet Rise;MOVE;magnet-rise} or {Telekinesis;MOVE;telekinesis}.</li>
+  <li>it is in the semi-invulnerable turn of {Sky Drop;MOVE;sky-drop}.</li>
+</ul>",
+levitate,Immune to {GROUND;TYPE;Ground}-type moves by having the ability {Levitate;ABILITY;levitate}.,
+root,"After using {Ingrain;MOVE;ingrain}, a Pokémon roots itself into place, restoring <span style=""font-size: 1.3rem"">¹⁄₁₆</span> of its maximum {HP;STAT;HP} and is unable to switch out or flee.<br/>
+This also prevents moves that would force out the user from switching out such as {Roar;MOVE;roar}.<br/>
+A rooted Pokémon also becomes grounded.",
+laser-focus,"After using {Laser Focus;MOVE;laser-focus}, the next user's next move is guaranteed to land a {critical hit;STAT;CRIT} unless prevented by crit negating effects such as {Battle Armor;ABILITY;battle-armor}.",
+lock-on,"After using {Lock-On;MOVE;lock-on} or {Mind Reader;MOVE;mind-reader}, the user's next move will not miss.",
+drowsy,Affected by {Yawn;MOVE;yawn} or {G-Max Snooze;MOVE;g-max-snooze}. Will fall {asleep;STATUS;sleep} at the end of the next turn unless it leaves battle.,
+no-escape,Trapped by a move that prevents the Pokémon from switching out or fleeing.,
+disable,"Affected by {Disable;MOVE;disable}, unable to use a specific move for 4 turns.",
+embargo,"Affected by {Embargo;MOVE;embargo}, unable to use its held item or {Fling;MOVE;fling} for 5 turns.",
+heal-block,"Affected by {Heal Block;MOVE;heal-block}, unable gain {HP;STAT;HP} through any method.",
+imprison,"Affected by {Imprison;MOVE;imprison}, unable to use any move that the user of Imprison also knows.",
+taunt,"Affected by {Taunt;MOVE;taunt}, unable to use any {STATUS;CATEGORY;status}-category move for 3 turns.<br/>
+Pokémon with the ability {Oblivious;ABILITY;oblivious} and the user and allies of Pokémon with the ability {Aroma Veil;ABILITY;aroma-veil} are immune. Others can be cured by using a {Mental Herb;ITEM;mental-herb}.",
+throat-chop,"Affected by {Throat Chop;MOVE;throat-chop}, unable to use any sound-based move for 2 turns.",
+torment,"Affected by {Torment;MOVE;torment}, unable to use a move twice in a row.",
+confusion,The Pokémon has a 33% chance to hurt itself in confusion instead of performing the selected move.,"<i>Confusion</i> causes a Pokémon to have a 33% chance to hurt themselves instead of using the selected move.<br/>
+<br/>
+<i>Confusion's</i> damage is calculated as:
+<ul>
+  <li>a type-less 40 power {Physical;CATEGORY;physical}-category move.</li>
+  <li>it can not score a {critical hit;STAT;CRIT}.</li>
+  <li>it does not receive a {same-type attack bonus;STAT;STAB}</li>
+  <li>it is not affected by abilities such as {Wonder Guard;ABILITY;wonder-guard}, {Technician;ABILITY;technician} or a held {Life Orb;ITEM;life-orb}.</li>
+</ul>
+<h4>
+  Effects that interact with the <i>Burn</i> status condition:
+</h4>
+Pokémon with the ability {Own Tempo;ABILITY;own-tempo} can not become <i>confused</i>.<br/>
+{Safeguard;MOVE;safeguard} and {Misty Terrain;MOVE;misty-terrain} protect the user's party from being confused.<br/>
+A move used against a Pokémon with the ability {Tangled Feet;ABILITY;tangled-feet} has 50 {accuracy;STAT;ACCURACY}.<br/>
+<h4>
+  Other Effects
+</h4>
+A disobedient Pokémon (too high level for the currently held badges), can also hurt itself in <i>confusion</i> instead of attacking.
+<h4>
+  Changes
+</h4>
+<ul>
+  <li>In Gen 1 an enemy's {Reflect;MOVE;reflect} doubles the Pokémon's {Defense;STAT;DEFENSE}<br/>
+  Using {Haze;MOVE;haze} cures <i>confusion</i> for both Pokémon.</li>
+  <li>In Gen 1-2 <i>confusion</i> has no random damage factor.</li>
+  <li>In Gen 1-5 <i>confusion's</i> damage is reduced by 50% when the Pokémon is {burned;STATUS;burn}</li>
+  <li>In Gen 1-6 <i>confusion</i> has a 50% chance to hurt the confused Pokémon instead of attacking.</li>
+  <li>In Gen 2 a Pokémon own {Reflect;MOVE;reflect} doubles its own {Defense;STAT;DEFENSE} when hurting itself.<br/>
+  Type-enhancing items such as {Black Belt;ITEM;black-belt} increases <i>confusion's</i> damage when it would have increased the power of the original move.</li>
+  <li>In Gen 2-3 <i>confusion's</i> damage is reduced by 50% when the selected move is either {Explosion;MOVE;explosion} or {Self-Destruct;MOVE;self-destruct}.</li>
+  <li>In Gen 3-4 <i>confusion's</i> damage is increased by 10% or 20% when holding a {Silk Scarf;ITEM;silk-scarf}.<br/>
+  The damage received can also be increased by abilities that increase {Attack;STAT;ATTACK} such as {Guts;ABILITY;guts}, and items that increase {Attack;STAT;ATTACK} such as {Thick Club;ITEM;thick-club}</li>
+  <li>In Gen 4 {Helping Hand;MOVE;helping-hand} increases the <i>confusion</i> damage.<br/>
+  The damage received is also be increased if {Rivalry;ABILITY;rivalry} is active.</li>
+</ul>"
+infatuation,Has a 50% chance to not use the selected move and do nothing as long as the Pokémon that causes the infatuation is in battle.,
+choice-lock,"Locked into using a single move through a choice item such as {Choice Band;ITEM;choice-band}, {Choice Specs;ITEM;choice-specs} or {Choice Scarf;ITEM;choice-scarf}",
+encore,"Affected by {Encore;MOVE;encore}, forced to use its last move for 2-5 turns.",
+rampage,"After using a move such as {Thrash;MOVE;thrash} or {Outrage;MOVE;outrage}, the user can not select another move until it finishes or is interrupted.",
+fixated,"Exclusive to {PKMN-LA;GAME;legends-arceus}. The power of a fixated move is increased, but the user also takes increased damage. Ends when the user selects another move.",
+recharging,"After using a move such as {Hyper Beam;MOVE;hyper-beam}, the user must recharge for 1 turn, unable to use any move.",
+charging-up,"When using moves such as {Solar Beam;MOVE;solar-beam}, the user charges up for 1 turn before performing that move. The charge-up turn has no effect aside from displaying a message.",
+semi-invulnerable,"The first phase of moves such as {Dig;MOVE;dig} will make the user semi-invulnerable, immune to almost all moves.",
+flinch,Prevents a Pokémon from using any move that turn.,
+magic-coat,"Affected by {Magic Coat;MOVE;magic-coat}, reflecting most {STATUS;CATEGORY;status}-category moves back at the user.",
+bracing,"Affected by {Endure;MOVE;endure}. A bracing Pokémon will not faint that turn and survive with 1 {HP;STAT;HP} remaining.<br/>
+Similar to the effects of {Focus Sash;ITEM;focus-sash}, {Focus Band;ITEM;focus-band} and {Sturdy;ABILITY;sturdy}.",
+center-of-attention,Forces all other Pokémon to redirect their moves towards the center of attention if it is possible to target that Pokémon.,

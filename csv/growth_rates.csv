@@ -1,0 +1,16 @@
+identifier,id,formula,exp_to_level_100,name_en,name_fr,name_de
+slow,1,\frac{5x^3}{4},1250000,slow,lente,langsam
+medium,2,x^3,1000000,medium,moyenne,mittel
+fast,3,\frac{4x^3}{5},800000,fast,rapide,schnell
+medium-slow,4,\frac{6x^3}{5} - 15x^2 + 100x - 140,1059860,medium slow,parabolique,mittel langsam
+slow-then-very-fast,5,"\begin{cases}
+\frac{ x^3 \left( 100 - x \right) }{50},    & \text{if } x \leq 50  \\
+\frac{ x^3 \left( 150 - x \right) }{100},   & \text{if } 50 < x \leq 68  \\
+\frac{ x^3 \left( 1274 + (x \bmod 3)^2 - 9 (x \bmod 3) - 20 \left\lfloor \frac{x}{3} \right\rfloor \right) }{1000}, & \text{if } 68 < x \leq 98  \\
+\frac{ x^3 \left( 160 - x \right) }{100},   & \text{if } x > 98  \\
+\end{cases}",600000,erratic,erratique,"langsam, dann sehr schnell"
+fast-then-very-slow,6,"\begin{cases}
+\frac{ x^3 \left( 24 + \left\lfloor \frac{x+1}{3} \right\rfloor \right) }{50},  & \text{if } x \leq 15  \\
+\frac{ x^3 \left( 14 + x \right) }{50},     & \text{if } 15 < x \leq 35  \\
+\frac{ x^3 \left( 32 + \left\lfloor \frac{x}{2} \right\rfloor \right ) }{50},   & \text{if } x > 35  \\
+\end{cases}",1640000,fluctuating,fluctuante,"schnell, dann sehr langsam"

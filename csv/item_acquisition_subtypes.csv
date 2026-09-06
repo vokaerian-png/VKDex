@@ -1,0 +1,43 @@
+identifier,name,description
+apricorn,Apricorn,Items crafted by giving Apricorns to Kurt
+bag,Bag,Items found in the player's Bag at the start of the game
+ball-guy,Ball Guy,Items received from the Ball Guy at stadiums
+bargain-shop,Bargain Shop,Items purchased from bargain shop vendors
+coins,Coins,Items exchanged for Game Corner coins
+craftworks,Craftworks,Items created at or exchanged through Craftworks facilities
+cram-o-matic,Cram-o-matic,Items created using the Cram-o-matic machine
+department-store,Department Store,Items purchased from department stores
+dust-cloud,Dust Cloud,Items obtained from dust clouds in caves
+dynite-ore,Dynite Ore,Items exchanged for Dynite Ore currency
+dynite-ore-trader,Dynite Ore Trader,Items obtained from the Dynite Ore trader in Max Lair
+game-corner,Game Corner,Items purchased at Game Corner prize counters
+gym-leader,Gym Leader,Items received as rewards from Gym Leaders
+held,Held,Items held by wild Pokémon when caught or transferred
+hidden,Hidden,Hidden items found in the overworld requiring Dowsing Machine or interaction
+item-printer,Item Printer,Items created using the Item Printer machine
+max-raid,Max Raid,Items obtained from Max Raid Battles
+pc,PC,Items found in the player's PC at the start of the game
+poke-mart,Poké Mart,Items purchased from standard Poké Marts
+pokeathlon-points,Pokéathlon Points,Items exchanged for Pokéathlon Points
+recipe,Recipe,Items created using crafting recipes
+recurring,Recurring,Items that respawn periodically in the overworld
+reward,Reward,Items obtained as rewards after completing Max Lair runs
+rock-smash,Rock Smash,Items obtained by using Rock Smash on breakable rocks
+sparkling,Sparkling,Sparkling items visible in the overworld or from sparkling spots
+specialty-shop,Specialty Shop,Items purchased from specialty shops like Delibird Presents
+static,Static,Items held by static encounter Pokémon
+tera-raid-1star,1★ Tera Raid,Items obtained from 1-star Tera Raid Battles
+tera-raid-2star,2★ Tera Raid,Items obtained from 2-star Tera Raid Battles
+tera-raid-3star,3★ Tera Raid,Items obtained from 3-star Tera Raid Battles
+tera-raid-4star,4★ Tera Raid,Items obtained from 4-star Tera Raid Battles
+tera-raid-5star,5★ Tera Raid,Items obtained from 5-star Tera Raid Battles
+tera-raid-6star,6★ Tera Raid,Items obtained from 6-star Tera Raid Battles
+tera-raid-7star,7★ Tera Raid,Items obtained from 7-star Tera Raid Battles
+tm-machine,TM Machine,Items created using the TM Machine
+trade,Trade,Items obtained through trading with NPCs or as trade rewards
+trainer,Trainer,Items received from or obtained by defeating regular trainers
+vending-machine,Vending Machine,Items purchased from vending machines
+vendor,Vendor,Items purchased from or exchanged at vendor stalls or market sellers
+visible,Visible,Items clearly visible as Poké Ball pickups in the overworld
+watt-trader,Watt Trader,Items purchased from Watt Traders using Watts
+watts,Watts,Items exchanged for Watts currency

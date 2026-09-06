@@ -1,0 +1,10 @@
+identifier,id,main_region,name_en,name_ja,name_ja_hrkt,name_fr,name_de,name_es,name_es_419,name_ko,name_zh_hant,name_zh_hans
+generation-i,1,kanto,Generation I,第一世代,だいいちせだい,1re Génération,Generation I,Generación I,Generación I,1세대,第一世代,第一世代
+generation-ii,2,johto,Generation II,第二世代,だいにせだい,2e Génération,Generation II,Generación II,Generación II,2세대,第二世代,第二世代
+generation-iii,3,hoenn,Generation III,第三世代,だいさんせだい,3e Génération,Generation III,Generación III,Generación III,3세대,第三世代,第三世代
+generation-iv,4,sinnoh,Generation IV,第四世代,だいよんせだい,4e Génération,Generation IV,Generación IV,Generación IV,4세대,第四世代,第四世代
+generation-v,5,unova,Generation V,第五世代,だいごせだい,5e Génération,Generation V,Generación V,Generación V,5세대,第五世代,第五世代
+generation-vi,6,kalos,Generation VI,第六世代,だいろくせだい,6e Génération,Generation VI,Generación VI,Generación VI,6세대,第六世代,第六世代
+generation-vii,7,alola,Generation VII,第七世代,だいななせだい,7e Génération,Generation VII,Generación VII,Generación VII,7세대,第七世代,第七世代
+generation-viii,8,galar,Generation VIII,第八世代,だいはちせだい,8e Génération,Generation VIII,Generación VIII,Generación VIII,8세대,第八世代,第八世代
+generation-ix,9,paldea,Generation IX,第九世代,だいきゅうせだい,9e Génération,Generation IX,Generación IX,Generación IX,9세대,第九世代,第九世代

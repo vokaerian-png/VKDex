@@ -1,0 +1,6 @@
+identifier,id,hex_color,name_ja_hrkt,flavor_ja_hrkt,name_zh_hant,flavor_zh_hant,color_zh_hant,name_fr,flavor_fr,color_fr,name_en,flavor_en,color_en,name_zh_hans,flavor_zh_hans,color_zh_hans
+cool,1,#f41d1d,かっこよさ,からい,帥氣,辣,紅,Sang-froid,Épicé,Rouge,Cool,Spicy,Red,帅气,辣,红
+beauty,2,#308bf9,うつくしさ,しぶい,美麗,澀,藍,Beauté,Sec,Bleu,Beauty,Dry,Blue,美丽,涩,蓝
+cute,3,#e445d7,かわいさ,あまい,可愛,甜,粉紅,Grâce,Sucré,Rose,Cute,Sweet,Pink,可爱,甜,粉红
+smart,4,#4acb39,かしこさ,にがい,聰明,苦,綠,Intelligence,Amère,Vert,Smart,Bitter,Green,聪明,苦,绿
+tough,5,#e9fc4d,たくましさ,すっぱい,強壯,酸,黃,Robustesse,Acide,Jaune,Tough,Sour,Yellow,强壮,酸,黄

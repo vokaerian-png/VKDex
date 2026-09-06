@@ -1,0 +1,83 @@
+ability,version_group,language,flavor_text
+stench,xd,fr,La puanteur peut effrayer l'adversaire.
+speed-boost,xd,fr,La Vitesse du Pokémon augmente progressivement.
+battle-armor,xd,fr,Le Pokémon est protégé des coups critiques.
+damp,xd,fr,Empêche les combattants de s'autodétruire.
+sand-veil,xd,fr,Augmente l'Esquive lors des tempêtes de sable.
+static,xd,fr,Un contact avec le Pokémon peut paralyser.
+water-absorb,xd,fr,Récupère des PV si touché par une capacité Eau.
+cloud-nine,xd,fr,Annule les effets du climat.
+compound-eyes,xd,fr,Augmente la précision du Pokémon.
+immunity,xd,fr,Empêche le Pokémon d'être empoisonné.
+flash-fire,xd,fr,Booste capacités Feu si touché par attaques Feu.
+shield-dust,xd,fr,Annule les effets cumulés d'une attaque ennemie.
+intimidate,xd,fr,Baisse l'Attaque ennemie.
+levitate,xd,fr,Immunise contre toutes les capacités de type Sol.
+effect-spore,xd,fr,"Peut paralyser, empoisonner, endormir au contact."
+clear-body,xd,fr,Peut empêcher les stats du Pokémon de baisser.
+natural-cure,xd,fr,Quitter le combat soigne les problèmes de statut.
+serene-grace,xd,fr,Augmente la fréquence du cumul d'effets.
+chlorophyll,xd,fr,Augmente la Vitesse du Pokémon s'il y a du soleil.
+illuminate,xd,fr,Augmente les rencontres avec Pokémon sauvages.
+huge-power,xd,fr,Augmente l'Attaque du Pokémon.
+poison-point,xd,fr,Peut empoisonner l'ennemi s'il y a contact.
+inner-focus,xd,fr,Empêche le Pokémon d'avoir peur.
+magma-armor,xd,fr,Protège le Pokémon contre le gel.
+magnet-pull,xd,fr,Empêche les Pokémon Acier de fuir.
+soundproof,xd,fr,Protège de toutes les capacités sonores.
+rain-dish,xd,fr,Récupère progressivement des PV par temps de pluie.
+sand-stream,xd,fr,Le Pokémon invoque une tempête de sable.
+early-bird,xd,fr,Le Pokémon se réveille plus rapidement.
+keen-eye,xd,fr,Empêche le Pokémon de perdre en précision.
+hyper-cutter,xd,fr,Empêche la réduction de l'Attaque.
+truant,xd,fr,Le Pokémon ne frappe qu'un tour sur deux.
+hustle,xd,fr,Améliore l'Attaque mais diminue la Précision.
+cute-charm,xd,fr,Séduit parfois l'ennemi au contact.
+plus,xd,fr,Augmente l'Atq. Spé. si un Pokémon a Minus ou Plus.
+minus,xd,fr,Augmente l'Atq. Spé. si un autre Pokémon a Minus ou Plus.
+sticky-hold,xd,fr,Fait s'agripper à l'objet pour en empêcher le vol.
+shed-skin,xd,fr,Le Pokémon soigne parfois ses problèmes de statut.
+guts,xd,fr,Augmente l'Attaque s'il y a un problème de statut.
+overgrow,xd,fr,Booste les capacités Plante en cas de besoin.
+blaze,xd,fr,Booste les capacités Feu en cas de besoin.
+torrent,xd,fr,Booste les capacités Eau en cas de besoin.
+swarm,xd,fr,Booste les capacités Insecte en cas de besoin.
+rock-head,xd,fr,Protège le Pokémon des dégâts de contrecoups.
+arena-trap,xd,fr,Empêche l'ennemi de s'enfuir.
+vital-spirit,xd,fr,Empêche le Pokémon de s'endormir.
+white-smoke,xd,fr,Empêche les stats du Pokémon de baisser.
+pure-power,xd,fr,Augmente l'Attaque du Pokémon.
+shell-armor,xd,fr,Le Pokémon est protégé des coups critiques.
+air-lock,xd,fr,Annule les effets du climat.
+tangled-feet,xd,fr,Augmente l'esquive si le Pokémon est confus.
+rivalry,xd,fr,Devient plus fort si l'ennemi est du même sexe.
+steadfast,xd,fr,Augmente la Vitesse quand le Pokémon a peur.
+snow-cloak,xd,fr,Augmente l'Esquive durant les tempêtes de grêle.
+unburden,xd,fr,Augmente la Vit. si l'objet tenu est utilisé ou perdu.
+heatproof,xd,fr,Réduit la puissance des capacités de type Feu.
+simple,xd,fr,Le Pokémon est sujet à des variations de stats.
+dry-skin,xd,fr,Perd des PV à la chaleur. L'eau les restaure.
+download,xd,fr,Ajuste la puissance selon l'ennemi.
+iron-fist,xd,fr,Augmente la puissance des capacités coups de poing.
+poison-heal,xd,fr,Restaure des PV si le Pokémon est empoisonné.
+adaptability,xd,fr,Augmente la puissance des capacités de même type.
+skill-link,xd,fr,Augmente la fréquence des attaques multiples.
+hydration,xd,fr,Soigne les problèmes de statut s'il pleut.
+quick-feet,xd,fr,Augmente la Vitesse en cas de problème de statut.
+normalize,xd,fr,Toutes les capacités sont de type Normal.
+sniper,xd,fr,Augmente la puissance des coups critiques.
+magic-guard,xd,fr,Seule une attaque directe peut blesser le Pokémon.
+stall,xd,fr,"Attaque toujours après l'ennemi, même plus lent."
+technician,xd,fr,Augmente la puissance des capacités les plus faibles.
+leaf-guard,xd,fr,Empêche les problèmes de statut au soleil.
+super-luck,xd,fr,Augmente la fréquence des coups critiques.
+anticipation,xd,fr,Prévoit les capacités ennemies dangereuses.
+forewarn,xd,fr,Découvre la capacité ennemie la plus puissante.
+unaware,xd,fr,Ignore les changements de stats de l'ennemi.
+tinted-lens,xd,fr,Améliore les capacités “pas très efficaces”.
+ice-body,xd,fr,Régénère ses PV lors des tempêtes de grêle.
+snow-warning,xd,fr,Déclenche une tempête de grêle pendant un combat.
+honey-gather,xd,fr,Le Pokémon peut parfois trouver du Miel.
+frisk,xd,fr,Permet de connaître l'objet tenu par l'ennemi.
+bad-dreams,xd,fr,Réduit les PV d'un ennemi endormi.
+defiant,xd,fr,Monte l'Attaque quand les stats baissent.

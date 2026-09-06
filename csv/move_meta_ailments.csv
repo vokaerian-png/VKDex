@@ -1,0 +1,24 @@
+identifier,id,name_en,name_fr,name_es,name_es_419
+unknown,-1,????,????,,
+none,0,none,Aucun,ninguno,ninguno
+paralysis,1,Paralysis,Paralysie,Parálisis,Parálisis
+sleep,2,Sleep,Sommeil,Dormir,Dormir
+freeze,3,Freeze,Gel,Congelar,Congelar
+burn,4,Burn,Brûlure,Quemar,Quemar
+poison,5,Poison,Empoisonnement,Envenenar,Envenenar
+confusion,6,Confusion,Confusion,Confundir,Confundir
+infatuation,7,Infatuation,Attraction,Enamorar,Enamorar
+trap,8,Trap,Piège,Atrapado,Atrapado
+nightmare,9,Nightmare,Cauchemar,Maldito,Maldito
+torment,12,Torment,Tourmente,Tormento,Tormento
+disable,13,Disable,Entrave,Anulación,Anulación
+yawn,14,Yawn,Bâillement,Bostezo,Bostezo
+heal-block,15,Heal Block,Anti-Soin,Anticura,Anticura
+no-type-immunity,17,No type immunity,Aucune immunité aux types,,
+leech-seed,18,Leech Seed,Vampigraine,Drenadoras,Drenadoras
+embargo,19,Embargo,Embargo,Embargo,Embargo
+perish-song,20,Perish Song,Requiem,Canto mortal,Canto mortal
+ingrain,21,Ingrain,Racines,Arraigo,Arraigo
+silence,24,Silence,Silence,Silenciado,Silenciado
+tar-shot,42,Tar shot,Vulnérable au feu,,
+protect,43,,,,

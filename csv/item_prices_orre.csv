@@ -1,0 +1,9 @@
+item,version_group,version,price_type,amount,currency,note,source
+tm02,colosseum,,buy,,poke-dollar,,pokeapi
+tm02,colosseum,,sell,1500,poke-dollar,,pokeapi
+tm02,xd,,buy,,poke-dollar,,pokeapi
+tm02,xd,,sell,1500,poke-dollar,,pokeapi
+magnet,colosseum,colosseum,sell,50,poke-dollar,,pokedb
+magnet,xd,xd,sell,50,poke-dollar,,pokedb
+sharp-beak,colosseum,colosseum,sell,50,poke-dollar,,pokedb
+sharp-beak,xd,xd,sell,50,poke-dollar,,pokedb

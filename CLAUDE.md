@@ -75,7 +75,11 @@ VKDex/
     Cargo.toml  build.rs  tauri.conf.json  capabilities/default.json  icons/  ANDROID_SETUP.md
     src/lib.rs  src/main.rs  src/resize_lock.rs  <- lib.rs: the app (shared desktop/mobile entry); main.rs: desktop shim; resize_lock.rs: native WM_SIZING lock (Windows)
   releases/                                  <- tools/release.js output (windows/, android/), gitignored (§2a)
+  csv/                                        <- merged PokeAPI+PokeDB data source, one CSV per table
+                                                 (csv/MANIFEST.md is the schema doc) — built 2026-09-06,
+                                                 not yet wired to src/ (PLAN.md's CSV-merge entry, TODO.md)
   tools/                                     <- Node data-pipeline scripts (SCOPE.md §2) + release.js (§2a)
+                                                 + csv_merge/ (analysis/compare/merge tooling behind csv/)
   temp/                                      <- HANDOFF.md, handoff/, PokeAPI + PokeDB clones, SCRAP.md, <task-slug>/ scratch
   cleanup.bat                                <- double-click launcher for tools/cleanup.js (below)
 ```

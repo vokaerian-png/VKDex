@@ -1,0 +1,56 @@
+identifier,id,iso639,iso3166,official,order,source,name_en,name_ja,name_ja_hrkt,name_ja_roma,name_fr,name_de,name_es,name_es_419,name_it,name_ko,name_zh_hant,name_zh_hans,name_cs,name_pt_br
+ja-hrkt,1,ja,jp,1,1,pokeapi,Japanese Hiragana and Katakana,,日本語 (仮名),,Japonais Hiragana et Katakana,Japanisch Hiragana und Katakana,Japonés Hiragana y Katakana,Japonés Hiragana y Katakana,Giapponese Hiragana e Katakana,일본어 히라가나와 가타카나,,,,Japonês em Hiragana e Katakana
+ja-roma,2,ja,jp,1,3,both,Japanese romaji,,ローマ字,,Romaji,Rōmaji,Romaji,Romaji,Giapponese rōmaji,정식 로마자,,,,Japonês em romaji
+ko,3,ko,kr,1,4,both,Korean,,韓国語,,Coréen,Koreanisch,Coreano,Coreano,Coreano,한국어,,,,Coreano
+zh-hant,4,zh,tw,1,5,both,Traditional chinese,,中国語,,Chinois,Chinesisch,Chino tradicional,Chino tradicional,Cinese tradizionale,중국어,,,,Chinês tradicional
+fr,5,fr,fr,1,8,both,French,,フランス語,,Français,Französisch,Francés,Francés,Francese,프랑스어,,,,Francês
+de,6,de,de,1,9,both,German,,ドイツ語,,Allemand,Deutsch,Alemán,Alemán,Tedesco,도이치어,,,,Alemão
+es,7,es,es,1,10,both,Spanish,,スペイン語,,Espagnol,Spanisch,Español,Español,,스페인어,,,,Espanhol
+it,8,it,it,1,11,both,Italian,,イタリア語,,Italien,Italienisch,Italiano,Italiano,Italiano,이탈리아어,,,,Italiano
+en,9,en,us,1,7,both,English,,英語,,Anglais,Englisch,Inglés,Inglés,Inglese,영어,,,,Inglês
+cs,10,cs,cz,0,12,both,Czech,,チェコ語,,Tchèque,Tschechisch,Checo,Checo,Ceco,체코어,,,,Tcheco
+ja,11,ja,jp,1,2,both,Japanese,,,,,,Japonés,Japonés,Giapponese,,,,,Japonês
+zh-hans,12,zh,cn,1,6,both,Simplified chinese,,,,,,Chino simplificado,Chino simplificado,Cinese semplificato,,,,,Chinês simplificado
+pt-br,13,pt,br,1,13,both,Brazilian portuguese,,,Burajiru porutogaru-go,Portugais brésilien,Brasilianisches portugiesisch,Portugués brasileño,Portugués brasileño,Portoghese brasiliano,브라질 포르투갈어,,,Brazilská portugalština,Português brasileiro
+es-419,14,es,mx,1,14,both,Latin American Spanish,ラテンアメリカスペイン語,ラテンアメリカスペイン語,Raten Amerika Supein-go,Espagnol latino américain,Lateinamerikanisches Spanisch,Español latinoamericano,Español latinoamericano,Spagnolo latinoamericano,라틴 아메리카 스페인어,拉丁美洲西班牙文,拉丁美洲西班牙语,Latinskoamerická španělština,Espanhol latino americano
+bg,,bg,,,,pokedb,Bulgarian,,,,,,,,,,,,,
+bg-latn,,bg,,,,pokedb,Bulgarian (Romanized),,,,,,,,,,,,,
+ca,,ca,,,,pokedb,Catalan,,,,,,,,,,,,,
+zh-yue,,zh,,,,pokedb,Chinese (Cantonese),,,,,,,,,,,,,
+zh-yue-latn,,zh,,,,pokedb,"Chinese (Cantonese, Romanized)",,,,,,,,,,,,,
+zh-cmn,,zh,,,,pokedb,Chinese (Mandarin),,,,,,,,,,,,,
+zh-cmn-latn,,zh,,,,pokedb,"Chinese (Mandarin, Romanized)",,,,,,,,,,,,,
+zh-latn,,zh,,,,pokedb,Chinese (Romanized),,,,,,,,,,,,,
+da,,da,,,,pokedb,Danish,,,,,,,,,,,,,
+nl,,nl,,,,pokedb,Dutch,,,,,,,,,,,,,
+fi,,fi,,,,pokedb,Finnish,,,,,,,,,,,,,
+fr-ca,,fr,,,,pokedb,French (Canada),,,,,,,,,,,,,
+fr-fr,,fr,,,,pokedb,French (France),,,,,,,,,,,,,
+el,,el,,,,pokedb,Greek,,,,,,,,,,,,,
+el-latn,,el,,,,pokedb,Greek (Romanized),,,,,,,,,,,,,
+he,,he,,,,pokedb,Hebrew,,,,,,,,,,,,,
+he-latn,,he,,,,pokedb,Hebrew (Romanized),,,,,,,,,,,,,
+hi,,hi,,,,pokedb,Hindi,,,,,,,,,,,,,
+hi-latn,,hi,,,,pokedb,Hindi (Romanized),,,,,,,,,,,,,
+hu,,hu,,,,pokedb,Hungarian,,,,,,,,,,,,,
+is,,is,,,,pokedb,Icelandic,,,,,,,,,,,,,
+id,,id,,,,pokedb,Indonesian,,,,,,,,,,,,,
+ko-latn,,ko,,,,pokedb,Korean (Romanized),,,,,,,,,,,,,
+ms,,ms,,,,pokedb,Malay,,,,,,,,,,,,,
+no,,no,,,,pokedb,Norwegian,,,,,,,,,,,,,
+pl,,pl,,,,pokedb,Polish,,,,,,,,,,,,,
+pt-pt,,pt,,,,pokedb,Portuguese (Portugal),,,,,,,,,,,,,
+ro,,ro,,,,pokedb,Romanian,,,,,,,,,,,,,
+ru,,ru,,,,pokedb,Russian,,,,,,,,,,,,,
+ru-latn,,ru,,,,pokedb,Russian (Romanized),,,,,,,,,,,,,
+sk,,sk,,,,pokedb,Slovak,,,,,,,,,,,,,
+es-es,,es,,,,pokedb,Spanish (Spain),,,,,,,,,,,,,
+sv,,sv,,,,pokedb,Swedish,,,,,,,,,,,,,
+ta,,ta,,,,pokedb,Tamil,,,,,,,,,,,,,
+ta-latn,,ta,,,,pokedb,Tamil (Romanized),,,,,,,,,,,,,
+te,,te,,,,pokedb,Telugu,,,,,,,,,,,,,
+te-latn,,te,,,,pokedb,Telugu (Romanized),,,,,,,,,,,,,
+th,,th,,,,pokedb,Thai,,,,,,,,,,,,,
+th-latn,,th,,,,pokedb,Thai (Romanized),,,,,,,,,,,,,
+tr,,tr,,,,pokedb,Turkish,,,,,,,,,,,,,
+vi,,vi,,,,pokedb,Vietnamese,,,,,,,,,,,,,

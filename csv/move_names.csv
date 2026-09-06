@@ -1,0 +1,953 @@
+move,name_en,name_ja,name_ja_hrkt,name_ja_roma,name_fr,name_de,name_es,name_es_419,name_it,name_ko,name_ko_latn,name_zh_hant,name_zh_hans,name_zh_latn
+pound,Pound,はたく,はたく,Hataku,Écras’Face,Klaps,Destructor,Destructor,Botta,막치기,Makchigi,拍擊,拍击,Pāijī / Paakgīk
+karate-chop,Karate Chop,からてチョップ,からてチョップ,Karate Choppu,Poing Karaté,Karateschlag,Golpe Kárate,Golpe Karate,Colpokarate,태권당수,Taegweon Dangsu,空手劈,空手劈,Kōngshǒu Pī / Hūngsáu Pek
+double-slap,Double Slap,おうふくビンタ,おうふくビンタ,Ōfuku Binta,Torgnoles,Duplexhieb,Doble Bofetón,Doble Bofetón,Doppiasberla,연속뺨치기,Yeonsok Ppyamchigi,連環巴掌,连环巴掌,Liánhuán Bāzhang / Lìhnwàahn Bājéung
+comet-punch,Comet Punch,れんぞくパンチ,れんぞくパンチ,Renzoku Panchi,Poing Comète,Kometenhieb,Puño Cometa,Puño Cometa,Cometapugno,연속펀치,Yeonsok Punch,連續拳,连续拳,Liánxù Quán / Lìhnjuhk Kyùhn
+mega-punch,Mega Punch,メガトンパンチ,メガトンパンチ,Megaton Panchi,Ultimapoing,Megahieb,Megapuño,Megapuño,Megapugno,메가톤펀치,Megaton Punch,百萬噸重拳,百万吨重拳,Bǎiwàn-dùn Zhòngquán / Baakmaahn-dēun Chúhngkyùhn
+pay-day,Pay Day,ネコにこばん,ネコにこばん,Neko ni Koban,Jackpot,Zahltag,Día de Pago,Día de Pago,Giornopaga,고양이돈받기,Goyang'i Donbatgi,聚寶功,聚宝功,Jùbǎo-gōng / Jeuihbóu-gūng
+fire-punch,Fire Punch,ほのおのパンチ,ほのおのパンチ,Honō no Panchi,Poing Feu,Feuerschlag,Puño Fuego,Puño Fuego,Fuocopugno,불꽃펀치,Bulkkot Punch,火焰拳,火焰拳,Huǒyàn Quán / Fóyihm Kyùhn
+ice-punch,Ice Punch,れいとうパンチ,れいとうパンチ,Reitō Panchi,Poing Glace,Eishieb,Puño Hielo,Puño Hielo,Gelopugno,냉동펀치,Naengdong Punch,冰凍拳,冰冻拳,Bīngdòng Quán / Bīngdung Kyùhn
+thunder-punch,Thunder Punch,かみなりパンチ,かみなりパンチ,Kaminari Panchi,Poing Éclair,Donnerschlag,Puño Trueno,Puño Trueno,Tuonopugno,번개펀치,Beongae Punch,雷電拳,雷电拳,Léidiàn Quán / Lèuihdihn Kyùhn
+scratch,Scratch,ひっかく,ひっかく,Hikkaku,Griffe,Kratzer,Arañazo,Arañazo,Graffio,할퀴기,Halkwigi,抓,抓,Zhuā / Jáau
+vice-grip,Vise Grip,はさむ,はさむ,Hasamu,Force Poigne,Klammer,Agarre,Fuerza de Garra,Presa,찝기,Jjipgi,夾住,夹住,Jiāzhù / Gaapjyuh
+guillotine,Guillotine,ハサミギロチン,ハサミギロチン,Hasami Girochin,Guillotine,Guillotine,Guillotina,Guillotina,Ghigliottina,가위자르기,Gawi Jareugi,斷頭鉗,断头钳,Duàntóu Qián / Dyuhntàuh Kìhm
+razor-wind,Razor Wind,かまいたち,かまいたち,Kamaitachi,Coupe-Vent,Klingensturm,Viento Cortante,Viento Cortante,Ventagliente,칼바람,Kalbaram,旋風刀,旋风刀,Xuànfēng Dāo / Syùhnfūng Dōu
+swords-dance,Swords Dance,つるぎのまい,つるぎのまい,Tsurugi no Mai,Danse Lames,Schwerttanz,Danza Espada,Danza de Espadas,Danzaspada,칼춤,Kalchum,劍舞,剑舞,Jiànwǔ / Gimmóuh
+cut,Cut,いあいぎり,いあいぎり,Iaigiri,Coupe,Zerschneider,Corte,Corte,Taglio,풀베기,Pulbegi,居合斬,居合斩,Jūhé Zhǎn / Gēuihahp Jáam
+gust,Gust,かぜおこし,かぜおこし,Kaze Okoshi,Tornade,Windstoß,Tornado,Ráfaga de Aire,Raffica,바람일으키기,Baram Il'eukigi,起風,起风,Qǐfēng / Héifūng
+wing-attack,Wing Attack,つばさでうつ,つばさでうつ,Tsubasa de Utsu,Cru-Ailes,Flügelschlag,Ataque Ala,Ataque de Ala,Attacco d’Ala,날개치기,Nalgae Chigi,翅膀攻擊,翅膀攻击,Chìbǎng Gōngjí / Chibóng Gūnggīk
+whirlwind,Whirlwind,ふきとばし,ふきとばし,Fukitobashi,Cyclone,Wirbelwind,Remolino,Torbellino,Turbine,날려버리기,Nallyeobeorigi,吹飛,吹飞,Chuīfēi / Chēuifēi
+fly,Fly,そらをとぶ,そらをとぶ,Sora o Tobu,Vol,Fliegen,Vuelo,Vuelo,Volo,공중날기,Gongjung Nalgi,飛翔,飞翔,Fēixiáng / Fēichèuhng
+bind,Bind,しめつける,しめつける,Shimetsukeru,Étreinte,Klammergriff,Atadura,Atadura,Legatutto,조이기,Joigi,綁緊,绑紧,Bǎngjǐn / Bónggán
+slam,Slam,たたきつける,たたきつける,Tatakitsukeru,Souplesse,Slam,Atizar,Golpazo,Schianto,힘껏치기,Himkkeotchigi,摔打,摔打,Shuāida / Sēuidá
+vine-whip,Vine Whip,つるのムチ,つるのムチ,Tsuru no Muchi,Fouet Lianes,Rankenhieb,Látigo Cepa,Látigo Cepa,Frustata,덩굴채찍,Deonggul Chaejjik,藤鞭,藤鞭,Téngbiān / Tàhngbīn
+stomp,Stomp,ふみつけ,ふみつけ,Fumitsuke,Écrasement,Stampfer,Pisotón,Pisotón,Pestone,짓밟기,Jitbalgi,踩踏,踩踏,Cǎità / Cháaidaahp
+double-kick,Double Kick,にどげり,にどげり,Nidogeri,Double Pied,Doppelkick,Doble Patada,Doble Patada,Doppiocalcio,두번차기,Dubeonchigi,二連踢,二连踢,Èrliántī / Yihlìhntek
+mega-kick,Mega Kick,メガトンキック,メガトンキック,Megaton Kikku,Ultimawashi,Megakick,Megapatada,Megapatada,Megacalcio,메가톤킥,Megaton Kick,百萬噸重踢,百万吨重踢,Bǎiwàn-dùn Zhòngtī / Baakmaahn-dēun Chúhngtek
+jump-kick,Jump Kick,とびげり,とびげり,Tobigeri,Pied Sauté,Sprungkick,Patada Salto,Patada Salto,Calciosalto,점프킥,Jump Kick,飛踢,飞踢,Fēitī / Fēitek
+rolling-kick,Rolling Kick,まわしげり,まわしげり,Mawashigeri,Mawashi Geri,Fegekick,Patada Giro,Patada Giro,Calciorullo,돌려차기,Dollyeo Chagi,迴旋踢,回旋踢,Huíxuán Tī / Wùihsyùhn Tek
+sand-attack,Sand Attack,すなかけ,すなかけ,Sunakake,Jet de Sable,Sandwirbel,Ataque Arena,Ataque Arena,Turbosabbia,모래뿌리기,Morae Ppurigi,潑沙,泼沙,Pōshā / Putsā
+headbutt,Headbutt,ずつき,ずつき,Zutsuki,Coup d’Boule,Kopfnuss,Golpe Cabeza,Golpe Cabeza,Bottintesta,박치기,Bakchigi,頭錘,头锤,Tóuchuí / Tàuhchèuih
+horn-attack,Horn Attack,つのでつく,つのでつく,Tsuno de Tsuku,Koud’Korne,Hornattacke,Cornada,Ataque Cuerno,Incornata,뿔찌르기,Ppul Jjireugi,角撞,角撞,Jiǎozhuàng / Gokjohng
+fury-attack,Fury Attack,みだれづき,みだれづき,Midare Dzuki,Furie,Furienschlag,Ataque Furia,Ataque Furia,Furia,마구찌르기,Magu Jjireugi,亂擊,乱击,Luànjī / Lyuhngīk
+horn-drill,Horn Drill,つのドリル,つのドリル,Tsuno Doriru,Empal’Korne,Hornbohrer,Perforador,Cuerno Taladro,Perforcorno,뿔드릴,Ppul Drill,角鑽,角钻,Jiǎozuàn / Gokjyūn
+tackle,Tackle,たいあたり,たいあたり,Taiatari,Charge,Tackle,Placaje,Tacleada,Azione,몸통박치기,Momtong Bakchigi,撞擊,撞击,Zhuàngjí / Johnggīk
+body-slam,Body Slam,のしかかり,のしかかり,Noshikakari,Plaquage,Bodyslam,Golpe Cuerpo,Golpe de Cuerpo,Corposcontro,누르기,Nureugi,泰山壓頂,泰山压顶,Tàishānyādǐng / Taaisāanaatdéng
+wrap,Wrap,まきつく,まきつく,Makitsuku,Ligotage,Wickel,Constricción,Constricción,Avvolgibotta,김밥말이,Gimbapmal'i,緊束,紧束,Jǐnshù / Gánchūk
+take-down,Take Down,とっしん,とっしん,Tosshin,Bélier,Bodycheck,Derribo,Derribo,Riduttore,돌진,Doljin,猛撞,猛撞,Měngzhuàng / Máahngjohng
+thrash,Thrash,あばれる,あばれる,Abareru,Mania,Fuchtler,Saña,Golpiza,Colpo,난동부리기,Nandong Burigi,大鬧一番,大闹一番,Dànàoyīfān / Daaihnaauhyātfāan
+double-edge,Double-Edge,すてみタックル,すてみタックル,Sutemi Takkuru,Damoclès,Risikotackle,Doble Filo,Doble Filo,Sdoppiatore,이판사판태클,Ipansapan Tackle,捨身衝撞,舍身冲撞,Shěshēn Chōngzhuàng / Sésān Chūngjohng
+tail-whip,Tail Whip,しっぽをふる,しっぽをふる,Shippo o Furu,Mimi-Queue,Rutenschlag,Agitacola,Látigo de Cola,Colpocoda,꼬리흔들기,Kkori Heundeulgi,搖尾巴,摇尾巴,Yáo Yǐba/Yáo Wěibā / Yìuh Méihbā
+poison-sting,Poison Sting,どくばり,どくばり,Doku Bari,Dard-Venin,Giftstachel,Picotazo Veneno,Piquete Venenoso,Velenospina,독침,Dokchim,毒針,毒针,Dúzhēn / Duhkjām
+twineedle,Twineedle,ダブルニードル,ダブルニードル,Daburu Nīdoru,Double Dard,Duonadel,Doble Ataque,Doble Aguijón,Doppio Ago,더블니들,Double Needle,雙針,双针,Shuāngzhēn / Sēungjām
+pin-missile,Pin Missile,ミサイルばり,ミサイルばり,Misairu Bari,Dard-Nuée,Nadelrakete,Pin Misil,Misil Aguja,Missilspillo,바늘미사일,Bineul Missile,飛彈針,飞弹针,Fēidàn Zhēn / Fēidáan Jām
+leer,Leer,にらみつける,にらみつける,Niramitsukeru,Groz’Yeux,Silberblick,Malicioso,Malicioso,Fulmisguardo,째려보기,Jjaeryeobogi,瞪眼,瞪眼,Dèngyǎn / Dāngngáahn
+bite,Bite,かみつく,かみつく,Kamitsuku,Morsure,Biss,Mordisco,Mordida,Morso,물기,Mulgi,咬住,咬住,Yǎozhù / Ngáauhjyuh
+growl,Growl,なきごえ,なきごえ,Nakigoe,Rugissement,Heuler,Gruñido,Gruñido,Ruggito,울음소리,Ur-eum Sori,叫聲,叫声,Jiàoshēng / Giusēng
+roar,Roar,ほえる,ほえる,Hoeru,Hurlement,Brüller,Rugido,Rugido,Boato,울부짖기,Ulbujitki,吼叫,吼叫,Hǒujiào / Haugiu
+sing,Sing,うたう,うたう,Utau,Berceuse,Gesang,Canto,Canto,Canto,노래하기,Norae Hagi,唱歌,唱歌,Chànggē / Cheunggō
+supersonic,Supersonic,ちょうおんぱ,ちょうおんぱ,Chōonpa,Ultrason,Superschall,Supersónico,Supersónico,Supersuono,초음파,Cho-Eumpa,超音波,超音波,Chāoyīnbō / Chīuyāmbō
+sonic-boom,Sonic Boom,ソニックブーム,ソニックブーム,Sonikku Būmu,Sonic Boom,Ultraschall,Bomba Sónica,Explosión Sónica,Sonicboom,소닉붐,Sonic Boom,音爆,音爆,Yīnbào / Yāmbaau
+disable,Disable,かなしばり,かなしばり,Kanashibari,Entrave,Aussetzer,Anulación,Anulación,Inibitore,사슬묶기,Saseul Mukgi,定身法,定身法,Dìngshēnfǎ / Dihngsānfaat
+acid,Acid,ようかいえき,ようかいえき,Yōkaieki,Acide,Säure,Ácido,Ácido,Acido,용해액,Yonghae Aek,溶解液,溶解液,Róngjiě Yè / Yùhnggáai Yaht
+ember,Ember,ひのこ,ひのこ,Hinoko,Flammèche,Glut,Ascuas,Brasas,Braciere,불꽃세례,Bulkkot Serye,火花,火花,Huǒhuā / Fófā
+flamethrower,Flamethrower,かえんほうしゃ,かえんほうしゃ,Kaen Hōsha,Lance-Flammes,Flammenwurf,Lanzallamas,Lanzallamas,Lanciafiamme,화염방사,Hwayeom Bangsa,噴射火焰,喷射火焰,Pēnshè Huǒyàn / Panseh Fóyihm
+mist,Mist,しろいきり,しろいきり,Shiroi Kiri,Brume,Weißnebel,Neblina,Neblina,Nebbia,흰안개,Hyin Angae,白霧,白雾,Báiwù / Baahkmouh
+water-gun,Water Gun,みずでっぽう,みずでっぽう,Mizu Deppō,Pistolet à O,Aquaknarre,Pistola Agua,Chorro de Agua,Pistolacqua,물대포,Mul Daepo,水槍,水枪,Shuǐqiāng / Séuichēung
+hydro-pump,Hydro Pump,ハイドロポンプ,ハイドロポンプ,Haidoro Ponpu,Hydrocanon,Hydropumpe,Hidrobomba,Hidrobomba,Idropompa,하이드로펌프,Hydro Pump,水炮,水炮,Shuǐpào / Séuipaau
+surf,Surf,なみのり,なみのり,Naminori,Surf,Surfer,Surf,Surf,Surf,파도타기,Padotagi,衝浪,冲浪,Chōnglàng / Chūnglohng
+ice-beam,Ice Beam,れいとうビーム,れいとうビーム,Reitō Bīmu,Laser Glace,Eisstrahl,Rayo Hielo,Rayo de Hielo,Geloraggio,냉동빔,Naengdong Beam,冰凍光束,冰冻光束,Bīngdòng Guāngshù / Bīngdung Gwōngchūk
+blizzard,Blizzard,ふぶき,ふぶき,Fubuki,Blizzard,Blizzard,Ventisca,Ventisca,Bora,눈보라,Nunbora,暴風雪,暴风雪,Bàofēngxuě / Bouhfūngsyut
+psybeam,Psybeam,サイケこうせん,サイケこうせん,Psyche Kōsen,Rafale Psy,Psystrahl,Psicorrayo,Psicorrayo,Psicoraggio,환상빔,Hwansang Beam,幻象光線,幻象光线,Huànxiàng Guāngxiàn / Waahnjeuhng Gwōngsin
+bubble-beam,Bubble Beam,バブルこうせん,バブルこうせん,Baburu Kōsen,Bulles d’O,Blubbstrahl,Rayo Burbuja,Rayo Burbuja,Bollaraggio,거품광선,Geopum Gwangseon,泡沫光線,泡沫光线,Pàomò Guāngxiàn / Póuhmuht Gwōngsin
+aurora-beam,Aurora Beam,オーロラビーム,オーロラビーム,Ōrora Bīmu,Onde Boréale,Aurorastrahl,Rayo Aurora,Rayo Aurora,Raggiaurora,오로라빔,Aurora Beam,極光束,极光束,Jí Guāngshù / Gihk Gwōngchūk
+hyper-beam,Hyper Beam,はかいこうせん,はかいこうせん,Hakai Kōsen,Ultralaser,Hyperstrahl,Hiperrayo,Hiperrayo,Iper Raggio,파괴광선,Pagoe Gwangseon,破壞光線,破坏光线,Pòhuài Guāngxiàn / Powaaih Gwōngsin
+peck,Peck,つつく,つつく,Tsutsuku,Picpic,Pikser,Picotazo,Picotazo,Beccata,쪼기,Jjogi,啄,啄,Zhuó / Deuk
+drill-peck,Drill Peck,ドリルくちばし,ドリルくちばし,Doriru Kuchibashi,Bec Vrille,Bohrschnabel,Pico Taladro,Pico Taladro,Perforbecco,회전부리,Hoejeon Buri,啄鑽,啄钻,Zhuózuàn / Deukjyūn
+submission,Submission,じごくぐるま,じごくぐるま,Jigoku Guruma,Sacrifice,Überroller,Sumisión,Sumisión,Sottomissione,지옥의바퀴,Jiok-yi Bakwi,地獄翻滾,地狱翻滚,Dìyù Fāngǔn / Deihyuhk Fāangwán
+low-kick,Low Kick,けたぐり,けたぐり,Ketaguri,Balayage,Fußkick,Patada Baja,Patada Baja,Colpo Basso,안다리걸기,Andarigeolgi,踢倒,踢倒,Tīdǎo / Tekdóu
+counter,Counter,カウンター,カウンター,Kauntā,Riposte,Konter,Contraataque,Contraataque,Contrattacco,카운터,Counter,雙倍奉還,双倍奉还,Shuāngbèi Fènghuán / Sēungpúih Fuhngwàahn
+seismic-toss,Seismic Toss,ちきゅうなげ,ちきゅうなげ,Chikyū Nage,Frappe Atlas,Geowurf,Sísmico,Sísmico,Movim. Sismico,지구던지기,Jigu Deonjigi,地球上投,地球上投,Dìqiú Shàngtóu / Deihkàuh Seuhngtàuh
+strength,Strength,かいりき,かいりき,Kairiki,Force,Stärke,Fuerza,Fuerza,Forza,괴력,Goeryeok,怪力,怪力,Guàilì / Gwaailihk
+absorb,Absorb,すいとる,すいとる,Suitoru,Vole-Vie,Absorber,Absorber,Absorción,Assorbimento,흡수,Heubsu,吸取,吸取,Xīqǔ / Kāpchéui
+mega-drain,Mega Drain,メガドレイン,メガドレイン,Mega Dorein,Méga-Sangsue,Megasauger,Megaagotar,Megadrenado,Megassorbimento,메가드레인,Mega Drain,超級吸取,超级吸取,Chāojí Xīqǔ / Chīukāp Kāpchéui
+leech-seed,Leech Seed,やどりぎのタネ,やどりぎのタネ,Yadorigi no Tane,Vampigraine,Egelsamen,Drenadoras,Drenadoras,Parassiseme,씨뿌리기,Ssi Ppurigi,寄生種子,寄生种子,Jìshēng Zhǒngzǐ / Geisāng Júngjí
+growth,Growth,せいちょう,せいちょう,Seichō,Croissance,Wachstum,Desarrollo,Crecimiento,Crescita,성장,Seongjang,生長,生长,Shēngzhǎng / Sāangjéung
+razor-leaf,Razor Leaf,はっぱカッター,はっぱカッター,Happa Kattā,Tranch’Herbe,Rasierblatt,Hoja Afilada,Hojas Navaja,Foglielama,잎날가르기,Ipnal Gareugi,飛葉快刀,飞叶快刀,Fēiyè Kuàidāo / Fēiyihp Faaidōu
+solar-beam,Solar Beam,ソーラービーム,ソーラービーム,Sōrā Bīmu,Lance-Soleil,Solarstrahl,Rayo Solar,Rayo Solar,Solarraggio,솔라빔,Solar Beam,日光束,日光束,Rì Guāngshù / Yaht Gwōngchūk
+poison-powder,Poison Powder,どくのこな,どくのこな,Doku no Kona,Poudre Toxik,Giftpuder,Polvo Veneno,Polvo Venenoso,Velenpolvere,독가루,Dok Garu,毒粉,毒粉,Dúfěn / Duhkfán
+stun-spore,Stun Spore,しびれごな,しびれごな,Shibire Gona,Para-Spore,Stachelspore,Paralizador,Paralizador,Paralizzante,저리가루,Jeori Garu,麻痺粉,麻痹粉,Mábì Fěn / Màhbei Fán
+sleep-powder,Sleep Powder,ねむりごな,ねむりごな,Nemuri Gona,Poudre Dodo,Schlafpuder,Somnífero,Somnífero,Sonnifero,수면가루,Sumyeon Garu,催眠粉,催眠粉,Cuīmián Fěn / Chēuimìhn Fán
+petal-dance,Petal Dance,はなびらのまい,はなびらのまい,Hanabira no Mai,Danse Fleurs,Blättertanz,Danza Pétalo,Danza de Pétalos,Petalodanza,꽃잎댄스,Kkoch'ip Dance,花瓣舞,花瓣舞,Huābàn Wǔ / Fāfáan Móuh
+string-shot,String Shot,いとをはく,いとをはく,Ito o Haku,Sécrétion,Fadenschuss,Disparo Demora,Disparo de Seda,Millebave,실뿜기,Silppumgi,吐絲,吐丝,Tǔsī / Tousī
+dragon-rage,Dragon Rage,りゅうのいかり,りゅうのいかり,Ryū no Ikari,Draco-Rage,Drachenwut,Furia Dragón,Furia Dragón,Ira di Drago,용의분노,Yong-yi Bunno,龍之怒,龙之怒,Lóng-zhī Nù / Lùhng-jī Nouh
+fire-spin,Fire Spin,ほのおのうず,ほのおのうず,Honō no Uzu,Danse Flammes,Feuerwirbel,Giro Fuego,Giro Fuego,Turbofuoco,회오리불꽃,Hoe-ori Bulkkot,火焰旋渦,火焰旋涡,Huǒyàn Xuánwō / Fóyihm Syùhnwō
+thunder-shock,Thunder Shock,でんきショック,でんきショック,Denki Shokku,Éclair,Donnerschock,Impactrueno,Impactrueno,Tuonoshock,전기쇼크,Jeongi Shock,電擊,电击,Diànjí / Dihngīk
+thunderbolt,Thunderbolt,１０まんボルト,１０まんボルト,Jūman Boruto,Tonnerre,Donnerblitz,Rayo,Atactrueno,Fulmine,10만볼트,Sipman Volt,十萬伏特,十万伏特,Shíwàn Fútè / Sahpmaahn Fuhkdahk
+thunder-wave,Thunder Wave,でんじは,でんじは,Denjiha,Cage Éclair,Donnerwelle,Onda Trueno,Onda Trueno,Tuononda,전기자석파,Jeongi Jaseokpa,電磁波,电磁波,Diàncíbō / Dihnchìhbō
+thunder,Thunder,かみなり,かみなり,Kaminari,Fatal-Foudre,Donner,Trueno,Trueno,Tuono,번개,Beongae,打雷,打雷,Dǎléi / Dálèuih
+rock-throw,Rock Throw,いわおとし,いわおとし,Iwa Otoshi,Jet-Pierres,Steinwurf,Lanzarrocas,Lanzarrocas,Sassata,돌떨구기,Dol Tteolgugi,落石,落石,Luòshí / Lohksehk
+earthquake,Earthquake,じしん,じしん,Jishin,Séisme,Erdbeben,Terremoto,Terremoto,Terremoto,지진,Jijin,地震,地震,Dìzhèn / Deihjan
+fissure,Fissure,じわれ,じわれ,Jiware,Abîme,Geofissur,Fisura,Fisura,Abisso,땅가르기,Ttang Gareugi,地裂,地裂,Dìliè / Deihliht
+dig,Dig,あなをほる,あなをほる,Ana o Horu,Tunnel,Schaufler,Excavar,Excavar,Fossa,구멍파기,Gumeong Pagi,挖洞,挖洞,Wā Dòng / Waat Duhng
+toxic,Toxic,どくどく,どくどく,Dokudoku,Toxik,Toxin,Tóxico,Tóxico,Tossina,맹독,Maengdok,劇毒,剧毒,Jùdú / Kehkduhk
+confusion,Confusion,ねんりき,ねんりき,Nenriki,Choc Mental,Konfusion,Confusión,Confusión,Confusione,염동력,Yeomdongryeok,念力,念力,Niànlì / Nihmlihk
+psychic,Psychic,サイコキネシス,サイコキネシス,Saikokineshisu,Psyko,Psychokinese,Psíquico,Fuerza Psíquica,Psichico,사이코키네시스,Psychokinesis,精神強念,精神强念,Jīngshén Qiángniàn / Jīngsàhn Kèuhngnihm
+hypnosis,Hypnosis,さいみんじゅつ,さいみんじゅつ,Saimin Jutsu,Hypnose,Hypnose,Hipnosis,Hipnosis,Ipnosi,최면술,Choemyeon Sul,催眠術,催眠术,Cuīmián Shù / Chēuimìhn Seuht
+meditate,Meditate,ヨガのポーズ,ヨガのポーズ,Yoga no Pōzu,Yoga,Meditation,Meditación,Meditación,Meditazione,요가포즈,Yoga Pose,瑜伽姿勢,瑜伽姿势,Yújiā Zīshì / Yùhgā Jīsai
+agility,Agility,こうそくいどう,こうそくいどう,Kōsoku Idō,Hâte,Agilität,Agilidad,Agilidad,Agilità,고속이동,Gosok Idong,高速移動,高速移动,Gāosù Yídòng / Gōuchūk Yìhduhng
+quick-attack,Quick Attack,でんこうせっか,でんこうせっか,Denkō Sekka,Vive-Attaque,Ruckzuckhieb,Ataque Rápido,Ataque Rápido,Attacco Rapido,전광석화,Jeongwangseokwa,電光一閃,电光一闪,Diànguāng Yīshǎn / Dihngwōng Yātsím
+rage,Rage,いかり,いかり,Ikari,Frénésie,Raserei,Furia,Furia,Ira,분노,Bunno,憤怒,愤怒,Fènnù / Fáhnnouh
+teleport,Teleport,テレポート,テレポート,Terepōto,Téléport,Teleport,Teletransporte,Teletransporte,Teletrasporto,순간이동,Sungan Idong,瞬間移動,瞬间移动,Shùnjiān Yídòng / Seungāan Yìhduhng
+night-shade,Night Shade,ナイトヘッド,ナイトヘッド,Naito Heddo,Ombre Nocturne,Nachtnebel,Tinieblas,Tinieblas,Ombra Notturna,나이트헤드,Night Head,黑夜魔影,黑夜魔影,Hēiyè Móyǐng / Hākyeh Mōyíng
+mimic,Mimic,ものまね,ものまね,Monomane,Copie,Mimikry,Mimético,Mímica,Mimica,흉내내기,Hyungnaenaegi,模仿,模仿,Mófǎng / Mòuhfóng
+screech,Screech,いやなおと,いやなおと,Iyanaoto,Grincement,Kreideschrei,Chirrido,Chillido,Stridio,싫은소리,Salh'eun Sori,刺耳聲,刺耳声,Cì'ěr Shēng / Chiyíh Sīng
+double-team,Double Team,かげぶんしん,かげぶんしん,Kage Bunshin,Reflet,Doppelteam,Doble Equipo,Doble Equipo,Doppioteam,그림자분신,Geurimja Bunsin,影子分身,影子分身,Yǐngzi Fēnshēn / Yíngjí Fānsān
+recover,Recover,じこさいせい,じこさいせい,Jikosaisei,Soin,Genesung,Recuperación,Recuperación,Ripresa,HP회복,HP Hoebok,自我再生,自我再生,Zìwǒ Zàishēng / Jihngóh Joisāng
+harden,Harden,かたくなる,かたくなる,Katakunaru,Armure,Härtner,Fortaleza,Fortaleza,Rafforzatore,단단해지기,Dandanhaejigi,變硬,变硬,Biànyìng / Binngaahng
+minimize,Minimize,ちいさくなる,ちいさくなる,Chīsakunaru,Lilliput,Komprimator,Reducción,Reducción,Minimizzato,작아지기,Jak'ajigi,變小,变小,Biànxiǎo / Binsíu
+smokescreen,Smokescreen,えんまく,えんまく,Enmaku,Brouillard,Rauchwolke,Pantalla de Humo,Pantalla de Humo,Muro di Fumo,연막,Yeonmak,煙幕,烟幕,Yānmù / Yīnmohk
+confuse-ray,Confuse Ray,あやしいひかり,あやしいひかり,Ayashī Hikari,Onde Folie,Konfusstrahl,Rayo Confuso,Rayo de Confusión,Stordiraggio,이상한빛,Isanghan Bit,奇異之光,奇异之光,Qíyì-zhī Guāng / Kèihyih-jī Gwōng
+withdraw,Withdraw,からにこもる,からにこもる,Kara ni Komoru,Repli,Panzerschutz,Refugio,Refugio,Ritirata,껍질에숨기,Kkeobjil-e Sumgi,縮入殼中,缩入壳中,Suōrù Ké Zhōng / Sūkyahp Hok Jūng
+defense-curl,Defense Curl,まるくなる,まるくなる,Marukunaru,Boul’Armure,Einigler,Rizo Defensa,Hacerse Bolita,Ricciolscudo,웅크리기,Ungkeurigi,變圓,变圆,Biànyuán / Binyùhn
+barrier,Barrier,バリアー,バリアー,Bariā,Bouclier,Barriere,Barrera,Barrera,Barriera,배리어,Barrier,屏障,屏障,Píngzhàng / Pìhngjeung
+light-screen,Light Screen,ひかりのかべ,ひかりのかべ,Hikari no Kabe,Mur Lumière,Lichtschild,Pantalla de Luz,Pantalla de Luz,Schermoluce,빛의장막,Bit-yi Jangmak,光牆,光墙,Guāngqiáng / Gwōngchèuhng
+haze,Haze,くろいきり,くろいきり,Kuroi Kiri,Buée Noire,Dunkelnebel,Niebla,Niebla,Nube,흑안개,Heuk Angae,黑霧,黑雾,Hēiwù / Hākmouh
+reflect,Reflect,リフレクター,リフレクター,Rifurekutā,Protection,Reflektor,Reflejo,Reflejo,Riflesso,리플렉터,Reflector,反射壁,反射壁,Fǎnshè Bì / Fáanseh Bīk
+focus-energy,Focus Energy,きあいだめ,きあいだめ,Kiai Dame,Puissance,Energiefokus,Foco Energía,Centrar Energía,Focalenergia,기충전,Gichungjeon,聚氣,聚气,Jùqì / Jeuihhei
+bide,Bide,がまん,がまん,Gaman,Patience,Geduld,Venganza,Venganza,Pazienza,참기,Chamgi,忍耐,忍耐,Rěnnài / Yánnoih
+metronome,Metronome,ゆびをふる,ゆびをふる,Yubi o Furu,Métronome,Metronom,Metrónomo,Metrónomo,Metronomo,손가락흔들기,Songarak Heundeulgi,揮指,挥指,Huīzhǐ / Fāijí
+mirror-move,Mirror Move,オウムがえし,オウムがえし,Ōmu Gaeshi,Mimique,Spiegeltrick,Espejo,Espejo,Speculmossa,따라하기,Ttarahagi,鸚鵡學舌,鹦鹉学舌,Yīngwǔxuéshé / Yīngmóuhhohksit
+self-destruct,Self-Destruct,じばく,じばく,Jibaku,Destruction,Finale,Autodestrucción,Autodestrucción,Autodistruzione,자폭,Japok,自爆,自爆,Zìbào / Jihbaau
+egg-bomb,Egg Bomb,タマゴばくだん,タマゴばくだん,Tamago Bakudan,Bombe Œuf,Eierbombe,Bomba Huevo,Bomba Huevo,Uovobomba,알폭탄,Al Poktan,炸蛋,炸蛋,Zhà Dàn / Ja Dáan
+lick,Lick,したでなめる,したでなめる,Shita de Nameru,Léchouille,Schlecker,Lengüetazo,Lengüetazo,Leccata,핥기,Hatgi,舌舔,舌舔,Shétiǎn / Sittím
+smog,Smog,スモッグ,スモッグ,Sumoggu,Purédpois,Smog,Polución,Humo,Smog,스모그,Smog,濁霧,浊雾,Zhuówù / Juhkmouh
+sludge,Sludge,ヘドロこうげき,ヘドロこうげき,Hedoro Kōgeki,Détritus,Schlammbad,Residuos,Residuos,Fango,오물공격,Omul Gonggyeok,污泥攻擊,污泥攻击,Wūní Gōngjí / Wūnàih Gūnggīk
+bone-club,Bone Club,ホネこんぼう,ホネこんぼう,Hone Konbō,Massd’Os,Knochenkeule,Hueso Palo,Maza de Hueso,Ossoclava,뼈다귀치기,Ppyeo Dagwichigi,骨棒,骨棒,Gǔbàng / Gwātpáahng
+fire-blast,Fire Blast,だいもんじ,だいもんじ,Dai Monji,Déflagration,Feuersturm,Llamarada,Llamarada,Fuocobomba,불대문자,Bul Daemunja,大字爆炎,大字爆炎,Dàzì Bàoyán / Daaihjih Baauyìhm
+waterfall,Waterfall,たきのぼり,たきのぼり,Taki Nobori,Cascade,Kaskade,Cascada,Cascada,Cascata,폭포오르기,Pokpo Oreugi,攀瀑,攀瀑,Pān Pù / Pāanbuhk
+clamp,Clamp,からではさむ,からではさむ,Kara de Hasamu,Claquoir,Schnapper,Tenaza,Tenaza,Tenaglia,껍질끼우기,Kkeopjil Kkiugi,貝殼夾擊,贝壳夹击,Bèiké Jiájí / Buihok Gaapgīk
+swift,Swift,スピードスター,スピードスター,Supīdo Sutā,Météores,Sternschauer,Meteoros,Meteoros,Comete,스피드스타,Speed Star,高速星星,高速星星,Gāosù Xīngxīng / Gōuchūk Sīngsīng
+skull-bash,Skull Bash,ロケットずつき,ロケットずつき,Rokketo Zutsuki,Coud’Krâne,Schädelwumme,Cabezazo,Cabezazo,Capocciata,로켓박치기,Rocket Bakchigi,火箭頭錘,火箭头锤,Huǒjiàn Tóuchuí / Fójin Tàuhchèuih
+spike-cannon,Spike Cannon,とげキャノン,とげキャノン,Toge Kyanon,Picanon,Dornkanone,Clavo Cañón,Cañón de Púas,Sparalance,가시대포,Gasi Daepo,尖刺加農炮,尖刺加农炮,Jiāncì Jiānóngpào / Jīmchi Gānùhngpaau
+constrict,Constrict,からみつく,からみつく,Karamitsuku,Constriction,Umklammerung,Restricción,Restricción,Limitazione,휘감기,Hwigamgi,纏繞,缠绕,Chánrào / Chìhnyíu
+amnesia,Amnesia,ドわすれ,ドわすれ,Dowasure,Amnésie,Amnesie,Amnesia,Amnesia,Amnesia,망각술,Manggaksul,瞬間失憶,瞬间失忆,Shùnjiān Shīyì / Seungāan Sātyīk
+kinesis,Kinesis,スプーンまげ,スプーンまげ,Supūn Mage,Télékinésie,Psykraft,Kinético,Kinético,Cinèsi,숟가락휘기,Sutgarak Hwigi,折彎湯匙,折弯汤匙,Zhéwān Tāngchí / Jitwāan Tōngchìh
+soft-boiled,Soft-Boiled,タマゴうみ,タマゴうみ,Tamago Umi,E-Coque,Weichei,Ovocuración,Ovocuración,Covauova,알낳기,Alnaki,生蛋,生蛋,Shēngdàn / Sāangdáan
+high-jump-kick,High Jump Kick,とびひざげり,とびひざげり,Tobihizageri,Pied Voltige,Turmkick,Patada Salto Alta,Patada Salto Alto,Calcinvolo,무릎차기,Mureupchagi,飛膝踢,飞膝踢,Fēixītī / Fēisāttek
+glare,Glare,へびにらみ,へびにらみ,Hebi Nirami,Regard Médusant,Schlangenblick,Deslumbrar,Fulmirada,Sguardo Feroce,뱀눈초리,Baemnunchori,大蛇瞪眼,大蛇瞪眼,Dàshé Dèngyǎn / Daaihsèh Dāngngáahn
+dream-eater,Dream Eater,ゆめくい,ゆめくい,Yume Kui,Dévorêve,Traumfresser,Comesueños,Comesueños,Mangiasogni,꿈먹기,Kkum Meokgi,食夢,食梦,Shímèng / Sihkmuhng
+poison-gas,Poison Gas,どくガス,どくガス,Doku Gasu,Gaz Toxik,Giftwolke,Gas Venenoso,Gas Venenoso,Velenogas,독가스,Dok Gas,毒瓦斯,毒瓦斯,Dú Wǎsī / Duhk Ngáhsī
+barrage,Barrage,たまなげ,たまなげ,Tamanage,Pilonnage,Stakkato,Bombardeo,Bombardeo,Attacco Pioggia,구슬던지기,Guseul Deonjigi,投球,投球,Tóuqiú / Tàuhkàuh
+leech-life,Leech Life,きゅうけつ,きゅうけつ,Kyūketsu,Vampirisme,Blutsauger,Chupavidas,Chupavidas,Sanguisuga,흡혈,Heuphyeol,吸血,吸血,Xīxuè / Kāphyut
+lovely-kiss,Lovely Kiss,あくまのキッス,あくまのキッス,Akuma no Kissu,Grobisou,Todeskuss,Beso Amoroso,Beso Amoroso,Demonbacio,악마의키스,Akma-yi Kiss,惡魔之吻,恶魔之吻,È'mó-zhī Wěn / Okmō-jī Máhn
+sky-attack,Sky Attack,ゴッドバード,ゴッドバード,Goddo Bādo,Piqué,Himmelsfeger,Ataque Aéreo,Ataque Celestial,Aeroattacco,불새,Bul Sae,神鳥猛擊,神鸟猛击,Shénniǎo Měngjī / Sàhnníuh Máahnggīk
+transform,Transform,へんしん,へんしん,Henshin,Morphing,Wandler,Transformación,Transformación,Trasformazione,변신,Byeonsin,變身,变身,Biànshēn / Binsān
+bubble,Bubble,あわ,あわ,Awa,Écume,Blubber,Burbuja,Burbuja,Bolla,거품,Geopum,泡沫,泡沫,Pàomò / Póuhmuht
+dizzy-punch,Dizzy Punch,ピヨピヨパンチ,ピヨピヨパンチ,Piyopiyo Panchi,Uppercut,Irrschlag,Puño Mareo,Puño Mareador,Stordipugno,잼잼펀치,Jaemjaem Punch,迷昏拳,迷昏拳,Míhūn Quán / Màihfān Kyùhn
+spore,Spore,キノコのほうし,キノコのほうし,Kinoko no Hōshi,Spore,Pilzspore,Espora,Esporas,Spora,버섯포자,Beoseot Poja,蘑菇孢子,蘑菇孢子,Mógū Bāozǐ / Mòhgū Bāaují
+flash,Flash,フラッシュ,フラッシュ,Furasshu,Flash,Blitz,Destello,Destello,Flash,플래시,Flash,閃光,闪光,Shǎnguāng / Símgwōng
+psywave,Psywave,サイコウェーブ,サイコウェーブ,Saiko Uēbu,Vague Psy,Psywelle,Psicoonda,Psicoonda,Psiconda,사이코웨이브,Psycho Wave,精神波,精神波,Jīngshén Bō / Jīngsàhn Bō
+splash,Splash,はねる,はねる,Haneru,Trempette,Platscher,Salpicadura,Salpicadura,Splash,튀어오르기,Twieo Oreugi,躍起,跃起,Yuèqǐ / Yeuhkhéi
+acid-armor,Acid Armor,とける,とける,Tokeru,Acidarmure,Säurepanzer,Armadura Ácida,Armadura Ácida,Scudo Acido,녹기,Nokgi,溶化,溶化,Rónghuà / Yùhngfa
+crabhammer,Crabhammer,クラブハンマー,クラブハンマー,Kurabu Hanma,Pince-Masse,Krabbhammer,Martillazo,Martillazo,Martellata,집게해머,Jjipge Hammer,蟹鉗錘,蟹钳锤,Xièqián Chuí / Háaihkìhm Chèuih
+explosion,Explosion,だいばくはつ,だいばくはつ,Dai Bakuhatsu,Explosion,Explosion,Explosión,Explosión,Esplosione,대폭발,Dae Pokbal,大爆炸,大爆炸,Dà Bàozhà / Daaih Baauja
+fury-swipes,Fury Swipes,みだれひっかき,みだれひっかき,Midare Hikkaki,Combo-Griffe,Kratzfurie,Golpes Furia,Garras Furiosas,Sfuriate,마구할퀴기,Magu Halkwigi,亂抓,乱抓,Luànzhuā / Lyuhnjáau
+bonemerang,Bonemerang,ホネブーメラン,ホネブーメラン,Hone Būmeran,Osmerang,Knochmerang,Huesomerang,Huesomerang,Ossomerang,뼈다귀부메랑,Ppyeodagwi Boomerang,骨頭回力鏢,骨头回力镖,Gǔtou Huílìbiāo / Gwāttàuh Wùihlihkbīu
+rest,Rest,ねむる,ねむる,Nemuru,Repos,Erholung,Descanso,Descanso,Riposo,잠자기,Jamjagi,睡覺,睡觉,Shuìjiào / Seuihgaau
+rock-slide,Rock Slide,いわなだれ,いわなだれ,Iwa Nadare,Éboulement,Steinhagel,Avalancha,Avalancha,Frana,스톤샤워,Stone Shower,岩崩,岩崩,Yánbēng / Ngàahmbāng
+hyper-fang,Hyper Fang,ひっさつまえば,ひっさつまえば,Hissatsu Maeba,Croc de Mort,Hyperzahn,Hipercolmillo,Hipercolmillo,Iperzanna,필살앞니,Pilsal Apni,必殺門牙,必杀门牙,Bìshā Ményá / Bītsaat Mùhnngàh
+sharpen,Sharpen,かくばる,かくばる,Kakubaru,Affûtage,Schärfer,Afilar,Afilar,Affilatore,각지기,Gakjigi,稜角化,棱角化,Léngjiǎo Huà / Lìhnggok Fa
+conversion,Conversion,テクスチャー,テクスチャー,Tekusuchā,Conversion,Umwandlung,Conversión,Conversión,Conversione,텍스처,Texture,紋理,纹理,Wénlǐ / Màhnléih
+tri-attack,Tri Attack,トライアタック,トライアタック,Torai Atakku,Triplattaque,Triplette,Triataque,Triataque,Tripletta,트라이어택,Tri Attack,三重攻擊,三重攻击,Sānchóng Gōngjí / Sāamchùhng Gūnggīk
+super-fang,Super Fang,いかりのまえば,いかりのまえば,Ikari no Maeba,Croc Fatal,Superzahn,Superdiente,Supercolmillo,Superzanna,분노의앞니,Bunno-yi Apni,憤怒門牙,愤怒门牙,Fènnù Ményá / Fáhnnouh Mùhnngàh
+slash,Slash,きりさく,きりさく,Kirisaku,Tranche,Schlitzer,Cuchillada,Cuchillada,Lacerazione,베어가르기,Beeo Gareugi,劈開,劈开,Pīkāi / Pekhōi
+substitute,Substitute,みがわり,みがわり,Migawari,Clonage,Delegator,Sustituto,Sustituto,Sostituto,대타출동,Daetachuldong,替身,替身,Tìshēn / Taisān
+struggle,Struggle,わるあがき,わるあがき,Waruagaki,Lutte,Verzweifler,Forcejeo,Forcejeo,Scontro,발버둥,Balbeodung,掙扎,挣扎,Zhēngzhá / Jāngjaat
+sketch,Sketch,スケッチ,スケッチ,Sukecchi,Gribouille,Nachahmer,Esquema,Boceto,Schizzo,스케치,Sketch,寫生,写生,Xiěshēng / Sésāng
+triple-kick,Triple Kick,トリプルキック,トリプルキック,Toripuru Kikku,Triple Pied,Dreifachkick,Triple Patada,Triple Patada,Triplocalcio,트리플킥,Triple Kick,三連踢,三连踢,Sānliántī / Sāamlìhntek
+thief,Thief,どろぼう,どろぼう,Dorobō,Larcin,Raub,Ladrón,Ladrón,Furto,도둑질,Dodukjil,小偷,小偷,Xiǎotōu / Síutāu
+spider-web,Spider Web,クモのす,クモのす,Kumo no Su,Toile,Spinnennetz,Telaraña,Telaraña,Ragnatela,거미집,Geomijip,蛛網,蛛网,Zhūwǎng / Jyūmóhng
+mind-reader,Mind Reader,こころのめ,こころのめ,Kokoro no Me,Lire-Esprit,Willensleser,Telépata,Telépata,Leggimente,마음의눈,Ma'eum-yi Nun,心之眼,心之眼,Xīn-zhī Yǎn / Sām-jī Ngáahn
+nightmare,Nightmare,あくむ,あくむ,Akumu,Cauchemar,Nachtmahr,Pesadilla,Pesadilla,Incubo,악몽,Akmong,惡夢,恶梦,È'mèng / Ok'muhng
+flame-wheel,Flame Wheel,かえんぐるま,かえんぐるま,Kaen Guruma,Roue de Feu,Flammenrad,Rueda Fuego,Rueda Ígnea,Ruotafuoco,화염바퀴,Hwayeom Jadongcha,火焰輪,火焰轮,Huǒyàn Lún / Fóyihm Lèuhn
+snore,Snore,いびき,いびき,Ibiki,Ronflement,Schnarcher,Ronquido,Ronquido,Russare,코골기,Kogolgi,打鼾,打鼾,Dǎhān / Dáhòhn
+curse,Curse,のろい,のろい,Noroi,Malédiction,Fluch,Maldición,Maldición,Maledizione,저주,Jeoju,詛咒,诅咒,Zǔzhòu / Jojau
+flail,Flail,じたばた,じたばた,Jitabata,Gigotage,Dreschflegel,Azote,Azote,Flagello,바둥바둥,Badungbadung,抓狂,抓狂,Zhuākuáng / Jáaukwòhng
+conversion-2,Conversion 2,テクスチャー２,テクスチャー２,Tekusuchā 2,Conversion 2,Umwandlung2,Conversión 2,Conversión 2,Conversione2,텍스처2,Texture 2,紋理２,纹理２,Wénlǐ2 / Màhnléih2
+aeroblast,Aeroblast,エアロブラスト,エアロブラスト,Earoburasuto,Aéroblast,Luftstoß,Aerochorro,Aerochorro,Aerocolpo,에어로블라스트,Aeroblast,氣旋攻擊,气旋攻击,Qìxuán Gōngjí / Heisyùhn Gūnggīk
+cotton-spore,Cotton Spore,わたほうし,わたほうし,Wata Hōshi,Spore Coton,Baumwollsaat,Esporagodón,Esporagodón,Cottonspora,목화포자,Mokhwa Poja,棉孢子,棉孢子,Mián Bāozǐ / Mìhn Bāaují
+reversal,Reversal,きしかいせい,きしかいせい,Kishi Kaisei,Contre,Gegenschlag,Inversión,Inversión,Contropiede,기사회생,Gisa Hoesaeng,起死回生,起死回生,Qǐsǐhuíshēng / Héiséiwùihsāng
+spite,Spite,うらみ,うらみ,Urami,Dépit,Groll,Rencor,Rencor,Dispetto,원한,Weonhan,怨恨,怨恨,Yuànhèn / Yunhahn
+powder-snow,Powder Snow,こなゆき,こなゆき,Konayuki,Poudreuse,Pulverschnee,Nieve Polvo,Polvo de Nieve,Polneve,눈싸라기,Nun Ssaragi,細雪,细雪,Xìxuě / Saisyut
+protect,Protect,まもる,まもる,Mamoru,Abri,Schutzschild,Protección,Protección,Protezione,방어,Bang'eo,守住,守住,Shǒuzhù / Sáujyuh
+mach-punch,Mach Punch,マッハパンチ,マッハパンチ,Mahha Panchi,Mach Punch,Tempohieb,Ultrapuño,Superpuño,Pugnorapido,마하펀치,Mach Punch,音速拳,音速拳,Yīnsù Quán / Yāmchūk Kyùhn
+scary-face,Scary Face,こわいかお,こわいかお,Kowai Kao,Grimace,Grimasse,Cara Susto,Cara Aterradora,Visotruce,겁나는얼굴,Geomnaneun Eolgul,鬼面,鬼面,Guǐmiàn / Gwáimihn
+feint-attack,Feint Attack,だましうち,だましうち,Damashiuchi,Feinte,Finte,Finta,Ataque Finta,Finta,속여때리기,Sogyeo Ttaerigi,出奇一擊,出奇一击,Chūqí Yījī / Chēutkèih Yātgīk
+sweet-kiss,Sweet Kiss,てんしのキッス,てんしのキッス,Tenshi no Kissu,Doux Baiser,Bitterkuss,Beso Dulce,Beso Dulce,Dolcebacio,천사의키스,Cheonsa-ui Kiss,天使之吻,天使之吻,Tiānshǐ-zhī Wěn / Tīnsi-jī Máhn
+belly-drum,Belly Drum,はらだいこ,はらだいこ,Haradaiko,Cognobidon,Bauchtrommel,Tambor,Tambor,Panciamburo,배북,Baebuk,腹鼓,腹鼓,Fùgǔ / Fūkgú
+sludge-bomb,Sludge Bomb,ヘドロばくだん,ヘドロばくだん,Hedoro Bakudan,Bombe Beurk,Matschbombe,Bomba Lodo,Bomba Lodo,Fangobomba,오물폭탄,Omul Poktan,污泥炸彈,污泥炸弹,Wūní Zhàdàn / Wūnàih Jadáan
+mud-slap,Mud-Slap,どろかけ,どろかけ,Dorokake,Coud’Boue,Lehmschelle,Bofetón Lodo,Bofetón Lodo,Fangosberla,진흙뿌리기,Jinheuk Ppurigi,擲泥,掷泥,Zhìní / Jaahknàih
+octazooka,Octazooka,オクタンほう,オクタンほう,Okutank Hō,Octazooka,Octazooka,Pulpocañón,Octazuca,Octazooka,대포무노포,Daepomuno Po,章魚桶炮,章鱼桶炮,Zhāngyútǒng Pào / Jēungyùhtúng Paau
+spikes,Spikes,まきびし,まきびし,Makibishi,Picots,Stachler,Púas,Púas,Punte,압정뿌리기,Apjeong Ppurigi,撒菱,撒菱,Sālíng / Saatlìhng
+zap-cannon,Zap Cannon,でんじほう,でんじほう,Denjihō,Élecanon,Blitzkanone,Electrocañón,Electrocañón,Falcecannone,전자포,Jeonjapo,電磁炮,电磁炮,Diàncí Pào / Dihnchìh Paau
+foresight,Foresight,みやぶる,みやぶる,Miyaburu,Clairvoyance,Scharfblick,Profecía,Visión,Preveggenza,꿰뚫어보기,Kkwettul'eobogi,識破,识破,Shìpò / Sīkpo
+destiny-bond,Destiny Bond,みちづれ,みちづれ,Michizure,Lien du Destin,Abgangsbund,Mismo Destino,Lazo del Destino,Destinobbligato,길동무,Gil Dongmu,同命,同命,Tóngmìng / Tùhngmehng
+perish-song,Perish Song,ほろびのうた,ほろびのうた,Horobi no Uta,Requiem,Abgesang,Canto Mortal,Canto Mortal,Ultimocanto,멸망의노래,Myeolmang-yi Norae,滅亡之歌,灭亡之歌,Mièwáng-zhī Gē / Mihtmòhng-jī Gō
+icy-wind,Icy Wind,こごえるかぜ,こごえるかぜ,Kogoeru Kaze,Vent Glace,Eissturm,Viento Hielo,Viento Helado,Ventogelato,얼어붙은바람,Eolda Baram,冰凍之風,冰冻之风,Bīngdòng-zhī Fēng / Bīngdung-jī Fūng
+detect,Detect,みきり,みきり,Mikiri,Détection,Scanner,Detección,Detección,Individua,판별,Panbyeol,看穿,看穿,Kànchuān / Honchyūn
+bone-rush,Bone Rush,ボーンラッシュ,ボーンラッシュ,Bōn Rasshu,Charge Os,Knochenhatz,Ataque Óseo,Hueso Veloz,Ossoraffica,본러시,Bone Rush,骨棒亂打,骨棒乱打,Gǔbàng Luàndǎ / Gwātpáahng Lyuhndá
+lock-on,Lock-On,ロックオン,ロックオン,Rokku On,Verrouillage,Zielschuss,Fijar Blanco,Fijar Blanco,Localizza,록온,Lock On,鎖定,锁定,Suǒdìng / Sódihng
+outrage,Outrage,げきりん,げきりん,Gekirin,Colère,Wutanfall,Enfado,Enfado,Oltraggio,역린,Yeokrin,逆鱗,逆鳞,Nìlín / Yihklèuhn
+sandstorm,Sandstorm,すなあらし,すなあらし,Suna Arashi,Tempête de Sable,Sandsturm,Tormenta de Arena,Tormenta de Arena,Terrempesta,모래바람,Morae Baram,沙暴,沙暴,Shābào / Sābouh
+giga-drain,Giga Drain,ギガドレイン,ギガドレイン,Giga Dorein,Giga-Sangsue,Gigasauger,Gigadrenado,Gigadrenado,Gigassorbimento,기가드레인,Giga Drain,終極吸取,终极吸取,Zhōngjí Xīqǔ / Jūnggihk Kāpchéui
+endure,Endure,こらえる,こらえる,Koraeru,Ténacité,Ausdauer,Aguante,Aguante,Resistenza,버티기,Beotigi,挺住,挺住,Tǐngzhù / Tíhngjyuh
+charm,Charm,あまえる,あまえる,Amaeru,Charme,Charme,Encanto,Encanto,Fascino,애교부리기,Aegyo Burigi,撒嬌,撒娇,Sājiāo / Saatgīu
+rollout,Rollout,ころがる,ころがる,Korogaru,Roulade,Walzer,Rodar,Rodada,Rotolamento,구르기,Gureugi,滾動,滚动,Gǔndòng / Gwánduhng
+false-swipe,False Swipe,みねうち,みねうち,Mineuchi,Faux-Chage,Trugschlag,Falso Tortazo,Falsa Bofetada,Falsofinale,칼등치기,Kaldeungchigi,點到為止,点到为止,Diǎn-dào Wéizhǐ / Dím-dou Wàihjí
+swagger,Swagger,いばる,いばる,Ibaru,Vantardise,Angeberei,Fanfarronear,Fanfarronear,Bullo,뽐내기,Ppomnaegi,虛張聲勢,虚张声势,Xūzhāngshēngshì / Hēuijēungsīngsai
+milk-drink,Milk Drink,ミルクのみ,ミルクのみ,Miruku Nomi,Lait à Boire,Milchgetränk,Batido,Licuado,Buonlatte,우유마시기,Uyu Masigi,喝牛奶,喝牛奶,Hē Niúnǎi / Hot Ngàuhnáaih
+spark,Spark,スパーク,スパーク,Supāku,Étincelle,Funkensprung,Chispa,Chispa,Scintilla,스파크,Spark,電光,电光,Diànguāng / Dihngwōng
+fury-cutter,Fury Cutter,れんぞくぎり,れんぞくぎり,Renzoku Giri,Taillade,Zornklinge,Corte Furia,Corte Furia,Tagliofuria,연속자르기,Yeonsok Jareugi,連斬,连斩,Liánzhǎn / Lìhnjáam
+steel-wing,Steel Wing,はがねのつばさ,はがねのつばさ,Hagane no Tsubasa,Ailes d’Acier,Stahlflügel,Ala de Acero,Ala de Acero,Alacciaio,강철날개,Gangcheol Nalgae,鋼翼,钢翼,Gāngyì / Gongyihk
+mean-look,Mean Look,くろいまなざし,くろいまなざし,Kuroi Manazashi,Regard Noir,Horrorblick,Mal de Ojo,Mal de Ojo,Malosguardo,검은눈빛,Geom-eun Nunbit,黑色目光,黑色目光,Hēisè Mùguāng / Hāksīk Muhkgwōng
+attract,Attract,メロメロ,メロメロ,Meromero,Attraction,Anziehung,Atracción,Atracción,Attrazione,헤롱헤롱,Herongherong,迷人,迷人,Mírén / Màihyàhn
+sleep-talk,Sleep Talk,ねごと,ねごと,Negoto,Blabla Dodo,Schlafrede,Sonámbulo,Sonámbulo,Sonnolalia,잠꼬대,Jamkkodae,夢話,梦话,Mènghuà / Muhngwah
+heal-bell,Heal Bell,いやしのすず,いやしのすず,Iyashi no Suzu,Glas de Soin,Vitalglocke,Cascabel Cura,Cascabel Sanador,Rintoccasana,치료방울,Chiryo Bang'ul,治癒鈴聲,治愈铃声,Zhìyù Língshēng / Jihyuh Lìhngsēng
+return,Return,おんがえし,おんがえし,Ongaeshi,Retour,Rückkehr,Retribución,Retribución,Ritorno,은혜갚기,Eunhye Gapgi,報恩,报恩,Bào'ēn / Bou'yān
+present,Present,プレゼント,プレゼント,Purezento,Cadeau,Geschenk,Presente,Obsequio,Regalino,프레젠트,Present,禮物,礼物,Lǐwù / Láihmaht
+frustration,Frustration,やつあたり,やつあたり,Yatsuatari,Frustration,Frustration,Frustración,Frustración,Frustrazione,화풀이,Hwapul'i,遷怒,迁怒,Qiānnù / Chīnnouh
+safeguard,Safeguard,しんぴのまもり,しんぴのまもり,Shinpi no Mamori,Rune Protect,Bodyguard,Velo Sagrado,Velo Sagrado,Salvaguardia,신비의부적,Sinbiui Bujeok,神秘守護,神秘守护,Shénmì Shǒuhù / Sàhnbei Sáuwuh
+pain-split,Pain Split,いたみわけ,いたみわけ,Itamiwake,Balance,Leidteiler,Divide Dolor,Dividedolor,Malcomune,아픔나누기,Apeum Nanugi,分擔痛楚,分担痛楚,Fēndān Tòngchǔ / Fāndāam Tungchó
+sacred-fire,Sacred Fire,せいなるほのお,せいなるほのお,Seinaru Honō,Feu Sacré,Läuterfeuer,Fuego Sagrado,Fuego Sagrado,Magifuoco,성스러운불꽃,Seongseureoun Bulkkot,神聖之火,神圣之火,Shénshèng-zhī Huǒ / Sàhnsing-jī Fó
+magnitude,Magnitude,マグニチュード,マグニチュード,Magunichūdo,Ampleur,Intensität,Magnitud,Magnitud,Magnitudo,매그니튜드,Magnitude,震級,震级,Zhènjí / Jankāp
+dynamic-punch,Dynamic Punch,ばくれつパンチ,ばくれつパンチ,Bakuretsu Panchi,Dynamo-Poing,Wuchtschlag,Puño Dinámico,Puño Dinámico,Dinamipugno,폭발펀치,Pokbal Punch,爆裂拳,爆裂拳,Bàoliè Quán / Baauliht Kyùhn
+megahorn,Megahorn,メガホーン,メガホーン,Megahōn,Mégacorne,Vielender,Megacuerno,Megacuerno,Megacorno,메가혼,Megapon,超級角擊,超级角击,Chāojí Jiǎojī / Chīukāp Gokgīk
+dragon-breath,Dragon Breath,りゅうのいぶき,りゅうのいぶき,Ryū no Ibuki,Draco-Souffle,Feuerodem,Dragoaliento,Aliento Dragón,Dragospiro,용의숨결,Yong-ui Sumgyeol,龍息,龙息,Lóngxī / Lùhngsīk
+baton-pass,Baton Pass,バトンタッチ,バトンタッチ,Baton Tacchi,Relais,Stafette,Relevo,Relevo,Staffetta,배턴터치,Baton Touch,接棒,接棒,Jiēbàng / Jippáahng
+encore,Encore,アンコール,アンコール,Ankōru,Encore,Zugabe,Otra Vez,Otra Vez,Ripeti,앙코르,Encore,再來一次,再来一次,Zàiláiyīcì / Joilòihyātchi
+pursuit,Pursuit,おいうち,おいうち,Oiuchi,Poursuite,Verfolgung,Persecución,Persecución,Inseguimento,따라가때리기,Ttaragattaerigi,追打,追打,Zhuīdǎ / Jēuidá
+rapid-spin,Rapid Spin,こうそくスピン,こうそくスピン,Kōsoku Supin,Tour Rapide,Turbodreher,Giro Rápido,Giro Rápido,Rapigiro,고속스핀,Gosok Spin,高速旋轉,高速旋转,Gāosù Xuánzhuǎn / Gōuchūk Syùhnjyún
+sweet-scent,Sweet Scent,あまいかおり,あまいかおり,Amai Kaori,Doux Parfum,Lockduft,Dulce Aroma,Dulce Aroma,Profumino,달콤한향기,Dalkomhan Hyanggi,甜甜香氣,甜甜香气,Tiántián Xiāngqì / Tìhmtìhm Hēunghei
+iron-tail,Iron Tail,アイアンテール,アイアンテール,Aian Tēru,Queue de Fer,Eisenschweif,Cola Férrea,Cola de Hierro,Codacciaio,아이언테일,Iron Tail,鐵尾,铁尾,Tiěyǐ/Tiěwěi / Titméih
+metal-claw,Metal Claw,メタルクロー,メタルクロー,Metaru Kurō,Griffe Acier,Metallklaue,Garra Metal,Garra de Metal,Ferrartigli,메탈클로,Metal Claw,金屬爪,金属爪,Jīnshǔ Zhuǎ / Gāmsuhk Jáau
+vital-throw,Vital Throw,あてみなげ,あてみなげ,Ateminage,Corps Perdu,Überwurf,Llave Vital,Llave Vital,Vitaltiro,받아던지기,Bat'a Deonjigi,借力摔,借力摔,Jièlì Shuāi / Jelihk Sēui
+morning-sun,Morning Sun,あさのひざし,あさのひざし,Asa no Hizashi,Aurore,Morgengrauen,Sol Matinal,Sol Matutino,Mattindoro,아침햇살,Achim Haetsal,晨光,晨光,Chénguāng / Sàhngwōng
+synthesis,Synthesis,こうごうせい,こうごうせい,Kōgōsei,Synthèse,Synthese,Fotosíntesis,Fotosíntesis,Sintesi,광합성,Gwanghapseong,光合作用,光合作用,Guānghézuòyòng / Gwōnghahpjokyuhng
+moonlight,Moonlight,つきのひかり,つきのひかり,Tsuki no Hikari,Rayon Lune,Mondschein,Luz Lunar,Luz Lunar,Lucelunare,달빛,Dal-ui Bulbit,月光,月光,Yuèguāng / Yuhtgwōng
+hidden-power,Hidden Power,めざめるパワー,めざめるパワー,Mezameru Pawā,Puissance Cachée,Kraftreserve,Poder Oculto,Poder Oculto,Introforza,잠재파워,Jamjae Power,覺醒力量,觉醒力量,Juéxǐng Lìliàng / Goksíng Lihkleuhng
+cross-chop,Cross Chop,クロスチョップ,クロスチョップ,Kurosu Choppu,Coup Croix,Kreuzhieb,Tajo Cruzado,Golpe Cruzado,Incrocolpo,크로스촙,Cross Chop,十字劈,十字劈,Shízì Pī / Sahpjih Pek
+twister,Twister,たつまき,たつまき,Tatsumaki,Ouragan,Windhose,Ciclón,Tornado,Tornado,회오리,Hoe'ori,龍捲風,龙卷风,Lóngjuǎnfēng / Lùhnggyúnfūng
+rain-dance,Rain Dance,あまごい,あまごい,Amagoi,Danse Pluie,Regentanz,Danza Lluvia,Danza de Lluvia,Pioggiadanza,비바라기,Bibaragi,求雨,求雨,Qiúyǔ / Kàuhyúh
+sunny-day,Sunny Day,にほんばれ,にほんばれ,Nihonbare,Zénith,Sonnentag,Día Soleado,Día Soleado,Giornodisole,쾌청,Kwaecheong,大晴天,大晴天,Dà Qíngtiān / Daaih Chìhngtīn
+crunch,Crunch,かみくだく,かみくだく,Kamikudaku,Mâchouille,Knirscher,Triturar,Triturar,Sgranocchio,깨물어부수기,Kkaemul'eobusugi,咬碎,咬碎,Yǎosuì / Ngáauhseui
+mirror-coat,Mirror Coat,ミラーコート,ミラーコート,Mirā Kōto,Voile Miroir,Spiegelcape,Manto Espejo,Escudo Espejo,Specchiovelo,미러코트,Mirror Coat,鏡面反射,镜面反射,Jìngmiàn Fǎnshè / Gengmihn Fáanseh
+psych-up,Psych Up,じこあんじ,じこあんじ,Jikoanji,Boost,Psycho-Plus,Autosugestión,Autosugestión,Psicamisù,자기암시,Jagi Amsi,自我暗示,自我暗示,Zìwǒ Ànshì / Jihngóh Amsih
+extreme-speed,Extreme Speed,しんそく,しんそく,Shinsoku,Vitesse Extrême,Turbotempo,Velocidad Extrema,Velocidad Extrema,Extrarapido,신속,Sinsok,神速,神速,Shénsù / Sàhnchūk
+ancient-power,Ancient Power,げんしのちから,げんしのちから,Genshi no Chikara,Pouvoir Antique,Antik-Kraft,Poder Pasado,Poder Antiguo,Forzantica,원시의힘,Wonsi-ui Him,原始之力,原始之力,Yuánshǐ-zhī Lì / Yùhnchí-jī Lihk
+shadow-ball,Shadow Ball,シャドーボール,シャドーボール,Shadō Bōru,Ball’Ombre,Spukball,Bola Sombra,Bola Sombra,Palla Ombra,섀도볼,Shadow Ball,暗影球,暗影球,Ànyǐng Qiú / Amyíng Kàuh
+future-sight,Future Sight,みらいよち,みらいよち,Mirai Yochi,Prescience,Seher,Premonición,Premonición,Divinazione,미래예지,Mirae Yeoji,預知未來,预知未来,Yùzhī Wèilái / Yuhjī Meihlòih
+rock-smash,Rock Smash,いわくだき,いわくだき,Iwakudaki,Éclate-Roc,Zertrümmerer,Golpe Roca,Golpe Roca,Spaccaroccia,바위깨기,Bawi Kkaegi,碎岩,碎岩,Suìyán / Seuingàahm
+whirlpool,Whirlpool,うずしお,うずしお,Uzushio,Siphon,Whirlpool,Torbellino,Remolino,Mulinello,바다회오리,Bada Hoe'ori,潮旋,潮旋,Cháoxuán / Chìuhsyùhn
+beat-up,Beat Up,ふくろだたき,ふくろだたき,Fukurodataki,Baston,Prügler,Paliza,Paliza,Picchiaduro,집단구타,Jipdan Guta,圍攻,围攻,Wéigōng / Wàihgūng
+fake-out,Fake Out,ねこだまし,ねこだまし,Nekodamashi,Bluff,Mogelhieb,Sorpresa,Sorpresa,Bruciapelo,속이기,Sok'ida,擊掌奇襲,击掌奇袭,Jīzhǎng Qíxí / Gīkjéung Kèihjaahp
+uproar,Uproar,さわぐ,さわぐ,Sawagu,Brouhaha,Aufruhr,Alboroto,Alboroto,Baraonda,소란피기,Soranpigi,吵鬧,吵闹,Chǎonào / Cháaunaauh
+stockpile,Stockpile,たくわえる,たくわえる,Takuwaeru,Stockage,Horter,Reserva,Reserva,Accumulo,비축하기,Bichukhagi,蓄力,蓄力,Xùlì / Chūklihk
+spit-up,Spit Up,はきだす,はきだす,Hakidasu,Relâche,Entfessler,Escupir,Escupida,Sfoghenergia,토해내기,Tohaenaegi,噴出,喷出,Pēnchū / Panchēut
+swallow,Swallow,のみこむ,のみこむ,Nomikomu,Avale,Verzehrer,Tragar,Tragar,Introenergia,꿀꺽,Kkulkkeok,吞下,吞下,Tūnxià / Tānhah
+heat-wave,Heat Wave,ねっぷう,ねっぷう,Neppū,Canicule,Hitzewelle,Onda Ígnea,Onda Ígnea,Ondacalda,열풍,Yeolpung,熱風,热风,Rèfēng / Yihtfūng
+hail,Hail,あられ,あられ,Arare,Grêle,Hagelsturm,Granizo,Granizo,Grandine,싸라기눈,Ssaragi Nun,冰雹,冰雹,Bīngbáo / Bīngbohk
+torment,Torment,いちゃもん,いちゃもん,Ichamon,Tourmente,Folterknecht,Tormento,Tormento,Attaccalite,트집,Teujip,無理取鬧,无理取闹,Wúlǐqǔnào / Mòuhléihchéuinaauh
+flatter,Flatter,おだてる,おだてる,Odateru,Flatterie,Schmeichler,Camelo,Halago,Adulazione,부추기기,Buchugigi,吹捧,吹捧,Chuīpěng / Chēuipúng
+will-o-wisp,Will-O-Wisp,おにび,おにび,Onibi,Feu Follet,Irrlicht,Fuego Fatuo,Fuego Fatuo,Fuocofatuo,도깨비불,Dokkaebi Bul,鬼火,鬼火,Guǐhuǒ / Gwáifó
+memento,Memento,おきみやげ,おきみやげ,Okimiyage,Souvenir,Memento-Mori,Legado,Recuerdo,Memento,추억의선물,Chueok-yi Seonmul,臨別禮物,临别礼物,Línbié Lǐwù / Làhmbiht Láihmaht
+facade,Facade,からげんき,からげんき,Karagenki,Façade,Fassade,Fachada,Fachada,Facciata,객기,Gaekgi,硬撐,硬撑,Yìngchēng / Ngaahngchāang
+focus-punch,Focus Punch,きあいパンチ,きあいパンチ,Kiai Panchi,Mitra-Poing,Power-Punch,Puño Certero,Puño Centrado,Centripugno,힘껏펀치,Himkkeot Punch,真氣拳,真气拳,Zhēnqì Quán / Jānhei Kyùhn
+smelling-salts,Smelling Salts,きつけ,きつけ,Kitsuke,Stimulant,Riechsalz,Estímulo,Estímulo,Maniereforti,정신차리기,Jeongsin Charigi,清醒,清醒,Qīngxǐng / Chīngsíng
+follow-me,Follow Me,このゆびとまれ,このゆびとまれ,Kono Yubi Tomare,Par Ici,Spotlight,Señuelo,Señuelo,Sonoqui,날따름,Nalttareum,看我嘛,看我嘛,Kànwǒ Ma / Honngóh Ma
+nature-power,Nature Power,しぜんのちから,しぜんのちから,Shizen no Chikara,Force Nature,Natur-Kraft,Adaptación,Adaptación,Naturforza,자연의힘,Jayeon-yi Him,自然之力,自然之力,Zìrán-zhī Lì / Jihyìhn-jī Lihk
+charge,Charge,じゅうでん,じゅうでん,Jūden,Chargeur,Ladevorgang,Carga,Carga,Sottocarica,충전,Chungjeon,充電,充电,Chōngdiàn / Chūngdihn
+taunt,Taunt,ちょうはつ,ちょうはつ,Chōhatsu,Provoc,Verhöhner,Mofa,Provocación,Provocazione,도발,Dobal,挑釁,挑衅,Tiǎoxìn / Tīuyahn
+helping-hand,Helping Hand,てだすけ,てだすけ,Tedasuke,Coup d’Main,Rechte Hand,Refuerzo,Refuerzos,Altruismo,도우미,Doumi,幫助,帮助,Bāngzhù / Bōngjoh
+trick,Trick,トリック,トリック,Torikku,Tour de Magie,Trickbetrug,Truco,Truco,Raggiro,트릭,Trick,戲法,戏法,Xìfǎ / Heifaat
+role-play,Role Play,なりきり,なりきり,Narikiri,Imitation,Rollenspiel,Imitación,Imitación,Giocodiruolo,역할,Yeokhal,扮演,扮演,Bànyǎn / Baahnyín
+wish,Wish,ねがいごと,ねがいごと,Negaigoto,Vœu,Wunschtraum,Deseo,Deseo,Desiderio,희망사항,Hyimang Sahang,祈願,祈愿,Qíyuàn / Kèihyuhn
+assist,Assist,ねこのて,ねこのて,Neko no Te,Assistance,Zuschuss,Ayuda,Ayuda,Assistente,조수,Josu,借助,借助,Jièzhù / Jejoh
+ingrain,Ingrain,ねをはる,ねをはる,Ne o Haru,Racines,Verwurzler,Arraigo,Arraigo,Radicamento,뿌리박기,Ppuri Bakgi,扎根,扎根,Zhágēn / Jaatgān
+superpower,Superpower,ばかぢから,ばかぢから,Bakajikara,Surpuissance,Kraftkoloss,Fuerza Bruta,Fuerza Bruta,Troppoforte,엄청난힘,Eomcheongnan Him,蠻力,蛮力,Mánlì / Màahnlihk
+magic-coat,Magic Coat,マジックコート,マジックコート,Majikku Kōto,Reflet Magik,Magiemantel,Capa Mágica,Capa Mágica,Magivelo,매직코트,Magic Coat,魔法反射,魔法反射,Mófǎ Fǎnshè / Mōfaat Fáanseh
+recycle,Recycle,リサイクル,リサイクル,Risaikuru,Recyclage,Aufbereitung,Reciclaje,Reciclaje,Riciclo,리사이클,Recycle,回收利用,回收利用,Huíshōu Lìyòng / Wùihsāu Leihyuhng
+revenge,Revenge,リベンジ,リベンジ,Ribenji,Vendetta,Vergeltung,Desquite,Desquite,Vendetta,리벤지,Revenge,報復,报复,Bàofù / Boufuhk
+brick-break,Brick Break,かわらわり,かわらわり,Kawarawari,Casse-Brique,Durchbruch,Demolición,Karatazo,Breccia,깨뜨리다,Kkaeteurida,劈瓦,劈瓦,Pīwǎ / Pekngáh
+yawn,Yawn,あくび,あくび,Akubi,Bâillement,Gähner,Bostezo,Bostezo,Sbadiglio,하품,Hapum,哈欠,哈欠,Hāqian / Hāhim
+knock-off,Knock Off,はたきおとす,はたきおとす,Hataki Otosu,Sabotage,Abschlag,Desarme,Desarme,Privazione,탁쳐서떨구기,Takchyeoseo Tteolgugi,拍落,拍落,Pāiluò / Paaklohk
+endeavor,Endeavor,がむしゃら,がむしゃら,Gamushara,Effort,Notsituation,Esfuerzo,Esfuerzo,Rimonta,죽기살기,Jukgisalgi,蠻幹,蛮干,Mángàn / Màahngon
+eruption,Eruption,ふんか,ふんか,Funka,Éruption,Eruption,Estallido,Estallido,Eruzione,분화,Bunhwa,噴火,喷火,Pēnhuǒ / Panfó
+skill-swap,Skill Swap,スキルスワップ,スキルスワップ,Sukiru Suwappu,Échange,Fähigkeitstausch,Intercambio,Intercambio,Baratto,스킬스왑,Skill Swap,特性互換,特性互换,Tèxìng Hùhuàn / Dahksing Wuhwuhn
+imprison,Imprison,ふういん,ふういん,Fūin,Possessif,Begrenzer,Sellar,Sellar,Esclusiva,봉인,Bong'in,封印,封印,Fēngyìn / Fūngyan
+refresh,Refresh,リフレッシュ,リフレッシュ,Rifuresshu,Régénération,Heilung,Alivio,Alivio,Rinfrescata,리프레시,Refresh,煥然一新,焕然一新,Huànrányīxīn / Wuhnyìhnyātsān
+grudge,Grudge,おんねん,おんねん,Onnen,Rancune,Nachspiel,Rabia,Rabia,Rancore,원념,Wonnyeom,怨念,怨念,Yuànniàn / Yunnihm
+snatch,Snatch,よこどり,よこどり,Yokodori,Saisie,Übernahme,Robo,Robo,Scippo,가로채기,Garochaem,搶奪,抢夺,Qiǎngduó / Chéungdyuht
+secret-power,Secret Power,ひみつのちから,ひみつのちから,Himitsu no Chikara,Force Cachée,Geheimpower,Daño Secreto,Poder Secreto,Forzasegreta,비밀의힘,Bimil-yi Him,秘密之力,秘密之力,Mìmì-zhī Lì / Beimaht-jī Lihk
+dive,Dive,ダイビング,ダイビング,Daibingu,Plongée,Taucher,Buceo,Buceo,Sub,다이빙,Diving,潛水,潜水,Qiánshuǐ / Chìhmséui
+arm-thrust,Arm Thrust,つっぱり,つっぱり,Tsuppari,Cogne,Armstoß,Empujón,Empujón,Sberletese,손바닥치기,Sonbadak Chigi,猛推,猛推,Měngtuī / Máahngtēui
+camouflage,Camouflage,ほごしょく,ほごしょく,Hogoshoku,Camouflage,Tarnung,Camuflaje,Camuflaje,Camuffamento,보호색,Bohosaek,保護色,保护色,Bǎohù Sè / Bóuwuh Sīk
+tail-glow,Tail Glow,ほたるび,ほたるび,Hotarubi,Lumi-Queue,Schweifglanz,Luminicola,Luminicola,Codadiluce,반딧불,Banditbul,螢火,萤火,Yínghuǒ / Yìhngfó
+luster-purge,Luster Purge,ラスターパージ,ラスターパージ,Rasutā Pāji,Lumi-Éclat,Scheinwerfer,Resplandor,Resplandor,Abbagliante,러스터퍼지,Luster Purge,潔淨光芒,洁净光芒,Jiéjìng Guāngmáng / Gitjihng Gwōngmòhng
+mist-ball,Mist Ball,ミストボール,ミストボール,Misuto Bōru,Ball’Brume,Nebelball,Bola Neblina,Bola Neblina,Foschisfera,미스트볼,Mist Ball,薄霧球,薄雾球,Bówù Qiú / Bohkmouh Kàuh
+feather-dance,Feather Dance,フェザーダンス,フェザーダンス,Fezā Dansu,Danse Plumes,Daunenreigen,Danza Pluma,Danza de Plumas,Danzadipiume,깃털댄스,Git'teol Dance,羽毛舞,羽毛舞,Yǔmáo Wǔ / Yúhmòuh Móuh
+teeter-dance,Teeter Dance,フラフラダンス,フラフラダンス,Furafura Dansu,Danse Folle,Taumeltanz,Danza Caos,Danza del Caos,Strampadanza,흔들흔들댄스,Heundeulheundeul Dance,搖晃舞,摇晃舞,Yáohuàng Wǔ / Yìuhfóng Móuh
+blaze-kick,Blaze Kick,ブレイズキック,ブレイズキック,Bureizu Kikku,Pied Brûleur,Feuerfeger,Patada Ígnea,Patada Ígnea,Calciardente,블레이즈킥,Blaze Kick,火焰踢,火焰踢,Huǒyàn Tī / Fóyihm Tek
+mud-sport,Mud Sport,どろあそび,どろあそび,Doro Asobi,Lance-Boue,Lehmsuhler,Chapoteo Lodo,Chapoteo de Lodo,Fangata,흙놀이,Heulk Nol-i,玩泥巴,玩泥巴,Wán Níbā / Wáan Nàihbā
+ice-ball,Ice Ball,アイスボール,アイスボール,Aisu Bōru,Ball’Glace,Frostbeule,Bola Hielo,Bola Hielo,Palla Gelo,아이스볼,Ice Ball,冰球,冰球,Bīngqiú / Bīngkàuh
+needle-arm,Needle Arm,ニードルアーム,ニードルアーム,Nīdoru Āmu,Poing Dard,Nietenranke,Brazo Pincho,Brazo Aguja,Pugnospine,바늘팔,Bineul Pal,尖刺臂,尖刺臂,Jiāncì Bì / Jīmchi Bei
+slack-off,Slack Off,なまける,なまける,Namakeru,Paresse,Tagedieb,Relajo,Relajar,Pigro,게으름피우기,Taemanham,偷懶,偷懒,Tōulǎn / Tāuláahn
+hyper-voice,Hyper Voice,ハイパーボイス,ハイパーボイス,Haipā Boisu,Mégaphone,Schallwelle,Vozarrón,Hipervoz,Granvoce,하이퍼보이스,Hyper Voice,巨聲,巨声,Jùshēng / Geuihsīng
+poison-fang,Poison Fang,どくどくのキバ,どくどくのキバ,Dokudoku no Kiba,Crochet Venin,Giftzahn,Colmillo Veneno,Colmillo Veneno,Velenodenti,맹독엄니,Dok Eomni,劇毒牙,剧毒牙,Jùdú Yá / Kehkduhk Ngàh
+crush-claw,Crush Claw,ブレイククロー,ブレイククロー,Bureiku Kurō,Éclate Griffe,Zermalmklaue,Garra Brutal,Garra Brutal,Tritartigli,브레이크클로,Break Claw,撕裂爪,撕裂爪,Sīliè Zhuǎ / Sīliht Jáau
+blast-burn,Blast Burn,ブラストバーン,ブラストバーン,Burasuto Bān,Rafale Feu,Lohekanonade,Anillo Ígneo,Anillo de Fuego,Incendio,블라스트번,Blast Burn,爆炸烈焰,爆炸烈焰,Bàozhà Lièyàn / Baauja Lihtyihm
+hydro-cannon,Hydro Cannon,ハイドロカノン,ハイドロカノン,Haidoro Kyanon,Hydroblast,Aquahaubitze,Hidrocañón,Hidrocañón,Idrocannone,하이드로캐논,Hydrocannon,加農水炮,加农水炮,Jiānóng Shuǐpào / Gānùhng Séuipaau
+meteor-mash,Meteor Mash,コメットパンチ,コメットパンチ,Kometto Panchi,Poing Météore,Sternenhieb,Puño Meteoro,Puño Meteoro,Meteorpugno,코멧펀치,Comet Punch,彗星拳,彗星拳,Huìxīng Quán / Waihsīng Kyùhn
+astonish,Astonish,おどろかす,おどろかす,Odorokasu,Étonnement,Erstauner,Impresionar,Impresión,Sgomento,놀래키기,Nollaekigi,驚嚇,惊吓,Jīngxià / Gēnghaak
+weather-ball,Weather Ball,ウェザーボール,ウェザーボール,Uezā Bōru,Ball’Météo,Meteorologe,Meteorobola,Meteorobola,Palla Clima,웨더볼,Weather Ball,氣象球,气象球,Qìxiàng Qiú / Heijeuhng Kàuh
+aromatherapy,Aromatherapy,アロマセラピー,アロマセラピー,Aromaserapī,Aromathérapie,Aromakur,Aromaterapia,Aromaterapia,Aromaterapia,아로마테라피,Aromatherapy,芳香治療,芳香治疗,Fāngxiāng Zhìliáo / Fōnghēung Jihlìuh
+fake-tears,Fake Tears,うそなき,うそなき,Uso Naki,Croco Larme,Trugträne,Llanto Falso,Llanto Falso,Falselacrime,거짓울음,Geojit Ul'eum,假哭,假哭,Jiǎkū / Gáhūk
+air-cutter,Air Cutter,エアカッター,エアカッター,Ea Kattā,Tranch’Air,Windschnitt,Aire Afilado,Aire Cortante,Aerasoio,에어커터,Air Cutter,空氣利刃,空气利刃,Kōngqì Lìrèn / Hūnghei Leihyahn
+overheat,Overheat,オーバーヒート,オーバーヒート,Ōbāhīto,Surchauffe,Hitzekoller,Sofoco,Supercalor,Vampata,오버히트,Overheat,過熱,过热,Guòrè / Gwoyiht
+odor-sleuth,Odor Sleuth,かぎわける,かぎわける,Kagiwakeru,Flair,Schnüffler,Rastreo,Rastreo,Segugio,냄새구별,Naemsae Gubyeol,氣味偵測,气味侦测,Qìwèi Zhēncè / Heimeih Jīngchāk
+rock-tomb,Rock Tomb,がんせきふうじ,がんせきふうじ,Ganseki Fūji,Tomberoche,Felsgrab,Tumba Rocas,Tumba de Rocas,Rocciotomba,암석봉인,Amseok Bong'in,岩石封鎖,岩石封锁,Yánshí Fēngsuǒ / Ngàahmsehk Fūngsó
+silver-wind,Silver Wind,ぎんいろのかぜ,ぎんいろのかぜ,Gin'iro no Kaze,Vent Argenté,Silberhauch,Viento Plata,Viento Plateado,Ventargenteo,은빛바람,Eunbit Baram,銀色旋風,银色旋风,Yínsè Xuànfēng / Ngàhnsīk Syùhnfūng
+metal-sound,Metal Sound,きんぞくおん,きんぞくおん,Kinzoku On,Strido-Son,Metallsound,Eco Metálico,Sonido Metálico,Ferrostrido,금속음,Geumsok Eum,金屬音,金属音,Jīnshǔ Yīn / Gāmsuhk Yām
+grass-whistle,Grass Whistle,くさぶえ,くさぶえ,Kusabue,Siffl’Herbe,Grasflöte,Silbato,Silbato de Hoja,Meloderba,풀피리,Pul Piri,草笛,草笛,Cǎodí / Chóudehk
+tickle,Tickle,くすぐる,くすぐる,Kusuguru,Chatouille,Spaßkanone,Cosquillas,Cosquillas,Solletico,간지르기,Ganjireugi,搔癢,挠痒,Náoyǎng / Nàauhyéuhng
+cosmic-power,Cosmic Power,コスモパワー,コスモパワー,Kosumo Pawā,Force Cosmique,Kosmik-Kraft,Masa Cósmica,Masa Cósmica,Cosmoforza,코스믹파워,Cosmic Power,宇宙力量,宇宙力量,Yǔzhòu Lìliàng / Yúhjauh Lihkleuhng
+water-spout,Water Spout,しおふき,しおふき,Shiofuki,Giclédo,Fontränen,Salpicar,Columna de Agua,Zampillo,해수스파우팅,Haesu Spouting,噴水,喷水,Pēnshuǐ / Panséui
+signal-beam,Signal Beam,シグナルビーム,シグナルビーム,Shigunaru Bīmu,Rayon Signal,Ampelleuchte,Rayo Señal,Rayo Señal,Segnoraggio,시그널빔,Signal Beam,信號光束,信号光束,Xìnhào Guāngshù / Seunhouh Gwōngchūk
+shadow-punch,Shadow Punch,シャドーパンチ,シャドーパンチ,Shadō Panchi,Poing Ombre,Finsterfaust,Puño Sombra,Puño Sombra,Pugnodombra,섀도펀치,Shadow Punch,暗影拳,暗影拳,Ànyǐng Quán / Amyíng Kyùhn
+extrasensory,Extrasensory,じんつうりき,じんつうりき,Jintsūriki,Extrasenseur,Sondersensor,Paranormal,Extrasensorial,Extrasenso,신통력,Sintongryeok,神通力,神通力,Shéntōnglì / Sàhntūnglihk
+sky-uppercut,Sky Uppercut,スカイアッパー,スカイアッパー,Sukai Appā,Stratopercut,Himmelhieb,Gancho Alto,Corte Elevado,Stramontante,스카이어퍼,Sky Upper,衝天拳,冲天拳,Chōngtiān Quán / Chūngtīn Kyùhn
+sand-tomb,Sand Tomb,すなじごく,すなじごく,Suna Jigoku,Tourbi-Sable,Sandgrab,Bucle Arena,Tumba de Arena,Sabbiotomba,모래지옥,Morae Jiok,流沙地獄,流沙地狱,Liúshā Dìyù / Làuhsā Deihyuhk
+sheer-cold,Sheer Cold,ぜったいれいど,ぜったいれいど,Zettai Reido,Glaciation,Eiseskälte,Frío Polar,Frío Extremo,Purogelo,절대영도,Jeoldae Yeongdo,絕對零度,绝对零度,Juéduì Língdù / Jyuhtdeui Lìhngdouh
+muddy-water,Muddy Water,だくりゅう,だくりゅう,Dakuryū,Ocroupi,Lehmbrühe,Agua Lodosa,Agua Lodosa,Fanghiglia,탁류,Taklyu,濁流,浊流,Zhuóliú / Juhklàuh
+bullet-seed,Bullet Seed,タネマシンガン,タネマシンガン,Tane Mashin Gan,Balle Graine,Kugelsaat,Semilladora,Bala Semilla,Semitraglia,씨기관총,Gigwanchong,種子機關槍,种子机关枪,Zhǒngzǐ Jīguānqiāng / Júngjí Gēigwāanchēung
+aerial-ace,Aerial Ace,つばめがえし,つばめがえし,Tsubame Gaeshi,Aéropique,Aero-Ass,Golpe Aéreo,As Aéreo,Aeroassalto,제비반환,Jebi Banhwan,燕返,燕返,Yànfǎn / Yinfáan
+icicle-spear,Icicle Spear,つららばり,つららばり,Tsurara Bari,Stalactite,Eisspeer,Carámbano,Lanza de Hielo,Gelolancia,고드름침,Godoreum Chim,冰錐,冰锥,Bīngzhuī / Bīngjēui
+iron-defense,Iron Defense,てっぺき,てっぺき,Teppeki,Mur de Fer,Eisenabwehr,Defensa Férrea,Defensa de Hierro,Ferroscudo,철벽,Cheolbyeok,鐵壁,铁壁,Tiěbì / Titbīk
+block,Block,とおせんぼう,とおせんぼう,Tōsenbō,Barrage,Rückentzug,Bloqueo,Bloqueo,Blocco,블록,Block,擋路,挡路,Dǎnglù / Dónglouh
+howl,Howl,とおぼえ,とおぼえ,Tōboe,Grondement,Jauler,Aullido,Aullido,Gridodilotta,멀리짖기,Meolli Jit'eum,長嚎,长嚎,Chángháo / Chèuhnghòuh
+dragon-claw,Dragon Claw,ドラゴンクロー,ドラゴンクロー,Doragon Kurō,Draco-Griffe,Drachenklaue,Garra Dragón,Garra Dragón,Dragartigli,드래곤클로,Dragon Claw,龍爪,龙爪,Lóngzhuǎ / Lùhngjáau
+frenzy-plant,Frenzy Plant,ハードプラント,ハードプラント,Hādo Puranto,Végé-Attaque,Flora-Statue,Planta Feroz,Planta Feroz,Radicalbero,하드플랜트,Hard Plant,瘋狂植物,疯狂植物,Fēngkuáng Zhíwù / Fūngkòhng Jihkmaht
+bulk-up,Bulk Up,ビルドアップ,ビルドアップ,Birudo Appu,Gonflette,Protzer,Corpulencia,Corpulencia,Granfisico,벌크업,Build-Up,健美,健美,Jiànměi / Gihnméih
+bounce,Bounce,とびはねる,とびはねる,Tobihaneru,Rebond,Sprungfeder,Bote,Rebote,Rimbalzo,뛰어오르기,Ttwieooreuda,彈跳,弹跳,Tántiào / Daahntiu
+mud-shot,Mud Shot,マッドショット,マッドショット,Maddo Shotto,Tir de Boue,Lehmschuss,Disparo Lodo,Disparo de Lodo,Colpodifango,머드샷,Mud Shot,泥巴射擊,泥巴射击,Níbā Shèjí / Nàihbā Sehgīk
+poison-tail,Poison Tail,ポイズンテール,ポイズンテール,Poizun Tēru,Queue-Poison,Giftschweif,Cola Veneno,Cola Venenosa,Velenocoda,포이즌테일,Poison Tail,毒尾,毒尾,Dúyǐ/Dúwěi / Duhkméih
+covet,Covet,ほしがる,ほしがる,Hoshigaru,Implore,Bezirzer,Antojo,Antojo,Supplica,탐내다,Tamnaeda,渴望,渴望,Kěwàng / Hotmohng
+volt-tackle,Volt Tackle,ボルテッカー,ボルテッカー,Borutekkā,Électacle,Volttackle,Placaje Eléctrico,Tacleada de Voltios,Locomovolt,볼트태클,Volt Tackle,伏特攻擊,伏特攻击,Fútè Gōngjí / Fuhkdahk Gūnggīk
+magical-leaf,Magical Leaf,マジカルリーフ,マジカルリーフ,Majikaru Rīfu,Feuille Magik,Zauberblatt,Hoja Mágica,Hojas Mágicas,Fogliamagica,매지컬리프,Magical Leaf,魔法葉,魔法叶,Mófǎ Yè / Mōfaat Yihp
+water-sport,Water Sport,みずあそび,みずあそび,Mizu Asobi,Tourniquet,Nassmacher,Hidrochorro,Chapoteo de Agua,Docciascudo,물놀이,Mul Nol-i,玩水,玩水,Wánshuǐ / Wáanséui
+calm-mind,Calm Mind,めいそう,めいそう,Meisō,Plénitude,Gedankengut,Paz Mental,Paz Mental,Calmamente,명상,Myeongsong,冥想,冥想,Míngxiǎng / Míhngséung
+leaf-blade,Leaf Blade,リーフブレード,リーフブレード,Rīfu Bureido,Lame Feuille,Laubklinge,Hoja Aguda,Hoja Aguda,Fendifoglia,리프블레이드,Leaf Blade,葉刃,叶刃,Yèrèn / Yihpyahn
+dragon-dance,Dragon Dance,りゅうのまい,りゅうのまい,Ryū no Mai,Danse Draco,Drachentanz,Danza Dragón,Danza de Dragón,Dragodanza,용의춤,Yong-yi Chum,龍之舞,龙之舞,Lóng-zhī Wǔ / Lùhng-jī Móuh
+rock-blast,Rock Blast,ロックブラスト,ロックブラスト,Rokku Burasuto,Boule Roc,Felswurf,Pedrada,Pedrada,Cadutamassi,록블라스트,Rock Blast,岩石爆擊,岩石爆击,Yánshí Bàojī / Ngàahmsehk Baaugīk
+shock-wave,Shock Wave,でんげきは,でんげきは,Dengekiha,Onde de Choc,Schockwelle,Onda Voltio,Onda de Choque,Ondashock,전격파,Jeongyeokpa,電擊波,电击波,Diànjí Bō / Dihngīk Bō
+water-pulse,Water Pulse,みずのはどう,みずのはどう,Mizu no Hadō,Vibraqua,Aquawelle,Hidropulso,Pulso de Agua,Idropulsar,물의파동,Mul-ui Padong,水之波動,水之波动,Shuǐ-zhī Bōdòng / Séui-jī Bōduhng
+doom-desire,Doom Desire,はめつのねがい,はめつのねがい,Hametsu no Negai,Vœu Destructeur,Kismetwunsch,Deseo Oculto,Deseo Final,Obbliderio,파멸의소원,Pamyeol-ui Soweon,破滅之願,破灭之愿,Pòmiè-zhī Yuàn / Pomiht-jī Yuhn
+psycho-boost,Psycho Boost,サイコブースト,サイコブースト,Saiko Būsuto,Psycho-Boost,Psyschub,Psicoataque,Psicoimpulso,Psicoslancio,사이코부스트,Psycho Boost,精神突進,精神突进,Jīngshén Tūjìn / Jīngsàhn Dahtjeun
+roost,Roost,はねやすめ,はねやすめ,Hane Yasume,Atterrissage,Ruheort,Respiro,Respiro,Trespolo,날개쉬기,Nalgae Swigi,羽棲,羽栖,Yǔqī / Yúhchāi
+gravity,Gravity,じゅうりょく,じゅうりょく,Jūryoku,Gravité,Erdanziehung,Gravedad,Gravedad,Gravità,중력,Jungryeok,重力,重力,Zhònglì / Chúhnglihk
+miracle-eye,Miracle Eye,ミラクルアイ,ミラクルアイ,Mirakuru Ai,Œil Miracle,Wunderauge,Gran Ojo,Gran Ojo,Miracolvista,미라클아이,Miracle Eye,奇跡之眼,奇迹之眼,Qíjī-zhī Yǎn / Kèihjīk-jī Ngáahn
+wake-up-slap,Wake-Up Slap,めざましビンタ,めざましビンタ,Mezamashi Binta,Réveil Forcé,Weckruf,Espabila,Despabilador,Svegliopacca,잠깨움뺨치기,Jamkkae'um Ppyamchigi,喚醒巴掌,唤醒巴掌,Huànxǐng Bāzhang / Wuhnsíng Bājéung
+hammer-arm,Hammer Arm,アームハンマー,アームハンマー,Āmu Hanmā,Marto-Poing,Hammerarm,Machada,Brazo Martillo,Martelpugno,암해머,Arm Hammer,臂錘,臂锤,Bìchuí / Beichèuih
+gyro-ball,Gyro Ball,ジャイロボール,ジャイロボール,Jairo Bōru,Gyroballe,Gyroball,Giro Bola,Giro Bola,Vortexpalla,자이로볼,Gyroball,陀螺球,陀螺球,Tuóluó Qiú / Tòhlòh Kàuh
+healing-wish,Healing Wish,いやしのねがい,いやしのねがい,Iyashi no Negai,Vœu Soin,Heilopfer,Deseo Cura,Deseo Sanador,Curardore,치유소원,Chiyu Soweon,治癒之願,治愈之愿,Zhìyù-zhī Yuàn / Jihyuh-jī Yuhn
+brine,Brine,しおみず,しおみず,Shiomizu,Saumure,Lake,Salmuera,Agua Salada,Acquadisale,소금물,Sogeummul,鹽水,盐水,Yánshuǐ / Yìhmséui
+natural-gift,Natural Gift,しぜんのめぐみ,しぜんのめぐみ,Shizen no Megumi,Don Naturel,Beerenkräfte,Don Natural,Don Natural,Dononaturale,자연의은혜,Jayeon-yi Eunhae,自然之恩,自然之恩,Zìrán-zhī Ēn / Jihyìhn-jī Yān
+feint,Feint,フェイント,フェイント,Feinto,Ruse,Offenlegung,Amago,Amago,Fintoattacco,페인트,Feint,佯攻,佯攻,Yánggōng / Yèuhnggūng
+pluck,Pluck,ついばむ,ついばむ,Tsuibamu,Picore,Pflücker,Picoteo,Picoteo,Spennata,쪼아대기,Jjoadaegi,啄食,啄食,Zhuóshí / Deuksihk
+tailwind,Tailwind,おいかぜ,おいかぜ,Oikaze,Vent Arrière,Rückenwind,Viento Afín,Viento Afín,Ventoincoda,순풍,Sunpung,順風,顺风,Shùnfēng / Seuhnfūng
+acupressure,Acupressure,つぼをつく,つぼをつく,Tsubo o Tsuku,Acupression,Akupressur,Acupresión,Acupresión,Acupressione,경혈찌르기,Gyeonghyeol Jjireugi,點穴,点穴,Diǎnxuè / Diǎnxué / Dímyuht
+metal-burst,Metal Burst,メタルバースト,メタルバースト,Metaru Bāsuto,Fulmifer,Metallstoß,Represión Metal,Expl. Metálica,Metalscoppio,메탈버스트,Metal Burst,金屬爆炸,金属爆炸,Jīnshǔ Bàozhà / Gāmsuhk Baauja
+u-turn,U-turn,とんぼがえり,とんぼがえり,Tonbo Gaeri,Demi-Tour,Kehrtwende,Ida y Vuelta,Ida y Vuelta,Retromarcia,유턴,U-turn,急速折返,急速折返,Jísù Zhéfǎn / Gāpchūk Jitfáan
+close-combat,Close Combat,インファイト,インファイト,Infaito,Close Combat,Nahkampf,A Bocajarro,Cuerpo a Cuerpo,Zuffa,인파이트,In-Fight,近身戰,近身战,Jìnshēnzhàn / Káhnsānjin
+payback,Payback,しっぺがえし,しっぺがえし,Shippegaeshi,Représailles,Gegenstoß,Vendetta,Revancha,Rivincita,보복,Bobok,以牙還牙,以牙还牙,Yǐyáhuányá / Yíhngàhwàahnngàh
+assurance,Assurance,ダメおし,ダメおし,Dame Oshi,Assurance,Gewissheit,Buena Baza,Garantía,Garanzia,승부굳히기,Seungbu Gutigi,惡意追擊,恶意追击,Èyì Zhuījī / Okyi Jēuigīk
+embargo,Embargo,さしおさえ,さしおさえ,Sashiosae,Embargo,Itemsperre,Embargo,Embargo,Divieto,금제,Geumje,查封,查封,Cháfēng / Chàhfūng
+fling,Fling,なげつける,なげつける,Nagetsukeru,Dégommage,Schleuder,Lanzamiento,Lanzamiento,Lancio,내던지기,Naedeonjigi,投擲,投掷,Tóuzhí / Tàuhjaahk
+psycho-shift,Psycho Shift,サイコシフト,サイコシフト,Saiko Shifuto,Échange Psy,Psybann,Psicocambio,Psicocambio,Psicotransfer,사이코시프트,Psycho Shift,精神轉移,精神转移,Jīngshén Zhuǎnyí / Jīngsàhn Jyúnyìh
+trump-card,Trump Card,きりふだ,きりふだ,Kirifuda,Atout,Trumpfkarte,As Oculto,As Oculto,Asso,마지막수단,Majimak Sudan,王牌,王牌,Wángpái / Wòhngpáai
+heal-block,Heal Block,かいふくふうじ,かいふくふうじ,Kaifuku Fūji,Anti-Soin,Heilblockade,Anticura,Anticuración,Anticura,회복봉인,Hoebok Bong'in,回復封鎖,回复封锁,Huífù Fēngsuǒ / Wùihfuhk Fūngsó
+wring-out,Wring Out,しぼりとる,しぼりとる,Shiboritoru,Essorage,Auswringen,Estrujón,Apretón,Strizzata,쥐어짜기,Jwieojjagi,絞緊,绞紧,Jiǎojǐn / Gáaugán
+power-trick,Power Trick,パワートリック,パワートリック,Pawā Torikku,Astuce Force,Krafttrick,Truco Fuerza,Truco Fuerza,Ingannoforza,파워트릭,Power Trick,力量戲法,力量戏法,Lìliàng Xìfǎ / Lihkleuhng Heifaat
+gastro-acid,Gastro Acid,いえき,いえき,Ieki,Suc Digestif,Magensäfte,Bilis,Ácido Gástrico,Gastroacido,위액,Wiaek,胃液,胃液,Wèiyè / Waihyihk
+lucky-chant,Lucky Chant,おまじない,おまじない,Omajinai,Air Veinard,Beschwörung,Conjuro,Cántico Suerte,Fortuncanto,주술,Jusul,幸運咒語,幸运咒语,Xìngyùn Zhòuyǔ / Hahngwahn Jauyúh
+me-first,Me First,さきどり,さきどり,Sakidori,Moi d’Abord,Egotrip,Yo Primero,Yo Primero,Precedenza,선취,Seonchwi,搶先一步,抢先一步,Qiǎngxiān Yībù / Chéungsīn Yātbouh
+copycat,Copycat,まねっこ,まねっこ,Manekko,Photocopie,Imitator,Copión,Copión,Copione,흉내쟁이,Hyungnaejaeng'i,仿效,仿效,Fǎngxiào / Fónghaauh
+power-swap,Power Swap,パワースワップ,パワースワップ,Pawā Suwappu,Permuforce,Krafttausch,Cambiafuerza,Cambiafuerza,Barattoforza,파워스왑,Power Swap,力量互換,力量互换,Lìliàng Hùhuàn / Lihkleuhng Wuhwuhn
+guard-swap,Guard Swap,ガードスワップ,ガードスワップ,Gādo Suwappu,Permugarde,Schutztausch,Cambiadefensa,Cambiadefensa,Barattoscudo,가드스왑,Guard Swap,防守互換,防守互换,Fángshǒu Hùhuàn / Fòhngsáu Wuhwuhn
+punishment,Punishment,おしおき,おしおき,Oshioki,Punition,Strafattacke,Castigo,Castigo,Punizione,혼내기,Honnaegi,懲罰,惩罚,Chéngfá / Chìhngfaht
+last-resort,Last Resort,とっておき,とっておき,Totteoki,Dernier Recours,Zuflucht,Última Baza,Último Recurso,Ultimascelta,비장의무기,Dwottasseugi,珍藏,珍藏,Zhēncáng / Jānchòhng
+worry-seed,Worry Seed,なやみのタネ,なやみのタネ,Nayami no Tane,Soucigraine,Sorgensamen,Abatidoras,Abatidoras,Affannoseme,고민씨,Gomin Ssi,煩惱種子,烦恼种子,Fánnǎo Zhǒngzǐ / Fàahnnóuh Júngjí
+sucker-punch,Sucker Punch,ふいうち,ふいうち,Fuiuchi,Coup Bas,Tiefschlag,Golpe Bajo,Golpe Bajo,Sbigoattacco,기습,Giseup,突襲,突袭,Túxí / Dahtjaahp
+toxic-spikes,Toxic Spikes,どくびし,どくびし,Dokubishi,Pics Toxik,Giftspitzen,Púas Tóxicas,Púas Tóxicas,Fielepunte,독압정,Dok Apjeong,毒菱,毒菱,Dúlíng / Duhklìhng
+heart-swap,Heart Swap,ハートスワップ,ハートスワップ,Hāto Suwappu,Permucœur,Statustausch,Cambiaalmas,Cambiaalmas,Cuorbaratto,하트스왑,Heart Swap,心靈互換,心灵互换,Xīnlíng Hùhuàn / Sāmlìhng Wuhwuhn
+aqua-ring,Aqua Ring,アクアリング,アクアリング,Akua Ringu,Anneau Hydro,Wasserring,Acua Aro,Acuaanillo,Acquanello,아쿠아링,Aqua Ring,水流環,水流环,Shuǐliú Huán / Séuilàuh Wàahn
+magnet-rise,Magnet Rise,でんじふゆう,でんじふゆう,Denji Fuyū,Vol Magnétik,Magnetflug,Levitón,Superimán,Magnetascesa,전자부유,Jeonja Buyu,電磁飄浮,电磁飘浮,Diàncí Piāofú / Dihnchìh Pīufàuh
+flare-blitz,Flare Blitz,フレアドライブ,フレアドライブ,Furea Doraibu,Boutefeu,Flammenblitz,Envite Ígneo,Erupción,Fuococarica,플레어드라이브,Flare Drive,閃焰衝鋒,闪焰冲锋,Shǎnyàn Chōngfēng / Símyihm Chūngfùhng
+force-palm,Force Palm,はっけい,はっけい,Hakkei,Forte-Paume,Kraftwelle,Palmeo,Fuerza de Palma,Palmoforza,발경,Balgyeong,發勁,发劲,Fājìn / Faatgihng
+aura-sphere,Aura Sphere,はどうだん,はどうだん,Hadōdan,Aurasphère,Aurasphäre,Esfera Aural,Aura Esfera,Forzasfera,파동탄,Padongtan,波導彈,波导弹,Bōdǎo Dàn / Bōdouh Daahn
+rock-polish,Rock Polish,ロックカット,ロックカット,Rokku Katto,Poliroche,Steinpolitur,Pulimento,Pulimento,Lucidatura,록커트,Rock Cut,岩石打磨,岩石打磨,Yánshí Dǎmó / Ngàahmsehk Dámòh
+poison-jab,Poison Jab,どくづき,どくづき,Dokudzuki,Direct Toxik,Gifthieb,Puya Nociva,Golpe Venenoso,Velenpuntura,독찌르기,Dok Jjareugi,毒擊,毒击,Dújī / Duhkgīk
+dark-pulse,Dark Pulse,あくのはどう,あくのはどう,Aku no Hadō,Vibrobscur,Finsteraura,Pulso Umbrío,Pulso Oscuro,Neropulsar,악의파동,Ak-yi Padong,惡之波動,恶之波动,È-zhī Bōdòng / Ok-jī Bōduhng
+night-slash,Night Slash,つじぎり,つじぎり,Tsujigiri,Tranche-Nuit,Nachthieb,Tajo Umbrío,Corte Umbrío,Nottesferza,깜짝베기,Kkamjjakbegi,暗襲要害,暗袭要害,Ànxí Yàohài / Amjaahp Yiuhoih
+aqua-tail,Aqua Tail,アクアテール,アクアテール,Akua Tēru,Hydro-Queue,Nassschweif,Acua Cola,Cola de Agua,Idrondata,아쿠아테일,Aqua Tail,水流尾,水流尾,Shuǐliú Yǐ/Shuǐliú Wěi / Séuilàuh Méih
+seed-bomb,Seed Bomb,タネばくだん,タネばくだん,Tane Bakudan,Canon Graine,Samenbomben,Bomba Germen,Bomba Semilla,Semebomba,씨폭탄,Ssi Poktan,種子炸彈,种子炸弹,Zhǒngzǐ Zhàdàn / Júngjí Jadáan
+air-slash,Air Slash,エアスラッシュ,エアスラッシュ,Ea Surasshu,Lame d’Air,Luftschnitt,Tajo Aéreo,Corte Aéreo,Eterelama,에어슬래시,Air Slash,空氣斬,空气斩,Kōngqì Zhǎn / Hūnghei Jáam
+x-scissor,X-Scissor,シザークロス,シザークロス,Shizā Kurosu,Plaie Croix,Kreuzschere,Tijera X,Tijera X,Forbice X,시저크로스,Scissor Cross,十字剪,十字剪,Shízì Jiǎn / Sahpjih Jín
+bug-buzz,Bug Buzz,むしのさざめき,むしのさざめき,Mushi no Sazameki,Bourdon,Käfergebrumm,Zumbido,Zumbido,Ronzio,벌레의야단법석,Beolle-yi Yadanbeopseok,蟲鳴,虫鸣,Chóngmíng / Chùhngmìhng
+dragon-pulse,Dragon Pulse,りゅうのはどう,りゅうのはどう,Ryū no Hadō,Draco-Choc,Drachenpuls,Pulso Dragón,Pulso Dragón,Dragopulsar,용의파동,Yong-yi Padong,龍之波動,龙之波动,Lóng-zhī Bōdòng / Lùhng-jī Bōduhng
+dragon-rush,Dragon Rush,ドラゴンダイブ,ドラゴンダイブ,Doragon Daibu,Draco-Charge,Drachenstoß,Carga Dragón,Carga Dragón,Dragofuria,드래곤다이브,Dragon Dive,龍之俯衝,龙之俯冲,Lóng-zhī Fǔchōng / Lùhng-jī Fúchung
+power-gem,Power Gem,パワージェム,パワージェム,Pawā Jemu,Rayon Gemme,Juwelenkraft,Joya de Luz,Joya de Luz,Gemmoforza,파워젬,Power Gem,力量寶石,力量宝石,Lìliàng Bǎoshí / Lihkleuhng Bóusehk
+drain-punch,Drain Punch,ドレインパンチ,ドレインパンチ,Dorein Panchi,Vampi-Poing,Ableithieb,Puño Drenaje,Puño Drenador,Assorbipugno,드레인펀치,Drain Punch,吸取拳,吸取拳,Xīqǔ Quán / Kāpchéui Kyùhn
+vacuum-wave,Vacuum Wave,しんくうは,しんくうは,Shinkū Ha,Onde Vide,Vakuumwelle,Onda Vacío,Onda de Vacío,Vuotonda,진공파,Jin-gong Pa,真空波,真空波,Zhēnkōng Bō / Jānhūng Bō
+focus-blast,Focus Blast,きあいだま,きあいだま,Kiai Dama,Exploforce,Fokusstoß,Onda Certera,Ataque Centrado,Focalcolpo,기합구슬,Gihap Guseul,真氣彈,真气弹,Zhēnqì Dàn / Jānhei Daahn
+energy-ball,Energy Ball,エナジーボール,エナジーボール,Enajī Bōru,Éco-Sphère,Energieball,Energibola,Bola de Energía,Energipalla,에너지볼,Energy Ball,能量球,能量球,Néngliàng Qiú / Nàhngleuhng Kàuh
+brave-bird,Brave Bird,ブレイブバード,ブレイブバード,Bureibu Bādo,Rapace,Sturzflug,Pájaro Osado,Ave Brava,Baldeali,브레이브버드,Brave Bird,勇鳥猛攻,勇鸟猛攻,Yǒngniǎo Měnggōng / Yúhngníuh Máahnggūng
+earth-power,Earth Power,だいちのちから,だいちのちから,Daichi no Chikara,Telluriforce,Erdkräfte,Tierra Viva,Poder Terrestre,Geoforza,대지의힘,Daeji-yi Him,大地之力,大地之力,Dàdì-zhī Lì / Daaihdeih-jī Lihk
+switcheroo,Switcheroo,すりかえ,すりかえ,Surikae,Passe-Passe,Wechseldich,Trapicheo,Trueque,Rapidscambio,바꿔치기,Bakkweochigi,掉包,掉包,Diàobāo / Diuhbāau
+giga-impact,Giga Impact,ギガインパクト,ギガインパクト,Giga Inpakuto,Giga Impact,Gigastoß,Gigaimpacto,Gigaimpacto,Gigaimpatto,기가임팩트,Giga Impact,終極衝擊,终极冲击,Zhōngjí Chōngjí / Jūnggihk Chūnggīk
+nasty-plot,Nasty Plot,わるだくみ,わるだくみ,Waru Dakumi,Machination,Ränkeschmied,Maquinación,Maquinación,Congiura,나쁜음모,Nappeun Eummo,詭計,诡计,Guǐjì / Gwáigai
+bullet-punch,Bullet Punch,バレットパンチ,バレットパンチ,Baretto Panchi,Pisto-Poing,Patronenhieb,Puño Bala,Puño Bala,Pugnoscarica,불릿펀치,Bullet Punch,子彈拳,子弹拳,Zǐdàn Quán / Jídáan Kyùhn
+avalanche,Avalanche,ゆきなだれ,ゆきなだれ,Yuki Nadare,Avalanche,Lawine,Alud,Alud,Slavina,눈사태,Nun Satae,雪崩,雪崩,Xuěbēng / Syutbāng
+ice-shard,Ice Shard,こおりのつぶて,こおりのつぶて,Koori no Tsubute,Éclats Glace,Eissplitter,Esquirla Helada,Esquirla Helada,Geloscheggia,얼음뭉치,Eol'eum Mungchi,冰礫,冰砾,Bīnglì / Bīnglīk
+shadow-claw,Shadow Claw,シャドークロー,シャドークロー,Shadō Kurō,Griffe Ombre,Dunkelklaue,Garra Umbría,Garra de Sombra,Ombrartigli,섀도클로,Shadow Claw,暗影爪,暗影爪,Ànyǐng Zhuǎ / Amyíng Jáau
+thunder-fang,Thunder Fang,かみなりのキバ,かみなりのキバ,Kaminari no Kiba,Crocs Éclair,Donnerzahn,Colmillo Rayo,Colmillo Trueno,Fulmindenti,번개엄니,Beongae Eomni,雷電牙,雷电牙,Léidiàn Yá / Lèuihdihn Ngàh
+ice-fang,Ice Fang,こおりのキバ,こおりのキバ,Koori no Kiba,Crocs Givre,Eiszahn,Colmillo Hielo,Colmillo Hielo,Gelodenti,얼음엄니,Eol'eum Eomni,冰凍牙,冰冻牙,Bīngdòng Yá / Bīngdung Ngàh
+fire-fang,Fire Fang,ほのおのキバ,ほのおのキバ,Honō no Kiba,Crocs Feu,Feuerzahn,Colmillo Ígneo,Colmillo Fuego,Rogodenti,불꽃엄니,Bulkkot Eomni,火焰牙,火焰牙,Huǒyàn Yá / Fóyihm Ngàh
+shadow-sneak,Shadow Sneak,かげうち,かげうち,Kageuchi,Ombre Portée,Schattenstoß,Sombra Vil,Sombra Vil,Furtivombra,야습,Yaseup,影子偷襲,影子偷袭,Yǐngzi Tōuxí / Yíngjí Tāujaahp
+mud-bomb,Mud Bomb,どろばくだん,どろばくだん,Doro Bakudan,Boue-Bombe,Schlammbombe,Bomba Fango,Bomba Fango,Pantanobomba,진흙폭탄,Jinheulk Poktan,泥巴炸彈,泥巴炸弹,Níbā Zhàdàn / Nàihbā Jadáan
+psycho-cut,Psycho Cut,サイコカッター,サイコカッター,Saiko Kattā,Coupe Psycho,Psychoklinge,Psicocorte,Psicocorte,Psicotaglio,사이코커터,Psycho Cutter,精神利刃,精神利刃,Jīngshén Lìrèn / Jīngsàhn Leihyahn
+zen-headbutt,Zen Headbutt,しねんのずつき,しねんのずつき,Shinen no Zutsuki,Psykoud’Boul,Zen-Kopfstoß,Cabezazo Zen,Cabezazo Zen,Cozzata Zen,사념의박치기,Sanyeom-ui Bakchigi,意念頭錘,意念头锤,Yìniàn Tóuchuí / Yinihm Tàuhchèuih
+mirror-shot,Mirror Shot,ミラーショット,ミラーショット,Mirā Shotto,Miroi-Tir,Spiegelsalve,Disparo Espejo,Disparo Espejo,Cristalcolpo,미러샷,Mirror Shot,鏡光射擊,镜光射击,Jìngguāng Shèjí / Genggwōng Sehgīk
+flash-cannon,Flash Cannon,ラスターカノン,ラスターカノン,Rasutā Kanon,Luminocanon,Lichtkanone,Cañón Resplandor,Cañón Resplandor,Cannonflash,러스터캐논,Luster Cannon,加農光炮,加农光炮,Jiānóng Guāngpào / Gānùhng Gwōngpaau
+rock-climb,Rock Climb,ロッククライム,ロッククライム,Rokku Kuraimu,Escalade,Kraxler,Treparrocas,Treparrocas,Scalaroccia,록클라임,Rock Climb,攀岩,攀岩,Pānyán / Pāanngàahm
+defog,Defog,きりばらい,きりばらい,Kiribarai,Anti-Brume,Auflockern,Despejar,Desempañar,Scacciabruma,안개제거,Angaejegeo,清除濃霧,清除浓雾,Qīngchú Nóngwù / Chīngchèuih Nùhngmouh
+trick-room,Trick Room,トリックルーム,トリックルーム,Torikku Rūmu,Distorsion,Bizarroraum,Espacio Raro,Espacio Raro,Distortozona,트릭룸,Trick Room,戲法空間,戏法空间,Xìfǎ Kōngjiān / Heifaat Hūnggāan
+draco-meteor,Draco Meteor,りゅうせいぐん,りゅうせいぐん,Ryūseigun,Draco-Météore,Draco Meteor,Cometa Draco,Meteoro Dragón,Dragobolide,용성군,Yong Seonggun,流星群,流星群,Liúxīngqún / Làuhsīngkwàhn
+discharge,Discharge,ほうでん,ほうでん,Hōden,Coup d’Jus,Ladungsstoß,Chispazo,Chispazo,Scarica,방전,Bangjeon,放電,放电,Fàngdiàn / Fongdihn
+lava-plume,Lava Plume,ふんえん,ふんえん,Fun'en,Ébullilave,Flammensturm,Humareda,Bomba de Lava,Lavasbuffo,분연,Bun'yeon,噴煙,喷烟,Pēnyān / Panyīn
+leaf-storm,Leaf Storm,リーフストーム,リーフストーム,Rīfu Sutōmu,Tempête Verte,Blättersturm,Lluevehojas,Tormenta de Hojas,Verdebufera,리프스톰,Leaf Storm,飛葉風暴,飞叶风暴,Fēiyè Fēngbào / Fēiyihp Fūngbouh
+power-whip,Power Whip,パワーウィップ,パワーウィップ,Pawā Uippu,Mégafouet,Blattgeißel,Latigazo,Latigazo,Vigorcolpo,파워휩,Power Whip,強力鞭打,强力鞭打,Qiánglì Biāndǎ / Kèuhnglihk Bīndá
+rock-wrecker,Rock Wrecker,がんせきほう,がんせきほう,Ganseki Hō,Roc-Boulet,Felswerfer,Romperrocas,Romperrocas,Devastomasso,암석포,Amseok Po,岩石炮,岩石炮,Yánshí Pào / Ngàahmsehk Paau
+cross-poison,Cross Poison,クロスポイズン,クロスポイズン,Kurosu Poizun,Poison Croix,Giftstreich,Veneno X,Veneno X,Velenocroce,크로스포이즌,Cross Poison,十字毒刃,十字毒刃,Shízì Dúrèn / Sahpjih Duhkyahn
+gunk-shot,Gunk Shot,ダストシュート,ダストシュート,Dasuto Shūto,Détricanon,Mülltreffer,Lanzamugre,Lanzamugre,Sporcolancio,더스트슈트,Dust Shoot,垃圾射擊,垃圾射击,Lèsè Shèjí/Lājī Shèjí / Laahpsaap Sehgīk
+iron-head,Iron Head,アイアンヘッド,アイアンヘッド,Aian Heddo,Tête de Fer,Eisenschädel,Cabeza de Hierro,Cabeza de Hierro,Metaltestata,아이언헤드,Iron Head,鐵頭,铁头,Tiětóu / Tittàuh
+magnet-bomb,Magnet Bomb,マグネットボム,マグネットボム,Maguneto Bomu,Bombe Aimant,Magnetbombe,Bomba Imán,Magnetobomba,Bombagnete,마그넷봄,Magnet Bomb,磁鐵炸彈,磁铁炸弹,Cítiě Zhàdàn / Chìhtit Jadáan
+stone-edge,Stone Edge,ストーンエッジ,ストーンエッジ,Sutōn Ejji,Lame de Roc,Steinkante,Roca Afilada,Roca Afilada,Pietrataglio,스톤에지,Stone Edge,尖石攻擊,尖石攻击,Jiānshí Gōngjí / Jīmsehk Gūnggīk
+captivate,Captivate,ゆうわく,ゆうわく,Yūwaku,Séduction,Liebreiz,Seducción,Seducción,Incanto,유혹,Yuhok,誘惑,诱惑,Yòuhuò / Yáuhwaahk
+stealth-rock,Stealth Rock,ステルスロック,ステルスロック,Suterusu Rokku,Piège de Roc,Tarnsteine,Trampa Rocas,Trampa de Rocas,Levitoroccia,스텔스록,Stealth Rock,隱形岩,隐形岩,Yǐnxíng Yán / Yányìhng Ngàahm
+grass-knot,Grass Knot,くさむすび,くさむすび,Kusa Musubi,Nœud Herbe,Strauchler,Hierba Lazo,Nudo de Pasto,Laccioerboso,풀묶기,Pul Mokki,打草結,打草结,Dǎcǎojié / Dáchóugit
+chatter,Chatter,おしゃべり,おしゃべり,Oshaberi,Babil,Geschwätz,Cháchara,Parloteo,Schiamazzo,수다,Suda,喋喋不休,喋喋不休,Diédiébùxiū / Dihpdihpbātyāu
+judgment,Judgment,さばきのつぶて,さばきのつぶて,Sabaki no Tsubute,Jugement,Urteilskraft,Sentencia,Juicio Final,Giudizio,심판의뭉치,Simpan-yi Mungchi,制裁光礫,制裁光砾,Zhìcái Guānglì / Jaichòih Gwōnglīk
+bug-bite,Bug Bite,むしくい,むしくい,Mushi Kui,Piqûre,Käferbiss,Picadura,Picadura,Coleomorso,벌레먹기,Beolle Meok'eum,蟲咬,虫咬,Chóngyǎo / Chùhngngáauh
+charge-beam,Charge Beam,チャージビーム,チャージビーム,Chāji Bīmu,Rayon Chargé,Ladestrahl,Rayo Carga,Rayo Carga,Raggioscossa,차지빔,Charge Beam,充電光束,充电光束,Chōngdiàn Guāngshù / Chūngdihn Gwōngchūk
+wood-hammer,Wood Hammer,ウッドハンマー,ウッドハンマー,Uddo Hanmā,Martobois,Holzhammer,Mazazo,Mazazo,Mazzuolegno,우드해머,Wood Hammer,木槌,木槌,Mùchuí / Muhkchèuih
+aqua-jet,Aqua Jet,アクアジェット,アクアジェット,Akua Jetto,Aqua-Jet,Wasserdüse,Acua Jet,Acuajet,Acquagetto,아쿠아제트,Aqua Jet,水流噴射,水流喷射,Shuǐliú Pēnshè / Séuilàuh Panseh
+attack-order,Attack Order,こうげきしれい,こうげきしれい,Kōgeki Shirei,Appel Attaque,Schlagbefehl,Al Ataque,Al Ataque,Comandourto,공격지령,Gonggyeok Jiryeong,攻擊指令,攻击指令,Gōngjí Zhǐlìng / Gūnggīk Jílihng
+defend-order,Defend Order,ぼうぎょしれい,ぼうぎょしれい,Bōgyo Shirei,Appel Défense,Blockbefehl,A Defender,A Defender,Comandoscudo,방어지령,Bang'eo Jiryeong,防禦指令,防御指令,Fángyù Zhǐlìng / Fòhngyuh Jílihng
+heal-order,Heal Order,かいふくしれい,かいふくしれい,Kaifuku Shirei,Appel Soins,Heilbefehl,Auxilio,Auxilio,Comandocura,회복지령,Hoebok Jiryeong,回復指令,回复指令,Huífù Zhǐlìng / Wùihfuhk Jílihng
+head-smash,Head Smash,もろはのずつき,もろはのずつき,Moroha no Zutsuki,Fracass’Tête,Kopfstoß,Testarazo,Topetazo,Zuccata,양날박치기,Yangnal Bakchigi,雙刃頭錘,双刃头锤,Shuāngrèn Tóuchuí / Sēungyahn Tàuhchèuih
+double-hit,Double Hit,ダブルアタック,ダブルアタック,Daburu Atakku,Coup Double,Doppelschlag,Doble Golpe,Doble Golpe,Doppiosmash,더블어택,Double Attack,二連擊,二连击,Èrliánjí / Yihlìhngīk
+roar-of-time,Roar of Time,ときのほうこう,ときのほうこう,Toki no Hōkō,Hurle-Temps,Zeitenlärm,Distorsión,Rugido Temporal,Fragortempo,시간의포효,Sigan-yi Pohyo,時光咆哮,时光咆哮,Shíguāng Páoxiào / Sìhgwōng Pàauhhāau
+spacial-rend,Spacial Rend,あくうせつだん,あくうせつだん,Akū Setsudan,Spatio-Rift,Raumschlag,Corte Vacío,Corte Espacial,Fendispazio,공간절단,Gonggan Jeoldan,亞空裂斬,亚空裂斩,Yàkōng Lièzhǎn / Ahūng Lihtjáam
+lunar-dance,Lunar Dance,みかづきのまい,みかづきのまい,Mikazuki no Mai,Danse Lune,Lunartanz,Danza Lunar,Danza de la Luna,Lunardanza,초승달춤,Choseungdal Chum,新月舞,新月舞,Xīnyuè Wǔ / Sānyuht Móuh
+crush-grip,Crush Grip,にぎりつぶす,にぎりつぶす,Nigiri Tsubusu,Presse,Quetschgriff,Agarrón,Garra Aplastante,Sbriciolmano,묵사발,Moksabal,捏碎,捏碎,Niēsuì / Nihpseui
+magma-storm,Magma Storm,マグマストーム,マグマストーム,Maguma Sutōmu,Vortex Magma,Lavasturm,Lluvia Ígnea,Lluvia Ígnea,Magmaclisma,마그마스톰,Magma Storm,熔岩風暴,熔岩风暴,Róngyán Fēngbào / Yùhngngàahm Fūngbouh
+dark-void,Dark Void,ダークホール,ダークホール,Dāku Hōru,Trou Noir,Schlummerort,Brecha Negra,Abismo Negro,Vuototetro,다크홀,Dark Hole,暗黑洞,暗黑洞,Ànhēi Dòng / Amhāk Duhng
+seed-flare,Seed Flare,シードフレア,シードフレア,Shīdo Furea,Fulmigraine,Schocksamen,Fulgor Semilla,Fulgor Semilla,Infuriaseme,시드플레어,Seed Flare,種子閃光,种子闪光,Zhǒngzǐ Shǎnguāng / Júngjí Símgwōng
+ominous-wind,Ominous Wind,あやしいかぜ,あやしいかぜ,Ayashii Kaze,Vent Mauvais,Unheilböen,Viento Aciago,Viento Ominoso,Funestovento,괴상한바람,Goesanghan Baram,奇異之風,奇异之风,Qíyì-zhī Fēng / Kèihyih-jī Fūng
+shadow-force,Shadow Force,シャドーダイブ,シャドーダイブ,Shadō Daibu,Revenant,Schemenkraft,Golpe Umbrío,Golpe Umbrío,Oscurotuffo,섀도다이브,Shadow Dive,暗影潛襲,暗影潜袭,Ànyǐng Qiánxí / Amyíng Chìhmjaahp
+hone-claws,Hone Claws,つめとぎ,つめとぎ,Tsumetogi,Aiguisage,Klauenwetzer,Afilagarras,Afilagarras,Unghiaguzze,손톱갈기,Sontopgalgi,磨爪,磨爪,Mózhuǎ / Mòhjáau
+wide-guard,Wide Guard,ワイドガード,ワイドガード,Waido Gādo,Garde Large,Rundumschutz,Vasta Guardia,Guardia Amplia,Bodyguard,와이드가드,Wide Guard,廣域防守,广域防守,Guǎngyù Fángshǒu / Gwóngwihk Fòhngsáu
+guard-split,Guard Split,ガードシェア,ガードシェア,Gādo Shea,Partage Garde,Schutzteiler,Isoguardia,Guardia Dividida,Paridifesa,가드셰어,Guard Share,防守平分,防守平分,Fángshǒu Píngfēn / Fòhngsáu Pìhngfān
+power-split,Power Split,パワーシェア,パワーシェア,Pawā Shea,Partage Force,Kraftteiler,Isofuerza,Fuerza Dividida,Pariattacco,파워셰어,Power Share,力量平分,力量平分,Lìliàng Píngfēn / Lihkleuhng Pìhngfān
+wonder-room,Wonder Room,ワンダールーム,ワンダールーム,Wandā Rūmu,Zone Étrange,Wunderraum,Zona Extraña,Zona Extraña,Mirabilzona,원더룸,Wonder Room,奇妙空間,奇妙空间,Qímiào Kōngjiān / Kèihmiuh Hūnggāan
+psyshock,Psyshock,サイコショック,サイコショック,Saiko Shokku,Choc Psy,Psychoschock,Psicocarga,Choque Psíquico,Psicoshock,사이코쇼크,Psycho Shock,精神衝擊,精神冲击,Jīngshén Chōngjí / Jīngsàhn Chūnggīk
+venoshock,Venoshock,ベノムショック,ベノムショック,Benomu Shokku,Choc Venin,Giftschock,Carga Tóxica,Carga Tóxica,Velenoshock,베놈쇼크,Venom Shock,毒液衝擊,毒液冲击,Dúyè Chōngjí / Duhkyihk Chūnggīk
+autotomize,Autotomize,ボディパージ,ボディパージ,Bodi Pāji,Allègement,Autotomie,Aligerar,Aligerar,Sganciapesi,바디퍼지,Body Purge,身體輕量化,身体轻量化,Shēntǐ Qīngliànghuà / Sāntái Hīngleuhngfa
+rage-powder,Rage Powder,いかりのこな,いかりのこな,Ikari no Kona,Poudre Fureur,Wutpulver,Polvo Ira,Polvo Ira,Polverabbia,분노가루,Bunno Garu,憤怒粉,愤怒粉,Fènnù Fěn / Fáhnnouh Fán
+telekinesis,Telekinesis,テレキネシス,テレキネシス,Terekineshisu,Lévikinésie,Telekinese,Telequinesis,Telequinesis,Telecinesi,텔레키네시스,Telekinesis,意念移物,意念移物,Yìniànyíwù / Yinihmyìhmaht
+magic-room,Magic Room,マジックルーム,マジックルーム,Majikku Rūmu,Zone Magique,Magieraum,Zona Mágica,Zona Mágica,Magicozona,매직룸,Magic Room,魔法空間,魔法空间,Mófǎ Kōngjiān / Mōfaat Hūnggāan
+smack-down,Smack Down,うちおとす,うちおとす,Uchiotosu,Anti-Air,Katapult,Antiaéreo,Antiaéreo,Abbattimento,떨어뜨리기,Tteol-eo Tteurigi,擊落,击落,Jíluò / Gīklohk
+storm-throw,Storm Throw,やまあらし,やまあらし,Yama Arashi,Yama Arashi,Bergsturm,Llave Corsé,Llave Tempestad,Tempestretta,업어후리기,Ubua Hoorigi,山嵐摔,山岚摔,Shānlán Shuāi / Sāanlàahm Sēut
+flame-burst,Flame Burst,はじけるほのお,はじけるほのお,Hajikeru Honō,Rebondifeu,Funkenflug,Pirotecnia,Golpe de Fuego,Pirolancio,불꽃튀기기,Bulkot Twigigi,烈焰濺射,烈焰溅射,Lièyàn Jiànshè / Lihtyihm Jinseh
+sludge-wave,Sludge Wave,ヘドロウェーブ,ヘドロウェーブ,Hedoro Uēbu,Cradovague,Schlammwoge,Onda Tóxica,Ola de Lodo,Fangonda,오물웨이브,Omul Wave,污泥波,污泥波,Wūní Bō / Wūnàih Bō
+quiver-dance,Quiver Dance,ちょうのまい,ちょうのまい,Chō no Mai,Papillodanse,Falterreigen,Danza Aleteo,Danza del Aleteo,Eledanza,나비춤,Nabi-chum,蝶舞,蝶舞,Dié Wǔ / Dihp Móuh
+heavy-slam,Heavy Slam,ヘビーボンバー,ヘビーボンバー,Hebī Bonbā,Tacle Lourd,Rammboss,Cuerpo Pesado,Golpe Pesado,Pesobomba,헤비봄버,Heavy Bomber,重磅衝撞,重磅冲撞,Zhòngbàng Chōngzhuàng / Chúhngbóng Chūngjohng
+synchronoise,Synchronoise,シンクロノイズ,シンクロノイズ,Shinkuronoizu,Synchropeine,Synchrolärm,Sincrorruido,Sincrorruido,Sincrumore,싱크로노이즈,Synchronoise,同步干擾,同步干扰,Tóngbù Gānrǎo / Tùhngbouh Gōnyíu
+electro-ball,Electro Ball,エレキボール,エレキボール,Ereki Bōru,Boule Élek,Elektroball,Bola Voltio,Electrobola,Energisfera,일렉트릭볼,Electric Ball,電球,电球,Diànqiú / Dihnkàuh
+soak,Soak,みずびたし,みずびたし,Mizubitashi,Détrempage,Überflutung,Empapar,Empapar,Inondazione,물붓기,Mulbutgi,浸水,浸水,Jìnshuǐ / Jamséui
+flame-charge,Flame Charge,ニトロチャージ,ニトロチャージ,Nitoro Chāji,Nitrocharge,Nitroladung,Nitrocarga,Carga de Fuego,Nitrocarica,니트로차지,Nitro Charge,蓄能焰襲,蓄能焰袭,Xùnéng Yànxí / Chūknàhng Yihmjaahp
+coil,Coil,とぐろをまく,とぐろをまく,Toguro o Maku,Enroulement,Einrollen,Enrosque,Enrosque,Arrotola,똬리틀기,Ttwariteulgi,盤蜷,盘蜷,Pánquán / Pùhnkyùhn
+low-sweep,Low Sweep,ローキック,ローキック,Rō Kikku,Balayette,Fußtritt,Puntapié,Barredora,Calciobasso,로킥,Low Kick,下盤踢,下盘踢,Xiàpán Tī / Hahpùhn Tek
+acid-spray,Acid Spray,アシッドボム,アシッドボム,Ashiddo Bomu,Bombe Acide,Säurespeier,Bomba Ácida,Bomba Ácida,Acidobomba,애시드봄,Acid Bomb,酸液炸彈,酸液炸弹,Suānyè Zhàdàn / Syūnyihk Jadáan
+foul-play,Foul Play,イカサマ,イカサマ,Ikasama,Tricherie,Schmarotzer,Juego Sucio,Juego Sucio,Ripicca,속임수,Sog-imsu,欺詐,欺诈,Qīzhà / Hēija
+simple-beam,Simple Beam,シンプルビーム,シンプルビーム,Shinpuru Bīmu,Rayon Simple,Wankelstrahl,Onda Simple,Onda Simple,Ondisinvolta,심플빔,Simple Beam,單純光束,单纯光束,Dānchún Guāngshù / Dāansèuhn Gwōngchūk
+entrainment,Entrainment,なかまづくり,なかまづくり,Nakama Zukuri,Ten-Danse,Zwango,Danza Amiga,Danza Amiga,Saltamicizia,동료만들기,Dongryo Mandulgi,找夥伴,找伙伴,Zhǎo Huǒbàn / Jáau Fóbuhn
+after-you,After You,おさきにどうぞ,おさきにどうぞ,Osaki ni Dōzo,Après Vous,Galanterie,Cede Paso,Ceda el Paso,Cortesia,당신먼저,Dangsin Meonjeo,您先請,您先请,Nín Xiān Qǐng / Néih Sīn Chíng
+round,Round,りんしょう,りんしょう,Rinshō,Chant Canon,Kanon,Canon,Canon,Coro,돌림노래,Dolrimnorae,輪唱,轮唱,Lúnchàng / Lèuhncheung
+echoed-voice,Echoed Voice,エコーボイス,エコーボイス,Ekō Boisu,Écho,Widerhall,Eco Voz,Eco Voz,Echeggiavoce,에코보이스,Echo Voice,回聲,回声,Huíshēng / Wùihsēng
+chip-away,Chip Away,なしくずし,なしくずし,Nashikuzushi,Attrition,Zermürben,Guardia Baja,Guardia Baja,Insidia,야금야금,Yageum-yageum,逐步擊破,逐步击破,Zhúbù Jípò / Juhkbouh Gīkpo
+clear-smog,Clear Smog,クリアスモッグ,クリアスモッグ,Kuria Smoggu,Bain de Smog,Klärsmog,Niebla Clara,Humo Claro,Pulifumo,클리어스모그,Clear Smog,清除之煙,清除之烟,Qīngchú-zhī Yān / Chīngchèuih-jī Yīn
+stored-power,Stored Power,アシストパワー,アシストパワー,Ashisuto Pawā,Force Ajoutée,Kraftvorrat,Poder Reserva,Poder Acumulado,Veicolaforza,어시스트파워,Assist Power,輔助力量,辅助力量,Fǔzhù Lìliàng / Fuhjoh Lihkleuhng
+quick-guard,Quick Guard,ファストガード,ファストガード,Fasuto Gādo,Prévention,Rapidschutz,Anticipo,Defensa Rápida,Anticipo,패스트가드,First Guard,快速防守,快速防守,Kuàisù Fángshǒu / Faaichūk Fòhngsáu
+ally-switch,Ally Switch,サイドチェンジ,サイドチェンジ,Saido Chenji,Interversion,Seitentausch,Cambio de Banda,Cambio de Lado,Cambiaposto,사이드체인지,Side Change,交換場地,交换场地,Jiāohuàn Chǎngdì / Gāauwuhn Chèuhngdeih
+scald,Scald,ねっとう,ねっとう,Nettō,Ébullition,Siedewasser,Escaldar,Escaldar,Idrovampata,열탕,Yeoul-tang,熱水,热水,Rèshuǐ / Yihtséui
+shell-smash,Shell Smash,からをやぶる,からをやぶる,Kara o Yaburu,Exuviation,Hausbruch,Rompecoraza,Rompecoraza,Gettaguscio,껍질깨기,Khupjilkhegi,破殼,破壳,Pò Ké / Po Hok
+heal-pulse,Heal Pulse,いやしのはどう,いやしのはどう,Iyashi no Hadō,Vibra Soin,Heilwoge,Pulso Cura,Pulso Sanador,Ondasana,치유파동,Chiyu Padong,治癒波動,治愈波动,Zhìyù Bōdòng / Jihyuh Bōduhng
+hex,Hex,たたりめ,たたりめ,Tatarime,Châtiment,Bürde,Infortunio,Infortunio,Sciagura,병상첨병,Byeongsang Cheom Byeong,禍不單行,祸不单行,Huòbùdānxíng / Wohbātdāanhàhng
+sky-drop,Sky Drop,フリーフォール,フリーフォール,Furī Fōru,Chute Libre,Freier Fall,Caída Libre,Caída Libre,Cadutalibera,프리폴,Free Fall,自由落體,自由落体,Zìyóu Luòtǐ / Jihyàuh Lohktái
+shift-gear,Shift Gear,ギアチェンジ,ギアチェンジ,Gia Chenji,Chgt Vitesse,Gangwechsel,Cambio de Marcha,Cambio de Marcha,Cambiomarcia,기어체인지,Gear Change,換檔,换档,Huàndǎng / Wuhndóng
+circle-throw,Circle Throw,ともえなげ,ともえなげ,Tomoenage,Projection,Überkopfwurf,Llave Giro,Llave Giro,Ribaltiro,배대뒤치기,Baedae Duichigi,巴投,巴投,Bātóu / Bātàuh
+incinerate,Incinerate,やきつくす,やきつくす,Yaki Tsukusu,Calcination,Einäschern,Calcinación,Incinerar,Bruciatutto,불태우기,Bultaeoogi,燒盡,烧尽,Shāojìn / Sīujeuhn
+quash,Quash,さきおくり,さきおくり,Saki Okuri,À la Queue,Verzögerung,Último Lugar,Último Lugar,Spintone,순서미루기,Sunseo Mirugi,延後,延后,Yánhòu / Yìhnhauh
+acrobatics,Acrobatics,アクロバット,アクロバット,Akurobatto,Acrobatie,Akrobatik,Acróbata,Acrobacia,Acrobazia,애크러뱃,Acrobat,雜技,杂技,Zájì / Jaahpgeih
+reflect-type,Reflect Type,ミラータイプ,ミラータイプ,Mirā Taipu,Copie-Type,Typenspiegel,Clonatipo,Clonatipo,Riflettipo,미러타입,Mirror Type,鏡面屬性,镜面属性,Jìngmiàn Shǔxìng / Gengmihn Suhksing
+retaliate,Retaliate,かたきうち,かたきうち,Kataki Uchi,Vengeance,Heimzahlung,Represalia,Represalia,Nemesi,원수갚기,Wonsu Gapgi,報仇,报仇,Bàochóu / Bousàuh
+final-gambit,Final Gambit,いのちがけ,いのちがけ,Inochigake,Tout ou Rien,Wagemut,Sacrificio,Sacrificio,Azzardo,목숨걸기,Moksum Geolgi,搏命,搏命,Bómìng / Bokmihng
+bestow,Bestow,ギフトパス,ギフトパス,Gifuto Pasu,Passe-Cadeau,Offerte,Ofrenda,Ofrenda,Cediregalo,기프트패스,Gift Pass,傳遞禮物,传递礼物,Chuándì Lǐwù / Chyùhndaih Láihmaht
+inferno,Inferno,れんごく,れんごく,Rengoku,Feu d’Enfer,Inferno,Infierno,Infierno,Marchiatura,연옥,Yeon-ok,煉獄,炼狱,Liànyù / Lihnyuhk
+water-pledge,Water Pledge,みずのちかい,みずのちかい,Mizu no Chikai,Aire d’Eau,Wassersäulen,Voto Agua,Voto Agua,Acquapatto,물의맹세,Mul-ui Maengse,水之誓約,水之誓约,Shuǐ-zhī Shìyuē / Séui-jī Saihyeuk
+fire-pledge,Fire Pledge,ほのおのちかい,ほのおのちかい,Honō no Chikai,Aire de Feu,Feuersäulen,Voto Fuego,Voto Fuego,Fiammapatto,불꽃의맹세,Bulkkot-ui Maengse,火之誓約,火之誓约,Huǒ-zhī Shìyuē / Fó-jī Saihyeuk
+grass-pledge,Grass Pledge,くさのちかい,くさのちかい,Kusa no Chikai,Aire d’Herbe,Pflanzensäulen,Voto Planta,Voto Planta,Erbapatto,풀의맹세,Pul-ui Maengse,草之誓約,草之誓约,Cǎo-zhī Shìyuē / Chóu-jī Saihyeuk
+volt-switch,Volt Switch,ボルトチェンジ,ボルトチェンジ,Boruto Chenji,Change Éclair,Voltwechsel,Voltiocambio,Cambiavoltaje,Invertivolt,볼트체인지,Volt Change,伏特替換,伏特替换,Fútè Tìhuàn / Fuhkdahk Taiwuhn
+struggle-bug,Struggle Bug,むしのていこう,むしのていこう,Mushi no Teikō,Survinsecte,Käfertrutz,Estoicismo,Lucha Insecto,Entomoblocco,벌레의저항,Bulrae-eui Jauhang,蟲之抵抗,虫之抵抗,Chóng-zhī Dǐkàng / Chùhng-jī Dáikong
+bulldoze,Bulldoze,じならし,じならし,Jinarashi,Piétisol,Dampfwalze,Terratemblor,Terratemblor,Battiterra,땅고르기,Ttang Goreugi,重踏,重踏,Zhòngtà / Chúhngdaahp
+frost-breath,Frost Breath,こおりのいぶき,こおりのいぶき,Kōri no Ibuki,Souffle Glacé,Eisesodem,Vaho Gélido,Vaho Helado,Alitogelido,얼음숨결,Eureum Soomgyul,冰息,冰息,Bīngxī / Bīngsīk
+dragon-tail,Dragon Tail,ドラゴンテール,ドラゴンテール,Doragon Tēru,Draco-Queue,Drachenrute,Cola Dragón,Cola de Dragón,Codadrago,드래곤테일,Dragon Tail,龍尾,龙尾,Lóngyǐ/Lóngwěi / Lùhngméih
+work-up,Work Up,ふるいたてる,ふるいたてる,Furui Tateru,Rengorgement,Kraftschub,Avivar,Avivar,Cuordileone,분발,Bunbal,自我激勵,自我激励,Zìwǒ Jīlì / Jihngóh Gīklaih
+electroweb,Electroweb,エレキネット,エレキネット,Ereki Netto,Toile Élek,Elektronetz,Electrotela,Electrotela,Elettrotela,일렉트릭네트,Electric Net,電網,电网,Diànwǎng / Dihnmóhng
+wild-charge,Wild Charge,ワイルドボルト,ワイルドボルト,Wairudo Boruto,Éclair Fou,Stromstoß,Voltio Cruel,Carga Salvaje,Sprizzalampo,와일드볼트,Wild Bolt,瘋狂伏特,疯狂伏特,Fēngkuáng Fútè / Fūngkòhng Fuhkdahk
+drill-run,Drill Run,ドリルライナー,ドリルライナー,Doriru Rainā,Tunnelier,Schlagbohrer,Taladradora,Taladradora,Giravvita,드릴라이너,Drill Liner,直衝鑽,直冲钻,Zhíchōng Zuàn / Jihkchūng Jyūn
+dual-chop,Dual Chop,ダブルチョップ,ダブルチョップ,Daburu Choppu,Double Baffe,Doppelhieb,Golpe Bis,Golpe Dual,Doppiocolpo,더블촙,Double Chop,二連劈,二连劈,Èrliánpī / Yihlìhnpek
+heart-stamp,Heart Stamp,ハートスタンプ,ハートスタンプ,Hāto Sutanpu,Crève-Cœur,Herzstempel,Arrumaco,Sello de Corazón,Cuorestampo,하트스탬프,Heart Stamp,愛心印章,爱心印章,Àixīn Yìnzhāng / Oisām Yanjēung
+horn-leech,Horn Leech,ウッドホーン,ウッドホーン,Uddo Hōn,Encornebois,Holzgeweih,Asta Drenaje,Drenacuerno,Legnicorno,우드혼,Wood Horn,木角,木角,Mùjiǎo / Muhkgok
+sacred-sword,Sacred Sword,せいなるつるぎ,せいなるつるぎ,Seinaru Tsurugi,Lame Sainte,Sanctoklinge,Espada Santa,Espada Sagrada,Spadasolenne,성스러운칼,Seongseureo-un Kal,聖劍,圣剑,Shèngjiàn / Singgim
+razor-shell,Razor Shell,シェルブレード,シェルブレード,Sheru Burēdo,Coqui-Lame,Kalkklinge,Concha Filo,Coraza Afilada,Conchilama,셸블레이드,Shell Blade,貝殼刃,贝壳刃,Bèiké Rèn / Buihok Yahn
+heat-crash,Heat Crash,ヒートスタンプ,ヒートスタンプ,Hīto Sutanpu,Tacle Feu,Brandstempel,Golpe Calor,Golpe de Calor,Marchiafuoco,히트스탬프,Heat Stamp,高溫重壓,高温重压,Gāowēn Zhòngyā / Gōuwān Chúhng'aat
+leaf-tornado,Leaf Tornado,グラスミキサー,グラスミキサー,Gurasu Mikusā,Phytomixeur,Grasmixer,Ciclón de Hojas,Ciclón de Hojas,Vorticerba,그래스믹서,Grass Mixer,青草攪拌器,青草搅拌器,Qīngcǎo Jiǎobànqì / Chēngchóu Gáaubuhnhei
+steamroller,Steamroller,ハードローラー,ハードローラー,Hādo Rorā,Bulldoboule,Quetschwalze,Rodillo de Púas,Aplanadora,Rulloduro,하드롤러,Hard Roller,瘋狂滾壓,疯狂滚压,Fēngkuáng Gǔnyā / Fūngkòhng Gwán'aat
+cotton-guard,Cotton Guard,コットンガード,コットンガード,Cotton Gādo,Cotogarde,Watteschild,Rizo Algodón,Guardialgodón,Cotonscudo,코튼가드,Cotton Guard,棉花防守,棉花防守,Miánhuā Fángshǒu / Mìhnfā Fòhngsáu
+night-daze,Night Daze,ナイトバースト,ナイトバースト,Naito Bāsuto,Explonuit,Nachtflut,Pulso Noche,Pulso Nocturno,Urtoscuro,나이트버스트,Night Burst,暗黑爆破,暗黑爆破,Ànhēi Bàopò / Amhāk Baaupo
+psystrike,Psystrike,サイコブレイク,サイコブレイク,Saiko Bureiku,Frappe Psy,Psychostoß,Onda Mental,Onda Mental,Psicobotta,사이코브레이크,Psycho Break,精神擊破,精神击破,Jīngshén Jípò / Jīngsàhn Gīkpo
+tail-slap,Tail Slap,スイープビンタ,スイープビンタ,Suīpu Binta,Plumo-Queue,Kehrschelle,Plumerazo,Golpe de Cola,Spazzasberla,스위프뺨치기,Sweep Ppyamchigi,掃尾拍打,扫尾拍打,Sǎoyǐ Pāidǎ/Sǎowěi Pāidǎ / Souméih Paakdá
+hurricane,Hurricane,ぼうふう,ぼうふう,Bōfū,Vent Violent,Orkan,Vendaval,Huracán,Tifone,폭풍,Pokpung,暴風,暴风,Bàofēng / Bouhfūng
+head-charge,Head Charge,アフロブレイク,アフロブレイク,Afuro Bureiku,Peignée,Steinschädel,Ariete,Carga de Cabeza,Ricciolata,아프로브레이크,Afro Break,爆炸頭突擊,爆炸头突击,Bàozhàtóu Tūjī / Baaujatàuh Dahtgīk
+gear-grind,Gear Grind,ギアソーサー,ギアソーサー,Gia Sōsā,Lancécrou,Klikkdiskus,Rueda Doble,Rueda Doble,Ingracolpo,기어소서,Gear Saucer,齒輪飛盤,齿轮飞盘,Chǐlún Fēipán / Chílèuhn Fēipùhn
+searing-shot,Searing Shot,かえんだん,かえんだん,Kaendan,Incendie,Flammenball,Bomba Ígnea,Bomba Ígnea,Sparafuoco,화염탄,Hwayeomtan,火焰彈,火焰弹,Huǒyàn Dàn / Fóyihm Daahn
+techno-blast,Techno Blast,テクノバスター,テクノバスター,Tekuno Basutā,Techno-Buster,Techblaster,Tecno Shock,Tecno Shock,Tecnobotto,테크노버스터,Techno Buster,高科技光炮,高科技光炮,Gāokējì Guāngpào / Gōufōgeih Gwōngpaau
+relic-song,Relic Song,いにしえのうた,いにしえのうた,Inishie no Uta,Chant Antique,Urgesang,Canto Arcaico,Canto Arcaico,Cantoantico,옛노래,Yennorae,古老之歌,古老之歌,Gǔlǎo-zhī Gē / Gúlóuh-jī Gō
+secret-sword,Secret Sword,しんぴのつるぎ,しんぴのつるぎ,Shinpi no Tsurugi,Lame Ointe,Mystoschwert,Sable Místico,Espada Secreta,Spadamistica,신비의칼,Sinbi-yi Kal,神秘之劍,神秘之剑,Shénmì-zhī Jiàn / Sàhnbei-jī Gim
+glaciate,Glaciate,こごえるせかい,こごえるせかい,Kogoeru Sekai,Ère Glaciaire,Eiszeit,Mundo Gélido,Mundo Gélido,Gelamondo,얼어붙은세계,Eolda-segye,冰封世界,冰封世界,Bīngfēng Shìjiè / Bīngfūng Saigaai
+bolt-strike,Bolt Strike,らいげき,らいげき,Raigeki,Charge Foudre,Blitzschlag,Ataque Fulgor,Ataque Fulgor,Lucesiluro,뇌격,Nyaegyuk,雷擊,雷击,Léijí / Lèuihgīk
+blue-flare,Blue Flare,あおいほのお,あおいほのお,Aoi Honō,Flamme Bleue,Blauflammen,Llama Azul,Llama Azul,Fuocoblu,푸른불꽃,Pureun Bulkkot,青焰,青焰,Qīngyàn / Chīngyihm
+fiery-dance,Fiery Dance,ほのおのまい,ほのおのまい,Honō no Mai,Danse du Feu,Feuerreigen,Danza Llama,Danza de Llamas,Voldifuoco,불꽃춤,Bulkkotchum,火之舞,火之舞,Huǒ-zhī Wǔ / Fó-jī Móuh
+freeze-shock,Freeze Shock,フリーズボルト,フリーズボルト,Furīzu Boruto,Éclair Gelé,Frostvolt,Rayo Gélido,Rayo Gélido,Elettrogelo,프리즈볼트,Freeze Volt,冰凍伏特,冰冻伏特,Bīngdòng Fútè / Bīngdung Fuhkdahk
+ice-burn,Ice Burn,コールドフレア,コールドフレア,Kōrudo Furea,Feu Glacé,Frosthauch,Llama Gélida,Llama Gélida,Vampagelida,콜드플레어,Cold Flare,極寒冷焰,极寒冷焰,Jíhán Lěngyàn / Gihkhòhn Láahngyihm
+snarl,Snarl,バークアウト,バークアウト,Bāku Auto,Aboiement,Standpauke,Alarido,Alarido,Urlorabbia,바크아웃,Bark Out,大聲咆哮,大声咆哮,Dàshēng Páoxiāo / Daaihsēng Pàauhhāau
+icicle-crash,Icicle Crash,つららおとし,つららおとし,Tsurara Otoshi,Chute Glace,Eiszapfhagel,Chuzos,Carámbano,Scagliagelo,고드름떨구기,Godureum Tteolgugi,冰柱墜擊,冰柱坠击,Bīngzhù Zhuìjī / Bīngchyúh Jeuihgīk
+v-create,V-create,Ｖジェネレート,Ｖジェネレート,V Jenerēto,Coup Victoire,V-Generator,V de Fuego,V de Fuego,Generatore V,V제너레이트,V Generate,Ｖ熱焰,Ｖ热焰,V Rèyàn / V Yihtyihm
+fusion-flare,Fusion Flare,クロスフレイム,クロスフレイム,Kurosu Fureimu,Flamme Croix,Kreuzflamme,Llama Fusión,Llama Fusión,Incrofiamma,크로스플레임,Cross Flame,交錯火焰,交错火焰,Jiāocuò Huǒyàn / Gāauchok Fóyihm
+fusion-bolt,Fusion Bolt,クロスサンダー,クロスサンダー,Kurosu Sandā,Éclair Croix,Kreuzdonner,Rayo Fusión,Rayo Fusión,Incrotuono,크로스썬더,Cross Thunder,交錯閃電,交错闪电,Jiāocuò Shǎndiàn / Gāauchok Símdihn
+flying-press,Flying Press,フライングプレス,フライングプレス,Furaingu Puresu,Flying Press,Flying Press,Plancha Voladora,Plancha Voladora,Schiacciatuffo,플라잉프레스,Flying Press,飛身重壓,飞身重压,Fēishēn Zhòngyā / Fēisān Chúhng'aat
+mat-block,Mat Block,たたみがえし,たたみがえし,Tatami-gaeshi,Tatamigaeshi,Tatami-Schild,Escudo Tatami,Escudo Tatami,Ribaltappeto,마룻바닥세워막기,Marutbadaksewomaggi,掀榻榻米,掀榻榻米,Xiān Tàtàmǐ / Hīn Taaptaapmáih
+belch,Belch,ゲップ,ゲップ,Geppu,Éructation,Rülpser,Eructo,Eructo,Rutto,트림,Teurim,打嗝,打嗝,Dǎgé / Dágaak
+rototiller,Rototiller,たがやす,たがやす,Tagayasu,Fertilisation,Pflüger,Fertilizante,Fertilizante,Aracampo,일구기,Ilgugi,耕地,耕地,Gēngdì / Gāangdeih
+sticky-web,Sticky Web,ねばねばネット,ねばねばネット,Nebaneba Net,Toile Gluante,Klebenetz,Red Viscosa,Red Pegajosa,Rete Vischiosa,끈적끈적네트,Kkeunjeok-kkeunjeok Net,黏黏網,黏黏网,Niánnián Wǎng / Nīmnīm Móhng
+fell-stinger,Fell Stinger,とどめばり,とどめばり,Todome-bari,Dard Mortel,Stachelfinale,Aguijón Letal,Aguijón Letal,Pungiglione,마지막일침,Majimak'il-chim,致命針刺,致命针刺,Zhìmìng Zhēncì / Jimihng Jāmchi
+phantom-force,Phantom Force,ゴーストダイブ,ゴーストダイブ,Gōsuto Daibu,Hantise,Phantomkraft,Golpe Fantasma,Golpe Fantasma,Spettrotuffo,고스트다이브,Ghost Dive,潛靈奇襲,潜灵奇袭,Qiánlíng Qíxí / Chìhmlīng Kèijaahp
+trick-or-treat,Trick-or-Treat,ハロウィン,ハロウィン,Harouin,Halloween,Halloween,Halloween,Halloween,Halloween,핼러윈,Halloween,萬聖夜,万圣夜,Wànshèngyè / Maahnsingyeh
+noble-roar,Noble Roar,おたけび,おたけび,Otakebi,Râle Mâle,Kampfgebrüll,Rugido de Guerra,Rugido de Guerra,Urlo,부르짖기,Bureujijgi,戰吼,战吼,Zhànhǒu / Jinháu
+ion-deluge,Ion Deluge,プラズマシャワー,プラズマシャワー,Purazuma Shawā,Déluge Plasmique,Plasmaschauer,Cortina Plasma,Cortina Plasma,Pioggiaplasma,플라스마샤워,Plasma Shower,等離子浴,等离子浴,Děnglízǐ Yù / Dánglèihjí Yuhk
+parabolic-charge,Parabolic Charge,パラボラチャージ,パラボラチャージ,Parabora Chāji,Parabocharge,Parabolladung,Carga Parábola,Carga Parabólica,Caricaparabola,파라볼라차지,Parabola Charge,拋物面充電,抛物面充电,Pāowùmiàn Chōngdiàn / Pāaumahtmihn Chūngdihn
+forests-curse,Forest’s Curse,もりののろい,もりののろい,Mori no Noroi,Maléfice Sylvain,Waldesfluch,Condena Silvana,Condena Silvana,Boscomalocchio,숲의저주,Sup-yi Jeoju,森林詛咒,森林诅咒,Sēnlín Zǔzhòu / Sāmlàhm Jojau
+petal-blizzard,Petal Blizzard,はなふぶき,はなふぶき,Hana Fubuki,Tempête Florale,Blütenwirbel,Tormenta Floral,Tormenta de Pétalos,Fiortempesta,꽃보라,Kkotbora,落英繽紛,落英缤纷,Luòyīng Bīnfēn / Lohkyīng Bānfān
+freeze-dry,Freeze-Dry,フリーズドライ,フリーズドライ,Furīzu Dorai,Lyophilisation,Gefriertrockner,Liofilización,Liofilización,Liofilizzazione,프리즈드라이,Freeze Dry,冷凍乾燥,冷冻干燥,Lěngdòng Gānzào / Láahngdung Gōnchou
+disarming-voice,Disarming Voice,チャームボイス,チャームボイス,Chāmu Boisu,Voix Enjôleuse,Säuselstimme,Voz Cautivadora,Voz Encantadora,Incantavoce,차밍보이스,Charming Voice,魅惑之聲,魅惑之声,Mèihuò-zhī Shēng / Meihwaahk-jī Sīng
+parting-shot,Parting Shot,すてゼリフ,すてゼリフ,Sute Zerifu,Dernier Mot,Abgangstirade,Última Palabra,Última Palabra,Monito,막말내뱉기,Makmal'naebaetgi,拋下狠話,抛下狠话,Pāoxià Hěnhuà / Pāauháh Hánwah
+topsy-turvy,Topsy-Turvy,ひっくりかえす,ひっくりかえす,Hikkurikaesu,Renversement,Invertigo,Reversión,Reversión,Sottosopra,뒤집어엎기,Dwijib'eoeopgi,顛倒,颠倒,Diāndǎo / Dīndóu
+draining-kiss,Draining Kiss,ドレインキッス,ドレインキッス,Dorein Kissu,Vampibaiser,Diebeskuss,Beso Drenaje,Beso Drenador,Assorbibacio,드레인키스,Drain Kiss,吸取之吻,吸取之吻,Xīqǔ-zhī Wěn / Kāpchéui-jī Máhn
+crafty-shield,Crafty Shield,トリックガード,トリックガード,Torikku Gādo,Vigilance,Trickschutz,Truco Defensa,Truco Defensa,Truccodifesa,트릭가드,Trick Guard,戲法防守,戏法防守,Xìfǎ Fángshǒu / Heifaat Fòhngsáu
+flower-shield,Flower Shield,フラワーガード,フラワーガード,Furawā Gādo,Garde Florale,Floraschutz,Defensa Floral,Defensa Floral,Fiordifesa,플라워가드,Flower Guard,鮮花防守,鲜花防守,Xiānhuā Fángshǒu / Sīnfā Fòhngsáu
+grassy-terrain,Grassy Terrain,グラスフィールド,グラスフィールド,Gurasu Fīrudo,Champ Herbu,Grasfeld,Campo de Hierba,Campo de Césped,Campo Erboso,그래스필드,Grass Field,青草場地,青草场地,Qīngcǎo Chǎngdì / Chēngchóu Chèuhngdeih
+misty-terrain,Misty Terrain,ミストフィールド,ミストフィールド,Misuto Fīrudo,Champ Brumeux,Nebelfeld,Campo de Niebla,Campo de Niebla,Campo Nebbioso,미스트필드,Mist Field,薄霧場地,薄雾场地,Bówù Chǎngdì / Bohkmouh Chèuhngdeih
+electrify,Electrify,そうでん,そうでん,Sōden,Électrisation,Elektrifizierung,Electrificación,Electrificación,Elettrocontagio,송전,Songjeon,輸電,输电,Shūdiàn / Syūdihn
+play-rough,Play Rough,じゃれつく,じゃれつく,Jaretsuku,Câlinerie,Knuddler,Carantoña,Juego Rudo,Carineria,치근거리기,Chigeungeorigi,嬉鬧,嬉闹,Xīnào / Hēinaauh
+fairy-wind,Fairy Wind,ようせいのかぜ,ようせいのかぜ,Yōsei no Kaze,Vent Féérique,Feenbrise,Viento Feérico,Viento Feérico,Vento di Fata,요정의바람,Yojeong-yi Baram,妖精之風,妖精之风,Yāojing-zhī Fēng / Yīujīng-jī Fūng
+moonblast,Moonblast,ムーンフォース,ムーンフォース,Mūn Fōsu,Pouvoir Lunaire,Mondgewalt,Fuerza Lunar,Fuerza Lunar,Forza Lunare,문포스,Moon Force,月亮之力,月亮之力,Yuèliàng-zhī Lì / Yuhtleuhng-jī Lihk
+boomburst,Boomburst,ばくおんぱ,ばくおんぱ,Bakuonpa,Bang Sonique,Überschallknall,Estruendo,Estruendo,Ondaboato,폭음파,Pok'eumpa,爆音波,爆音波,Bàoyīnbō / Baauyāmbō
+fairy-lock,Fairy Lock,フェアリーロック,フェアリーロック,Fearī Rokku,Verrou Enchanté,Feenschloss,Cerrojo Feérico,Cerrojo Feérico,Blocco Fatato,페어리록,Fairy Lock,妖精之鎖,妖精之锁,Yāojing-zhī Suǒ / Yīujīng-jī Só
+kings-shield,King’s Shield,キングシールド,キングシールド,Kingu Shīrudo,Bouclier Royal,Königsschild,Escudo Real,Escudo Real,Scudo Reale,킹실드,King Shield,王者盾牌,王者盾牌,Wángzhě Dùnpái / Wòhngjé Téuhnpàaih
+play-nice,Play Nice,なかよくする,なかよくする,Nakayoku-suru,Camaraderie,Kameradschaft,Camaradería,Camaradería,Simpatia,친해지기,Chinhaejigi,和睦相處,和睦相处,Hémù Xiāngchǔ / Wòhmuhk Sēungchyu
+confide,Confide,ないしょばなし,ないしょばなし,Naisho-banashi,Confidence,Vertrauenssache,Confidencia,Confidencia,Confidenza,비밀이야기,Bimil'iyagi,密語,密语,Mìyǔ / Mahtyúh
+diamond-storm,Diamond Storm,ダイヤストーム,ダイヤストーム,Daiya Sutōmu,Orage Adamantin,Diamantsturm,Tormenta de Diamantes,Tormenta de Diamantes,Diamantempesta,다이아스톰,Dia Storm,鑽石風暴,钻石风暴,Zuànshí Fēngbào / Jyunsehk Fūngbouh
+steam-eruption,Steam Eruption,スチームバースト,スチームバースト,Suchīmu Bāsuto,Jet de Vapeur,Dampfschwall,Chorro de Vapor,Chorro de Vapor,Vaporscoppio,스팀버스트,Steam Burst,蒸汽爆炸,蒸汽爆炸,Zhēngqì Bàozhà / Jīnghei Baauja
+hyperspace-hole,Hyperspace Hole,いじげんホール,いじげんホール,Ijigen Hole,TrouDimensionnel,Dimensionsloch,Paso Dimensional,Paso Dimensional,Forodimensionale,이차원홀,Daleunchawon Hole,異次元洞,异次元洞,Yìcìyuán Dòng / Yihchiyùhn Duhng
+water-shuriken,Water Shuriken,みずしゅりけん,みずしゅりけん,Mizu Shuriken,Sheauriken,Wasser-Shuriken,Shuriken de Agua,Shuriken de Agua,Acqualame,물수리검,Mul Surigeom,飛水手裡劍,飞水手里剑,Fēi Shuǐ Shǒulǐjiàn / Fēi Séui Sáuléuihgim
+mystical-fire,Mystical Fire,マジカルフレイム,マジカルフレイム,Majikaru Fureimu,Feu Ensorcelé,Magieflamme,Llama Embrujada,Fuego Místico,Magifiamma,매지컬플레임,Magical Flame,魔法火焰,魔法火焰,Mófǎ Huǒyàn / Mōfaat Fóyihm
+spiky-shield,Spiky Shield,ニードルガード,ニードルガード,Nīdoru Gādo,Pico-Défense,Schutzstacheln,Barrera Espinosa,Barrera Espinosa,Agodifesa,니들가드,Needle Guard,尖刺防守,尖刺防守,Jiāncì Fángshǒu / Jīmchi Fòhngsáu
+aromatic-mist,Aromatic Mist,アロマミスト,アロマミスト,Aroma Misuto,Brume Capiteuse,Duftwolke,Niebla Aromática,Niebla Aromática,Nebularoma,아로마미스트,Aroma Mist,芳香薄霧,芳香薄雾,Fāngxiāng Bòwù / Fōnghēung Bohkmouh
+eerie-impulse,Eerie Impulse,かいでんぱ,かいでんぱ,Kaidenpa,Ondes Étranges,Mystowellen,Onda Anómala,Onda Anómala,Elettromistero,괴전파,Goejeonpa,怪異電波,怪异电波,Guàiyì Diànbō / Gwaaiyih Dihnbō
+venom-drench,Venom Drench,ベノムトラップ,ベノムトラップ,Benomu Torappu,Piège de Venin,Giftfalle,Trampa Venenosa,Trampa Venenosa,Velenotrappola,베놈트랩,Venom Trap,毒液陷阱,毒液陷阱,Dúyì Xiànjǐng / Dúyè Xiànjǐng / Duhkyihk Hahmjehng
+powder,Powder,ふんじん,ふんじん,Funjin,Nuée de Poudre,Pulverschleuder,Polvo Explosivo,Pólvora,Pulviscoppio,분진,Bunjin,粉塵,粉尘,Fěnchén / Fánchàhn
+geomancy,Geomancy,ジオコントロール,ジオコントロール,Jiokontorōru,Géo-Contrôle,Geokontrolle,Geocontrol,Geocontrol,Geocontrollo,지오컨트롤,Geocontrol,大地掌控,大地掌控,Dàdì Zhǎngkòng / Daaihdeih Jéunghung
+magnetic-flux,Magnetic Flux,じばそうさ,じばそうさ,Jiba Sōsa,Magné-Contrôle,Magnetregler,Aura Magnética,Aura Magnética,Controllo Polare,자기장조작,Jagijang Jojak,磁場操控,磁场操控,Cíchǎng Cāokòng / Chìhchèuhng Chōuhung
+happy-hour,Happy Hour,ハッピータイム,ハッピータイム,Happī Taimu,Étrennes,Goldene Zeiten,Paga Extra,Paga Extra,Cuccagna,해피타임,Happy Time,歡樂時光,欢乐时光,Huānlè Shíguāng / Fūnlohk Sìhgwōng
+electric-terrain,Electric Terrain,エレキフィールド,エレキフィールド,Ereki Fīrudo,Champ Électrifié,Elektrofeld,Campo Eléctrico,Campo Eléctrico,Campo Elettrico,일렉트릭필드,Electric Field,電氣場地,电气场地,Diànqì Chǎngdì / Dihnhei Chèuhngdeih
+dazzling-gleam,Dazzling Gleam,マジカルシャイン,マジカルシャイン,Majikaru Shain,Éclat Magique,Zauberschein,Brillo Mágico,Brillo Mágico,Magibrillio,매지컬샤인,Magical Shine,魔法閃耀,魔法闪耀,Mófǎ Shǎnyào / Mōfaat Símyiuh
+celebrate,Celebrate,おいわい,おいわい,Oiwai,Célébration,Ehrentag,Celebración,Celebración,Auguri,축하,Chukha,慶祝,庆祝,Qìngzhù / Hingjūk
+hold-hands,Hold Hands,てをつなぐ,てをつなぐ,Te o Tsunagu,Mains Jointes,Händchenhalten,Manos Juntas,Manos Juntas,Mano nella Mano,손에손잡기,Son-e-son Japgi,牽手,牵手,Qiānshǒu / Hīnsáu
+baby-doll-eyes,Baby-Doll Eyes,つぶらなひとみ,つぶらなひとみ,Tsuburana Hitomi,Regard Touchant,Kulleraugen,Ojitos Tiernos,Ojitos Tiernos,Occhioni Teneri,초롱초롱눈동자,Chorongchorong Nundongja,圓瞳,圆瞳,Yuántóng / Yùhntùhng
+nuzzle,Nuzzle,ほっぺすりすり,ほっぺすりすり,Hoppe Suri Suri,Frotte-Frimousse,Wangenrubbler,Moflete Estático,Frote,Elettrococcola,볼부비부비,Bolbubibubi,蹭蹭臉頰,蹭蹭脸颊,Cèngcèng Liǎnjiá / Cangcang Lihmgaap
+hold-back,Hold Back,てかげん,てかげん,Tekagen,Retenue,Zurückhaltung,Clemencia,Clemencia,Riguardo,적당히손봐주기,Jeokdanghisonbwajugi,手下留情,手下留情,Shǒuxià Liúqíng / Sáuhah Làuhchìhng
+infestation,Infestation,まとわりつく,まとわりつく,Matowaritsuku,Harcèlement,Plage,Acoso,Infestación,Assillo,엉겨붙기,Eonggyeobutgi,死纏爛打,死缠烂打,Sǐchánlàndǎ / Séichìhnlaahndá
+power-up-punch,Power-Up Punch,グロウパンチ,グロウパンチ,Gurō Panchi,Poing Boost,Steigerungshieb,Puño Incremento,Puño Incremento,Crescipugno,그로우펀치,Glow Punch,增強拳,增强拳,Zēngqiáng Quán / Jāngkèuhng Kyùhn
+oblivion-wing,Oblivion Wing,デスウイング,デスウイング,Desu Uingu,Mort’Ailes,Unheilsschwingen,Ala Mortífera,Ala del Olvido,Ali del Fato,데스윙,Death Wing,死亡之翼,死亡之翼,Sǐwáng-zhī Yì / Séimòhng-jī Yihk
+thousand-arrows,Thousand Arrows,サウザンアロー,サウザンアロー,Sauzando Arō,Myria-Flèches,Tausend Pfeile,Mil Flechas,Mil Flechas,Mille Frecce,사우전드애로,Thousand Arrow,千箭齊發,千箭齐发,Qiānjiàn Qífā / Chīnjin Chàihfaat
+thousand-waves,Thousand Waves,サウザンウェーブ,サウザンウェーブ,Sauzando Uēbu,Myria-Vagues,Tausend Wellen,Mil Temblores,Mil Temblores,Mille Onde,사우전드웨이브,Thousand Wave,千波激盪,千波激荡,Qiānbō Jīdàng / Chīnbō Gīkdohng
+lands-wrath,Land’s Wrath,グランドフォース,グランドフォース,Gurando Fōsu,Force Chtonienne,Bodengewalt,Fuerza Telúrica,Fuerza Telúrica,Forza Tellurica,그라운드포스,Ground Force,大地神力,大地神力,Dàdì Shénlì / Daaihdeih Sàhnlihk
+light-of-ruin,Light of Ruin,はめつのひかり,はめつのひかり,Hametsu no Hikari,Lumière du Néant,Lux Calamitatis,Luz Aniquiladora,Luz Aniquiladora,Luce Nefasta,파멸의빛,Pamyeol'uibich,破滅之光,破灭之光,Pòmiè-zhī Guāng / Pomiht-jī Gwōng
+origin-pulse,Origin Pulse,こんげんのはどう,こんげんのはどう,Kongen no Hadō,Onde Originelle,Ursprungswoge,Pulso Primigenio,Pulso Primigenio,Primopulsar,근원의파동,Geun'won-ui Padong,根源波動,根源波动,Gēnyuán Bōdòng / Gānyùhn Bōduhng
+precipice-blades,Precipice Blades,だんがいのつるぎ,だんがいのつるぎ,Dangai no Tsurugi,Lame Pangéenne,Abgrundsklinge,Filo del Abismo,Filo del Abismo,Spade Telluriche,단애의칼,Dan'ae-ui Kal,斷崖之劍,断崖之剑,Duànyái-zhī Jiàn / Duànyá-zhī Jiàn / Dyuhnngàaih-jī Gim
+dragon-ascent,Dragon Ascent,ガリョウテンセイ,ガリョウテンセイ,Garyō Tensei,Draco-Ascension,Zenitstürmer,Ascenso Draco,Ascenso Dracónico,Ascesa del Drago,화룡점정,Hwaryong Jeomjeong,畫龍點睛,画龙点睛,Huàlóngdiǎnjīng / Waahklùhngdímjīng
+hyperspace-fury,Hyperspace Fury,いじげんラッシュ,いじげんラッシュ,Ijigen Rasshu,Furie Dimension,Dimensionswahn,Cerco Dimensión,Cerco Dimensión,Urtodimensionale,이차원러시,Daleunchawon Rush,異次元猛攻,异次元猛攻,Yìcìyuán Měnggōng / Yihchiyùhn Máahnggūng
+catastropika,Catastropika,ひっさつのピカチュート,ひっさつのピカチュート,Hissatsu no Pikachūto,Pikachute Foudroyante,Perfektes Pika-Projektil,Pikavoltio Letal,Pikavoltio Letal,Super Pikaboom,필살피카슛,Pilsal Pika-shoot,皮卡皮卡必殺擊,皮卡皮卡必杀击,Píkǎ Píkǎ Bìshājí / Píkǎ Píkǎ Bìshājī / Pika Pika Bītsaatgīk
+shore-up,Shore Up,すなあつめ,すなあつめ,Sunaatsume,Amass’Sable,Sandsammler,Recogearena,Recogearena,Sabbiaccumulo,모래모으기,Morae Moeugi,集沙,集沙,Jíshā / Jaahpsā
+first-impression,First Impression,であいがしら,であいがしら,Deaigashira,Escarmouche,Überrumpler,Escaramuza,Escaramuza,Schermaglia,만나자마자,Mannajamaja,迎頭一擊,迎头一击,Yíngtóu Yījí / Yíngtóu Yījī / Yìhngtàuh Yātgīk
+baneful-bunker,Baneful Bunker,トーチカ,トーチカ,Tochka,Blockhaus,Bunker,Búnker,Búnker,Fortino,토치카,Tochka,碉堡,碉堡,Diāobǎo / Dīubóu
+spirit-shackle,Spirit Shackle,かげぬい,かげぬい,Kagenui,Tisse Ombre,Schattenfessel,Puntada Sombría,Puntada Sombría,Cucitura d’Ombra,그림자꿰매기,Geurimja Kkwemaegi,縫影,缝影,Fèng Yǐng / Fùhng Yéng
+darkest-lariat,Darkest Lariat,ＤＤラリアット,ＤＤラリアット,DD Rariatto,Dark Lariat,Dark Lariat,Lariat Oscuro,Lariat Oscuro,Braccioteso,DD래리어트,DD Lariat,ＤＤ金勾臂,ＤＤ金勾臂,DD Jīn-Gōubì / DD Gām-Āubei
+sparkling-aria,Sparkling Aria,うたかたのアリア,うたかたのアリア,Utakata no Aria,Aria de l’Écume,Schaumserenade,Aria Burbuja,Aria Burbuja,Canto Effimero,물거품아리아,Mulgeopum Aria,泡影的詠歎調,泡影的咏叹调,Pàoyǐng-de Yǒngtàndiào / Pāauyéng-dī Wihngtaandiuh
+ice-hammer,Ice Hammer,アイスハンマー,アイスハンマー,Aise Hanmā,Marteau de Glace,Eishammer,Martillo Hielo,Martillo Hielo,Martelgelo,아이스해머,Ice Hammer,冰錘,冰锤,Bīngchuí / Bīngchèuih
+floral-healing,Floral Healing,フラワーヒール,フラワーヒール,Furawā Hīru,Soin Floral,Florakur,Cura Floral,Flores Sanadoras,Cura Floreale,플라워힐,Flower Heal,花療,花疗,Huāliáo / Fālìuh
+high-horsepower,High Horsepower,１０まんばりき,１０まんばりき,Jūman Bariki,Cavalerie Lourde,Pferdestärke,Fuerza Equina,Fuerza Equina,Forza Equina,10만마력,Sipman Maryeok,十萬馬力,十万马力,Shíwàn Mǎlì / Sahpmaahn Máhlihk
+strength-sap,Strength Sap,ちからをすいとる,ちからをすいとる,Chikara o Suitoru,Vole-Force,Kraftabsorber,Absorbefuerza,Absorbefuerza,Assorbiforza,힘흡수,Him Heubsu,吸取力量,吸取力量,Xīqǔ Lìliàng / Kāpchéui Lihkleuhng
+solar-blade,Solar Blade,ソーラーブレード,ソーラーブレード,Sōrā Burēdo,Lame Solaire,Solarklinge,Cuchilla Solar,Cuchillada Solar,Lama Solare,솔라블레이드,Solar Blade,日光刃,日光刃,Rìguāng Rèn / Yahtgwōng Yahn
+leafage,Leafage,このは,このは,Ko no Ha,Feuillage,Blattwerk,Follaje,Follaje,Fogliame,나뭇잎,Namusip,樹葉,树叶,Shùyè / Syuhyihp
+spotlight,Spotlight,スポットライト,スポットライト,Supottoraito,Projecteur,Rampenlicht,Foco,Foco,Riflettore,스포트라이트,Spotlight,聚光燈,聚光灯,Jùguāngdēng / Jeuihgwōngdāng
+toxic-thread,Toxic Thread,どくのいと,どくのいと,Doku no Ito,Fil Toxique,Giftfaden,Hilo Venenoso,Hilo Venenoso,Velenotela,독실,Doksil,毒絲,毒丝,Dúsī / Duhksī
+laser-focus,Laser Focus,とぎすます,とぎすます,Togisumasu,Affilage,Konzentration,Aguzar,Agudizar,Concentrazione,예민해지기,Yeminhaejigi,磨礪,磨砺,Mólì / Mòhlaih
+gear-up,Gear Up,アシストギア,アシストギア,Ashisuto Gia,Engrenage,Hilfsmechanik,Piñón Auxiliar,Engranajes,Marciainpiù,어시스트기어,Assist Gear,輔助齒輪,辅助齿轮,Fǔzhù Chǐlún / Fuhjoh Chílèuhn
+throat-chop,Throat Chop,じごくづき,じごくづき,Jigokuzuki,Exécu-Son,Neck Strike,Golpe Mordaza,Golpe al Cuello,Colpo Infernale,지옥찌르기,Jiok Jjileugi,地獄突刺,地狱突刺,Dìyù Tūcì / Deihyuhk Dahtchi
+pollen-puff,Pollen Puff,かふんだんご,かふんだんご,Kafun Dango,Boule Pollen,Pollenknödel,Bola de Polen,Bola de Polen,Sferapolline,꽃가루경단,Kkotgaru Gyeongdan,花粉團,花粉团,Huāfěntuán / Fāfántyùhn
+anchor-shot,Anchor Shot,アンカーショット,アンカーショット,Ankā Shotto,Ancrage,Ankerschuss,Anclaje,Anclaje,Colpo d’Ancora,앵커샷,Anchor Shot,擲錨,掷锚,Zhímáo / Zhìmáo / Jaahkmàauh
+psychic-terrain,Psychic Terrain,サイコフィールド,サイコフィールド,Saiko Fīrudo,Champ Psychique,Psychofeld,Campo Psíquico,Campo Psíquico,Campo Psichico,사이코필드,Psycho Field,精神場地,精神场地,Jīngshén Chǎngdì / Jīngsàhn Chèuhngdeih
+lunge,Lunge,とびかかる,とびかかる,Tobikakaru,Furie-Bond,Anfallen,Plancha,Plancha,Assalto,덤벼들기,Deombyeodeulgi,猛撲,猛扑,Měngpū / Máahngpok
+fire-lash,Fire Lash,ほのおのムチ,ほのおのムチ,Honō no Muchi,Fouet de Feu,Feuerpeitsche,Látigo Ígneo,Látigo Ígneo,Frusta di Fuoco,불꽃채찍,Bulkkot Chaejjik,火焰鞭,火焰鞭,Huǒyànbiān / Fóyihmbīn
+power-trip,Power Trip,つけあがる,つけあがる,Tsukeagaru,Arrogance,Überheblichkeit,Chulería,Arrogancia,Tracotanza,기어오르기,Gieo-oreugi,囂張,嚣张,Xiāozhāng / Hīujēung
+burn-up,Burn Up,もえつきる,もえつきる,Moetsukiru,Flamme Ultime,Ausbrennen,Llama Final,Llama Final,Ultima Fiamma,불사르기,Bulsareugi,燃盡,燃尽,Ránjìn / Yìhnjeuhn
+speed-swap,Speed Swap,スピードスワップ,スピードスワップ,Supīdo Suwappu,Permuvitesse,Initiativetausch,Cambiavelocidad,Cambiavelocidad,Velociscambio,스피드스왑,Speed Swap,速度互換,速度互换,Sùdù Hùhuàn / Chūkdohk Wuhwuhn
+smart-strike,Smart Strike,スマートホーン,スマートホーン,Smāto Hōn,Estocorne,Schmalhorn,Cuerno Certero,Cuerno Certero,Sottilcorno,스마트혼,Smart Horn,修長之角,修长之角,Xiūcháng-zhī Jiǎo / Sāuchèuhng-jī Gok
+purify,Purify,じょうか,じょうか,Jōka,Purification,Läuterung,Purificación,Purificación,Purificazione,정화,Jeonghwa,淨化,净化,Jìnghuà / Jihngfa
+revelation-dance,Revelation Dance,めざめるダンス,めざめるダンス,Mezameru Dansu,Danse Éveil,Wecktanz,Danza Despertar,Danza Revelación,Mutadanza,잠재댄스,Jamjae Dance,覺醒之舞,觉醒之舞,Juéxǐng-zhī Wǔ / Goksíng-jī Móuh
+core-enforcer,Core Enforcer,コアパニッシャー,コアパニッシャー,Koa Panisshā,Sanction Suprême,Sanktionskern,Núcleo Castigo,Núcleo Castigo,Nucleocastigo,코어퍼니셔,Core Punisher,核心懲罰者,核心惩罚者,Héxīn Chéngfázhě / Hahtsām Chìhngfahtjé
+trop-kick,Trop Kick,トロピカルキック,トロピカルキック,Toropikaru Kikku,Botte Sucrette,Tropenkick,Patada Tropical,Patada Tropical,Tropicalcio,트로피컬킥,Tropical Kick,熱帶踢,热带踢,Rèdài Tī / Yihtdaai Tek
+instruct,Instruct,さいはい,さいはい,Saihai,Sommation,Kommando,Mandato,Mandato,Imposizione,지휘,Jihwi,號令,号令,Hàolìng / Houhlihng
+beak-blast,Beak Blast,くちばしキャノン,くちばしキャノン,Kuchibashi Kyanon,Bec-Canon,Schnabelkanone,Pico Cañón,Pico Cañón,Cannonbecco,부리캐논,Buri Cannon,鳥嘴加農炮,鸟嘴加农炮,Niǎozuǐ Jiānóngpào / Níuhjéui Gānùhngpàauh
+clanging-scales,Clanging Scales,スケイルノイズ,スケイルノイズ,Sukeiru Noizu,Vibrécaille,Schuppenrasseln,Fragor Escamas,Fragor Escamas,Clamorsquame,스케일노이즈,Scale Noise,鱗片噪音,鳞片噪音,Línpiàn Zàoyīn / Lèuhnpín Chouyām
+dragon-hammer,Dragon Hammer,ドラゴンハンマー,ドラゴンハンマー,Doragon Hanmā,Draco-Marteau,Drachenhammer,Martillo Dragón,Martillo Dragón,Marteldrago,드래곤해머,Dragon Hammer,龍錘,龙锤,Lóngchuí / Lùhngchèuih
+brutal-swing,Brutal Swing,ぶんまわす,ぶんまわす,Bunmawasu,Centrifugifle,Wirbler,Giro Vil,Giro Vil,Vorticolpo,세차게휘두르기,Sechage Hwiduleugi,狂舞揮打,狂舞挥打,Kuángwǔ Huīdǎ / Kwòhngmóuh Fāidá
+aurora-veil,Aurora Veil,オーロラベール,オーロラベール,Ōrora Bēru,Voile Aurore,Auroraschleier,Velo Aurora,Velo Aurora,Velaurora,오로라베일,Aurora Veil,極光幕,极光幕,Jíguāngmù / Gihkgwōngmohk
+sinister-arrow-raid,Sinister Arrow Raid,シャドーアローズストライク,シャドーアローズストライク,Shadō Arōzu Sutraiku,Fureur des Plumes Spectrales,Schatten-Pfeilregen,Aluvión de Flechas Sombrías,Aluvión de Flechas Sombrías,Dardoassalto Spettrale,섀도애로우즈스트라이크,Shadow Arrows Strike,遮天蔽日暗影箭,遮天蔽日暗影箭,Zhētiān-Bìrì Ànyǐngjiàn / Jētīn-Baiyaht Amyíngjin
+malicious-moonsault,Malicious Moonsault,ハイパーダーククラッシャー,ハイパーダーククラッシャー,Haipā Dāku Kurasshā,Dark Body Press,Hyper Dark Crusher,Hiperplancha Oscura,Hiperplancha Oscura,Iperschianto delle Tenebre,하이퍼다크크러셔,Hyper Dark Crusher,極惡飛躍粉碎擊,极恶飞跃粉碎击,Jí'è Fēiyuè Fěnsuìjí / Jí'è Fēiyuè Fěnsuìjī / Gihk'ok Fēiyeuhk Fánseuigīk
+oceanic-operetta,Oceanic Operetta,わだつみのシンフォニア,わだつみのシンフォニア,Wadatsumi no Shinfonia,Symphonie des Ondines,Grandiose Meeressymphonie,Sinfonía de la Diva Marina,Sinfonía de la Diva Marina,Sinfonia del Mare,바다의심포니,Bada-ui Symphony,海神莊嚴交響樂,海神庄严交响乐,Hǎishén Zhuāngyán Jiāoxiǎngyuè / Hóisàhn Jōngyìhm Gāauhéungngohk
+guardian-of-alola,Guardian of Alola,ガーディアン・デ・アローラ,ガーディアン・デ・アローラ,Gādian de Arora,Colère du Gardien d’Alola,Alolas Wächter,Cólera del Guardián,Cólera del Guardián,Collera del Guardiano,알로라의수호자,Alola-ui Suhoja,巨人衛士・阿羅拉,巨人卫士・阿罗拉,Jùrén Wèishì Āluólā / Geuihyàhn Waihsih Álòhlā
+soul-stealing-7-star-strike,Soul-Stealing 7-Star Strike,しちせいだっこんたい,しちせいだっこんたい,Shichisei Dakkontai,Fauche-Âme des Sept Étoiles,Sternbild des Seelenraubes,Constelación Robaalmas,Constelación Robaalmas,Colpo Eptastellare Rubanima,칠성탈혼퇴,Chilseong Talhontoe,七星奪魂腿,七星夺魂腿,Qīxīng Duóhúntuǐ / Chātsēng Dyuhtwàhntéui
+stoked-sparksurfer,Stoked Sparksurfer,ライトニングサーフライド,ライトニングサーフライド,Raitoningu Sāfu Raido,Électro-Surf Survolté,Blitz-Wellenritt,Surfeo Galvánico,Surfeo Galvánico,Elettrosurf Folgorante,라이트닝서프라이드,Lightning Surf Ride,駕雷馭電戲衝浪,驾雷驭电戏冲浪,Jiàléi-Yùdiàn Xìchōnglàng / Galèuih-Yuhdihn Heichūnglohng
+pulverizing-pancake,Pulverizing Pancake,ほんきをだす　こうげき,ほんきをだす　こうげき,Honki o Dasu Kōgeki,Gare au Ronflex,Schluss mit lustig,Arrojo Intempestivo,Arrojo Intempestivo,Adesso Faccio sul Serio,진심의공격,Jinsim-ui Gonggyeok,認真起來大爆擊,认真起来大爆击,Rènzhēn Qǐlái Dàbàojí / Rènzhēn Qǐlái Dàbàojī / Yihngjān Héilèih Daaihbaaugīk
+extreme-evoboost,Extreme Evoboost,ナインエボルブースト,ナインエボルブースト,Nain Eboru Būsuto,Neuf pour Un,Macht der Neun,Novena Potencia,Novena Potencia,Potenziamento Eevolutivo,나인이볼부스트,Nine Evol Boost,九彩昇華齊聚頂,九彩升华齐聚顶,Jiǔcǎi Shēnghuá Qíjùdǐng / Gáuchói Sīngwàh Chàihjeuihdéng
+genesis-supernova,Genesis Supernova,オリジンズスーパーノヴァ,オリジンズスーパーノヴァ,Orijinzu Sūpānova,Supernova Originelle,Supernova des Ursprungs,Supernova Original,Supernova Original,Supernova delle Origini,오리진즈슈퍼노바,Origins Supernova,起源超新星大爆炸,起源超新星大爆炸,Qǐyuán Chāoxīnxīng Dàbàozhà / Héiyùhn Chīusānsēng Daaihbaauja
+shell-trap,Shell Trap,トラップシェル,トラップシェル,Torappu Sheru,Carapiège,Panzerfalle,Coraza Trampa,Trampa Coraza,Gusciotrappola,트랩셸,Trap Shell,陷阱甲殼,陷阱甲壳,Xiànjǐng Jiǎké / Hahmjehng Gaaphok
+fleur-cannon,Fleur Cannon,フルールカノン,フルールカノン,Frūru Kanon,Canon Floral,Kanonenbouquet,Cañón Floral,Cañón Floral,Cannonfiore,플뢰르캐논,Fleur Cannon,花朵加農炮,花朵加农炮,Huāduǒ Jiānóngpào / Fādó Gānùhngpàauh
+psychic-fangs,Psychic Fangs,サイコファング,サイコファング,Saiko Fangu,Psycho-Croc,Psychobeißer,Psicocolmillo,Psicocolmillo,Psicozanna,사이코팽,Psycho Fang,精神之牙,精神之牙,Jīngshén-zhī Yá / Jīngsàhn-jī Ngàh
+stomping-tantrum,Stomping Tantrum,じだんだ,じだんだ,Jidanda,Trépignement,Fruststampfer,Pataleta,Pataleta,Battipiedi,분함의발구르기,Bunhamui Balgureugi,跺腳,跺脚,Duòjiǎo / Dógeuk
+shadow-bone,Shadow Bone,シャドーボーン,シャドーボーン,Shadō Bōn,Os Ombre,Schattenknochen,Hueso Sombrío,Hueso Sombrío,Ossotetro,섀도본,Shadow Bone,暗影之骨,暗影之骨,Ànyǐng-zhī Gǔ / Amyíng-jī Gwāt
+accelerock,Accelerock,アクセルロック,アクセルロック,Akuseru Rokku,Vif Roc,Turbofelsen,Roca Veloz,Roca Veloz,Rocciarapida,액셀록,Accel Rock,衝岩,冲岩,Chōngyán / Chūngngàahm
+liquidation,Liquidation,アクアブレイク,アクアブレイク,Akua Bureiku,Aqua-Brèche,Aquadurchstoß,Hidroariete,Hidroariete,Idrobreccia,아쿠아브레이크,Aqua Break,水流裂破,水流裂破,Shuǐliú Lièpò / Séuilàuh Lihtpo
+prismatic-laser,Prismatic Laser,プリズムレーザー,プリズムレーザー,Purizumu Rēzā,Laser Prisme,Prisma-Laser,Láser Prisma,Láser Prisma,Prismalaser,프리즘레이저,Prism Laser,稜鏡鐳射,棱镜镭射,Léngjìng Léishè / Lìhnggeng Lèuihseh
+spectral-thief,Spectral Thief,シャドースチール,シャドースチール,Shadō Suchīru,Clepto-Mânes,Diebesschatten,Robasombra,Robasombra,Ombrafurto,섀도스틸,Shadow Steal,暗影偷盜,暗影偷盗,Ànyǐng Tōudào / Amyíng Tāudouh
+sunsteel-strike,Sunsteel Strike,メテオドライブ,メテオドライブ,Meteo Doraibu,Choc Météore,Stahlgestirn,Meteoimpacto,Meteoimpacto,Astrocarica,메테오드라이브,Meteor Drive,流星閃衝,流星闪冲,Liúxīng Shǎnchōng / Làuhsīng Símchūng
+moongeist-beam,Moongeist Beam,シャドーレイ,シャドーレイ,Shadō Rei,Rayon Spectral,Schattenstrahl,Rayo Umbrío,Rayo Umbrío,Raggio d’Ombra,섀도레이,Shadow Ray,暗影之光,暗影之光,Ànyǐng-zhī Guāng / Amyíng-jī Gwōng
+tearful-look,Tearful Look,なみだめ,なみだめ,Namida Me,Larme à l’Œil,Tränendrüse,Ojos Llorosos,Ojos Llorosos,Occhionilucidi,눈물그렁그렁,Nunmul Geureong-geureong,淚眼汪汪,泪眼汪汪,Lèiyǎn Wāngwāng / Leuihngáahn Wōngwōng
+zing-zap,Zing Zap,びりびりちくちく,びりびりちくちく,Biribiri Chikuchiku,Électrikipik,Elektropikser,Electropunzada,Electropunzada,Elettropizzico,찌리리따끔따끔,Jjiriri Ttakkeumttakkeum,麻麻刺刺,麻麻刺刺,Mámá Cìcì / Màhmàh Chichi
+natures-madness,Nature’s Madness,しぜんのいかり,しぜんのいかり,Shizen no Ikari,Ire de la Nature,Naturzorn,Furia Natural,Ira Natural,Ira della Natura,자연의분노,Jayeon-ui Bunno,自然之怒,自然之怒,Zìrán-zhī Nù / Jihyìhn-jī Nouh
+multi-attack,Multi-Attack,マルチアタック,マルチアタック,Maruchi Atakku,Coup Varia-Type,Multi-Angriff,Multiataque,Multiataque,Multiattacco,멀티어택,Multi Attack,多屬性攻擊,多属性攻击,Duō Shǔxìng Gōngjí / Dō Suhksing Gūnggīk
+10-000-000-volt-thunderbolt,"10,000,000 Volt Thunderbolt",１０００まんボルト,１０００まんボルト,Senman Boruto,Giga-Tonnerre,Tausendfacher Donnerblitz,Gigarrayo Fulminante,Gigarrayo Fulminante,Iperfulmine,1000만볼트,Cheonman Volt,千萬伏特,千万伏特,Qiānwàn Fútè / Chīnmaahn Fuhkdahk
+mind-blown,Mind Blown,ビックリヘッド,ビックリヘッド,Bikkuri Heddo,Caboche-Kaboum,Knallkopf,Cabeza Sorpresa,Cabeza Sorpresa,Sbalorditesta,깜짝헤드,Kkamjjak Head,驚爆大頭,惊爆大头,Jīngbào Dàtóu / Gīngbaau Daaihtàuh
+plasma-fists,Plasma Fists,プラズマフィスト,プラズマフィスト,Purazuma Fisuto,Plasma Punch,Plasmafäuste,Puños Plasma,Puños Plasma,Pugni Plasma,플라스마피스트,Plasma Fist,等離子閃電拳,等离子闪电拳,Děnglízǐ Shǎndiàn Quán / Dánglèihjí Símdihn Kyùhn
+photon-geyser,Photon Geyser,フォトンゲイザー,フォトンゲイザー,Foton Geizā,Photo-Geyser,Photonen-Geysir,Géiser Fotónico,Géiser Fotónico,Geyser Fotonico,포톤가이저,Photon Geyser,光子噴湧,光子喷涌,Guāngzǐ Pēnyǒng / Gwōngjí Panyúng
+light-that-burns-the-sky,Light That Burns the Sky,てんこがすめつぼうのひかり,てんこがすめつぼうのひかり,Ten Kogasu Metsubō no Hikari,Apocalypsis Luminis,Licht des Erlöschens,Fotodestrucción Apocalíptica,Fotodestrucción Apocalíptica,Fotodistruzione Apocalittica,하늘을태우는멸망의빛,Haneureul Tae-uneun Myeolmang-ui bit,焚天滅世熾光爆,焚天灭世炽光爆,Féntiān-Mièshì Chìguāngbào / Fàhntīn-Mihtsai Chigwōngbaau
+searing-sunraze-smash,Searing Sunraze Smash,サンシャインスマッシャー,サンシャインスマッシャー,Sanshain Sumasshā,Hélio-Choc Dévastateur,Schmetternde Sonnenwalze,Embestida Solar,Embestida Solar,Supercollisione Solare,선샤인스매셔,Sunshine Smasher,日光迴旋下蒼穹,日光回旋下苍穹,Rìguāng Huíxuán Xiàcāngqiōng / Rìguāng Huíxuán Xiàcāngqióng / Yahtgwōng Wùihsyùhn Hahchōngkùhng
+menacing-moonraze-maelstrom,Menacing Moonraze Maelstrom,ムーンライトブラスター,ムーンライトブラスター,Mūnraito Burasutā,Rayons Séléno-Explosifs,Geballter Mondlaser,Deflagración Lunar,Deflagración Lunar,Deflagrazione Lunare,문라이트블래스터,Moonlight Blaster,月華飛濺落靈霄,月华飞溅落灵霄,Yuèhuá Fēijiàn Luòlíngxiāo / Yuhtwàh Fēijin Lohklìhngsīu
+lets-snuggle-forever,Let’s Snuggle Forever,ぽかぼかフレンドタイム,ぽかぼかフレンドタイム,Poka-Boka Furendo Taimu,Patati-Patattrape,Herzliche Knuddelkloppe,Somanta Amistosa,Somanta Amistosa,Dolcesacco di Botte,투닥투닥프렌드타임,Tudak-Tudak Friend Time,親密無間大亂揍,亲密无间大乱揍,Qīnmì-Wújiàn Dàluànzòu / Chānmaht-Mòuhgaan Daaihlyuhnjau
+splintered-stormshards,Splintered Stormshards,ラジアルエッジストーム,ラジアルエッジストーム,Rajiaru Ejjistōmu,Hurlement des Roches-Lames,Fataler Steinregen,Tempestad Rocosa,Tempestad Rocosa,Litotempesta Radiale,레이디얼에지스톰,Radial Edgestorm,狼嘯石牙颶風暴,狼啸石牙飓风暴,Lángxiào Shíyá Jùfēngbào / Lòhngsiu Sehkngàh Geuihfūngbouh
+clangorous-soulblaze,Clangorous Soulblaze,ブレイジングソウルビート,ブレイジングソウルビート,Bureijingu Sōrubīto,Dracacophonie Flamboyante,Rasselnder Seelentanz,Estruendo Implacable,Estruendo Implacable,Dracofonia Divampante,브레이징소울비트,Blazing Soulbeat,熾魂熱舞烈音爆,炽魂热舞烈音爆,Chìhún Rèwǔ Lièyīnbào / Chiwàhn Yihtmóuh Lihtyāmbaau
+zippy-zap,Zippy Zap,ばちばちアクセル,ばちばちアクセル,Bachibachi Akuseru,Pika-Sprint,Britzelturbo,Pikaturbo,Pikaturbo,Sprintaboom,파찌파찌액셀,Pajji-Pajji Accel,電電加速,电电加速,Diàndiàn Jiāsù / Dihndihn Gāchūk
+splishy-splash,Splishy Splash,ざぶざぶサーフ,ざぶざぶサーフ,Zabuzabu Sāfu,Pika-Splash,Plätschersurfer,Salpikasurf,Salpikasurf,Surfasplash,참방참방서핑,Chambangchambang Surfing,滔滔衝浪,滔滔冲浪,Tāotāo Chōnglàng / Tōutōu Chūnglohng
+floaty-fall,Floaty Fall,ふわふわフォール,ふわふわフォール,Fuwafuwa Fōru,Pika-Piqué,Schwebesturz,Pikapicado,Pikapicado,Piombaflap,둥실둥실폴,Dungsildungsil Fall,飄飄墜落,飘飘坠落,Piāopiāo Zhuìluò / Pīupīu Jeuihlohk
+pika-papow,Pika Papow,ピカピカサンダー,ピカピカサンダー,Pikapika Sandā,Pika-Fracas,Pika-Flash,Pikatormenta,Pikatormenta,Pikasaetta,피카피카썬더,Pikapika Thunder,閃閃雷光,闪闪雷光,Shǎnshǎn Léiguāng / Símsím Lèuihgwōng
+bouncy-bubble,Bouncy Bubble,いきいきバブル,いきいきバブル,Ikiiki Baburu,Évo-Thalasso,Blubbsauger,Vapodrenaje,Vapodrenaje,Bollaslurp,생생버블,Saengsaeng Bubble,活活氣泡,活活气泡,Huóhuó Qìpào / Wuhtwuht Heipóuh
+buzzy-buzz,Buzzy Buzz,びりびりエレキ,びりびりエレキ,Biribiri Ereki,Évo-Dynamo,Knisterladung,Joltioparálisis,Joltioparálisis,Elettrozap,찌릿찌릿일렉,Jjiritjjirit Elec,麻麻電擊,麻麻电击,Mámá Diànjí / Mámá Diànjī / Màhmàh Dihngīk
+sizzly-slide,Sizzly Slide,めらめらバーン,めらめらバーン,Meramera Bān,Évo-Flambo,Flackerbrand,Flarembestida,Flarembestida,Fiammabam,이글이글번,Igeuligeul Burn,熊熊火爆,熊熊火爆,Xióngxióng Huǒbào / Hùhnghùhng Fóbaau
+glitzy-glow,Glitzy Glow,どばどばオーラ,どばどばオーラ,Dobadoba Ōra,Évo-Psycho,Pulsieraura,Espeaura,Espeaura,Auraswoosh,콸콸오라,Kwal-Kwal Aura,嘩嘩氣場,哗哗气场,Huāhuā Qìchǎng / Wāwā Heichèuhng
+baddy-bad,Baddy Bad,わるわるゾーン,わるわるゾーン,Waruwaru Zōn,Évo-Ténébro,Quälzone,Umbreozona,Umbreozona,Zona Buiabuia,아그아그존,Ageu-Ageu Zone,壞壞領域,坏坏领域,Huàihuài Lǐngyù / Waaihwaaih Líhngwihk
+sappy-seed,Sappy Seed,すくすくボンバー,すくすくボンバー,Sukusuku Bonbā,Évo-Écolo,Sprießbomben,Leafitobombas,Leafitobombas,Bombafrush,쑥쑥봄버,Ssuk-Ssuk Bomber,茁茁轟炸,茁茁轰炸,Zhuózhuó Hōngzhà / Jyutjyut Gwāngja
+freezy-frost,Freezy Frost,こちこちフロスト,こちこちフロスト,Kochikochi Furosuto,Évo-Congélo,Klirrfrost,Glaceoprisma,Glaceoprisma,Scricchiagelo,꽁꽁프로스트,Kkong-Kkong Frost,冰冰霜凍,冰冰霜冻,Bīngbīng Shuāngdòng / Bīngbīng Sēungdung
+sparkly-swirl,Sparkly Swirl,きらきらストーム,きらきらストーム,Kirakira Sutōmu,Évo-Fabulo,Glitzersturm,Sylveotornado,Sylveotornado,Sbrilluccibufera,반짝반짝스톰,Banjjak-Banjjak Storm,亮亮風暴,亮亮风暴,Liàngliàng Fēngbào / Leuhngleuhng Fūngbouh
+veevee-volley,Veevee Volley,ブイブイブレイク,ブイブイブレイク,Buibui Bureiku,Évo-Chardasso,Evo-Crash,Eevimpacto,Eevimpacto,Eeveempatto,브이브이브레이크,Veevee Break,砰砰擊破,砰砰击破,Pēngpēng Jípò / Pēngpēng Jīpò / Pīngpīng Gīkpo
+double-iron-bash,Double Iron Bash,ダブルパンツァー,ダブルパンツァー,Daburu Panzā,Écrous d’Poing,Panzerfäuste,Ferropuño Doble,Ferropuño Doble,Pugni Corazzati,더블펀처,Double Puncher,鋼拳雙擊,钢拳双击,Gāngquán Shuāngjí / Gāngquán Shuāngjī / Gongkyùhn Sēunggīk
+max-guard,Max Guard,ダイウォール,ダイウォール,Dai Uōru,Gardomax,Dyna-Wall,Maxibarrera,Maxibarrera,Dynabarriera,다이월,Dai Wall,極巨防壁,极巨防壁,Jíjù Fángbì / Gihkgeuih Fòhngbīk
+dynamax-cannon,Dynamax Cannon,ダイマックスほう,ダイマックスほう,Daimakkusu Hō,Canon Dynamax,Dynamax-Kanone,Cañón Dinamax,Cañón Dinamax,Cannone Dynamax,다이맥스포,Daimax Po,極巨炮,极巨炮,Jíjù Pào / Gihkgeuih Paau
+snipe-shot,Snipe Shot,ねらいうち,ねらいうち,Neraiuchi,Tir de Précision,Präzisionsschuss,Disparo Certero,Disparo Certero,Tiromirato,노려맞히기,Noryeo Mathigi,狙擊,狙击,Jūjí / Jūjī / Jēuigīk
+jaw-lock,Jaw Lock,くらいつく,くらいつく,Kuraitsuku,Croque Fort,Fesselbiss,Presa Maxilar,Presa Maxilar,Morsostretto,물고버티기,Mulgobeotigi,緊咬不放,紧咬不放,Jǐnyǎo Bùfàng / Gánngáauh Bātfong
+stuff-cheeks,Stuff Cheeks,ほおばる,ほおばる,Hōbaru,Garde-à-Joues,Backenstopfer,Atiborramiento,Atiborramiento,Riempiguance,볼가득넣기,Bolgateuk Natgi,大快朵頤,大快朵颐,Dàkuàiduǒyí / Daaihfaaidóyìh
+no-retreat,No Retreat,はいすいのじん,はいすいのじん,Haisui no Jin,Ultime Bastion,Finalformation,Bastión Final,Bastión Final,Spalle al Muro,배수의진,Baesu Uijin,背水一戰,背水一战,Bèishuǐyīzhàn / Buiséuiyātjin
+tar-shot,Tar Shot,タールショット,タールショット,Tāru Shotto,Goudronnage,Teerschuss,Alquitranazo,Alquitranazo,Colpocatrame,타르샷,Tar Shot,瀝青射擊,沥青射击,Lìqīng Shèjí / Lihkchēng Sehgīk
+magic-powder,Magic Powder,まほうのこな,まほうのこな,Mahō no Kona,Poudre Magique,Magiepuder,Polvo Mágico,Polvo Magia,Magipolvere,마법가루,Mabeop Garu,魔法粉,魔法粉,Mófǎ Fěn / Mōfaat Fán
+dragon-darts,Dragon Darts,ドラゴンアロー,ドラゴンアロー,Doragon Arō,Draco-Flèches,Drachenpfeile,Dracoflechas,Dracoflechas,Dragofrecce,드래곤애로,Dragon Arrow,龍箭,龙箭,Lóng Jiàn / Lùhng Jin
+teatime,Teatime,おちゃかい,おちゃかい,Ochakai,Thérémonie,Teatime,Hora del Té,Hora del Té,Ora del Tè,다과회,Dagwahoe,茶會,茶会,Cháhuì / Chàhwúi
+octolock,Octolock,たこがため,たこがため,Tako Gatame,Octoprise,Octoklammer,Octopresa,Octopresa,Tentacolock,문어굳히기,Muneoguthigi,蛸固,蛸固,Xiāo Gù / Sīu Gu
+bolt-beak,Bolt Beak,でんげきくちばし,でんげきくちばし,Dengeki Kuchibashi,Prise de Bec,Schockschnabel,Electropico,Electropico,Beccoshock,전격부리,Jeongyeok Buri,電喙,电喙,Diàn Huì / Dihn Fui
+fishious-rend,Fishious Rend,エラがみ,エラがみ,Era Gami,Branchicrok,Kiemenbiss,Branquibocado,Branquibocado,Branchiomorso,아가미물기,Agamimulgi,鰓咬,鳃咬,Sāi Yǎo / Sōi Ngáauh
+court-change,Court Change,コートチェンジ,コートチェンジ,Kōto Chenji,Change-Côté,Seitenwechsel,Cambio de Cancha,Cambio de Cancha,Cambiocampo,코트체인지,Court Change,換場,换场,Huàn Chǎng / Wuhn Chèuhng
+max-flare,Max Flare,ダイバーン,ダイバーン,Dai Bān,Pyromax,Dyna-Brand,Maxignición,Maxignición,Dynafiammata,다이번,Dai Burn,極巨火爆,极巨火爆,Jíjù Huǒbào / Gihkgeuih Fóbaau
+max-flutterby,Max Flutterby,ダイワーム,ダイワーム,Dai Wāmu,Insectomax,Dyna-Schwarm,Maxinsecto,Maxinsecto,Dynainsetto,다이웜,Dai Worm,極巨蟲蠱,极巨虫蛊,Jíjù Chónggǔ / Gihkgeuih Chùhnggú
+max-lightning,Max Lightning,ダイサンダー,ダイサンダー,Dai Sandā,Fulguromax,Dyna-Gewitter,Maxitormenta,Maxitormenta,Dynasaetta,다이썬더,Dai Thunder,極巨閃電,极巨闪电,Jíjù Shǎndiàn / Gihkgeuih Símdihn
+max-strike,Max Strike,ダイアタック,ダイアタック,Dai Atakku,Normalomax,Dyna-Angriff,Maxiataque,Maxiataque,Dynattacco,다이어택,Dai Attack,極巨攻擊,极巨攻击,Jíjù Gōngjí / Jíjù Gōngjī / Gihkgeuih Gūnggīk
+max-knuckle,Max Knuckle,ダイナックル,ダイナックル,Dai Nakkuru,Pugilomax,Dyna-Faust,Maxipuño,Maxipuño,Dynapugno,다이너클,Dai Knuckle,極巨拳鬥,极巨拳斗,Jíjù Quándòu / Gihkgeuih Kyùhndau
+max-phantasm,Max Phantasm,ダイホロウ,ダイホロウ,Dai Horō,Spectromax,Dyna-Spuk,Maxiespectro,Maxiespectro,Dynavuoto,다이할로우,Dai Hollow,極巨幽魂,极巨幽魂,Jíjù Yōuhún / Gihkgeuih Yāuwàhn
+max-hailstorm,Max Hailstorm,ダイアイス,ダイアイス,Dai Aisu,Cryomax,Dyna-Frost,Maxihelada,Maxihelada,Dynagelo,다이아이스,Dai Ice,極巨寒冰,极巨寒冰,Jíjù Hánbīng / Gihkgeuih Hòhnbīng
+max-ooze,Max Ooze,ダイアシッド,ダイアシッド,Dai Ashiddo,Toxinomax,Dyna-Giftschwall,Maxiácido,Maxiácido,Dynacorrosione,다이애시드,Dai Acid,極巨酸毒,极巨酸毒,Jíjù Suāndú / Gihkgeuih Syūnduhk
+max-geyser,Max Geyser,ダイストリーム,ダイストリーム,Dai Sutorīmu,Hydromax,Dyna-Flut,Maxichorro,Maxichorro,Dynaflusso,다이스트림,Dai Stream,極巨水流,极巨水流,Jíjù Shuǐliú / Gihkgeuih Séuilàuh
+max-airstream,Max Airstream,ダイジェット,ダイジェット,Dai Jetto,Aéromax,Dyna-Düse,Maxiciclón,Maxiciclón,Dynajet,다이제트,Dai Jet,極巨飛衝,极巨飞冲,Jíjù Fēichōng / Gihkgeuih Fēichūng
+max-starfall,Max Starfall,ダイフェアリー,ダイフェアリー,Dai Fearī,Enchantomax,Dyna-Zauber,Maxiestela,Maxiestela,Dynafata,다이페어리,Dai Fairy,極巨妖精,极巨妖精,Jíjù Yāojing / Gihkgeuih Yīujīng
+max-wyrmwind,Max Wyrmwind,ダイドラグーン,ダイドラグーン,Dai Doragūn,Dracomax,Dyna-Wyrm,Maxidraco,Maxidraco,Dynadragone,다이드라군,Dai Dragoon,極巨龍騎,极巨龙骑,Jíjù Lóngqí / Gihkgeuih Lùhngkèih
+max-mindstorm,Max Mindstorm,ダイサイコ,ダイサイコ,Dai Saiko,Psychomax,Dyna-Kinese,Maxionda,Maxionda,Dynapsiche,다이사이코,Dai Psycho,極巨超能,极巨超能,Jíjù Chāonéng / Gihkgeuih Chīunàhng
+max-rockfall,Max Rockfall,ダイロック,ダイロック,Dai Rokku,Lithomax,Dyna-Brocken,Maxilito,Maxilito,Dynamacigno,다이록,Dai Rock,極巨岩石,极巨岩石,Jíjù Yánshí / Gihkgeuih Ngàahmsehk
+max-quake,Max Quake,ダイアース,ダイアース,Dai Āsu,Sismomax,Dyna-Erdstoß,Maxitemblor,Maxitemblor,Dynasisma,다이어스,Dai Earth,極巨大地,极巨大地,Jíjù Dàdì / Gihkgeuih Daaihdeih
+max-darkness,Max Darkness,ダイアーク,ダイアーク,Dai Dāku,Sinistromax,Dyna-Dunkel,Maxisombra,Maxisombra,Dynatenebre,다이아크,Dai Ark,極巨惡霸,极巨恶霸,Jíjù Èbà / Gihkgeuih Okba
+max-overgrowth,Max Overgrowth,ダイソウゲン,ダイソウゲン,Dai Sōgen,Phytomax,Dyna-Flora,Maxiflora,Maxiflora,Dynaflora,다이그래스,Dai Grass,極巨草原,极巨草原,Jíjù Cǎoyuán / Gihkgeuih Chóuyùhn
+max-steelspike,Max Steelspike,ダイスチル,ダイスチル,Dai Suchiru,Métallomax,Dyna-Stahlzacken,Maximetal,Maximetal,Dynametallo,다이스틸,Dai Steel,極巨鋼鐵,极巨钢铁,Jíjù Gāngtiě / Gihkgeuih Gongtit
+clangorous-soul,Clangorous Soul,ソウルビート,ソウルビート,Sōru Bīto,Dracacophonie,Seelentanz,Estruendo Escama,Estruendo Escama,Dracofonia,소울비트,Soul Beat,魂舞烈音爆,魂舞烈音爆,Húnwǔ Lièyīnbào / Wàhnmóuh Lihtyāmpaau
+body-press,Body Press,ボディプレス,ボディプレス,Bodi Puresu,Big Splash,Body Press,Plancha Corporal,Plancha Corporal,Schiacciacorpo,바디프레스,Body Press,撲擊,扑击,Pūjí / Pūjī / Pūkgīk
+decorate,Decorate,デコレーション,デコレーション,Dekorēshon,Nappage,Verzierung,Decoración,Decoración,Decorazione,데코레이션,Decoration,裝飾,装饰,Zhuāngshì / Jōngsīk
+drum-beating,Drum Beating,ドラムアタック,ドラムアタック,Doramu Atakku,Tambour Battant,Trommelschläge,Batería Asalto,Batería Asalto,Tamburattacco,드럼어택,Drum Attack,鼓擊,鼓击,Gǔjí / Gǔjī / Gúgīk
+snap-trap,Snap Trap,トラバサミ,トラバサミ,Torabasami,Troquenard,Fangeisen,Cepo,Trampa Presión,Tagliola,집게덫,Jipgedeot,捕獸夾,捕兽夹,Bǔshòu Jiā / Bouhsau Gaap
+pyro-ball,Pyro Ball,かえんボール,かえんボール,Kaen Bōru,Ballon Brûlant,Feuerball,Balón Ígneo,Balón Ígneo,Palla Infuocata,화염볼,Hwayam Ball,火焰球,火焰球,Huǒyàn Qiú / Fóyihm Kàuh
+behemoth-blade,Behemoth Blade,きょじゅうざん,きょじゅうざん,Kyojūzan,Gladius Maximus,Gigantenhieb,Tajo Supremo,Corte Supremo,Taglio Maestoso,거수참,Gasa Cham,巨獸斬,巨兽斩,Jùshòu Zhǎn / Geuihsau Jáam
+behemoth-bash,Behemoth Bash,きょじゅうだん,きょじゅうだん,Kyojūdan,Aegis Maxima,Gigantenstoß,Embate Supremo,Golpe Supremo,Colpo Maestoso,거수탄,Gasa Teon,巨獸彈,巨兽弹,Jùshòu Dàn / Geuihsau Daahn
+aura-wheel,Aura Wheel,オーラぐるま,オーラぐるま,Ōra Guruma,Roue Libre,Aura-Rad,Rueda Aural,Rueda Aural,Ruota d’Aura,오라휠,Aura Wheel,氣場輪,气场轮,Qìchǎng Lún / Heichèuhng Lèuhn
+breaking-swipe,Breaking Swipe,ワイドブレイカー,ワイドブレイカー,Waido Bureikā,Abattage,Breitseite,Vasto Impacto,Vasto Impacto,Vastoimpatto,와이드브레이커,Wide Breaker,廣域破壞,广域破坏,Guǎngyù Pòhuài / Gwóngwihk Powaaih
+branch-poke,Branch Poke,えだづき,えだづき,Edazuki,Tapotige,Zweigstoß,Punzada Rama,Ramazo Punzante,Ramostoccata,가지찌르기,Gaji Jjireugi,木枝突刺,木枝突刺,Mùzhī Túcì / Mùzhī Tūcì / Muhkjī Dahtchi
+overdrive,Overdrive,オーバードライブ,オーバードライブ,Ōbādoraibu,Overdrive,Overdrive,Amplificador,Amplificador,Overdrive,오버드라이브,Overdrive,破音,破音,Pòyīn / Poyām
+apple-acid,Apple Acid,りんごさん,りんごさん,Ringo San,Acide Malique,Apfelsäure,Ácido Málico,Ácido Málico,Acido Malico,사과산,Sagwa San,蘋果酸,苹果酸,Píngguǒsuān / Pìhnggwósyūn
+grav-apple,Grav Apple,Ｇのちから,Ｇのちから,G no Chikara,Force G,Gravitation,Fuerza G,Fuerza G,Forza G,G의힘,G Uihim,萬有引力,万有引力,Wànyǒu Yǐnlì / Maahnyáuh Yáhnlihk
+spirit-break,Spirit Break,ソウルクラッシュ,ソウルクラッシュ,Sōru Kurasshu,Choc Émotionnel,Seelenbruch,Choque Anímico,Choque Anímico,Frantumanima,소울크래시,Soul Crash,靈魂衝擊,灵魂冲击,Línghún Chōngjí / Lìhngwàhn Chūnggīk
+strange-steam,Strange Steam,ワンダースチーム,ワンダースチーム,Wandā Suchīmu,Vapeur Féérique,Wunderdampf,Cautivapor,Cautivapor,Vapore Incantato,원더스팀,Hweondeo Steam,神奇蒸汽,神奇蒸汽,Shénqí Zhēngqì / Sàhnkèih Jīnghei
+life-dew,Life Dew,いのちのしずく,いのちのしずく,Inochi no Shizuku,Fontaine de Vie,Lebenstropfen,Gota Vital,Gota Vital,Goccia Vitale,생명의물방울,Saengmyeonguimulbang-ul,生命水滴,生命水滴,Shēngmìng Shuǐdī / Sāngmihng Séuidihk
+obstruct,Obstruct,ブロッキング,ブロッキング,Burokkingu,Blocage,Abblocker,Obstrucción,Obstrucción,Sbarramento,블로킹,Blocking,攔堵,拦堵,Lándǔ / Làahndóu
+false-surrender,False Surrender,どげざつき,どげざつき,Dogeza Tsuki,Fourbette,Kniefalltrick,Irreverencia,Irreverencia,Supplicolpo,사죄의찌르기,Sajoeuijjireugi,假跪真撞,假跪真撞,Jiǎ Guì Zhēn Zhuàng / Gá Gwaih Jān Johng
+meteor-assault,Meteor Assault,スターアサルト,スターアサルト,Sutā Asaruto,Joute Astrale,Sternensturm,Asalto Estelar,Asalto Estelar,Sfolgorassalto,스타어설트,Star Assault,流星突擊,流星突击,Liúxīng Tújí / Liúxīng Tújī / Làuhsīng Dahtgīk
+eternabeam,Eternabeam,ムゲンダイビーム,ムゲンダイビーム,Mugendai Bīmu,Laser Infinimax,Unendynastrahlen,Rayo Infinito,Rayo Infinito,Raggio Infinito,무한다이빔,Muhandaibeam,無極光束,无极光束,Wújí Guāngshù / Mòuhgihk Gwōngchūk
+steel-beam,Steel Beam,てっていこうせん,てっていこうせん,Tettei Kōsen,Métalaser,Stahlstrahl,Metaláser,Metaláser,Raggio d’Acciaio,철제광선,Cheolje Gwangseon,鐵蹄光線,铁蹄光线,Tiětí Guāngxiàn / Tittàih Gwōngsin
+expanding-force,Expanding Force,ワイドフォース,ワイドフォース,Waido Fōsu,Vaste Pouvoir,Flächenmacht,Vasta Fuerza,Vasta Fuerza,Vastenergia,와이드포스,Wide Force,廣域戰力,广域战力,Guǎngyù Zhànlì / Gwóngwihk Jinlihk
+steel-roller,Steel Roller,アイアンローラー,アイアンローラー,Aian Rōrā,Métalliroue,Eisenwalze,Allanador Férreo,Ferroaplanadora,Ferrorullo,아이언롤러,Iron Roller,鐵滾輪,铁滚轮,Tiěgǔnlún / Titgwánlèuhn
+scale-shot,Scale Shot,スケイルショット,スケイルショット,Sukeiru Shotto,Rafale Écailles,Schuppenschuss,Ráfaga Escamas,Disparo Escamas,Squamacolpo,스케일샷,Scale Shot,鱗射,鳞射,Línshè / Lèuhnseh
+meteor-beam,Meteor Beam,メテオビーム,メテオビーム,Meteo Bīmu,Laser Météore,Meteorstrahl,Rayo Meteórico,Rayo Meteórico,Raggiometeora,메테오빔,Meteor Beam,流星光束,流星光束,Liúxīng Guāngshù / Làuhsīng Gwōngchūk
+shell-side-arm,Shell Side Arm,シェルアームズ,シェルアームズ,Sheru Āmuzu,Kokiyarme,Muschelwaffe,Moluscañón,Moluscañón,Armaguscio,셸암즈,Shell Arms,臂貝武器,臂贝武器,Bìbèi Wǔqì / Beibui Móuhhei
+misty-explosion,Misty Explosion,ミストバースト,ミストバースト,Misuto Bāsuto,Explo-Brume,Nebelexplosion,Bruma Explosiva,Bruma Explosiva,Nebbioscoppio,미스트버스트,Mist Burst,薄霧炸裂,薄雾炸裂,Bówù Zhàliè / Bohkmouh Jaliht
+grassy-glide,Grassy Glide,グラススライダー,グラススライダー,Gurasu Suraidā,Gliss’Herbe,Grasrutsche,Fitoimpulso,Fitoimpulso,Erboscivolata,그래스슬라이더,Grass Slider,青草滑梯,青草滑梯,Qīngcǎo Huátī / Chīngchóu Waahttāi
+rising-voltage,Rising Voltage,ライジングボルト,ライジングボルト,Raijingu Boruto,Monte-Tension,Hochspannung,Alto Voltaje,Alto Voltaje,Elettroimpennata,라이징볼트,Rising Volt,電力上升,电力上升,Diànlì Shàngshēng / Dihnlihk Seuhngsīng
+terrain-pulse,Terrain Pulse,だいちのはどう,だいちのはどう,Daichi no Hadō,Champlification,Feldimpuls,Pulso de Campo,Pulso de Campo,Campopulsar,대지의파동,Daeji-ui Padong,大地波動,大地波动,Dàdì Bōdòng / Daaihdeih Bōduhng
+skitter-smack,Skitter Smack,はいよるいちげき,はいよるいちげき,Haiyoru Ichigeki,Ravage Rampant,Krabbelkracher,Golpe Rastrero,Golpe Rastrero,Strisciacolpo,엄습하는일격,Eomseuphaneun Ilgyeok,爬擊,爬击,Pájí / Pájī / Pàhgīk
+burning-jealousy,Burning Jealousy,しっとのほのお,しっとのほのお,Shitto no Honō,Feu Envieux,Neidflammen,Envidia Ardiente,Envidia Ardiente,Fiamminvidia,질투의불꽃,Jiltu-ui Bulkkot,妒火,妒火,Dùhuǒ / Doufó
+lash-out,Lash Out,うっぷんばらし,うっぷんばらし,Uppun Barashi,Cent Rancunes,Frustventil,Desahogo,Desahogo,Sfogarabbia,분풀이,Bunpuri,洩憤,泄愤,Xièfèn / Sitfáhn
+poltergeist,Poltergeist,ポルターガイスト,ポルターガイスト,Porutāgaisuto,Esprit Frappeur,Poltergeist,Poltergeist,Poltergeist,Poltergeist,폴터가이스트,Poltergeist,靈騷,灵骚,Língsāo / Lìhngsōu
+corrosive-gas,Corrosive Gas,ふしょくガス,ふしょくガス,Fushoku Gasu,Gaz Corrosif,Korrosionsgas,Gas Corrosivo,Gas Corrosivo,Gas Corrosivo,부식가스,Busik Gas,腐蝕氣體,腐蚀气体,Fǔshí Qìtǐ / Fuhsihk Heitái
+coaching,Coaching,コーチング,コーチング,Kōchingu,Coaching,Coaching,Motivación,Motivación,Coaching,코칭,Coaching,指導,指导,Zhǐdǎo / Jídouh
+flip-turn,Flip Turn,クイックターン,クイックターン,Kuikku Tān,Eau Revoir,Rollwende,Viraje,Viraje,Virata,퀵턴,Quick Turn,快速折返,快速折返,Kuàisù Zhéfǎn / Faaichūk Jitfáan
+triple-axel,Triple Axel,トリプルアクセル,トリプルアクセル,Toripuru Akuseru,Triple Axel,Dreifach-Axel,Triple Axel,Triple Axel,Triplo Axel,트리플악셀,Triple Axel,三旋擊,三旋击,Sānxuànjí / Sānxuànjī / Sāamsyùhngīk
+dual-wingbeat,Dual Wingbeat,ダブルウイング,ダブルウイング,Daburu Uingu,Double Volée,Doppelflügel,Ala Bis,Aletazo Doble,Doppia Ala,더블윙,Double Wing,雙翼,双翼,Shuāngyì / Sēungyihk
+scorching-sands,Scorching Sands,ねっさのだいち,ねっさのだいち,Nessa no Daichi,Sable Ardent,Brandsand,Arenas Ardientes,Arenas Ardientes,Sabbiardente,열사의대지,Yeolsa-ui Daeji,熱沙大地,热沙大地,Rèshā Dàdì / Yihtsā Daaihdeih
+jungle-healing,Jungle Healing,ジャングルヒール,ジャングルヒール,Janguru Hīru,Selve Salvatrice,Dschungelheilung,Cura Selvática,Selva Sanadora,Giunglacura,정글힐,Jungle Heal,叢林治療,丛林治疗,Cónglín Zhìliáo / Chùhnglàhm Jihlìuh
+wicked-blow,Wicked Blow,あんこくきょうだ,あんこくきょうだ,Ankoku Kyōda,Poing Obscur,Finstertreffer,Golpe Oscuro,Golpe Oscuro,Pugnotenebra,암흑강타,Amheuk Gangta,暗冥強擊,暗冥强击,Ànmíng Qiángjī / Ànmíng Qiángjí / Ammìhng Kèuhnggīk
+surging-strikes,Surging Strikes,すいりゅうれんだ,すいりゅうれんだ,Suiryū Renda,Torrent de Coups,Trefferschwall,Azote Torrencial,Golpe Torrencial,Idroraffica,수류연타,Suryu Yeonta,水流連打,水流连打,Shuǐliú Liándǎ / Séuilàuh Lìhndá
+thunder-cage,Thunder Cage,サンダープリズン,サンダープリズン,Sandā Purizun,Voltageôle,Blitzgefängnis,Electrojaula,Electrojaula,Elettrogabbia,썬더프리즌,Thunder Prison,雷電囚籠,雷电囚笼,Léidiàn Qiúlóng / Lèuihdihn Chàuhlùhng
+dragon-energy,Dragon Energy,ドラゴンエナジー,ドラゴンエナジー,Doragon Enajī,Draco-Énergie,Drachenkräfte,Dracoenergía,Dracoenergía,Dragoenergia,드래곤에너지,Dragon Energy,巨龍威能,巨龙威能,Jùlóng Wēinéng / Geuihlùhng Wāinàhng
+freezing-glare,Freezing Glare,いてつくしせん,いてつくしせん,Itetsuku Shisen,Regard Glaçant,Eisiger Blick,Mirada Heladora,Mirada Glacial,Sguardo Gelido,얼어붙는시선,Eoreobunneun Siseon,冰冷視線,冰冷视线,Bīnglěng Shìxiàn / Bīngláahng Sihsin
+fiery-wrath,Fiery Wrath,もえあがるいかり,もえあがるいかり,Moeagaru Ikari,Fureur Ardente,Brennender Zorn,Furia Candente,Furia Candente,Furia Ardente,타오르는분노,Taoreuneun Bunno,怒火中燒,怒火中烧,Nùhuǒzhōngshāo / Nouhfójūngsīu
+thunderous-kick,Thunderous Kick,らいめいげり,らいめいげり,Raimei Geri,Coup Fulgurant,Donnernder Tritt,Patada Relámpago,Patada Relámpago,Calcio Tonante,천둥차기,Cheondung Chagi,雷鳴蹴擊,雷鸣蹴击,Léimíng Cùjí / Léimíng Cùjī / Lèuihmìhng Jūkgīk
+glacial-lance,Glacial Lance,ブリザードランス,ブリザードランス,Burizādo Ransu,Lance de Glace,Blizzardlanze,Lanza Glacial,Lanza Glacial,Lancia Glaciale,블리자드랜스,Blizzard Lance,雪矛,雪矛,Xuěmáo / Syutmàauh
+astral-barrage,Astral Barrage,アストラルビット,アストラルビット,Asutoraru Bitto,Éclat Spectral,Astralfragmente,Orbes Espectro,Orbes Espectro,Schegge Astrali,아스트랄비트,Astral Bit,星碎,星碎,Xīngsuì / Sīngseui
+eerie-spell,Eerie Spell,ぶきみなじゅもん,ぶきみなじゅもん,Bukimi na Jūmon,Sort Sinistre,Schauderspruch,Conjuro Funesto,Conjuro Funesto,Inquietantesimo,섬뜩한주문,Seomtteukhan Jumun,詭異咒語,诡异咒语,Guǐyì Zhòuyǔ / Gwáiyih Jauyúh
+dire-claw,Dire Claw,フェイタルクロー,フェイタルクロー,Feitaru Kurō,Griffes Funestes,Unheilsklauen,Garra Nociva,Garra Nociva,Artigli Fatali,페이탈클로,Fatal Claw,剋命爪,克命爪,Kèmìng Zhuǎ / Hākmihng Jáau
+psyshield-bash,Psyshield Bash,バリアーラッシュ,バリアーラッシュ,Bariā Rasshu,Sprint Bouclier,Barrierenstoß,Asalto Barrera,Asalto Barrera,Barrierassalto,배리어러시,Barrier Rush,屏障猛攻,屏障猛攻,Píngzhàng Měnggōng / Pìhngjeung Máahnggūng
+power-shift,Power Shift,パワーシフト,パワーシフト,Pawā Shifuto,Échange Force,Kraftwechsel,Cambiapoder,Cambiapoder,Scambioforza,파워시프트,Power Shift,力量轉換,力量转换,Lìliàng Zhuǎnhuàn / Lihkleuhng Jyúnwuhn
+stone-axe,Stone Axe,がんせきアックス,がんせきアックス,Ganseki Akkusu,Hache de Pierre,Felsaxt,Hachazo Pétreo,Hachazo Pétreo,Rocciascure,암석액스,Amseok Axe,岩斧,岩斧,Yánfǔ / Ngàahmfú
+springtide-storm,Springtide Storm,はるのあらし,はるのあらし,Haru no Arashi,Typhon Passionné,Frühlingsorkan,Ciclón Primavera,Ciclón Primavera,Tempesta Zefirea,봄의폭풍,Bom-ui Pokpung,陽春風暴,阳春风暴,Yángchūn Fēngbào / Yèuhngchēun Fūngbouh
+mystical-power,Mystical Power,しんぴのちから,しんぴのちから,Shinpi no Chikara,Force Mystique,Mythenkraft,Poder Místico,Poder Místico,Forza Mistica,신비의힘,Shinbi-ui Him,神秘之力,神秘之力,Shénmì-zhī Lì / Sàhnbei-jī Lihk
+raging-fury,Raging Fury,だいふんげき,だいふんげき,Daifungeki,Grand Courroux,Flammenwut,Erupción de Ira,Erupción de Ira,Ira Furente,대격분,Daegyeokbun,大憤慨,大愤慨,Dàfènkǎi / Daaihfáhnkói
+wave-crash,Wave Crash,ウェーブタックル,ウェーブタックル,Uēbu Takkuru,Aquatacle,Wellentackle,Envite Acuático,Acuatacleada,Ondaschianto,웨이브태클,Wave Tackle,波動衝,波动冲,Bōdòng Chōng / Bōduhng Chūng
+chloroblast,Chloroblast,クロロブラスト,クロロブラスト,Kuroroburasuto,Herblast,Chlorostrahl,Clorofiláser,Clorofiláser,Clorofillaser,클로로블라스트,Chloroblast,葉綠爆震,叶绿爆震,Yèlǜ Bàozhèn / Yihpluhk Baaujan
+mountain-gale,Mountain Gale,ひょうざんおろし,ひょうざんおろし,Hyōzan Oroshi,Bise Glaciaire,Frostfallwind,Viento Carámbano,Viento Carámbano,Soffio d’Iceberg,빙산바람,Bingsan Baram,冰山風,冰山风,Bīngshān Fēng / Bīngsāan Fūng
+victory-dance,Victory Dance,しょうりのまい,しょうりのまい,Shōri no Mai,Danse Victoire,Siegestanz,Danza Triunfal,Danza Triunfal,Danzavittoria,승리의춤,Seungni-ui Chum,勝利之舞,胜利之舞,Shènglì-zhī Wǔ / Singleih-jī Móuh
+headlong-rush,Headlong Rush,ぶちかまし,ぶちかまし,Buchikamashi,Assaut Frontal,Schmetterramme,Arremetida,Asalto Frontal,Scontro Frontale,들이받기,Deuribatgi,突飛猛撲,突飞猛扑,Tūfēi Měngpū / Dahtfēi Máahngpok
+barb-barrage,Barb Barrage,どくばりセンボン,どくばりセンボン,Dokubari Senbon,Multitoxik,Giftstachelregen,Mil Púas Tóxicas,Mil Púas Tóxicas,Mille Fielespine,독침천발,Dokchim Cheonbal,毒千針,毒千针,Dúqiānzhēn / Duhkchīnjām
+esper-wing,Esper Wing,オーラウイング,オーラウイング,Ōra Uingu,Ailes Psycho,Auraschwingen,Ala Aural,Ala Aural,Ali d’Aura,오라윙,Aura Wing,氣場之翼,气场之翼,Qìchǎng-zhī Yì / Heichèuhng-jī Yihk
+bitter-malice,Bitter Malice,うらみつらみ,うらみつらみ,Urami Tsurami,Cœur de Rancœur,Niedertracht,Rencor Reprimido,Rencor Reprimido,Livore,천추지한,Cheonchujihan,冤冤相報,冤冤相报,Yuānyuānxiāngbào / Yūnyūnsēungbou
+shelter,Shelter,たてこもる,たてこもる,Tatekomoru,Mur Fumigène,Refugium,Retracción,Retracción,Barricata,농성,Nongseong,閉關,闭关,Bìguān / Baigwāan
+triple-arrows,Triple Arrows,３ぼんのや,３ぼんのや,Sanbon no Ya,Triple Flèche,Drillingspfeile,Triple Flecha,Triple Flecha,Triplodardo,3연화살,San-Yeon Hwasal,三連箭,三连箭,Sānliánjiàn / Sāamlìhnjin
+infernal-parade,Infernal Parade,ひゃっきやこう,ひゃっきやこう,Hyakki Yakō,Cortège Funèbre,Phantomparade,Marcha Espectral,Marcha Espectral,Corteo Spettrale,백귀야행,Baekgwi Yahaeng,群魔亂舞,群魔乱舞,Qúnmó Luànwǔ / Kwàhnmō Lyuhnmóuh
+ceaseless-edge,Ceaseless Edge,ひけん・ちえなみ,ひけん・ちえなみ,Hiken Chienami,Vagues à Lames,Klingenschwall,Tajo Metralla,Corte Metralla,Lama Milleflutti,비검천중파,Bigeom Cheonjungpa,秘劍・千重濤,秘剑・千重涛,Mìjiàn Qiānchóngtáo / Mìjiàn Qiānchóngtāo / Beigim Chīnchùhngtòuh
+bleakwind-storm,Bleakwind Storm,こがらしあらし,こがらしあらし,Kogarashi Arashi,Typhon Hivernal,Polarorkan,Vendaval Gélido,Vendaval Gélido,Tempesta Boreale,찬바람폭풍,Chanbaram Pokpung,枯葉風暴,枯叶风暴,Kūyè Fēngbào / Fūyihp Fūngbouh
+wildbolt-storm,Wildbolt Storm,かみなりあらし,かみなりあらし,Kaminari Arashi,Typhon Fulgurant,Donnerorkan,Electormenta,Electormenta,Tempesta Tonante,번개폭풍,Beongae Pokpung,鳴雷風暴,鸣雷风暴,Míngléi Fēngbào / Mìhnglèuih Fūngbouh
+sandsear-storm,Sandsear Storm,ねっさのあらし,ねっさのあらし,Nessa no Arashi,Typhon Pyrosable,Wüstenorkan,Simún de Arena,Tifón de Arena,Tempesta Ardente,열사의폭풍,Yeolsa-ui Pokpung,熱沙風暴,热沙风暴,Rèshā Fēngbào / Yihtsā Fūngbouh
+lunar-blessing,Lunar Blessing,みかづきのいのり,みかづきのいのり,Mikadzuki no Inori,Prière Lunaire,Lunargebet,Plegaria Lunar,Plegaria Lunar,Invocaluna,초승달의기도,Choseungdar-ui Gido,新月祈禱,新月祈祷,Xīnyuè Qídǎo / Sānyuht Kèihtóu
+take-heart,Take Heart,ブレイブチャージ,ブレイブチャージ,Bureibu Chāji,Extravaillance,Mutschub,Bálsamo Osado,Bálsamo Osado,Baldimpulso,브레이브차지,Brave Charge,勇氣填充,勇气填充,Yǒngqì Tiánchōng / Yúhnghei Tìhnchūng
+tera-blast,Tera Blast,テラバースト,テラバースト,Tera Bāsuto,Téra Explosion,Tera-Ausbruch,Teraexplosión,Teraexplosión,Terascoppio,테라버스트,Tera Burst,太晶爆發,太晶爆发,Taaijīng Baaufaat / Tàijīng Bàofā
+silk-trap,Silk Trap,スレッドトラップ,スレッドトラップ,Sureddo Torappu,Piège de Fil,Fadenfalle,Telatrampa,Telatrampa,Telatrappola,스레드트랩,Thread Trap,線阱,线阱,Sinjehng / Xiànjǐng
+axe-kick,Axe Kick,かかとおとし,かかとおとし,Kakato Otoshi,Talon-Marteau,Fersenkick,Patada Hacha,Patada Hacha,Calcio ad Ascia,발꿈치찍기,Balkkumchijjikgi,下壓踢,下压踢,Hah'aat Tek / Xiàyā Tī
+last-respects,Last Respects,おはかまいり,おはかまいり,Ohakamairi,Hommage Posthume,Letzte Ehre,Homenaje Póstumo,Homenaje Póstumo,Omaggio ai KO,성묘,Seongmyo,掃墓,扫墓,Soumouh / Sǎomù
+lumina-crash,Lumina Crash,ルミナコリジョン,ルミナコリジョン,Lumina Korijon,Lumino-Impact,Lichteinschlag,Fotocolisión,Fotocolisión,Fotocollisione,루미나콜리전,Lumina Collision,琉光衝激,琉光冲激,Làuhgwōng Chūnggīk / Liúguāng Chōngjī
+order-up,Order Up,いっちょうあがり,いっちょうあがり,Icchō-agari,Plat du Jour,Auftischen,Oído Cocina,Emplatar,Alta Cucina,한판내기,Hanpannaegi,上菜,上菜,Séuhngchoi / Shàngcài
+jet-punch,Jet Punch,ジェットパンチ,ジェットパンチ,Jetto Panchi,Poing Sonique,Düsenhieb,Puño Jet,Puño Jet,Pugnojet,제트펀치,Jet Punch,噴射拳,喷射拳,Panseh Kyùhn / Pēnshè Quán
+spicy-extract,Spicy Extract,ハバネロエキス,ハバネロエキス,Habanero Ekisu,Habanerage,Chili-Essenz,Extracto Picante,Extracto Picante,Essenza Piccante,하바네로엑기스,Habanero Extract,辣椒精華,辣椒精华,Laahtjīu Jīngwàh / Làjiāo Jīnghuá
+spin-out,Spin Out,ホイールスピン,ホイールスピン,Hoīru Supin,Dérapage,Reifendrehung,Quemarrueda,Quemarrueda,Slittaruote,휠스핀,Wheel Spin,疾速轉輪,疾速转轮,Jahtchūk Jyúnlèuhn / Jísù Zhuǎnlún
+population-bomb,Population Bomb,ネズミざん,ネズミざん,Nezumizan,Prolifération,Mäuseplage,Proliferación,Proliferación,Infestazione,찍찍베기,Jjikjjikbegi,鼠數兒,鼠数儿,Syú-souyìh / Shǔ-shù'er
+ice-spinner,Ice Spinner,アイススピナー,アイススピナー,Aisu Supinā,Cryo-Pirouette,Eiskreisel,Pirueta Helada,Pirueta Helada,Vortighiaccio,아이스스피너,Ice Spinner,冰旋,冰旋,Bīng Syùhn / Bīng Xuán
+glaive-rush,Glaive Rush,きょけんとつげき,きょけんとつげき,Kyoken Totsugeki,Charge Glaive,Großklingenstoß,Asalto Espadón,Asalto Espadón,Spadoncarica,대검돌격,Daegeom Dolgyeok,巨劍突擊,巨剑突击,Geuihgim Dahtgīk / Jùjiàn Tújí / Jùjiàn Tújī
+revival-blessing,Revival Blessing,さいきのいのり,さいきのいのり,Saiki no Inori,Second Souffle,Vitalsegen,Plegaria Vital,Plegaria Vital,Preghiera Vitale,회생의기도,Hoesaeng-ui Gido,復生祈禱,复生祈祷,Fuhksāang Kèihtóu / Fùshēng Qídǎo
+salt-cure,Salt Cure,しおづけ,しおづけ,Shiodzuke,Salaison,Pökelsalz,Salazón,Salación,Sotto Sale,소금절이,Sogeumjeor-i,鹽醃,盐腌,Yìhmyīm / Yányān
+triple-dive,Triple Dive,トリプルダイブ,トリプルダイブ,Toripuru Daibu,Triple Plongeon,Tauchtriade,Triple Inmersión,Triple Inmersión,Triplo Tuffo,트리플다이브,Triple Dive,三連鑽,三连钻,Sāamlìhnjyun / Sānliánzuàn
+mortal-spin,Mortal Spin,キラースピン,キラースピン,Kirā Supin,Toupie Éclat,Letalwirbler,Giro Mortífero,Giro Mortífero,Glitturbine,킬러스핀,Killer Spin,晶光轉轉,晶光转转,Jīnggwōng Jyúnjyún / Jīngguāng Zhuǎnzhuǎn
+doodle,Doodle,うつしえ,うつしえ,Utsushie,Décalquage,Abpausen,Decalcomanía,Plagio,Ricalco,배껴그리기,Bekkyeogeurigi,描繪,描绘,Mìuhkúi / Miáohuì
+fillet-away,Fillet Away,みをけずる,みをけずる,Mi o Kezuru,Décharnement,Abspaltung,Deslome,Fileteo,Alleggerimento,제살깎기,Jesalkkakgi,甩肉,甩肉,Lātyuhk / Shuǎiròu
+kowtow-cleave,Kowtow Cleave,ドゲザン,ドゲザン,Dogezan,Génusection,Kniefallspalter,Genufendiente,Genufendiente,Genufendente,도각참,Dogakcham,仆斬,仆刀,Pūkjáam / Pūzhǎn / Pūdāo
+flower-trick,Flower Trick,トリックフラワー,トリックフラワー,Torikku Furawā,Magie Florale,Blumentrick,Truco Floral,Truco Floral,Prestigiafiore,트릭플라워,Trick Flower,千變萬花,千变万花,Chīnbin-Maahnfā / Qiānbiàn-Wànhuā
+torch-song,Torch Song,フレアソング,フレアソング,Furea Songu,Chant Flamboyant,Loderlied,Canto Ardiente,Canto Ígneo,Canzone Ardente,플레어송,Flare Song,閃焰高歌,闪焰高歌,Símyihm Gōugō / Shǎnyàn Gāogē
+aqua-step,Aqua Step,アクアステップ,アクアステップ,Akua Suteppu,Danse Aquatique,Wogentanz,Danza Acuática,Danza Acuática,Idroballetto,아쿠아스텝,Aqua Step,流水旋舞,流水旋舞,Làuhséui Syùhnmóuh / Liúshuǐ Xuànwǔ
+raging-bull,Raging Bull,レイジングブル,レイジングブル,Reijingu Buru,Taurogne,Rasender Stier,Furia Taurina,Furia Taurina,Scatenatoro,레이징불,Raging Bull,怒牛,怒牛,Nouhngàuh / Nùniú
+make-it-rain,Make It Rain,ゴールドラッシュ,ゴールドラッシュ,Gōrudo Rasshu,Ruée d'Or,Goldrausch,Fiebre Dorada,Fiebre Dorada,Corsa all’Oro,골드러시,Gold Rush,淘金潮,淘金潮,Tòuhgām Chìuh / Táojīn Cháo
+psyblade,Psyblade,サイコブレイド,サイコブレイド,Saiko Bureido,Lame Psychique,Psychoschneide,Psicohojas,Psicohojas,Psicolama,사이코블레이드,Psycho Blade,精神劍,精神剑,Jīngsàhn Gim / Jīngshén Jiàn
+hydro-steam,Hydro Steam,ハイドロスチーム,ハイドロスチーム,Haidoro Suchīmu,Hydrovapeur,Hydrodampf,Hidrovapor,Hidrovapor,Idrovapore,하이드로스팀,Hydro Steam,水蒸氣,水蒸气,Séui Jīnghei / Shuǐ Zhēngqì
+ruination,Ruination,カタストロフィ,カタストロフィ,Katasutorofi,Cataclysme,Verderben,Calamidad,Calamidad,Catastrofe,카타스트로피,Catastrophe,大災難,大灾难,Daaih Jōinaahn / Dà Zāinàn
+collision-course,Collision Course,アクセルブレイク,アクセルブレイク,Akuseru Bureiku,Nitro Crash,Kollisionskurs,Nitrochoque,Nitrochoque,Turboschianto,엑셀브레이크,Accel Break,全開猛撞,全开猛撞,Chyùhnhōi Máahngjohng / Quánkāi Měngzhuàng
+electro-drift,Electro Drift,イナズマドライブ,イナズマドライブ,Inazuma Doraibu,Turbo Volt,Blitztour,Electroderrape,Electroderrape,Fulmiscatto,라이트닝드라이브,Lightning Drive,閃電猛衝,闪电猛冲,Símdihn Máahngchūng / Shǎndiàn Měngchōng
+shed-tail,Shed Tail,しっぽきり,しっぽきり,Shippo Kiri,Queulonage,Schwanzabwurf,Autotomía,Autotomía,Tagliacoda,꼬리자르기,Kkori Jareugi,斷尾,断尾,Tyúhnméih / Duànwěi
+chilly-reception,Chilly Reception,さむいギャグ,さむいギャグ,Samui Gyagu,Neigeux de Mots,Eisige Stimmung,Fría Acogida,Respuesta Fría,Freddura,썰렁개그,Sseolleong Gag,冷笑話,冷笑话,Láahng Siuwá / Lěng Xiàohuà
+tidy-up,Tidy Up,おかたづけ,おかたづけ,Okatadzuke,Grand Nettoyage,Aufräumen,Limpieza General,Limpieza General,Pulizie,정리정돈,Jeongri Jeongdon,大掃除,大扫除,Daaihsouchèuih / Dàsǎochú
+snowscape,Snowscape,ゆきげしき,ゆきげしき,Yuki Geshiki,Chute de Neige,Schneelandschaft,Paisaje Nevado,Paisaje Nevado,Vista Innevata,설경,Seolgyeong,雪景,雪景,Syutgíng / Xuějǐng
+pounce,Pounce,とびつく,とびつく,Tobitsuku,Bond,Anspringen,Brinco,Brinco,Balzo,달려들기,Dallyeodeulgi,蟲撲,虫扑,Chùhng Pūk / Chóng Pū
+trailblaze,Trailblaze,くさわけ,くさわけ,Kusa Wake,Désherbaffe,Wegbereiter,Abrecaminos,Abrecaminos,Apripista,개척하기,Gaecheokhagi,起草,起草,Héichóu / Qǐcǎo
+chilling-water,Chilling Water,ひやみず,ひやみず,Hiya Mizu,Douche Froide,Kalte Dusche,Agua Fría,Agua Fría,Doccia Fredda,찬물끼얹기,Chanmul Kkieongi,潑冷水,泼冷水,Put Láahngséui / Pō Lěngshuǐ
+hyper-drill,Hyper Drill,ハイパードリル,ハイパードリル,Haipā Doriru,Hyperceuse,Hyperbohrer,Hipertaladro,Hipertaladro,Ipertrapano,하이퍼드릴,Hyper Drill,強力鑽,强力钻,Kèuhnglihk Jyun / Qiánglì Zuàn
+twin-beam,Twin Beam,ツインビーム,ツインビーム,Tsuin Bīmu,Double Laser,Doppelstrahl,Láser Doble,Láser Doble,Doppioraggio,트윈빔,Twin Beam,雙光束,双光束,Sēung Gwōngchūk / Shuāng Guāngshù
+rage-fist,Rage Fist,ふんどのこぶし,ふんどのこぶし,Fundo no Kobushi,Poing de Colère,Zornesfaust,Puño Furia,Puño Furia,Pugno Furibondo,분노의주먹,Bunno-ui Jumeok,憤怒之拳,愤怒之拳,Fáhnnouh jī Kyùhn / Fènnù zhī Quán
+armor-cannon,Armor Cannon,アーマーキャノン,アーマーキャノン,Āmā Kyanon,Canon Blindé,Rüstungskanone,Cañón Armadura,Cañón Armadura,Corazza Cannone,아머캐논,Armor Cannon,鎧農炮,铠农炮,Hói-nùhngpàauh / Kǎi-nóngpào
+bitter-blade,Bitter Blade,むねんのつるぎ,むねんのつるぎ,Munen no Tsurugi,Lame en Peine,Reueschwert,Espada Lamento,Espada Lamento,Lama del Rimorso,원념의칼,Wonnyeom-ui Kal,悔念劍,悔念剑,Fuinihm Gim / Huǐniàn Jiàn
+double-shock,Double Shock,でんこうそうげき,でんこうそうげき,Denkō Sōgeki,Double Décharge,Zweifachladung,Electropalmas,Electropalmas,Doppiolampo,전광쌍격,Jeongwang Ssanggyeok,電光雙擊,电光双击,Dihngwōng Sēunggīk / Diànguāng Shuāngjí / Diànguāng Shuāngjī
+gigaton-hammer,Gigaton Hammer,デカハンマー,デカハンマー,Deka Hanmā,Marteau Mastoc,Riesenhammer,Martillo Colosal,Martillo Colosal,Granmartello,거대해머,Geodae Hammer,巨力錘,巨力锤,Geuihlihk Chèuih / Jùlì Chuí
+comeuppance,Comeuppance,ほうふく,ほうふく,Hōfuku,Vindicte,Vendetta,Resarcimiento,Resarcimiento,Ritorsione,앙갚음,Anggap-eum,復仇,复仇,Fuhksàuh / Fùchóu
+aqua-cutter,Aqua Cutter,アクアカッター,アクアカッター,Akua Kattā,Tranch'Aqua,Aquaschnitt,Tajo Acuático,Corte Acuático,Idrotaglio,아쿠아커터,Aqua Cutter,水波刀,水波刀,Séuibōdōu / Shuǐbōdāo
+blazing-torque,Blazing Torque,バーンアクセル,バーンアクセル,Bān Akuseru,Crash Brûlant,Hitzeturbo,Pirochoque,Pirochoque,Turboustione,번액셀,Burn Axel,灼熱暴衝,灼热暴冲,Jeukyiht Bouhchūng / Zhuórè Bàochōng
+wicked-torque,Wicked Torque,ダークアクセル,ダークアクセル,Dāku Akuseru,Crash Obscur,Finsterturbo,Ominochoque,Ominochoque,Turbotenebra,다크액셀,다크액셀,黑暗暴衝,黑暗暴冲,Hāk'am Bouhchūng / Hēi'àn Bàochōng
+noxious-torque,Noxious Torque,ポイズンアクセル,ポイズンアクセル,Poizun Akuseru,Crash Toxique,Toxiturbo,Ponzochoque,Ponzochoque,Turbotossina,포이즌액셀,포이즌액셀,劇毒暴衝,剧毒暴冲,Kehkduhk Bouhchūng / Jùdú Bàochōng
+combat-torque,Combat Torque,ファイトアクセル,ファイトアクセル,Faito Akuseru,Crash Musclé,Raufturbo,Pugnachoque,Pugnachoque,Turborissa,파이트액셀,파이트액셀,格鬥暴衝,格斗暴冲,Gaakdau Bouhchūng / Gédòu Bàochōng
+magical-torque,Magical Torque,マジカルアクセル,マジカルアクセル,Majikaru Akuseru,Crash Magique,Zauberturbo,Feerichoque,Feerichoque,Turboincanto,매지컬액셀,매지컬액셀,魔法暴衝,魔法暴冲,Mōfaat Bouhchūng / Mófǎ Bàochōng
+blood-moon,Blood Moon,ブラッドムーン,ブラッドムーン,Buraddo Mūn,Lune Rouge,Blutmond,Luna Roja,Luna Roja,Luna Rossa,블러드문,Beulleodeu Mun,血月,血月,Xiěyuè / Xuèyuè / Hyutyuht
+matcha-gotcha,Matcha Gotcha,シャカシャカほう,シャカシャカほう,Shakashaka-Hō,Mortier Matcha,Quirlschuss,Cañón Batidor,Cañón Batidor,Spruzzatè,휘적휘적포,Hwijeok-Hwijeok Po,刷刷茶炮,刷刷茶炮,Shuāshuā Chápào / Chaatchaat Chàhpaau
+syrup-bomb,Syrup Bomb,みずあめボム,みずあめボム,Mizu Ame Bom,Bombe au Sirop,Sirupbombe,Bomba Caramelo,Bomba Caramelo,Bomba Sciroppata,시럽봄,Syrup Bomb,糖漿炸彈,糖浆炸弹,Tángjiāng Zhàdàn / Tòhngjēung Jadáan
+ivy-cudgel,Ivy Cudgel,ツタこんぼう,ツタこんぼう,Tsuta Konbō,Massue Liane,Rankenkeule,Garrote Liana,Garrote Liana,Clava di Liane,덩굴방망이,Deong-Gulbangmang-I,棘藤棒,棘藤棒,Jí Téng Bàng / Kīk Tàhng Páahng
+electro-shot,Electro Shot,エレクトロビーム,エレクトロビーム,Erekutoro Bīmu,Fulgurayon,Stromstrahl,Electrorrayo,Electrorrayo,Elettroraggio,일렉트로빔,Electrobeam,電光束,电光束,Dihn Gwōngchūk / Diàn Guāngshù
+tera-starstorm,Tera Starstorm,テラクラスター,テラクラスター,Tera Kurasutā,Pluie Térastrale,Tera-Sternhagel,Teraclúster,Teraclúster,Teracluster,테라클러스터,Tera Keulleoseuteo,晶光星群,晶光星群,Jīnggwōng Sīngkwàhn / Jīngguāng Xīngqún
+fickle-beam,Fickle Beam,きまぐレーザー,きまぐレーザー,Kimagu-rēzā,Laser Hasard,Launenlaser,Láser Veleidoso,Láser Caprichoso,Irregolaser,변덕레이저,Byeondeok Leijeo,隨機光,随机光,Chèuihgēi Gwōng / Suíjī Guāng
+burning-bulwark,Burning Bulwark,かえんのまもり,かえんのまもり,Kaen no Mamori,Rempart Brûlant,Flammenschild,Llama Protectora,Llama Protectora,Egida Ignea,화염의수호,Hwayeom-ui Suho,火焰守護,火焰守护,Fóyihm Sáuwuh / Huǒyàn Shǒuhù
+thunderclap,Thunderclap,じんらい,じんらい,Jinrai,Vif Éclair,Sturmblitz,Relámpago Súbito,Relámpago Súbito,Saetta,질풍신뢰,Jilpung Silloe,迅雷,迅雷,Seunlèuih / Xùnléi
+mighty-cleave,Mighty Cleave,パワフルエッジ,パワフルエッジ,Pawafuru Ejji,Lame Puissante,Wuchtklinge,Filo Potente,Corte Potente,Taglio Poderoso,파워풀에지,Pawopul Eji,強刃攻擊,强刃攻击,Kèuhngyahn Gūnggīk / Qiángrèn Gōngjí / Qiángrèn Gōngjī
+tachyon-cutter,Tachyon Cutter,タキオンカッター,タキオンカッター,Takion Kattā,Lame Tachyonique,Tachyon-Schnitt,Tajo Taquión,Corte Taquión,Tachiontaglio,타키온커터,Takion Keoteo,迅子利刃,迅子利刃,Seunjí Leihyahn / Xùnzi Lìrèn
+hard-press,Hard Press,ハードプレス,ハードプレス,Hādo Puresu,Pression Extrême,Stahlpresse,Prensa Metálica,Prensa Metálica,Pressa d’Acciaio,하드프레스,Hadeu Peureseu,硬壓,硬压,Ngaahng'aat / Yìngyā
+dragon-cheer,Dragon Cheer,ドラゴンエール,ドラゴンエール,Doragon Ēru,Cri Draconique,Drachenschrei,Bramido Dragón,Bramido Dragón,Grido del Drago,드래곤옐,Deuraegon Yel,龍聲鼓舞,龙声鼓舞,Lóngsīng Gúmóuh / Lóngshēng Gǔwǔ
+alluring-voice,Alluring Voice,みわくのボイス,みわくのボイス,Miwaku no Boisu,Voix Envoûtante,Lockstimme,Canto Encantador,Canto Encantador,Ammaliavoce,매혹의보이스,Maehok-ui Boiseu,魅誘之聲,魅诱之声,Mèiyòu zhī Shēng / Mèiyòu zhī Shēng
+temper-flare,Temper Flare,やけっぱち,やけっぱち,Yakeppachi,Indignition,Frustflamme,Cólera Ardiente,Furia Ardiente,Rabbia Bruciante,열불내기,Yeolbullaegi,豁出去,豁出去,Kutchēutheui / Huòchūqù / Huōchuqu
+supercell-slam,Supercell Slam,サンダーダイブ,サンダーダイブ,Sandā Daibu,Volt Assaut,Donnerstoß,Plancha Voltaica,Golpe Voltaico,Elettrotuffo,썬더다이브,Sseondeo Daibeu,閃電強襲,闪电强袭,Símdihn Kèuhngjaahp / Shǎndiàn Qiángxí
+psychic-noise,Psychic Noise,サイコノイズ,サイコノイズ,Saiko Noizu,Dissonance Psy,Psycholärm,Psicorruido,Psicorruido,Psicorumore,사이코노이즈,Saikonoijeu,精神噪音,精神噪音,Jīngsàhn Chouyām / Jīngshén Zàoyīn
+upper-hand,Upper Hand,はやてがえし,はやてがえし,Hayate Gaeshi,Prio-Parade,Schnellkonter,Palma Rauda,Palma Rauda,Colpo di Mano,기선제압,Giseon Jeap,快手還擊,快手还击,Faaisáu Wàahngīk / Kuàishǒu Huánjí / Kuàishǒu Huánjī
+malignant-chain,Malignant Chain,じゃどくのくさり,じゃどくのくさり,Jadoku no Kusari,Chaîne Malsaine,Giftkettung,Cadena Virulenta,Cadena Virulenta,Intossicatena,악독사슬,Akdok Saseul,邪毒鎖鏈,邪毒锁链,Chèhduhk Sólihn / Xiédú Suǒliàn
+shadow-rush,Shadow Rush,ダークアタック,ダークラッシュ,Dāku Atakku,Charge Noire,Cryptoschlag,Carga Oscura,Carga Oscura,Ombroraffica,,,,,
+shadow-blast,Shadow Blast,ダークラッシュ,ダークブラスト,Dāku Rasshu,Aéro Noir,Cryptostrahl,Soplo Oscuro,Soplo Oscuro,Ombrolame,,,,,
+shadow-blitz,Shadow Blitz,ダークブレイク,ダークアタック,Dāku Bureiku,Assaut Noir,Cryptoknall,Vigor Oscuro,Vigor Oscuro,Ombrattacco,,,,,
+shadow-bolt,Shadow Bolt,ダークエンド,ダークサンダー,Dāku Endo,Éclair Noir,Cryptoblitz,Rayo Oscuro,Rayo Oscuro,Fulminombra,,,,,
+shadow-break,Shadow Break,ダークウェーブ,ダークブレイク,Dāku Uēbu,Bélier Noir,Cryptohieb,Brío Oscuro,Brío Oscuro,Ombrospinta,,,,,
+shadow-chill,Shadow Chill,ダークレイブ,ダークフリーズ,Dāku Reibu,Froid Noir,Cryptofrost,Hielo Oscuro,Hielo Oscuro,Gelodombra,,,,,
+shadow-end,Shadow End,ダークストーム,ダークエンド,Dāku Sutōmu,Retour Noir,Cryptoretour,Fin Oscuro,Fin Oscuro,Fineoscuro,,,,,
+shadow-fire,Shadow Fire,ダークファイア,ダークファイア,Dāku Faiya,Ardeur Noir,Cryptofeuer,Fuego Oscuro,Fuego Oscuro,Fuocoscuro,,,,,
+shadow-rave,Shadow Rave,ダークサンダー,ダークレイブ,Dāku Sandā,Rage Noire,Cryptobeben,Rabia Oscura,Rabia Oscura,Ombrolancia,,,,,
+shadow-storm,Shadow Storm,ダークフリーズ,ダークストーム,Dāku Furīzu,Typhon Noir,Cryptosturm,Tifón Oscuro,Tifón Oscuro,Turbinombra,,,,,
+shadow-wave,Shadow Wave,ダークブラスト,ダークウェーブ,Dāku Burasuto,Ondo Noire,Cryptowelle,Onda Oscura,Onda Oscura,Ondascura,,,,,
+shadow-down,Shadow Down,ダークウェザー,ダークダウン,Dāku Uezā,Souffle Noir,Cryptobann,Ocaso Oscuro,Ocaso Oscuro,Declinoscuro,,,,,
+shadow-half,Shadow Half,ダークホールド,ダークハーフ,Dāku Hōrudo,Chute Noire,Cryptozorn,Mitad Oscura,Mitad Oscura,Iraoscura,,,,,
+shadow-hold,Shadow Hold,ダークミスト,ダークホールド,Dāku Misuto,Blocage Noir,Cryptofessel,Traba Oscura,Traba Oscura,Retedombra,,,,,
+shadow-mist,Shadow Mist,ダークパニック,ダークミスト,Dāku Panikku,Brume Noire,Cryptodunst,Bruma Oscura,Bruma Oscura,Nebbiascura,,,,,
+shadow-panic,Shadow Panic,ダークダウン,ダークパニック,Dāku Daun,Folie Noire,Cryptochaos,Miedo Oscuro,Miedo Oscuro,Ombrapanico,,,,,
+shadow-shed,Shadow Shed,ダークリムーブ,ダークリムーブ,Dāku Rimūbu,Percée Noire,Cryptobruch,Muda Oscura,Muda Oscura,Ombrannulla,,,,,
+shadow-sky,Shadow Sky,ダークハーフ,ダークウェザー,Dāku Hāfu,Ciel Noir,Cryptowetter,Cielo Oscuro,Cielo Oscuro,Cieloscuro,,,,,
+breakneck-blitz,Breakneck Blitz,ウルトラダッシュアタック,ウルトラダッシュアタック,Urutora Dasshu Atakku,Turbo-Charge Bulldozer,Hyper-Sprintangriff,Carrera Arrolladora,Carrera Arrolladora,Carica Travolgente,울트라대시어택,Ultra Dash Attack,究極無敵大衝撞,究极无敌大冲撞,Jiūjí Wúdí Dàchōngzhuàng / Gaugihk Mòuhdihk Daaihchūngjòhng
+all-out-pummeling,All-Out Pummeling,ぜんりょくむそうげきれつけん,ぜんりょくむそうげきれつけん,Zenryoku Musō Gekiretsu Ken,Combo Hyper-Furie,Fulminante Faustschläge,Ráfaga Demoledora,Ráfaga Demoledora,Iperscarica Furiosa,전력무쌍격렬권,Jeollyeok Mussang Gyeongnyeolgwon,全力無雙激烈拳,全力无双激烈拳,Quánlì Wúshuāng Jīlièquán / Chyùhnlihk Mòuhsēung Gīklihtkyùhn
+supersonic-skystrike,Supersonic Skystrike,ファイナルダイブクラッシュ,ファイナルダイブクラッシュ,Fainaru Daibu Kurasshu,Piqué Supersonique,Finaler Steilflug,Picado Supersónico,Picado Supersónico,Picchiata Devastante,파이널다이브클래시,Final Dive Clash,極速俯衝轟烈撞,极速俯冲轰烈撞,Jísù Fǔchōng Hōnglièzhuàng / Gihkchūk Fúchūng Gwānglihtjohng
+acid-downpour,Acid Downpour,アシッドポイズンデリート,アシッドポイズンデリート,Ashiddo Poizun Derīto,Déluge Causti-Toxique,Vernichtender Säureregen,Diluvio Corrosivo,Diluvio Corrosivo,Acidiluvio Corrosivo,애시드포이즌딜리트,Acid Poison Delete,強酸劇毒滅絕雨,强酸剧毒灭绝雨,Qiángsuān-Jùdú Mièjuéyǔ / Kèuhngsyūn-Kehkduhk Mihtjyuhtyúh
+tectonic-rage,Tectonic Rage,ライジングランドオーバー,ライジングランドオーバー,Raijingu Rando Ōbā,Éruption Géo-Sismique,Seismische Eruption,Barrena Telúrica,Barrena Telúrica,Furore della Terra,라이징랜드오버,Rising Land Over,地隆嘯天大終結,地隆啸天大终结,Dìlóng Xiào Tiān Dàzhōngjié / Deihlùhng Siu Tīn Daaihjūnggit
+continental-crush,Continental Crush,ワールズエンドフォール,ワールズエンドフォール,Wārudo Endo Fōru,Apocalypse Gigalithique,Apokalyptische Steinpresse,Aplastamiento Gigalítico,Aplastamiento Gigalítico,Gigamacigno Polverizzante,월즈엔드폴,World's End Fall,毀天滅地巨岩墜,毁天灭地巨岩坠,Huǐtiān-Mièdì Jùyánzhuì / Wáitīn-Mihtdeih Geuihngàahmjeuih
+savage-spin-out,Savage Spin-Out,ぜったいほしょくかいてんざん,ぜったいほしょくかいてんざん,Zettai Hoshoku Kaitenzan,Cocon Fatal,Wirbelnder Insektenhieb,Guadaña Sedosa,Guadaña Sedosa,Bozzolo Fatale,절대포식회전참,Jeoldae Posik Hoejeoncham,絕對捕食迴旋斬,绝对捕食回旋斩,Juéduì Bǔshí Huíxuánzhǎn / Jyuhtdeui Bouhsihk Wùihsyùhnjáam
+never-ending-nightmare,Never-Ending Nightmare,むげんあんやへのいざない,むげんあんやへのいざない,Mugen An'ya e no Izanai,Appel des Ombres Éternelles,Ewige Nacht,Presa Espectral,Presa Espectral,Abbraccio Spettrale,무한암야로의유인,Muhan Amyaro-ui Yu-in,無盡暗夜之誘惑,无尽暗夜之诱惑,Wújìn Ànyè-zhī Yòuhuò / Mòuhjeuhn Amyeh-jī Yáuhwaahk
+corkscrew-crash,Corkscrew Crash,ちょうぜつらせんれんげき,ちょうぜつらせんれんげき,Chōzetsu Rasen Rengeki,Vrille Maximum,Turbo-Spiralkombo,Hélice Trepanadora,Hélice Trepanadora,Spirale Perforante,초월나선연격,Chowol Naseon Yeongyeok,超絕螺旋連擊,超绝螺旋连击,Chāojué Luóxuán Liánjí / Chāojué Luóxuán Liánjī / Chīujyuht Lòhsyùhn Lìhngīk
+inferno-overdrive,Inferno Overdrive,ダイナミックフルフレイム,ダイナミックフルフレイム,Dainamikku Furu Fureimu,Pyro-Explosion Cataclysmique,Dynamische Maxiflamme,Hecatombe Pírica,Hecatombe Pírica,Fiammobomba Detonante,다이내믹풀플레임,Dynamic Full Flame,超強極限爆焰彈,超强极限爆焰弹,Chāoqiáng Jíxiàn Bàoyàndàn / Chīukèuhng Gihkhaahn Baauyìhmdáan
+hydro-vortex,Hydro Vortex,スーパーアクアトルネード,スーパーアクアトルネード,Sūpā Akua Torunēdo,Super Tourbillon Abyssal,Super-Wassertornado,Hidrovórtice Abisal,Hidrovórtice Abisal,Idrovortice Abissale,슈퍼아쿠아토네이도,Super Aqua Tornado,超級水流大漩渦,超级水流大漩涡,Chāojí Shuǐliú Dàxuánwō / Chīukāp Séuilàuh Daaihsyùhngwō
+bloom-doom,Bloom Doom,ブルームシャインエクストラ,ブルームシャインエクストラ,Burūmu Shain Ekusutora,Pétalexplosion Éblouissante,Brillante Blütenpracht,Megatón Floral,Megatón Floral,Floriscoppio Sfolgorante,블룸샤인엑스트라,Bloom Shine Extra,絢爛繽紛花怒放,绚烂缤纷花怒放,Xuànlàn Bīnfēn Huānùfàng / Hyunlaahn Bānfān Fānouhfong
+gigavolt-havoc,Gigavolt Havoc,スパーキングギガボルト,スパーキングギガボルト,Supākingu Gigaboruto,Fulguro-Lance Gigavolt,Gigavolt-Funkensalve,Gigavoltio Destructor,Gigavoltio Destructor,Gigascarica Folgorante,스파킹기가볼트,Sparking Gigavolt,終極伏特狂雷閃,终极伏特狂雷闪,Zhōngjí Fútè Kuángléishǎn / Jūnggihk Fuhkdahk Kwòhnglèuihsím
+shattered-psyche,Shattered Psyche,マキシマムサイブレイカー,マキシマムサイブレイカー,Makishimamu Sai-Bureikā,Psycho-Pulvérisation EX,Psycho-Schmetterschlag,Disruptor Psíquico,Disruptor Psíquico,Impatto Psicocinetico,맥시멈사이브레이커,Maximum Psy-Breaker,至高精神破壞波,至高精神破坏波,Zhìgāo Jīngshén Pòhuàibō / Jigōu Jīngsàhn Powaaihbō
+subzero-slammer,Subzero Slammer,レイジングジオフリーズ,レイジングジオフリーズ,Reijingu Jio-Furīzu,Laser Cryogénique,Tobender Geofrost,Crioaliento Despiadado,Crioaliento Despiadado,Criodistruzione Polare,레이징지오프리즈,Raging Geo-Freeze,激狂大地萬里冰,激狂大地万里冰,Jīkuáng Dàdì Wànlǐbīng / Gīkkwòhng Daaihdeih Maahnléihbīng
+devastating-drake,Devastating Drake,アルティメットドラゴンバーン,アルティメットドラゴンバーン,Arutimetto Doragon Bān,Chaos Draconique,Drastisches Drachendröhnen,Dracoaliento Devastador,Dracoaliento Devastador,Dragoschianto Finale,얼티메이트드래곤번,Ultimate Dragon Burn,究極巨龍震天地,究极巨龙震天地,Jiùjí Jùlóng Zhèn Tiāndì / Jiūjí Jùlóng Zhèn Tiāndì / Gaugihk Geuihlùhng Jan Tīndeih
+black-hole-eclipse,Black Hole Eclipse,ブラックホールイクリプス,ブラックホールイクリプス,Burakku Hōru Ikuripusu,Trou Noir des Ombres,Schwarzes Loch des Grauens,Agujero Negro Aniquilador,Agujero Negro Aniquilador,Buco Nero del Non Ritorno,블랙홀이클립스,Black Hole Eclipse,黑洞吞噬萬物滅,黑洞吞噬万物灭,Hēidòng Tūnshì Wànwùmiè / Hākduhng Tānsaih Maahnmahtmiht
+twinkle-tackle,Twinkle Tackle,ラブリースターインパクト,ラブリースターインパクト,Raburī Sutā Inpakuto,Impact Choupinova,Entzückender Sternenstoß,Arrumaco Sideral,Arrumaco Sideral,Astroimpatto Fatato,러블리스타임팩트,Lovely Star Impact,可愛星星飛天撞,可爱星星飞天撞,Kě'ài Xīngxīng Fēitiānzhuàng / Hó'oi Sīngsīng Fēitīnjohng
+g-max-vine-lash,G-Max Vine Lash,キョダイベンタツ,,Kyodai Bentatsu,Fouet G-Max,Giga-Geißel,Gigalianas,,Gigasferzata,거다이편달,Geodai Pyeondal,超極巨灰飛鞭滅,超极巨灰飞鞭灭,Chīu Gihkgeuih Fūifēi-Bīnmiht / Chāo Jíjù Huīfēi-Biānmiè
+g-max-wildfire,G-Max Wildfire,キョダイゴクエン,,Kyodai Gokuen,Fournaise G-Max,Giga-Feuerflug,Gigallamarada,,Gigavampa,거다이옥염,Geodai Og-yeom,超極巨地獄滅焰,超极巨地狱灭焰,Chīu Gihkgeuih Deihyuhk Mihtyihm / Chāo Jíjù Dìyù Mièyàn
+g-max-cannonade,G-Max Cannonade,キョダイホウゲキ,,Kyodai Hōgeki,Canonnade G-Max,Giga-Beschuss,Gigacañonazo,,Gigacannonata,거다이포격,Geodai Pogyeok,超極巨水砲轟滅,超极巨水炮轰灭,Chīu Gihkgeuih Séuipaau Gwāngmiht / Chāo Jíjù Shuǐpào Hōngmiè
+g-max-befuddle,G-Max Befuddle,キョダイコワク,,Kyodai Kowaku,Illusion G-Max,Giga-Benebelung,Gigaestupor,,Gigastupore,거다이고혹,Geodai Gohok,超極巨蝶影蠱惑,超极巨蝶影蛊惑,Chīu Gihkgeuih Dihpyíng Gúwaahk / Chāo Jíjù Diéyǐng Gǔhuò
+g-max-volt-crash,G-Max Volt Crash,キョダイバンライ,,Kyodai Banrai,Foudre G-Max,Giga-Blitzhagel,Gigatronada,,Gigapikafolgori,거다이만뢰,Geodai Malloe,超極巨萬雷轟頂,超极巨万雷轰顶,Chīu Gihkgeuih Maahnlèuihgwāngdǐng / Chāo Jíjù Wànléihōngdǐng
+g-max-gold-rush,G-Max Gold Rush,キョダイコバン,,Kyodai Koban,Pactole G-Max,Giga-Münzregen,Gigamonedas,,Gigamonete,거다이금화,Geodai Geumhwa,超極巨特大金幣,超极巨特大金币,Chīu Gihkgeuih Dahkdaaih Gāmbaih / Chāo Jíjù Tèdà Jīnbì
+g-max-chi-strike,G-Max Chi Strike,キョダイシンゲキ,,Kyodai Shingeki,Frappe G-Max,Giga-Fokusschlag,Gigapuñición,,Gigapugnointuito,거다이회심격,Geodai Hoesimgyeok,超極巨會心一擊,超极巨会心一击,Chīu Gihkgeuih Wuihsām Yātgīk / Chāo Jíjù Huìxīn Yījí / Chāo Jíjù Huìxīn Yījī
+g-max-terror,G-Max Terror,キョダイゲンエイ,,Kyodai Gen-ei,Hantise G-Max,Giga-Spuksperre,Gigaaparición,,Gigaillusione,거다이환영,Geodai Hwanyeong,超極巨幻影幽魂,超极巨幻影幽魂,Chīu Gihkgeuih Waahnyíng Yāuwàhn / Chāo Jíjù Huànyǐng Yōuhún
+g-max-foam-burst,G-Max Foam Burst,キョダイホウマツ,,Kyodai Hōmatsu,Bulles G-Max,Giga-Schaumbad,Gigaespuma,,Gigaschiuma,거다이포말,Geodai Pomal,超極巨激漩泡渦,超极巨激漩泡涡,Chīu Gihkgeuih Gīksyùhn Póuhwō / Chāo Jíjù Jīxuán Pàowō
+g-max-resonance,G-Max Resonance,キョダイセンリツ,,Kyodai Senritsu,Résonance G-Max,Giga-Melodie,Gigamelodía,,Gigamelodia,거다이선율,Geodai Seonyul,超極巨極光旋律,超极巨极光旋律,Chīu Gihkgeuih Gihkgwōng Syùhnleuht / Chāo Jíjù Jíguāng Xuánlǜ
+g-max-cuddle,G-Max Cuddle,キョダイホーヨー,,Kyodai Hōyō,Câlin G-Max,Giga-Gekuschel,Gigaternura,,Gigabbraccio,거다이포옹,Geodai Po-ong,超極巨熱情擁抱,超极巨热情拥抱,Chīu Gihkgeuih Yihtchìhng Mihtyihm / Chāo Jíjù Rèqíng Yǒngbào / Chāo Jíjù Rèqíng Yōngbào
+g-max-replenish,G-Max Replenish,キョダイサイセイ,,Kyodai Saisei,Récolte G-Max,Giga-Recycling,Gigarreciclaje,,Gigarinnovamento,거다이재생,Geodai Chaesaeng,超極巨資源再生,超极巨资源再生,Chīu Gihkgeuih Jīyùhn / Chāo Jíjù Zīyuán Joisāng
+g-max-malodor,G-Max Malodor,キョダイシュウキ,,Kyodai Shūki,Pestilence G-Max,Giga-Gestank,Gigapestilencia,,Gigafetore,거다이악취,Geodai Akchwi,超極巨臭氣沖天,超极巨臭气冲天,Chīu Gihkgeuih Chauhei Chūngtīn / Chāo Jíjù Chòuqì Chōngtiān
+g-max-meltdown,G-Max Meltdown,キョダイユウゲキ,,Kyodai Yūgeki,Fonte G-Max,Giga-Schmelze,Gigafundido,,Gigaliquefazione,거다이융격,Geodai Yunggeok,超極巨液金熔擊,超极巨液金熔击,Chīu Gihkgeuih Yùhnggīk / Chāo Jíjù Yèjīn Róngjī
+g-max-drum-solo,G-Max Drum Solo,キョダイコランダ,,Kyodai Koranda,Percussion G-Max,Giga-Getrommel,Gigarredoble,,Gigarullio,거다이난타,Geodai Nanta,超極巨狂擂亂打,超极巨狂擂乱打,Chīu Gihkgeuih Kwòhnglèuih-Lyuhndá / Chāo Jíjù Kuángléi-Luàndǎ
+g-max-fireball,G-Max Fireball,キョダイカキュウ,,Kyodai Kakyū,Pyroball G-Max,Giga-Brandball,Gigaesfera Ígnea,,Gigafiammopalla,거다이화염구,Geodai Hwayeomgu,超極巨破陣火球,超极巨破阵火球,Chīu Gihkgeuih Pojahn Fókàuh / Chāo Jíjù Pòzhèn Huǒqiú
+g-max-hydrosnipe,G-Max Hydrosnipe,キョダイソゲキ,,Kyodai Sogeki,Gâchette G-Max,Giga-Schütze,Gigadisparo,,Gigasparomirato,거다이저격,Geodai Jeogyeok,超極巨狙擊神射,超极巨狙击神射,Chīu Gihkgeuih Jēuigīk Sàhnseh / Chāo Jíjù Jūjī Shénshè
+g-max-wind-rage,G-Max Wind Rage,キョダイフウゲキ,,Kyodai Fūgeki,Rafale G-Max,Giga-Sturmstoß,Gigahuracán,,Gigaciclone,거다이풍격,Geodai Punggyeok,超極巨旋風襲捲,超极巨旋风袭卷,Chīu Gihkgeuih Syùhnfūng Jaahpgyún / Chāo Jíjù Xuànfēng Xíjuǎn
+g-max-gravitas,G-Max Gravitas,キョダイテンドウ,,Kyodai Tendō,Ondes G-Max,Giga-Astrowellen,Gigabóveda,,Gigagravitoforza,거다이천도,Geodai Cheondo,超極巨天道七星,超极巨天道七星,Chīu Gihkgeuih Tīndouh Chātsīng / Chāo Jíjù Tiāndào Qīxīng
+g-max-stonesurge,G-Max Stonesurge,キョダイガンジン,,Kyodai Ganjin,Récif G-Max,Giga-Geröll,Gigatrampa Rocas,,Gigarocciagetto,거다이암진,Geodai Amjin,超極巨岩陣以待,超极巨岩阵以待,Chīu Gihkgeuih Ngàahmjahn Yíh Doih / Chāo Jíjù Yánzhèn Yǐ Dài
+g-max-volcalith,G-Max Volcalith,キョダイフンセキ,,Kyodai Funseki,Téphra G-Max,Giga-Schlacke,Gigarroca Ígnea,,Gigalapilli,거다이분석,Geodai Bunseok,超極巨炎石噴發,超极巨炎石喷发,Chīu Yìhmsehk Panfaat / Chāo Jíjù Yánshí Pēnfā
+g-max-tartness,G-Max Tartness,キョダイサンゲキ,,Kyodai Sangeki,Corrosion G-Max,Giga-Säureguss,Gigacorrosión,,Gigattaccoacido,거다이산격,Geodai Sangyeok,超極巨酸不溜丟,超极巨酸不溜丟,Chīu Gihkgeuih Syūnbātlauhdīu / Chāo Jíjù Suānbuliūdiū
+g-max-sweetness,G-Max Sweetness,キョダイカンロ,,Kyodai Kanro,Nectar G-Max,Giga-Nektarflut,Giganéctar,,Gigambrosia,거다이감로,Geodai Gamno,超極巨瓊漿玉液,超极巨琼浆玉液,Chīu Gihkgeuih Kìhngjēung-Yuhkyihk / Chāo Jíjù Qióngjiāng-Yùyè
+g-max-sandblast,G-Max Sandblast,キョダイサジン,,Kyodai Sajin,Enlisement G-Max,Giga-Sandstoß,Gigapolvareda,,Gigavortisabbia,거다이사진,Geodai Sajin,超極巨沙塵漫天,超极巨沙尘漫天,Chīu Gihkgeuih Sāchàhn Maahntīn / Chāo Jíjù Shāchén Màntiān
+g-max-stun-shock,G-Max Stun Shock,キョダイカンデン,,Kyodai Kanden,Choc G-Max,Giga-Voltschlag,Gigadescarga,,Gigatoxiscossa,거다이감전,Geodai Gamjeon,超極巨異毒電場,超极巨异毒电场,Chīu Gihkgeuih Yihduhk Dihnchèuhng / Chāo Jíjù Yìdú Diànchǎng
+g-max-centiferno,G-Max Centiferno,キョダイヒャッカ,,Kyodai Hyakka,Combustion G-Max,Giga-Feuerkessel,Gigacienfuegos,,Gigamillefiamme,거다이백화,Geodai Baekhwa,超極巨百火焚野,超极巨百火焚野,Chīu Gihkgeuih Baakfó Fàhn / Chāo Jíjù Bǎihuǒ Fényě
+g-max-smite,G-Max Smite,キョダイテンバツ,,Kyodai Tenbatsu,Sentence G-Max,Giga-Sanktion,Gigacastigo,,Gigacastigo,거다이천벌,Geodai Cheonbeol,超極巨天譴雷誅,超极巨天谴雷诛,Chīu Gihkgeuih Tīnhín-Lèuihjyū / Chāo Jíjù Tiānqiǎn-Léizhū
+g-max-snooze,G-Max Snooze,キョダイスイマ,,Kyodai Suima,Torpeur G-Max,Giga-Gähnzwang,Gigasopor,,Gigatorpore,거다이수마,Geodai Suma,超極巨睡魔降臨,超极巨睡魔降临,Chīu Gihkgeuih Seuihmō Gonglàhm / Chāo Jíjù Shuìmó Jiànglín
+g-max-finale,G-Max Finale,キョダイダンエン,,Kyodai Dan-en,Cure G-Max,Giga-Lichtblick,Gigacolofón,,Gigagranfinale,거다이단원,Geodai Danwon,超極巨幸福圓滿,超极巨幸福圆满,Chīu Gihkgeuih Hahngfūk Yùhnmúhn / Chāo Jíjù Xìngfú Yuánmǎn
+g-max-steelsurge,G-Max Steelsurge,キョダイコウジン,,Kyodai Kōjin,Percée G-Max,Giga-Stahlschlag,Gigatrampa Acero,,Gigaferroaculei,거다이강철진,Geodai Gangcheoljin,超極巨鋼鐵陣法,超极巨钢铁阵法,Chīu Gihkgeuih Gongtit Jahnfaat / Chāo Jíjù Gāngtiě Zhènfǎ
+g-max-depletion,G-Max Depletion,キョダイゲンスイ,,Kyodai Gensui,Usure G-Max,Giga-Dämpfer,Gigadesgaste,,Gigalogoramento,거다이감쇠,Geodai Gamsoe,超極巨劣化衰變,超极巨劣化衰变,Chīu Gihkgeuih Lyutfa-Sēuibin / Chāo Jíjù Lièhuà-Shuāibiàn
+g-max-one-blow,G-Max One Blow,キョダイイチゲキ,,Kyodai Ichigeki,Coup Final G-Max,Giga-Einzelhieb,Gigagolpe Brusco,,Gigasingolcolpo,거다이일격,Geodai Ilgyeok,超極巨奪命一擊,超极巨夺命一击,Chīu Gihkgeuih Dyuhtmihng Yātgīk / Chāo Jíjù Duómìng Yījí
+g-max-rapid-flow,G-Max Rapid Flow,キョダイレンゲキ,,Kyodai Rengeki,Multicoup G-Max,Giga-Multihieb,Gigagolpe Fluido,,Gigapluricolpo,거다이연격,Geodai Yeongyeok,超極巨流水連擊,超极巨流水连击,Chīu Gihkgeuih Làuhséui Lìhngīk / Chāo Jíjù Liúshuǐ Liánjí

@@ -1,0 +1,15 @@
+identifier,id,name_fr,awesome_name_fr,description_fr,name_en,awesome_name_en,description_en
+ball,1,Balle,Pomacé,Pokémon constitués uniquement d’une tête,Ball,Pomaceous,Pokémon consisting of only a head
+squiggle,2,Sinueux,Caudal,Pokémon avec un corps serpentin,Squiggle,Caudal,Pokémon with serpentine bodies
+fish,3,Poisson,Ichtyque,Pokémon disposant de nageoires,Fish,Ichthyic,Pokémon with fins
+arms,4,Bras,Brachial,Pokémon constitués d’une tête et de bras,Arms,Brachial,Pokémon consisting of a head and arms
+blob,5,Goutte,Alvin,Pokémon constitués d’une tête et d’un corps,Blob,Alvine,Pokémon consisting of a head and a base
+upright,6,Droit,Sciurine,Pokémon bipèdes disposant d’une queue,Upright,Sciurine,"Pokémon with a bipedal, tailed form"
+legs,7,Jambes,Crural,Pokémon constitués d’une tête et de jambes,Legs,Crural,Pokémon consisting of a head and legs
+quadruped,8,Quadrupède,Mensal,Pokémon quadrupèdes,Quadruped,Mensal,Pokémon with a quadruped body
+wings,9,Ailes,Alaire,Pokémon avec une seule paire d’aile,Wings,Alar,Pokémon with a single pair of wings
+tentacles,10,Tentacules,Ciliaire,Pokémon avec des tentacules ou possédant de multiples pattes,Tentacles,Cilial,Pokémon with tentacles or a multiped body
+heads,11,Têtes,Polycéphale,Pokémon avec un corps multiple,Heads,Polycephalic,Pokémon consisting of multiple bodies
+humanoid,12,Humanoïde,Anthropomorphique,Pokémon bipèdes sans queue,Humanoid,Anthropomorphic,"Pokémon with a bipedal, tailless form"
+bug-wings,13,Ailes d’insecte,Lépidoptère,Pokémon avec deux paires d’ailes,Bug wings,Lepidopterous,Pokémon with two or more pairs of wings
+armor,14,Armure,Chitineux,Pokémon avec un corps insectoïde,Armor,Chitinous,Pokémon with an insectoid body

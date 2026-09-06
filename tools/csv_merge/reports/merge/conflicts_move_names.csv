@@ -1,0 +1,194 @@
+key,column,pokeapi,pokedb,chosen
+pound,name_fr,Écras’Face,Écras'Face,Écras’Face
+wing-attack,name_it,Attacco d’Ala,Attacco d'Ala,Attacco d’Ala
+double-kick,name_ko,두번차기,두번치기,두번차기
+headbutt,name_fr,Coup d’Boule,Coup d'Boule,Coup d’Boule
+horn-attack,name_fr,Koud’Korne,Koud'Korne,Koud’Korne
+horn-drill,name_fr,Empal’Korne,Empal'Korne,Empal’Korne
+tail-whip,name_es,Agitacola,Látigo,Agitacola
+leer,name_fr,Groz’Yeux,Groz'Yeux,Groz’Yeux
+bubble-beam,name_fr,Bulles d’O,Bulles d'O,Bulles d’O
+seismic-toss,name_it,Movim. Sismico,Movim. Sismico,Movim. Sismico
+razor-leaf,name_fr,Tranch’Herbe,Tranch'Herbe,Tranch’Herbe
+stun-spore,name_zh_hans,麻痹粉,麻痺粉,麻痹粉
+thunderbolt,name_ko,10만볼트,１０만볼트,10만볼트
+quick-attack,name_fr,Vive-Attaque,Vive-attaque,Vive-Attaque
+defense-curl,name_fr,Boul’Armure,Boul'Armure,Boul’Armure
+bone-club,name_fr,Massd’Os,Massd'Os,Massd’Os
+skull-bash,name_fr,Coud’Krâne,Coud'Krâne,Coud’Krâne
+skull-bash,name_ko,로켓박치기,로케트박치기,로켓박치기
+high-jump-kick,name_es,Patada Salto Alta,Pat. Salto Alta,Patada Salto Alta
+lovely-kiss,name_zh_hans,恶魔之吻,惡魔之吻,恶魔之吻
+crabhammer,name_ko,집게해머,찝게햄머,집게해머
+sharpen,name_zh_hant,稜角化,棱角化,稜角化
+flame-wheel,name_ko,화염바퀴,화염자동차,화염바퀴
+conversion-2,name_fr,Conversion 2,Conversion2,Conversion 2
+conversion-2,name_es,Conversión 2,Conversión2,Conversión 2
+conversion-2,name_ko,텍스처2,텍스처２,텍스처2
+mud-slap,name_fr,Coud’Boue,Coud'Boue,Coud’Boue
+icy-wind,name_ko,얼어붙은바람,얼다바람,얼어붙은바람
+bone-rush,name_ko,본러시,본러쉬,본러시
+sandstorm,name_es,Tormenta de Arena,Tormenta Arena,Tormenta de Arena
+swagger,name_es,Fanfarronear,Contoneo,Fanfarronear
+steel-wing,name_fr,Ailes d’Acier,Ailes d'Acier,Ailes d’Acier
+megahorn,name_ko,메가혼,메가폰,메가혼
+baton-pass,name_ko,배턴터치,바톤터치,배턴터치
+encore,name_ko,앙코르,앵콜,앙코르
+metal-claw,name_ko,메탈클로,메탈크로우,메탈클로
+synthesis,name_es,Fotosíntesis,Síntesis,Fotosíntesis
+moonlight,name_ko,달빛,달의불빛,달빛
+extreme-speed,name_es,Velocidad Extrema,Veloc. Extrema,Velocidad Extrema
+shadow-ball,name_fr,Ball’Ombre,Ball'Ombre,Ball’Ombre
+fake-out,name_ko,속이기,속이다,속이기
+swallow,name_it,Introenergia,Intoenergia,Introenergia
+facade,name_es,Fachada,Imagen,Fachada
+helping-hand,name_fr,Coup d’Main,Coup d'Main,Coup d’Main
+brick-break,name_ko,깨뜨리다,깨트리다,깨뜨리다
+skill-swap,name_ko,스킬스왑,스킬스웹,스킬스왑
+refresh,name_ko,리프레시,리프레쉬,리프레시
+snatch,name_ko,가로채기,가로챔,가로채기
+luster-purge,name_ko,러스터퍼지,라스트버지,러스터퍼지
+mist-ball,name_fr,Ball’Brume,Ball'Brume,Ball’Brume
+blaze-kick,name_ko,블레이즈킥,브레이즈킥,블레이즈킥
+ice-ball,name_fr,Ball’Glace,Ball'Glace,Ball’Glace
+slack-off,name_ko,게으름피우기,태만함,게으름피우기
+poison-fang,name_ko,맹독엄니,독엄니,맹독엄니
+crush-claw,name_ko,브레이크클로,브레이크크루,브레이크클로
+blast-burn,name_ko,블라스트번,블러스트번,블라스트번
+weather-ball,name_fr,Ball’Météo,Ball'Météo,Ball’Météo
+air-cutter,name_fr,Tranch’Air,Tranch'Air,Tranch’Air
+air-cutter,name_ko,에어커터,에어컷터,에어커터
+grass-whistle,name_fr,Siffl’Herbe,Siffl'Herbe,Siffl’Herbe
+tickle,name_zh_hant,搔癢,撓癢,搔癢
+sky-uppercut,name_ko,스카이어퍼,스카이업퍼,스카이어퍼
+bullet-seed,name_ko,씨기관총,기관총,씨기관총
+icicle-spear,name_fr,Stalactite,Stalagtite,Stalactite
+howl,name_ko,멀리짖기,멀리짖음,멀리짖기
+dragon-claw,name_ko,드래곤클로,드래곤크루,드래곤클로
+bounce,name_ko,뛰어오르기,뛰어오르다,뛰어오르기
+mud-shot,name_ko,머드샷,머드숏,머드샷
+volt-tackle,name_es,Placaje Eléctrico,Placaje Eléc,Placaje Eléctrico
+magical-leaf,name_ko,매지컬리프,메지컬리프,매지컬리프
+rock-blast,name_ko,록블라스트,락블레스트,록블라스트
+psycho-shift,name_it,Psicotransfer,Psicotrasfer,Psicotransfer
+me-first,name_fr,Moi d’Abord,Moi d'Abord,Moi d’Abord
+power-swap,name_ko,파워스왑,파워스웹,파워스왑
+guard-swap,name_ko,가드스왑,가드스웹,가드스왑
+last-resort,name_ko,비장의무기,뒀다쓰기,비장의무기
+heart-swap,name_ko,하트스왑,하트스웹,하트스왑
+aura-sphere,name_it,Forzasfera,Sferapulsar,Forzasfera
+air-slash,name_fr,Lame d’Air,Lame d'Air,Lame d’Air
+power-gem,name_zh_hans,力量宝石,力量寶石,力量宝石
+shadow-claw,name_ko,섀도클로,섀도크루,섀도클로
+thunder-fang,name_zh_hans,雷电牙,雷電牙,雷电牙
+zen-headbutt,name_fr,Psykoud’Boul,Psykoud'Boul,Psykoud’Boul
+mirror-shot,name_ko,미러샷,미러숏,미러샷
+flash-cannon,name_es,Cañón Resplandor,Foco Resplandor,Cañón Resplandor
+rock-climb,name_ko,록클라임,락클라임,록클라임
+discharge,name_fr,Coup d’Jus,Coup d'Jus,Coup d’Jus
+leaf-storm,name_es,Lluevehojas,Lluevahojas,Lluevehojas
+bug-bite,name_ko,벌레먹기,벌레먹음,벌레먹기
+attack-order,name_fr,Appel Attaque,Appel Attak,Appel Attaque
+head-smash,name_fr,Fracass’Tête,Fracass'Tête,Fracass’Tête
+quick-guard,name_ko,패스트가드,퍼스트가드,패스트가드
+heal-pulse,name_it,Ondasana,Curapulsar,Ondasana
+shift-gear,name_fr,Chgt Vitesse,Chgt Vitesse,Chgt Vitesse
+shift-gear,name_zh_hans,换档,换挡,换档
+inferno,name_fr,Feu d’Enfer,Feu d'Enfer,Feu d’Enfer
+water-pledge,name_fr,Aire d’Eau,Aire d'Eau,Aire d’Eau
+grass-pledge,name_fr,Aire d’Herbe,Aire d'Herbe,Aire d’Herbe
+heart-stamp,name_fr,Crève-Cœur,Crèvecœur,Crève-Cœur
+horn-leech,name_ko,우드혼,우드호른,우드혼
+secret-sword,name_fr,Lame Ointe,Lame Ouinte,Lame Ointe
+glaciate,name_ko,얼어붙은세계,얼다세계,얼어붙은세계
+kings-shield,name_en,King’s Shield,King's Shield,King’s Shield
+diamond-storm,name_es,Tormenta de Diamantes,Torm. Diamantes,Tormenta de Diamantes
+hyperspace-hole,name_ko,이차원홀,다른차원홀,이차원홀
+oblivion-wing,name_fr,Mort’Ailes,Mort'Ailes,Mort’Ailes
+lands-wrath,name_en,Land’s Wrath,Land's Wrath,Land’s Wrath
+hyperspace-fury,name_ko,이차원러시,다른차원러시,이차원러시
+shore-up,name_fr,Amass’Sable,Amass'Sable,Amass’Sable
+spirit-shackle,name_it,Cucitura d’Ombra,Cucitura d'Ombra,Cucitura d’Ombra
+sparkling-aria,name_fr,Aria de l’Écume,Aria de l'Écume,Aria de l’Écume
+anchor-shot,name_it,Colpo d’Ancora,Colpo d'Ancora,Colpo d’Ancora
+anchor-shot,name_ko,앵커샷,앵커숏,앵커샷
+speed-swap,name_ko,스피드스왑,스피드스웹,스피드스왑
+smart-strike,name_ko,스마트혼,스마트호른,스마트혼
+trop-kick,name_es,Patada Tropical,Patada Tropica,Patada Tropical
+guardian-of-alola,name_fr,Colère du Gardien d’Alola,Colère du Gardien d'Alola,Colère du Gardien d’Alola
+soul-stealing-7-star-strike,name_ja,しちせいだっこんたい,七星奪魂腿,しちせいだっこんたい
+stoked-sparksurfer,name_ko,라이트닝서프라이드,라이트닝 서프라이드,라이트닝서프라이드
+pulverizing-pancake,name_ja,ほんきをだす　こうげき,ほんきをだすこうげき,ほんきをだす　こうげき
+moongeist-beam,name_it,Raggio d’Ombra,Raggio d'Ombra,Raggio d’Ombra
+tearful-look,name_fr,Larme à l’Œil,Larme à l'Œil,Larme à l’Œil
+10-000-000-volt-thunderbolt,name_ja,１０００まんボルト,1000まんボルト,１０００まんボルト
+light-that-burns-the-sky,name_ja,てんこがすめつぼうのひかり,天焦がす滅亡の光,てんこがすめつぼうのひかり
+sappy-seed,name_de,Sprießbomben,Sprießomben,Sprießbomben
+double-iron-bash,name_fr,Écrous d’Poing,Écrous d'Poing,Écrous d’Poing
+max-guard,name_es,Maxibarrera,Maxibarriera,Maxibarrera
+snipe-shot,name_de,Präzisionsschuss,Präisionsschuss,Präzisionsschuss
+jaw-lock,name_it,Morsostretto,Morostretto,Morsostretto
+tar-shot,name_ko,타르샷,타르숏,타르샷
+aura-wheel,name_it,Ruota d’Aura,Ruota d'Aura,Ruota d’Aura
+steel-beam,name_it,Raggio d’Acciaio,Raggio d'Acciaio,Raggio d’Acciaio
+expanding-force,name_it,Vastenergia,Vasterngia,Vastenergia
+grassy-glide,name_fr,Gliss’Herbe,Gliss'Herbe,Gliss’Herbe
+esper-wing,name_it,Ali d’Aura,Ali d'Aura,Ali d’Aura
+glaive-rush,name_zh_hans,巨剑突击,巨劍突擊,巨剑突击
+doodle,name_ko,배껴그리기,베껴그리기,배껴그리기
+make-it-rain,name_it,Corsa all’Oro,Corsa all'Oro,Corsa all’Oro
+psyblade,name_zh_hans,精神剑,精神劍,精神剑
+collision-course,name_ko,엑셀브레이크,액셀브레이크,엑셀브레이크
+wicked-torque,name_ko,다크액셀,Dark Axel,다크액셀
+noxious-torque,name_ko,포이즌액셀,Poison Axel,포이즌액셀
+combat-torque,name_ko,파이트액셀,Fight Axel,파이트액셀
+magical-torque,name_ko,매지컬액셀,Magical Axel,매지컬액셀
+shadow-rush,name_fr,Charge Noire,Assaut Noir,Charge Noire
+shadow-rush,name_it,Ombroraffica,Ombrattacco,Ombroraffica
+shadow-rush,name_es,Carga Oscura,Vigor Oscuro,Carga Oscura
+shadow-blast,name_fr,Aéro Noir,Charge Noire,Aéro Noir
+shadow-blast,name_it,Ombrolame,Ombroraffica,Ombrolame
+shadow-blast,name_es,Soplo Oscuro,Carga Oscura,Soplo Oscuro
+shadow-blitz,name_fr,Assaut Noir,Bélier Noir,Assaut Noir
+shadow-blitz,name_it,Ombrattacco,Ombrospinta,Ombrattacco
+shadow-blitz,name_es,Vigor Oscuro,Brío Oscuro,Vigor Oscuro
+shadow-bolt,name_fr,Éclair Noir,Retour Noir,Éclair Noir
+shadow-bolt,name_it,Fulminombra,Fineoscuro,Fulminombra
+shadow-bolt,name_es,Rayo Oscuro,Fin Oscuro,Rayo Oscuro
+shadow-break,name_fr,Bélier Noir,Onde Noire,Bélier Noir
+shadow-break,name_it,Ombrospinta,Ondaoscura,Ombrospinta
+shadow-break,name_es,Brío Oscuro,Onda Oscura,Brío Oscuro
+shadow-chill,name_fr,Froid Noir,Rage Noire,Froid Noir
+shadow-chill,name_it,Gelodombra,Ombrolancia,Gelodombra
+shadow-chill,name_es,Hielo Oscuro,Rabia Oscura,Hielo Oscuro
+shadow-end,name_fr,Retour Noir,Typhon Noir,Retour Noir
+shadow-end,name_it,Fineoscuro,Turbinombra,Fineoscuro
+shadow-end,name_es,Fin Oscuro,Tifón Oscuro,Fin Oscuro
+shadow-fire,name_fr,Ardeur Noir,Ardeur Noire,Ardeur Noir
+shadow-rave,name_fr,Rage Noire,Éclair Noir,Rage Noire
+shadow-rave,name_it,Ombrolancia,Fulminombra,Ombrolancia
+shadow-rave,name_es,Rabia Oscura,Rayo Oscuro,Rabia Oscura
+shadow-storm,name_fr,Typhon Noir,Froid Noir,Typhon Noir
+shadow-storm,name_it,Turbinombra,Gelodombra,Turbinombra
+shadow-storm,name_es,Tifón Oscuro,Hielo Oscuro,Tifón Oscuro
+shadow-wave,name_fr,Ondo Noire,Aéro Noir,Ondo Noire
+shadow-wave,name_it,Ondascura,Ombrolame,Ondascura
+shadow-wave,name_es,Onda Oscura,Soplo Oscuro,Onda Oscura
+shadow-down,name_fr,Souffle Noir,Ciel Noir,Souffle Noir
+shadow-down,name_it,Declinoscuro,Cieloscuro,Declinoscuro
+shadow-down,name_es,Ocaso Oscuro,Cielo Oscuro,Ocaso Oscuro
+shadow-half,name_fr,Chute Noire,Blocage Noir,Chute Noire
+shadow-half,name_it,Iraoscura,Retedombra,Iraoscura
+shadow-half,name_es,Mitad Oscura,Traba Oscura,Mitad Oscura
+shadow-hold,name_fr,Blocage Noir,Brume Noire,Blocage Noir
+shadow-hold,name_it,Retedombra,Nebbiascura,Retedombra
+shadow-hold,name_es,Traba Oscura,Bruma Oscura,Traba Oscura
+shadow-mist,name_fr,Brume Noire,Folie Noire,Brume Noire
+shadow-mist,name_it,Nebbiascura,Ombropanico,Nebbiascura
+shadow-mist,name_es,Bruma Oscura,Miedo Oscuro,Bruma Oscura
+shadow-panic,name_fr,Folie Noire,Souffle Noir,Folie Noire
+shadow-panic,name_it,Ombrapanico,Declinoscuro,Ombrapanico
+shadow-panic,name_es,Miedo Oscuro,Ocaso Oscuro,Miedo Oscuro
+shadow-sky,name_fr,Ciel Noir,Chute Noire,Ciel Noir
+shadow-sky,name_it,Cieloscuro,Iraoscura,Cieloscuro
+shadow-sky,name_es,Cielo Oscuro,Mitad Oscura,Cielo Oscuro

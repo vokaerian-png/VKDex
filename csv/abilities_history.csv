@@ -1,0 +1,53 @@
+ability,changed_in_version_group,effect_en,effect_fr,effect_de
+stench,black-white,Has no effect in battle.,N'a aucun effet en combat.,Hat im Kampf keinen Effekt.
+sturdy,black-white,Does not prevent regular KOs from full HP.,N'empêche pas les KO réguliers en ayant tous ses PV.,Verhindert keine regulären K.O. bei vollen KP.
+static,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+volt-absorb,diamond-pearl,"Does not absorb non-damaging Electric moves, i.e. Thunder Wave.","N'absorbe pas les capacités Électrik non-offensives, i.e. Cage Éclair.","Elektro-Attacken die keinen Schaden anrichten, wie Donnerwelle, werden nicht absorbiert."
+color-change,black-white,Triggers on every hit of multiple-hit moves.,Se déclenche à chaque coup d'une capacité multi-coups.,Löst bei Attacken die mehrmals Treffen bei jedem Treffer aus.
+flash-fire,diamond-pearl,Will-O-Wisp does not trigger this ability for Pokémon immune to burns.,Feu Follet ne déclenche pas ce talent pour un Pokémon immunisé à la brûlure.,Irrlicht triggert die Fähigkeit nicht bei Pokémon die immun gegen Verbrennung sind.
+suction-cups,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+intimidate,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+intimidate,diamond-pearl,Does not take effect if acquired after entering battle.,N'a pas d'effet si acquis après être entré au combat.,"Hat keinen Effekt, wenn die Fähigkeit nach Kampfbeginn erlangt wurde."
+shadow-tag,diamond-pearl,Affects other Pokémon with this ability.,Affecte les autres Pokémon avec ce talent.,Betrifft andere Pokémon mit dieser Fähigkeit.
+rough-skin,diamond-pearl,Inflicts only 1/16 of the attacker's maximum HP in damage.,Inflige seulement 1/16 des PV maximum du lanceur en dégâts.,Verursacht nur 1/16 der maximalen KP des Angreifers Schaden.
+wonder-guard,black-white,Fire Fang and moves that inflict typeless damage ignore this ability regardless of type.,Crocs Feu et les capacités qui infligent des dommages sans type ignorent ce talent peu importe le type.,"Feuerzahn und Attacken die typenlosen Schaden verursachen, ignorieren diese Fähigkeit unabhängig von ihrem Typ."
+synchronize,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+synchronize,diamond-pearl,Cannot influence the natures of Pokémon encountered by interacting with them on the overworld.,Ne peut pas influencer les natures des Pokémon rencontrés en interagissant avec eux dans le monde extérieur.,Kann das Wesen von Pokémon mit denen in der Spielwelt interagiert wird nicht verändern.
+synchronize,black-white,Passes back bad poison as regular poison.,Ne transmet pas le poison grave comme poison régulier.,Gibt schwere Vergiftung als normale Vergiftung zurück.
+lightning-rod,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+lightning-rod,diamond-pearl,"Does not affect non-damaging Electric moves, i.e. Thunder Wave.  Increases the frequency of Match Call calls on the overworld if any party Pokémon has this ability.","N'affecte pas les capacités Électrik non-offensives, i.e. Cage Éclair. Augmente la fréquence des revanches dans le monde extérieur si un Pokémon de l'équipe a ce talent.","Betrifft keine Elektro-Attacken die keinen Schaden anrichten, wie Donnerwelle. Erhöht die Anzahl an Trainer-Anrufen wenn irgendein Pokémon im Team diese Fähigkeit hat."
+lightning-rod,black-white,Redirects Electric moves without negating them or granting any Special Attack boost.  Does not redirect Hidden Power.,Redirige les capacités Électrik sans les annuler ou garantir aucun boost d'Attaque Spéciale. Ne redirige pas Puissance Cachée.,"Leitet Elektro-Attacken um, ohne ihre Effekte zu deaktivieren oder einen Spezialangriff Bonus zu gewähren. Leitet Kraftreserve nicht um."
+magma-armor,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+magnet-pull,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+soundproof,black-white,"Prevents Heal Bell from curing the Pokémon, whether or not it is in battle.","Empêche Glas de Soin de soigner le Pokémon, que ce soit en combat ou non.","Hindert Vitalglocke daran, das Pokémon zu heilen, auch außerhalb vom Kampf."
+pressure,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+pressure,diamond-pearl,Does not affect friendly Pokémon's moves that target all other Pokémon.  This ability's presence is not announced upon entering battle.,N'affecte pas les capacités du Pokémon allié qui ciblent tous les autres Pokémon. La présence de ce talent n'est pas annoncée à son entrée au combat.,Betrifft keine Attacken von Teammitgliedern die alle anderen Pokémon als Ziel haben. Diese Fähigkeit wird im Kampf nicht angekündigt.
+flame-body,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+keen-eye,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+hyper-cutter,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+hyper-cutter,diamond-pearl,Doubles Cut's grass-cutting radius on the overworld if any party Pokémon has this ability.,Double le rayon d'action de Coupe dans le monde extérieur si un Pokémon de l'équipe a ce talent.,"Verdoppelt den Radius in dem Zerschneider Gras entfernt, wenn irgendein Pokémon im Team diese Fähigkeit hat."
+pickup,black-white,Has no effect in battle.,N'a aucun effet en combat.,Hat im Kampf keinen Effekt.
+hustle,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+cute-charm,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+sticky-hold,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+guts,diamond-pearl,Does not take effect during sleep.,Ne prend pas effet pendant le sommeil.,Hat keinen Effekt während das Pokémon schläft.
+swarm,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+swarm,diamond-pearl,Increases the frequency of cries heard on the overworld if any party Pokémon has this ability.,Augmente la fréquence des cris entendus dans le monde extérieur si un Pokémon de l'équipe a ce talent.,"Erhöht die Anzahl an Rufen die man außerhalb vom Kampf hört, wenn irgendein Pokémon im Team diese Fähigkeit hat."
+arena-trap,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+vital-spirit,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+white-smoke,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+poison-heal,black-white,Poison still damages the Pokémon outside of battle.,Le poison continue d'infliger des dégâts au Pokémon en dehors du combat.,Vergiftung schadet dem Pokémon außerhalb vom Kampf.
+magic-guard,black-white,"Paralysis cannot prevent the Pokémon from moving, though the Speed cut is unaffected.  Poison still damages the Pokémon outside of battle.","La paralysie ne peut pas empêcher le Pokémon de bouger, mais le malus de Vitesse est appliqué. Le poison continue d'infliger des dommages au Pokémon en dehors du combat.","Paralyse hindert das Pokémon nicht daran sich zu bewegen, aber der Initiative Malus bleibt. Vergiftung schadet dem Pokémon außerhalb vom Kampf."
+no-guard,platinum,"Due to a glitch, moves affected by this ability have a (100 - accuracy)% chance to hit through Detect or Protect.","À cause d'un glitch, les capacités affectées par ce talent ont (100 - accuracy)% de chance de transpercer Détection ou Abri.",Wegen eines Glitches haben Attacken die von dieser Fähigkeit beeinflusst sind eine (100 - Genauigkeit)% Chance durch den Scanner oder Schutzschild zu treffen.
+leaf-guard,black-white,Rest works as usual during strong sunlight.,Repos fonctionne de manière habituelle sous le soleil intense.,Erholung funktioniert normal bei starkem Sonnenlicht.
+klutz,black-white,Fling can be used as usual.,Dégommage peut être utilisé de manière habituelle.,Schleuder kann normal benutzt werden.
+storm-drain,black-white,Redirects Water moves without negating them or granting any Special Attack boost.  Does not redirect Hidden Power.,Redirige les capacités Eau sans les annuler ou garantir aucun boost d'Attaque Spéciale. Ne redirige pas Puissance Cachée.,Leitet Wasser-Attacken um ohne den Spezialangriff Bonus zu gewähren. Leitet Kraftreserve nicht um.
+trace,black-white,Can copy Flower Gift and Wonder Guard.,Peut copier Don Floral et Garde Mystik.,Kann Pflanzengabe und Wunderwache kopieren.
+trace,diamond-pearl,Can copy Forecast and Trace.,Peut copier Météo et Calque.,Kann Prognose und Erfassen kopieren.
+plus,black-white,Powers up only when paired with Minus.,Fonctionne uniquement quand associé à Moins.,Funktioniert nur wenn es mit Minus kombiniert wird.
+minus,black-white,Powers up only when paired with Plus.,Fonctionne uniquement quand associé à Plus.,Funktioniert nur wenn es mit Plus kombiniert wird.
+shed-skin,black-white,Chance of taking effect is 30%.,Les chances que l'effet s'active sont de 30%.,"Die Chance, dass der Effekt eintritt, beträgt 30%."
+skill-link,black-white,Triple Kick is unaffected.,Triple Pied n'est pas affecté.,Dreifachkick wird nicht beeinflusst.
+technician,black-white,Struggle is unaffected.  Helping Hand and Defense Curl are not taken into account.,Lutte n'est pas affecté. Coup d’Main et Boul’Armure ne sont pas pris en compte.,Verzweifler wird nicht beeinflusst. Rechte Hand und Einigler werden nicht beachtet.
+compound-eyes,emerald,Has no overworld effect.,N'a pas d'effet en dehors du combat.,Hat außerhalb vom Kampf keinen Effekt.
+shed-skin,diamond-pearl,Chance of taking effect is 33%.,Les chances que l'effet s'active sont de 33%.,"Die Chance, dass der Effekt eintritt, beträgt 33%."

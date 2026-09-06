@@ -1,0 +1,763 @@
+form,version,language,flavor_text
+deoxys-normal,ruby,en,"The DNA of a space virus underwent a
+sudden mutation upon exposure to a
+laser beam and resulted in DEOXYS.The crystalline organ on this POKéMON’s
+chest appears to be its brain."
+deoxys-normal,sapphire,en,"DEOXYS emerged from a virus that came
+from space. It is highly intelligent and
+wields psychokinetic powers.This POKéMON shoots lasers from the
+crystalline organ on its chest."
+basculin-red-striped,ultra-sun,en,"Savage, violent Pokémon, red and blue Basculin
+are always fighting each other over territory."
+basculin-red-striped,ultra-moon,en,"When a school of Basculin appears in a lake,
+everything else disappears, except for Corphish
+and Crawdaunt. That’s how violent Basculin are."
+oricorio-baile,sun,en,"It beats its wings together to create fire.
+As it moves in the steps of its beautiful dance,
+it bathes opponents in intense flames."
+oricorio-baile,moon,en,"This Oricorio has sipped red nectar. Its
+passionate dance moves cause its enemies
+to combust in both body and mind."
+oricorio-baile,ultra-sun,en,"It wins the hearts of its enemies with its
+passionate dancing and then uses the opening
+it creates to burn them up with blazing flames."
+oricorio-baile,ultra-moon,en,"This Oricorio has drunk red nectar. If its Trainer
+gives the wrong order, this passionate Pokémon
+becomes fiercely angry."
+deoxys-attack,firered,en,"This DEOXYS has transformed into its
+aggressive guise. It can fool enemies by
+altering its appearance."
+deoxys-defense,leafgreen,en,"When it changes form, an aurora appears.
+It absorbs attacks by altering its
+cellular structure."
+deoxys-speed,emerald,en,"A POKéMON that mutated from an
+extraterrestrial virus exposed to a laser
+beam. Its body is configured for superior
+agility and speed."
+basculin-blue-striped,ultra-sun,en,"Even Basculin, which devours everything it can
+with its huge jaws, is nothing more than food to
+organisms stronger than itself."
+basculin-blue-striped,ultra-moon,en,"Some people call it “the thug of the lake.”
+Whether the differences in color are meaningful
+is not yet known."
+venusaur-mega,lets-go-pikachu,en,"In order to support its flower, which has grown
+larger due to Mega Evolution, its back and legs
+have become stronger."
+venusaur-mega,lets-go-eevee,en,"In order to support its flower, which has grown
+larger due to Mega Evolution, its back and legs
+have become stronger."
+charizard-mega-x,lets-go-pikachu,en,"The overwhelming power that fills its entire
+body causes it to turn black and creates intense
+blue flames."
+charizard-mega-x,lets-go-eevee,en,"The overwhelming power that fills its entire
+body causes it to turn black and creates intense
+blue flames."
+charizard-mega-y,lets-go-pikachu,en,"Its bond with its Trainer is the source of its
+power. It boasts speed and maneuverability
+greater than that of a jet fighter."
+charizard-mega-y,lets-go-eevee,en,"Its bond with its Trainer is the source of its
+power. It boasts speed and maneuverability
+greater than that of a jet fighter."
+blastoise-mega,lets-go-pikachu,en,"The cannon on its back is as powerful as a tank
+gun. Its tough legs and back enable it to
+withstand the recoil from firing the cannon."
+blastoise-mega,lets-go-eevee,en,"The cannon on its back is as powerful as a tank
+gun. Its tough legs and back enable it to
+withstand the recoil from firing the cannon."
+alakazam-mega,sun,en,"As a result of Mega Evolution, its power has
+been entirely converted into psychic energy, and
+it has lost all strength in its muscles."
+alakazam-mega,moon,en,"Its hidden psychic power has been unleashed. A
+glance at someone gives it knowledge of the
+course of that person’s life, from birth to
+death."
+alakazam-mega,ultra-sun,en,"It sends out psychic power from the red organ on
+its forehead to foresee its opponents’ every
+move."
+alakazam-mega,ultra-moon,en,"Having traded away its muscles, Alakazam’s true
+power has been unleashed. With its psychic
+powers, it can foresee all things."
+alakazam-mega,lets-go-pikachu,en,"It’s adept at precognition. When attacks
+completely miss Alakazam, that’s because it’s
+seeing the future."
+alakazam-mega,lets-go-eevee,en,"It’s adept at precognition. When attacks
+completely miss Alakazam, that’s because it’s
+seeing the future."
+gengar-mega,sun,en,"Gengar’s relationships are warped. It has no
+interest in opponents unless it perceives them
+as prey."
+gengar-mega,moon,en,"The energy of Mega Evolution awakened it. It
+sinks into another dimension, where it keeps a
+patient watch for its chance to attack."
+gengar-mega,ultra-sun,en,"It tries to take the lives of anyone and
+everyone. It will even try to curse the Trainer
+who is its master!"
+gengar-mega,ultra-moon,en,"Mega Evolution has made it possible for Gengar
+to access other dimensions. Its entire body is
+brimming with strange power."
+gengar-mega,lets-go-pikachu,en,"It can pass through other dimensions and appear
+anywhere. It caused a stir one time when it
+stuck just one leg out of a wall."
+gengar-mega,lets-go-eevee,en,"It can pass through other dimensions and appear
+anywhere. It caused a stir one time when it
+stuck just one leg out of a wall."
+kangaskhan-mega,sun,en,"Mega Kangaskhan’s strength derives from the
+mother’s happiness about her child’s growth.
+Watching it grow up keeps her spirits high."
+kangaskhan-mega,moon,en,"Thanks to Mega Evolution, its child grows. But
+as the child is good only at fighting and
+nothing else, its mother feels uneasy about its
+future."
+kangaskhan-mega,ultra-sun,en,"The explosive energy the child is bathed in
+causes temporary growth. The mother is beside
+herself with worry about it."
+kangaskhan-mega,ultra-moon,en,"When the mother sees the back of her
+Mega-Evolved child, it makes her think of the
+day when her child will inevitably leave her."
+kangaskhan-mega,lets-go-pikachu,en,"Its child has grown rapidly, thanks to the
+energy of Mega Evolution. Mother and child show
+off their harmonious teamwork in battle."
+kangaskhan-mega,lets-go-eevee,en,"Its child has grown rapidly, thanks to the
+energy of Mega Evolution. Mother and child show
+off their harmonious teamwork in battle."
+pinsir-mega,sun,en,"The influence of Mega Evolution leaves it in a
+state of constant excitement. It pierces enemies
+with its two large horns before shredding them."
+pinsir-mega,moon,en,"Bathed in the energy of Mega Evolution, its
+wings become unusually developed. It flies at
+speeds of approximately 30 mph."
+pinsir-mega,ultra-sun,en,"After Mega Evolution, it becomes able to fly.
+Perhaps because it’s so happy, it rarely touches
+the ground."
+pinsir-mega,ultra-moon,en,"It zips around at blistering speeds, looking for
+an opening to skewer its opponent on its giant
+pincers."
+pinsir-mega,lets-go-pikachu,en,"With its vaunted horns, it can lift an opponent
+10 times heavier than itself and fly about with
+ease."
+pinsir-mega,lets-go-eevee,en,"With its vaunted horns, it can lift an opponent
+10 times heavier than itself and fly about with
+ease."
+gyarados-mega,sun,en,"Mega Evolution also affects its brain, leaving
+no other function except its destructive
+instinct to burn everything to cinders."
+gyarados-mega,moon,en,"It jets water from the orifices on its sides,
+streaking above the water surface at supersonic
+speed."
+gyarados-mega,ultra-sun,en,"Mega Evolution places a burden on its body. The
+stress causes it to become all the more
+ferocious."
+gyarados-mega,ultra-moon,en,"It zooms out of the water at Mach speeds. Even
+large ships caught in its path are split cleanly
+in two!"
+gyarados-mega,lets-go-pikachu,en,"Although it obeys its instinctive drive to
+destroy everything within its reach, it will
+respond to orders from a Trainer it truly
+trusts."
+gyarados-mega,lets-go-eevee,en,"Although it obeys its instinctive drive to
+destroy everything within its reach, it will
+respond to orders from a Trainer it truly
+trusts."
+aerodactyl-mega,sun,en,"Part of its body has become stone. Some scholars
+claim that this is Aerodactyl’s true appearance."
+aerodactyl-mega,moon,en,"When it Mega Evolves, it becomes more vicious
+than ever before. Some say that’s because its
+excess of power is causing it pain."
+aerodactyl-mega,ultra-sun,en,"It will attack anything that moves. Mega
+Evolution is a burden on its body, so it’s
+incredibly irritated."
+aerodactyl-mega,ultra-moon,en,"Mega Evolution awakened some dormant genes,
+bringing back the sharp rocks that once covered
+Aerodactyl’s entire body."
+aerodactyl-mega,lets-go-pikachu,en,"The power of Mega Evolution has completely
+restored its genes. The rocks on its body are
+harder than diamond."
+aerodactyl-mega,lets-go-eevee,en,"The power of Mega Evolution has completely
+restored its genes. The rocks on its body are
+harder than diamond."
+mewtwo-mega-x,lets-go-pikachu,en,"Psychic power has augmented its muscles. It has
+a grip strength of one ton and can sprint a
+hundred meters in two seconds flat!"
+mewtwo-mega-x,lets-go-eevee,en,"Psychic power has augmented its muscles. It has
+a grip strength of one ton and can sprint a
+hundred meters in two seconds flat!"
+mewtwo-mega-y,lets-go-pikachu,en,"Despite its diminished size, its mental power
+has grown phenomenally. With a mere thought, it
+can smash a skyscraper to smithereens."
+mewtwo-mega-y,lets-go-eevee,en,"Despite its diminished size, its mental power
+has grown phenomenally. With a mere thought, it
+can smash a skyscraper to smithereens."
+ampharos-mega,ultra-sun,en,"Excess energy from Mega Evolution stimulates its
+genes, and the wool it had lost grows in again."
+ampharos-mega,ultra-moon,en,"Massive amounts of energy intensely stimulated
+Ampharos’s cells, apparently awakening its
+long-sleeping dragon’s blood."
+scizor-mega,sun,en,"The excess energy that bathes this Pokémon keeps
+it in constant danger of overflow. It can’t
+sustain a battle over long periods of time."
+scizor-mega,moon,en,"Due to the effects of Mega Evolution, its
+pincers have taken on a more diabolical form,
+ripping anything they pinch to shreds."
+scizor-mega,ultra-sun,en,"It stores the excess energy from Mega Evolution,
+so after a long time passes, its body starts to
+melt."
+scizor-mega,ultra-moon,en,"It’s better at beating things than grasping
+them. When it battles for a long time, the
+weight of its pincers becomes too much to bear."
+heracross-mega,ultra-sun,en,"It can grip things with its two horns and lift
+500 times its own body weight."
+heracross-mega,ultra-moon,en,"A tremendous influx of energy builds it up, but
+when Mega Evolution ends, Heracross is bothered
+by terrible soreness in its muscles."
+houndoom-mega,ultra-sun,en,"Its red claws and the tips of its tail are
+melting from high internal temperatures that are
+painful to Houndoom itself."
+houndoom-mega,ultra-moon,en,"Houndoom’s entire body generates heat when it
+Mega Evolves. Its fearsome fiery breath turns
+its opponents to ash."
+tyranitar-mega,ultra-sun,en,"Due to the colossal power poured into it, this
+Pokémon’s back split right open. Its destructive
+instincts are the only thing keeping it moving."
+tyranitar-mega,ultra-moon,en,"The effects of Mega Evolution make it more
+ferocious than ever. It’s unclear whether it can
+even hear its Trainer’s orders."
+mawile-mega,ultra-sun,en,"It has an extremely vicious disposition. It
+grips prey in its two sets of jaws and tears
+them apart with raw power."
+mawile-mega,ultra-moon,en,"Its two sets of jaws thrash about violently as
+if they each had a will of their own. One gnash
+from them can turn a boulder to dust."
+manectric-mega,ultra-sun,en,"Mega Evolution fills its body with a tremendous
+amount of electricity, but it’s too much for
+Manectric to fully control."
+manectric-mega,ultra-moon,en,"Too much electricity has built up in its body,
+irritating Manectric. Its explosive speed is
+equal to that of a lightning bolt."
+banette-mega,ultra-sun,en,"Extraordinary energy amplifies its cursing power
+to such an extent that it can’t help but curse
+its own Trainer."
+banette-mega,ultra-moon,en,"Mega Evolution increases its vindictiveness, and
+the cursing power that was held back by its
+zipper comes spilling out."
+absol-mega,sun,en,"When this Pokémon whips the winglike fur on its
+back as though beating its wings, it sends an
+intimidating aura flying at its opponents."
+absol-mega,moon,en,"As the energy of Mega Evolution fills it, its
+fur bristles. What you see on its back are not
+true wings, and this Pokémon isn’t able to fly."
+absol-mega,ultra-sun,en,"Normally, it dislikes fighting, so it really
+hates changing to this form for battles."
+absol-mega,ultra-moon,en,"It converts the energy from Mega Evolution into
+an intimidating aura. Fainthearted people expire
+from shock at the sight of it."
+garchomp-mega,sun,en,"Excess energy melted its arms and wings,
+transforming them into giant scythes."
+garchomp-mega,moon,en,"Its vaunted wings become scythes, sending it mad
+with rage. It swings its scythes wildly and
+slices the ground to pieces."
+garchomp-mega,ultra-sun,en,"Its arms and wings melted into something like
+scythes. Mad with rage, it rampages on and on."
+garchomp-mega,ultra-moon,en,"Its disposition is more vicious than before its
+Mega Evolution. Garchomp carves its opponents up
+with the scythes on both arms."
+lucario-mega,sun,en,"Black streaks all over its body show where its
+auras and the energy of Mega Evolution
+intermingled and raced through it."
+lucario-mega,moon,en,"It readies itself to face its enemies by
+focusing its mental energies. Its fighting style
+can be summed up in a single word: heartless."
+lucario-mega,ultra-sun,en,"Its aura has expanded due to Mega Evolution.
+Governed only by its combative instincts, it
+strikes enemies without mercy."
+lucario-mega,ultra-moon,en,"Bathed in explosive energy, its combative
+instincts have awakened. For its enemies, it has
+no mercy whatsoever."
+sableye-mega,sun,en,"The jewel from its chest, which has grown
+gigantic due to the effects of Mega Evolution,
+can turn back any attack."
+sableye-mega,moon,en,"Supporting a giant heavy jewel, it can’t change
+direction very nimbly and is vulnerable to
+attack from behind."
+sableye-mega,ultra-sun,en,"Bathed in the energy of Mega Evolution, the
+gemstone on its chest expands, rips through its
+skin, and falls out."
+sableye-mega,ultra-moon,en,"It blocks any and all attacks with its
+giant-sized gemstone. However, the stone’s a
+heavy burden, and it limits Mega Sableye’s
+movements."
+sharpedo-mega,sun,en,"The spines sprouting from its head are
+transformed fangs. If they’re injured or broken
+off, the spines will regenerate countless times."
+sharpedo-mega,moon,en,"As a consequence of Mega Evolution, its
+combative instincts exploded. The yellow marks
+it bears are scars from a long history of
+battles."
+sharpedo-mega,ultra-sun,en,"The yellow patterns it bears are old scars. The
+energy from Mega Evolution runs through them,
+causing it sharp pain and suffering."
+sharpedo-mega,ultra-moon,en,"The moment it charges into its opponent, sharp
+spikes pop out of Sharpedo’s head, leaving its
+opponent with deep wounds."
+slowbro-mega,sun,en,"All the energy from Mega Evolution poured into
+the Shellder on its tail, leaving Slowpoke to be
+swallowed whole."
+slowbro-mega,moon,en,"When bathed in the energy of Mega Evolution,
+Shellder converts into impregnable armor. There
+is virtually no change in Slowpoke."
+slowbro-mega,ultra-sun,en,"Tremendous energy strengthened the power of the
+Shellder on its tail, but it doesn’t really
+affect Slowpoke."
+slowbro-mega,ultra-moon,en,"Having been swallowed whole by Shellder, Slowbro
+now has an iron defense. It’s pretty comfortable
+in there, too."
+slowbro-mega,lets-go-pikachu,en,"Under the influence of Shellder’s digestive
+fluids, Slowpoke has awakened, gaining a great
+deal of power—and a little motivation to boot."
+slowbro-mega,lets-go-eevee,en,"Under the influence of Shellder’s digestive
+fluids, Slowpoke has awakened, gaining a great
+deal of power—and a little motivation to boot."
+pidgeot-mega,lets-go-pikachu,en,"With its muscular strength now greatly
+increased, it can fly continuously for two weeks
+without resting."
+pidgeot-mega,lets-go-eevee,en,"With its muscular strength now greatly
+increased, it can fly continuously for two weeks
+without resting."
+glalie-mega,sun,en,"The excess energy from Mega Evolution spilled
+over from its mouth, breaking its jaw. It spews
+endless blizzards."
+glalie-mega,moon,en,"It envelops prey in its mouth, freezing them
+instantly. But its jaw is dislocated, so it’s
+unable to eat them."
+glalie-mega,ultra-sun,en,"When it spews stupendously cold air from its
+broken mouth, the entire area around it gets
+whited out."
+glalie-mega,ultra-moon,en,"The power of Mega Evolution was so strong that
+it smashed Glalie’s jaw. Its inability to eat
+very well leaves Glalie irritated."
+metagross-mega,sun,en,"This form results from one Metagross, one
+Metang, and two Beldum linking up."
+metagross-mega,moon,en,"Mega Evolution stimulated its brain. It emerged
+as a ruthless Pokémon that will clutch at any
+means of ensuring its victories."
+metagross-mega,ultra-sun,en,"Its intellect surpasses its previous level,
+resulting in battles so cruel, they’ll make you
+want to cover your eyes."
+metagross-mega,ultra-moon,en,"When it knows it can’t win, it digs the claws on
+its legs into its opponent and starts the
+countdown to a big explosion."
+lopunny-mega,ultra-sun,en,"It swings its ears like whips and strikes its
+enemies with them. It has an intensely combative
+disposition."
+lopunny-mega,ultra-moon,en,"Mega Evolution awakens its combative instincts.
+It has shed any fur that got in the way of its
+attacks."
+salamence-mega,sun,en,"Anyone standing in its path gets sliced right in
+two, while this Pokémon continues its flight
+without interruption."
+salamence-mega,moon,en,"Mega Evolution fuels its brutality, and it may
+even turn on the Trainer who raised it. It’s
+been dubbed “the blood-soaked crescent.”"
+salamence-mega,ultra-sun,en,"The stress of its two proud wings becoming
+misshapen and stuck together because of strong
+energy makes it go on a rampage."
+salamence-mega,ultra-moon,en,"It puts its forelegs inside its shell to
+streamline itself for flight. Salamence flies at
+high speeds over all kinds of topographical
+features."
+beedrill-mega,lets-go-pikachu,en,"Its legs have become poison stingers. It stabs
+its prey repeatedly with the stingers on its
+limbs, dealing the final blow with the stinger
+on its rear."
+beedrill-mega,lets-go-eevee,en,"Its legs have become poison stingers. It stabs
+its prey repeatedly with the stingers on its
+limbs, dealing the final blow with the stinger
+on its rear."
+rattata-alola,sun,en,"With its incisors, it gnaws through doors and
+infiltrates people’s homes. Then, with a twitch
+of its whiskers, it steals whatever food it
+finds."
+rattata-alola,moon,en,"When the sun goes down, it becomes active. It
+runs around town on a chase for good food for
+the boss of its nest—Raticate."
+rattata-alola,ultra-sun,en,"It shows no interest in anything that isn’t
+fresh. If you take it shopping with you, it will
+help you pick out ingredients."
+rattata-alola,ultra-moon,en,"Night after night, they sneak into people’s
+homes seeking food. A massive outbreak of them
+has become an issue of public concern."
+rattata-alola,lets-go-pikachu,en,"Its whiskers provide it with a keen sense of
+smell, enabling it to pick up the scent of
+hidden food and locate it instantly."
+rattata-alola,lets-go-eevee,en,"Its whiskers provide it with a keen sense of
+smell, enabling it to pick up the scent of
+hidden food and locate it instantly."
+raticate-alola,sun,en,"It forms a group of Rattata, which it assumes
+command of. Each group has its own territory,
+and disputes over food happen often."
+raticate-alola,moon,en,"This gourmet Pokémon is particular about the
+taste and freshness of its food. Restaurants
+where Raticate live have a good reputation."
+raticate-alola,ultra-sun,en,"It has an incredibly greedy personality. Its
+nest is filled with so much food gathered by
+Rattata at its direction, it can’t possibly eat
+it all."
+raticate-alola,ultra-moon,en,"It commands a nest of Rattata. Different nests
+don’t get along, whipping up severe fights over
+feeding grounds."
+raticate-alola,lets-go-pikachu,en,"It makes its Rattata underlings gather food for
+it, dining solely on the most nutritious and
+delicious fare."
+raticate-alola,lets-go-eevee,en,"It makes its Rattata underlings gather food for
+it, dining solely on the most nutritious and
+delicious fare."
+raichu-alola,sun,en,"It only evolves to this form in the Alola
+region. According to researchers, its diet is
+one of the causes of this change."
+raichu-alola,moon,en,"It uses psychokinesis to control electricity. It
+hops aboard its own tail, using psychic power to
+lift the tail and move about while riding it."
+raichu-alola,ultra-sun,en,"It focuses psychic energy into its tail and
+rides it like it’s surfing. Another name for
+this Pokémon is “hodad.”"
+raichu-alola,ultra-moon,en,"When you rub its cheeks, a sweet fragrance comes
+wafting out. However, you’ll also get a light
+shock!"
+raichu-alola,lets-go-pikachu,en,"It loves pancakes prepared with a secret Alolan
+recipe. Some wonder whether that recipe holds
+the key to this Pokémon’s evolution."
+raichu-alola,lets-go-eevee,en,"It loves pancakes prepared with a secret Alolan
+recipe. Some wonder whether that recipe holds
+the key to this Pokémon’s evolution."
+sandshrew-alola,sun,en,"It lives on snowy mountains. Its steel shell is
+very hard—so much so, it can’t roll its body up
+into a ball."
+sandshrew-alola,moon,en,"An ancient tradition of Alolan festivals, still
+carried on to this day, is a competition to
+slide Sandshrew across ice as far as one can."
+sandshrew-alola,ultra-sun,en,"After fleeing a volcanic eruption, it ended up
+moving to an area of snowy mountains. Its ice
+shell is as hard as steel."
+sandshrew-alola,ultra-moon,en,"The skin on its back is as hard as steel.
+Predators go after its soft belly, so it clings
+to the ground desperately."
+sandshrew-alola,lets-go-pikachu,en,"Its ice-covered body lets it slide across the
+ground with bullet-like speed, sending its
+enemies flying when it hits them."
+sandshrew-alola,lets-go-eevee,en,"Its ice-covered body lets it slide across the
+ground with bullet-like speed, sending its
+enemies flying when it hits them."
+sandslash-alola,sun,en,"Fleeing a volcanic eruption, it settled on a
+snowy mountain. As it races through the
+snowfields, it sends up a spray of snow."
+sandslash-alola,moon,en,"This Pokémon’s steel spikes are sheathed in ice.
+Stabs from these spikes cause deep wounds and
+severe frostbite as well."
+sandslash-alola,ultra-sun,en,"It runs across snow-covered plains at high
+speeds. It developed thick, sharp claws to plow
+through the snow."
+sandslash-alola,ultra-moon,en,"A long, long time ago, it lived in the desert.
+With its sharp claws fully extended, it can
+climb right up an iceberg without slipping."
+sandslash-alola,lets-go-pikachu,en,"This is Sandslash’s form after adaptation to a
+frigid environment. The cold air emitted by its
+body sharpens its icy spikes."
+sandslash-alola,lets-go-eevee,en,"This is Sandslash’s form after adaptation to a
+frigid environment. The cold air emitted by its
+body sharpens its icy spikes."
+vulpix-alola,sun,en,"It exhales air colder than -58 degrees
+Fahrenheit. Elderly people in Alola call this
+Pokémon by an older name—Keokeo."
+vulpix-alola,moon,en,"In hot weather, this Pokémon makes ice shards
+with its six tails and sprays them around to
+cool itself off."
+vulpix-alola,ultra-sun,en,"If you carelessly approach it because it’s cute,
+the boss of the pack, Ninetales, will appear and
+freeze you."
+vulpix-alola,ultra-moon,en,"They live together in a skulk, helping one
+another. Before eating their prey, they freeze
+it solid with their -58 degree Fahrenheit
+breath."
+vulpix-alola,lets-go-pikachu,en,"It looks like snow come to life, and the breath
+it exhales is -58 degrees Fahrenheit. Another
+name for it is Keokeo."
+vulpix-alola,lets-go-eevee,en,"It looks like snow come to life, and the breath
+it exhales is -58 degrees Fahrenheit. Another
+name for it is Keokeo."
+ninetales-alola,sun,en,"It creates drops of ice in its coat and showers
+them over its enemies. Anyone who angers it will
+be frozen stiff in an instant."
+ninetales-alola,moon,en,"Possessing a calm demeanor, this Pokémon was
+revered as a deity incarnate before it was
+identified as a regional variant of Ninetales."
+ninetales-alola,ultra-sun,en,"The reason it guides people all the way down to
+the mountain’s base is that it wants them to
+hurry up and leave."
+ninetales-alola,ultra-moon,en,"Some said that deities visited mountains where
+Ninetales live, so in times long past, no one
+was allowed to go into those mountains."
+ninetales-alola,lets-go-pikachu,en,"It lives on mountains perpetually covered in
+snow and is revered as a deity incarnate. It
+appears draped in a blizzard."
+ninetales-alola,lets-go-eevee,en,"It lives on mountains perpetually covered in
+snow and is revered as a deity incarnate. It
+appears draped in a blizzard."
+diglett-alola,sun,en,"Its head sports an altered form of whiskers made
+of metal. When in communication with its
+comrades, its whiskers wobble to and fro."
+diglett-alola,moon,en,"Its golden hairs function as sensors. It pokes
+them out of its burrow to monitor its
+surroundings."
+diglett-alola,ultra-sun,en,"Although it’s powerful enough to dig right
+through volcanic rock, it doesn’t allow itself
+to be seen very often."
+diglett-alola,ultra-moon,en,"The need to dig through volcanic rock in the
+ground has made them more powerful than the
+Diglett of other regions."
+diglett-alola,lets-go-pikachu,en,"After living in soil with high iron content for
+some time, three steel whiskers sprouted from
+the top of its head."
+diglett-alola,lets-go-eevee,en,"After living in soil with high iron content for
+some time, three steel whiskers sprouted from
+the top of its head."
+dugtrio-alola,sun,en,"Its shining gold hair provides it with
+protection. It’s reputed that keeping any of its
+fallen hairs will bring bad luck."
+dugtrio-alola,moon,en,"These Pokémon are cherished in the Alola region,
+where they are thought to be feminine deities of
+the land incarnate."
+dugtrio-alola,ultra-sun,en,"Its metallic whiskers are heavy, so it’s not
+very fast, but it has the power to dig through
+bedrock."
+dugtrio-alola,ultra-moon,en,"Its shining gold whiskers are advanced sensors
+that can detect vibrations from sounds several
+miles away."
+dugtrio-alola,lets-go-pikachu,en,"They’re referred to as triplets, but they’re not
+identical—the metallic elements in their bodies
+differ slightly. The proof shows in their
+whiskers!"
+dugtrio-alola,lets-go-eevee,en,"They’re referred to as triplets, but they’re not
+identical—the metallic elements in their bodies
+differ slightly. The proof shows in their
+whiskers!"
+meowth-alola,sun,en,"This Pokémon was not originally found in Alola.
+Human actions caused a surge in their numbers,
+and they went feral. They’re prideful and
+crafty."
+meowth-alola,moon,en,"When its delicate pride is wounded, or when the
+gold coin on its forehead is dirtied, it flies
+into a hysterical rage."
+meowth-alola,ultra-sun,en,"It’s impulsive, selfish, and fickle. It’s very
+popular with some Trainers who like giving it
+the attention it needs."
+meowth-alola,ultra-moon,en,"A royal house that flourished in the distant
+past brought it here from another region. Meowth
+is both selfish and prideful."
+meowth-alola,lets-go-pikachu,en,"Highly intelligent and prideful, it’s famously
+difficult to handle—but that’s also a reason for
+its popularity."
+meowth-alola,lets-go-eevee,en,"Highly intelligent and prideful, it’s famously
+difficult to handle—but that’s also a reason for
+its popularity."
+persian-alola,sun,en,"Its round face and smooth coat—softer than the
+most high-class velvet—have made this a very
+popular Pokémon in Alola."
+persian-alola,moon,en,"It looks down on everyone other than itself. Its
+preferred tactics are sucker punches and
+blindside attacks."
+persian-alola,ultra-sun,en,"In contrast to its lovely face, it’s so brutal
+that it tortures its weakened prey rather than
+finishing them off."
+persian-alola,ultra-moon,en,"Its round face is a symbol of wealth. Persian
+that have bigger, plumper faces are considered
+more beautiful."
+persian-alola,lets-go-pikachu,en,"It has the classiest coat. The rippling of its
+fur in the heat of battle has a beauty all its
+own."
+persian-alola,lets-go-eevee,en,"It has the classiest coat. The rippling of its
+fur in the heat of battle has a beauty all its
+own."
+geodude-alola,sun,en,"Its body is a magnetic stone. Iron sand attaches
+firmly to the portions of its body that are
+particularly magnetic."
+geodude-alola,moon,en,"If you accidentally step on a Geodude sleeping
+on the ground, you’ll hear a crunching sound and
+feel a shock ripple through your entire body."
+geodude-alola,ultra-sun,en,"If you mistake it for a rock and step on it, it
+will headbutt you in anger. In addition to the
+pain, it will also zap you with a shock."
+geodude-alola,ultra-moon,en,"Geodude compete against each other with
+headbutts. The iron sand on their heads will
+stick to whichever one has stronger magnetism."
+geodude-alola,lets-go-pikachu,en,"Its stone head is imbued with electricity and
+magnetism. If you carelessly step on one, you’ll
+be in for a painful shock."
+geodude-alola,lets-go-eevee,en,"Its stone head is imbued with electricity and
+magnetism. If you carelessly step on one, you’ll
+be in for a painful shock."
+graveler-alola,sun,en,"Its preferred food is dravite. After it has
+eaten this mineral, crystals form inside the
+Pokémon, rising to the surface of part of its
+body."
+graveler-alola,moon,en,"They eat rocks and often get into a scrap over
+them. The shock of Graveler smashing together
+causes a flash of light and a booming noise."
+graveler-alola,ultra-sun,en,"When two Graveler fight each other, it fills the
+surroundings with flashes of light and sound.
+People call it the “fireworks of the earth.”"
+graveler-alola,ultra-moon,en,"Graveler’s entire body is tinged with
+electricity due to the stones it likes to eat.
+It’s very quick-tempered."
+graveler-alola,lets-go-pikachu,en,"When it comes rolling down a mountain path,
+anything in its way gets zapped by electricity
+and sent flying."
+graveler-alola,lets-go-eevee,en,"When it comes rolling down a mountain path,
+anything in its way gets zapped by electricity
+and sent flying."
+golem-alola,sun,en,"It fires rocks charged with electricity. Even if
+the rock isn’t fired that accurately, just
+grazing an opponent will cause numbness and
+fainting."
+golem-alola,moon,en,"Because it can’t fire boulders at a rapid pace,
+it’s been known to seize nearby Geodude and fire
+them from its back."
+golem-alola,ultra-sun,en,"It’s grumpy and stubborn. If you upset it, it
+discharges electricity from the surface of its
+body and growls with a voice like thunder."
+golem-alola,ultra-moon,en,"It shoots large rocks that are charged with
+electricity. Tremendous electric shocks are
+flung out across the whole area of impact."
+golem-alola,lets-go-pikachu,en,"It uses magnetism to accelerate and fire off
+rocks tinged with electricity. Even if it
+doesn’t score a direct hit, the jolt of
+electricity will do the job."
+golem-alola,lets-go-eevee,en,"It uses magnetism to accelerate and fire off
+rocks tinged with electricity. Even if it
+doesn’t score a direct hit, the jolt of
+electricity will do the job."
+grimer-alola,sun,en,"A Grimer, which had been brought in to solve a
+problem with garbage, developed over time into
+this form."
+grimer-alola,moon,en,"The crystals on Grimer’s body are lumps of
+toxins. If one falls off, lethal poisons leak
+out."
+grimer-alola,ultra-sun,en,"There are a hundred or so of them living in
+Alola’s waste-disposal site. They’re all hard
+workers who eat a lot of trash."
+grimer-alola,ultra-moon,en,"Brought to Alola to solve the garbage problem,
+Grimer seems to relish any and all kinds of
+trash."
+grimer-alola,lets-go-pikachu,en,"It has a passion for trash above all else,
+speedily digesting it and creating brilliant
+crystals of sparkling poison."
+grimer-alola,lets-go-eevee,en,"It has a passion for trash above all else,
+speedily digesting it and creating brilliant
+crystals of sparkling poison."
+muk-alola,sun,en,"The garbage it eats causes continuous chemical
+changes in its body, which produce its
+exceedingly vivid coloration."
+muk-alola,moon,en,"While it’s unexpectedly quiet and friendly, if
+it’s not fed any trash for a while, it will
+smash its Trainer’s furnishings and eat up the
+fragments."
+muk-alola,ultra-sun,en,"There are over a hundred kinds of poison inside
+its body. Chemical reactions between different
+poisons are the source of its vitality."
+muk-alola,ultra-moon,en,"What look like fangs and claws are actually
+crystallized poison that will afflict you at a
+mere touch, so don’t get too close."
+muk-alola,lets-go-pikachu,en,"Muk’s coloration becomes increasingly vivid the
+more it feasts on its favorite dish—trash."
+muk-alola,lets-go-eevee,en,"Muk’s coloration becomes increasingly vivid the
+more it feasts on its favorite dish—trash."
+exeggutor-alola,sun,en,"Alola is the best environment for this Pokémon.
+Local people take pride in its appearance,
+saying this is how Exeggutor ought to look."
+exeggutor-alola,moon,en,"As it grew taller and taller, it outgrew its
+reliance on psychic powers, while within it
+awakened the power of the sleeping dragon."
+exeggutor-alola,ultra-sun,en,"Exeggutor is the pride of the Alolan people. Its
+image is carved into historical buildings and
+murals."
+exeggutor-alola,ultra-moon,en,"It swings its long neck like a whip and smacks
+its opponents. This makes Exeggutor itself
+dizzy, too."
+exeggutor-alola,lets-go-pikachu,en,"The strong sunlight of the Alola region has
+awakened the power hidden within Exeggcute. This
+is the result."
+exeggutor-alola,lets-go-eevee,en,"The strong sunlight of the Alola region has
+awakened the power hidden within Exeggcute. This
+is the result."
+marowak-alola,sun,en,"The bones it possesses were once its mother’s.
+Its mother’s regrets have become like a vengeful
+spirit protecting this Pokémon."
+marowak-alola,moon,en,"Its custom is to mourn its lost companions.
+Mounds of dirt by the side of the road mark the
+graves of the Marowak."
+marowak-alola,ultra-sun,en,"The rich greenery of the Alola region is hard on
+Marowak. It controls fire to stay alive."
+marowak-alola,ultra-moon,en,"When it beats opponents with its bone, the
+cursed flames spread to them. No amount of water
+will stop those flames from burning."
+marowak-alola,lets-go-pikachu,en,"It has transformed the spirit of its dear
+departed mother into flames, and tonight it will
+once again dance in mourning of others of its
+kind."
+marowak-alola,lets-go-eevee,en,"It has transformed the spirit of its dear
+departed mother into flames, and tonight it will
+once again dance in mourning of others of its
+kind."
+oricorio-pom-pom,sun,en,"This Oricorio has sipped bright yellow nectar.
+Its bright, cheerful dance melts the hearts of
+its enemies."
+oricorio-pom-pom,moon,en,"It creates an electric charge by rubbing its
+feathers together. It dances over to its enemies
+and delivers shocking electrical punches."
+oricorio-pom-pom,ultra-sun,en,"It lifts its opponents’ spirits with its
+cheerful dance moves. When they let their guard
+down, it electrocutes them with a jolt."
+oricorio-pom-pom,ultra-moon,en,"This Oricorio has drunk bright yellow nectar.
+When it sees someone looking glum, it will try
+to cheer them up with a dance."
+oricorio-pau,sun,en,"This Oricorio relaxes by swaying gently. This
+increases its psychic energy, which it then
+fires at its enemies."
+oricorio-pau,moon,en,"This Oricorio has sipped pink nectar. Its
+enemies’ hearts melt at the sight of its gently
+swaying hips."
+oricorio-pau,ultra-sun,en,"It relaxes its opponents with its elegant
+dancing. When they let their guard down, it
+showers them with psychic energy."
+oricorio-pau,ultra-moon,en,"This Oricorio has sipped pink nectar. It gets so
+caught up in its dancing that it sometimes
+doesn’t hear its Trainer’s orders."
+oricorio-sensu,sun,en,"This Oricorio has sipped purple nectar. Its
+elegant, attractive dance will send the minds
+and hearts of its enemies to another world."
+oricorio-sensu,moon,en,"It summons the dead with its dreamy dancing.
+From their malice, it draws power with which to
+curse its enemies."
+oricorio-sensu,ultra-sun,en,"It charms its opponents with its refined
+dancing. When they let their guard down, it
+places a curse on them that will bring on their
+demise."
+oricorio-sensu,ultra-moon,en,"This Oricorio has sipped purple nectar. Some
+dancers use its graceful, elegant dancing as
+inspiration."
+necrozma-dusk,ultra-sun,en,"This is its form while it is devouring the light
+of Solgaleo. It pounces on foes and then slashes
+them with the claws on its four limbs and back."
+necrozma-dusk,ultra-moon,en,"This is Necrozma’s form while it’s absorbing the
+power of Solgaleo, making it extremely ferocious
+and impossible to control."
+necrozma-dawn,ultra-sun,en,"Lunala no longer has a will of its own. Now
+under the control of Necrozma, it continuously
+expels all of its energy."
+necrozma-dawn,ultra-moon,en,"This is its form while it’s devouring the light
+of Lunala. It grasps foes in its giant claws and
+rips them apart with brute force."
+necrozma-ultra,ultra-sun,en,"This is its form when it has absorbed
+overwhelming light energy. It fires laser beams
+from all over its body."
+necrozma-ultra,ultra-moon,en,"The light pouring out from all over its body
+affects living things and nature, impacting them
+in various ways."

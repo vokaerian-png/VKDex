@@ -1,0 +1,6 @@
+identifier,id,name_en,name_ja_hrkt,name_fr,name_es,name_es_419,name_zh_hant,name_zh_hans
+speed,1,Speed,スピード,Vitesse,Velocidad,Velocidad,速度,速度
+power,2,Power,パワー,Force,Fuerza,Fuerza,力量,力量
+skill,3,Skill,テクニック,Habileté,Habilidad,Habilidad,技巧,技巧
+stamina,4,Stamina,スタミナ,Endurance,Firmeza,Firmeza,耐力,耐力
+jump,5,Jump,ジャンプ,Saut,Salto,Salto,跳躍,跳跃

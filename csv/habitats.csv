@@ -1,0 +1,10 @@
+identifier,id,name_en,name_fr,name_es,name_es_419
+cave,1,cave,grottes,caverna,caverna
+forest,2,forest,forêts,bosque,bosque
+grassland,3,grassland,champs,pradera,pradera
+mountain,4,mountain,montagnes,montaña,montaña
+rare,5,rare,rares,raro,raro
+rough-terrain,6,rough terrain,milieux hostiles,campo,campo
+sea,7,sea,mers,mar,mar
+urban,8,urban,urbains,ciudad,ciudad
+waters-edge,9,water's edge,marécages,agua salada,agua salada

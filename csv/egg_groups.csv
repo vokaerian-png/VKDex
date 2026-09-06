@@ -1,0 +1,16 @@
+identifier,id,name_en,name_ja_hrkt,name_fr,name_de,name_es,name_es_419,name_it,name_ko,name_zh_hant,name_zh_hans
+monster,1,Monster,かいじゅう,Monstrueux,Monster,Monstruo,Monstruo,Mostro,괴수,怪獸,怪兽
+water1,2,Water 1,すいちゅう１,Aquatique 1,Wasser 1,Agua 1,Agua 1,Acqua 1,수중 1,水中1,水中1
+bug,3,Bug,むし,Insectoïde,Käfer,Bicho,Bicho,Coleottero,벌레,蟲,虫
+flying,4,Flying,ひこう,Aérien,Flug,Volador,Volador,Volante,비행,飛行,飞行
+ground,5,Field,りくじょう,Terrestre,Feld,Campo,Campo,Campo,육상,陸上,陆上
+fairy,6,Fairy,ようせい,Féerique,Fee,Hada,Hada,Magico,요정,妖精,妖精
+plant,7,Grass,しょくぶつ,Végétal,Pflanze,Planta,Planta,Erba,식물,植物,植物
+humanshape,8,Human-Like,ひとがた,Humanoïde,Humanotyp,Humanoide,Humanoide,Umanoide,인간형,人型,人型
+water3,9,Water 3,すいちゅう３,Aquatique 3,Wasser 3,Agua 3,Agua 3,Acqua 3,수중 3,水中3,水中３
+mineral,10,Mineral,こうぶつ,Minéral,Mineral,Mineral,Mineral,Minerale,광물,礦物,矿物
+indeterminate,11,Amorphous,ふていけい,Amorphe,Amorph,Amorfo,Amorfo,Amorfo,부정형,不定形,不定形
+water2,12,Water 2,すいちゅう２,Aquatique 2,Wasser 2,Agua 2,Agua 2,Acqua 2,수중 2,水中2,水中2
+ditto,13,Ditto,メタモン,Métamorph,Ditto,Ditto,Ditto,Ditto,메타몽,百變怪,百变怪
+dragon,14,Dragon,ドラゴン,Draconique,Drache,Dragón,Dragón,Drago,드래곤,龍,龙
+no-eggs,15,Undiscovered,タマゴみはっけん,Inconnu,Unbekannt,Desconocido,Desconocido,Non ancora scoperto,알미발견,未發現,未发现

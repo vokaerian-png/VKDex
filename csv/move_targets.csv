@@ -1,0 +1,17 @@
+identifier,id,name_fr,description_fr,name_de,description_de,name_en,description_en
+specific-move,1,Capacité spécifique,Une capacité spécifique. Le choix de cette capacité dépend de la capacité utilisée.,Spezifische Fähigkeit,Eine spezifische Fähigkeit.  Wie diese Fähigkeit genutzt wird hängt von den genutzten Fähigkeiten ab.,Specific move,One specific move.  How this move is chosen depends upon on the move being used.
+selected-pokemon-me-first,2,Pokémon sélectionné,"Un autre Pokémon du terrain, sélectionné par le dresseur. Les capacités volées ont la même cible.",Ausgewähltes Pokémon,Ein anderes vom Trainer ausgewähltes Pokémon auf dem Feld.  Gestohlene Fähigkeiten nutzen das selbe Ziel.,Selected Pokémon,"One other Pokémon on the field, selected by the trainer.  Stolen moves reuse the same target."
+ally,3,Allié,L’allié du lanceur (s’il en a).,Partner,Die Partner des Anwenders (wenn vorhanden).,Ally,The user’s ally (if any).
+users-field,4,Côté du lanceur,Le côté du terrain du lanceur. Affecte le lanceur et ses alliés (s’il en a).,Seite des Anwenders,Die Seite des Anwenders auf dem Feld.  Betrifft den Anwender und seine Partner (wenn vorhanden).,User’s field,The user’s side of the field.  Affects the user and its ally (if any).
+user-or-ally,5,Lanceur ou allié,"Soit le lanceur ou son allié, sélecionné par le dresseur.",Anwender oder Partner,Entweder der Anwender oder seine Partner. Der Trainer kann es aussuchen.,User or ally,"Either the user or its ally, selected by the trainer."
+opponents-field,6,Terrain de l’adversaire,Le côté adverse du terrain. Affecte les Pokémon adverses.,Gegnerisches Feld,Die andere Seite des Feldes.  Betrifft gegnerische Pokémon.,Opponent’s field,The opposing side of the field.  Affects opposing Pokémon.
+user,7,Lanceur,Le lanceur.,Anwender,Der Anwender.,User,The user.
+random-opponent,8,Adversaire aléatoire,"Un Pokémon adverse, choisi au hasard.",Zufälliger Gegner,Ein zufälliges gegnerische Pokémon.,Random opponent,"One opposing Pokémon, selected at random."
+all-other-pokemon,9,Tous les autres Pokémon,Tous les autres Pokémon du terrain.,Alle anderen Pokémon,Jedes andere Pokémon auf dem Feld.,All other Pokémon,Every other Pokémon on the field.
+selected-pokemon,10,Pokémon sélectionné,"Un autre Pokémon du terrain, sélectionné par le dresseur.",Ausgewähltes Pokémon,"Ein anderes Pokémon auf dem Feld, welches vom Trainer ausgewählt wird.",Selected Pokémon,"One other Pokémon on the field, selected by the trainer."
+all-opponents,11,Tous les adversaires,Tous les Pokémon adverses.,Alle Gegner,Alle gegnerischen Pokémon.,All opponents,All opposing Pokémon.
+entire-field,12,Terrain entier,Le terrain entier. Affecte tous les Pokémon.,Komplette Feld,Das komplette Feld.  Betrifft alle Pokémon.,Entire field,The entire field.  Affects all Pokémon.
+user-and-allies,13,Lanceur et alliés,Le lanceur et ses alliés.,Anwender und Partner,Der Anwender und seine Partner.,User and allies,The user and its allies.
+all-pokemon,14,Tous les Pokémon,Tous les Pokémon du terrain.,Jedes Pokémon,Jedes Pokémon auf dem Feld.,All Pokémon,Every Pokémon on the field.
+all-allies,15,Tous les alliés,Tous les alliés du lanceur.,,,All allies,All of the user’s allies.
+fainting-pokemon,16,,,,,,

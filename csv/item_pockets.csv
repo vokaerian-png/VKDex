@@ -1,0 +1,9 @@
+identifier,id,name_en,name_fr,name_es,name_es_419,name_zh_hant,name_zh_hans
+misc,1,Items,Objets,Objetos,Objetos,道具,道具
+medicine,2,Medicine,Médicaments,Medicinas,Medicinas,回復道具,回复道具
+pokeballs,3,Poké Balls,Balls,Bolas,Bolas,精靈球,精灵球
+machines,4,TMs and HMs,CT & CS,MT y MO,MT y MO,招式及秘傳學習器,招式及秘传学习器
+berries,5,Berries,Baies,Bayas,Bayas,樹果,树果
+mail,6,Mail,Lettres,Correo,Correo,郵件,邮件
+battle,7,Battle Items,Objets de combat,Objetos de combate,Objetos de combate,戰鬥道具,战斗道具
+key,8,Key Items,Objets rares,Objetos clave,Objetos clave,重要物品,重要物品

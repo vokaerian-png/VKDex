@@ -1,0 +1,974 @@
+identifier,column,pokeapi,pokedb
+pound,name_fr,Écras’Face,Écras'Face
+pound,name_zh-hant,拍擊,拍擊 / 拍击
+double-slap,name_zh-hant,連環巴掌,連環巴掌 / 连环巴掌
+comet-punch,name_zh-hant,連續拳,連續拳 / 连续拳
+mega-punch,name_zh-hant,百萬噸重拳,百萬噸重拳 / 百万吨重拳
+pay-day,name_zh-hant,聚寶功,聚寶功 / 聚宝功
+ice-punch,name_zh-hant,冰凍拳,冰凍拳 / 冰冻拳
+thunder-punch,name_zh-hant,雷電拳,雷電拳 / 雷电拳
+vice-grip,name_zh-hant,夾住,夾住 / 夹住
+guillotine,name_zh-hant,斷頭鉗,斷頭鉗 / 断头钳
+razor-wind,name_zh-hant,旋風刀,旋風刀 / 旋风刀
+swords-dance,name_zh-hant,劍舞,劍舞 / 剑舞
+cut,name_zh-hant,居合斬,居合斬 / 居合斩
+gust,name_zh-hant,起風,起風 / 起风
+wing-attack,name_it,Attacco d’Ala,Attacco d'Ala
+wing-attack,name_zh-hant,翅膀攻擊,翅膀攻擊 / 翅膀攻击
+whirlwind,name_zh-hant,吹飛,吹飛 / 吹飞
+fly,name_zh-hant,飛翔,飛翔 / 飞翔
+bind,name_zh-hant,綁緊,綁緊 / 绑紧
+double-kick,name_ko,두번차기,두번치기
+double-kick,name_zh-hant,二連踢,二連踢 / 二连踢
+mega-kick,name_zh-hant,百萬噸重踢,百萬噸重踢 / 百万吨重踢
+jump-kick,name_zh-hant,飛踢,飛踢 / 飞踢
+rolling-kick,name_zh-hant,迴旋踢,迴旋踢 / 回旋踢
+sand-attack,name_zh-hant,潑沙,潑沙 / 泼沙
+headbutt,name_fr,Coup d’Boule,Coup d'Boule
+headbutt,name_zh-hant,頭錘,頭錘 / 头锤
+horn-attack,name_fr,Koud’Korne,Koud'Korne
+fury-attack,name_zh-hant,亂擊,亂擊 / 乱击
+horn-drill,name_fr,Empal’Korne,Empal'Korne
+horn-drill,name_zh-hant,角鑽,角鑽 / 角钻
+tackle,name_zh-hant,撞擊,撞擊 / 撞击
+body-slam,name_zh-hant,泰山壓頂,泰山壓頂 / 泰山压顶
+wrap,name_zh-hant,緊束,緊束 / 紧束
+thrash,name_zh-hant,大鬧一番,大鬧一番 / 大闹一番
+double-edge,name_zh-hant,捨身衝撞,捨身衝撞 / 舍身冲撞
+tail-whip,name_es,Agitacola,Látigo
+tail-whip,name_zh-hant,搖尾巴,搖尾巴 / 摇尾巴
+poison-sting,name_zh-hant,毒針,毒針 / 毒针
+twineedle,name_zh-hant,雙針,雙針 / 双针
+pin-missile,name_zh-hant,飛彈針,飛彈針 / 飞弹针
+leer,name_fr,Groz’Yeux,Groz'Yeux
+growl,name_zh-hant,叫聲,叫聲 / 叫声
+flamethrower,name_zh-hant,噴射火焰,噴射火焰 / 喷射火焰
+mist,name_zh-hant,白霧,白霧 / 白雾
+water-gun,name_zh-hant,水槍,水槍 / 水枪
+surf,name_zh-hant,衝浪,衝浪 / 冲浪
+ice-beam,name_zh-hant,冰凍光束,冰凍光束 / 冰冻光束
+blizzard,name_zh-hant,暴風雪,暴風雪 / 暴风雪
+psybeam,name_zh-hant,幻象光線,幻象光線 / 幻象光线
+bubble-beam,name_fr,Bulles d’O,Bulles d'O
+bubble-beam,name_zh-hant,泡沫光線,泡沫光線 / 泡沫光线
+aurora-beam,name_zh-hant,極光束,極光束 / 极光束
+hyper-beam,name_zh-hant,破壞光線,破壞光線 / 破坏光线
+drill-peck,name_zh-hant,啄鑽,啄鑽 / 啄钻
+submission,name_zh-hant,地獄翻滾,地獄翻滾 / 地狱翻滚
+counter,name_zh-hant,雙倍奉還,雙倍奉還 / 双倍奉还
+seismic-toss,name_it,Movim. Sismico,Movim. Sismico
+mega-drain,name_zh-hant,超級吸取,超級吸取 / 超级吸取
+leech-seed,name_zh-hant,寄生種子,寄生種子 / 寄生种子
+growth,name_zh-hant,生長,生長 / 生长
+razor-leaf,name_fr,Tranch’Herbe,Tranch'Herbe
+razor-leaf,name_zh-hant,飛葉快刀,飛葉快刀 / 飞叶快刀
+string-shot,name_zh-hant,吐絲,吐絲 / 吐丝
+dragon-rage,name_zh-hant,龍之怒,龍之怒 / 龙之怒
+fire-spin,name_zh-hant,火焰旋渦,火焰旋渦 / 火焰旋涡
+thunder-shock,name_zh-hant,電擊,電擊 / 电击
+thunderbolt,name_ko,10만볼트,１０만볼트
+thunderbolt,name_zh-hant,十萬伏特,十萬伏特 / 十万伏特
+thunder-wave,name_zh-hant,電磁波,電磁波 / 电磁波
+toxic,name_zh-hant,劇毒,劇毒 / 剧毒
+psychic,name_zh-hant,精神強念,精神強念 / 精神强念
+hypnosis,name_zh-hant,催眠術,催眠術 / 催眠术
+meditate,name_zh-hant,瑜伽姿勢,瑜伽姿勢 / 瑜伽姿势
+agility,name_zh-hant,高速移動,高速移動 / 高速移动
+quick-attack,name_fr,Vive-Attaque,Vive-attaque
+quick-attack,name_zh-hant,電光一閃,電光一閃 / 电光一闪
+rage,name_zh-hant,憤怒,憤怒 / 愤怒
+teleport,name_zh-hant,瞬間移動,瞬間移動 / 瞬间移动
+screech,name_zh-hant,刺耳聲,刺耳聲 / 刺耳声
+harden,name_zh-hant,變硬,變硬 / 变硬
+minimize,name_zh-hant,變小,變小 / 变小
+smokescreen,name_zh-hant,煙幕,煙幕 / 烟幕
+confuse-ray,name_zh-hant,奇異之光,奇異之光 / 奇异之光
+withdraw,name_zh-hant,縮入殼中,縮入殼中 / 缩入壳中
+defense-curl,name_fr,Boul’Armure,Boul'Armure
+defense-curl,name_zh-hant,變圓,變圓 / 变圆
+light-screen,name_zh-hant,光牆,光牆 / 光墙
+haze,name_zh-hant,黑霧,黑霧 / 黑雾
+focus-energy,name_zh-hant,聚氣,聚氣 / 聚气
+metronome,name_zh-hant,揮指,揮指 / 挥指
+mirror-move,name_zh-hant,鸚鵡學舌,鸚鵡學舌 / 鹦鹉学舌
+smog,name_zh-hant,濁霧,濁霧 / 浊雾
+sludge,name_zh-hant,污泥攻擊,污泥攻擊 / 污泥攻击
+bone-club,name_fr,Massd’Os,Massd'Os
+clamp,name_zh-hant,貝殼夾擊,貝殼夾擊 / 贝壳夹击
+skull-bash,name_fr,Coud’Krâne,Coud'Krâne
+skull-bash,name_ko,로켓박치기,로케트박치기
+skull-bash,name_zh-hant,火箭頭錘,火箭頭錘 / 火箭头锤
+spike-cannon,name_zh-hant,尖刺加農炮,尖刺加農炮 / 尖刺加农炮
+constrict,name_zh-hant,纏繞,纏繞 / 缠绕
+amnesia,name_zh-hant,瞬間失憶,瞬間失憶 / 瞬间失忆
+kinesis,name_zh-hant,折彎湯匙,折彎湯匙 / 折弯汤匙
+high-jump-kick,name_es,Patada Salto Alta,Pat. Salto Alta
+high-jump-kick,name_zh-hant,飛膝踢,飛膝踢 / 飞膝踢
+dream-eater,name_zh-hant,食夢,食夢 / 食梦
+sky-attack,name_zh-hant,神鳥猛擊,神鳥猛擊 / 神鸟猛击
+transform,name_zh-hant,變身,變身 / 变身
+flash,name_zh-hant,閃光,閃光 / 闪光
+splash,name_zh-hant,躍起,躍起 / 跃起
+crabhammer,name_ko,집게해머,찝게햄머
+crabhammer,name_zh-hant,蟹鉗錘,蟹鉗錘 / 蟹钳锤
+fury-swipes,name_zh-hant,亂抓,亂抓 / 乱抓
+bonemerang,name_zh-hant,骨頭回力鏢,骨頭回力鏢 / 骨头回力镖
+rest,name_zh-hant,睡覺,睡覺 / 睡觉
+hyper-fang,name_zh-hant,必殺門牙,必殺門牙 / 必杀门牙
+sharpen,name_zh-hant,稜角化,棱角化
+conversion,name_zh-hant,紋理,紋理 / 纹理
+tri-attack,name_zh-hant,三重攻擊,三重攻擊 / 三重攻击
+super-fang,name_zh-hant,憤怒門牙,憤怒門牙 / 愤怒门牙
+slash,name_zh-hant,劈開,劈開 / 劈开
+struggle,name_zh-hant,掙扎,掙扎 / 挣扎
+sketch,name_zh-hant,寫生,寫生 / 写生
+triple-kick,name_zh-hant,三連踢,三連踢 / 三连踢
+spider-web,name_zh-hant,蛛網,蛛網 / 蛛网
+nightmare,name_zh-hant,惡夢,惡夢 / 恶梦
+flame-wheel,name_ko,화염바퀴,화염자동차
+flame-wheel,name_zh-hant,火焰輪,火焰輪 / 火焰轮
+curse,name_zh-hant,詛咒,詛咒 / 诅咒
+conversion-2,name_fr,Conversion 2,Conversion2
+conversion-2,name_es,Conversión 2,Conversión2
+conversion-2,name_ko,텍스처2,텍스처２
+conversion-2,name_zh-hant,紋理２,紋理２ / 纹理２
+aeroblast,name_zh-hant,氣旋攻擊,氣旋攻擊 / 气旋攻击
+powder-snow,name_zh-hant,細雪,細雪 / 细雪
+feint-attack,name_zh-hant,出奇一擊,出奇一擊 / 出奇一击
+sludge-bomb,name_zh-hant,污泥炸彈,污泥炸彈 / 污泥炸弹
+mud-slap,name_fr,Coud’Boue,Coud'Boue
+mud-slap,name_zh-hant,擲泥,擲泥 / 掷泥
+octazooka,name_zh-hant,章魚桶炮,章魚桶炮 / 章鱼桶炮
+zap-cannon,name_zh-hant,電磁炮,電磁炮 / 电磁炮
+foresight,name_zh-hant,識破,識破 / 识破
+perish-song,name_zh-hant,滅亡之歌,滅亡之歌 / 灭亡之歌
+icy-wind,name_ko,얼어붙은바람,얼다바람
+icy-wind,name_zh-hant,冰凍之風,冰凍之風 / 冰冻之风
+bone-rush,name_ko,본러시,본러쉬
+bone-rush,name_zh-hant,骨棒亂打,骨棒亂打 / 骨棒乱打
+lock-on,name_zh-hant,鎖定,鎖定 / 锁定
+outrage,name_zh-hant,逆鱗,逆鱗 / 逆鳞
+sandstorm,name_es,Tormenta de Arena,Tormenta Arena
+giga-drain,name_zh-hant,終極吸取,終極吸取 / 终极吸取
+charm,name_zh-hant,撒嬌,撒嬌 / 撒娇
+rollout,name_zh-hant,滾動,滾動 / 滚动
+false-swipe,name_zh-hant,點到為止,點到為止 / 点到为止
+swagger,name_es,Fanfarronear,Contoneo
+swagger,name_zh-hant,虛張聲勢,虛張聲勢 / 虚张声势
+spark,name_zh-hant,電光,電光 / 电光
+fury-cutter,name_zh-hant,連斬,連斬 / 连斩
+steel-wing,name_fr,Ailes d’Acier,Ailes d'Acier
+steel-wing,name_zh-hant,鋼翼,鋼翼 / 钢翼
+sleep-talk,name_zh-hant,夢話,夢話 / 梦话
+heal-bell,name_zh-hant,治癒鈴聲,治癒鈴聲 / 治愈铃声
+return,name_zh-hant,報恩,報恩 / 报恩
+present,name_zh-hant,禮物,禮物 / 礼物
+frustration,name_zh-hant,遷怒,遷怒 / 迁怒
+safeguard,name_zh-hant,神秘守護,神秘守護 / 神秘守护
+pain-split,name_zh-hant,分擔痛楚,分擔痛楚 / 分担痛楚
+sacred-fire,name_zh-hant,神聖之火,神聖之火 / 神圣之火
+magnitude,name_zh-hant,震級,震級 / 震级
+megahorn,name_ko,메가혼,메가폰
+megahorn,name_zh-hant,超級角擊,超級角擊 / 超级角击
+dragon-breath,name_zh-hant,龍息,龍息 / 龙息
+baton-pass,name_ko,배턴터치,바톤터치
+encore,name_ko,앙코르,앵콜
+encore,name_zh-hant,再來一次,再來一次 / 再来一次
+rapid-spin,name_zh-hant,高速旋轉,高速旋轉 / 高速旋转
+sweet-scent,name_zh-hant,甜甜香氣,甜甜香氣 / 甜甜香气
+iron-tail,name_zh-hant,鐵尾,鐵尾 / 铁尾
+metal-claw,name_ko,메탈클로,메탈크로우
+metal-claw,name_zh-hant,金屬爪,金屬爪 / 金属爪
+synthesis,name_es,Fotosíntesis,Síntesis
+moonlight,name_ko,달빛,달의불빛
+hidden-power,name_zh-hant,覺醒力量,覺醒力量 / 觉醒力量
+twister,name_zh-hant,龍捲風,龍捲風 / 龙卷风
+mirror-coat,name_zh-hant,鏡面反射,鏡面反射 / 镜面反射
+extreme-speed,name_es,Velocidad Extrema,Veloc. Extrema
+shadow-ball,name_fr,Ball’Ombre,Ball'Ombre
+future-sight,name_zh-hant,預知未來,預知未來 / 预知未来
+beat-up,name_zh-hant,圍攻,圍攻 / 围攻
+fake-out,name_ko,속이기,속이다
+fake-out,name_zh-hant,擊掌奇襲,擊掌奇襲 / 击掌奇袭
+uproar,name_zh-hant,吵鬧,吵鬧 / 吵闹
+spit-up,name_zh-hant,噴出,噴出 / 喷出
+swallow,name_it,Introenergia,Intoenergia
+heat-wave,name_zh-hant,熱風,熱風 / 热风
+torment,name_zh-hant,無理取鬧,無理取鬧 / 无理取闹
+memento,name_zh-hant,臨別禮物,臨別禮物 / 临别礼物
+facade,name_es,Fachada,Imagen
+facade,name_zh-hant,硬撐,硬撐 / 硬撑
+focus-punch,name_zh-hant,真氣拳,真氣拳 / 真气拳
+charge,name_zh-hant,充電,充電 / 充电
+taunt,name_zh-hant,挑釁,挑釁 / 挑衅
+helping-hand,name_fr,Coup d’Main,Coup d'Main
+helping-hand,name_zh-hant,幫助,幫助 / 帮助
+trick,name_zh-hant,戲法,戲法 / 戏法
+wish,name_zh-hant,祈願,祈願 / 祈愿
+superpower,name_zh-hant,蠻力,蠻力 / 蛮力
+revenge,name_zh-hant,報復,報復 / 报复
+brick-break,name_ko,깨뜨리다,깨트리다
+endeavor,name_zh-hant,蠻幹,蠻幹 / 蛮干
+eruption,name_zh-hant,噴火,噴火 / 喷火
+skill-swap,name_ko,스킬스왑,스킬스웹
+skill-swap,name_zh-hant,特性互換,特性互換 / 特性互换
+refresh,name_ko,리프레시,리프레쉬
+refresh,name_zh-hant,煥然一新,煥然一新 / 焕然一新
+snatch,name_ko,가로채기,가로챔
+snatch,name_zh-hant,搶奪,搶奪 / 抢夺
+dive,name_zh-hant,潛水,潛水 / 潜水
+camouflage,name_zh-hant,保護色,保護色 / 保护色
+tail-glow,name_zh-hant,螢火,螢火 / 萤火
+luster-purge,name_ko,러스터퍼지,라스트버지
+luster-purge,name_zh-hant,潔淨光芒,潔淨光芒 / 洁净光芒
+mist-ball,name_fr,Ball’Brume,Ball'Brume
+mist-ball,name_zh-hant,薄霧球,薄霧球 / 薄雾球
+teeter-dance,name_zh-hant,搖晃舞,搖晃舞 / 摇晃舞
+blaze-kick,name_ko,블레이즈킥,브레이즈킥
+ice-ball,name_fr,Ball’Glace,Ball'Glace
+slack-off,name_ko,게으름피우기,태만함
+slack-off,name_zh-hant,偷懶,偷懶 / 偷懒
+hyper-voice,name_zh-hant,巨聲,巨聲 / 巨声
+poison-fang,name_ko,맹독엄니,독엄니
+poison-fang,name_zh-hant,劇毒牙,劇毒牙 / 剧毒牙
+crush-claw,name_ko,브레이크클로,브레이크크루
+blast-burn,name_ko,블라스트번,블러스트번
+hydro-cannon,name_zh-hant,加農水炮,加農水炮 / 加农水炮
+astonish,name_zh-hant,驚嚇,驚嚇 / 惊吓
+weather-ball,name_fr,Ball’Météo,Ball'Météo
+weather-ball,name_zh-hant,氣象球,氣象球 / 气象球
+aromatherapy,name_zh-hant,芳香治療,芳香治療 / 芳香治疗
+air-cutter,name_fr,Tranch’Air,Tranch'Air
+air-cutter,name_ko,에어커터,에어컷터
+air-cutter,name_zh-hant,空氣利刃,空氣利刃 / 空气利刃
+overheat,name_zh-hant,過熱,過熱 / 过热
+odor-sleuth,name_zh-hant,氣味偵測,氣味偵測 / 气味侦测
+rock-tomb,name_zh-hant,岩石封鎖,岩石封鎖 / 岩石封锁
+silver-wind,name_zh-hant,銀色旋風,銀色旋風 / 银色旋风
+metal-sound,name_zh-hant,金屬音,金屬音 / 金属音
+grass-whistle,name_fr,Siffl’Herbe,Siffl'Herbe
+grass-whistle,name_zh-hant,草笛,草笛 / 草笛
+tickle,name_zh-hant,搔癢,撓癢 / 挠痒
+water-spout,name_zh-hant,噴水,噴水 / 喷水
+signal-beam,name_zh-hant,信號光束,信號光束 / 信号光束
+sky-uppercut,name_ko,스카이어퍼,스카이업퍼
+sky-uppercut,name_zh-hant,衝天拳,衝天拳 / 冲天拳
+sand-tomb,name_zh-hant,流沙地獄,流沙地獄 / 流沙地狱
+sheer-cold,name_zh-hant,絕對零度,絕對零度 / 绝对零度
+muddy-water,name_zh-hant,濁流,濁流 / 浊流
+bullet-seed,name_ko,씨기관총,기관총
+bullet-seed,name_zh-hant,種子機關槍,種子機關槍 / 种子机关枪
+icicle-spear,name_fr,Stalactite,Stalagtite
+icicle-spear,name_zh-hant,冰錐,冰錐 / 冰锥
+iron-defense,name_zh-hant,鐵壁,鐵壁 / 铁壁
+block,name_zh-hant,擋路,擋路 / 挡路
+howl,name_ko,멀리짖기,멀리짖음
+howl,name_zh-hant,長嚎,長嚎 / 长嚎
+dragon-claw,name_ko,드래곤클로,드래곤크루
+dragon-claw,name_zh-hant,龍爪,龍爪 / 龙爪
+frenzy-plant,name_zh-hant,瘋狂植物,瘋狂植物 / 疯狂植物
+bounce,name_ko,뛰어오르기,뛰어오르다
+bounce,name_zh-hant,彈跳,彈跳 / 弹跳
+mud-shot,name_ko,머드샷,머드숏
+mud-shot,name_zh-hant,泥巴射擊,泥巴射擊 / 泥巴射击
+volt-tackle,name_es,Placaje Eléctrico,Placaje Eléc
+volt-tackle,name_zh-hant,伏特攻擊,伏特攻擊 / 伏特攻击
+magical-leaf,name_ko,매지컬리프,메지컬리프
+magical-leaf,name_zh-hant,魔法葉,魔法葉 / 魔法叶
+leaf-blade,name_zh-hant,葉刃,葉刃 / 叶刃
+dragon-dance,name_zh-hant,龍之舞,龍之舞 / 龙之舞
+rock-blast,name_ko,록블라스트,락블레스트
+rock-blast,name_zh-hant,岩石爆擊,岩石爆擊 / 岩石爆击
+shock-wave,name_zh-hant,電擊波,電擊波 / 电击波
+water-pulse,name_zh-hant,水之波動,水之波動 / 水之波动
+doom-desire,name_zh-hant,破滅之願,破滅之願 / 破灭之愿
+psycho-boost,name_zh-hant,精神突進,精神突進 / 精神突进
+roost,name_zh-hant,羽棲,羽棲 / 羽栖
+miracle-eye,name_zh-hant,奇跡之眼,奇跡之眼 / 奇迹之眼
+wake-up-slap,name_zh-hant,喚醒巴掌,喚醒巴掌 / 唤醒巴掌
+hammer-arm,name_zh-hant,臂錘,臂錘 / 臂锤
+healing-wish,name_zh-hant,治癒之願,治癒之願 / 治愈之愿
+brine,name_zh-hant,鹽水,鹽水 / 盐水
+tailwind,name_zh-hant,順風,順風 / 顺风
+acupressure,name_zh-hant,點穴,點穴 / 点穴
+metal-burst,name_zh-hant,金屬爆炸,金屬爆炸 / 金属爆炸
+close-combat,name_zh-hant,近身戰,近身戰 / 近身战
+payback,name_zh-hant,以牙還牙,以牙還牙 / 以牙还牙
+assurance,name_zh-hant,惡意追擊,惡意追擊 / 恶意追击
+fling,name_zh-hant,投擲,投擲 / 投掷
+psycho-shift,name_it,Psicotransfer,Psicotrasfer
+psycho-shift,name_zh-hant,精神轉移,精神轉移 / 精神转移
+heal-block,name_zh-hant,回復封鎖,回復封鎖 / 回复封锁
+wring-out,name_zh-hant,絞緊,絞緊 / 绞紧
+power-trick,name_zh-hant,力量戲法,力量戲法 / 力量戏法
+lucky-chant,name_zh-hant,幸運咒語,幸運咒語 / 幸运咒语
+me-first,name_fr,Moi d’Abord,Moi d'Abord
+me-first,name_zh-hant,搶先一步,搶先一步 / 抢先一步
+power-swap,name_ko,파워스왑,파워스웹
+power-swap,name_zh-hant,力量互換,力量互換 / 力量互换
+guard-swap,name_ko,가드스왑,가드스웹
+guard-swap,name_zh-hant,防守互換,防守互換 / 防守互换
+punishment,name_zh-hant,懲罰,懲罰 / 惩罚
+last-resort,name_ko,비장의무기,뒀다쓰기
+worry-seed,name_zh-hant,煩惱種子,煩惱種子 / 烦恼种子
+sucker-punch,name_zh-hant,突襲,突襲 / 突袭
+heart-swap,name_ko,하트스왑,하트스웹
+heart-swap,name_zh-hant,心靈互換,心靈互換 / 心灵互换
+aqua-ring,name_zh-hant,水流環,水流環 / 水流环
+magnet-rise,name_zh-hant,電磁飄浮,電磁飄浮 / 电磁飘浮
+flare-blitz,name_zh-hant,閃焰衝鋒,閃焰衝鋒 / 闪焰冲锋
+force-palm,name_zh-hant,發勁,發勁 / 发劲
+aura-sphere,name_it,Forzasfera,Sferapulsar
+aura-sphere,name_zh-hant,波導彈,波導彈 / 波导弹
+poison-jab,name_zh-hant,毒擊,毒擊 / 毒击
+dark-pulse,name_zh-hant,惡之波動,惡之波動 / 恶之波动
+night-slash,name_zh-hant,暗襲要害,暗襲要害 / 暗袭要害
+seed-bomb,name_zh-hant,種子炸彈,種子炸彈 / 种子炸弹
+air-slash,name_fr,Lame d’Air,Lame d'Air
+air-slash,name_zh-hant,空氣斬,空氣斬 / 空气斩
+bug-buzz,name_zh-hant,蟲鳴,蟲鳴 / 虫鸣
+dragon-pulse,name_zh-hant,龍之波動,龍之波動 / 龙之波动
+dragon-rush,name_zh-hant,龍之俯衝,龍之俯衝 / 龙之俯冲
+focus-blast,name_zh-hant,真氣彈,真氣彈 / 真气弹
+brave-bird,name_zh-hant,勇鳥猛攻,勇鳥猛攻 / 勇鸟猛攻
+giga-impact,name_zh-hant,終極衝擊,終極衝擊 / 终极冲击
+nasty-plot,name_zh-hant,詭計,詭計 / 诡计
+bullet-punch,name_zh-hant,子彈拳,子彈拳 / 子弹拳
+ice-shard,name_zh-hant,冰礫,冰礫 / 冰砾
+shadow-claw,name_ko,섀도클로,섀도크루
+ice-fang,name_zh-hant,冰凍牙,冰凍牙 / 冰冻牙
+shadow-sneak,name_zh-hant,影子偷襲,影子偷襲 / 影子偷袭
+mud-bomb,name_zh-hant,泥巴炸彈,泥巴炸彈 / 泥巴炸弹
+zen-headbutt,name_fr,Psykoud’Boul,Psykoud'Boul
+zen-headbutt,name_zh-hant,意念頭錘,意念頭錘 / 意念头锤
+mirror-shot,name_ko,미러샷,미러숏
+mirror-shot,name_zh-hant,鏡光射擊,鏡光射擊 / 镜光射击
+flash-cannon,name_es,Cañón Resplandor,Foco Resplandor
+flash-cannon,name_zh-hant,加農光炮,加農光炮 / 加农光炮
+rock-climb,name_ko,록클라임,락클라임
+defog,name_zh-hant,清除濃霧,清除濃霧 / 清除浓雾
+trick-room,name_zh-hant,戲法空間,戲法空間 / 戏法空间
+discharge,name_fr,Coup d’Jus,Coup d'Jus
+discharge,name_zh-hant,放電,放電 / 放电
+lava-plume,name_zh-hant,噴煙,噴煙 / 喷烟
+leaf-storm,name_es,Lluevehojas,Lluevahojas
+leaf-storm,name_zh-hant,飛葉風暴,飛葉風暴 / 飞叶风暴
+power-whip,name_zh-hant,強力鞭打,強力鞭打 / 强力鞭打
+gunk-shot,name_zh-hant,垃圾射擊,垃圾射擊 / 垃圾射击
+iron-head,name_zh-hant,鐵頭,鐵頭 / 铁头
+magnet-bomb,name_zh-hant,磁鐵炸彈,磁鐵炸彈 / 磁铁炸弹
+stone-edge,name_zh-hant,尖石攻擊,尖石攻擊 / 尖石攻击
+captivate,name_zh-hant,誘惑,誘惑 / 诱惑
+stealth-rock,name_zh-hant,隱形岩,隱形岩 / 隐形岩
+grass-knot,name_zh-hant,打草結,打草結 / 打草结
+judgment,name_zh-hant,制裁光礫,制裁光礫 / 制裁光砾
+bug-bite,name_ko,벌레먹기,벌레먹음
+bug-bite,name_zh-hant,蟲咬,蟲咬 / 虫咬
+charge-beam,name_zh-hant,充電光束,充電光束 / 充电光束
+aqua-jet,name_zh-hant,水流噴射,水流噴射 / 水流喷射
+attack-order,name_fr,Appel Attaque,Appel Attak
+attack-order,name_zh-hant,攻擊指令,攻擊指令 / 攻击指令
+defend-order,name_zh-hant,防禦指令,防禦指令 / 防御指令
+heal-order,name_zh-hant,回復指令,回復指令 / 回复指令
+head-smash,name_fr,Fracass’Tête,Fracass'Tête
+head-smash,name_zh-hant,雙刃頭錘,雙刃頭錘 / 双刃头锤
+double-hit,name_zh-hant,二連擊,二連擊 / 二连击
+roar-of-time,name_zh-hant,時光咆哮,時光咆哮 / 时光咆哮
+spacial-rend,name_zh-hant,亞空裂斬,亞空裂斬 / 亚空裂斩
+magma-storm,name_zh-hant,熔岩風暴,熔岩風暴 / 熔岩风暴
+seed-flare,name_zh-hant,種子閃光,種子閃光 / 种子闪光
+ominous-wind,name_zh-hant,奇異之風,奇異之風 / 奇异之风
+shadow-force,name_zh-hant,暗影潛襲,暗影潛襲 / 暗影潜袭
+wide-guard,name_zh-hant,廣域防守,廣域防守 / 广域防守
+wonder-room,name_zh-hant,奇妙空間,奇妙空間 / 奇妙空间
+psyshock,name_zh-hant,精神衝擊,精神衝擊 / 精神冲击
+venoshock,name_zh-hant,毒液衝擊,毒液衝擊 / 毒液冲击
+autotomize,name_zh-hant,身體輕量化,身體輕量化 / 身体轻量化
+rage-powder,name_zh-hant,憤怒粉,憤怒粉 / 愤怒粉
+magic-room,name_zh-hant,魔法空間,魔法空間 / 魔法空间
+smack-down,name_zh-hant,擊落,擊落 / 击落
+storm-throw,name_zh-hant,山嵐摔,山嵐摔 / 山岚摔
+flame-burst,name_zh-hant,烈焰濺射,烈焰濺射 / 烈焰溅射
+heavy-slam,name_zh-hant,重磅衝撞,重磅衝撞 / 重磅冲撞
+synchronoise,name_zh-hant,同步干擾,同步干擾 / 同步干扰
+electro-ball,name_zh-hant,電球,電球 / 电球
+flame-charge,name_zh-hant,蓄能焰襲,蓄能焰襲 / 蓄能焰袭
+coil,name_zh-hant,盤蜷,盤蜷 / 盘蜷
+low-sweep,name_zh-hant,下盤踢,下盤踢 / 下盘踢
+acid-spray,name_zh-hant,酸液炸彈,酸液炸彈 / 酸液炸弹
+foul-play,name_zh-hant,欺詐,欺詐 / 欺诈
+simple-beam,name_zh-hant,單純光束,單純光束 / 单纯光束
+entrainment,name_zh-hant,找夥伴,找夥伴 / 找伙伴
+after-you,name_zh-hant,您先請,您先請 / 您先请
+round,name_zh-hant,輪唱,輪唱 / 轮唱
+echoed-voice,name_zh-hant,回聲,回聲 / 回声
+chip-away,name_zh-hant,逐步擊破,逐步擊破 / 逐步击破
+clear-smog,name_zh-hant,清除之煙,清除之煙 / 清除之烟
+stored-power,name_zh-hant,輔助力量,輔助力量 / 辅助力量
+quick-guard,name_ko,패스트가드,퍼스트가드
+ally-switch,name_zh-hant,交換場地,交換場地 / 交换场地
+scald,name_zh-hant,熱水,熱水 / 热水
+shell-smash,name_zh-hant,破殼,破殼 / 破壳
+heal-pulse,name_it,Ondasana,Curapulsar
+heal-pulse,name_zh-hant,治癒波動,治癒波動 / 治愈波动
+hex,name_zh-hant,禍不單行,禍不單行 / 祸不单行
+sky-drop,name_zh-hant,自由落體,自由落體 / 自由落体
+shift-gear,name_fr,Chgt Vitesse,Chgt Vitesse
+shift-gear,name_zh-hant,換檔,換檔 / 换挡
+incinerate,name_zh-hant,燒盡,燒盡 / 烧尽
+quash,name_zh-hant,延後,延後 / 延后
+acrobatics,name_zh-hant,雜技,雜技 / 杂技
+reflect-type,name_zh-hant,鏡面屬性,鏡面屬性 / 镜面属性
+retaliate,name_zh-hant,報仇,報仇 / 报仇
+bestow,name_zh-hant,傳遞禮物,傳遞禮物 / 传递礼物
+inferno,name_fr,Feu d’Enfer,Feu d'Enfer
+inferno,name_zh-hant,煉獄,煉獄 / 炼狱
+water-pledge,name_fr,Aire d’Eau,Aire d'Eau
+water-pledge,name_zh-hant,水之誓約,水之誓約 / 水之誓约
+fire-pledge,name_zh-hant,火之誓約,火之誓約 / 火之誓约
+grass-pledge,name_fr,Aire d’Herbe,Aire d'Herbe
+grass-pledge,name_zh-hant,草之誓約,草之誓約 / 草之誓约
+volt-switch,name_zh-hant,伏特替換,伏特替換 / 伏特替换
+struggle-bug,name_zh-hant,蟲之抵抗,蟲之抵抗 / 虫之抵抗
+dragon-tail,name_zh-hant,龍尾,龍尾 / 龙尾
+work-up,name_zh-hant,自我激勵,自我激勵 / 自我激励
+electroweb,name_zh-hant,電網,電網 / 电网
+wild-charge,name_zh-hant,瘋狂伏特,瘋狂伏特 / 疯狂伏特
+drill-run,name_zh-hant,直衝鑽,直衝鑽 / 直冲钻
+dual-chop,name_zh-hant,二連劈,二連劈 / 二连劈
+heart-stamp,name_fr,Crève-Cœur,Crèvecœur
+heart-stamp,name_zh-hant,愛心印章,愛心印章 / 爱心印章
+horn-leech,name_ko,우드혼,우드호른
+sacred-sword,name_zh-hant,聖劍,聖劍 / 圣剑
+razor-shell,name_zh-hant,貝殼刃,貝殼刃 / 贝壳刃
+heat-crash,name_zh-hant,高溫重壓,高溫重壓 / 高温重压
+leaf-tornado,name_zh-hant,青草攪拌器,青草攪拌器 / 青草搅拌器
+steamroller,name_zh-hant,瘋狂滾壓,瘋狂滾壓 / 疯狂滚压
+psystrike,name_zh-hant,精神擊破,精神擊破 / 精神击破
+tail-slap,name_zh-hant,掃尾拍打,掃尾拍打 / 扫尾拍打
+hurricane,name_zh-hant,暴風,暴風 / 暴风
+head-charge,name_zh-hant,爆炸頭突擊,爆炸頭突擊 / 爆炸头突击
+gear-grind,name_zh-hant,齒輪飛盤,齒輪飛盤 / 齿轮飞盘
+searing-shot,name_zh-hant,火焰彈,火焰彈 / 火焰弹
+secret-sword,name_fr,Lame Ointe,Lame Ouinte
+secret-sword,name_zh-hant,神秘之劍,神秘之劍 / 神秘之剑
+glaciate,name_ko,얼어붙은세계,얼다세계
+bolt-strike,name_zh-hant,雷擊,雷擊 / 雷击
+freeze-shock,name_zh-hant,冰凍伏特,冰凍伏特 / 冰冻伏特
+ice-burn,name_zh-hant,極寒冷焰,極寒冷焰 / 极寒冷焰
+snarl,name_zh-hant,大聲咆哮,大聲咆哮 / 大声咆哮
+icicle-crash,name_zh-hant,冰柱墜擊,冰柱墜擊 / 冰柱坠击
+v-create,name_zh-hant,Ｖ熱焰,Ｖ熱焰 / Ｖ热焰
+fusion-flare,name_zh-hant,交錯火焰,交錯火焰 / 交错火焰
+fusion-bolt,name_zh-hant,交錯閃電,交錯閃電 / 交错闪电
+flying-press,name_zh-hant,飛身重壓,飛身重壓 / 飞身重压
+sticky-web,name_zh-hant,黏黏網,黏黏網 / 黏黏网
+fell-stinger,name_zh-hant,致命針刺,致命針刺 / 致命针刺
+phantom-force,name_zh-hant,潛靈奇襲,潛靈奇襲 / 潜灵奇袭
+trick-or-treat,name_zh-hant,萬聖夜,萬聖夜 / 万圣夜
+noble-roar,name_zh-hant,戰吼,戰吼 / 战吼
+ion-deluge,name_zh-hant,等離子浴,等離子浴 / 等离子浴
+parabolic-charge,name_zh-hant,拋物面充電,拋物面充電 / 抛物面充电
+forests-curse,name_zh-hant,森林詛咒,森林詛咒 / 森林诅咒
+petal-blizzard,name_zh-hant,落英繽紛,落英繽紛 / 落英缤纷
+freeze-dry,name_zh-hant,冷凍乾燥,冷凍乾燥 / 冷冻干燥
+disarming-voice,name_zh-hant,魅惑之聲,魅惑之聲 / 魅惑之声
+parting-shot,name_zh-hant,拋下狠話,拋下狠話 / 抛下狠话
+topsy-turvy,name_zh-hant,顛倒,顛倒 / 颠倒
+crafty-shield,name_zh-hant,戲法防守,戲法防守 / 戏法防守
+flower-shield,name_zh-hant,鮮花防守,鮮花防守 / 鲜花防守
+grassy-terrain,name_zh-hant,青草場地,青草場地 / 青草场地
+misty-terrain,name_zh-hant,薄霧場地,薄霧場地 / 薄雾场地
+electrify,name_zh-hant,輸電,輸電 / 输电
+play-rough,name_zh-hant,嬉鬧,嬉鬧 / 嬉闹
+fairy-wind,name_zh-hant,妖精之風,妖精之風 / 妖精之风
+fairy-lock,name_zh-hant,妖精之鎖,妖精之鎖 / 妖精之锁
+kings-shield,name_en,King’s Shield,King's Shield
+play-nice,name_zh-hant,和睦相處,和睦相處 / 和睦相处
+confide,name_zh-hant,密語,密語 / 密语
+diamond-storm,name_es,Tormenta de Diamantes,Torm. Diamantes
+diamond-storm,name_zh-hant,鑽石風暴,鑽石風暴 / 钻石风暴
+hyperspace-hole,name_ko,이차원홀,다른차원홀
+hyperspace-hole,name_zh-hant,異次元洞,異次元洞 / 异次元洞
+water-shuriken,name_zh-hant,飛水手裡劍,飛水手裡劍 / 飞水手里剑
+aromatic-mist,name_zh-hant,芳香薄霧,芳香薄霧 / 芳香薄雾
+eerie-impulse,name_zh-hant,怪異電波,怪異電波 / 怪异电波
+powder,name_zh-hant,粉塵,粉塵 / 粉尘
+magnetic-flux,name_zh-hant,磁場操控,磁場操控 / 磁场操控
+happy-hour,name_zh-hant,歡樂時光,歡樂時光 / 欢乐时光
+electric-terrain,name_zh-hant,電氣場地,電氣場地 / 电气场地
+dazzling-gleam,name_zh-hant,魔法閃耀,魔法閃耀 / 魔法闪耀
+celebrate,name_zh-hant,慶祝,慶祝 / 庆祝
+hold-hands,name_zh-hant,牽手,牽手 / 牵手
+baby-doll-eyes,name_zh-hant,圓瞳,圓瞳 / 圆瞳
+nuzzle,name_zh-hant,蹭蹭臉頰,蹭蹭臉頰 / 蹭蹭脸颊
+infestation,name_zh-hant,死纏爛打,死纏爛打 / 死缠烂打
+power-up-punch,name_zh-hant,增強拳,增強拳 / 增强拳
+oblivion-wing,name_fr,Mort’Ailes,Mort'Ailes
+thousand-arrows,name_zh-hant,千箭齊發,千箭齊發 / 千箭齐发
+thousand-waves,name_zh-hant,千波激盪,千波激盪 / 千波激荡
+lands-wrath,name_en,Land’s Wrath,Land's Wrath
+light-of-ruin,name_zh-hant,破滅之光,破滅之光 / 破灭之光
+origin-pulse,name_zh-hant,根源波動,根源波動 / 根源波动
+precipice-blades,name_zh-hant,斷崖之劍,斷崖之劍 / 断崖之剑
+dragon-ascent,name_zh-hant,畫龍點睛,畫龍點睛 / 画龙点睛
+hyperspace-fury,name_ko,이차원러시,다른차원러시
+hyperspace-fury,name_zh-hant,異次元猛攻,異次元猛攻 / 异次元猛攻
+breakneck-blitz--physical,_row_,present,missing
+breakneck-blitz--special,_row_,present,missing
+all-out-pummeling--physical,_row_,present,missing
+all-out-pummeling--special,_row_,present,missing
+supersonic-skystrike--physical,_row_,present,missing
+supersonic-skystrike--special,_row_,present,missing
+acid-downpour--physical,_row_,present,missing
+acid-downpour--special,_row_,present,missing
+tectonic-rage--physical,_row_,present,missing
+tectonic-rage--special,_row_,present,missing
+continental-crush--physical,_row_,present,missing
+continental-crush--special,_row_,present,missing
+savage-spin-out--physical,_row_,present,missing
+savage-spin-out--special,_row_,present,missing
+never-ending-nightmare--physical,_row_,present,missing
+never-ending-nightmare--special,_row_,present,missing
+corkscrew-crash--physical,_row_,present,missing
+corkscrew-crash--special,_row_,present,missing
+inferno-overdrive--physical,_row_,present,missing
+inferno-overdrive--special,_row_,present,missing
+hydro-vortex--physical,_row_,present,missing
+hydro-vortex--special,_row_,present,missing
+bloom-doom--physical,_row_,present,missing
+bloom-doom--special,_row_,present,missing
+gigavolt-havoc--physical,_row_,present,missing
+gigavolt-havoc--special,_row_,present,missing
+shattered-psyche--physical,_row_,present,missing
+shattered-psyche--special,_row_,present,missing
+subzero-slammer--physical,_row_,present,missing
+subzero-slammer--special,_row_,present,missing
+devastating-drake--physical,_row_,present,missing
+devastating-drake--special,_row_,present,missing
+black-hole-eclipse--physical,_row_,present,missing
+black-hole-eclipse--special,_row_,present,missing
+twinkle-tackle--physical,damage_class,physical,vary
+twinkle-tackle--physical,name_zh-hant,可愛星星飛天撞,可愛星星飛天撞 / 可爱星星飞天撞
+twinkle-tackle--special,_row_,present,missing
+catastropika,name_zh-hant,皮卡皮卡必殺擊,皮卡皮卡必殺擊 / 皮卡皮卡必杀击
+shore-up,name_fr,Amass’Sable,Amass'Sable
+first-impression,name_zh-hant,迎頭一擊,迎頭一擊 / 迎头一击
+spirit-shackle,name_it,Cucitura d’Ombra,Cucitura d'Ombra
+spirit-shackle,name_zh-hant,縫影,縫影 / 缝影
+sparkling-aria,name_fr,Aria de l’Écume,Aria de l'Écume
+sparkling-aria,name_zh-hant,泡影的詠歎調,泡影的詠歎調 / 泡影的咏叹调
+ice-hammer,name_zh-hant,冰錘,冰錘 / 冰锤
+floral-healing,name_zh-hant,花療,花療 / 花疗
+high-horsepower,name_zh-hant,十萬馬力,十萬馬力 / 十万马力
+leafage,name_zh-hant,樹葉,樹葉 / 树叶
+spotlight,name_zh-hant,聚光燈,聚光燈 / 聚光灯
+toxic-thread,name_zh-hant,毒絲,毒絲 / 毒丝
+laser-focus,name_zh-hant,磨礪,磨礪 / 磨砺
+gear-up,name_zh-hant,輔助齒輪,輔助齒輪 / 辅助齿轮
+throat-chop,name_zh-hant,地獄突刺,地獄突刺 / 地狱突刺
+pollen-puff,name_zh-hant,花粉團,花粉團 / 花粉团
+anchor-shot,name_it,Colpo d’Ancora,Colpo d'Ancora
+anchor-shot,name_ko,앵커샷,앵커숏
+anchor-shot,name_zh-hant,擲錨,擲錨 / 掷锚
+psychic-terrain,name_zh-hant,精神場地,精神場地 / 精神场地
+lunge,name_zh-hant,猛撲,猛撲 / 猛扑
+power-trip,name_zh-hant,囂張,囂張 / 嚣张
+burn-up,name_zh-hant,燃盡,燃盡 / 燃尽
+speed-swap,name_ko,스피드스왑,스피드스웹
+speed-swap,name_zh-hant,速度互換,速度互換 / 速度互换
+smart-strike,name_ko,스마트혼,스마트호른
+smart-strike,name_zh-hant,修長之角,修長之角 / 修长之角
+purify,name_zh-hant,淨化,淨化 / 净化
+revelation-dance,name_zh-hant,覺醒之舞,覺醒之舞 / 觉醒之舞
+core-enforcer,name_zh-hant,核心懲罰者,核心懲罰者 / 核心惩罚者
+trop-kick,name_es,Patada Tropical,Patada Tropica
+trop-kick,name_zh-hant,熱帶踢,熱帶踢 / 热带踢
+instruct,name_zh-hant,號令,號令 / 号令
+beak-blast,name_zh-hant,鳥嘴加農炮,鳥嘴加農炮 / 鸟嘴加农炮
+clanging-scales,name_zh-hant,鱗片噪音,鱗片噪音 / 鳞片噪音
+dragon-hammer,name_zh-hant,龍錘,龍錘 / 龙锤
+brutal-swing,name_zh-hant,狂舞揮打,狂舞揮打 / 狂舞挥打
+aurora-veil,name_zh-hant,極光幕,極光幕 / 极光幕
+malicious-moonsault,name_zh-hant,極惡飛躍粉碎擊,極惡飛躍粉碎擊 / 极恶飞跃粉碎击
+oceanic-operetta,name_zh-hant,海神莊嚴交響樂,海神莊嚴交響樂 / 海神庄严交响乐
+guardian-of-alola,name_fr,Colère du Gardien d’Alola,Colère du Gardien d'Alola
+guardian-of-alola,name_zh-hant,巨人衛士・阿羅拉,巨人衛士・阿羅拉 / 巨人卫士・阿罗拉
+soul-stealing-7-star-strike,name_ja,しちせいだっこんたい,七星奪魂腿
+soul-stealing-7-star-strike,name_zh-hant,七星奪魂腿,七星奪魂腿 / 七星夺魂腿
+stoked-sparksurfer,name_ko,라이트닝서프라이드,라이트닝 서프라이드
+stoked-sparksurfer,name_zh-hant,駕雷馭電戲衝浪,駕雷馭電戲衝浪 / 驾雷驭电戏冲浪
+pulverizing-pancake,name_ja,ほんきをだす　こうげき,ほんきをだすこうげき
+pulverizing-pancake,name_zh-hant,認真起來大爆擊,認真起來大爆擊 / 认真起来大爆击
+extreme-evoboost,name_zh-hant,九彩昇華齊聚頂,九彩昇華齊聚頂 / 九彩升华齐聚顶
+shell-trap,name_zh-hant,陷阱甲殼,陷阱甲殼 / 陷阱甲壳
+fleur-cannon,name_zh-hant,花朵加農炮,花朵加農炮 / 花朵加农炮
+stomping-tantrum,name_zh-hant,跺腳,跺腳 / 跺脚
+accelerock,name_zh-hant,衝岩,衝岩 / 冲岩
+prismatic-laser,name_zh-hant,稜鏡鐳射,稜鏡鐳射 / 棱镜镭射
+spectral-thief,name_zh-hant,暗影偷盜,暗影偷盜 / 暗影偷盗
+sunsteel-strike,name_zh-hant,流星閃衝,流星閃衝 / 流星闪冲
+moongeist-beam,name_it,Raggio d’Ombra,Raggio d'Ombra
+tearful-look,name_fr,Larme à l’Œil,Larme à l'Œil
+tearful-look,name_zh-hant,淚眼汪汪,淚眼汪汪 / 泪眼汪汪
+multi-attack,name_zh-hant,多屬性攻擊,多屬性攻擊 / 多属性攻击
+10-000-000-volt-thunderbolt,name_ja,１０００まんボルト,1000まんボルト
+10-000-000-volt-thunderbolt,name_zh-hant,千萬伏特,千萬伏特 / 千万伏特
+mind-blown,name_zh-hant,驚爆大頭,驚爆大頭 / 惊爆大头
+plasma-fists,name_zh-hant,等離子閃電拳,等離子閃電拳 / 等离子闪电拳
+photon-geyser,name_zh-hant,光子噴湧,光子噴湧 / 光子喷涌
+light-that-burns-the-sky,name_ja,てんこがすめつぼうのひかり,天焦がす滅亡の光
+light-that-burns-the-sky,name_zh-hant,焚天滅世熾光爆,焚天滅世熾光爆 / 焚天灭世炽光爆
+searing-sunraze-smash,name_zh-hant,日光迴旋下蒼穹,日光迴旋下蒼穹 / 日光回旋下苍穹
+menacing-moonraze-maelstrom,name_zh-hant,月華飛濺落靈霄,月華飛濺落靈霄 / 月华飞溅落灵霄
+lets-snuggle-forever,name_zh-hant,親密無間大亂揍,親密無間大亂揍 / 亲密无间大乱揍
+splintered-stormshards,name_zh-hant,狼嘯石牙颶風暴,狼嘯石牙颶風暴 / 狼啸石牙飓风暴
+clangorous-soulblaze,name_zh-hant,熾魂熱舞烈音爆,熾魂熱舞烈音爆 / 炽魂热舞烈音爆
+zippy-zap,name_zh-hant,電電加速,電電加速 / 电电加速
+splishy-splash,name_zh-hant,滔滔衝浪,滔滔衝浪 / 滔滔冲浪
+floaty-fall,name_zh-hant,飄飄墜落,飄飄墜落 / 飘飘坠落
+pika-papow,name_zh-hant,閃閃雷光,閃閃雷光 / 闪闪雷光
+bouncy-bubble,name_zh-hant,活活氣泡,活活氣泡 / 活活气泡
+buzzy-buzz,name_zh-hant,麻麻電擊,麻麻電擊 / 麻麻电击
+glitzy-glow,name_zh-hant,嘩嘩氣場,嘩嘩氣場 / 哗哗气场
+baddy-bad,name_zh-hant,壞壞領域,壞壞領域 / 坏坏领域
+sappy-seed,name_de,Sprießbomben,Sprießomben
+sappy-seed,name_zh-hant,茁茁轟炸,茁茁轟炸 / 茁茁轰炸
+freezy-frost,name_zh-hant,冰冰霜凍,冰冰霜凍 / 冰冰霜冻
+sparkly-swirl,name_zh-hant,亮亮風暴,亮亮風暴 / 亮亮风暴
+veevee-volley,name_zh-hant,砰砰擊破,砰砰擊破 / 砰砰击破
+double-iron-bash,name_fr,Écrous d’Poing,Écrous d'Poing
+double-iron-bash,name_zh-hant,鋼拳雙擊,鋼拳雙擊 / 钢拳双击
+max-guard,name_es,Maxibarrera,Maxibarriera
+max-guard,name_zh-hant,極巨防壁,極巨防壁 / 极巨防壁
+dynamax-cannon,name_zh-hant,極巨炮,極巨炮 / 极巨炮
+snipe-shot,name_de,Präzisionsschuss,Präisionsschuss
+snipe-shot,name_zh-hant,狙擊,狙擊 / 狙击
+jaw-lock,name_it,Morsostretto,Morostretto
+jaw-lock,name_zh-hant,緊咬不放,緊咬不放 / 紧咬不放
+stuff-cheeks,name_zh-hant,大快朵頤,大快朵頤 / 大快朵颐
+no-retreat,name_zh-hant,背水一戰,背水一戰 / 背水一战
+tar-shot,name_ko,타르샷,타르숏
+tar-shot,name_zh-hant,瀝青射擊,瀝青射擊 / 沥青射击
+dragon-darts,name_zh-hant,龍箭,龍箭 / 龙箭
+teatime,name_zh-hant,茶會,茶會 / 茶会
+bolt-beak,name_zh-hant,電喙,電喙 / 电喙
+fishious-rend,name_zh-hant,鰓咬,鰓咬 / 鳃咬
+court-change,name_zh-hant,換場,換場 / 换场
+max-flare,accuracy,,100
+max-flare,damage_class,physical,vary
+max-flare,name_zh-hant,極巨火爆,極巨火爆 / 极巨火爆
+max-flutterby,accuracy,,100
+max-flutterby,damage_class,physical,vary
+max-flutterby,name_zh-hant,極巨蟲蠱,極巨蟲蠱 / 极巨虫蛊
+max-lightning,accuracy,,100
+max-lightning,damage_class,physical,vary
+max-lightning,name_zh-hant,極巨閃電,極巨閃電 / 极巨闪电
+max-strike,accuracy,,100
+max-strike,damage_class,physical,vary
+max-strike,name_zh-hant,極巨攻擊,極巨攻擊 / 极巨攻击
+max-knuckle,accuracy,,100
+max-knuckle,damage_class,physical,vary
+max-knuckle,name_zh-hant,極巨拳鬥,極巨拳鬥 / 极巨拳斗
+max-phantasm,accuracy,,100
+max-phantasm,damage_class,physical,vary
+max-phantasm,name_zh-hant,極巨幽魂,極巨幽魂 / 极巨幽魂
+max-hailstorm,accuracy,,100
+max-hailstorm,damage_class,physical,vary
+max-hailstorm,name_zh-hant,極巨寒冰,極巨寒冰 / 极巨寒冰
+max-ooze,accuracy,,100
+max-ooze,damage_class,physical,vary
+max-ooze,name_zh-hant,極巨酸毒,極巨酸毒 / 极巨酸毒
+max-geyser,accuracy,,100
+max-geyser,damage_class,physical,vary
+max-geyser,name_zh-hant,極巨水流,極巨水流 / 极巨水流
+max-airstream,accuracy,,100
+max-airstream,damage_class,physical,vary
+max-airstream,name_zh-hant,極巨飛衝,極巨飛衝 / 极巨飞冲
+max-starfall,accuracy,,100
+max-starfall,damage_class,physical,vary
+max-starfall,name_zh-hant,極巨妖精,極巨妖精 / 极巨妖精
+max-wyrmwind,accuracy,,100
+max-wyrmwind,damage_class,physical,vary
+max-wyrmwind,name_zh-hant,極巨龍騎,極巨龍騎 / 极巨龙骑
+max-mindstorm,accuracy,,100
+max-mindstorm,damage_class,physical,vary
+max-mindstorm,name_zh-hant,極巨超能,極巨超能 / 极巨超能
+max-rockfall,accuracy,,100
+max-rockfall,damage_class,physical,vary
+max-rockfall,name_zh-hant,極巨岩石,極巨岩石 / 极巨岩石
+max-quake,accuracy,,100
+max-quake,damage_class,physical,vary
+max-quake,name_zh-hant,極巨大地,極巨大地 / 极巨大地
+max-darkness,accuracy,,100
+max-darkness,damage_class,physical,vary
+max-darkness,name_zh-hant,極巨惡霸,極巨惡霸 / 极巨恶霸
+max-overgrowth,accuracy,,100
+max-overgrowth,damage_class,physical,vary
+max-overgrowth,name_zh-hant,極巨草原,極巨草原 / 极巨草原
+max-steelspike,accuracy,,100
+max-steelspike,damage_class,physical,vary
+max-steelspike,name_zh-hant,極巨鋼鐵,極巨鋼鐵 / 极巨钢铁
+body-press,name_zh-hant,撲擊,撲擊 / 扑击
+decorate,name_zh-hant,裝飾,裝飾 / 装饰
+drum-beating,name_zh-hant,鼓擊,鼓擊 / 鼓击
+snap-trap,name_zh-hant,捕獸夾,捕獸夾 / 捕兽夹
+behemoth-blade,name_zh-hant,巨獸斬,巨獸斬 / 巨兽斩
+behemoth-bash,name_zh-hant,巨獸彈,巨獸彈 / 巨兽弹
+aura-wheel,name_it,Ruota d’Aura,Ruota d'Aura
+aura-wheel,name_zh-hant,氣場輪,氣場輪 / 气场轮
+breaking-swipe,name_zh-hant,廣域破壞,廣域破壞 / 广域破坏
+apple-acid,name_zh-hant,蘋果酸,蘋果酸 / 苹果酸
+grav-apple,name_zh-hant,萬有引力,萬有引力 / 万有引力
+spirit-break,name_zh-hant,靈魂衝擊,靈魂衝擊 / 灵魂冲击
+obstruct,name_zh-hant,攔堵,攔堵 / 拦堵
+meteor-assault,name_zh-hant,流星突擊,流星突擊 / 流星突击
+eternabeam,name_zh-hant,無極光束,無極光束 / 无极光束
+steel-beam,name_it,Raggio d’Acciaio,Raggio d'Acciaio
+steel-beam,name_zh-hant,鐵蹄光線,鐵蹄光線 / 铁蹄光线
+expanding-force,name_it,Vastenergia,Vasterngia
+expanding-force,name_zh-hant,廣域戰力,廣域戰力 / 广域战力
+steel-roller,name_zh-hant,鐵滾輪,鐵滾輪 / 铁滚轮
+scale-shot,name_zh-hant,鱗射,鱗射 / 鳞射
+shell-side-arm,damage_class,special,vary
+shell-side-arm,name_zh-hant,臂貝武器,臂貝武器 / 臂贝武器
+misty-explosion,name_zh-hant,薄霧炸裂,薄霧炸裂 / 薄雾炸裂
+grassy-glide,name_fr,Gliss’Herbe,Gliss'Herbe
+rising-voltage,name_zh-hant,電力上升,電力上升 / 电力上升
+terrain-pulse,name_zh-hant,大地波動,大地波動 / 大地波动
+skitter-smack,name_zh-hant,爬擊,爬擊 / 爬击
+lash-out,name_zh-hant,洩憤,洩憤 / 泄愤
+poltergeist,name_zh-hant,靈騷,靈騷 / 灵骚
+corrosive-gas,name_zh-hant,腐蝕氣體,腐蝕氣體 / 腐蚀气体
+coaching,name_zh-hant,指導,指導 / 指导
+triple-axel,name_zh-hant,三旋擊,三旋擊 / 三旋击
+dual-wingbeat,name_zh-hant,雙翼,雙翼 / 双翼
+scorching-sands,name_zh-hant,熱沙大地,熱沙大地 / 热沙大地
+jungle-healing,name_zh-hant,叢林治療,叢林治療 / 丛林治疗
+wicked-blow,name_zh-hant,暗冥強擊,暗冥強擊 / 暗冥强击
+surging-strikes,name_zh-hant,水流連打,水流連打 / 水流连打
+thunder-cage,name_zh-hant,雷電囚籠,雷電囚籠 / 雷电囚笼
+dragon-energy,name_zh-hant,巨龍威能,巨龍威能 / 巨龙威能
+freezing-glare,name_zh-hant,冰冷視線,冰冷視線 / 冰冷视线
+fiery-wrath,name_zh-hant,怒火中燒,怒火中燒 / 怒火中烧
+thunderous-kick,name_zh-hant,雷鳴蹴擊,雷鳴蹴擊 / 雷鸣蹴击
+eerie-spell,name_zh-hant,詭異咒語,詭異咒語 / 诡异咒语
+dire-claw,name_zh-hant,剋命爪,剋命爪 / 克命爪
+power-shift,name_zh-hant,力量轉換,力量轉換 / 力量转换
+springtide-storm,name_zh-hant,陽春風暴,陽春風暴 / 阳春风暴
+raging-fury,name_zh-hant,大憤慨,大憤慨 / 大愤慨
+wave-crash,name_zh-hant,波動衝,波動衝 / 波动冲
+chloroblast,name_zh-hant,葉綠爆震,葉綠爆震 / 叶绿爆震
+mountain-gale,name_zh-hant,冰山風,冰山風 / 冰山风
+victory-dance,name_zh-hant,勝利之舞,勝利之舞 / 胜利之舞
+headlong-rush,name_zh-hant,突飛猛撲,突飛猛撲 / 突飞猛扑
+barb-barrage,name_zh-hant,毒千針,毒千針 / 毒千针
+esper-wing,name_it,Ali d’Aura,Ali d'Aura
+esper-wing,name_zh-hant,氣場之翼,氣場之翼 / 气场之翼
+bitter-malice,name_zh-hant,冤冤相報,冤冤相報 / 冤冤相报
+shelter,name_zh-hant,閉關,閉關 / 闭关
+triple-arrows,name_zh-hant,三連箭,三連箭 / 三连箭
+infernal-parade,name_zh-hant,群魔亂舞,群魔亂舞 / 群魔乱舞
+ceaseless-edge,name_zh-hant,秘劍・千重濤,秘劍・千重濤 / 秘剑・千重涛
+bleakwind-storm,name_zh-hant,枯葉風暴,枯葉風暴 / 枯叶风暴
+wildbolt-storm,name_zh-hant,鳴雷風暴,鳴雷風暴 / 鸣雷风暴
+sandsear-storm,name_zh-hant,熱沙風暴,熱沙風暴 / 热沙风暴
+lunar-blessing,name_zh-hant,新月祈禱,新月祈禱 / 新月祈祷
+take-heart,name_zh-hant,勇氣填充,勇氣填充 / 勇气填充
+tera-blast,damage_class,special,vary
+tera-blast,name_zh-hant,太晶爆發,太晶爆發 / 太晶爆发
+silk-trap,name_zh-hant,線阱,線阱 / 线阱
+axe-kick,name_zh-hant,下壓踢,下壓踢 / 下压踢
+last-respects,name_zh-hant,掃墓,掃墓 / 扫墓
+lumina-crash,name_zh-hant,琉光衝激,琉光衝激 / 琉光冲激
+jet-punch,name_zh-hant,噴射拳,噴射拳 / 喷射拳
+spicy-extract,name_zh-hant,辣椒精華,辣椒精華 / 辣椒精华
+spin-out,name_zh-hant,疾速轉輪,疾速轉輪 / 疾速转轮
+population-bomb,name_zh-hant,鼠數兒,鼠數兒 / 鼠数儿
+revival-blessing,name_zh-hant,復生祈禱,復生祈禱 / 复生祈祷
+salt-cure,name_zh-hant,鹽醃,鹽醃 / 盐腌
+triple-dive,name_zh-hant,三連鑽,三連鑽 / 三连钻
+mortal-spin,name_zh-hant,晶光轉轉,晶光轉轉 / 晶光转转
+doodle,name_ko,배껴그리기,베껴그리기
+doodle,name_zh-hant,描繪,描繪 / 描绘
+kowtow-cleave,name_zh-hant,仆斬,仆斬 / 仆刀
+flower-trick,name_zh-hant,千變萬花,千變萬花 / 千变万花
+torch-song,name_zh-hant,閃焰高歌,閃焰高歌 / 闪焰高歌
+make-it-rain,name_it,Corsa all’Oro,Corsa all'Oro
+hydro-steam,name_zh-hant,水蒸氣,水蒸氣 / 水蒸气
+ruination,name_zh-hant,大災難,大災難 / 大灾难
+collision-course,name_ko,엑셀브레이크,액셀브레이크
+collision-course,name_zh-hant,全開猛撞,全開猛撞 / 全开猛撞
+electro-drift,name_zh-hant,閃電猛衝,閃電猛衝 / 闪电猛冲
+shed-tail,name_zh-hant,斷尾,斷尾 / 断尾
+chilly-reception,name_zh-hant,冷笑話,冷笑話 / 冷笑话
+tidy-up,name_zh-hant,大掃除,大掃除 / 大扫除
+pounce,name_zh-hant,蟲撲,蟲撲 / 虫扑
+chilling-water,name_zh-hant,潑冷水,潑冷水 / 泼冷水
+hyper-drill,name_zh-hant,強力鑽,強力鑽 / 强力钻
+twin-beam,name_zh-hant,雙光束,雙光束 / 双光束
+rage-fist,name_zh-hant,憤怒之拳,憤怒之拳 / 愤怒之拳
+armor-cannon,name_zh-hant,鎧農炮,鎧農炮 / 铠农炮
+bitter-blade,name_zh-hant,悔念劍,悔念劍 / 悔念剑
+double-shock,name_zh-hant,電光雙擊,電光雙擊 / 电光双击
+gigaton-hammer,name_zh-hant,巨力錘,巨力錘 / 巨力锤
+comeuppance,name_zh-hant,復仇,復仇 / 复仇
+blazing-torque,name_zh-hant,灼熱暴衝,灼熱暴衝 / 灼热暴冲
+wicked-torque,name_ko,다크액셀,Dark Axel
+wicked-torque,name_zh-hant,黑暗暴衝,黑暗暴衝 / 黑暗暴冲
+noxious-torque,name_ko,포이즌액셀,Poison Axel
+noxious-torque,name_zh-hant,劇毒暴衝,劇毒暴衝 / 剧毒暴冲
+combat-torque,name_ko,파이트액셀,Fight Axel
+combat-torque,name_zh-hant,格鬥暴衝,格鬥暴衝 / 格斗暴冲
+magical-torque,name_ko,매지컬액셀,Magical Axel
+magical-torque,name_zh-hant,魔法暴衝,魔法暴衝 / 魔法暴冲
+syrup-bomb,name_zh-hant,糖漿炸彈,糖漿炸彈 / 糖浆炸弹
+electro-shot,name_zh-hant,電光束,電光束 / 电光束
+tera-starstorm,damage_class,special,vary
+fickle-beam,name_zh-hant,隨機光,隨機光 / 随机光
+burning-bulwark,accuracy,0,
+burning-bulwark,name_zh-hant,火焰守護,火焰守護 / 火焰守护
+mighty-cleave,name_zh-hant,強刃攻擊,強刃攻擊 / 强刃攻击
+tachyon-cutter,accuracy,0,
+hard-press,name_zh-hant,硬壓,硬壓 / 硬压
+dragon-cheer,accuracy,0,
+dragon-cheer,name_zh-hant,龍聲鼓舞,龍聲鼓舞 / 龙声鼓舞
+alluring-voice,name_zh-hant,魅誘之聲,魅誘之聲 / 魅诱之声
+supercell-slam,name_zh-hant,閃電強襲,閃電強襲 / 闪电强袭
+upper-hand,name_zh-hant,快手還擊,快手還擊 / 快手还击
+malignant-chain,name_zh-hant,邪毒鎖鏈,邪毒鎖鏈 / 邪毒锁链
+shadow-rush,name_ja,ダークラッシュ,ダークアタック
+shadow-rush,name_fr,Charge Noire,Assaut Noir
+shadow-rush,name_de,Cryptoschlag,Cryptoknall
+shadow-rush,name_es,Carga Oscura,Vigor Oscuro
+shadow-rush,name_it,Ombroraffica,Ombrattacco
+shadow-blast,name_ja,ダークブラスト,ダークラッシュ
+shadow-blast,name_fr,Aéro Noir,Charge Noire
+shadow-blast,name_de,Cryptostrahl,Cryptoschlag
+shadow-blast,name_es,Soplo Oscuro,Carga Oscura
+shadow-blast,name_it,Ombrolame,Ombroraffica
+shadow-blitz,name_ja,ダークアタック,ダークブレイク
+shadow-blitz,name_fr,Assaut Noir,Bélier Noir
+shadow-blitz,name_de,Cryptoknall,Cryptohieb
+shadow-blitz,name_es,Vigor Oscuro,Brío Oscuro
+shadow-blitz,name_it,Ombrattacco,Ombrospinta
+shadow-bolt,name_ja,ダークサンダー,ダークエンド
+shadow-bolt,name_fr,Éclair Noir,Retour Noir
+shadow-bolt,name_de,Cryptoblitz,Cryptoretour
+shadow-bolt,name_es,Rayo Oscuro,Fin Oscuro
+shadow-bolt,name_it,Fulminombra,Fineoscuro
+shadow-break,name_ja,ダークブレイク,ダークウェーブ
+shadow-break,name_fr,Bélier Noir,Onde Noire
+shadow-break,name_de,Cryptohieb,Cryptowelle
+shadow-break,name_es,Brío Oscuro,Onda Oscura
+shadow-break,name_it,Ombrospinta,Ondaoscura
+shadow-chill,name_ja,ダークフリーズ,ダークレイブ
+shadow-chill,name_fr,Froid Noir,Rage Noire
+shadow-chill,name_de,Cryptofrost,Cryptobeben
+shadow-chill,name_es,Hielo Oscuro,Rabia Oscura
+shadow-chill,name_it,Gelodombra,Ombrolancia
+shadow-end,name_ja,ダークエンド,ダークストーム
+shadow-end,name_fr,Retour Noir,Typhon Noir
+shadow-end,name_de,Cryptoretour,Cryptosturm
+shadow-end,name_es,Fin Oscuro,Tifón Oscuro
+shadow-end,name_it,Fineoscuro,Turbinombra
+shadow-fire,name_fr,Ardeur Noir,Ardeur Noire
+shadow-rave,name_ja,ダークレイブ,ダークサンダー
+shadow-rave,name_fr,Rage Noire,Éclair Noir
+shadow-rave,name_de,Cryptobeben,Cryptoblitz
+shadow-rave,name_es,Rabia Oscura,Rayo Oscuro
+shadow-rave,name_it,Ombrolancia,Fulminombra
+shadow-storm,name_ja,ダークストーム,ダークフリーズ
+shadow-storm,name_fr,Typhon Noir,Froid Noir
+shadow-storm,name_de,Cryptosturm,Cryptofrost
+shadow-storm,name_es,Tifón Oscuro,Hielo Oscuro
+shadow-storm,name_it,Turbinombra,Gelodombra
+shadow-wave,name_ja,ダークウェーブ,ダークブラスト
+shadow-wave,name_fr,Ondo Noire,Aéro Noir
+shadow-wave,name_de,Cryptowelle,Cryptostrahl
+shadow-wave,name_es,Onda Oscura,Soplo Oscuro
+shadow-wave,name_it,Ondascura,Ombrolame
+shadow-down,name_ja,ダークダウン,ダークウェザー
+shadow-down,name_fr,Souffle Noir,Ciel Noir
+shadow-down,name_de,Cryptobann,Cryptowetter
+shadow-down,name_es,Ocaso Oscuro,Cielo Oscuro
+shadow-down,name_it,Declinoscuro,Cieloscuro
+shadow-half,name_ja,ダークハーフ,ダークホールド
+shadow-half,name_fr,Chute Noire,Blocage Noir
+shadow-half,name_de,Cryptozorn,Cryptofessel
+shadow-half,name_es,Mitad Oscura,Traba Oscura
+shadow-half,name_it,Iraoscura,Retedombra
+shadow-hold,accuracy,,80
+shadow-hold,name_ja,ダークホールド,ダークミスト
+shadow-hold,name_fr,Blocage Noir,Brume Noire
+shadow-hold,name_de,Cryptofessel,Cryptodunst
+shadow-hold,name_es,Traba Oscura,Bruma Oscura
+shadow-hold,name_it,Retedombra,Nebbiascura
+shadow-mist,name_ja,ダークミスト,ダークパニック
+shadow-mist,name_fr,Brume Noire,Folie Noire
+shadow-mist,name_de,Cryptodunst,Cryptochaos
+shadow-mist,name_es,Bruma Oscura,Miedo Oscuro
+shadow-mist,name_it,Nebbiascura,Ombropanico
+shadow-panic,accuracy,90,60
+shadow-panic,name_ja,ダークパニック,ダークダウン
+shadow-panic,name_fr,Folie Noire,Souffle Noir
+shadow-panic,name_de,Cryptochaos,Cryptobann
+shadow-panic,name_es,Miedo Oscuro,Ocaso Oscuro
+shadow-panic,name_it,Ombrapanico,Declinoscuro
+shadow-shed,accuracy,,100
+shadow-sky,accuracy,,100
+shadow-sky,name_ja,ダークウェザー,ダークハーフ
+shadow-sky,name_fr,Ciel Noir,Chute Noire
+shadow-sky,name_de,Cryptowetter,Cryptozorn
+shadow-sky,name_es,Cielo Oscuro,Mitad Oscura
+shadow-sky,name_it,Cieloscuro,Iraoscura
+breakneck-blitz,_row_,missing,present
+all-out-pummeling,_row_,missing,present
+supersonic-skystrike,_row_,missing,present
+acid-downpour,_row_,missing,present
+tectonic-rage,_row_,missing,present
+continental-crush,_row_,missing,present
+savage-spin-out,_row_,missing,present
+never-ending-nightmare,_row_,missing,present
+corkscrew-crash,_row_,missing,present
+inferno-overdrive,_row_,missing,present
+hydro-vortex,_row_,missing,present
+bloom-doom,_row_,missing,present
+gigavolt-havoc,_row_,missing,present
+shattered-psyche,_row_,missing,present
+subzero-slammer,_row_,missing,present
+devastating-drake,_row_,missing,present
+black-hole-eclipse,_row_,missing,present
+g-max-vine-lash,_row_,missing,present
+g-max-wildfire,_row_,missing,present
+g-max-cannonade,_row_,missing,present
+g-max-befuddle,_row_,missing,present
+g-max-volt-crash,_row_,missing,present
+g-max-gold-rush,_row_,missing,present
+g-max-chi-strike,_row_,missing,present
+g-max-terror,_row_,missing,present
+g-max-foam-burst,_row_,missing,present
+g-max-resonance,_row_,missing,present
+g-max-cuddle,_row_,missing,present
+g-max-replenish,_row_,missing,present
+g-max-malodor,_row_,missing,present
+g-max-meltdown,_row_,missing,present
+g-max-drum-solo,_row_,missing,present
+g-max-fireball,_row_,missing,present
+g-max-hydrosnipe,_row_,missing,present
+g-max-wind-rage,_row_,missing,present
+g-max-gravitas,_row_,missing,present
+g-max-stonesurge,_row_,missing,present
+g-max-volcalith,_row_,missing,present
+g-max-tartness,_row_,missing,present
+g-max-sweetness,_row_,missing,present
+g-max-sandblast,_row_,missing,present
+g-max-stun-shock,_row_,missing,present
+g-max-centiferno,_row_,missing,present
+g-max-smite,_row_,missing,present
+g-max-snooze,_row_,missing,present
+g-max-finale,_row_,missing,present
+g-max-steelsurge,_row_,missing,present
+g-max-depletion,_row_,missing,present
+g-max-one-blow,_row_,missing,present
+g-max-rapid-flow,_row_,missing,present

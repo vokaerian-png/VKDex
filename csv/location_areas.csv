@@ -1,0 +1,1540 @@
+id,location,area,game_index,name_en,name_fr,name_de
+1,canalave-city,,1,Canalave City,Joliberges,Fleetburg
+2,eterna-city,,2,Eterna City,Vestigion,Ewigenau
+3,pastoria-city,,3,Pastoria City,Verchamps,Weideburg
+4,sunyshore-city,,4,Sunyshore City,Rivamar,Sonnewik
+5,sinnoh-pokemon-league,,5,Sinnoh League,Ligue Pokémon,Pokémon-Liga
+6,oreburgh-mine,1f,6,Oreburgh mine (1F),Mine Charbourg (RdC),Erzelingen-Mine (EG)
+7,oreburgh-mine,b1f,7,Oreburgh mine (B1F),Mine Charbourg (sous-sol),Erzelingen-Mine (1.UG)
+8,valley-windworks,,8,Valley Windworks,Les Eoliennes,Windkraftwerk
+9,eterna-forest,,9,Eterna Forest,Forêt Vestigion,Ewigwald
+10,fuego-ironworks,,10,Fuego Ironworks,Forge Fuego,Feurio-Hütte
+11,mt-coronet,1f-route-207,11,Mount Coronet (1F Road 207),Mont Couronné (RdC côté route 207),Kraterberg (EG Route 207)
+12,mt-coronet,2f,12,Mount Coronet (2F),Mont Couronné (1er ét.),Kraterberg (1.OG)
+13,mt-coronet,3f,13,Mount Coronet (3F),Mont Couronné (2e ét.),Kraterberg (2.OG)
+14,mt-coronet,exterior-snowfall,14,Mount Coronet (exterior snowfall),Mont Couronné (extérieur neige),Kraterberg (Außenbereich Schneefall)
+15,mt-coronet,exterior-blizzard,15,Mount Coronet (exterior blizzard),Mont Couronné (extérieur blizzard),Kraterberg (Außenbereich Schneesturm)
+16,mt-coronet,4f,16,Mount Coronet (4F),Mont Couronné (3e ét.),Kraterberg (3.OG)
+17,mt-coronet,4f-small-room,17,Mount Coronet (4F small room),"Mont Couronné (3e ét., petite salle)","Kraterberg (3.OG, kleiner Raum)"
+18,mt-coronet,5f,18,Mount Coronet (5F),Mont Couronné (4e ét.),Kraterberg (4.OG)
+19,mt-coronet,6f,19,Mount Coronet (6F),Mont Couronné (5e ét.),Kraterberg (5.OG)
+20,mt-coronet,1f-from-exterior,20,Mount Coronet (1F from exterior),Mont Couronné (RdC depuis l'extérieur),Kraterberg (EG vom Außenbereich)
+21,mt-coronet,1f-route-216,21,Mount Coronet (1F Road 216),Mont Couronné (RdC côté route 216),Kraterberg (EG Route 216)
+22,mt-coronet,1f-route-211,22,Mount Coronet (1F Road 211),Mont Couronné (RdC côté route 211),Kraterberg (EG Route 211)
+23,mt-coronet,b1f,23,Mount Coronet (B1F),Mont Couronné (sous-sol),Kraterberg (1.UG)
+24,great-marsh,area-1,24,Great Marsh Area 1,Grand Marais Zone 1,Großmoor Areal 1
+25,great-marsh,area-2,25,Great Marsh Area 2,Grand Marais Zone 2,Großmoor Areal 2
+26,great-marsh,area-3,26,Great Marsh Area 3,Grand Marais Zone 3,Großmoor Areal 3
+27,great-marsh,area-4,27,Great Marsh Area 4,Grand Marais Zone 4,Großmoor Areal 4
+28,great-marsh,area-5,28,Great Marsh Area 5,Grand Marais Zone 5,Großmoor Areal 5
+29,great-marsh,area-6,29,Great Marsh Area 6,Grand Marais Zone 6,Großmoor Areal 6
+30,solaceon-ruins,2f,30,Solaceon Ruins (2F),Ruines Bonville (étage),Trostu-Ruinen (1.OG)
+31,solaceon-ruins,1f,31,Solaceon Ruins (1F),Ruines Bonville (RdC),Trostu-Ruinen (EG)
+32,solaceon-ruins,b1f-a,32,Solaceon Ruins (B1F A),Ruines Bonville (1er s-sol A),Trostu-Ruinen (1.UG A)
+33,solaceon-ruins,b1f-b,33,Solaceon Ruins (B1F B),Ruines Bonville (1er s-sol B),Trostu-Ruinen (1.UG B)
+34,solaceon-ruins,b1f-c,34,Solaceon Ruins (B1F C),Ruines Bonville (1er s-sol C),Trostu-Ruinen (1.UG C)
+35,solaceon-ruins,b2f-a,35,Solaceon Ruins (B2F A),Ruines Bonville (2e s-sol A),Trostu-Ruinen (2.UG A)
+36,solaceon-ruins,b2f-b,36,Solaceon Ruins (B2F B),Ruines Bonville (2e s-sol B),Trostu-Ruinen (2.UG B)
+37,solaceon-ruins,b2f-c,37,Solaceon Ruins (B2F C),Ruines Bonville (2e s-sol C),Trostu-Ruinen (2.UG C)
+38,solaceon-ruins,b3f-a,38,Solaceon Ruins (B3F A),Ruines Bonville (3e s-sol A),Trostu-Ruinen (3.UG A)
+39,solaceon-ruins,b3f-b,39,Solaceon Ruins (B3F B),Ruines Bonville (3e s-sol B),Trostu-Ruinen (3.UG B)
+40,solaceon-ruins,b3f-c,40,Solaceon Ruins (B3F C),Ruines Bonville (3e s-sol C),Trostu-Ruinen (3.UG C)
+41,solaceon-ruins,b3f-d,41,Solaceon Ruins (B3F D),Ruines Bonville (3e s-sol D),Trostu-Ruinen (3.UG D)
+42,solaceon-ruins,b3f-e,42,Solaceon Ruins (B3F E),Ruines Bonville (3e s-sol E),Trostu-Ruinen (3.UG E)
+43,solaceon-ruins,b4f-a,43,Solaceon Ruins (B4F A),Ruines Bonville (4e s-sol A),Trostu-Ruinen (4.UG A)
+44,solaceon-ruins,b4f-b,44,Solaceon Ruins (B4F B),Ruines Bonville (4e s-sol B),Trostu-Ruinen (4.UG B)
+45,solaceon-ruins,b4f-c,45,Solaceon Ruins (B4F C),Ruines Bonville (4e s-sol C),Trostu-Ruinen (4.UG C)
+46,solaceon-ruins,b4f-d,46,Solaceon Ruins (B4F D),Ruines Bonville (4e s-sol D),Trostu-Ruinen (4.UG D)
+47,solaceon-ruins,b5f,47,Solaceon Ruins (B5F),Ruines Bonville (5e s-sol),Trostu-Ruinen (5.UG)
+48,sinnoh-victory-road,1f,48,Victory Road (1F),Route Victoire (RdC),Siegesstraße (EG)
+49,sinnoh-victory-road,2f,49,Victory Road (2F),Route Victoire (étage),Siegesstraße (1.OG)
+50,sinnoh-victory-road,b1f,50,Victory Road (B1F),Route Victoire (sous-sol),Siegesstraße (1.UG)
+51,sinnoh-victory-road,inside-b1f,51,Victory Road (inside B1F),Route Victoire (intérieur sous-sol),"Siegesstraße (innen, 1.UG)"
+52,sinnoh-victory-road,inside,52,Victory Road (inside),Route Victoire (intérieur),Siegesstraße inside
+53,sinnoh-victory-road,inside-exit,53,Victory Road (inside exit),"Route Victoire (intérieur, sortie)","Siegesstraße (innen, Ausgang)"
+54,ravaged-path,,54,Ravaged Path,Chemin Rocheux,Verwüsteter Pfad
+55,oreburgh-gate,1f,55,Oreburgh Gate (1F),Entrée Charbourg (RdC),Erzelingen-Tor (EG)
+56,oreburgh-gate,b1f,56,Oreburgh Gate (B1F),Entrée Charbourg (sous-sol),Erzelingen-Tor (1.UG)
+57,stark-mountain,,57,Stark Mountain exterior,Mont Abrupt (extérieur),Kahlberg (Außenbereich)
+58,stark-mountain,entrance,58,Stark Mountain entrance,Mont Abrupt (entrée),Kahlberg (Eingang)
+59,stark-mountain,inside,59,Stark Mountain main cavern,Mont Abrupt (caverne principale),Kahlberg (Hauptgrotte)
+60,sendoff-spring,,60,Sendoff Spring,Source Adieu,Scheidequelle
+61,turnback-cave,pillar-1,61,Turnback Cave (pillar 1),Grotte Retour (1er pilier),Höhle der Umkehr (Säule 1)
+62,turnback-cave,pillar-2,62,Turnback Cave (pillar 2),Grotte Retour (2e pilier),Höhle der Umkehr (Säule 2)
+63,turnback-cave,pillar-3,63,Turnback Cave (pillar 3),Grotte Retour (3e pilier),Höhle der Umkehr (Säule 3)
+64,turnback-cave,before-pillar-1,64,Turnback Cave (before pillar 1),Grotte Retour (avant 1er pilier),Höhle der Umkehr (vor Säule 1)
+70,turnback-cave,between-pillars-1-and-2,70,Turnback Cave (between pillars 1 and 2),Grotte Retour (entre 1er et 2e piliers),Höhle der Umkehr (zwischen Säule 1 und 2)
+76,turnback-cave,between-pillars-2-and-3,76,Turnback Cave (between pillars 2 and 3),Grotte Retour (entre 2e et 3e piliers),Höhle der Umkehr (zwischen Säule 2 und 3)
+82,turnback-cave,after-pillar-3,82,Turnback Cave (after pillar 3),Grotte Retour (après 3e pilier),Höhle der Umkehr (nach Säule 3)
+107,snowpoint-temple,1f,107,Snowpoint Temple (1F),Temple Frimapic (RdC),Blizzach-Tempel (EG)
+108,snowpoint-temple,b1f,108,Snowpoint Temple (B1F),Temple Frimapic (1er s-sol),Blizzach-Tempel (1.UG)
+109,snowpoint-temple,b2f,109,Snowpoint Temple (B2F),Temple Frimapic (2e s-sol),Blizzach-Tempel (2.UG)
+110,snowpoint-temple,b3f,110,Snowpoint Temple (B3F),Temple Frimapic (3e s-sol),Blizzach-Tempel (3.UG)
+111,snowpoint-temple,b4f,111,Snowpoint Temple (B4F),Temple Frimapic (4e s-sol),Blizzach-Tempel (4.UG)
+112,snowpoint-temple,b5f,112,Snowpoint Temple (B5F),Temple Frimapic (5e s-sol),Blizzach-Tempel (5.UG)
+113,wayward-cave,1f,113,Wayward Cave (1F),Grotte Revèche (RdC),Bizarre Höhle (EG)
+114,wayward-cave,b1f,114,Wayward Cave (B1F),Grotte Revèche (sous-sol),Bizarre Höhle (1.UG)
+115,ruin-maniac-cave,0-9-different-unown-caught,115,Ruin Maniac Cave (0–9 different Unown caught),Grotte Ruinemaniac (de 0 à 9 Zarbi différents capturés),Höhle des Wühlers (0–9 verschiedene Icognito gefangen)
+116,ruin-maniac-cave,10-25-different-unown-caught,116,Ruin Maniac Cave (10–25 different Unown caught),Grotte Ruinemaniac (de 10 à 25 Zarbi différents capturés),Höhle des Wühlers (10–25 verschiedene Icognito gefangen)
+117,maniac-tunnel,26-plus-different-unown-caught,117,Maniac Tunnel (26+ different Unown caught),Tunnel Ruinemaniac (+ de 26 Zarbi différents attrapés),Wühler-Tunnel (26+ verschiedene Icognito gefangen)
+118,trophy-garden,,118,Trophy Garden,Jardin Trophée,Pokémon-Landgut
+119,iron-island,,119,Iron Island area,Ile de Fer (alentours),Eiseninsel Gebiet
+120,iron-island,1f,120,Iron Island (1F),Ile de Fer (RdC),Eiseninsel (EG)
+121,iron-island,b1f-left,121,Iron Island (B1F left),Ile de Fer (1er s-sol gauche),Eiseninsel (1.UG links)
+122,iron-island,b1f-right,122,Iron Island (B1F right),Ile de Fer (1er s-sol droit),Eiseninsel (1.UG rechts)
+123,iron-island,b2f-right,123,Iron Island (B2F right),Ile de Fer (2e s-sol droit),Eiseninsel (2.UG rechts)
+124,iron-island,b2f-left,124,Iron Island (B2F left),Ile de Fer (2e s-sol gauche),Eiseninsel (2.UG links)
+125,iron-island,b3f,125,Iron Island (B3F),Ile de Fer (3e s-sol),Eiseninsel (3.UG)
+126,old-chateau,entrance,126,Old Chateau (entrance),Vieux Château (entrée),Alte Villa Eingang
+127,old-chateau,dining-room,127,Old Chateau (dining room),Vieux Château (salle à manger),Alte Villa (Speisesaal)
+128,old-chateau,2f-private-room,128,Old Chateau (2F private room),Vieux Château (étage pièce privée),Alte Villa (1.OG privater Raum)
+129,old-chateau,2f,129,Old Chateau (2F),Vieux Château (étage),Alte Villa (1.OG)
+130,old-chateau,2f-leftmost-room,130,Old Chateau (2F leftmost room),Vieux Château (étage pièce tout à gauche),Alte Villa (1.OG Zimmer ganz links)
+131,old-chateau,2f-left-room,131,Old Chateau (2F left room),Vieux Château (étage pièce centre gauche),Alte Villa (1.OG Zimmer links)
+132,old-chateau,2f-middle-room,132,Old Chateau (2F middle room),Vieux Château (étage pièce du centre),Alte Villa (1.OG Zimmer mitte)
+133,old-chateau,2f-right-room,133,Old Chateau (2F right room),Vieux Château (étage pièce centre droite),Alte Villa (1.OG Zimmer rechts)
+134,old-chateau,2f-rightmost-room,134,Old Chateau (2F rightmost room),Vieux Château (étage pièce tout à droite),Alte Villa (1.OG Zimmer ganz rechts)
+135,lake-verity,before-galactic-intervention,135,Lake Verity (before Galactic intervention),Lac Vérité (avant la team Galaxie),See der Wahrheit (vor Team Galaktik)
+136,lake-verity,after-galactic-intervention,136,Lake Verity (after Galactic intervention),Lac Vérité (après la team Galaxie),See der Wahrheit (nach Team Galaktik)
+137,lake-valor,,137,Lake Valor,Lac Courage,See der Kühnheit
+138,lake-acuity,,138,Lake Acuity,Lac Savoir,See der Stärke
+139,valor-lakefront,,139,Valor Lakefront,Rive Lac Courage,Kühnheitsufer
+140,acuity-lakefront,,140,Acuity Lakefront,Rive Lac Savoir,Stärkeufer
+141,sinnoh-route-201,,141,Road 201,Route 201,Route 201
+142,sinnoh-route-202,,142,Road 202,Route 202,Route 202
+143,sinnoh-route-203,,143,Road 203,Route 203,Route 203
+144,sinnoh-route-204,south-towards-jubilife-city,144,"Road 204 (south, towards Jubilife City)","Route 204 (sud, vers Féli-Cité)","Route 204 (Süden, Richtung Jubelstadt)"
+145,sinnoh-route-204,north-towards-floaroma-town,145,"Road 204 (north, towards Floaroma Town)","Route 204 (nord, vers Floraville)","Route 204 (Norden, Richtung Flori)"
+146,sinnoh-route-205,south-towards-floaroma-town,146,"Road 205 (south, towards Floaroma Town)","Route 205 (sud, vers Floraville)","Route 205 (Süden, Richtung Flori)"
+147,sinnoh-route-205,east-towards-eterna-city,147,"Road 205 (east, towards Eterna City)","Route 205 (est, vers Vestigion)","Route 205 (Osten, Richtung Ewigenau)"
+148,sinnoh-route-206,,148,Road 206,Route 206,Route 206
+149,sinnoh-route-207,,149,Road 207,Route 207,Route 207
+150,sinnoh-route-208,,150,Road 208,Route 208,Route 208
+151,sinnoh-route-209,,151,Road 209,Route 209,Route 209
+152,lost-tower,1f,152,Lost Tower (1F),Tour Perdue (RdC),Turm der Ruhenden (EG)
+153,lost-tower,2f,153,Lost Tower (2F),Tour Perdue (1er ét.),Turm der Ruhenden (1.OG)
+154,lost-tower,3f,154,Lost Tower (3F),Tour Perdue (2e ét.),Turm der Ruhenden (2.OG)
+155,lost-tower,4f,155,Lost Tower (4F),Tour Perdue (3e ét.),Turm der Ruhenden (3.OG)
+156,lost-tower,5f,156,Lost Tower (5F),Tour Perdue (4e ét.),Turm der Ruhenden (4.OG)
+157,sinnoh-route-210,south-towards-solaceon-town,157,"Road 210 (south, towards Solaceon Town)","Route 210 (sud, vers Bonville)","Route 210 (Süden, Richtung Trostu)"
+158,sinnoh-route-210,west-towards-celestic-town,158,"Road 210 (west, towards Celestic Town)","Route 210 (ouest, vers Celestia)","Route 210 (Westen, Richtung Elyses)"
+159,sinnoh-route-211,west-towards-eterna-city,159,"Road 211 (west, towards Eterna City)","Route 211 (ouest, vers Vestigion)","Route 211 (Westen, Richtung Ewigenau)"
+160,sinnoh-route-211,east-towards-celestic-town,160,"Road 211 (east, towards Celestic Town)","Route 211 (est, vers Celestia)","Route 211 (Osten, Richtung Elyses)"
+161,sinnoh-route-212,north-towards-hearthome-city,161,"Road 212 (north, towards Hearthome City)","Route 212 (nord, vers Unionpolis)","Route 212 (Norden, Richtung Herzhofen)"
+162,sinnoh-route-212,east-towards-pastoria-city,162,"Road 212 (east, towards Pastoria City)","Route 212 (est, vers Verchamps)","Route 212 (Osten, Richtung Weideburg)"
+163,sinnoh-route-213,,163,Road 213,Route 213,Route 213
+164,sinnoh-route-214,,164,Road 214,Route 214,Route 214
+165,sinnoh-route-215,,165,Road 215,Route 215,Route 215
+166,sinnoh-route-216,,166,Road 216,Route 216,Route 216
+167,sinnoh-route-217,,167,Road 217,Route 217,Route 217
+168,sinnoh-route-218,,168,Road 218,Route 218,Route 218
+169,sinnoh-route-219,,169,Road 219,Route 219,Route 219
+170,sinnoh-route-221,,170,Road 221,Route 221,Route 221
+171,sinnoh-route-222,,171,Road 222,Route 222,Route 222
+172,sinnoh-route-224,,172,Road 224,Route 224,Route 224
+173,sinnoh-route-225,,173,Road 225,Route 225,Route 225
+174,sinnoh-route-227,,174,Road 227,Route 227,Route 227
+175,sinnoh-route-228,,175,Road 228,Route 228,Route 228
+176,sinnoh-route-229,,176,Road 229,Route 229,Route 229
+177,twinleaf-town,,177,Twinleaf Town,Bonaugure,Zweiblattdorf
+178,celestic-town,,178,Celestic Town,Célestia,Elyses
+179,resort-area,,179,Resort Area,Aire de Détente,Erholungsareal
+180,sinnoh-sea-route-220,,180,Road 220,Route 220,Route 220
+181,sinnoh-sea-route-223,,181,Road 223,Route 223,Route 223
+182,sinnoh-sea-route-226,,182,Road 226,Route 226,Route 226
+183,sinnoh-sea-route-230,,183,Road 230,Route 230,Route 230
+184,new-bark-town,,1,New Bark Town,Bourg Geon,Neuborkia
+185,johto-route-29,,2,Road 29,Route 29,Route 29
+186,cherrygrove-city,,3,Cherrygrove City,Ville Griotte,Rosalia City
+187,johto-route-30,,4,Road 30,Route 30,Route 30
+188,johto-route-31,,5,Road 31,Route 31,Route 31
+189,violet-city,,6,Violet City,Mauville,Viola City
+190,sprout-tower,2f,7,Sprout Tower (2F),Tour CHETIFLOR (1er ét.),Knofensa-Turm (1.OG)
+191,sprout-tower,3f,8,Sprout Tower (3F),Tour CHETIFLOR (2e ét.),Knofensa-Turm (2.OG)
+192,johto-route-32,,9,Road 32,Route 32,Route 32
+193,ruins-of-alph,outside,10,Ruins of Alph (outside),Ruines d'Alpha (extérieur),Alph-Ruinen (draußen)
+194,ruins-of-alph,interior-a,11,Ruins of Alph (interior A),Ruines d'Alpha (intérieur A),Alph-Ruinen (Innenbereich A)
+195,ruins-of-alph,interior-b,12,Ruins of Alph (interior B),Ruines d'Alpha (intérieur B),Alph-Ruinen (Innenbereich B)
+196,ruins-of-alph,interior-c,13,Ruins of Alph (interior C),Ruines d'Alpha (intérieur C),Alph-Ruinen (Innenbereich C)
+197,ruins-of-alph,interior-d,14,Ruins of Alph (interior D),Ruines d'Alpha (intérieur D),Alph-Ruinen (Innenbereich D)
+198,union-cave,1f,15,Union Cave (1F),Caves Jumelles (RdC),Einheitstunnel (EG)
+199,union-cave,b1f,16,Union Cave (B1F),Caves Jumelles (1er s-sol),Einheitstunnel (1.UG)
+200,union-cave,b2f,17,Union Cave (B2F),Caves Jumelles (2e s-sol),Einheitstunnel (2.UG)
+201,johto-route-33,,18,Road 33,Route 33,Route 33
+202,slowpoke-well,1f,19,Slowpoke Well (1F),Puits RAMOLOSS (RdC),Flegmon-Brunnen (EG)
+203,slowpoke-well,b1f,20,Slowpoke Well (B1F),Puits RAMOLOSS (Sous-sol),Flegmon-Brunnen (1.UG)
+204,ilex-forest,,21,Ilex Forest,Bois aux Chênes,Steineichenwald
+205,johto-route-34,,22,Road 34,Route 34,Route 34
+206,johto-route-35,,23,Road 35,Route 35,Route 35
+207,national-park,,24,National Park,Parc Naturel,Nationalpark
+208,unknown-all-bugs,,25,Unknown Area; all bugs,Zone inconnue ; que des insectes,Unbekanntes Gebiet; nur Käfer
+209,johto-route-36,,26,Road 36,Route 36,Route 36
+210,johto-route-37,,27,Road 37,Route 37,Route 37
+211,ecruteak-city,,28,Ecruteak City,Rosalia,Teak City
+212,burned-tower,1f,29,Burned Tower (1F),Tour Cendrée (RdC),Turmruine (EG)
+213,burned-tower,b1f,30,Burned Tower (B1F),Tour Cendrée (sous-sol),Turmruine (1.UG)
+214,bell-tower,2f,31,Bell Tower (2F),Tour Carillon (1er ét.),Glockenturm (1.OG)
+215,bell-tower,3f,32,Bell Tower (3F),Tour Carillon (2e ét.),Glockenturm (2.OG)
+216,bell-tower,4f,33,Bell Tower (4F),Tour Carillon (3e ét.),Glockenturm (3.OG)
+217,bell-tower,5f,34,Bell Tower (5F),Tour Carillon (4e ét.),Glockenturm (4.OG)
+218,bell-tower,6f,35,Bell Tower (6F),Tour Carillon (5e ét.),Glockenturm (5.OG)
+219,bell-tower,7f,36,Bell Tower (7F),Tour Carillon (6e ét.),Glockenturm (6.OG)
+220,bell-tower,8f,37,Bell Tower (8F),Tour Carillon (7e ét.),Glockenturm (7.OG)
+221,bell-tower,9f,38,Bell Tower (9F),Tour Carillon (8e ét.),Glockenturm (8.OG)
+222,johto-route-38,,39,Road 38,Route 38,Route 38
+223,johto-route-39,,40,Road 39,Route 39,Route 39
+224,olivine-city,,41,Olivine City,Oliville,Oliviana City
+225,johto-sea-route-40,,42,Road 40,Route 4,Route 40
+226,johto-sea-route-41,,43,Road 41,Route 41,Route 41
+227,whirl-islands,1f,44,Whirl Islands (1F),Tourb'Iles (RdC),Strudelinseln (EG)
+228,whirl-islands,b1f,45,Whirl Islands (B1F),Tourb'Iles (1er s-sol),Strudelinseln (1.UG)
+229,whirl-islands,empty-floor-x,46,Whirl Islands (empty floor X),Tourb'Iles (étage vide X),Strudelinseln empty floor X
+230,whirl-islands,b2f,47,Whirl Islands (B2F),Tourb'Iles (2e s-sol),Strudelinseln (2.UG)
+231,whirl-islands,empty-floor-y,48,Whirl Islands (empty floor Y),Tourb'Iles (étage vide Y),Strudelinseln empty floor Y
+232,whirl-islands,b3f,49,Whirl Islands (B3F),Tourb'Iles (3e s-sol),Strudelinseln (3.UG)
+235,cianwood-city,,52,Cianwood City,Irisia,Anemonia City
+236,johto-route-42,,53,Road 42,Route 42,Route 42
+237,mt-mortar,1f,54,Mount Mortar (1F),Mont Creuset (RdC),Kesselberg (EG)
+238,mt-mortar,lower-cave,55,Mount Mortar (Lower Cave),Mont Creuset (caverne inférieure),Kesselberg (untere Höhle)
+239,mt-mortar,upper-cave,56,Mount Mortar (Upper Cave),Mont Creuset (caverne supérieure),Kesselberg (obere Höhle)
+240,mt-mortar,b1f,57,Mount Mortar (B1F),Mont Creuset (sous-sol),Kesselberg (1.UG)
+241,johto-route-43,,58,Road 43,Route 43,Route 43
+242,lake-of-rage,,59,Lake of Rage,Lac Colère,See des Zorns
+243,johto-route-44,,60,Road 44,Route 44,Route 44
+244,ice-path,1f,61,Ice Path (1F),Route de Glace (RdC),Eispfad (EG)
+245,ice-path,b1f,62,Ice Path (B1F),Route de Glace (1er s-sol),Eispfad (1.UG)
+246,ice-path,b2f,63,Ice Path (B2F),Route de Glace (2e s-sol),Eispfad (2.UG)
+247,ice-path,b3f,64,Ice Path (B3F),Route de Glace (3e s-sol),Eispfad (3.UG)
+249,blackthorn-city,,66,Blackthorn City,Ebènelle,Ebenholz City
+250,dragons-den,,67,Dragon's Den,Antre du Dragon,Drachenhöhle
+251,johto-route-45,,68,Road 45,Route 45,Route 45
+252,johto-route-46,,69,Road 46,Route 46,Route 46
+253,dark-cave,violet-city-entrance,70,Dark Cave (Violet City entrance),Antre Noir (entrée Mauville),Dunkelhöhle (Viola City Eingang)
+254,dark-cave,blackthorn-city-entrance,71,Dark Cave (Blackthorn City entrance),Antre Noir (entrée Ebènelle),Dunkelhöhle (Ebenholz City Eingang)
+255,johto-route-47,,72,Road 47,Route 47,Route 47
+256,mt-moon,mt-moon-square,73,Mount Moon Square,Aire de repos du Mont Sélénite,Mondbergspitze
+257,unknown-all-poliwag,,74,Unknown Area; all Poliwag,Zone inconnue ; que des Ptitard,Unbekanntes Gebiet; nur Quapsel
+258,seafoam-islands,1f,75,Seafoam Islands (1F),Iles Ecume (RdC),Seeschauminseln (EG)
+259,seafoam-islands,b1f,76,Seafoam Islands (B1F),Iles Ecume (1er s-sol),Seeschauminseln (1.UG)
+260,seafoam-islands,b2f,77,Seafoam Islands (B2F),Iles Ecume (2e s-sol),Seeschauminseln (2.UG)
+261,seafoam-islands,b3f,78,Seafoam Islands (B3F),Iles Ecume (3e s-sol),Seeschauminseln (3.UG)
+262,seafoam-islands,b4f,79,Seafoam Islands (B4F),Iles Ecume (4e s-sol),Seeschauminseln (4.UG)
+263,mt-silver,2f,80,Mount Silver (2F),Mont Argenté (1er étage),Silberberg (1.OG)
+264,mt-silver,1f-top,81,Mount Silver (1F top),Mont Argenté (RdC haut),Silberberg 1F top
+265,mt-silver,4f,82,Mount Silver (4F),Mont Argenté (3e étage),Silberberg (3.OG)
+266,johto-route-47,cave-gate,83,Road 47 (cave gate),Route 47 (Portail Falaise),Route 47 (Höhle Tor)
+267,johto-route-47,inside-cave,84,Road 47 (inside cave),Route 47 (Grotte Falaise),Route 47 (Höhle innen)
+268,bell-tower,10f,85,Bell Tower (10F),Tour Carillon (9e ét.),Glockenturm (9.OG)
+269,mt-silver,outside,86,Mount Silver (outside),Mont Argenté (extérieur),Silberberg (außen)
+270,mt-silver,1f,87,Mount Silver (1F),Mont Argenté (RdC),Silberberg (EG)
+271,mt-silver,mountainside,88,Mount Silver (mountainside),Mont Argenté (flancs),Silberberg (Berghang)
+272,mt-silver,3f,89,Mount Silver (3F),Mont Argenté (2e étage),Silberberg (2.OG)
+273,mt-silver,top,90,Mount Silver (top),Mon Argenté (sommet),Silberberg (Gipfel)
+275,unknown-all-rattata,,92,Unknown Area; all Rattata,Zone inconnue ; que des Rattata,Unbekanntes Gebiet; nur Rattfratz
+276,kanto-route-12,,93,Road 12,Route 12,Route 12
+277,kanto-sea-route-19,,94,Road 19,Route 19,Route 19
+278,kanto-sea-route-20,,95,Road 20,Route 20,Route 20
+279,cinnabar-island,,96,Cinnabar Island,Cramois'Ile,Zinnoberinsel
+280,viridian-city,,97,Viridian City,Jadielle,Vertania City
+281,cerulean-city,,98,Cerulean City,Azuria,Azuria City
+282,vermilion-city,,99,Vermilion City,Carmin sur Mer,Orania City
+283,celadon-city,,100,Celadon City,Céladopole,Prismania City
+284,fuchsia-city,,101,Fuchsia City,Parmanie,Fuchsania City
+285,pallet-town,,102,Pallet Town,Bourg Palette,Alabastia
+286,johto-route-48,,103,Road 48,Route 48,Route 48
+287,kanto-route-26,,104,Road 26,Route 26,Route 26
+288,kanto-route-27,,105,Road 27,Route 27,Route 27
+289,kanto-route-28,,106,Road 28,Route 28,Route 28
+290,mt-moon,1f,107,Mount Moon (1F),Mont Sélénite (RdC),Mondberg (EG)
+291,mt-moon,2f,108,Mount Moon (2F),Mont Sélénite (étage),Mondberg (1.OG)
+292,rock-tunnel,1f,109,Rock Tunnel (1F),Grotte (RdC),Felstunnel (EG)
+293,rock-tunnel,b1f,110,Rock Tunnel (B1F),Grotte (1er s-sol),Felstunnel (1.UG)
+294,kanto-victory-road-1,1f,111,Victory Road 1 (1F),Route Victoire 1 (RdC),Siegesstraße 1 (EG)
+295,kanto-route-1,,112,Road 1,Route 1,Route 1
+296,kanto-route-2,south-towards-viridian-city,113,"Road 2 (south, towards Viridian City)","Route 2 (sud, vers Jadielle)","Route 2 (Süden, Richtung Vertania City)"
+297,kanto-route-3,,114,Road 3,Route 3,Route 3
+298,kanto-route-4,,115,Road 4,Route 4,Route 4
+299,kanto-route-5,,116,Road 5,Route 5,Route 5
+300,kanto-route-6,,117,Road 6,Route 6,Route 6
+301,kanto-route-7,,118,Road 7,Route 7,Route 7
+302,kanto-route-8,,119,Road 8,Route 8,Route 8
+303,kanto-route-9,,120,Road 9,Route 9,Route 9
+304,kanto-route-10,,121,Road 10,Route 10,Route 10
+305,kanto-route-11,,122,Road 11,Route 11,Route 11
+306,kanto-route-13,,123,Road 13,Route 13,Route 13
+307,kanto-route-14,,124,Road 14,Route 14,Route 14
+308,kanto-route-15,,125,Road 15,Route 15,Route 15
+309,kanto-route-16,,126,Road 16,Route 16,Route 16
+310,kanto-route-17,,127,Road 17,Route 17,Route 17
+311,kanto-route-18,,128,Road 18,Route 18,Route 18
+312,kanto-sea-route-21,,129,Road 21,Route 21,Route 21
+313,kanto-route-22,,130,Road 22,Route 22,Route 22
+314,kanto-route-24,,131,Road 24,Route 24,Route 24
+315,kanto-route-25,,132,Road 25,Route 25,Route 25
+316,tohjo-falls,,133,Tohjo Falls,Chutes Tohjo,Tohjo-Fälle
+317,digletts-cave,,134,Digletts Cave,Cave Taupiqueur,Digda-Höhle
+318,kanto-victory-road-1,2f,135,Victory Road 1 (2F),Route Victoire 1 (1er ét.),Siegesstraße 1 (1.OG)
+319,kanto-victory-road-1,3f,136,Victory Road 1 (3F),Route Victoire 1 (2e ét.),Siegesstraße 1 (2.OG)
+320,kanto-route-2,north-towards-pewter-city,137,"Road 2 (north, towards Pewter City)","Route 2 (nord, vers Argenta)","Route 2 (Norden, Richtung Mamoria City)"
+321,viridian-forest,,138,Viridian Forest,Forêt de Jade,Vertania-Wald
+323,cerulean-cave,1f,140,Cerulean Cave (1F),Caverne Azurée (RdC),Azuria-Höhle (EG)
+324,cerulean-cave,2f,141,Cerulean Cave (2F),Caverne Azurée (étage),Azuria-Höhle (1.OG)
+325,cerulean-cave,b1f,142,Cerulean Cave (B1F),Caverne Azurée (sous-sol),Azuria-Höhle (1.UG)
+326,mt-moon,b1f,0,Mount Moon (B1F),Mont Sélénite (1er s-sol),Mondberg (1.UG)
+327,mt-moon,b2f,0,Mount Moon (B2F),Mont Sélénite (2e s-sol),Mondberg (2.UG)
+328,rock-tunnel,b2f,0,Rock Tunnel (B2F),Grotte (2e s-sol),Felstunnel (2.UG)
+329,kanto-route-23,,0,Road 23,Route 23,Route 23
+330,kanto-power-plant,,0,Power Plant,Centrale,Kraftwerk
+331,kanto-victory-road-2,1f,0,Victory Road 2 (1F),Route Victoire 2 (RdC),Siegesstraße 2 (EG)
+332,kanto-victory-road-2,2f,0,Victory Road 2 (2F),Route Victoire 2 (1er ét.),Siegesstraße 2 (1.OG)
+333,kanto-victory-road-2,3f,0,Victory Road 2 (3F),Route Victoire 2 (2e ét.),Siegesstraße 2 (2.OG)
+334,pokemon-tower,1f,0,Pokemon Tower (1F),Tour Pokémon (RdC),Pokémon-Turm (EG)
+335,pokemon-tower,2f,0,Pokemon Tower (2F),Tour Pokémon (1er ét.),Pokémon-Turm (1.OG)
+336,pokemon-tower,3f,0,Pokemon Tower (3F),Tour Pokémon (2e ét.),Pokémon-Turm (2.OG)
+337,pokemon-tower,4f,0,Pokemon Tower (4F),Tour Pokémon (3e ét.),Pokémon-Turm (3.OG)
+338,pokemon-tower,5f,0,Pokemon Tower (5F),Tour Pokémon (4e ét.),Pokémon-Turm (4.OG)
+339,pokemon-tower,6f,0,Pokemon Tower (6F),Tour Pokémon (5e ét.),Pokémon-Turm (5.OG)
+340,pokemon-tower,7f,0,Pokemon Tower (7F),Tour Pokémon (6e ét.),Pokémon-Turm (6.OG)
+341,pokemon-mansion,1f,0,Pokemon Mansion (1F),Manoir Pokémon (RdC),Pokémon-Haus (EG)
+342,pokemon-mansion,2f,0,Pokemon Mansion (2F),Manoir Pokémon (1er ét.),Pokémon-Haus (1.OG)
+343,pokemon-mansion,3f,0,Pokemon Mansion (3F),Manoir Pokémon (2e ét.),Pokémon-Haus (2.OG)
+344,pokemon-mansion,b1f,0,Pokemon Mansion (B1F),Manoir Pokémon (sous-sol),Pokémon-Haus (1.UG)
+345,kanto-safari-zone,middle,0,Safari Zone (middle),Parc Safari (centre),Safari-Zone (mitte)
+346,kanto-safari-zone,area-1-east,0,"Safari Zone (Area 1, east)","Parc Safari (Zone 1, est)","Safari-Zone (Areal 1, Osten)"
+347,kanto-safari-zone,area-2-north,0,"Safari Zone (Area 2, north)","Parc Safari (Zone 2, nord)","Safari-Zone (Areal 2, Norden)"
+348,kanto-safari-zone,area-3-west,0,"Safari Zone (Area 3, west)","Parc Safari (Zone 3, ouest)","Safari-Zone (Areal 3, Westen)"
+349,vermilion-city,ss-anne-dock,0,S.S. Anne dock,Pont de l'Océane,Hafen von Orania City
+350,petalburg-city,,0,Petalburg City,Clémenti-Ville,Blütenburg City
+351,slateport-city,,1,Slateport City,Poivressel,Graphitport City
+352,lilycove-city,,2,Lilycove City,Nénucrique,Seegrasulb City
+353,mossdeep-city,,3,Mossdeep City,Algatia,Moosbach City
+354,sootopolis-city,,4,Sootopolis City,Atalanopolis,Xeneroville
+355,ever-grande-city,,5,Ever Grande City,Éternara,Prachtpolis City
+356,meteor-falls,,6,Meteor Falls,Site Météore,Meteorfälle
+357,meteor-falls,back,7,Meteor Falls (back),Site Météore (arrière),Meteorfälle (rückseite)
+358,meteor-falls,b1f,8,Meteor Falls (B1F),Site Météore (sous-sol),Meteorfälle (1.UG)
+359,meteor-falls,backsmall-room,9,Meteor Falls (back/small room),Site Météore (petite salle),Meteorfälle (kleiner Raum)
+360,rusturf-tunnel,,10,Rusturf Tunnel,Tunnel Mérazon,Metaflurtunnel
+361,granite-cave,1f,11,Granite Cave (1F),Grotte Granite (RdC),Granithöhle (EG)
+362,granite-cave,b1f,12,Granite Cave (B1F),Grotte Granite (1er s-sol),Granithöhle (1.UG)
+363,granite-cave,b2f,13,Granite Cave (B2F),Grotte Granite (2e s-sol),Granithöhle (2.UG)
+364,granite-cave,1fsmall-room,14,Granite Cave (1F/small room),"Grotte Granite (RdC, petite salle)","Granithöhle (EG, kleiner Raum)"
+365,petalburg-woods,,15,Petalburg Woods,Bois Clémenti,Blütenburgwald
+366,jagged-pass,,16,Jagged Pass,Sentier Sinuroc,Steilpass
+367,fiery-path,,17,Fiery Path,Chemin Ardent,Feuriger Pfad
+368,mt-pyre,1f,18,Mount Pyre (1F),Mont Mémoria (RdC),Pyroberg (EG)
+369,mt-pyre,2f,19,Mount Pyre (2F),Mont Mémoria (1er ét.),Pyroberg (1.OG)
+370,mt-pyre,3f,20,Mount Pyre (3F),Mont Mémoria (2e ét.),Pyroberg (2.OG)
+371,mt-pyre,4f,21,Mount Pyre (4F),Mont Mémoria (3e ét.),Pyroberg (3.OG)
+372,mt-pyre,5f,22,Mount Pyre (5F),Mont Mémoria (4e ét.),Pyroberg (4.OG)
+373,mt-pyre,6f,23,Mount Pyre (6F),Mont Mémoria (5e ét.),Pyroberg (5.OG)
+374,mt-pyre,outside,24,Mount Pyre (outside),Mont Mémoria (extérieur),Pyroberg (außen)
+375,mt-pyre,summit,25,Mount Pyre (summit),Mont Mémoria (sommet),Pyroberg (Gipfel)
+376,seafloor-cavern,,26,Seafloor Cavern,Caverne Fondmer,Tiefseehöhle
+377,cave-of-origin,entrance,35,Cave of Origin (entrance),Grotte Origine (entrée),Urzeithöhle (Eingang)
+378,cave-of-origin,1f,36,Cave of Origin (1F),Grotte Origine (RdC),Urzeithöhle (EG)
+379,cave-of-origin,b1f,37,Cave of Origin (B1F),Grotte Origine (1er s-sol),Urzeithöhle (1.UG)
+380,cave-of-origin,b2f,38,Cave of Origin (B2F),Grotte Origine (2e s-sol),Urzeithöhle (2.UG)
+381,cave-of-origin,b3f,39,Cave of Origin (B3F),Grotte Origine (3e s-sol),Urzeithöhle (3.UG)
+382,hoenn-victory-road,1f,40,Victory Road (1F),Route Victoire (RdC),Siegesstraße (EG)
+383,hoenn-victory-road,b1f,41,Victory Road (B1F),Route Victoire (1er s-sol),Siegesstraße (1.UG)
+384,hoenn-victory-road,b2f,42,Victory Road (B2F),Route Victoire (2e s-sol),Siegesstraße (2.UG)
+385,shoal-cave,high-tide,43,Shoal Cave,Grotte Tréfonds,Küstenhöhle
+386,shoal-cave,b1f,47,Shoal Cave (B1F),Grotte Tréfonds (sous-sol),Brandungshöhle (1.UG)
+387,new-mauville,entrance,48,New Mauville (entrance),New Lavandia (entrée),Neu Malvenfroh (Eingang)
+388,new-mauville,,49,New Mauville,New Lavandia,Neu Malvenfroh
+389,abandoned-ship,,50,Abandoned Ship,Épave,Schiffswrack
+390,sky-pillar,1f,52,Sky Pillar (1F),Pilier Céleste (RdC),Himmelsturm (EG)
+391,sky-pillar,3f,53,Sky Pillar (3F),Pilier Céleste (2e ét.),Himmelsturm (2.OG)
+392,sky-pillar,5f,54,Sky Pillar (5F),Pilier Céleste (4e ét.),Himmelsturm (4.OG)
+393,hoenn-route-101,,55,Road 101,Route 101,Route 101
+394,hoenn-route-102,,56,Road 102,Route 102,Route 102
+395,hoenn-route-103,,57,Road 103,Route 103,Route 103
+396,hoenn-route-104,,58,Road 104,Route 104,Route 104
+397,hoenn-route-105,,59,Road 105,Route 105,Route 105
+398,hoenn-route-106,,60,Road 106,Route 106,Route 106
+399,hoenn-route-107,,61,Road 107,Route 107,Route 107
+400,hoenn-route-108,,62,Road 108,Route 108,Route 108
+401,hoenn-route-109,,63,Road 109,Route 109,Route 109
+402,hoenn-route-110,,64,Road 110,Route 110,Route 110
+403,hoenn-route-111,,65,Road 111,Route 111,Route 111
+404,hoenn-route-112,,66,Road 112,Route 112,Route 112
+405,hoenn-route-113,,67,Road 113,Route 113,Route 113
+406,hoenn-route-114,,68,Road 114,Route 114,Route 114
+407,hoenn-route-115,,69,Road 115,Route 115,Route 115
+408,hoenn-route-116,,70,Road 116,Route 116,Route 116
+409,hoenn-route-117,,71,Road 117,Route 117,Route 117
+410,hoenn-route-118,,72,Road 118,Route 118,Route 118
+411,hoenn-route-119,,73,Road 119,Route 119,Route 119
+412,hoenn-route-120,,74,Road 120,Route 120,Route 120
+413,hoenn-route-121,,75,Road 121,Route 121,Route 121
+414,hoenn-route-122,,76,Road 122,Route 122,Route 122
+415,hoenn-route-123,,77,Road 123,Route 123,Route 123
+416,hoenn-route-124,,78,Road 124,Route 124,Route 124
+417,hoenn-route-124,underwater,95,Road 124 (underwater),Route 124 (sous l'eau),Route 124 (unterwasser)
+418,hoenn-route-125,,79,Road 125,Route 125,Route 125
+419,hoenn-route-126,,80,Road 126,Route 126,Route 126
+420,hoenn-route-126,underwater,96,Road 126 (underwater),Route 126 (sous l'eau),Route 126 (unterwasser)
+421,hoenn-route-127,,81,Road 127,Route 127,Route 127
+422,hoenn-route-128,,82,Road 128,Route 128,Route 128
+423,hoenn-route-129,,83,Road 129,Route 129,Route 129
+424,hoenn-route-130,,84,Road 130,Route 130,Route 130
+425,hoenn-route-131,,85,Road 131,Route 131,Route 131
+426,hoenn-route-132,,86,Road 132,Route 132,Route 132
+427,hoenn-route-133,,87,Road 133,Route 133,Route 133
+428,hoenn-route-134,,88,Road 134,Route 134,Route 134
+429,hoenn-safari-zone,nwmach-bike-area,89,Safari Zone (NW/mach bike area),Parc Safari (nord-ouest),Safari-Zone (Nord-Westen)
+430,hoenn-safari-zone,neacro-bike-area,90,Safari Zone (NE/acro bike area),Parc Safari (nord-est),Safari-Zone (Nord-Osten)
+431,hoenn-safari-zone,sw,91,Safari Zone (SW),Parc Safari (sud-ouest),Safari-Zone (Süd-Westen)
+432,hoenn-safari-zone,se,92,Safari Zone (SE),Parc Safari (sud-est),Safari-Zone (Süd-Osten)
+433,dewford-town,,93,Dewford Town,Myokara,Faustauhaven
+434,pacifidlog-town,,94,Pacifidlog Town,Pacifiville,Floßbrunn
+435,hoenn-safari-zone,expansion-south,97,Safari Zone (expansion south),Parc Safari (ext. sud à l’est),Safari-Zone (Südliche Erweiterung)
+436,hoenn-safari-zone,expansion-north,98,Safari Zone (expansion north),Parc Safari (ext. nord à l’est),Safari-Zone (Nördliche Erweiterung)
+437,magma-hideout,,99,Magma Hideout,Planque Magma,Team Magmas Versteck
+438,mirage-tower,,107,Mirage Tower,Tour Mirage,Wunderturm
+439,desert-underpass,,111,Desert Underpass,Voie du Désert,Wüstentunnel
+440,artisan-cave,,112,Artisan Cave,Grotte Atelier,Höhlenatelier
+441,hoenn-altering-cave,,114,Altering Cave,Grotte Métamo,Wandelhöhle
+450,monean-chamber,,0,Monean Chamber,Chambre Anemune,Einamon-Kammer
+451,liptoo-chamber,,1,Liptoo Chamber,Chambre Deulipe,Pezwulp-Kammer
+452,weepth-chamber,,2,Weepth Chamber,Chambre Prois,Dreiecke-Kammer
+453,dilford-chamber,,3,Dilford Chamber,Chambre Jonquatre,Vierzisse-Kammer
+454,scufib-chamber,,4,Scufib Chamber,Chambre Hibicinq,Fünibisku-Kammer
+455,rixy-chamber,,5,Rixy Chamber,Chambre Irix,Lilechs-Kammer
+456,viapos-chamber,,6,Viapos Chamber,Chambre Poinsept,Sieborbia-Kammer
+461,ss-anne,,11,S.S. Anne,L'Océane,MS Anne
+488,mt-ember,,40,Mount Ember,Mont Braise,Glutberg
+489,mt-ember,cave,41,Mount Ember (cave),Mont Braise (caverne),Glutberg (Höhle)
+490,mt-ember,inside,42,Mount Ember (inside),Mont Braise (intérieur),Glutberg (innen)
+491,mt-ember,1f-cave-behind-team-rocket,44,"Mount Ember (1F, cave behind team rocket)","Mont Braise (RdC, caverne derrière Team Rocket)","Glutberg (EG, Höhle hinter Team Rocket)"
+492,mt-ember,b1f,45,Mount Ember (B1F),Mont Braise (1er s-sol),Glutberg (1.UG)
+493,mt-ember,b2f,46,Mount Ember (B2F),Mont Braise (2e s-sol),Glutberg (2.UG)
+494,mt-ember,b3f,47,Mount Ember (B3F),Mont Braise (3e s-sol),Glutberg (3.UG)
+495,berry-forest,,50,Berry Forest,Bois Baies,Beerenforst
+496,icefall-cave,entrance,51,Icefall Cave (entrance),Grotte de Glace (entrée),Eiskaskadenhöhle (Eingang)
+497,icefall-cave,1f,52,Icefall Cave (1F),Grotte de Glace (RdC),Eiskaskadenhöhle (EG)
+498,icefall-cave,b1f,53,Icefall Cave (B1F),Grotte de Glace (sous-sol),Eiskaskadenhöhle (1.UG)
+499,icefall-cave,waterfall,54,Icefall Cave (waterfall),Grotte de Glace (cascade),Eiskaskadenhöhle (Wasserfall)
+500,pattern-bush,,55,Pattern Bush,Forbuissons,Musterbuschwald
+501,lost-cave,room-1,56,Lost Cave (room 1),Grotte Perdue (salle 1),Verlorene Höhle (Raum 1)
+502,lost-cave,room-2,57,Lost Cave (room 2),Grotte Perdue (salle 2),Verlorene Höhle (Raum 2)
+503,lost-cave,room-3,58,Lost Cave (room 3),Grotte Perdue (salle 3),Verlorene Höhle (Raum 3)
+504,lost-cave,room-4,59,Lost Cave (room 4),Grotte Perdue (salle 4),Verlorene Höhle (Raum 4)
+505,lost-cave,room-5,60,Lost Cave (room 5),Grotte Perdue (salle 5),Verlorene Höhle (Raum 5)
+506,lost-cave,room-6,61,Lost Cave (room 6),Grotte Perdue (salle 6),Verlorene Höhle (Raum 6)
+507,lost-cave,room-7,62,Lost Cave (room 7),Grotte Perdue (salle 7),Verlorene Höhle (Raum 7)
+508,lost-cave,room-8,63,Lost Cave (room 8),Grotte Perdue (salle 8),Verlorene Höhle (Raum 8)
+509,lost-cave,room-9,64,Lost Cave (room 9),Grotte Perdue (salle 9),Verlorene Höhle (Raum 9)
+510,lost-cave,room-10,65,Lost Cave (room 10),Grotte Perdue (salle 10),Verlorene Höhle (Raum 10)
+511,lost-cave,item-rooms,66,Lost Cave (item rooms),Grotte Perdue (salle des objets),Verlorene Höhle (Item Raum)
+512,kindle-road,,70,Kindle Road,Route Tison,Glühweg
+513,treasure-beach,,71,Treasure Beach,Plage Trésor,Schatzgestade
+514,cape-brink,,72,Cape Brink,Cap Falaise,Kap Kante
+515,bond-bridge,,73,Bond Bridge,Pont du Lien,Bundbrücke
+516,three-isle-port,,74,Three Isle Port,Port Ile 3,Tri-Eiland Hafen
+517,resort-gorgeous,,75,Resort Gorgeous,Camp de Vacances,Ferienparadies
+518,water-labyrinth,,76,Water Labyrinth,Labyrinthe d'O,Wasserirrgarten
+519,five-isle-meadow,,77,Five Isle Meadow,Pré Ile 5,Eiland 5-Weide
+520,memorial-pillar,,78,Memorial Pillar,Mémorial,Gedenksäule
+521,outcast-island,,79,Outcast Island,Ile du Lointain,Fern-Eiland
+522,green-path,,80,Green Path,Chemin Vert,Grüner Pfad
+523,water-path,,81,Water Path,Agualcanal,Wasserweg
+524,ruin-valley,,82,Ruin Valley,Vallée Ruine,Ruinental
+525,trainer-tower,,83,Trainer Tower,Tour Dresseurs,Trainerturm
+526,canyon-entrance,,84,Canyon Entrance,Entrée du Canyon,Schluchteingang
+527,sevault-canyon,,85,Sevault Canyon,Canyon Sesor,7-Schatzschlucht
+528,tanoby-ruins,,86,Tanoby Ruins,Ruines Tanoby,Tanibo-Ruinen
+561,one-island,,120,One Island,Ile 1,Eiland Eins
+562,four-island,,121,Four Island,Ile 4,Eiland Vier
+563,five-island,,122,Five Island,Ile 5,Eiland Fünf
+564,kanto-altering-cave,a,123,Altering Cave (A),Grotte Métamo (A),Wandelhöhle (A)
+565,kanto-altering-cave,b,124,Altering Cave (B),Grotte Métamo (B),Wandelhöhle (B)
+566,kanto-altering-cave,c,125,Altering Cave (C),Grotte Métamo (C),Wandelhöhle (C)
+567,kanto-altering-cave,d,126,Altering Cave (D),Grotte Métamo (D),Wandelhöhle (D)
+568,kanto-altering-cave,e,127,Altering Cave (E),Grotte Métamo (E),Wandelhöhle (E)
+569,kanto-altering-cave,f,128,Altering Cave (F),Grotte Métamo (F),Wandelhöhle (F)
+570,kanto-altering-cave,g,129,Altering Cave (G),Grotte Métamo (G),Wandelhöhle (G)
+571,kanto-altering-cave,h,130,Altering Cave (H),Grotte Métamo (H),Wandelhöhle (H)
+572,kanto-altering-cave,i,131,Altering Cave (I),Grotte Métamo (I),Wandelhöhle (I)
+576,striaton-city,,0,Striaton City,Ogoesse,Orion City
+577,driftveil-city,,1,Driftveil City,Port Yoneuve,Marea City
+578,icirrus-city,,2,Icirrus City,Flocombe,Nevaio City
+579,dreamyard,,3,Dreamyard,Vestiges du Rêve,Traumbrache
+580,dreamyard,b1f,4,Dreamyard (B1F),Vestiges du Rêve (sous-sol),Traumbrache (1.UG)
+581,pinwheel-forest,outside,5,Pinwheel Forest (outside),Forêt d'Empoigne (extérieur),Ewigenwald (außen)
+582,pinwheel-forest,inside,6,Pinwheel Forest (inside),Forêt d'Empoigne (intérieur),Ewigenwald (innen)
+583,desert-resort,entrance,7,Desert Resort (entrance),Désert Délassant (entrée),Wüstenresort (Eingang)
+584,desert-resort,,8,Desert Resort,Désert Délassant,Wüstenresort
+585,relic-castle,a,9,Relic Castle (A),Château Enfoui (A),Relikt-Schloss (A)
+586,relic-castle,b,11,Relic Castle (B),Château Enfoui (B),Relikt-Schloss (B)
+587,relic-castle,c,15,Relic Castle (C),Château Enfoui (C),Relikt-Schloss (C)
+588,relic-castle,d,30,Relic Castle (D),Château Enfoui (D),Relikt-Schloss (D)
+589,cold-storage,,40,Cold Storage,Hangar Frigorifique,Tiefkühlcontainer
+590,chargestone-cave,1f,41,Chargestone Cave (1F),Grotte Électrolithe (RdC),Elektrolithhöhle (EG)
+591,chargestone-cave,b1f,42,Chargestone Cave (B1F),Grotte Électrolithe (1er s-sol),Elektrolithhöhle (1.UG)
+592,chargestone-cave,b2f,43,Chargestone Cave (B2F),Grotte Électrolithe (2e s-sol),Elektrolithhöhle (2.UG)
+593,twist-mountain,b1f-3f,44,Twist Mountain,Mont Foré,Wendelberg
+594,dragonspiral-tower,entrance,48,Dragonspiral Tower (entrance),Tour Dragospire (entrée),Drachenstiege (Eingang)
+595,dragonspiral-tower,outside,49,Dragonspiral Tower (outside),Tour Dragospire (extérieur),Drachenstiege outside
+596,dragonspiral-tower,1f,50,Dragonspiral Tower (1F),Tour Dragospire (RdC),Drachenstiege (EG)
+597,dragonspiral-tower,2f,51,Dragonspiral Tower (2F),Tour Dragospire (1er ét.),Drachenstiege (1.OG)
+598,unova-victory-road,outside,52,Victory Road (outside),Route Victoire (extérieur),Siegesstraße outside
+599,unova-victory-road,unknown-area-53,53,Victory Road (unknown area 53),Route Victoire (zone inconnue 53),Siegesstraße (unbekannter Bereich 53)
+600,unova-victory-road,unknown-area-54,54,Victory Road (unknown area 54),Route Victoire (zone inconnue 54),Siegesstraße (unbekannter Bereich 54)
+601,unova-victory-road,unknown-area-55,55,Victory Road (unknown area 55),Route Victoire (zone inconnue 55),Siegesstraße (unbekannter Bereich 55)
+602,unova-victory-road,4f-middle-room,56,Victory Road (4f Middle Room),Route Victoire (zone inconnue 56),Siegesstraße (unbekannter Bereich 56)
+603,unova-victory-road,unknown-area-57,57,Victory Road (unknown area 57),Route Victoire (zone inconnue 57),Siegesstraße (unbekannter Bereich 57)
+604,unova-victory-road,1f-unknown-room,58,Victory Road (unknown area 58),Route Victoire (zone inconnue 58),Siegesstraße (unbekannter Bereich 58)
+605,unova-victory-road,unknown-area-59,59,Victory Road (unknown area 59),Route Victoire (zone inconnue 59),Siegesstraße (unbekannter Bereich 59)
+606,unova-victory-road,unknown-area-60,60,Victory Road (unknown area 60),Route Victoire (zone inconnue 60),Siegesstraße (unbekannter Bereich 60)
+607,unova-victory-road,unknown-area-61,61,Victory Road (unknown area 61),Route Victoire (zone inconnue 61),Siegesstraße (unbekannter Bereich 61)
+608,unova-victory-road,unknown-area-62,62,Victory Road (unknown area 62),Route Victoire (zone inconnue 62),Siegesstraße (unbekannter Bereich 62)
+609,unova-victory-road,unknown-area-63,63,Victory Road (unknown area 63),Route Victoire (zone inconnue 63),Siegesstraße (unbekannter Bereich 63)
+610,unova-victory-road,unknown-area-64,64,Victory Road (unknown area 64),Route Victoire (zone inconnue 64),Siegesstraße (unbekannter Bereich 64)
+611,unova-victory-road,unknown-area-65,65,Victory Road (unknown area 65),Route Victoire (zone inconnue 65),Siegesstraße (unbekannter Bereich 65)
+612,unova-victory-road,unknown-area-66,66,Victory Road (unknown area 66),Route Victoire (zone inconnue 66),Siegesstraße (unbekannter Bereich 66)
+613,trial-chamber,,67,Trial Chamber,Salle Épreuve,Kammer der Prüfung
+614,giant-chasm,outside,68,Giant Chasm (outside),Grotte Cyclopéenne (extérieur),Riesengrotte (außen)
+615,giant-chasm,,69,Giant Chasm,Grotte Cyclopéenne,Riesengrotte
+616,giant-chasm,forest,70,Giant Chasm (forest),Grotte Cyclopéenne (forêt),Riesengrotte (Wald)
+617,giant-chasm,forest-cave,71,Giant Chasm (forest cave),Grotte Cyclopéenne (caverne-forêt),Riesengrotte (Höhle im Wald)
+618,p2-laboratory,,72,P2 Laboratory,Labo P2,P2-Labor
+619,undella-bay,,73,Undella Bay,Baie Vaguelone,Bucht von Ondula
+620,driftveil-drawbridge,,74,Driftveil Drawbridge,Pont Yoneuve,Marea-Zugbrücke
+621,village-bridge,,75,Village Bridge,Pont du Hameau,Dorfbrücke
+622,marvelous-bridge,,76,Marvelous Bridge,Pont de l'Inconnu,Wunderbrücke
+623,unova-route-1,,77,Road 1,Route 1,Route 1
+624,unova-route-2,,78,Road 2,Route 2,Route 2
+625,unova-route-3,,79,Road 3,Route 3,Route 3
+626,wellspring-cave,,80,Wellspring Cave,Veine Souterraine,Grundwassersenke
+627,unova-route-4,,82,Road 4,Route 4,Route 4
+628,unova-route-5,,83,Road 5,Route 5,Route 5
+629,unova-route-6,,84,Road 6,Route 6,Route 6
+630,mistralton-cave,,85,Mistralton Cave,Grotte Parsemille,Panaero-Höhle
+631,guidance-chamber,,87,Guidance Chamber,Espace Guide,Kammer der Weisung
+632,unova-route-7,,88,Road 7,Route 7,Route 7
+633,celestial-tower,2f,89,Celestial Tower (2F),Tour des Cieux (1er ét.),Turm des Himmels (1.OG)
+634,celestial-tower,3f,90,Celestial Tower (3F),Tour des Cieux (2e ét.),Turm des Himmels (2.OG)
+635,celestial-tower,4f,91,Celestial Tower (4F),Tour des Cieux (3e ét.),Turm des Himmels (3.OG)
+636,celestial-tower,5f,92,Celestial Tower (5F),Tour des Cieux (4e ét.),Turm des Himmels (4.OG)
+637,unova-route-8,,93,Road 8,Route 8,Route 8
+638,moor-of-icirrus,,94,Moor of Icirrus,Tourbière Flocombe,Moor von Nevaio
+639,unova-route-9,,95,Road 9,Route 9,Route 9
+640,challengers-cave,1f,96,Challengers Cave (1F),Antre d'Entraînement (RdC),Höhle der Schulung (EG)
+641,challengers-cave,b1f,97,Challengers Cave (B1F),Antre d'Entraînement (1er s-sol),Höhle der Schulung (1.UG)
+642,challengers-cave,b2f,98,Challengers Cave (B2F),Antre d'Entraînement (2e s-sol),Höhle der Schulung (2.UG)
+643,unova-route-10,,99,Road 10,Route 10,Route 10
+644,unova-route-10,victory-road-gate,100,Road 10 (Victory Road gate),Route 10 (point de contrôle des badges),Route 10 (Tor zur Siegesstraße)
+645,unova-route-11,,101,Road 11,Route 11,Route 11
+646,unova-route-12,,102,Road 12,Route 12,Route 12
+647,unova-route-13,,103,Road 13,Route 13,Route 13
+648,unova-route-14,,104,Road 14,Route 14,Route 14
+649,abundant-shrine,,105,Abundant Shrine,Autel Abondance,Schrein der Ernte
+650,unova-route-15,,106,Road 15,Route 15,Route 15
+651,unova-route-16,,107,Road 16,Route 16,Route 16
+652,lostlorn-forest,,108,Lostlorn Forest,Bois des Illusions,Hain der Täuschung
+653,unova-route-18,,109,Road 18,Route 18,Route 18
+654,undella-town,,110,Undella Town,Vaguelone,Ondula
+655,unova-route-17,,111,Road 17,Route 17,Route 17
+656,castelia-city,,1,Castelia City,Volucité,Stratos City
+657,aspertia-city,,3,Aspertia City,Pavonnay,Eventura City
+658,virbank-city,,4,Virbank City,Ondes-sur-Mer,Vapydro City
+659,humilau-city,,5,Humilau City,Papeloa,Abidaya City
+660,unova-victory-road,7f,31,Victory Road (7F),Route Victoire (6e ét.),Siegesstraße (6.OG)
+661,unova-victory-road-2,unknown-area-71,71,Victory Road 2 (unknown area 71),Route Victoire 2 (zone inconnue 71),Siegesstraße 2 (unbekannter Bereich 71)
+662,unova-victory-road-2,unknown-area-72,72,Victory Road 2 (unknown area 72),Route Victoire 2 (zone inconnue 72),Siegesstraße 2 (unbekannter Bereich 72)
+663,unova-victory-road-2,unknown-area-73,73,Victory Road 2 (unknown area 73),Route Victoire 2 (zone inconnue 73),Siegesstraße 2 (unbekannter Bereich 73)
+664,unova-victory-road-2,unknown-area-74,74,Victory Road 2 (unknown area 74),Route Victoire 2 (zone inconnue 74),Siegesstraße 2 (unbekannter Bereich 74)
+665,unova-victory-road-2,unknown-area-75,75,Victory Road 2 (unknown area 75),Route Victoire 2 (zone inconnue 75),Siegesstraße 2 (unbekannter Bereich 75)
+666,unova-victory-road-2,unknown-area-76,76,Victory Road 2 (unknown area 76),Route Victoire 2 (zone inconnue 76),Siegesstraße 2 (unbekannter Bereich 76)
+667,unova-victory-road-2,unknown-area-77,77,Victory Road 2 (unknown area 77),Route Victoire 2 (zone inconnue 77),Siegesstraße 2 (unbekannter Bereich 77)
+668,unova-victory-road-2,unknown-area-78,78,Victory Road 2 (unknown area 78),Route Victoire 2 (zone inconnue 78),Siegesstraße 2 (unbekannter Bereich 78)
+669,unova-victory-road-2,unknown-area-79,79,Victory Road 2 (unknown area 79),Route Victoire 2 (zone inconnue 79),Siegesstraße 2 (unbekannter Bereich 79)
+670,unova-victory-road-2,unknown-area-80,80,Victory Road 2 (unknown area 80),Route Victoire 2 (zone inconnue 80),Siegesstraße 2 (unbekannter Bereich 80)
+671,castelia-sewers,,37,Castelia Sewers,Égouts de Volucité,Stratos-Kanalisation
+672,castelia-sewers,unknown-area-38,38,Castelia Sewers (unknown area 38),Égouts de Volucité (zone inconnue 38),Stratos-Kanalisation (unbekannter Bereich 38)
+673,floccesy-ranch,outer,44,Floccesy Ranch (outer),Ranch d'Amaillide (extérieur),Dausing-Hof (äußerer Bereich)
+674,floccesy-ranch,inner,45,Floccesy Ranch (inner),Ranch d'Amaillide (intérieur),Dausing-Hof (innerer Bereich)
+675,virbank-complex,outer,46,Virbank Complex (outer),Z.I. d'Ondes-sur-Mer (extérieur),Vapydro-Werke (äußerer Bereich)
+676,virbank-complex,inner,47,Virbank Complex (inner),Z.I. d'Ondes-sur-Mer (intérieur),Vapydro-Werke (innerer Bereich)
+677,reversal-mountain,unknown-area-48,48,Reversal Mountain (unknown area 48),Mont Renenvers (zone inconnue 48),Janusberg (unbekannter Bereich 48)
+678,reversal-mountain,unknown-area-49,49,Reversal Mountain (unknown area 49),Mont Renenvers (zone inconnue49),Janusberg (unbekannter Bereich 49)
+679,reversal-mountain,unknown-area-50,50,Reversal Mountain (unknown area 50),Mont Renenvers (zone inconnue 50),Janusberg (unbekannter Bereich 50)
+680,reversal-mountain,unknown-area-51,51,Reversal Mountain (unknown area 51),Mont Renenvers (zone inconnue 51),Janusberg (unbekannter Bereich 51)
+681,reversal-mountain,unknown-area-52,52,Reversal Mountain (unknown area 52),Mont Renenvers (zone inconnue 52),Janusberg (unbekannter Bereich 52)
+682,reversal-mountain,unknown-area-53,53,Reversal Mountain (unknown area 53),Mont Renenvers (zone inconnue 53),Janusberg (unbekannter Bereich 53)
+683,reversal-mountain,unknown-area-54,54,Reversal Mountain (unknown area 54),Mont Renenvers (zone inconnue 54),Janusberg (unbekannter Bereich 54)
+684,reversal-mountain,unknown-area-55,55,Reversal Mountain (unknown area 55),Mont Renenvers (zone inconnue 55),Janusberg (unbekannter Bereich 55)
+685,reversal-mountain,unknown-area-56,56,Reversal Mountain (unknown area 56),Mont Renenvers (zone inconnue 56),Janusberg (unbekannter Bereich 56)
+686,reversal-mountain,unknown-area-57,57,Reversal Mountain (unknown area 57),Mont Renenvers (zone inconnue 57),Janusberg (unbekannter Bereich 57)
+687,reversal-mountain,unknown-area-58,58,Reversal Mountain (unknown area 58),Mont Renenvers (zone inconnue 58),Janusberg (unbekannter Bereich 58)
+688,reversal-mountain,unknown-area-59,59,Reversal Mountain (unknown area 59),Mont Renenvers (zone inconnue 59),Janusberg (unbekannter Bereich 59)
+689,reversal-mountain,unknown-area-60,60,Reversal Mountain (unknown area 60),Mont Renenvers (zone inconnue 60),Janusberg (unbekannter Bereich 60)
+690,strange-house,1f,61,Strange House (1F),Manoir de l'Étrange (RdC),Seltsames Haus (EG)
+691,strange-house,b1f,65,Strange House (B1F),Manoir de l'Étrange (sous-sol),Seltsames Haus (1.UG)
+692,relic-passage,castelia-sewers-entrance,81,Relic Tunnel (Castelia Sewers entrance),Chemin Enfoui (entrée des égoûts de Volucité),Alter Fluchtweg (Stratos-Kanalisation Eingang)
+693,relic-passage,relic-castle-entrance,82,Relic Tunnel (Relic Castle entrance),Chemin Enfoui (entrée du Château Enfoui),Alter Fluchtweg (Alter Palast Eingang)
+694,relic-passage,pwt-entrance,83,Relic Tunnel (PWT entrance),Chemin Enfoui (entrée PWT),Alter Fluchtweg (PWT Eingang)
+695,clay-tunnel,,84,Clay Tunnel,Route Bardane,Turner-Pfad
+696,underground-ruins,,87,Underground Ruins,Ruines Enfouies,Unterirdische Ruine
+697,rocky-mountain-room,,90,Rocky Mountain Room,Salle Pic Rocheux,Steingipfelkammer
+698,glacier-room,,91,Glacier Room,Salle Iceberg,Eisbergkammer
+699,iron-room,,92,Iron Room,Salle Fer,Eisenkammer
+700,seaside-cave,1f,93,Seaside Cave (1F),Grotte Littorale (RdC),Strandgrotte (EG)
+701,seaside-cave,b1f,94,Seaside Cave (B1F),Grotte Littorale (sous-sol),Strandgrotte (1.UG)
+702,nature-sanctuary,,95,Nature Sanctuary,Réserve Naturelle,Naturschutzgebiet
+703,unova-route-19,,128,Road 19,Route 19,Route 19
+704,unova-route-20,,129,Road 20,Route 20,Route 20
+705,unova-route-22,,130,Road 22,Route 22,Route 22
+706,unova-route-23,,131,Road 23,Route 230,Route 23
+707,unova-route-21,,134,Road 21,Route 21,Route 21
+708,couriway-town,,0,Couriway Town,Mozheim,Mosaia
+709,ambrette-town,,0,Ambrette Town,Roche-sur-Gliffe,Petrophia
+710,cyllage-city,,0,Cyllage City,Relifac-le-Haut,Relievera City
+711,shalour-city,,0,Shalour City,Yantreizh,Yantara City
+712,laverre-city,,0,Laverre City,Romant-sous-Bois,Romantia City
+713,kalos-route-2,,0,Road 2,Route 2,Route 2
+714,kalos-route-3,,0,Road 3,Route 3,Route 3
+715,kalos-route-4,,0,Road 4,Route 4,Route 4
+716,kalos-route-5,,0,Road 5,Route 5,Route 5
+717,kalos-route-6,,0,Road 6,Route 6,Route 6
+718,kalos-route-7,,0,Road 7,Route 7,Route 7
+719,kalos-route-8,,0,Road 8,Route 8,Route 8
+720,kalos-route-9,,0,Road 9,Route 9,Route 9
+721,kalos-route-10,,0,Road 10,Route 10,Route 10
+722,kalos-route-11,,0,Road 11,Route 11,Route 11
+723,kalos-route-12,,0,Road 12,Route 12,Route 12
+724,kalos-route-13,,0,Road 13,Route 13,Route 13
+725,kalos-route-14,,0,Road 14,Route 14,Route 14
+726,kalos-route-15,,0,Road 15,Route 15,Route 15
+727,kalos-route-16,,0,Road 16,Route 16,Route 16
+728,kalos-route-17,,0,Road 17,Route 17,Route 17
+729,kalos-route-18,,0,Road 18,Route 18,Route 18
+730,kalos-route-19,,0,Road 19,Route 19,Route 19
+731,kalos-route-20,,0,Road 20,Route 20,Route 20
+732,kalos-route-21,,0,Road 21,Route 21,Route 21
+733,kalos-route-22,,0,Road 22,Route 22,Route 22
+734,santalune-forest,,0,Santalune Forest,Forêt de Neuvartault,Nouvaria-Wald
+735,parfum-palace,,0,Parfum Palace,Palais Chaydeuvre,Magnum-Opus-Palast
+736,glittering-cave,unknown-area-303,0,Glittering Cave (unknown area 303),Grotte Étincelante (zone inconnue 303),Leuchthöhle (unbekannter Bereich 303)
+737,glittering-cave,unknown-area-304,0,Glittering Cave (unknown area 304),Grotte Étincelante (zone inconnue 304),Leuchthöhle (unbekannter Bereich 304)
+738,reflection-cave,unknown-area-305,0,Reflection Cave (unknown area 305),Grotte Miroitante (zone inconnue 305),Spiegelhöhle (unbekannter Bereich 305)
+739,reflection-cave,unknown-area-306,0,Reflection Cave (unknown area 306),Grotte Miroitante (zone inconnue 306),Spiegelhöhle (unbekannter Bereich 306)
+740,reflection-cave,unknown-area-307,0,Reflection Cave (unknown area 307),Grotte Miroitante (zone inconnue 307),Spiegelhöhle (unbekannter Bereich 307)
+741,reflection-cave,unknown-area-308,0,Reflection Cave (unknown area 308),Grotte Miroitante (zone inconnue 308),Spiegelhöhle (unbekannter Bereich 308)
+742,frost-cavern,unknown-area-313,0,Frost Cavern (unknown area 313),Caverne Gelée (zone inconnue 313),Frosthöhle (unbekannter Bereich 313)
+743,frost-cavern,unknown-area-314,0,Frost Cavern (unknown area 314),Caverne Gelée (zone inconnue 314),Frosthöhle (unbekannter Bereich 314)
+744,frost-cavern,unknown-area-315,0,Frost Cavern (unknown area 315),Caverne Gelée (zone inconnue 315),Frosthöhle (unbekannter Bereich 315)
+745,frost-cavern,unknown-area-316,0,Frost Cavern (unknown area 316),Caverne Gelée (zone inconnue 316),Frosthöhle (unbekannter Bereich 316)
+746,frost-cavern,unknown-area-317,0,Frost Cavern (unknown area 317),Caverne Gelée (zone inconnue 317),Frosthöhle (unbekannter Bereich 317)
+747,pokemon-village,,0,Pokemon Village,Village Pokémon,Pokémon-Dorf
+748,kalos-victory-road,unknown-area-322,0,Victory Road (unknown area 322),Route Victoire (zone inconnue 322),Siegesstraße (unbekannter Bereich 322)
+749,kalos-victory-road,unknown-area-324,0,Victory Road (unknown area 324),Route Victoire (zone inconnue 324),Siegesstraße (unbekannter Bereich 324)
+750,kalos-victory-road,unknown-area-326,0,Victory Road (unknown area 326),Route Victoire (zone inconnue 326),Siegesstraße ((unbekannter Bereich 326))
+751,kalos-victory-road,outside,0,Victory Road (unknown area 327),Route Victoire (zone inconnue 327),Siegesstraße ((unbekannter Bereich 327))
+752,kalos-victory-road,unknown-area-328,0,Victory Road (unknown area 328),Route Victoire (zone inconnue 328),Siegesstraße ((unbekannter Bereich 328))
+753,connecting-cave,,0,Connecting Cave,Cave Connecterre,Geolinkhöhle
+754,terminus-cave,1f,0,Terminus Cave (1F),Grotte Coda (zone inconnue 343),Omega-Höhle (EG)
+755,terminus-cave,b1f-left,0,Terminus Cave (B1F left),Grotte Coda (zone inconnue 344),Omega-Höhle (1.UG links)
+756,terminus-cave,b1f-right,0,Terminus Cave (B1F right),Grotte Coda (zone inconnue 345),Omega-Höhle (1.UG rechts)
+757,terminus-cave,b2f,0,Terminus Cave (B2F),Grotte Coda (zone inconnue 347),Omega-Höhle (2.UG)
+758,terminus-cave,zygardes-chamber,0,Terminus Cave (Zygarde's Chamber),Grotte Coda (zone inconnue 348),Omega-Höhle (Zygarde's Raum)
+759,lost-hotel,,0,Lost Hotel,Hôtel Désolation,Hotelruine
+760,azure-bay,,0,Azure Bay,Baie Azur,Azurbucht
+761,kanto-route-4,pokemon-center,0,Pokemon Center (Road 4),Centre Pokémon (Route 4),Pokémon-Center (Route 4)
+762,saffron-city,fighting-dojo,0,Fighting Dojo,Dojo de Combat,Kampf-Dojo
+763,celadon-city,celadon-mansion,0,Celadon Mansion rooftop,Toit du manoir Céladon,Prismania-Villa Dach
+764,saffron-city,silph-co-7f,0,Silph Co. 7F,Sylphe SARL (6e ét.),Silph Co. (6.OG)
+765,goldenrod-city,north-gate,0,Goldenrod City (north gate),Doublonville (porte Nord),Dukatia City (Nord Tor)
+766,goldenrod-city,bills-house,0,Goldenrod City (Bill's house),Doublonville (maison de Bill),Dukatia City (Bill's Haus)
+767,cianwood-city,manias-house,0,Cianwood City (Mania's house),Irisia (maison à l'ouest du centre Pokémon),Anemonia City (Gabrieles Haus)
+768,hoenn-route-119,weather-institute,0,Weather Institute (Road 119),Centre météo (Route 119),Wetter-Institut (Route 119)
+769,mossdeep-city,stevens-house,0,Mossdeep City (Steven's house),Algatia (maison de Pierre Rochard),Moosbach City (Troys Haus)
+770,littleroot-town,,0,Littleroot Town,Bourg-en-Vol,Wurzelheim
+771,hearthome-city,,0,Hearthome City,Unionpolis,Herzhofen
+772,veilstone-city,,0,Veilstone City,Voilaroc,Schleiede
+773,cianwood-city,kirks-house,0,Cianwood City (Kirk's house),Irisia (maison à l'ouest du centre Pokémon),Anemonia City (Ronalds Haus)
+774,nuvema-town,,0,Nuvema Town,Renouet,Avenitia
+775,castelia-city,game-freak-hq-1f,0,Game Freak HQ 1F (Castelia City),Bureaux de Game Freak (Volucité),Game Freak Gebäude (Stratos City)
+776,unova-route-6,weather-institute,0,Weather Institute (Road 6),Centre météo (Route 6),Wetter-Institut (Route 6)
+777,floccesy-town,,0,Floccesy Town,Amaillide,Dausing
+778,aquacorde-town,,0,Aquacorde Town,Quarellis,Aquarellia
+779,lumiose-city,,0,Lumiose City,Illumis,Illumina City
+780,tower-of-mastery,,0,Tower of Mastery,Tour Maîtrise,Turm der Erkenntnis
+781,slateport-city,contest-hall,0,Contest Hall (Slateport City),Centre de concours (Poivressel),Wettbewerbshalle (Graphitport City)
+782,verdanturf-town,contest-hall,0,Contest Hall (Verdanturf Town),Centre de concours (Vergazon),Wettbewerbshalle (Wiesenflur)
+783,fallarbor-town,contest-hall,0,Contest Hall (Fallarbor Town),Centre de concours (Autéquia),Wettbewerbshalle (Laubwechselfeld)
+784,lilycove-city,contest-hall,0,Contest Hall (Lilycove City),Centre de concours (Nénucrique),Wettbewerbshalle (Seegrasulb City)
+785,southern-island,,0,Southern Island,Île du Sud,Insel im Süden
+786,battle-resort,,0,Battle Resort,Atoll de Combat,Kampfresort
+787,lavaridge-town,,0,Lavaridge Town,Vermilava,Bad Lavastadt
+788,eterna-city,west-gate,0,Eterna City (west gate),Vestigion (porte ouest),Ewigenau (Westliches Tor)
+789,hearthome-city,west-gate,0,Hearthome City (west gate),Unionpolis (porte ouest),Herzhofen (Westliches Tor)
+790,violet-city,poke-mart,0,Violet City (Poke Mart),Mauville (Boutique Pokémon),Viola City (Pokémon-Markt)
+791,violet-city,pokemon-center,0,Violet City (Pokemon Center),Mauville (Centre Pokémon),Viola City (Pokémon-Center)
+792,nacrene-city,west-gate,0,Nacrene City (west gate),Maillard (porte ouest),Septerna City (Westliches Tor)
+793,bell-tower,roof,0,Bell Tower (roof),Tour Carillon (toit),Glockenturm (Dach)
+794,roaming-kanto,area,0,Roaming Kanto,Sillonnant Kanto,Wandert durch Kanto
+795,roaming-johto,area,0,Wandert durch Johto,Sillonnant Johto,Roaming Johto
+796,roaming-hoenn,area,0,Roaming Hoenn,Sillonnant Hoenn,Wandert durch Hoenn
+797,roaming-sinnoh,area,0,Roaming Sinnoh,Sillonnant Sinnoh,Wandert durch Sinnoh
+798,azalea-town,area,0,Azalea Town,Ecorcia,Azalea City
+800,mahogany-town,area,0,Mahogany City,Acajou,Mahagonia City
+801,cave-of-origin,b4f,0,Cave of Origin (B4F),Grotte Origine (4e s-sol),Urzeithöhle (4.UG)
+802,terra-cave,area,0,Terra Cave,Grotte Terra,Terrahöhle
+803,marine-cave,area,0,Marine Cave,Grotte Marine,Ozeanhöhle
+804,sky-pillar,apex,0,Sky Pillar Apex,Pilier Céleste (sommet),Himmelsturm Spitze
+805,bell-tower,1f,0,Bell Tower (1F),Tour Carillon (RdC),Glockenturm (EG)
+806,birth-island,area,0,Birth Island,Île Aurore,Entstehungsinsel
+807,navel-rock,area,0,Navel Rock,Roc Nombri,Nabelfels
+808,faraway-island,area,0,Faraway Island,Île lointaine,Ferneiland
+809,hoenn-battle-frontier,area,0,Hoenn Battle Frontier,Zone de Combat,Kampfzone (Hoenn)
+810,desert-ruins,area,0,Desert Ruins,Ruines Désert,Wüstenruine
+811,island-cave,area,0,Island Cave,Grotte de l’Îlot,Inselhöhle
+812,ancient-tomb,area,0,Ancient Tomb,Tombeau Antique,Grabmal
+813,johto-safari-zone,peak,0,Safari Zone Peak,Parc Safari - Rochers,Safari-Zone Gipfel
+814,johto-safari-zone,desert,0,Safari Zone Desert,Parc Safari - Désert,Safari-Zone Wüste
+815,johto-safari-zone,plains,0,Safari Zone Plains,Parc Safari - Prairie,Safari-Zone Ebene
+816,johto-safari-zone,meadow,0,Safari Zone Meadow,Parc Safari - Champ de fleurs,Safari-Zone Wiese
+817,johto-safari-zone,forest,0,Safari Zone Forest,Parc Safari - Bois,Safari-Zone Wald
+818,johto-safari-zone,swamp,0,Safari Zone Swamp,Parc Safari - Bois et lacs,Safari-Zone Sumpf
+819,johto-safari-zone,marshland,0,Safari Zone Marshland,Parc Safari - Marais,Safari-Zone Sumpfland
+820,johto-safari-zone,mountain,0,Safari Zone Mountain,Parc Safari - Montagne,Safari-Zone Gebirge
+821,johto-safari-zone,rocky-beach,0,Safari Zone Rocky Beach,Parc Safari - Rocs et lacs,Safari-Zone Felsstrand
+822,johto-safari-zone,wasteland,0,Safari Zone Wasteland,Parc Safari - Terre aride,Safari-Zone Ödland
+823,johto-safari-zone,savannah,0,Safari Zone Savannah,Parc Safari - Savane,Safari-Zone Savanne
+824,johto-safari-zone,wetland,0,Safari Zone Wetland,Parc Safari - Terre humide,Safari-Zone Feuchtgebiet
+825,mt-ember,summit,0,Mount Ember Summit,Mont Braise (sommet),Glutberg Gipfel
+826,embedded-tower,kyogre-room,0,Embedded Tower (Kyogre’s room),Tour Enfouie (salle de Kyogre),Felsenherzturm (Kyogres Raum)
+827,embedded-tower,groundon-room,0,Embedded Tower (Groudon’s room),Tour Enfouie (salle de Groudon),Felsenherzturm (Groudons Raum)
+828,embedded-tower,rayquaza-room,0,Embedded Tower (Rayquaza’s room),Tour Enfouie (salle de Rayquaza),Felsenherzturm (Rayquazas Raum)
+829,lake-acuity,cavern,0,Lake Acuity Cavern,Lac Savoir (caverne),Stärkegrotte
+830,lake-valor,cavern,0,Lake Valor Cavern,Lac Courage (caverne),Kühnheitsgrotte
+831,spear-pillar,area,0,Spear Pillar,Colonnes Lances,Speersäule
+832,kanto-route-3,pokemon-center,0,Pokemon Center (Road 3),Centre Pokémon (Route 3),Pokémon-Center (Route 3)
+833,cinnabar-island,cinnabar-lab,0,Cinnabar Lab (Cinnabar Island),Laboratoire (Cramois'Île),Zinnoberinsel-Labor (Zinnoberinsel)
+834,rustboro-city,,0,Rustboro City,Mérouville,Metarost City
+835,saffron-city,silph-co,0,Silph Co.,Sylphe SARL,Silph Company
+836,cianwood-city,pokemon-center,0,Pokemon Center (Cianwood City),Centre Pokémon (Irisia),Pokémon-Center (Anemonia City)
+837,stark-mountain,heatran-chamber,0,Stark Mountain (Heatran Chamber),Mont Abrupt (salle d'Heatran),Kahlberg (Heatran Kammer)
+838,newmoon-island,,0,Newmoon Island,Ile Nouvellelune,Neumondinsel
+839,flower-paradise,,0,Flower Paradise,Paradis Fleuri,Blumenparadies
+840,sinnoh-hall-of-origin-1,,0,Hall of Origin,Salle Originelle,Halle des Beginns
+841,team-rocket-hq,,0,Team Rocket HQ,Repaire Rocket d'Acajou,Team Rocket-Hauptquartier
+842,sinjoh-ruins,,0,Sinjoy Ruins,Ruines Sinjoh,Sinjoh-Ruinen
+843,galar-route-1,,0,Route 1,Route 1,
+844,galar-route-2,main,0,Route 2,Route 2,
+845,galar-route-3,east,0,Route 3 (East),Route 3 (Est),
+847,galar-route-4,,0,Route 4,Route 4,
+848,galar-route-5,,0,Route 5,Route 5,
+849,galar-route-6,,0,Route 6,,
+850,galar-route-7,,0,Route 7,Route 7,
+851,galar-route-8,main,0,Route 8 (Main),Route 8 (Principale),
+852,galar-route-8,steamdrift-way,0,Route 8 (Steamdrift Way),Route 8 (Sentier des Sources),
+853,galar-route-9,main,0,Route 9 (Main),Route 9 (Principale),
+854,galar-route-9,circhester-bay,0,Route 9 (Circhester Bay),Route 9 (Baie de Ludester),
+855,galar-route-9,outer-spikemuth,0,Route 9 (Outer Spikemuth),Route 9 (Abords de Smashings),
+856,galar-route-10,main,0,Route 10 (Main),Route 10 (Principale),
+857,galar-route-10,near-station,0,Route 10 (Near Station),Route 10 (Gare de White Hill),
+858,axews-eye,,0,Axew's Eye,Œil du lac,
+859,ballimere-lake,,0,Ballimere Lake,Lac Poké Ball,
+860,ballonlea,,0,Ballonlea,Corrifey,
+861,galar-battle-tower,,0,Battle Tower,Tour de Combat,
+862,brawlers-cave,,0,Brawlers' Cave,Grotte du Pugilat,
+863,bridge-field,,0,Bridge Field,Prairie Entre-Ponts,
+864,challenge-beach,,0,Challenge Beach,Plage de l'Épreuve,
+868,challenge-road,,0,Challenge Road,Route de l'Épreuve,
+869,circhester,,0,Circhester,Ludester,
+870,courageous-cavern,,0,Courageous Cavern,Caverne Pugnacité,
+871,crown-shrine,,0,Crown Shrine,Temple Couronne,
+872,dappled-grove,,0,Dappled Grove,Bois de Clairjour,
+873,dusty-bowl,,0,Dusty Bowl,Fosse des Sables,
+874,dyna-tree-hill,,0,Dyna Tree Hill,Butte du Dynarbre,
+875,east-lake-axewell,,0,East Lake Axewell,Lac Coupenotte Est,
+876,fields-of-honor,,0,Fields of Honor,Plaine Salutation,
+878,forest-of-focus,,0,Forest of Focus,Forêt Flexion,
+879,freezington,,0,Freezington,Hameau Gelé,
+880,frigid-sea,,0,Frigid Sea,Mer Banquise,
+881,frostpoint-field,,0,Frostpoint Field,Plaine Granfroy,
+882,galar-mine,,0,Galar Mine,Mine de Galar,
+883,galar-mine-no-2,,0,Galar Mine No. 2,Mine de Galar n°2,
+884,giants-bed,,0,Giant's Bed,Repos du Géant,
+885,giants-cap,main,0,Giant's Cap (Main Area),Coiffe du Géant (Zone principale),
+886,giants-cap,area-2,0,Giant's Cap (Area 2),Coiffe du Géant (Zone 2),
+887,giants-cap,area-3,0,Giant's Cap (Area 3),Coiffe du Géant (Zone 3),
+888,giants-foot,,0,Giant's Foot,Empreinte du Géant,
+889,giants-mirror,main,0,Giant's Mirror (Main Area),Miroir du Géant (Zone principale),
+890,giants-seat,,0,Giant's Seat,Siège du Géant,
+891,glimwood-tangle,,0,Glimwood Tangle,Forêt de Lumirinth,
+892,hammerlocke,,0,Hammerlocke,Kickenham,
+893,hammerlocke-hills,,0,Hammerlocke Hills,Plateau de Kickenham,
+894,honeycalm-island,,0,Honeycalm Island,Îlot Calméole,
+895,honeycalm-sea,,0,Honeycalm Sea,Mer Calméole,
+896,hulbury,,0,Hulbury,Skifford,
+897,galar-iceberg-ruins,,0,Iceberg Ruins,Ruines Iceberg,
+898,insular-sea,,0,Insular Sea,Mer Isol'Îlots,
+899,galar-iron-ruins,,0,Iron Ruins,Ruines de Fer,
+900,lake-of-outrage,,0,Lake of Outrage,Lac Ouragan,
+901,lakeside-cave,,0,Lakeside Cave,Grotte du Lac,
+902,loop-lagoon,,0,Loop Lagoon,Lagun Circulaire,
+904,master-dojo,,0,Master Dojo,Dojo de la Maîtrise,
+905,max-lair,,0,Max Lair,Grand Antre Dynamax,
+906,motostoke,main,0,Motostoke,Motorby,
+907,motostoke-outskirts,,0,Motostoke Outskirts,Abords de Motorby,
+908,motostoke-riverbank,,0,Motostoke Riverbank,Berges de Motorby,
+909,north-lake-miloch,,0,North Lake Miloch,Lac Milobellus Nord,
+910,old-cemetery,,0,Old Cemetery,Cimetière Ancien,
+911,path-to-the-peak,,0,Path to the Peak,Sentier Blanche-Cime,
+912,postwick,,0,Postwick,Paddoxton,
+913,potbottom-desert,,0,Potbottom Desert,Sables de Kudsac,
+914,roaring-sea-caves,,0,Roaring-Sea Caves,Cavernes Gronde-Mer,
+915,galar-rock-peak-ruins,,0,Rock Peak Ruins,Ruines Pic Roche,
+916,rolling-fields,main,0,Rolling Fields (Main Area),Plaine Verdoyante (Zone principale),
+917,rolling-fields,area-2,0,Rolling Fields (Area 2),Plaine Verdoyante (Zone 2),
+918,slippery-slope,,0,Slippery Slope,Plateau Beau-Gant,
+919,slumbering-weald,main,0,Slumbering Weald (Entrance),Forêt de Sleepwood (Première partie),
+920,snowslide-slope,,0,Snowslide Slope,Pente Enneigée,
+921,soothing-wetlands,,0,Soothing Wetlands,Lande Boldair,
+922,south-lake-miloch,main,0,South Lake Miloch (Main Area),Lac Milobellus Sud (Zone principale),
+923,south-lake-miloch,area-2,0,South Lake Miloch (Area 2),Lac Milobellus Sud (Zone 2),
+924,spikemuth,,0,Spikemuth,Smashings,
+925,split-decision-ruins,,0,Split-Decision Ruins,Ruines du Choix,
+927,stepping-stone-sea,main,0,Stepping-Stone Sea (Main Area),Mer Align-Îlots (Zone principale),
+928,stepping-stone-sea,area-2,0,Stepping-Stone Sea (Area 2),Mer Align-Îlots (Zone 2),
+929,stony-wilderness,main,0,Stony Wilderness (Main Area),Plaine Rocheuse (Zone principale),
+930,stony-wilderness,area-2,0,Stony Wilderness (Area 2),Plaine Rocheuse (Zone 2),
+931,stony-wilderness,area-3,0,Stony Wilderness (Area 3),Plaine Rocheuse (Zone 3),
+932,stow-on-side,,0,Stow-on-Side,Old Chister,
+933,three-point-pass,,0,Three-Point Pass,Croisée Trois-Voies,
+934,tower-of-darkness,,0,Tower of Darkness,Tour des Ténèbres,
+935,tower-of-waters,,0,Tower of Waters,Tour de l'Eau,
+936,training-lowlands,,0,Training Lowlands,Plaine des Efforts,
+938,tunnel-to-the-top,,0,Tunnel to the Top,Galeries Monte-Pic,
+939,turffield,,0,Turffield,Greenbury,
+940,warm-up-tunnel,,0,Warm-Up Tunnel,Voie des Étirements,
+941,watchtower-ruins,,0,Watchtower Ruins,Tour en ruines,
+942,wedgehurst,,0,Wedgehurst,Brasswick,
+943,west-lake-axewell,,0,West Lake Axewell,Lac Coupenotte Ouest,
+944,workout-sea,,0,Workout Sea,Mer Eau-Hisse,
+945,wyndon,,0,Wyndon,Winscor,
+946,aipom-hill,,0,,,
+947,ancient-quarry,,0,,,
+948,arenas-approach,,0,,,
+949,aspiration-hill,,0,,,
+950,avalanche-slopes,,0,,,
+951,avaluggs-legacy,,0,,,
+952,bathers-lagoon,,0,,,
+953,bolderoll-ravine,,0,,,
+954,bolderoll-slope,,0,,,
+955,bonechill-wastes,,0,,,
+956,brava-arena,,0,,,
+957,castaway-shore,,0,,,
+958,celestica-ruins,,0,,,
+959,celestica-trail,,0,,,
+960,clamberclaw-cliffs,,0,,,
+961,cloudcap-pass,,0,,,
+962,cloudpool-ridge,,0,,,
+963,coastlands-camp,,0,,,
+964,cottonsedge-prairie,,0,,,
+965,crossing-slope,,0,,,
+966,deadwood-haunt,,0,,,
+967,deertrack-heights,,0,,,
+968,deertrack-path,,0,,,
+969,diamond-heath,,0,,,
+970,diamond-settlement,,0,,,
+971,droning-meadow,,0,,,
+972,fabled-spring,,0,,,
+973,firespit-island,,0,,,
+974,floaro-gardens,,0,,,
+975,gapejaw-bog,,0,,,
+976,ginkgo-landing,,0,,,
+977,glacier-terrace,,0,,,
+978,golden-lowlands,,0,,,
+979,grandtree-arena,,0,,,
+980,grueling-grove,,0,,,
+981,hearts-crag,,0,,,
+982,heavenward-lookout,,0,,,
+983,heights-camp,,0,,,
+984,hideaway-bay,,0,,,
+985,holm-of-trials,,0,,,
+986,horseshoe-plains,,0,,,
+987,ice-column-chamber,,0,,,
+988,icebound-falls,,0,,,
+989,icepeak-arena,,0,,,
+990,icepeak-cavern,,0,,,
+991,islespy-shore,,0,,,
+992,jubilife-village,,0,,,
+993,hisui-lake-acuity,,0,,,
+994,hisui-lake-valor,,0,,,
+995,hisui-lake-verity,,0,,,
+996,lonely-spring,,0,,,
+997,lunkers-lair,,0,,,
+998,molten-arena,,0,,,
+999,moonview-arena,,0,,,
+1000,natures-pantry,,0,,,
+1001,obsidian-falls,,0,,,
+1002,oreburrow-tunnel,,0,,,
+1003,pearl-settlement,,0,,,
+1004,primeval-grotto,,0,,,
+1005,ramanas-island,,0,,,
+1006,sacred-plaza,,0,,,
+1007,sands-reach,,0,,,
+1008,sandgem-flats,,0,,,
+1009,scarlet-bog,,0,,,
+1010,seagrass-haven,,0,,,
+1011,seaside-hollow,,0,,,
+1012,shrouded-ruins,,0,,,
+1013,sludge-mound,,0,,,
+1014,snowfall-hot-spring,,0,,,
+1015,hisui-snowpoint-temple,,0,,,
+1016,hisui-solaceon-ruins,,0,,,
+1017,sonorous-path,,0,,,
+1018,space-time-distortion,,0,,,
+1019,hisui-spring-path,,0,,,
+1020,stonetooth-rows,,0,,,
+1021,temple-of-sinnoh,,0,,,
+1022,the-heartwood,,0,,,
+1023,tidewater-dam,,0,,,
+1024,tombolo-walk,,0,,,
+1025,tranquility-cove,,0,,,
+1026,hisui-turnback-cave,,0,,,
+1027,ursas-ring,,0,,,
+1028,veilstone-cape,,0,,,
+1029,hisui-wayward-cave,,0,,,
+1030,wayward-wood,,0,,,
+1031,whiteout-valley,,0,,,
+1032,windbreak-stand,,0,,,
+1033,windswept-run,,0,,,
+1034,worn-bridge,,0,,,
+1035,alola-route-1,east,0,,,
+1036,alola-route-1,hauoli-outskirts,0,,,
+1037,alola-route-1,south,0,,,
+1038,alola-route-1,trainers-school,0,,,
+1039,alola-route-1,west,0,,,
+1040,alola-route-2,main,0,,,
+1041,alola-route-2,north,0,,,
+1042,alola-route-2,south,0,,,
+1043,alola-route-3,main,0,,,
+1044,alola-route-3,north,0,,,
+1045,alola-route-3,south,0,,,
+1046,alola-route-4,,0,,,
+1047,alola-route-5,,0,,,
+1048,alola-route-6,north,0,,,
+1049,alola-route-6,south,0,,,
+1050,alola-route-7,,0,,,
+1051,alola-route-8,main,0,,,
+1052,alola-route-8,fossil-restoration-center,0,,,
+1053,alola-route-9,main,0,,,
+1054,alola-route-9,police-station,0,,,
+1055,alola-route-10,,0,,,
+1056,alola-route-11,,0,,,
+1057,alola-route-12,,0,,,
+1058,alola-route-13,,0,,,
+1059,alola-route-14,,0,,,
+1060,alola-route-15,main,0,,,
+1061,alola-route-15,aether-house,0,,,
+1062,alola-route-16,main,0,,,
+1063,alola-route-16,east,0,,,
+1064,alola-route-16,west,0,,,
+1065,alola-route-17,northeast,0,,,
+1066,alola-route-17,west,0,,,
+1067,aether-paradise,2f,0,,,
+1068,akala-outskirts,,0,,,
+1069,altar-of-the-moone,,0,,,
+1070,altar-of-the-sunne,,0,,,
+1071,ancient-poni-path,,0,,,
+1072,alola-berry-fields,,0,,,
+1073,blush-mountain,,0,,,
+1074,brooklet-hill,main,0,,,
+1075,brooklet-hill,north,0,,,
+1076,brooklet-hill,south,0,,,
+1077,brooklet-hill,totems-den,0,,,
+1078,digletts-tunnel,,0,,,
+1079,dividing-peak-tunnel,,0,,,
+1080,exeggutor-island,,0,,,
+1081,haina-desert,,0,,,
+1082,hano-beach,,0,,,
+1083,hauoli-cemetery,,0,,,
+1084,hauoli-city,main,0,,,
+1085,hauoli-city,shopping-district,0,,,
+1086,hauoli-city,beachfront,0,,,
+1087,heahea-beach,,0,,,
+1088,heahea-city,surf-association,0,,,
+1089,iki-town,,0,,,
+1090,kalae-bay,,0,,,
+1091,konikoni-city,,0,,,
+1092,lake-of-the-moone,,0,,,
+1093,lake-of-the-sunne,,0,,,
+1094,lush-jungle,east-cave,0,,,
+1095,lush-jungle,north,0,,,
+1096,lush-jungle,south,0,,,
+1097,lush-jungle,west,0,,,
+1098,mahalo-trail,,0,,,
+1099,malie-city,main,0,,,
+1100,malie-city,outer-cape,0,,,
+1101,malie-garden,,0,,,
+1102,melemele-meadow,,0,,,
+1103,melemele-sea,,0,,,
+1104,memorial-hill,,0,,,
+1105,mount-hokulani,main,0,,,
+1106,mount-hokulani,east,0,,,
+1107,mount-hokulani,west,0,,,
+1108,mount-lanakila,base,0,,,
+1109,mount-lanakila,cave,0,,,
+1110,mount-lanakila,outside,0,,,
+1111,paniola-ranch,,0,,,
+1112,paniola-town,,0,,,
+1113,poni-breaker-coast,,0,,,
+1114,poni-coast,,0,,,
+1115,poni-gauntlet,,0,,,
+1116,poni-grove,,0,,,
+1117,poni-meadow,,0,,,
+1118,poni-plains,center,0,,,
+1119,poni-plains,east,0,,,
+1120,poni-plains,north,0,,,
+1121,poni-plains,west,0,,,
+1122,poni-wilds,,0,,,
+1123,resolution-cave,,0,,,
+1124,royal-avenue,,0,,,
+1125,ruins-of-abundance,,0,,,
+1126,ruins-of-conflict,,0,,,
+1127,ruins-of-hope,,0,,,
+1128,ruins-of-life,,0,,,
+1129,sandy-cave,,0,,,
+1130,seafolk-village,main,0,,,
+1131,seafolk-village,huntail-boat,0,,,
+1132,seaward-cave,,0,,,
+1133,secluded-shore,,0,,,
+1134,tapu-village,,0,,,
+1135,ten-carat-hill,farthest-hollow,0,,,
+1136,ten-carat-hill,inside,0,,,
+1137,thrifty-megamart,abandoned-site,0,,,
+1138,ulaula-beach,,0,,,
+1139,ulaula-meadow,,0,,,
+1140,ultra-space,ultra-crater,0,,,
+1141,ultra-space,ultra-deep-sea,0,,,
+1142,ultra-space,ultra-desert,0,,,
+1143,ultra-space,ultra-forest,0,,,
+1144,ultra-space,ultra-jungle,0,,,
+1145,ultra-space,ultra-plant,0,,,
+1146,ultra-space,ultra-ruin,0,,,
+1147,ultra-space-wilds,cave,0,,,
+1148,ultra-space-wilds,cliff,0,,,
+1149,ultra-space-wilds,crag,0,,,
+1150,ultra-space-wilds,waterfall,0,,,
+1151,vast-poni-canyon,inside,0,,,
+1152,vast-poni-canyon,northwest,0,,,
+1153,vast-poni-canyon,outside,0,,,
+1154,verdant-cavern,trial-site,0,,,
+1155,verdant-cavern,totems-den,0,,,
+1156,wela-volcano-park,,0,,,
+1157,wela-volcano-park,totems-den,0,,,
+1158,poke-pelago,poni-island-reached,0,,,
+1159,poke-pelago,ulaula-island-reached,0,,,
+1160,poke-pelago,elite-four-defeated,0,,,
+1161,team-rockets-castle,,0,,,
+1162,ultra-megalopolis,,0,,,
+1163,lush-jungle,all-areas,0,,,
+1164,alola-route-17,all-areas,0,,,
+1165,team-aqua-hideout,,0,,,
+1166,team-magma-hideout,,0,,,
+1167,liberty-garden,lighthouse-basement,0,Lighthouse Basement,Phare de la Liberté,Leuchtturm Keller
+1168,pinwheel-forest,rumination-field,0,,,
+1169,roaming-unova,,0,Roaming Unova,Erre dans Unys,Feld der Besinnung
+1170,ns-castle,throne-room,0,,,
+1171,dragonspiral-tower,7f,0,,,
+1172,reversal-mountain,b1f,0,,,
+1173,twist-mountain,b4f,0,,,
+1174,sea-spirits-den,,0,,,
+1175,unknown-dungeon,,0,,,
+1176,team-flare-secret-hq,,0,,,
+1177,trackless-forest,,0,,,
+1178,sea-mauville,,0,,,
+1179,sea-mauville,outside,0,Sea Mauville (Outside),Lavandia Sea (Surface),Seewoge Malvenfroh (außen)
+1180,sea-mauville,inside,0,Sea Mauville (Inside),Lavandia Sea (Intérieur),Seewoge Malvenfroh (innen)
+1181,mossdeep-space-center,,0,Mossdeep Space Center,Centre Spatial d’Algatia,Moosbach City Raumfahrtzentrum
+1182,roaming-kalos,,0,Roaming Kalos,Erre dans Kalos,Wandert durch Kalos
+1183,nameless-cavern,,0,Nameless Cavern,Grotte Oubliée,Unerforschte Höhle
+1184,soaring-in-the-sky,,0,Soaring in the Sky,Grand Envol,Luftraum
+1185,scorched-slab,1f,0,Scorched Slab (1F),Grotte Zénith (RdC),Sonnengrotte (EG)
+1186,scorched-slab,b1f,0,Scorched Slab (B1F),Grotte Zénith (-1),Sonnengrotte (1.UG)
+1187,scorched-slab,b2f,0,Scorched Slab (B2F),Grotte Zénith (-2),Sonnengrotte (2.UG)
+1188,scorched-slab,b3f,0,Scorched Slab (B3F),Grotte Zénith (-3),Sonnengrotte (3.UG)
+1189,crescent-isle,,0,Crescent Isle,Île de l’Arc,Sichelinsel
+1190,pathless-plain,,0,Pathless Plain,Plaine Sans Nom,Namenlose Ebene
+1191,fabled-cave,,0,Fabled Cave,Grotte Évanescente,Rätselhafte Höhle
+1192,gnarled-den,,0,Gnarled Den,Gouffre Informe,Höhle der Spaltung
+1193,verdant-cavern--trial-site,,0,,,
+1194,trainers-school,,0,Trainers' School,École des Dresseurs,Trainerschule
+1195,ultra-space,ultra-space-wilds-cliff,0,Ultra Space Wilds Cliff World,Ultra-Dimension Zéro Monde Falaise,Ultradimension Klippenwelt
+1196,ultra-space,ultra-space-wilds-water,0,Ultra Space Wilds Water World,Ultra-Dimension Zéro Monde Eau,Ultradimension Wasserwelt
+1197,ultra-space,ultra-space-wilds-rocky,0,Ultra Space Wilds Rocky World,Ultra-Dimension Zéro Monde Rocheux,Ultradimension Felsenwelt
+1198,ultra-space,ultra-space-wilds-cave,0,Ultra Space Wilds Cave World,Ultra-Dimension Zéro Monde Grotte,Ultradimension Höhlenwelt
+1199,mount-lanakila,crater,0,Mount Lanakila Crater,Mont Lanakila Cratère,Mount Lanakila Krater
+1200,pewter-city,,0,,,
+1201,lavender-town,,0,,,
+1202,indigo-plateau,,0,,,
+1203,saffron-city,,0,,,
+1204,shoal-cave,low-tide,0,,,
+1205,shoal-cave,b2f,0,,,
+1206,shoal-cave,b3f,0,,,
+1207,hoenn-route-104,north-oras,0,,,
+1208,hoenn-route-104,south-oras,0,,,
+1209,hoenn-pokemart,,0,,,
+1210,hoenn-pokecenter,,0,,,
+1211,kanto-pokemart,,0,,,
+1212,kanto-pokecenter,,0,,,
+1213,sinnoh-pokemart,,0,,,
+1214,johto-pokemart,,0,,,
+1215,mirage-spot-island,west-of-dewford-town,0,Mirage Island (West Of Dewford Town),Île Mirage (Ouest de Myokara,
+1216,mirage-spot-island,west-of-route-104,0,Mirage Island (West Of Route 104),Île Mirage (Ouest de la Route 104),
+1217,mirage-spot-island,route-114,0,Mirage Island (Route 114),Île Mirage (Route 114),
+1218,mirage-spot-island,route-124,0,Mirage Island (Route 124),Île Mirage (Route 124),
+1219,mirage-spot-island,route-132,0,Mirage Island (Route 132),Île Mirage (Route 132),
+1220,mirage-spot-island,south-of-route-134,0,Mirage Island (South of Route 134),Île Mirage (Sud de la Route 134),
+1221,mirage-spot-island,south-of-pacifidlog,0,Mirage Island (South of Pacifidlog),Île Mirage (Sud de Pacifiville),
+1222,mirage-spot-island,east-of-shoal-cave,0,Mirage Island (East of Shoal Cave),Île Mirage (Est de la Grotte Tréfonds),
+1223,mirage-island,,0,Mirage Island,Île Mirage,
+1224,mirage-spot-forest,north-of-lilycove,0,Mirage Forest (North of Lilycove),Forêt Mirage (Nord de Nénucrique),
+1225,mirage-spot-forest,south-of-route-132,0,Mirage Forest (South of Route 132),Forêt Mirage (Sud de la Route 132,
+1226,mirage-spot-forest,east-of-mossdeep,0,Mirage Forest (East of Mossdeep),Forêt Mirage (Est d'Algatia),
+1227,mirage-spot-forest,south-of-route-109,0,Mirage Forest (South of Route 109),Forêt Mirage (Sud de la Route 109),
+1228,mirage-spot-forest,north-of-route-124,0,Mirage Forest (North of Route 124),Forêt Mirage (Nord de la Route 124),
+1229,mirage-spot-forest,west-of-route-114,0,Mirage Forest (West of Route 114),Forêt Mirage (Ouest de la Route 114),
+1230,mirage-spot-forest,west-of-route-105,0,Mirage Forest (West of Route 105),Forêt Mirage (Ouest de la Route 105),
+1231,mirage-spot-forest,south-of-route-111,0,Mirage Forest (South of Route 111),Forêt Mirage (Sud de la Route 111),
+1232,outskirt-stand,outside,0,Outskirt Stand (Outside),Station Service,
+1233,phenac-city,mayors-house,0,Phenac City (Mayor's House),Phénacit (Maison du Maire),
+1234,snagem-hideout,1f,0,Snagem Hideout 1F,Repaire Team Snatch (RdC),
+1235,shadow-pokemon-lab,bf2,0,Shadow Pokémon Lab B2F,Laboratoire de Pokémon Obscurs (2e sous-sol),
+1236,phenac-city,west-exit,0,Phenac City (West Exit),Phénacit (Sortie Ouest),
+1237,phenac-city,east-exit,0,Phenac City (East Exit),Phénacit (Sortie Est),
+1238,phenac-city,south-exit,0,Phenac City (South Exit),Phénacit (Sortie Sud),
+1239,pyrite-town,duel-square,0,Pyrite Town (Duel Square),Pyrite (Place des Duels),
+1240,pyrite-town,entrance,0,Pyrite Town (Entrance),Pyrite (Entrée),
+1241,pyrite-bldg,1f,0,Pyrite Bldg 1F,Immeuble de Pyrite (RdC),
+1242,pyrite-cave,mirors-hideout,0,Pyrite Cave (Miror's Hideout),Cavernes de Pyrite (Salle de Bouledisco),
+1243,pyrite-bldg,4f,0,Pyrite Bldg 4F,Immeuble de Pyrite (3e ét.),
+1244,pyrite-cave,outside,0,Pyrite Cave (Outside),Cavernes de Pyrite (Extérieur),
+1245,pyrite-cave,south-sewers,0,Pyrite Cave (South Sewers),Cavernes de Pyrite (Égouts sud),
+1246,pyrite-cave,bf1,0,Pyrite Cave B1F,Cavernes de Pyrite (1e sous-sol),
+1247,pyrite-cave,bf1-post-sewers,0,Pyrite Cave B1F (Post Sewers),Cavernes de Pyrite (1e sous-sol - après les égouts),
+1248,realgam-tower,,0,Realgam Tower,Tour Titanite,
+1249,phenac-city,stadium,0,Phenac City Stadium,Colisée de Phénacit,
+1250,pyrite-town,dukings-house,0,Pyrite Town (Duking's House),Pyrite (Maison de Doking),
+1251,shadow-pokemon-lab,bf1,0,Shadow Pokémon Lab B1F,Laboratoire de Pokémon Obscurs (1e sous-sol),
+1252,agate-village,relic-forest,0,Agate Village (Relic Forest),Samaragd (Forêt Sacrée),
+1253,the-under,colosseum,0,The Under Colosseum,Colosseum de Suerebe,
+1254,mt-battle,10f,0,Mt. Battle 10F,Mont Bataille (10e ét.),
+1255,the-under,,0,The Under,Suerebe,
+1256,the-under,tv-studio,0,The Under (TV Studio),Suerebe (Studio TV),
+1257,the-under,subway,0,The Under (Subway),Suerebe (Métro),
+1258,snagem-hideout,2f,0,Snagem Hideout 2F,Repaire Team Snatch (1e ét.),
+1259,realgam-tower,colosseum,0,Realgam Tower Colosseum,Colosseum de la Tour Titanite,
+1260,the-under,deep-colosseum,0,The Under (Deep Colosseum),Suerebe (Colosseum de Targare),
+1261,mt-battle,100f,0,Mt. Battle 100F,Mont Bataille (100e ét.),
+1262,phenac-city,card-e-room,0,Phenac City (Card E Room),Phénacit (Salle Carte E),
+1263,pokemon-hq-lab,,0,Pokemon HQ Lab,Laboratoire Pokémon,
+1264,pokemon-hq-lab,outside,0,Pokemon HQ Lab (Outside),Laboratoire Pokémon (Extérieur),
+1265,gateon-port,across-bridge,0,Gateon Port (Across Bridge),Port Amarrée (Après le pont),
+1266,gateon-port,lighthouse-top,0,Gateon Port (Lighthouse Top),Port Amarrée (Sommet du Phare),
+1267,cipher-lab,outside,0,Cipher Lab (Outside),Laboratoire de Pokémon Obscurs (Extérieur),
+1268,cipher-lab,bf2,0,Cipher Lab B2F,Laboratoire de Pokémon Obscurs (2e sous-sol),
+1269,cipher-lab,bf1,0,Cipher Lab B1F,Laboratoire de Pokémon Obscurs (1e sous-sol),
+1270,pokespot,cave,0,Cave Pokespot,Poké Place Grotte,
+1271,onbs,2f,0,ONBS 2F,ONBS (1e ét.),
+1272,onbs,3f,0,ONBS 3F,ONBS (2e ét.),
+1273,onbs,roof,0,ONBS Roof,ONBS (Toit),
+1274,onbs,4f,0,ONBS 4F,ONBS (3e ét.),
+1275,phenac-city,prestige-precept-center,0,Phenac City Prestige Precept Center,Centre de Formation Pokémon de Phénacité,
+1276,cipher-key-lair,outside,0,Cipher Key Lair (Outside),Repaire Ombre (Extérieur),
+1277,cipher-key-lair,1f,0,Cipher Key Lair 1F,Repaire Ombre (RdC),
+1278,cipher-key-lair,2f,0,Cipher Key Lair 2F,Repaire Ombre (1e ét.),
+1279,cipher-key-lair,3f,0,Cipher Key Lair 3F,Repaire Ombre (2e ét.),
+1280,cipher-key-lair,4f,0,Cipher Key Lair 4F,Reapire Ombre (3e ét.),
+1281,cipher-key-lair,roof,0,Cipher Key Lair Roof,Repaire Ombre (Toit),
+1282,cipher-key-lair,5f,0,Cipher Key Lair 5F,Repaire Ombre (5e ét.),
+1283,citadark-isle,outside,0,Citadark Isle (Outside),Île Ténébra (Extérieur),
+1284,citadark-isle,1f,0,Citadark Isle 1F,Île Ténébra (RdC),
+1285,citadark-isle,bf1,0,Citadark Isle B1F,Île Ténébra (1e sous-sol),
+1286,citadark-isle,2f,0,Citadark Isle 2F,Île Ténébra (1e ét.),
+1287,citadark-isle,3f,0,Citadark Isle 3F,Île Ténébra (2e ét.),
+1288,citadark-isle,6f,0,Citadark Isle 6F,Île Ténébra (5e ét.),
+1289,citadark-isle,dome-exterior,0,Citadark Isle Dome Exterior,Île Ténébra (Extérieur du Dôme),
+1290,citadark-isle,dome-bf1,0,Citadark Isle Dome B1F,Île Ténébra (Dôme - 1e sous-sol),
+1291,citadark-isle,dome-1f,0,Citadark Isle Dome 1F,Île Ténébra (Dôme - RdC),
+1292,citadark-isle,dome-2f,0,Citadark Isle Dome 2F,Île Ténébra (Dôme - 1e ét.),
+1293,gateon-port,,0,Gateon Port,Port Amarrée,
+1294,pokespot,rock,0,Rock Pokespot,Poké Place Roche,
+1295,pokespot,oasis,0,Oasis Pokespot,Poké Place Oasis,
+1296,mt-battle,lobby,0,Mt. Battle Lobby,Mont Bataille (Hall),
+1297,outskirt-stand,inside,0,Outskirt Stand (Inside),Station Service (Intérieur),
+1298,pyrite-town,colosseum,0,Pyrite Town Colosseum,Colosseum de Pyrite,
+1299,phenac-city,stadium-outside,0,Phenac City Stadium (Outside),Colosseum de Phénacit (Extérieur),
+1300,celadon-city,prize-corner,0,Celadon City Prize Corner,Casino de Céladopole,
+1301,goldenrod-city,game-corner,0,Goldenrod City Game Corner,Casino de Doublonville,
+1302,kanto-underground-path,,0,Kanto Underground Path,Souterrain de Kanto,
+1303,violet-city,southwest-house,0,Violet City (Southwest House),Mauville (Maison au Sud-Ouest),
+1304,goldenrod-city,department-store-5f,0,Goldenrod City Department Store 5F,Centre Commercial de Doublonville (4e ét.),
+1305,mirage-spot-cave,south-of-pacifidlog,0,Mirage Cave (South of Pacifidlog),Grotte Mirage (Sud de Pacifiville),
+1306,mirage-spot-cave,north-of-route-132,0,Mirage Cave (North of Route 132),Grotte Mirage (Nord de la Route 132),
+1307,mirage-spot-cave,north-of-fallarbor,0,Mirage Cave (North of Fallarbor),Grotte Mirage (Nord d'Autéquia),
+1308,mirage-spot-cave,north-of-fortree,0,Mirage Cave (North of Fortree),Grotte Mirage (Nord de Cimetronelle),
+1309,mirage-spot-cave,south-east-of-route-129,0,Mirage Cave (South East of Route 129),Grotte Mirage (Sud-Est de la Route 129),
+1310,mirage-spot-cave,south-of-route-107,0,Mirage Cave (South of Route 107),Grotte Mirage (Sud de la Route 107),
+1311,mirage-spot-cave,north-of-route-124,0,Mirage Cave (North of Route 124),Grotte Mirage (Nord de la Route 124),
+1312,mirage-spot-cave,west-of-rustburo,0,Mirage Cave (West of Rustboro),Grotte Mirage (Ouest de Mérouville),
+1313,mirage-spot-mountain,east-of-mossdeep,0,Mirage Mountain (East of Mossdeep),Mont Mirage (Est d'Algatia),
+1314,mirage-spot-mountain,north-of-mossdeep,0,Mirage Mountain (North of Mossdeep),Mont Mirage (Nord d'Algatia),
+1315,mirage-spot-mountain,south-east-of-route-129,0,Mirage Mountain (South East of Route 129),Mont Mirage (Sud-Est de la Route 129,
+1316,mirage-spot-mountain,north-of-lilycove,0,Mirage Mountain (North of Lilycove),Mont Mirage (Nord de Nénucrique),
+1317,mirage-spot-mountain,west-of-route-104,0,Mirage Mountain (West of Route 104),Mont Mirage (Ouest de la Route 104),
+1318,mirage-spot-mountain,south-of-route-129,0,Mirage Mountain (South of Route 129),Mont Mirage (Sud de la Route 129),
+1319,mirage-spot-mountain,south-of-route-131,0,Mirage Mountain (South of Route 131),Mont Mirage (Sud de la Route 131),
+1320,mirage-spot-mountain,north-east-of-route-125,0,Mirage Mountain (North East of Route 125),Mont Mirage (Nord-Est de la Route 125),
+1321,fortree-city,,0,Fortree City,Cimetronelle,
+1322,friend-safari,normal,0,Friend Safari (Normal),Safari des Amis (Normal),
+1323,friend-safari,fire,0,Friend Safari (Fire),Safari des Amis (Feu),
+1324,friend-safari,fighting,0,Friend Safari (Fighting),Safari des Amis (Combat),
+1325,friend-safari,water,0,Friend Safari (Water),Safari des Amis (Eau),
+1326,friend-safari,flying,0,Friend Safari (Flying),Safari des Amis (Vol),
+1327,friend-safari,grass,0,Friend Safari (Grass),Safari des Amis (Plante),
+1328,friend-safari,poison,0,Friend Safari (Poison),Safari des Amis (Poison),
+1329,friend-safari,electric,0,Friend Safari (Electric),Safari des Amis (Électrik),
+1330,friend-safari,ground,0,Friend Safari (Ground),Safari des Amis (Sol),
+1331,friend-safari,psychic,0,Friend Safari (Psychic),Safari des Amis (Psy),
+1332,friend-safari,rock,0,Friend Safari (Rock),Safari des Amis (Roche),
+1333,friend-safari,ice,0,Friend Safari (Ice),Safari des Amis (Glace),
+1334,friend-safari,bug,0,Friend Safari (Bug),Safari des Amis (Insecte),
+1335,friend-safari,dragon,0,Friend Safari (Dragon),Safari des Amis (Dragon),
+1336,friend-safari,ghost,0,Friend Safari (Ghost),Safari des Amis (Spectre),
+1337,friend-safari,dark,0,Friend Safari (Dark),Safari des Amis (Ténèbres),
+1338,friend-safari,steel,0,Friend Safari (Steel),Safari des Amis (Acier),
+1339,friend-safari,fairy,0,Friend Safari (Fairy),Safari des Amis (Fée),
+1340,unova-route-2,hidden-grotto,15,Route 2 (Hidden Grotto),Route 2 (Trouée Cachée),
+1341,unova-route-3,hidden-grotto-dark-grass,16,Route 3 (Hidden Grotto – Dark Grass),Route 3 (Trouée Cachée - Herbe sombre),
+1342,unova-route-3,hidden-grotto-pond,16,Route 3 (Hidden Grotto – Pond),Route 3 (Trouée Cachée - Étang),
+1343,unova-route-5,hidden-grotto,93,Route 5 (Hidden Grotto),Route 5 (Trouée Cachée),
+1344,unova-route-6,hidden-grotto-near-pokemon-breeder,94,Route 6 (Hidden Grotto – Near Pokemon Breeder),Route 6 (Trouée Cachée - Proche de l'Éleveuse),
+1345,unova-route-6,hidden-grotto-mistralton-cave,94,Route 6 (Hidden Grotto – Mistralton Cave),Route 6 (Trouée Cachée - Grotte Parsemille),
+1346,unova-route-7,hidden-grotto,95,Route 7 (Hidden Grotto),Route 7 (Trouée Cachée),
+1347,unova-route-9,hidden-grotto,97,Route 9 (Hidden Grotto),Route 9 (Trouée Cachée),
+1348,unova-route-13,hidden-grotto-giant-chasm,100,Route 13 (Hidden Grotto – Giant Chasm),Route 13 (Trouée Cachée - Grotte Cyclopéenne),
+1349,unova-route-13,hidden-grotto-stairs,100,Route 13 (Hidden Grotto – Stairs),Route 13 (Trouée Cachée - Escaliers),
+1350,unova-route-18,hidden-grotto,31,Route 18 (Hidden Grotto),Route 18 (Trouée Cachée),
+1351,unova-route-22,hidden-grotto,127,Route 22 (Hidden Grotto),Route 22 (Trouée Cachée),
+1352,unova-route-23,hidden-grotto,128,Route 23 (Hidden Grotto),Route 23 (Trouée Cachée),
+1353,floccesy-ranch,hidden-grotto,130,Floccesy Ranch (Hidden Grotto),Ranch d'Amaillide (Trouée Cachée),
+1354,lostlorn-forest,hidden-grotto,72,Lostlorn Forest (Hidden Grotto),Bois des Illusions (Trouée Cachée),
+1355,giant-chasm,hidden-grotto,88,Giant Chasm (Hidden Grotto),Grotte Cyclopéenne (Trouée Cachée),
+1356,abundant-shrine,hidden-grotto-near-youngster,70,Abundant Shrine (Hidden Grotto – Near Youngster),Autel Abondance (Trouée Cachée - Proche du Gamin),
+1357,abundant-shrine,hidden-grotto-shrine,70,Abundant Shrine (Hidden Grotto – Shrine),Autel Abondance (Trouée Cachée - Temple),
+1358,pinwheel-forest,hidden-grotto-outer-area,33,Pinwheel Forest (Hidden Grotto – Outer area),Forêt d'Empoigne (Trouée Cachée - Extérieur),
+1359,pinwheel-forest,hidden-grotto-inner-area,33,Pinwheel Forest (Hidden Grotto – Inner area),Forêt d'Empoigne (Trouée Cachée - Intérieur),
+1360,oreburgh-city,oreburgh-mining-museum,0,Oreburgh Mining Museum,Musée Minier de Charbourg,
+1361,pewter-city,pewter-museum-of-science,0,Pewter Museum of Science,Musée des Sciences d'Argenta,
+1362,floaroma-meadow,,0,Floaroma Meadow,Pré de Floraville,
+1363,safari-zone-gate,,0,Safari Zone Gate,Porte du Parc Safari,
+1364,accumula-town,,0,Accumula Town,Arabelle,
+1365,galar-route-2,lake,0,Route 2 (Lake),Route 2 (Lac),
+1366,galar-route-2,lakeside,0,Route 2 (Lakeside),Route 2 (Chemin au Nord-Ouest du Lac),
+1367,motostoke,gym,0,Motostoke (Gym),Motorby (Arène),
+1368,galar-route-3,west,0,Route 3 (West),Route 3 (Ouest),
+1369,slumbering-weald,deep,0,Slumbering Weald (Deep),Forêt de Sleepwood (Deuxime partie),
+1370,energy-plant,tower-summit,0,Energy Plant Tower Summit,Sommet de la Tour,
+1371,meetup-spot,,0,Meetup Spot,Sentier de la Gare,
+1372,postwick,leons-room,0,Postwick (Leon's Room),Paddoxton (Chambre de Tarak),
+1373,motostoke,pokemon-center,0,Motostoke Pokémon Center,Motorby (Centre Pokémon),
+1374,turffield,gym,0,Turffield (Gym),Greenbury (Arène),
+1375,ballonlea,gym,0,Ballonlea (Gym),Corrifey (Arène),
+1376,isle-of-armor-caves,,0,Random caves across the Isle of Armor,Grottes aléatoires d'Isolarmure,
+1377,nacrene-city,nacrene-museum,0,Nacrene Museum,Musée de Maillard,
+1378,giants-mirror,area-2,0,Giant's Mirror (Area 2),Miroir du Géant (Zone 2),
+1379,distortion-world,,0,Distortion World,Monde Distorsion,
+1380,roaming-galar-wild-area,,0,Galar Wild Areas,Terres Sauvages de Galar,
+1381,roaming-isle-of-armor,,0,The Isle of Armor,Isolarmure,
+1382,roaming-crown-tundra,,0,The Crown Tundra,Couronneige,
+1383,galar-wild-area-max-dens,,0,All Max Dens in the Galar Wild Area,Tous les Antres Dynamax des Terres Sauvages,
+1384,rolling-fields,max-den-a,0,Rolling Fields (Max Den A),Plaine Verdoyante (Antre D),
+1385,rolling-fields,max-den-b,0,Rolling Fields (Max Den B),Plaine Verdoyante (Antre F),
+1386,rolling-fields,max-den-c,0,Rolling Fields (Max Den C),Plaine Verdoyante (Antre A),
+1387,rolling-fields,max-den-d,0,Rolling Fields (Max Den D),Plaine Verdoyante (Antre I),
+1388,rolling-fields,max-den-e,0,Rolling Fields (Max Den E),Plaine Verdoyante (Antre C),
+1389,rolling-fields,max-den-f,0,Rolling Fields (Max Den F),Plaine Verdoyante (Antre E),
+1390,rolling-fields,max-den-g,0,Rolling Fields (Max Den G),Plaine Verdoyante (Antre B),
+1391,rolling-fields,max-den-h,0,Rolling Fields (Max Den H),Plaine Verdoyante (Antre H),
+1392,rolling-fields,max-den-i,0,Rolling Fields (Max Den I),Plaine Verdoyante (Antre G),
+1393,dappled-grove,max-den-a,0,Dappled Grove (Max Den A),Bois de Clairjour (Antre E),
+1394,dappled-grove,max-den-b,0,Dappled Grove (Max Den B),Bois de Clairjour (Antre D),
+1395,dappled-grove,max-den-c,0,Dappled Grove (Max Den C),Bois de Clairjour (Antre C),
+1396,dappled-grove,max-den-d,0,Dappled Grove (Max Den D),Bois de Clairjour (Antre B),
+1397,dappled-grove,max-den-e,0,Dappled Grove (Max Den E),Bois de Clairjour (Antre A),
+1398,west-lake-axewell,max-den-a,0,West Lake Axewell (Max Den A),Lac Coupenotte Ouest (Antre D),
+1399,west-lake-axewell,max-den-b,0,West Lake Axewell (Max Den B),Lac Coupenotte Ouest (Antre C),
+1400,west-lake-axewell,max-den-c,0,West Lake Axewell (Max Den C),Lac Coupenotte Ouest (Antre B),
+1401,west-lake-axewell,max-den-d,0,West Lake Axewell (Max Den D),Lac Coupenotte Ouest (Antre A),
+1402,west-lake-axewell,max-den-e,0,West Lake Axewell (Max Den E),Lac Coupenotte Ouest (Antre F),
+1403,west-lake-axewell,max-den-f,0,West Lake Axewell (Max Den F),Lac Coupenotte Ouest (Antre E),
+1404,watchtower-ruins,max-den-a,0,Watchtower Ruins (Max Den A),Tour en ruines (Antre B),
+1405,watchtower-ruins,max-den-c,0,Watchtower Ruins (Max Den C),Lande Boldair (Antre E),
+1406,east-lake-axewell,max-den-a,0,East Lake Axewell (Max Den A),Lac Coupenotte Est (Antre D),
+1407,east-lake-axewell,max-den-b,0,East Lake Axewell (Max Den B),Lac Coupenotte Est (Antre C),
+1408,east-lake-axewell,max-den-c,0,East Lake Axewell (Max Den C),Lac Coupenotte Est (Antre B),
+1409,east-lake-axewell,max-den-d,0,East Lake Axewell (Max Den D),Lac Coupenotte Est (Antre A),
+1410,east-lake-axewell,max-den-e,0,East Lake Axewell (Max Den E),Lac Coupenotte Est (Antre E),
+1411,axews-eye,max-den-a,0,Axew's Eye (Max Den A),Œil du Lac (Antre A),
+1412,north-lake-miloch,max-den-a,0,North Lake Miloch (Max Den A),Lac Milobellus Nord (Antre D),
+1413,north-lake-miloch,max-den-b,0,North Lake Miloch (Max Den B),Lac Milobellus Nord (Antre E),
+1414,north-lake-miloch,max-den-c,0,North Lake Miloch (Max Den C),Lac Milobellus Nord (Antre A),
+1415,north-lake-miloch,max-den-d,0,North Lake Miloch (Max Den D),Lac Milobellus Nord (Antre B),
+1416,north-lake-miloch,max-den-e,0,North Lake Miloch (Max Den E),Lac Milobellus Nord (Antre F),
+1417,north-lake-miloch,max-den-f,0,North Lake Miloch (Max Den F),Lac Milobellus Nord (Antre C),
+1418,giants-seat,max-den-a,0,Giant's Seat (Max Den A),Siège du Géant (Antre E),
+1419,giants-seat,max-den-b,0,Giant's Seat (Max Den B),Siège du Géant (Antre D),
+1420,giants-seat,max-den-c,0,Giant's Seat (Max Den C),Siège du Géant (Antre C),
+1421,giants-seat,max-den-d,0,Giant's Seat (Max Den D),Siège du Géant (Antre B),
+1422,giants-seat,max-den-e,0,Giant's Seat (Max Den E),Siège du Géant (Antre A),
+1423,south-lake-miloch,max-den-a,0,South Lake Miloch (Max Den A),Lac Milobellus Sud (Antre B),
+1424,south-lake-miloch,max-den-b,0,South Lake Miloch (Max Den B),Lac Milobellus Sud (Antre A),
+1425,south-lake-miloch,max-den-c,0,South Lake Miloch (Max Den C),Lac Milobellus Sud (Antre C),
+1426,south-lake-miloch,max-den-d,0,South Lake Miloch (Max Den D),Lac Milobellus Sud (Antre D),
+1427,south-lake-miloch,max-den-e,0,South Lake Miloch (Max Den E),Lac Milobellus Sud (Antre E),
+1428,motostoke-riverbank,max-den-a,0,Motostoke Riverbank (Max Den A),Berges de Motorby (Antre D),
+1429,motostoke-riverbank,max-den-b,0,Motostoke Riverbank (Max Den B),Berges de Motorby (Antre C),
+1430,motostoke-riverbank,max-den-c,0,Motostoke Riverbank (Max Den C),Berges de Motorby (Antre B),
+1431,motostoke-riverbank,max-den-d,0,Motostoke Riverbank (Max Den D),Berges de Motorby (Antre A),
+1432,bridge-field,max-den-a,0,Bridge Field (Max Den A),Prairie Entre-Ponts (Antre I),
+1433,bridge-field,max-den-b,0,Bridge Field (Max Den B),Prairie Entre-Ponts (Antre H),
+1434,bridge-field,max-den-c,0,Bridge Field (Max Den C),Prairie Entre-Ponts (Antre G),
+1435,bridge-field,max-den-d,0,Bridge Field (Max Den D),Prairie Entre-Ponts (Antre C),
+1436,bridge-field,max-den-e,0,Bridge Field (Max Den E),Prairie Entre-Ponts (Antre B),
+1437,bridge-field,max-den-f,0,Bridge Field (Max Den F),Prairie Entre-Ponts (Antre E),
+1438,bridge-field,max-den-g,0,Bridge Field (Max Den G),Prairie Entre-Ponts (Antre F),
+1439,bridge-field,max-den-h,0,Bridge Field (Max Den H),Prairie Entre-Ponts (Antre D),
+1440,bridge-field,max-den-i,0,Bridge Field (Max Den I),Prairie Entre-Ponts (Antre A),
+1441,stony-wilderness,max-den-a,0,Stony Wilderness (Max Den A),Plaine Rocheuse (Antre J),
+1442,stony-wilderness,max-den-b,0,Stony Wilderness (Max Den B),Plaine Rocheuse (Antre I),
+1443,stony-wilderness,max-den-c,0,Stony Wilderness (Max Den C),Plaine Rocheuse (Antre G),
+1444,stony-wilderness,max-den-d,0,Stony Wilderness (Max Den D),Plaine Rocheuse (Antre F),
+1445,stony-wilderness,max-den-e,0,Stony Wilderness (Max Den E),Plaine Rocheuse (Antre C),
+1446,stony-wilderness,max-den-f,0,Stony Wilderness (Max Den F),Plaine Rocheuse (Antre A),
+1447,stony-wilderness,max-den-g,0,Stony Wilderness (Max Den G),Plaine Rocheuse (Antre B),
+1448,stony-wilderness,max-den-h,0,Stony Wilderness (Max Den H),Plaine Rocheuse (Antre K),
+1449,stony-wilderness,max-den-i,0,Stony Wilderness (Max Den I),Plaine Rocheuse (Antre D),
+1450,stony-wilderness,max-den-j,0,Stony Wilderness (Max Den J),Plaine Rocheuse (Antre E),
+1451,stony-wilderness,max-den-k,0,Stony Wilderness (Max Den K),Plaine Rocheuse (Antre H),
+1452,stony-wilderness,max-den-l,0,Stony Wilderness (Max Den L),Plaine Rocheuse (Antre L),
+1453,giants-cap,max-den-a,0,Giant's Cap (Max Den A),Coiffe du Géant (Antre E),
+1454,giants-cap,max-den-b,0,Giant's Cap (Max Den B),Coiffe du Géant (Antre D),
+1455,giants-cap,max-den-c,0,Giant's Cap (Max Den C),Coiffe du Géant (Antre C),
+1456,giants-cap,max-den-d,0,Giant's Cap (Max Den D),Coiffe du Géant (Antre B),
+1457,giants-cap,max-den-e,0,Giant's Cap (Max Den E),Coiffe du Géant (Antre A),
+1458,dusty-bowl,max-den-a,0,Dusty Bowl (Max Den A),Fosse des Sables (Antre I),
+1459,dusty-bowl,max-den-b,0,Dusty Bowl (Max Den B),Fosse des Sables (Antre H),
+1460,dusty-bowl,max-den-c,0,Dusty Bowl (Max Den C),Fosse des Sables (Antre G),
+1461,dusty-bowl,max-den-d,0,Dusty Bowl (Max Den D),Fosse des Sables (Antre D),
+1462,dusty-bowl,max-den-e,0,Dusty Bowl (Max Den E),Fosse des Sables (Antre B),
+1463,dusty-bowl,max-den-f,0,Dusty Bowl (Max Den F),Fosse des Sables (Antre E),
+1464,dusty-bowl,max-den-g,0,Dusty Bowl (Max Den G),Fosse des Sables (Antre F),
+1465,dusty-bowl,max-den-h,0,Dusty Bowl (Max Den H),Fosse des Sables (Antre C),
+1466,dusty-bowl,max-den-i,0,Dusty Bowl (Max Den I),Fosse des Sables (Antre A),
+1467,giants-mirror,max-den-a,0,Giant's Mirror (Max Den A),Miroir du Géant (Antre E),
+1468,giants-mirror,max-den-b,0,Giant's Mirror (Max Den B),Miroir du Géant (Antre D),
+1469,giants-mirror,max-den-c,0,Giant's Mirror (Max Den C),Miroir du Géant (Antre C),
+1470,giants-mirror,max-den-d,0,Giant's Mirror (Max Den D),Miroir du Géant (Antre B),
+1471,giants-mirror,max-den-e,0,Giant's Mirror (Max Den E),Miroir du Géant (Antre A),
+1472,lake-of-outrage,max-den-a,0,Lake of Outrage (Max Den A),Lac Ouragan (Antre D),
+1473,lake-of-outrage,max-den-b,0,Lake of Outrage (Max Den B),Lac Ouragan (Antre A),
+1474,lake-of-outrage,max-den-c,0,Lake of Outrage (Max Den C),Lac Ouragan (Antre C),
+1475,lake-of-outrage,max-den-d,0,Lake of Outrage (Max Den D),Lac Ouragan (Antre B),
+1476,hammerlocke-hills,max-den-a,0,Hammerlocke Hills (Max Den A),Plateau de Kickenham (Antre F),
+1477,hammerlocke-hills,max-den-b,0,Hammerlocke Hills (Max Den B),Plateau de Kickenham (Antre A),
+1478,hammerlocke-hills,max-den-c,0,Hammerlocke Hills (Max Den C),Plateau de Kickenham (Antre E),
+1479,hammerlocke-hills,max-den-d,0,Hammerlocke Hills (Max Den D),Plateau de Kickenham (Antre G),
+1480,hammerlocke-hills,max-den-e,0,Hammerlocke Hills (Max Den E),Plateau de Kickenham (Antre D),
+1481,hammerlocke-hills,max-den-f,0,Hammerlocke Hills (Max Den F),Plateau de Kickenham (Antre B),
+1482,hammerlocke-hills,max-den-g,0,Hammerlocke Hills (Max Den G),Plateau de Kickenham (Antre C),
+1483,kalos-berry-fields,,0,,,
+1484,fields-of-honor,max-den-a,0,Fields of Honor (Max Den A),Plaine Salutation (Antre I),
+1485,fields-of-honor,max-den-b,0,Fields of Honor (Max Den B),Plaine Salutation (Antre J),
+1486,fields-of-honor,max-den-c,0,Fields of Honor (Max Den C),Plaine Salutation (Antre F),
+1487,fields-of-honor,max-den-d,0,Fields of Honor (Max Den D),Plaine Salutation (Antre H),
+1488,fields-of-honor,max-den-e,0,Fields of Honor (Max Den E),Plaine Salutation (Antre G),
+1489,fields-of-honor,max-den-f,0,Fields of Honor (Max Den F),Plaine Salutation (Antre D),
+1490,fields-of-honor,max-den-g,0,Fields of Honor (Max Den G),Plaine Salutation (Antre C),
+1491,fields-of-honor,max-den-h,0,Fields of Honor (Max Den H),Plaine Salutation (Antre B),
+1492,fields-of-honor,max-den-i,0,Fields of Honor (Max Den I),Plaine Salutation (Antre I),
+1493,fields-of-honor,max-den-j,0,Fields of Honor (Max Den J),Plaine Salutation (Antre E),
+1494,soothing-wetlands,max-den-a,0,Soothing Wetlands (Max Den A),Lande Boldair (Antre G),
+1495,soothing-wetlands,max-den-b,0,Soothing Wetlands (Max Den B),,
+1496,soothing-wetlands,max-den-c,0,Soothing Wetlands (Max Den C),Lande Boldair (Antre C),
+1497,soothing-wetlands,max-den-d,0,Soothing Wetlands (Max Den D),Lande Boldair (Antre H),
+1498,soothing-wetlands,max-den-e,0,Soothing Wetlands (Max Den E),Lande Boldair (Antre B),
+1499,soothing-wetlands,max-den-f,0,Soothing Wetlands (Max Den F),Lande Boldair (Antre A),
+1500,soothing-wetlands,max-den-g,0,Soothing Wetlands (Max Den G),Lande Boldair (Antre I),
+1501,soothing-wetlands,max-den-h,0,Soothing Wetlands (Max Den H),Lande Boldair (Antre F),
+1502,soothing-wetlands,max-den-i,0,Soothing Wetlands (Max Den I),Lande Boldair (Antre D),
+1503,forest-of-focus,max-den-a,0,Forest of Focus (Max Den A),Forêt Flexion (Antre F),
+1504,forest-of-focus,max-den-b,0,Forest of Focus (Max Den B),Forêt Flexion (Antre C),
+1505,forest-of-focus,max-den-c,0,Forest of Focus (Max Den C),Forêt Flexion (Antre A),
+1506,forest-of-focus,max-den-d,0,Forest of Focus (Max Den D),Forêt Flexion (Antre B),
+1507,forest-of-focus,max-den-e,0,Forest of Focus (Max Den E),Forêt Flexion (Antre D),
+1508,forest-of-focus,max-den-f,0,Forest of Focus (Max Den F),Forêt Flexion (Antre E),
+1509,challenge-beach,max-den-a,0,Challenge Beach (Max Den A),Plage de l'Épreuve (Antre C),
+1510,challenge-beach,max-den-b,0,Challenge Beach (Max Den B),Plage de l'Épreuve (Antre A),
+1511,challenge-beach,max-den-c,0,Challenge Beach (Max Den C),Plage de l'Épreuve (Antre D),
+1512,challenge-beach,max-den-d,0,Challenge Beach (Max Den D),Plage de l'Épreuve (Antre E),
+1513,challenge-beach,max-den-e,0,Challenge Beach (Max Den E),Plage de l'Épreuve (Antre F),
+1514,challenge-beach,max-den-f,0,Challenge Beach (Max Den F),Plage de l'Épreuve (Antre G),
+1515,challenge-beach,max-den-g,0,Challenge Beach (Max Den G),Plage de l'Épreuve (Antre B),
+1516,challenge-beach,max-den-h,0,Challenge Beach (Max Den H),Plage de l'Épreuve (Antre H),
+1517,brawlers-cave,max-den-a,0,Brawlers' Cave (Max Den A),Grotte du Pugilat (Antre A),
+1518,challenge-road,max-den-a,0,Challenge Road (Max Den A),Route de l'Épreuve (Antre D),
+1519,challenge-road,max-den-b,0,Challenge Road (Max Den B),Route de l'Épreuve (Antre B),
+1520,challenge-road,max-den-c,0,Challenge Road (Max Den C),Route de l'Épreuve (Antre C),
+1521,challenge-road,max-den-d,0,Challenge Road (Max Den D),,
+1522,courageous-cavern,max-den-a,0,Courageous Cavern (Max Den A),Caverne Pugnacité (Antre D),
+1523,courageous-cavern,max-den-b,0,Courageous Cavern (Max Den B),Caverne Pugnacité (Antre B),
+1524,courageous-cavern,max-den-c,0,Courageous Cavern (Max Den C),Caverne Pugnacité (Antre A),
+1525,courageous-cavern,max-den-d,0,Courageous Cavern (Max Den D),Caverne Pugnacité (Antre C),
+1526,courageous-cavern,max-den-e,0,Courageous Cavern (Max Den E),Caverne Pugnacité (Antre E),
+1527,courageous-cavern,max-den-f,0,Courageous Cavern (Max Den F),Caverne Pugnacité (Antre F),
+1528,loop-lagoon,max-den-a,0,Loop Lagoon (Max Den A),Lagune Circulaire (Antre D),
+1529,loop-lagoon,max-den-b,0,Loop Lagoon (Max Den B),Lagune Circulaire (Antre B),
+1530,loop-lagoon,max-den-c,0,Loop Lagoon (Max Den C),Lagune Circulaire (Antre C),
+1531,loop-lagoon,max-den-d,0,Loop Lagoon (Max Den D),Lagune Circulaire (Antre A),
+1532,training-lowlands,max-den-a,0,Training Lowlands (Max Den A),,
+1533,training-lowlands,max-den-b,0,Training Lowlands (Max Den B),,
+1534,training-lowlands,max-den-c,0,Training Lowlands (Max Den C),,
+1535,training-lowlands,max-den-d,0,Training Lowlands (Max Den D),,
+1536,training-lowlands,max-den-e,0,Training Lowlands (Max Den E),,
+1537,training-lowlands,max-den-f,0,Training Lowlands (Max Den F),,
+1538,training-lowlands,max-den-g,0,Training Lowlands (Max Den G),,
+1539,potbottom-desert,max-den-a,0,Potbottom Desert (Max Den A),,
+1540,potbottom-desert,max-den-b,0,Potbottom Desert (Max Den B),,
+1541,potbottom-desert,max-den-c,0,Potbottom Desert (Max Den C),,
+1542,workout-sea,max-den-a,0,Workout Sea (Max Den A),,
+1543,workout-sea,max-den-b,0,Workout Sea (Max Den B),,
+1544,workout-sea,max-den-c,0,Workout Sea (Max Den C),,
+1545,workout-sea,max-den-d,0,Workout Sea (Max Den D),,
+1546,workout-sea,max-den-e,0,Workout Sea (Max Den E),,
+1547,workout-sea,max-den-f,0,Workout Sea (Max Den F),,
+1548,workout-sea,max-den-g,0,Workout Sea (Max Den G),,
+1549,stepping-stone-sea,max-den-a,0,Stepping-Stone Sea (Max Den A),,
+1550,stepping-stone-sea,max-den-b,0,Stepping-Stone Sea (Max Den B),,
+1551,stepping-stone-sea,max-den-c,0,Stepping-Stone Sea (Max Den C),,
+1552,stepping-stone-sea,max-den-d,0,Stepping-Stone Sea (Max Den D),,
+1553,stepping-stone-sea,max-den-e,0,Stepping-Stone Sea (Max Den E),,
+1554,stepping-stone-sea,max-den-f,0,Stepping-Stone Sea (Max Den F),,
+1555,stepping-stone-sea,max-den-g,0,Stepping-Stone Sea (Max Den G),,
+1556,stepping-stone-sea,max-den-h,0,Stepping-Stone Sea (Max Den H),,
+1557,stepping-stone-sea,max-den-i,0,Stepping-Stone Sea (Max Den I),,
+1558,insular-sea,max-den-a,0,Insular Sea (Max Den A),,
+1559,insular-sea,max-den-b,0,Insular Sea (Max Den B),,
+1560,insular-sea,max-den-c,0,Insular Sea (Max Den C),,
+1561,insular-sea,max-den-d,0,Insular Sea (Max Den D),,
+1562,insular-sea,max-den-e,0,Insular Sea (Max Den E),,
+1563,honeycalm-sea,max-den-a,0,Honeycalm Sea (Max Den A),,
+1564,honeycalm-sea,max-den-b,0,Honeycalm Sea (Max Den B),,
+1565,honeycalm-sea,max-den-c,0,Honeycalm Sea (Max Den C),,
+1566,honeycalm-sea,max-den-d,0,Honeycalm Sea (Max Den D),,
+1567,honeycalm-sea,max-den-e,0,Honeycalm Sea (Max Den E),,
+1568,honeycalm-island,max-den-a,0,Honeycalm Island (Max Den A),,
+1569,honeycalm-island,max-den-b,0,Honeycalm Island (Max Den B),,
+1570,honeycalm-island,max-den-c,0,Honeycalm Island (Max Den C),,
+1571,honeycalm-island,max-den-d,0,Honeycalm Island (Max Den D),,
+1572,honeycalm-island,max-den-e,0,Honeycalm Island (Max Den E),,
+1573,honeycalm-island,max-den-f,0,Honeycalm Island (Max Den F),,
+1574,slippery-slope,max-den-a,0,Slippery Slope (Max Den A),,
+1575,slippery-slope,max-den-b,0,Slippery Slope (Max Den B),,
+1576,slippery-slope,max-den-c,0,Slippery Slope (Max Den C),,
+1577,slippery-slope,max-den-d,0,Slippery Slope (Max Den D),,
+1578,slippery-slope,max-den-e,0,Slippery Slope (Max Den E),,
+1579,slippery-slope,max-den-f,0,Slippery Slope (Max Den F),,
+1580,frostpoint-field,max-den-a,0,Frostpoint Field (Max Den A),,
+1581,frostpoint-field,max-den-b,0,Frostpoint Field (Max Den B),,
+1582,frostpoint-field,max-den-c,0,Frostpoint Field (Max Den C),,
+1583,frostpoint-field,max-den-d,0,Frostpoint Field (Max Den D),,
+1584,frostpoint-field,max-den-e,0,Frostpoint Field (Max Den E),,
+1585,old-cemetery,max-den-a,0,Old Cemetery (Max Den A),,
+1586,old-cemetery,max-den-b,0,Old Cemetery (Max Den B),,
+1587,snowslide-slope,max-den-a,0,Snowslide Slope (Max Den A),,
+1588,snowslide-slope,max-den-b,0,Snowslide Slope (Max Den B),,
+1589,snowslide-slope,max-den-c,0,Snowslide Slope (Max Den C),,
+1590,snowslide-slope,max-den-d,0,Snowslide Slope (Max Den D),,
+1591,snowslide-slope,max-den-e,0,Snowslide Slope (Max Den E),,
+1592,snowslide-slope,max-den-f,0,Snowslide Slope (Max Den F),,
+1593,snowslide-slope,max-den-g,0,Snowslide Slope (Max Den G),,
+1594,snowslide-slope,max-den-h,0,Snowslide Slope (Max Den H),,
+1595,snowslide-slope,max-den-i,0,Snowslide Slope (Max Den I),,
+1596,path-to-the-peak,max-den-a,0,Path to the Peak (Max Den A),,
+1597,path-to-the-peak,max-den-b,0,Path to the Peak (Max Den B),,
+1598,path-to-the-peak,max-den-c,0,Path to the Peak (Max Den C),,
+1599,crown-shrine,max-den-a,0,Crown Shrine (Max Den A),Temple Couronne (Antre A),
+1600,three-point-pass,max-den-a,0,Three-Point Pass (Max Den A),,
+1601,three-point-pass,max-den-b,0,Three-Point Pass (Max Den B),,
+1602,dyna-tree-hill,max-den-a,0,Dyna Tree Hill (Max Den A),Butte du Dynarbre (Antre A),
+1603,giants-bed,max-den-a,0,Giant's Bed (Max Den A),,
+1604,giants-bed,max-den-b,0,Giant's Bed (Max Den B),,
+1605,giants-bed,max-den-c,0,Giant's Bed (Max Den C),,
+1606,giants-bed,max-den-d,0,Giant's Bed (Max Den D),,
+1607,giants-bed,max-den-e,0,Giant's Bed (Max Den E),,
+1608,giants-bed,max-den-f,0,Giant's Bed (Max Den F),,
+1609,giants-bed,max-den-g,0,Giant's Bed (Max Den G),,
+1610,giants-bed,max-den-h,0,Giant's Bed (Max Den H),,
+1611,giants-bed,max-den-i,0,Giant's Bed (Max Den I),,
+1612,giants-bed,max-den-j,0,Giant's Bed (Max Den J),,
+1613,giants-bed,max-den-k,0,Giant's Bed (Max Den K),,
+1614,giants-bed,max-den-l,0,Giant's Bed (Max Den L),,
+1615,giants-bed,max-den-m,0,Giant's Bed (Max Den M),,
+1616,giants-bed,max-den-n,0,Giant's Bed (Max Den N),,
+1617,giants-bed,max-den-o,0,Giant's Bed (Max Den O),,
+1618,giants-bed,max-den-p,0,Giant's Bed (Max Den P),,
+1619,giants-bed,max-den-q,0,Giant's Bed (Max Den Q),,
+1620,giants-bed,max-den-r,0,Giant's Bed (Max Den R),,
+1621,giants-bed,max-den-s,0,Giant's Bed (Max Den S),,
+1622,giants-bed,max-den-t,0,Giant's Bed (Max Den T),,
+1623,giants-bed,max-den-u,0,Giant's Bed (Max Den U),,
+1624,giants-foot,max-den-a,0,Giant's Foot (Max Den A),,
+1625,giants-foot,max-den-b,0,Giant's Foot (Max Den B),,
+1626,giants-foot,max-den-c,0,Giant's Foot (Max Den C),,
+1627,giants-foot,max-den-d,0,Giant's Foot (Max Den D),,
+1628,giants-foot,max-den-e,0,Giant's Foot (Max Den E),,
+1629,frigid-sea,max-den-a,0,Frigid Sea (Max Den A),,
+1630,frigid-sea,max-den-b,0,Frigid Sea (Max Den B),,
+1631,frigid-sea,max-den-c,0,Frigid Sea (Max Den C),,
+1632,frigid-sea,max-den-d,0,Frigid Sea (Max Den D),,
+1633,frigid-sea,max-den-e,0,Frigid Sea (Max Den E),,
+1634,frigid-sea,max-den-f,0,Frigid Sea (Max Den F),,
+1635,frigid-sea,max-den-g,0,Frigid Sea (Max Den G),,
+1636,frigid-sea,max-den-h,0,Frigid Sea (Max Den H),,
+1637,frigid-sea,max-den-i,0,Frigid Sea (Max Den I),,
+1638,frigid-sea,max-den-j,0,Frigid Sea (Max Den J),,
+1639,frigid-sea,max-den-k,0,Frigid Sea (Max Den K),,
+1640,frigid-sea,max-den-l,0,Frigid Sea (Max Den L),,
+1641,frigid-sea,max-den-m,0,Frigid Sea (Max Den M),,
+1642,frigid-sea,max-den-n,0,Frigid Sea (Max Den N),,
+1643,ballimere-lake,max-den-a,0,Ballimere Lake (Max Den A),,
+1644,ballimere-lake,max-den-b,0,Ballimere Lake (Max Den B),,
+1645,ballimere-lake,max-den-c,0,Ballimere Lake (Max Den C),,
+1646,ballimere-lake,max-den-d,0,Ballimere Lake (Max Den D),,
+1647,ballimere-lake,max-den-e,0,Ballimere Lake (Max Den E),,
+1648,ballimere-lake,max-den-f,0,Ballimere Lake (Max Den F),,
+1649,ballimere-lake,max-den-g,0,Ballimere Lake (Max Den G),,
+1650,ballimere-lake,max-den-h,0,Ballimere Lake (Max Den H),,
+1651,ballimere-lake,max-den-i,0,Ballimere Lake (Max Den I),,
+1652,ballimere-lake,max-den-j,0,Ballimere Lake (Max Den J),,
+1653,ballimere-lake,max-den-k,0,Ballimere Lake (Max Den K),,
+1654,ballimere-lake,max-den-l,0,Ballimere Lake (Max Den L),,
+1655,ballimere-lake,max-den-m,0,Ballimere Lake (Max Den M),,
+1656,ballimere-lake,max-den-n,0,Ballimere Lake (Max Den N),,
+1657,ballimere-lake,max-den-o,0,Ballimere Lake (Max Den O),,
+1658,ballimere-lake,max-den-p,0,Ballimere Lake (Max Den P),,
+1659,ballimere-lake,max-den-q,0,Ballimere Lake (Max Den Q),,
+1660,oreburgh-city,north-west-house,0,Oreburgh City (Northwest House),Charbourg (Maison au Nord-Ouest),
+1661,eterna-city,eterna-condominiums,0,Eterna City Condominiums,Résidence de Vestigion,
+1662,snowpoint-city,north-west-house,0,Snowpoint City (Northwest House),Frimapic (Maison au Nord-Ouest),
+1663,sinnoh-sea-route-226,island-house,0,Route 226 (Island House),Route 226 (Maison sur l'Île),
+1664,saffron-city,magnet-train-station,0,Saffron City Magnet Train Station,Gare de Safrania,
+1665,olivine-city,gym,0,Olivine City Gym,Arène d'Oliville,

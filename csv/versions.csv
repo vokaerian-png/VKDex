@@ -1,0 +1,51 @@
+identifier,id,version_group,name_en,name_ja,name_ja_hrkt,name_ja_roma,name_fr,name_de,name_es,name_es_419,name_it,name_ko,name_zh_hant,name_zh_hans
+red,1,red-blue,Red,,赤,,Rouge,Rot,Rojo,Rojo,Rossa,레드,紅,紅
+blue,2,red-blue,Blue,,青,,Bleu,Blau,Azul,Azul,Blu,블루,藍,藍
+yellow,3,yellow,Yellow,,ピカチュウ,,Jaune,Gelb,Amarillo,Amarillo,Gialla,피카츄,皮卡丘,皮卡丘
+gold,4,gold-silver,Gold,,金,,Or,Gold,Oro,Oro,Oro,골드,金,金
+silver,5,gold-silver,Silver,,銀,,Argent,Silber,Plata,Plata,Argento,실버,銀,銀
+crystal,6,crystal,Crystal,,クリスタル,,Cristal,Kristall,Cristal,Cristal,Cristallo,크리스탈,水晶,水晶
+ruby,7,ruby-sapphire,Ruby,,ルビー,,Rubis,Rubin,Rubí,Rubí,Rubino,루비,紅寶石,紅寶石
+sapphire,8,ruby-sapphire,Sapphire,,サファイア,,Saphir,Saphir,Zafiro,Zafiro,Zaffiro,사파이어,藍寶石,藍寶石
+emerald,9,emerald,Emerald,,エメラルド,,Émeraude,Smaragd,Esmeralda,Esmeralda,Smeraldo,에메랄드,綠寶石,綠寶石
+firered,10,firered-leafgreen,FireRed,,ファイアレッド,,Rouge Feu,Feuerrot,Rojo Fuego,Rojo Fuego,Rosso Fuoco,파이어레드,火紅,火紅
+leafgreen,11,firered-leafgreen,LeafGreen,,リーフグリーン,,Vert Feuille,Blattgrün,Verde Hoja,Verde Hoja,Verde Foglia,리프그린,葉綠,葉綠
+diamond,12,diamond-pearl,Diamond,,ダイヤモンド,,Diamant,Diamant,Diamante,Diamante,Diamante,디아루가,鑽石,钻石
+pearl,13,diamond-pearl,Pearl,,パール,,Perle,Perl,Perla,Perla,Perla,펄기아,珍珠,珍珠
+platinum,14,platinum,Platinum,,プラチナ,,Platine,Platin,Platino,Platino,Platino,기라티나,白金,白金
+heartgold,15,heartgold-soulsilver,HeartGold,,ハートゴールド,,Or HeartGold,HeartGold,Oro HeartGold,Oro HeartGold,Oro HeartGold,하트골드,心金,心金
+soulsilver,16,heartgold-soulsilver,SoulSilver,,ソウルシルバー,,Argent SoulSilver,SoulSilver,Plata SoulSilver,Plata SoulSilver,Argento SoulSilver,소울실버,魂銀,魂銀
+black,17,black-white,Black,,ブラック,,Noir,Schwarz,Negro,Negro,Nera,블랙,黑,黑
+white,18,black-white,White,,ホワイト,,Blanc,Weiß,Blanco,Blanco,Bianca,화이트,白,白
+colosseum,19,colosseum,Colosseum,,コロシアム,,Colosseum,Colosseum,Colosseum,Colosseum,Colosseum,콜로세움,,
+xd,20,xd,XD,,XD,,XD,XD,XD,XD,XD,XD,,
+black-2,21,black-2-white-2,Black 2,,ブラック2,,Noir 2,Schwarz 2,Negro 2,Negro 2,Nera 2,블랙 2,黑2,黑2
+white-2,22,black-2-white-2,White 2,,ホワイト2,,Blanc 2,Weiß 2,Blanco 2,Blanco 2,Bianca 2,화이트 2,白2,白2
+x,23,x-y,X,,X,,X,X,X,X,X,X,X,X
+y,24,x-y,Y,,Y,,Y,Y,Y,Y,Y,Y,Y,Y
+omega-ruby,25,omega-ruby-alpha-sapphire,Omega Ruby,,オメガルビー,,Rubis Oméga,Omega Rubin,Rubí Omega,Rubí Omega,Rubino Omega,오메가루비,歐米加紅寶石,欧米伽红宝石
+alpha-sapphire,26,omega-ruby-alpha-sapphire,Alpha Sapphire,,アルファサファイア,,Saphir Alpha,Alpha Saphir,Zafiro Alfa,Zafiro Alfa,Zaffiro Alpha,알파사파이어,阿爾法藍寶石,阿尔法蓝宝石
+sun,27,sun-moon,Sun,,サン,,Soleil,Sonne,Sol,Sol,Sole,썬,太陽,太阳
+moon,28,sun-moon,Moon,,ムーン,,Lune,Mond,Luna,Luna,Luna,문,月亮,月亮
+ultra-sun,29,ultra-sun-ultra-moon,Ultra Sun,,ウルトラサン,,Ultra-Soleil,Ultrasonne,Ultrasol,Ultrasol,Ultrasole,울트라썬,究極之日,究极之日
+ultra-moon,30,ultra-sun-ultra-moon,Ultra Moon,,ウルトラムーン,,Ultra-Lune,Ultramond,Ultraluna,Ultraluna,Ultraluna,울트라문,究極之月,究极之月
+lets-go-pikachu,31,lets-go-pikachu-lets-go-eevee,"Let’s Go, Pikachu!",,Let’s Go! ピカチュウ,,"Let’s Go, Pikachu","Let’s Go, Pikachu!","Let’s Go, Pikachu!","Let’s Go, Pikachu!","Let’s Go, Pikachu!",레츠고! 피카츄,Let’s Go！皮卡丘,Let’s Go！皮卡丘
+lets-go-eevee,32,lets-go-pikachu-lets-go-eevee,"Let’s Go, Eevee!",,Let’s Go! イーブイ,,"Let’s Go, Évoli","Let’s Go, Evoli!","Let’s Go, Eevee!","Let’s Go, Eevee!","Let’s Go, Eevee!",레츠고! 이브이,Let’s Go！伊布,Let’s Go！伊布
+sword,33,sword-shield,Sword,,ソード,,Épée,Schwert,Espada,Espada,Spada,소드,劍,剑
+shield,34,sword-shield,Shield,,シールド,,Bouclier,Schild,Escudo,Escudo,Scudo,실드,盾,盾
+the-isle-of-armor-sword,35,the-isle-of-armor,Sword: The Isle of Armor,,ソード: 鎧の孤島,,Épée: L’île solitaire de l’Armure,Schwert: Die Insel der Rüstung,Espada: La isla de la armadura,Espada: La isla de la armadura,Spada: L’isola solitaria dell’armatura,소드: 갑옷의 외딴섬,劍: 鎧之孤島,剑: 铠之孤岛
+the-crown-tundra-sword,36,the-crown-tundra,Sword: The Crown Tundra,,ソード: 冠の雪原,,Épée: Les terres enneigées de la Couronne,Schwert: Die Schneelande der Krone,Espada: Las nieves de la corona,Espada: Las nieves de la corona,Spada: Le terre innevate della corona,소드: 왕관의 설원,劍: 冠之雪原,剑: 冠之雪原
+brilliant-diamond,37,brilliant-diamond-shining-pearl,Brilliant Diamond,,ブリリアントダイヤモンド,,Diamant Étincelant,Strahlender Diamant,Diamante Brillante,Diamante Brillante,Diamante Lucente,브릴리언트 다이아몬드,晶燦鑽石,晶灿钻石
+shining-pearl,38,brilliant-diamond-shining-pearl,Shining Pearl,,シャイニングパール,,Perle Scintillante,Leuchtende Perle,Perla Reluciente,Perla Reluciente,Perla Splendente,샤이닝 펄,明亮珍珠,明亮珍珠
+legends-arceus,39,legends-arceus,Legends: Arceus,,LEGENDS アルセウス,,Légendes : Arceus,Legenden: Arceus,Leyendas: Arceus,Leyendas: Arceus,Leggende: Arceus,LEGENDS 아르세우스,傳說 阿爾宙斯,传说 阿尔宙斯
+scarlet,40,scarlet-violet,Scarlet,,スカーレット,,Écarlate,Karmesin,Escarlata,Escarlata,Scarlatto,스칼렛,朱,朱
+violet,41,scarlet-violet,Violet,,バイオレット,,Violet,Purpur,Púrpura,Púrpura,Violetto,바이올렛,紫,紫
+the-teal-mask-scarlet,42,the-teal-mask,Scarlet: The Teal Mask,,スカーレット: 碧の仮面,,Écarlate: Le Masque Turquoise,Karmesin: Die Türkisgrüne Maske,Escarlata: La máscara turquesa,Escarlata: La máscara turquesa,Scarlatto: La maschera turchese,,,朱: 碧之假面
+the-indigo-disk-scarlet,43,the-indigo-disk,Scarlet: The Indigo Disk,,スカーレット: 藍の円盤,,Écarlate: Le Disque Indigo,Karmesin: Die Indigoblaue Scheibe,Escarlata: El disco índigo,Escarlata: El disco índigo,Scarlatto: Il disco indaco,,,朱: 藍之圓盤
+legends-za,47,legends-za,Legends: Z-A,レジェンズ Z-A,レジェンズ Z-A,Legends Z-A,Légendes : Z-A,Legenden: Z-A,Leyendas: Z-A,Leyendas: Z-A,Leggende: Z-A,LEGENDS Z-A,傳說 Z-A,传说 Z-A
+mega-dimension,48,mega-dimension,Mega Dimension,,,,Méga-Dimension,Mega-Dimension,Megadimensión,Megadimensión,Megadimensione,메가 차원 러시,超次元爆湧,超次元爆涌
+champions,49,champions,Champions,,,,,,,,,,,
+the-isle-of-armor-shield,50,the-isle-of-armor,Shield: The Isle of Armor,,シールド: 鎧の孤島,,Bouclier: L’île solitaire de l’Armure,Schild: Die Insel der Rüstung,Escudo: La isla de la armadura,Escudo: La isla de la armadura,Scudo: L’isola solitaria dell’armatura,실드: 갑옷의 외딴섬,盾: 鎧之孤島,盾: 铠之孤岛
+the-crown-tundra-shield,51,the-crown-tundra,Shield: The Crown Tundra,,シールド: 冠の雪原,,Bouclier: Les terres enneigées de la Couronne,Schild: Die Schneelande der Krone,Escudo: Las nieves de la corona,Escudo: Las nieves de la corona,Scudo: Le terre innevate della corona,실드: 왕관의 설원,盾: 冠之雪原,盾: 冠之雪原
+the-teal-mask-violet,52,the-teal-mask,Violet: The Teal Mask,,バイオレット: 碧の仮面,,Violet: Le Masque Turquoise,Purpur: Die Türkisgrüne Maske,Púrpura: La máscara turquesa,Púrpura: La máscara turquesa,Violetto: La maschera turchese,,,紫: 碧之假面
+the-indigo-disk-violet,53,the-indigo-disk,Violet: The Indigo Disk,,バイオレット: 藍の円盤,,Violet: Le Disque Indigo,Purpur: Die Indigoblaue Scheibe,Púrpura: El disco índigo,Púrpura: El disco índigo,Violetto: Il disco indaco,,,紫: 藍之圓盤

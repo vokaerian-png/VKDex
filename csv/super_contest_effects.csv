@@ -1,0 +1,23 @@
+id,appeal,flavor_text_en,flavor_text_fr
+1,2,Enables the user to perform first in the next turn.,Permet à l’utilisateur de passer en premier au tour suivant.
+2,2,Enables the user to perform last in the next turn.,Permet de passer en dernier au tour suivant.
+4,2,Earn +2 if the Judge’s Voltage goes up.,Fait gagner +2 si le voltage du juge augmente.
+5,3,A basic performance using a move known by the Pokémon.,Action basique d’une capacité connue du Pokémon.
+6,1,Earn +3 if no other Pokémon has chosen the same Judge.,+3 si aucun autre Pokémon n'a choisi le même juge.
+7,2,Allows performance of the same move twice in a row.,Cette capacité peut être utilisée deux fois de suite.
+8,0,Increased Voltage is added to the performance score.,Des points de voltage s’ajoutent au score de la capacité.
+9,0,Earn +15 if all the Pokémon choose the same Judge.,Fait gagner +15 si les Pokémon choisissent tous le même juge.
+10,2,Lowers the Voltage of all Judges by one each.,Baisse le voltage de tous les juges de un.
+11,0,Earn double the score in the next turn.,Empêche le voltage d’augmenter dans le même tour.
+12,0,Steals the Voltage of the Pokémon that just went.,Permet de voler le voltage du Pokémon qui vient de passer.
+13,2,Prevents the Voltage from going up in the same turn.,Empêche le Voltage d’augmenter dans le même tour.
+14,2,Makes the order of contestants random in the next turn.,Rend le passage des concurrents aléatoire au tour suivant.
+15,2,Earns double the score on the final performance.,Score doublé si passe en premier.
+16,0,Raises the score if the Voltage is low.,Augmente le score si le voltage est bas.
+17,2,Earn +2 if the Pokémon performs first in the turn.,+2 si le Pokémon passe en premier.
+18,2,Earn +2 if the Pokémon performs last in the turn.,+2 si le Pokémon passe en dernier.
+19,2,Prevents the Voltage from going down in the same turn.,Empêche le voltage de baisser dans le même tour.
+20,1,Earn +3 if two Pokémon raise the Voltage in a row.,+3 si deux Pokémon font monter le voltage à la suite.
+21,0,Earn a higher score the later the Pokémon performs.,Obtient un meilleur score plus le Pokémon passe tard.
+22,2,Earn +3 if the Pokémon that just went hit max Voltage.,+3 si le Pokémon précédent a atteint le voltage max.
+23,1,Earn +3 if the Pokémon gets the lowest score.,+3 si le lanceur a le score le plus bas.

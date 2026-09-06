@@ -1,0 +1,35 @@
+identifier,name,description
+damage,Damage,Deals damage.
+stat-drawback,Stat Drawback,The user receives a stat decrease in return.
+status-drawback,Status Drawback,The user receives a major status condition.
+good-stat-decrease,Good Stat Decrease,Lowers the target's or other enemies' stats.
+good-stat-increase,Good Stat Increase,Raises the user's or an ally's stats.
+bad-stat-increase,Bad Stat Increase,Raises an enemy's stats.
+crit,Crit,Has an increased critical strike chance.
+100pct-crit,100% Crit,Is guaranteed to land a critical strike unless blocked.
+recharge,Recharge,Requires a recharge turn after attacking.
+charging,Charging,Requires a charge-up period (usually 1 turn).
+recoil,Recoil,The user receives recoil damage.
+ohko,OHKO,One-Hit K.O.
+drain,Drain,Absorbs some amount to heal the user.
+poison,Poison,Poisons the target.
+burn,Burn,Burns the target.
+freeze,Freeze,Freezes the target.
+paralysis,Paralysis,Paralyzes the target.
+infatuation,Infatuation,Makes the target become infatuated.
+sleep,Sleep,Makes the target fall asleep.
+heal,Heal,Heals the user.
+whole-field-effect,Whole Field Effect,Effect on the whole field.
+partial-field-effect,Partial Field Effect,Effect on one side of the field.
+force-switch-out,Force Switch Out,Forces a Pokémon to switch out.
+unique-effect,Unique Effect,"Unique effect, shared by very few or no other moves."
+shield,Shield,Protects the user from moves
+trap,Trap,"Traps a Pokémon, preventing it from fleeing."
+never-misses,Never Misses,Ignores accuracy and evasion checks.
+shield-break,Shield Break,Breaks or ignores a protection effect.
+ignore-abilities,Ignore Abilities,Ignores most abilities.
+flinch,Flinch,Makes the target flinch.
+confusion,Confusion,Causes the target to become confused.
+increased-priority,Increased Priority,Has increased priority. (will move before most other moves regardless of Speed)
+decreased-priority,Decreased Priority,Has decreased priority. (will move after most other moves regardless of Speed)
+weather-change,Weather Change,Changes the weather.

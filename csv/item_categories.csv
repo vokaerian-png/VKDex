@@ -1,0 +1,55 @@
+identifier,id,pocket,name_en,name_fr
+stat-boosts,1,battle,Stat boosts,Augmentations de stats
+effort-drop,2,berries,Effort drop,Diminution d'effort
+medicine,3,berries,Medicine,Médicament
+other,4,berries,Other,Autre
+in-a-pinch,5,berries,In a pinch,En cas de besoin
+picky-healing,6,berries,Picky healing,Soin difficile
+type-protection,7,berries,Type protection,Protection à un type
+baking-only,8,berries,Baking only,Cuisine uniquement
+collectibles,9,misc,Collectibles,Monnaie d'échange
+evolution,10,misc,Evolution,Évolution
+spelunking,11,misc,Spelunking,Spéléologie
+held-items,12,misc,Held items,Objets tenus
+choice,13,misc,Choice,Choix
+effort-training,14,misc,Effort training,Augmentation d'effort
+bad-held-items,15,misc,Bad held items,Mauvais objets tenus
+training,16,misc,Training,Entraînement
+plates,17,misc,Plates,Plaques
+species-specific,18,misc,Species-specific,Propre à une espèce
+type-enhancement,19,misc,Type enhancement,Amélioration de type
+event-items,20,key,Event items,Objets d’événement
+gameplay,21,key,Gameplay,Gameplay
+plot-advancement,22,key,Plot advancement,Avancement dans le jeu
+unused,23,key,Unused,Non utilisé
+loot,24,misc,Loot,Butin
+all-mail,25,mail,All mail,Toutes les lettres
+vitamins,26,medicine,Vitamins,Vitamines
+healing,27,medicine,Healing,Soin
+pp-recovery,28,medicine,PP recovery,Récupération de PP
+revival,29,medicine,Revival,Renaissance
+status-cures,30,medicine,Status cures,Soin de statut
+mulch,32,misc,Mulch,Engrais
+special-balls,33,pokeballs,Special balls,Balls spéciales
+standard-balls,34,pokeballs,Standard balls,Balls standard
+dex-completion,35,misc,Dex completion,Remplissage du Dex
+scarves,36,misc,Scarves,Foulards
+all-machines,37,machines,All machines,Toutes les capsules
+flutes,38,battle,Flutes,Flûtes
+apricorn-balls,39,pokeballs,Apricorn balls,Noigrume balls
+apricorn-box,40,key,Apricorn box,Boîte Noigrume
+data-cards,41,key,Data cards,Cartes Mémo
+jewels,42,misc,Jewels,Joyaux
+miracle-shooter,43,battle,Miracle shooter,Shooter Miracle
+mega-stones,44,misc,Mega Stones,Méga-Gemmes
+memories,45,misc,Memories,ROMs
+z-crystals,46,key,Z-Crystals,Cristaux Z
+species-candies,47,misc,Species candies,Bonbons propres à une espèce
+catching-bonus,48,berries,Catching bonus,Bonus de capture
+dynamax-crystals,49,misc,Dynamax crystals,Cristaux Géants
+nature-mints,50,medicine,Nature mints,Aromates
+curry-ingredients,51,misc,Curry ingredients,Ingrédients pour le curry
+tera-shard,52,misc,Tera Shard,Téra-Éclat
+sandwich-ingredients,53,misc,Sandwich ingredients,Ingrédients pour les sandwichs
+tm-materials,54,misc,TM materials,Échantillons
+picnic,55,misc,Picnic,Pique-nique

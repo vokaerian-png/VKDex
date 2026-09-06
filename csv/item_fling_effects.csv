@@ -1,0 +1,8 @@
+identifier,id,effect_en,effect_fr
+badly-poison,1,Badly poisons the target.,Empoisonne gravement la cible.
+burn,2,Burns the target.,Brûle la cible.
+berry-effect,3,Immediately activates the berry’s effect on the target.,Active immédiatement l’effet de la baie sur la cible.
+herb-effect,4,Immediately activates the herb’s effect on the target.,Active immédiatement l’effet de l’herbe sur la cible.
+paralyze,5,Paralyzes the target.,Paralyse la cible.
+poison,6,Poisons the target.,Empoisonne la cible.
+flinch,7,Target will flinch if it has not yet gone this turn.,Apeure la cible.

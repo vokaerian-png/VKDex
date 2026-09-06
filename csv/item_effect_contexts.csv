@@ -1,0 +1,7 @@
+identifier,name,description
+bag,Bag,Effects that occur when the item is used directly from the player's bag.
+battle,Battle,Effects that activate during battle when specific conditions are met.
+field,Field,Effects that occur when the item is used outside of battle in the overworld.
+held,Held,Effects that apply while the item is held by a Pokémon.
+passive,Passive,"Items without an active use mechanic; includes decorations, crafting materials, currency, sell-only items, and passive boosts from ownership."
+story,Story,Items that advance story progression or complete quests when delivered or used.

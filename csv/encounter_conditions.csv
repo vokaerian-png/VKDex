@@ -1,0 +1,31 @@
+identifier,id,name_en,name_fr,name_de
+swarm,1,Swarm,Essaim,Schwarm
+time,2,Time of day,Période horaire,Tageszeit
+radar,3,PokeRadar,Poké Radar,PokeRadar
+slot2,4,Gen 3 game in slot 2,Jeu GBA dans le Slot 2,Spiel der 3. Generation in Slot 2
+radio,5,Radio,Radio,Radio
+season,6,Season,Saison,Jahreszeit
+starter,7,Chosen Starter,Starter choisi,
+tv-option,8,Chosen dialogue at the news report,Dialogue choisi dans le reportage,
+story-progress,9,Story Progress,Progression dans l’histoire,
+other,10,Miscellaneous,Divers,
+item,11,Item,Objet,
+weekday,12,Weekday,Jour de la semaine,
+first-party-pokemon,13,First party Pokemon,Premier Pokemon de l'équipe,
+special-encounter,14,Special encounter,Rencontre spéciale,
+trade,15,Trade a specific Pokemon to an NPC,,
+coins,16,Redeem Coins for a Pokemon at the Prize Corner or Game Corner,,
+friend-safari-slot,17,Friend Safari Slot assignment,,
+great-marsh-daily-slot,18,Great Marsh Daily Slot,,
+honey-tree-group,19,Honey Tree Group,,
+headbutt-tree,20,Headbutt Tree Type,,
+backlot,21,Listen to Mr. Backlot,,
+bug-catching-contest,22,Bug-Catching Contest,,
+save-data,23,Have save data from another Pokémon game,,
+alolan-diglett-found,24,Find a certain number of Alolan Diglett in Isle of Armor,,
+weather,25,"During specific weather conditions like sun, rain, or snow",,
+johto-safari-blocks,26,Johto Safari Zone Blocks,,
+max-den-rarity,27,Max Den Rarity,,
+max-den-rating,28,Max Den Difficulty Rating,,
+berry-tree-type,29,Berry Tree Type,,
+trash-can-type,30,Trash Can Type,,

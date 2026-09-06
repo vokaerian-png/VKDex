@@ -1,0 +1,40 @@
+identifier,name,description
+achievement,Achievement,Items obtained as rewards for reaching ranked battle milestones or completing achievements
+auction,Auction,Items obtained through auction houses or bidding systems
+bargain-shop,Bargain Shop,Items purchased from bargain shops with rotating or conditional inventory
+berry-tree,Berry Tree,Items obtained by shaking or harvesting berry trees
+choice,Choice,Items obtained by choosing between multiple options
+contest,Contest,Items obtained as rewards from minigame competitions like Ogre Oustin'
+crafting,Crafting,Items created through crafting systems using materials or recipes
+dream,Dream,Items obtained from the Dream World feature
+dropped,Dropped,Items dropped as random rewards from minigames or interactive objects
+event,Event,Items distributed through special limited-time events
+exchange,Exchange,"Items obtained by trading currencies, points, or other items with NPCs"
+field-move,Field Move,Items obtained by using field moves or while riding Pokémon
+grotto,Grotto,Items found in Hidden Grottos
+harvest,Harvest,"Items obtained by harvesting from trees, plants, or other natural sources"
+hm-tm-reward,HM/TM Reward,HMs or TMs obtained as rewards from NPCs or story events
+item-printer,Item Printer,Items obtained from the Item Printer machine
+lottery,Lottery,Items obtained from lottery drawings or lucky number events
+max-lair,Max Lair,Items obtained from Dynamax Adventures in the Max Lair
+mining,Mining,Items obtained through mining in the Underground or from dust clouds
+mom,Mom,Items purchased by the player's mother using saved money
+npc-defeat,NPC Defeat,Items obtained by defeating specific NPCs in battle
+npc-gift,NPC Gift,Items gifted by NPCs during conversations or events
+overworld,Overworld,Items found as pickups in the overworld environment
+pickup,Pickup,Items obtained via the Pickup Ability
+pokewalker,Pokéwalker,Items obtained from the Pokéwalker or Poké Ball Plus accessories
+quest,Quest,Items obtained as rewards from Poké Jobs or side quests
+raid,Raid,Items obtained from raid battles such as Max Raids or Tera Raids
+request,Request,Items obtained as rewards for completing requests or missions
+shop,Shop,Items purchased from various shops using currency
+starting-item,Starting Item,Items the player begins the game with
+story,Story,Items obtained automatically through main story progression
+tera-raid,Tera Raid,Items obtained specifically from Tera Raid Battles
+tournament,Tournament,Items obtained as rewards from ranked battles or tournaments
+trade,Trade,Items obtained through trading with other players
+trainer-reward,Trainer Reward,"Items obtained as rewards from trainers, gym leaders, or other NPCs"
+transfer,Transfer,Items obtained by transferring from other games
+vending-machine,Vending Machine,Items purchased from vending machines
+walking-pokemon,Walking Pokémon,Items obtained while walking with a partner Pokémon
+wild-pokemon,Wild Pokémon,"Items obtained from wild Pokémon, typically held items"

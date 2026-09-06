@@ -1,0 +1,31 @@
+id,stat,gene_mod_5,message_en,message_ja,message_ja_hrkt,message_fr,message_de,message_es,message_es_419,message_it,message_ko,message_zh_hant,message_zh_hans
+1,hp,0,Loves to eat,食べるのが　大好き,たべるのが　だいすき,Il adore manger,Liebt es zu essen,Le encanta comer,Le encanta comer,Adora mangiare,먹는 것을 제일 좋아함,非常喜歡吃東西,非常喜欢吃东西
+2,attack,0,Proud of its power,力が　自慢,ちからが　じまん,Il est fier de sa puissance,Ist stolz auf seine Stärke,Se enorgullece de su fuerza,Se enorgullece de su fuerza,La forza è il suo vanto,힘자랑이 특기임,以力氣大為傲,以力气大为傲
+3,defense,0,Sturdy body,体が　丈夫,からだが　じょうぶ,Il a un corps robuste,Hat einen robusten Körper,Se caracteriza por su cuerpo resistente,Se caracteriza por su cuerpo resistente,Ha un corpo robusto,몸이 튼튼함,身體強壯,身体强壮
+4,special-attack,0,Highly curious,好奇心が　強い,こうきしんが　つよい,Il est extrêmement curieux,Ist sehr neugierig,Siente mucha curiosidad por todo,Siente mucha curiosidad por todo,È un grande ficcanaso,호기심이 강함,好奇心強,好奇心强
+5,special-defense,0,Strong willed,気が　強い,きが　つよい,Il est très volontaire,Besitzt einen starken Willen,Se distingue por su gran fuerza de voluntad,Se distingue por su gran fuerza de voluntad,Sa il fatto suo,기가 센 성격임,性格強勢,性格强势
+6,speed,0,Likes to run,駆けっこが　好き,かけっこが　すき,Il aime la vitesse,Ist gerne schnell unterwegs,Le gusta ir muy rápido,Le gusta ir muy rápido,Adora andare veloce,달리기를 좋아함,喜歡比誰跑得快,喜欢比谁跑得快
+7,hp,1,Takes plenty of siestas,昼寝を　よくする,ひるねを　よくする,Il s’assoupit souvent,Nickt oft ein,A menudo se duerme,A menudo se duerme,Si addormenta spesso,낮잠을 잘 잠,經常睡午覺,经常睡午觉
+8,attack,1,Likes to thrash about,暴れることが　好き,あばれることが　すき,Il aime se démener,Prügelt sich gern,Le gusta revolverse,Le gusta revolverse,Adora dimenarsi,난동부리기를 좋아함,喜歡胡鬧,喜欢胡闹
+9,defense,1,Capable of taking hits,打たれ強い,うたれ　づよい,Il sait encaisser les coups,Kann Treffer gut verkraften,Encaja bien los ataques,Encaja bien los ataques,È forte in attacco,맷집이 강함,抗打能力強,抗打能力强
+10,special-attack,1,Mischievous,イタズラが　好き,イタズラが　すき,Il est coquin,Ist hinterhältig,Le gusta hacer travesuras,Le gusta hacer travesuras,È alquanto vivace,장난을 좋아함,喜歡惡作劇,喜欢恶作剧
+11,special-defense,1,Somewhat vain,ちょっぴり　みえっぱり,ちょっぴり　みえっぱり,Il est un peu vaniteux,Ist etwas eitel,Es un poco petulante,Es un poco petulante,È abbastanza superficiale,조금 겉치레를 좋아함,有一點點愛慕虛榮,有一点点爱慕虚荣
+12,speed,1,Alert to sounds,物音に　敏感,ものおとに　びんかん,Il est attentif aux sons,Achtet auf Geräusche,Siempre tiene el oído alerta,Siempre tiene el oído alerta,Fa attenzione ai suoni,주위 소리에 민감함,對聲音敏感,对声音敏感
+13,hp,2,Nods off a lot,居眠りが　多い,いねむりが　おおい,Il dort beaucoup,Schläft gern,Duerme mucho,Duerme mucho,Dorme a lungo,말뚝잠이 많음,常常打瞌睡,常常打瞌睡
+14,attack,2,A little quick tempered,ちょっと　怒りっぽい,ちょっと　おこりっぽい,Il est un peu coléreux,Besitzt Temperament,A veces se enfada,A veces se enfada,Si arrabbia facilmente,약간 화를 잘 내는 성미임,有點容易生氣,有点容易生气
+15,defense,2,Highly persistent,粘り強い,ねばり　づよい,Il est très obstiné,Ist äußerst zäh,Es muy persistente,Es muy persistente,È molto ostinato,끈질김,頑強不屈,顽强不屈
+16,special-attack,2,Thoroughly cunning,抜け目が　ない,ぬけめが　ない,Il est très astucieux,Ist äußerst gerissen,Es muy sagaz,Es muy sagaz,È estremamente sagace,빈틈이 없음,做事萬無一失,做事万无一失
+17,special-defense,2,Strongly defiant,負けん気が　強い,まけんきが　つよい,Il a l’esprit rebelle,Ist sehr aufsässig,Es muy insolente,Es muy insolente,È molto insolente,오기가 센 성격임,爭強好勝,争强好胜
+18,speed,2,Impetuous and silly,おっちょこちょい,おっちょこちょい,Il est bête et impulsif,Ist ungestüm und einfältig,Es de carácter simple e impetuoso,Es de carácter simple e impetuoso,È irruente e semplice,촐랑대는 성격임,冒冒失失,冒冒失失
+19,hp,3,Scatters things often,ものを　よく　散らかす,ものを　よく　ちらかす,Il éparpille souvent les choses,Macht oft Unordnung,Suele desordenar cosas,Suele desordenar cosas,Lascia cose in giro,물건을 잘 어지름,經常亂扔東西,经常乱扔东西
+20,attack,3,Likes to fight,ケンカを　するのが　好き,ケンカを　するのが　すき,Il aime combattre,Liebt Kämpfe,Le gusta luchar,Le gusta luchar,Adora lottare,싸움을 좋아함,喜歡打架,喜欢打架
+21,defense,3,Good endurance,辛抱強い,しんぼう　づよい,Il a une bonne endurance,Hat eine gute Ausdauer,Se caracteriza por ser muy resistente,Se caracteriza por ser muy resistente,È molto paziente,인내심이 강함,能吃苦耐勞,能吃苦耐劳
+22,special-attack,3,Often lost in thought,考え事が　多い,かんがえごとが　おおい,Il est souvent dans la lune,Ist oft in Gedanken,A menudo está en Babia,A menudo está en Babia,Si perde nel suo mondo,걱정거리가 많음,經常思考,经常思考
+23,special-defense,3,Hates to lose,負けず嫌い,まけずぎらい,Il a horreur de perdre,Hasst Niederlagen,Odia perder,Odia perder,Non sopporta perdere,지기 싫어함,不服輸,不服输
+24,speed,3,Somewhat of a clown,すこし　お調子者,すこし　おちょうしもの,Il aime faire le pitre,Ist ein bisschen albern,Le encanta hacer payasadas,Le encanta hacer payasadas,È una specie di buffone,약간 우쭐쟁이임,有點容易得意忘形,有点容易得意忘形
+25,hp,4,Likes to relax,のんびりするのが　好き,のんびりするのが　すき,Il aime se détendre,"Mag es, sich zu entspannen",Le gusta relajarse,Le gusta relajarse,Adora rilassarsi,유유자적함을 좋아함,喜歡悠然自在,喜欢悠然自在
+26,attack,4,Quick tempered,血の気が　多い,ちのけが　おおい,Il s’emporte facilement,Ist impulsiv,Tiene mal genio,Tiene mal genio,È facilmente irritabile,혈기가 왕성함,血氣方剛,血气方刚
+27,defense,4,Good perseverance,我慢強い,がまん　づよい,Il est persévérant,Ist beharrlich,Es muy perseverante,Es muy perseverante,È molto tenace,잘 참음,善於忍耐,善于忍耐
+28,special-attack,4,Very finicky,とても　きちょうめん,とても　きちょうめん,Il est très particulier,Ist sehr pedantisch,Es muy tiquismiquis,Es muy tiquismiquis,È molto esigente,매우 꼼꼼함,一絲不苟,一丝不苟
+29,special-defense,4,Somewhat stubborn,ちょっぴり　強情,ちょっぴり　ごうじょう,Il est assez entêté,Ist dickköpfig,Es un poco cabezota,Es un poco cabezota,È un po’ testardo,조금 고집통이임,有一點點固執,有一点点固执
+30,speed,4,Quick to flee,逃げるのが　はやい,にげるのが　はやい,Il fuit rapidement,Flüchtet schnell,Huye rápido,Huye rápido,Sa fuggire velocemente,도망에는 선수임,逃得快,逃得快

@@ -1,0 +1,193 @@
+identifier,name,description
+ability-activation,Ability Activation,Activates or triggers a Pokémon's Ability under specific conditions
+ability-change,Ability Change,Changes or modifies a Pokémon's Ability
+access,Access,Grants access to locations or features
+access-unlock,Access Unlock,Unlocks access to new areas or game content
+accuracy-boost,Accuracy Boost,Increases the accuracy of moves
+accuracy-modifier,Accuracy Modifier,Modifies accuracy of moves targeting the holder
+accuracy-reduction,Accuracy Reduction,Reduces accuracy of incoming moves
+audio-change,Audio Change,Changes in-game music or sound effects
+bait,Bait,Attracts wild Pokémon when thrown
+berry-growth,Berry Growth,Affects Berry planting and growth mechanics
+berry-mutation,Berry Mutation,Increases chance of Berry mutations
+berry-yield-boost,Berry Yield Boost,Increases the number of Berries harvested
+breeding,Breeding,Affects Pokémon breeding mechanics or Egg production
+breeding-boost,Breeding Boost,Increases chances of finding Eggs
+breeding-modifier,Breeding Modifier,Modifies breeding outcomes
+breeding-nature,Breeding Nature,Affects Nature inheritance during breeding
+calming,Calming,Calms wild Pokémon during capture
+capture,Capture,Affects Pokémon capture mechanics
+capture-assist,Capture Assist,Assists in capturing Pokémon
+capture-boost,Capture Boost,Boosts capture success rate
+capture-modifier,Capture Modifier,Modifies capture mechanics based on ball type or conditions
+capture-rate,Capture Rate,Modifies the base capture rate
+capture-rate-boost,Capture Rate Boost,Increases the catch rate multiplier
+capture-rate-modifier,Capture Rate Modifier,Modifies catch rate based on conditions
+catch-rate,Catch Rate,Sets or modifies catch rate values
+catch-rate-boost,Catch Rate Boost,Boosts the chance of catching Pokémon
+catch-rate-modifier,Catch Rate Modifier,Modifies catch rate under specific conditions
+catch-reward-boost,Catch Reward Boost,Increases rewards from catching Pokémon
+catching-aid,Catching Aid,Aids in the catching process
+charge-skip,Charge Skip,Skips charging turns for certain moves
+collection,Collection,Allows collection of specific resources
+communication,Communication,Enables communication features
+consumable-effect,Consumable Effect,One-time effect when consumed
+contest-boost,Contest Boost,Boosts performance in Pokémon Contests
+contest-condition-boost,Contest Condition Boost,Raises Contest condition stats
+contest-effect,Contest Effect,Enables special Contest mechanics
+cosmetic,Cosmetic,Provides visual customization with no gameplay effect
+crafting,Crafting,Used as an ingredient in crafting
+crafting-ingredient,Crafting Ingredient,Material used to craft other items
+crafting-material,Crafting Material,Raw material for item creation
+currency,Currency,Functions as or tracks in-game currency
+currency-tracking,Currency Tracking,Tracks accumulated currency or points
+damage,Damage,Deals damage under specific conditions
+damage-boost,Damage Boost,Increases damage dealt by moves
+damage-reduction,Damage Reduction,Reduces damage from specific attack types
+damage-reflection,Damage Reflection,Reflects damage back to the attacker
+decoration,Decoration,Decorative item with no gameplay effect
+decoration-unlock,Decoration Unlock,Unlocks decorative items
+decorative,Decorative,Purely cosmetic with no functional effect
+detection,Detection,Reveals hidden Pokémon or objects
+duration-boost,Duration Boost,Extends the duration of move effects
+encounter,Encounter,Enables encounters with wild Pokémon
+encounter-modifier,Encounter Modifier,Modifies wild encounter properties
+encounter-prevention,Encounter Prevention,Prevents wild Pokémon encounters
+encounter-rate,Encounter Rate,Modifies wild encounter frequency
+encounter-rate-boost,Encounter Rate Boost,Increases encounter rates
+encounter-trigger,Encounter Trigger,Triggers specific Pokémon encounters
+escape,Escape,Guarantees escape from wild battles
+ev-boost,EV Boost,Increases Effort Values gained
+ev-gain,EV Gain,Provides additional EV gains
+evasion-boost,Evasion Boost,Increases evasion in battle
+event-trigger,Event Trigger,Triggers special in-game events
+event-unlock,Event Unlock,Unlocks event-exclusive content
+evolution-prevention,Evolution Prevention,Prevents Pokémon from evolving
+evolution-trigger,Evolution Trigger,Enables Mega Evolution or other form changes
+exchange,Exchange,Can be exchanged for goods or services
+exchange-currency,Exchange Currency,Currency for specific exchanges
+experience-boost,Experience Boost,Increases experience points gained
+experience-gain,Experience Gain,Grants experience points directly
+experience-share,Experience Share,Distributes experience among party members
+field,Field,General field-use effect outside of battle
+field-access,Field Access,Grants access to field areas
+field-duration,Field Duration,Extends duration of field effects
+field-move,Field Move,Enables use of field moves
+fishing,Fishing,Allows fishing for aquatic Pokémon
+flinch,Flinch,May cause the target to flinch
+fling,Fling,Affects the Fling move's power or effect
+fling-block,Fling Block,Prevents the item from being flung
+fling-failure,Fling Failure,Causes Fling to fail
+fling-interaction,Fling Interaction,Special interaction with Fling move
+fling-restriction,Fling Restriction,Restricts use of Fling
+forced-switch,Forced Switch,Forces a Pokémon to switch out
+form-change,Form Change,Changes a Pokémon's form
+friendship,Friendship,Affects friendship values
+friendship-boost,Friendship Boost,Increases friendship gain
+friendship-decrease,Friendship Decrease,Lowers friendship values
+growth-boost,Growth Boost,Boosts Berry growth or yield
+growth-modifier,Growth Modifier,Modifies growth-related mechanics
+healing,Healing,Restores HP
+hm-move-teaching,HM Move Teaching,Teaches HM moves
+hm-tm,HM/TM,Hidden Machine or Technical Machine
+hm-tm-reward,HM/TM Reward,Rewards an HM or TM
+identification,Identification,Identifies unknown items
+immunity,Immunity,Grants immunity to certain effects
+information,Information,Provides gameplay information
+ingredient,Ingredient,Used as a cooking or crafting ingredient
+item-unlock,Item Unlock,Unlocks access to specific items
+iv-maximization,IV Maximization,Maximizes Individual Values
+level-boost,Level Boost,Increases Pokémon level
+level-modifier,Level Modifier,Modifies wild Pokémon levels
+lure,Lure,Attracts Pokémon
+mechanic,Mechanic,Enables special game mechanics
+mega-evolution,Mega Evolution,Enables Mega Evolution transformation
+message-delivery,Message Delivery,Delivers messages between players
+message-storage,Message Storage,Stores custom messages
+money-boost,Money Boost,Increases prize money earned
+move-duration,Move Duration,Extends duration of binding moves
+move-interaction,Move Interaction,Special interaction with certain moves
+move-learning,Move Learning,Enables learning new moves
+move-modifier,Move Modifier,Modifies move properties
+move-reminder,Move Reminder,Enables move relearning
+move-teach,Move Teach,Teaches a specific move
+move-teaching,Move Teaching,Teaches moves to Pokémon
+move-type-change,Move Type Change,Changes the type of specific moves
+move-upgrade,Move Upgrade,Upgrades or enhances moves
+movement,Movement,Affects player movement speed or enables special traversal
+natural-gift,Natural Gift,Affects Natural Gift move type and power
+nature-change,Nature Change,Changes a Pokémon's Nature effects
+no-effect,No Effect,Has no practical gameplay effect
+none,None,No functional effect
+passive,Passive,Provides a continuous effect without requiring activation
+perspective-control,Perspective Control,Controls player perspective
+pp-boost,PP Boost,Increases maximum PP
+pp-restoration,PP Restoration,Restores PP of moves
+pp-restore,PP Restore,Restores Power Points
+price-modifier,Price Modifier,Modifies shop prices
+priority-boost,Priority Boost,Increases move priority
+priority-modifier,Priority Modifier,Modifies turn order priority
+prize-money-boost,Prize Money Boost,Increases battle prize money
+quest-item,Quest Item,Required for quest completion
+quest-specific,Quest Specific,Used in specific quests or missions
+record,Record,Records game data
+recording,Recording,Records battles or other content
+resource-boost,Resource Boost,Increases resource drops
+restriction,Restriction,Restricts certain actions or moves
+revival,Revival,Revives fainted Pokémon
+reward-boost,Reward Boost,Increases rewards received
+sandwich-modifier,Sandwich Modifier,Affects sandwich-making mechanics
+sell-only,Sell Only,Only useful for selling
+special,Special,Unique special effect
+special-mechanic,Special Mechanic,Enables special battle mechanics
+special-move,Special Move,Enables special moves
+stat-boost,Stat Boost,Raises stats in battle
+stat-drop,Stat Drop,Lowers stats
+stat-modifier,Stat Modifier,Modifies stat calculations
+stat-protection,Stat Protection,Protects against stat reduction
+stat-reset,Stat Reset,Resets stats to default
+stat-swap,Stat Swap,Swaps stat values
+status,Status,Inflicts or affects status conditions
+status-cure,Status Cure,Cures status conditions
+status-effect,Status Effect,Causes status-related effects
+status-healing,Status Healing,Heals status ailments
+status-infliction,Status Infliction,Inflicts status conditions
+status-prevention,Status Prevention,Prevents status conditions
+storage,Storage,Provides item storage
+storage-access,Storage Access,Grants access to storage systems
+story,Story,Required for story progression
+story-access,Story Access,Grants access to story content
+story-item,Story Item,Key item for story events
+story-progress,Story Progress,Advances story progression
+story-progression,Story Progression,Required for story advancement
+story-proof,Story Proof,Proof of story accomplishment
+story-trigger,Story Trigger,Triggers story events
+story-unlock,Story Unlock,Unlocks story content
+stun,Stun,Temporarily stuns Pokémon
+summon,Summon,Summons Pokémon or allies
+survival,Survival,Helps survive otherwise fatal hits
+switch,Switch,Enables or forces switching
+switch-out,Switch Out,Forces the holder to switch out
+switching,Switching,Affects switching mechanics
+teleport,Teleport,Teleports to another location
+tera-type-change,Tera Type Change,Changes a Pokémon's Tera Type
+toggle,Toggle,Toggles game features on or off
+trainer-rematch,Trainer Rematch,Enables Trainer rematches
+travel-unlock,Travel Unlock,Unlocks travel options
+turn-order,Turn Order,Modifies turn order
+tutorial,Tutorial,Provides tutorial information
+type-boost,Type Boost,Boosts moves of a specific type
+type-change,Type Change,Changes Pokémon or move type
+type-immunity-removal,Type Immunity Removal,Removes type-based immunities
+type-reduce,Type Reduce,Reduces damage from specific types
+type-reduction,Type Reduction,Reduces super effective damage
+type-resist,Type Resist,Resists damage from specific types
+type-resistance,Type Resistance,Provides resistance to a type
+unlock,Unlock,Unlocks features or content
+utility,Utility,General utility function
+weather-duration,Weather Duration,Extends weather effects
+weather-extension,Weather Extension,Prolongs weather conditions
+weather-negation,Weather Negation,Negates weather effects
+weight-modifier,Weight Modifier,Modifies Pokémon weight
+z-move,Z-Move,Enables Z-Move usage
+z-move-upgrade,Z-Move Upgrade,Upgrades moves to Z-Moves

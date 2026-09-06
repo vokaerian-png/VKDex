@@ -1,0 +1,6 @@
+identifier,id,name_en,name_ja_hrkt,name_fr,name_es,name_es_419,name_zh_hant,name_zh_hans
+very-soft,1,Very Soft,とてもやわらかい,Très tendre,Muy blanda,Muy blanda,很柔軟,很柔软
+soft,2,Soft,やわらかい,Tendre,Blanda,Blanda,柔軟,柔软
+hard,3,Hard,かたい,Ferme,Dura,Dura,堅硬,坚硬
+very-hard,4,Very Hard,とてもかたい,Très ferme,Muy dura,Muy dura,很堅硬,很坚硬
+super-hard,5,Super Hard,とてつもなくかたい,Super ferme,Superdura,Superdura,非常堅硬,非常坚硬

@@ -1,0 +1,3224 @@
+{
+ "pokeapi": {
+  "abilities.csv": {
+   "bytes": 7074,
+   "rows": 374,
+   "columns": [
+    "id",
+    "identifier",
+    "generation_id",
+    "is_main_series"
+   ],
+   "badRows": 0
+  },
+  "ability_changelog.csv": {
+   "bytes": 469,
+   "rows": 52,
+   "columns": [
+    "id",
+    "ability_id",
+    "changed_in_version_group_id"
+   ],
+   "badRows": 0
+  },
+  "ability_changelog_prose.csv": {
+   "bytes": 10064,
+   "rows": 156,
+   "columns": [
+    "ability_changelog_id",
+    "local_language_id",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "ability_flavor_text.csv": {
+   "bytes": 1261989,
+   "rows": 16450,
+   "columns": [
+    "ability_id",
+    "version_group_id",
+    "language_id",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "ability_names.csv": {
+   "bytes": 65239,
+   "rows": 3499,
+   "columns": [
+    "ability_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "ability_prose.csv": {
+   "bytes": 268704,
+   "rows": 810,
+   "columns": [
+    "ability_id",
+    "local_language_id",
+    "short_effect",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "berries.csv": {
+   "bytes": 1986,
+   "rows": 68,
+   "columns": [
+    "id",
+    "item_id",
+    "firmness_id",
+    "natural_gift_power",
+    "natural_gift_type_id",
+    "size",
+    "max_harvest",
+    "growth_time",
+    "soil_dryness",
+    "smoothness"
+   ],
+   "badRows": 0
+  },
+  "berry_firmness.csv": {
+   "bytes": 65,
+   "rows": 5,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "berry_firmness_names.csv": {
+   "bytes": 558,
+   "rows": 35,
+   "columns": [
+    "berry_firmness_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "berry_flavors.csv": {
+   "bytes": 2371,
+   "rows": 320,
+   "columns": [
+    "berry_id",
+    "contest_type_id",
+    "flavor"
+   ],
+   "badRows": 0
+  },
+  "characteristic_text.csv": {
+   "bytes": 8660,
+   "rows": 330,
+   "columns": [
+    "characteristic_id",
+    "local_language_id",
+    "message"
+   ],
+   "badRows": 0
+  },
+  "characteristics.csv": {
+   "bytes": 223,
+   "rows": 30,
+   "columns": [
+    "id",
+    "stat_id",
+    "gene_mod_5"
+   ],
+   "badRows": 0
+  },
+  "conquest_episode_names.csv": {
+   "bytes": 3194,
+   "rows": 114,
+   "columns": [
+    "episode_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "conquest_episode_warriors.csv": {
+   "bytes": 241,
+   "rows": 40,
+   "columns": [
+    "episode_id",
+    "warrior_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_episodes.csv": {
+   "bytes": 913,
+   "rows": 38,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "conquest_kingdom_names.csv": {
+   "bytes": 245,
+   "rows": 17,
+   "columns": [
+    "kingdom_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "conquest_kingdoms.csv": {
+   "bytes": 241,
+   "rows": 17,
+   "columns": [
+    "id",
+    "identifier",
+    "type_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_max_links.csv": {
+   "bytes": 495992,
+   "rows": 48400,
+   "columns": [
+    "warrior_rank_id",
+    "pokemon_species_id",
+    "max_link"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_data.csv": {
+   "bytes": 2357,
+   "rows": 123,
+   "columns": [
+    "move_id",
+    "power",
+    "accuracy",
+    "effect_chance",
+    "effect_id",
+    "range_id",
+    "displacement_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_displacement_prose.csv": {
+   "bytes": 1257,
+   "rows": 5,
+   "columns": [
+    "move_displacement_id",
+    "local_language_id",
+    "name",
+    "short_effect",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_displacements.csv": {
+   "bytes": 108,
+   "rows": 5,
+   "columns": [
+    "id",
+    "identifier",
+    "affects_target"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_effect_prose.csv": {
+   "bytes": 8302,
+   "rows": 51,
+   "columns": [
+    "conquest_move_effect_id",
+    "local_language_id",
+    "short_effect",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_effects.csv": {
+   "bytes": 147,
+   "rows": 51,
+   "columns": [
+    "id"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_range_prose.csv": {
+   "bytes": 1864,
+   "rows": 21,
+   "columns": [
+    "conquest_move_range_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "conquest_move_ranges.csv": {
+   "bytes": 354,
+   "rows": 21,
+   "columns": [
+    "id",
+    "identifier",
+    "targets"
+   ],
+   "badRows": 0
+  },
+  "conquest_pokemon_abilities.csv": {
+   "bytes": 6188,
+   "rows": 560,
+   "columns": [
+    "pokemon_species_id",
+    "slot",
+    "ability_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_pokemon_evolution.csv": {
+   "bytes": 1815,
+   "rows": 113,
+   "columns": [
+    "evolved_species_id",
+    "required_stat_id",
+    "minimum_stat",
+    "minimum_link",
+    "kingdom_id",
+    "warrior_gender_id",
+    "item_id",
+    "recruiting_ko_required"
+   ],
+   "badRows": 0
+  },
+  "conquest_pokemon_moves.csv": {
+   "bytes": 1531,
+   "rows": 200,
+   "columns": [
+    "pokemon_species_id",
+    "move_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_pokemon_stats.csv": {
+   "bytes": 9398,
+   "rows": 1000,
+   "columns": [
+    "pokemon_species_id",
+    "conquest_stat_id",
+    "base_stat"
+   ],
+   "badRows": 0
+  },
+  "conquest_stat_names.csv": {
+   "bytes": 241,
+   "rows": 18,
+   "columns": [
+    "conquest_stat_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "conquest_stats.csv": {
+   "bytes": 83,
+   "rows": 6,
+   "columns": [
+    "id",
+    "identifier",
+    "is_base"
+   ],
+   "badRows": 0
+  },
+  "conquest_transformation_pokemon.csv": {
+   "bytes": 629,
+   "rows": 89,
+   "columns": [
+    "transformation_id",
+    "pokemon_species_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_transformation_warriors.csv": {
+   "bytes": 78,
+   "rows": 7,
+   "columns": [
+    "transformation_id",
+    "present_warrior_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_archetypes.csv": {
+   "bytes": 425,
+   "rows": 30,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_names.csv": {
+   "bytes": 2775,
+   "rows": 201,
+   "columns": [
+    "warrior_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_rank_stat_map.csv": {
+   "bytes": 8078,
+   "rows": 968,
+   "columns": [
+    "warrior_rank_id",
+    "warrior_stat_id",
+    "base_stat"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_ranks.csv": {
+   "bytes": 2820,
+   "rows": 242,
+   "columns": [
+    "id",
+    "warrior_id",
+    "rank",
+    "skill_id"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_skill_names.csv": {
+   "bytes": 959,
+   "rows": 63,
+   "columns": [
+    "skill_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_skills.csv": {
+   "bytes": 813,
+   "rows": 63,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_specialties.csv": {
+   "bytes": 2378,
+   "rows": 297,
+   "columns": [
+    "warrior_id",
+    "type_id",
+    "slot"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_stat_names.csv": {
+   "bytes": 86,
+   "rows": 4,
+   "columns": [
+    "warrior_stat_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_stats.csv": {
+   "bytes": 53,
+   "rows": 4,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "conquest_warrior_transformation.csv": {
+   "bytes": 810,
+   "rows": 41,
+   "columns": [
+    "transformed_warrior_rank_id",
+    "is_automatic",
+    "required_link",
+    "completed_episode_id",
+    "current_episode_id",
+    "distant_warrior_id",
+    "female_warlord_count",
+    "pokemon_count",
+    "collection_type_id",
+    "warrior_count"
+   ],
+   "badRows": 0
+  },
+  "conquest_warriors.csv": {
+   "bytes": 3206,
+   "rows": 201,
+   "columns": [
+    "id",
+    "identifier",
+    "gender_id",
+    "archetype_id"
+   ],
+   "badRows": 0
+  },
+  "contest_combos.csv": {
+   "bytes": 1735,
+   "rows": 235,
+   "columns": [
+    "first_move_id",
+    "second_move_id"
+   ],
+   "badRows": 0
+  },
+  "contest_effect_prose.csv": {
+   "bytes": 9844,
+   "rows": 66,
+   "columns": [
+    "contest_effect_id",
+    "local_language_id",
+    "flavor_text",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "contest_effects.csv": {
+   "bytes": 236,
+   "rows": 33,
+   "columns": [
+    "id",
+    "appeal",
+    "jam"
+   ],
+   "badRows": 0
+  },
+  "contest_type_names.csv": {
+   "bytes": 638,
+   "rows": 25,
+   "columns": [
+    "contest_type_id",
+    "local_language_id",
+    "name",
+    "flavor",
+    "color"
+   ],
+   "badRows": 0
+  },
+  "contest_types.csv": {
+   "bytes": 53,
+   "rows": 5,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "currencies.csv": {
+   "bytes": 285,
+   "rows": 19,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "currency_names.csv": {
+   "bytes": 347,
+   "rows": 19,
+   "columns": [
+    "id",
+    "language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "egg_group_prose.csv": {
+   "bytes": 2041,
+   "rows": 150,
+   "columns": [
+    "egg_group_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "egg_groups.csv": {
+   "bytes": 163,
+   "rows": 15,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "encounter_condition_prose.csv": {
+   "bytes": 1261,
+   "rows": 50,
+   "columns": [
+    "encounter_condition_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "encounter_condition_value_map.csv": {
+   "bytes": 1122337,
+   "rows": 112031,
+   "columns": [
+    "encounter_id",
+    "encounter_condition_value_id"
+   ],
+   "badRows": 0
+  },
+  "encounter_condition_value_prose.csv": {
+   "bytes": 18943,
+   "rows": 483,
+   "columns": [
+    "encounter_condition_value_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "encounter_condition_values.csv": {
+   "bytes": 11345,
+   "rows": 361,
+   "columns": [
+    "id",
+    "encounter_condition_id",
+    "identifier",
+    "is_default"
+   ],
+   "badRows": 0
+  },
+  "encounter_conditions.csv": {
+   "bytes": 455,
+   "rows": 30,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "encounter_method_prose.csv": {
+   "bytes": 6337,
+   "rows": 149,
+   "columns": [
+    "encounter_method_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "encounter_methods.csv": {
+   "bytes": 1299,
+   "rows": 66,
+   "columns": [
+    "id",
+    "identifier",
+    "order"
+   ],
+   "badRows": 0
+  },
+  "encounter_pokemon_details.csv": {
+   "bytes": 1948,
+   "rows": 145,
+   "columns": [
+    "encounter_id",
+    "min_perfect_ivs",
+    "always_shiny",
+    "never_shiny",
+    "is_alpha"
+   ],
+   "badRows": 0
+  },
+  "encounter_slots.csv": {
+   "bytes": 57659,
+   "rows": 3809,
+   "columns": [
+    "id",
+    "version_group_id",
+    "encounter_method_id",
+    "slot",
+    "rarity"
+   ],
+   "badRows": 0
+  },
+  "encounters.csv": {
+   "bytes": 3172057,
+   "rows": 117127,
+   "columns": [
+    "id",
+    "version_id",
+    "location_area_id",
+    "encounter_slot_id",
+    "pokemon_id",
+    "min_level",
+    "max_level"
+   ],
+   "badRows": 0
+  },
+  "evolution_chains.csv": {
+   "bytes": 2648,
+   "rows": 541,
+   "columns": [
+    "id",
+    "baby_trigger_item_id"
+   ],
+   "badRows": 0
+  },
+  "evolution_trigger_prose.csv": {
+   "bytes": 1212,
+   "rows": 36,
+   "columns": [
+    "evolution_trigger_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "evolution_triggers.csv": {
+   "bytes": 257,
+   "rows": 16,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "experience.csv": {
+   "bytes": 6713,
+   "rows": 600,
+   "columns": [
+    "growth_rate_id",
+    "level",
+    "experience"
+   ],
+   "badRows": 0
+  },
+  "genders.csv": {
+   "bytes": 43,
+   "rows": 3,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "generation_names.csv": {
+   "bytes": 1717,
+   "rows": 90,
+   "columns": [
+    "generation_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "generations.csv": {
+   "bytes": 194,
+   "rows": 9,
+   "columns": [
+    "id",
+    "main_region_id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "growth_rate_prose.csv": {
+   "bytes": 309,
+   "rows": 18,
+   "columns": [
+    "growth_rate_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "growth_rates.csv": {
+   "bytes": 879,
+   "rows": 6,
+   "columns": [
+    "id",
+    "identifier",
+    "formula"
+   ],
+   "badRows": 0
+  },
+  "item_categories.csv": {
+   "bytes": 922,
+   "rows": 54,
+   "columns": [
+    "id",
+    "pocket_id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "item_category_prose.csv": {
+   "bytes": 2025,
+   "rows": 108,
+   "columns": [
+    "item_category_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "item_flag_map.csv": {
+   "bytes": 3347,
+   "rows": 615,
+   "columns": [
+    "item_id",
+    "item_flag_id"
+   ],
+   "badRows": 0
+  },
+  "item_flag_prose.csv": {
+   "bytes": 789,
+   "rows": 16,
+   "columns": [
+    "item_flag_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "item_flags.csv": {
+   "bytes": 139,
+   "rows": 8,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "item_flavor_summaries.csv": {
+   "bytes": 41,
+   "rows": 0,
+   "columns": [
+    "item_id",
+    "local_language_id",
+    "flavor_summary"
+   ],
+   "badRows": 0
+  },
+  "item_flavor_text.csv": {
+   "bytes": 6281294,
+   "rows": 57507,
+   "columns": [
+    "item_id",
+    "version_group_id",
+    "language_id",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "item_fling_effect_prose.csv": {
+   "bytes": 577,
+   "rows": 14,
+   "columns": [
+    "item_fling_effect_id",
+    "local_language_id",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "item_fling_effects.csv": {
+   "bytes": 94,
+   "rows": 7,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "item_game_indices.csv": {
+   "bytes": 75060,
+   "rows": 7296,
+   "columns": [
+    "item_id",
+    "generation_id",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "item_names.csv": {
+   "bytes": 487794,
+   "rows": 23091,
+   "columns": [
+    "item_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "item_pocket_names.csv": {
+   "bytes": 745,
+   "rows": 48,
+   "columns": [
+    "item_pocket_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "item_pockets.csv": {
+   "bytes": 87,
+   "rows": 8,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "item_prices.csv": {
+   "bytes": 4439,
+   "rows": 291,
+   "columns": [
+    "item_id",
+    "version_group_id",
+    "currency_id",
+    "purchase_price",
+    "sell_price"
+   ],
+   "badRows": 0
+  },
+  "item_prose.csv": {
+   "bytes": 342317,
+   "rows": 1910,
+   "columns": [
+    "item_id",
+    "local_language_id",
+    "short_effect",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "items.csv": {
+   "bytes": 59564,
+   "rows": 2223,
+   "columns": [
+    "id",
+    "identifier",
+    "category_id",
+    "cost",
+    "fling_power",
+    "fling_effect_id"
+   ],
+   "badRows": 0
+  },
+  "language_names.csv": {
+   "bytes": 2475,
+   "rows": 123,
+   "columns": [
+    "language_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "languages.csv": {
+   "bytes": 291,
+   "rows": 14,
+   "columns": [
+    "id",
+    "iso639",
+    "iso3166",
+    "identifier",
+    "official",
+    "order"
+   ],
+   "badRows": 0
+  },
+  "location_area_encounter_rates.csv": {
+   "bytes": 44948,
+   "rows": 3913,
+   "columns": [
+    "location_area_id",
+    "encounter_method_id",
+    "version_id",
+    "rate"
+   ],
+   "badRows": 0
+  },
+  "location_area_prose.csv": {
+   "bytes": 88721,
+   "rows": 3210,
+   "columns": [
+    "location_area_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "location_areas.csv": {
+   "bytes": 26734,
+   "rows": 1539,
+   "columns": [
+    "id",
+    "location_id",
+    "game_index",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "location_game_indices.csv": {
+   "bytes": 13761,
+   "rows": 1417,
+   "columns": [
+    "location_id",
+    "generation_id",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "location_names.csv": {
+   "bytes": 116637,
+   "rows": 5252,
+   "columns": [
+    "location_id",
+    "local_language_id",
+    "name",
+    "subtitle"
+   ],
+   "badRows": 0
+  },
+  "locations.csv": {
+   "bytes": 23389,
+   "rows": 1104,
+   "columns": [
+    "id",
+    "region_id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "machines.csv": {
+   "bytes": 32831,
+   "rows": 2372,
+   "columns": [
+    "machine_number",
+    "version_group_id",
+    "item_id",
+    "move_id"
+   ],
+   "badRows": 0
+  },
+  "move_battle_style_prose.csv": {
+   "bytes": 119,
+   "rows": 6,
+   "columns": [
+    "move_battle_style_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "move_battle_styles.csv": {
+   "bytes": 43,
+   "rows": 3,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "move_changelog.csv": {
+   "bytes": 3475,
+   "rows": 198,
+   "columns": [
+    "move_id",
+    "changed_in_version_group_id",
+    "type_id",
+    "power",
+    "pp",
+    "accuracy",
+    "priority",
+    "target_id",
+    "effect_id",
+    "effect_chance"
+   ],
+   "badRows": 0
+  },
+  "move_damage_class_prose.csv": {
+   "bytes": 1415,
+   "rows": 24,
+   "columns": [
+    "move_damage_class_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "move_damage_classes.csv": {
+   "bytes": 44,
+   "rows": 3,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "move_effect_changelog.csv": {
+   "bytes": 282,
+   "rows": 28,
+   "columns": [
+    "id",
+    "effect_id",
+    "changed_in_version_group_id"
+   ],
+   "badRows": 0
+  },
+  "move_effect_changelog_prose.csv": {
+   "bytes": 4922,
+   "rows": 56,
+   "columns": [
+    "move_effect_changelog_id",
+    "local_language_id",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "move_effect_prose.csv": {
+   "bytes": 253898,
+   "rows": 872,
+   "columns": [
+    "move_effect_id",
+    "local_language_id",
+    "short_effect",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "move_effects.csv": {
+   "bytes": 1813,
+   "rows": 474,
+   "columns": [
+    "id"
+   ],
+   "badRows": 0
+  },
+  "move_flag_map.csv": {
+   "bytes": 11840,
+   "rows": 1969,
+   "columns": [
+    "move_id",
+    "move_flag_id"
+   ],
+   "badRows": 0
+  },
+  "move_flag_prose.csv": {
+   "bytes": 6306,
+   "rows": 62,
+   "columns": [
+    "move_flag_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "move_flags.csv": {
+   "bytes": 235,
+   "rows": 21,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "move_flavor_summaries.csv": {
+   "bytes": 41,
+   "rows": 0,
+   "columns": [
+    "move_id",
+    "local_language_id",
+    "flavor_summary"
+   ],
+   "badRows": 0
+  },
+  "move_flavor_text.csv": {
+   "bytes": 5392794,
+   "rows": 50360,
+   "columns": [
+    "move_id",
+    "version_group_id",
+    "language_id",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "move_meta.csv": {
+   "bytes": 20555,
+   "rows": 827,
+   "columns": [
+    "move_id",
+    "meta_category_id",
+    "meta_ailment_id",
+    "min_hits",
+    "max_hits",
+    "min_turns",
+    "max_turns",
+    "drain",
+    "healing",
+    "crit_rate",
+    "ailment_chance",
+    "flinch_chance",
+    "stat_chance"
+   ],
+   "badRows": 0
+  },
+  "move_meta_ailment_names.csv": {
+   "bytes": 1197,
+   "rows": 82,
+   "columns": [
+    "move_meta_ailment_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "move_meta_ailments.csv": {
+   "bytes": 271,
+   "rows": 23,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "move_meta_categories.csv": {
+   "bytes": 199,
+   "rows": 14,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "move_meta_category_prose.csv": {
+   "bytes": 1286,
+   "rows": 28,
+   "columns": [
+    "move_meta_category_id",
+    "local_language_id",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "move_meta_stat_changes.csv": {
+   "bytes": 2091,
+   "rows": 245,
+   "columns": [
+    "move_id",
+    "stat_id",
+    "change"
+   ],
+   "badRows": 0
+  },
+  "move_names.csv": {
+   "bytes": 202670,
+   "rows": 10235,
+   "columns": [
+    "move_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "move_target_prose.csv": {
+   "bytes": 3214,
+   "rows": 44,
+   "columns": [
+    "move_target_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "move_targets.csv": {
+   "bytes": 278,
+   "rows": 16,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "moves.csv": {
+   "bytes": 42322,
+   "rows": 937,
+   "columns": [
+    "id",
+    "identifier",
+    "generation_id",
+    "type_id",
+    "power",
+    "pp",
+    "accuracy",
+    "priority",
+    "target_id",
+    "damage_class_id",
+    "effect_id",
+    "effect_chance",
+    "contest_type_id",
+    "contest_effect_id",
+    "super_contest_effect_id"
+   ],
+   "badRows": 0
+  },
+  "nature_battle_style_preferences.csv": {
+   "bytes": 843,
+   "rows": 75,
+   "columns": [
+    "nature_id",
+    "move_battle_style_id",
+    "low_hp_preference",
+    "high_hp_preference"
+   ],
+   "badRows": 0
+  },
+  "nature_names.csv": {
+   "bytes": 3650,
+   "rows": 275,
+   "columns": [
+    "nature_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "nature_pokeathlon_stats.csv": {
+   "bytes": 397,
+   "rows": 50,
+   "columns": [
+    "nature_id",
+    "pokeathlon_stat_id",
+    "max_change"
+   ],
+   "badRows": 0
+  },
+  "natures.csv": {
+   "bytes": 586,
+   "rows": 25,
+   "columns": [
+    "id",
+    "identifier",
+    "decreased_stat_id",
+    "increased_stat_id",
+    "hates_flavor_id",
+    "likes_flavor_id",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "pal_park.csv": {
+   "bytes": 5767,
+   "rows": 493,
+   "columns": [
+    "species_id",
+    "area_id",
+    "base_score",
+    "rate"
+   ],
+   "badRows": 0
+  },
+  "pal_park_area_names.csv": {
+   "bytes": 260,
+   "rows": 20,
+   "columns": [
+    "pal_park_area_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "pal_park_areas.csv": {
+   "bytes": 55,
+   "rows": 5,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokeathlon_stat_names.csv": {
+   "bytes": 479,
+   "rows": 35,
+   "columns": [
+    "pokeathlon_stat_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "pokeathlon_stats.csv": {
+   "bytes": 55,
+   "rows": 5,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokedex_prose.csv": {
+   "bytes": 9342,
+   "rows": 161,
+   "columns": [
+    "pokedex_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "pokedex_version_groups.csv": {
+   "bytes": 274,
+   "rows": 45,
+   "columns": [
+    "pokedex_id",
+    "version_group_id"
+   ],
+   "badRows": 0
+  },
+  "pokedexes.csv": {
+   "bytes": 723,
+   "rows": 35,
+   "columns": [
+    "id",
+    "region_id",
+    "identifier",
+    "is_main_series"
+   ],
+   "badRows": 0
+  },
+  "pokemon.csv": {
+   "bytes": 47082,
+   "rows": 1351,
+   "columns": [
+    "id",
+    "identifier",
+    "species_id",
+    "height",
+    "weight",
+    "base_experience",
+    "order",
+    "is_default"
+   ],
+   "badRows": 0
+  },
+  "pokemon_abilities.csv": {
+   "bytes": 37194,
+   "rows": 2941,
+   "columns": [
+    "pokemon_id",
+    "ability_id",
+    "is_hidden",
+    "slot"
+   ],
+   "badRows": 0
+  },
+  "pokemon_abilities_past.csv": {
+   "bytes": 6271,
+   "rows": 569,
+   "columns": [
+    "pokemon_id",
+    "generation_id",
+    "ability_id",
+    "is_hidden",
+    "slot"
+   ],
+   "badRows": 0
+  },
+  "pokemon_color_names.csv": {
+   "bytes": 1300,
+   "rows": 110,
+   "columns": [
+    "pokemon_color_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "pokemon_colors.csv": {
+   "bytes": 92,
+   "rows": 10,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokemon_dex_numbers.csv": {
+   "bytes": 80136,
+   "rows": 7987,
+   "columns": [
+    "species_id",
+    "pokedex_id",
+    "pokedex_number"
+   ],
+   "badRows": 0
+  },
+  "pokemon_egg_groups.csv": {
+   "bytes": 8141,
+   "rows": 1304,
+   "columns": [
+    "species_id",
+    "egg_group_id"
+   ],
+   "badRows": 0
+  },
+  "pokemon_evolution.csv": {
+   "bytes": 26714,
+   "rows": 553,
+   "columns": [
+    "id",
+    "evolved_species_id",
+    "evolution_trigger_id",
+    "version_group_id",
+    "is_default",
+    "trigger_item_id",
+    "minimum_level",
+    "gender_id",
+    "location_id",
+    "held_item_id",
+    "time_of_day",
+    "known_move_id",
+    "known_move_type_id",
+    "minimum_happiness",
+    "minimum_beauty",
+    "minimum_affection",
+    "relative_physical_stats",
+    "party_species_id",
+    "party_type_id",
+    "trade_species_id",
+    "needs_overworld_rain",
+    "turn_upside_down",
+    "needs_multiplayer",
+    "near_special_rock",
+    "region_id",
+    "base_form_id",
+    "evolved_form_id",
+    "used_move_id",
+    "minimum_move_count",
+    "minimum_steps",
+    "minimum_damage_taken"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_conditions.csv": {
+   "bytes": 3715,
+   "rows": 234,
+   "columns": [
+    "pokemon_form_id",
+    "form_trigger_id",
+    "trigger_item_id",
+    "trigger_ability_id",
+    "trigger_move_id",
+    "base_form_id"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_flavor_text.csv": {
+   "bytes": 33777,
+   "rows": 249,
+   "columns": [
+    "pokemon_form_id",
+    "version_id",
+    "language_id",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_generations.csv": {
+   "bytes": 40892,
+   "rows": 4986,
+   "columns": [
+    "pokemon_form_id",
+    "generation_id",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_names.csv": {
+   "bytes": 140994,
+   "rows": 4593,
+   "columns": [
+    "pokemon_form_id",
+    "local_language_id",
+    "form_name",
+    "pokemon_name"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_pokeathlon_stats.csv": {
+   "bytes": 33381,
+   "rows": 2770,
+   "columns": [
+    "pokemon_form_id",
+    "pokeathlon_stat_id",
+    "minimum_stat",
+    "base_stat",
+    "maximum_stat"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_trigger_prose.csv": {
+   "bytes": 135,
+   "rows": 6,
+   "columns": [
+    "pokemon_form_trigger_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_triggers.csv": {
+   "bytes": 90,
+   "rows": 6,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_types.csv": {
+   "bytes": 401,
+   "rows": 35,
+   "columns": [
+    "pokemon_form_id",
+    "type_id",
+    "slot"
+   ],
+   "badRows": 0
+  },
+  "pokemon_forms.csv": {
+   "bytes": 63721,
+   "rows": 1579,
+   "columns": [
+    "id",
+    "identifier",
+    "form_identifier",
+    "pokemon_id",
+    "introduced_in_version_group_id",
+    "is_default",
+    "is_battle_only",
+    "is_mega",
+    "form_order",
+    "order"
+   ],
+   "badRows": 0
+  },
+  "pokemon_game_indices.csv": {
+   "bytes": 268333,
+   "rows": 25392,
+   "columns": [
+    "pokemon_id",
+    "version_id",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "pokemon_habitat_names.csv": {
+   "bytes": 480,
+   "rows": 36,
+   "columns": [
+    "pokemon_habitat_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "pokemon_habitats.csv": {
+   "bytes": 104,
+   "rows": 9,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokemon_items.csv": {
+   "bytes": 70916,
+   "rows": 5448,
+   "columns": [
+    "pokemon_id",
+    "version_id",
+    "item_id",
+    "rarity"
+   ],
+   "badRows": 0
+  },
+  "pokemon_move_method_prose.csv": {
+   "bytes": 3920,
+   "rows": 38,
+   "columns": [
+    "pokemon_move_method_id",
+    "local_language_id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "pokemon_move_methods.csv": {
+   "bytes": 187,
+   "rows": 12,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokemon_moves.csv": {
+   "bytes": 10733699,
+   "rows": 638321,
+   "columns": [
+    "pokemon_id",
+    "version_group_id",
+    "move_id",
+    "pokemon_move_method_id",
+    "level",
+    "order",
+    "mastery"
+   ],
+   "badRows": 0
+  },
+  "pokemon_shape_prose.csv": {
+   "bytes": 1730,
+   "rows": 28,
+   "columns": [
+    "pokemon_shape_id",
+    "local_language_id",
+    "name",
+    "awesome_name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "pokemon_shapes.csv": {
+   "bytes": 146,
+   "rows": 14,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokemon_species.csv": {
+   "bytes": 56884,
+   "rows": 1025,
+   "columns": [
+    "id",
+    "identifier",
+    "generation_id",
+    "evolves_from_species_id",
+    "evolution_chain_id",
+    "color_id",
+    "shape_id",
+    "habitat_id",
+    "gender_rate",
+    "capture_rate",
+    "base_happiness",
+    "is_baby",
+    "hatch_counter",
+    "has_gender_differences",
+    "growth_rate_id",
+    "forms_switchable",
+    "is_legendary",
+    "is_mythical",
+    "order",
+    "conquest_order"
+   ],
+   "badRows": 0
+  },
+  "pokemon_species_flavor_summaries.csv": {
+   "bytes": 52,
+   "rows": 0,
+   "columns": [
+    "pokemon_species_id",
+    "local_language_id",
+    "flavor_summary"
+   ],
+   "badRows": 0
+  },
+  "pokemon_species_flavor_text.csv": {
+   "bytes": 9206001,
+   "rows": 68220,
+   "columns": [
+    "species_id",
+    "version_id",
+    "language_id",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "pokemon_species_names.csv": {
+   "bytes": 404502,
+   "rows": 12300,
+   "columns": [
+    "pokemon_species_id",
+    "local_language_id",
+    "name",
+    "genus"
+   ],
+   "badRows": 0
+  },
+  "pokemon_species_prose.csv": {
+   "bytes": 20448,
+   "rows": 68,
+   "columns": [
+    "pokemon_species_id",
+    "local_language_id",
+    "form_description"
+   ],
+   "badRows": 0
+  },
+  "pokemon_stats.csv": {
+   "bytes": 94392,
+   "rows": 8106,
+   "columns": [
+    "pokemon_id",
+    "stat_id",
+    "base_stat",
+    "effort"
+   ],
+   "badRows": 0
+  },
+  "pokemon_stats_past.csv": {
+   "bytes": 3046,
+   "rows": 235,
+   "columns": [
+    "pokemon_id",
+    "generation_id",
+    "stat_id",
+    "base_stat",
+    "effort"
+   ],
+   "badRows": 0
+  },
+  "pokemon_types.csv": {
+   "bytes": 19058,
+   "rows": 2116,
+   "columns": [
+    "pokemon_id",
+    "type_id",
+    "slot"
+   ],
+   "badRows": 0
+  },
+  "pokemon_types_past.csv": {
+   "bytes": 428,
+   "rows": 36,
+   "columns": [
+    "pokemon_id",
+    "generation_id",
+    "type_id",
+    "slot"
+   ],
+   "badRows": 0
+  },
+  "region_names.csv": {
+   "bytes": 999,
+   "rows": 81,
+   "columns": [
+    "region_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "regions.csv": {
+   "bytes": 105,
+   "rows": 11,
+   "columns": [
+    "id",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "stat_names.csv": {
+   "bytes": 1130,
+   "rows": 80,
+   "columns": [
+    "stat_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "stats.csv": {
+   "bytes": 202,
+   "rows": 9,
+   "columns": [
+    "id",
+    "damage_class_id",
+    "identifier",
+    "is_battle_only",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "super_contest_combos.csv": {
+   "bytes": 74,
+   "rows": 6,
+   "columns": [
+    "first_move_id",
+    "second_move_id"
+   ],
+   "badRows": 0
+  },
+  "super_contest_effect_prose.csv": {
+   "bytes": 2495,
+   "rows": 44,
+   "columns": [
+    "super_contest_effect_id",
+    "local_language_id",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "super_contest_effects.csv": {
+   "bytes": 112,
+   "rows": 22,
+   "columns": [
+    "id",
+    "appeal"
+   ],
+   "badRows": 0
+  },
+  "type_efficacy.csv": {
+   "bytes": 2883,
+   "rows": 324,
+   "columns": [
+    "damage_type_id",
+    "target_type_id",
+    "damage_factor"
+   ],
+   "badRows": 0
+  },
+  "type_efficacy_past.csv": {
+   "bytes": 118,
+   "rows": 6,
+   "columns": [
+    "damage_type_id",
+    "target_type_id",
+    "damage_factor",
+    "generation_id"
+   ],
+   "badRows": 0
+  },
+  "type_game_indices.csv": {
+   "bytes": 1147,
+   "rows": 159,
+   "columns": [
+    "type_id",
+    "generation_id",
+    "game_index"
+   ],
+   "badRows": 0
+  },
+  "type_names.csv": {
+   "bytes": 2843,
+   "rows": 230,
+   "columns": [
+    "type_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "types.csv": {
+   "bytes": 321,
+   "rows": 21,
+   "columns": [
+    "id",
+    "identifier",
+    "generation_id",
+    "damage_class_id"
+   ],
+   "badRows": 0
+  },
+  "version_group_pokemon_move_methods.csv": {
+   "bytes": 510,
+   "rows": 99,
+   "columns": [
+    "version_group_id",
+    "pokemon_move_method_id"
+   ],
+   "badRows": 0
+  },
+  "version_group_regions.csv": {
+   "bytes": 169,
+   "rows": 30,
+   "columns": [
+    "version_group_id",
+    "region_id"
+   ],
+   "badRows": 0
+  },
+  "version_groups.csv": {
+   "bytes": 726,
+   "rows": 32,
+   "columns": [
+    "id",
+    "identifier",
+    "generation_id",
+    "order"
+   ],
+   "badRows": 0
+  },
+  "version_names.csv": {
+   "bytes": 8943,
+   "rows": 504,
+   "columns": [
+    "version_id",
+    "local_language_id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "versions.csv": {
+   "bytes": 907,
+   "rows": 53,
+   "columns": [
+    "id",
+    "version_group_id",
+    "identifier"
+   ],
+   "badRows": 0
+  }
+ },
+ "pokedb": {
+  "abilities.csv": {
+   "bytes": 12068,
+   "rows": 367,
+   "columns": [
+    "id",
+    "name",
+    "identifier",
+    "generation_id",
+    "is_main_series"
+   ],
+   "badRows": 0
+  },
+  "ability_flavor_texts.csv": {
+   "bytes": 192055,
+   "rows": 2536,
+   "columns": [
+    "ability_id",
+    "version_identifier",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "ability_long_effects.csv": {
+   "bytes": 545632,
+   "rows": 307,
+   "columns": [
+    "ability_id",
+    "ability_short_effect_markup",
+    "ability_short_effect_html"
+   ],
+   "badRows": 0
+  },
+  "ability_short_effects.csv": {
+   "bytes": 195968,
+   "rows": 367,
+   "columns": [
+    "ability_id",
+    "ability_short_effect_markup",
+    "ability_short_effect_html"
+   ],
+   "badRows": 0
+  },
+  "contest_effects.csv": {
+   "bytes": 5145,
+   "rows": 33,
+   "columns": [
+    "id",
+    "appeal",
+    "appeal_hearts",
+    "jam",
+    "jam_hearts",
+    "flavor_text",
+    "effect"
+   ],
+   "badRows": 0
+  },
+  "contest_types.csv": {
+   "bytes": 209,
+   "rows": 5,
+   "columns": [
+    "id",
+    "identifier",
+    "name",
+    "flavor",
+    "color",
+    "color_hex_code"
+   ],
+   "badRows": 0
+  },
+  "damage_categories.csv": {
+   "bytes": 447,
+   "rows": 4,
+   "columns": [
+    "id",
+    "identifier",
+    "name",
+    "image_path"
+   ],
+   "badRows": 0
+  },
+  "egg_groups.csv": {
+   "bytes": 1476,
+   "rows": 15,
+   "columns": [
+    "id",
+    "name",
+    "identifier",
+    "description",
+    "nr_of_pokemon_in_this_grp"
+   ],
+   "badRows": 0
+  },
+  "encounter_methods.csv": {
+   "bytes": 141507,
+   "rows": 73,
+   "columns": [
+    "identifier",
+    "description_markup",
+    "description_html",
+    "name",
+    "image"
+   ],
+   "badRows": 0
+  },
+  "encounters.csv": {
+   "bytes": 6189743,
+   "rows": 37724,
+   "columns": [
+    "pokemon_form_identifier",
+    "version_identifiers",
+    "location_area_identifier",
+    "encounter_method_identifier",
+    "levels",
+    "rate_overall",
+    "rate_morning",
+    "rate_day",
+    "rate_night",
+    "trade_for",
+    "note_markup",
+    "note_html",
+    "during_any_time",
+    "during_morning",
+    "during_day",
+    "during_evening",
+    "during_night",
+    "while_weather_overall",
+    "while_clear",
+    "while_harsh_sunlight",
+    "while_cloudy",
+    "while_blizzard",
+    "boulder_required",
+    "alpha_levels",
+    "sos_allies",
+    "rate_spring",
+    "rate_summer",
+    "rate_autumn",
+    "rate_winter",
+    "visible",
+    "weather_clear_rate",
+    "weather_cloudy_rate",
+    "weather_rain_rate",
+    "weather_thunderstorm_rate",
+    "weather_snow_rate",
+    "weather_blizzard_rate",
+    "weather_harshsunlight_rate",
+    "weather_sandstorm_rate",
+    "weather_fog_rate",
+    "on_terrain_land",
+    "on_terrain_watersurface",
+    "on_terrain_underwater",
+    "on_terrain_overland",
+    "on_terrain_sky",
+    "lvl_after_way_home",
+    "probability_overall",
+    "probability_morning",
+    "probability_day",
+    "probability_evening",
+    "probability_night",
+    "group_rate",
+    "group_pokemon",
+    "hidden_ability_possible",
+    "max_raid_perfect_ivs",
+    "max_raid_rate_1_star",
+    "max_raid_rate_2_star",
+    "max_raid_rate_3_star",
+    "max_raid_rate_4_star",
+    "max_raid_rate_5_star",
+    "tera_raid_star_level"
+   ],
+   "badRows": 0
+  },
+  "evolution_types.csv": {
+   "bytes": 823,
+   "rows": 10,
+   "columns": [
+    "identifier",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "evolutions.csv": {
+   "bytes": 254624,
+   "rows": 1117,
+   "columns": [
+    "evolution_tree_id",
+    "pokemon_form_id",
+    "text_markup",
+    "text_html",
+    "grid_column",
+    "grid_row"
+   ],
+   "badRows": 0
+  },
+  "flavor_texts.csv": {
+   "bytes": 2599061,
+   "rows": 18593,
+   "columns": [
+    "pokemon_form_identifier",
+    "version_identifier",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "form_changes.csv": {
+   "bytes": 235585,
+   "rows": 442,
+   "columns": [
+    "pokemon_form_tree_id",
+    "pokemon_form_id",
+    "transition_grid_position",
+    "transition_grid_text_markup",
+    "transition_grid_text_html",
+    "text_top_markup",
+    "text_top_html",
+    "text_bottom_markup",
+    "text_bottom_html",
+    "grid_column",
+    "grid_row"
+   ],
+   "badRows": 0
+  },
+  "game_platforms.csv": {
+   "bytes": 11601,
+   "rows": 230,
+   "columns": [
+    "release_date",
+    "game_identifier",
+    "platform_identifier"
+   ],
+   "badRows": 0
+  },
+  "game_ratings.csv": {
+   "bytes": 18495,
+   "rows": 628,
+   "columns": [
+    "game_identifier",
+    "rating_identifier"
+   ],
+   "badRows": 0
+  },
+  "games.csv": {
+   "bytes": 38510,
+   "rows": 193,
+   "columns": [
+    "generation_id",
+    "identifier",
+    "game_type",
+    "genre",
+    "developer",
+    "publisher",
+    "cancelled",
+    "abandoned",
+    "box_art_image_path",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "generations.csv": {
+   "bytes": 153,
+   "rows": 9,
+   "columns": [
+    "id",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "item_acquisition_subtypes.csv": {
+   "bytes": 2975,
+   "rows": 42,
+   "columns": [
+    "identifier",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "item_acquisition_types.csv": {
+   "bytes": 2996,
+   "rows": 39,
+   "columns": [
+    "identifier",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "item_acquisitions.csv": {
+   "bytes": 662582,
+   "rows": 6061,
+   "columns": [
+    "item_identifier",
+    "version_identifier",
+    "item_acquisition_type_identifier",
+    "item_acquisition_subtype_identifier",
+    "location_area_identifier",
+    "location_detail",
+    "is_repeatable",
+    "is_hidden",
+    "is_guaranteed",
+    "quantity",
+    "probability",
+    "cost_amount",
+    "pokemon_currency_identifier",
+    "required_badge",
+    "unlock_condition",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_categories.csv": {
+   "bytes": 728,
+   "rows": 30,
+   "columns": [
+    "identifier",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "item_distributions.csv": {
+   "bytes": 62536,
+   "rows": 706,
+   "columns": [
+    "item_identifier",
+    "event_name",
+    "distribution_method",
+    "start_date",
+    "end_date",
+    "region",
+    "version_identifiers",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_effect_contexts.csv": {
+   "bytes": 600,
+   "rows": 6,
+   "columns": [
+    "identifier",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "item_effect_types.csv": {
+   "bytes": 11243,
+   "rows": 192,
+   "columns": [
+    "identifier",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "item_effects.csv": {
+   "bytes": 186697,
+   "rows": 1822,
+   "columns": [
+    "item_identifier",
+    "item_effect_context_identifier",
+    "item_effect_type_identifier",
+    "effect_description",
+    "generation_id_start",
+    "generation_id_end",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_evolutions.csv": {
+   "bytes": 21601,
+   "rows": 250,
+   "columns": [
+    "item_identifier",
+    "evolves_from_pokemon_form_identifier",
+    "evolves_to_pokemon_form_identifier",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_flavor_texts.csv": {
+   "bytes": 861873,
+   "rows": 7188,
+   "columns": [
+    "item_identifier",
+    "version_identifier",
+    "localized_name"
+   ],
+   "badRows": 0
+  },
+  "item_fling_effects.csv": {
+   "bytes": 11073,
+   "rows": 652,
+   "columns": [
+    "item_identifier",
+    "fling_power",
+    "fling_effect"
+   ],
+   "badRows": 0
+  },
+  "item_names.csv": {
+   "bytes": 782350,
+   "rows": 17543,
+   "columns": [
+    "item_identifier",
+    "language_identifier",
+    "localized_name",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_pocket_maps.csv": {
+   "bytes": 141043,
+   "rows": 5333,
+   "columns": [
+    "item_identifier",
+    "generation_id",
+    "item_pocket_identifier",
+    "applies_to_version_identifier"
+   ],
+   "badRows": 0
+  },
+  "item_pockets.csv": {
+   "bytes": 2323,
+   "rows": 22,
+   "columns": [
+    "identifier",
+    "name",
+    "icon_path"
+   ],
+   "badRows": 0
+  },
+  "item_prices.csv": {
+   "bytes": 288604,
+   "rows": 5871,
+   "columns": [
+    "item_identifier",
+    "version_identifier",
+    "price_type",
+    "amount",
+    "pokemon_currency_identifier",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_spin_off_datas.csv": {
+   "bytes": 54233,
+   "rows": 433,
+   "columns": [
+    "item_identifier",
+    "spin_off_game",
+    "effect_description",
+    "acquisition_method",
+    "notes"
+   ],
+   "badRows": 0
+  },
+  "item_sprites.csv": {
+   "bytes": 637345,
+   "rows": 3037,
+   "columns": [
+    "item_identifier",
+    "image_path",
+    "image_path_small",
+    "version_identifier"
+   ],
+   "badRows": 0
+  },
+  "item_stat_modifiers.csv": {
+   "bytes": 5112,
+   "rows": 157,
+   "columns": [
+    "item_identifier",
+    "stat",
+    "amount",
+    "generation_id_start",
+    "generation_id_end"
+   ],
+   "badRows": 0
+  },
+  "items.csv": {
+   "bytes": 714833,
+   "rows": 2178,
+   "columns": [
+    "identifier",
+    "name",
+    "default_item_sprite",
+    "default_item_sprite_small",
+    "item_category_identifier",
+    "introduced_in_generation_id",
+    "is_consumable",
+    "is_holdable",
+    "is_field_usable",
+    "description",
+    "notes",
+    "is_battle_usable"
+   ],
+   "badRows": 0
+  },
+  "languages.csv": {
+   "bytes": 6929,
+   "rows": 54,
+   "columns": [
+    "identifier",
+    "language_code",
+    "display_name",
+    "shorthand",
+    "native_name",
+    "romanized_language_identifier",
+    "is_romanization_language",
+    "flag_image_path"
+   ],
+   "badRows": 0
+  },
+  "leveling_rates.csv": {
+   "bytes": 158,
+   "rows": 6,
+   "columns": [
+    "id",
+    "description",
+    "xp_to_100"
+   ],
+   "badRows": 0
+  },
+  "location_areas.csv": {
+   "bytes": 236836,
+   "rows": 2672,
+   "columns": [
+    "identifier",
+    "location_identifier",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "location_leaflet_coordinates.csv": {
+   "bytes": 447667,
+   "rows": 749,
+   "columns": [
+    "location_identifier",
+    "layer",
+    "points",
+    "type",
+    "map_part_image"
+   ],
+   "badRows": 0
+  },
+  "locations.csv": {
+   "bytes": 40936,
+   "rows": 839,
+   "columns": [
+    "identifier",
+    "name",
+    "type",
+    "region_area_identifier"
+   ],
+   "badRows": 0
+  },
+  "machines.csv": {
+   "bytes": 63899,
+   "rows": 1821,
+   "columns": [
+    "item_identifier",
+    "version_identifier",
+    "move_identifier",
+    "reusable"
+   ],
+   "badRows": 0
+  },
+  "move_flag_effects.csv": {
+   "bytes": 7102,
+   "rows": 21,
+   "columns": [
+    "move_flag_id",
+    "move_flag_effect_markup",
+    "move_flag_effect_html"
+   ],
+   "badRows": 0
+  },
+  "move_flag_maps.csv": {
+   "bytes": 11839,
+   "rows": 1969,
+   "columns": [
+    "move_id",
+    "move_flag_id"
+   ],
+   "badRows": 0
+  },
+  "move_flags.csv": {
+   "bytes": 588,
+   "rows": 21,
+   "columns": [
+    "id",
+    "name",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "move_flavor_texts.csv": {
+   "bytes": 884047,
+   "rows": 8264,
+   "columns": [
+    "move_id",
+    "version_identifier",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "move_long_effects.csv": {
+   "bytes": 4920643,
+   "rows": 952,
+   "columns": [
+    "move_id",
+    "move_long_effect_markup",
+    "move_long_effect_html"
+   ],
+   "badRows": 0
+  },
+  "move_meta_categories.csv": {
+   "bytes": 1720,
+   "rows": 34,
+   "columns": [
+    "id",
+    "identifier",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "move_metas.csv": {
+   "bytes": 9497,
+   "rows": 1499,
+   "columns": [
+    "move_id",
+    "move_meta_category_id"
+   ],
+   "badRows": 0
+  },
+  "move_short_effects.csv": {
+   "bytes": 396868,
+   "rows": 952,
+   "columns": [
+    "move_id",
+    "move_short_effect_markup",
+    "move_short_effect_html"
+   ],
+   "badRows": 0
+  },
+  "move_targets.csv": {
+   "bytes": 2892,
+   "rows": 16,
+   "columns": [
+    "id",
+    "name",
+    "identifier",
+    "description",
+    "image_path"
+   ],
+   "badRows": 0
+  },
+  "moves.csv": {
+   "bytes": 204032,
+   "rows": 952,
+   "columns": [
+    "id",
+    "identifier",
+    "name",
+    "generation_id",
+    "type_id",
+    "power",
+    "pp",
+    "accuracy",
+    "priority",
+    "move_target_id",
+    "damage_category_id",
+    "contest_type_id",
+    "contest_effect_id",
+    "super_contest_effect_id",
+    "name_jp",
+    "name_jp_romanized",
+    "name_fr",
+    "name_ger",
+    "name_it",
+    "name_es",
+    "name_kr",
+    "name_kr_romanized",
+    "name_cn",
+    "name_cn_romanized"
+   ],
+   "badRows": 0
+  },
+  "national_pokedexes.csv": {
+   "bytes": 23866,
+   "rows": 1025,
+   "columns": [
+    "id",
+    "generation_id",
+    "percentage_male",
+    "catch_rate",
+    "base_friendship_gen3_7",
+    "base_friendship_gen8",
+    "hatch_time_cycles",
+    "leveling_rate_id"
+   ],
+   "badRows": 0
+  },
+  "natures.csv": {
+   "bytes": 3351,
+   "rows": 25,
+   "columns": [
+    "id",
+    "identifier",
+    "name",
+    "attack_modifier",
+    "defense_modifier",
+    "special_attack_modifier",
+    "special_defense_modifier",
+    "speed_modifier",
+    "icon_path",
+    "favorite_flavor",
+    "disliked_flavor"
+   ],
+   "badRows": 0
+  },
+  "ndex_egg_groups.csv": {
+   "bytes": 7814,
+   "rows": 1025,
+   "columns": [
+    "ndex_id",
+    "egg_group_1_id",
+    "egg_group_2_id"
+   ],
+   "badRows": 0
+  },
+  "ndex_evolution_trees.csv": {
+   "bytes": 7882,
+   "rows": 1025,
+   "columns": [
+    "ndex_id",
+    "evolution_tree_id"
+   ],
+   "badRows": 0
+  },
+  "ndex_form_trees.csv": {
+   "bytes": 45016,
+   "rows": 1025,
+   "columns": [
+    "ndex_id",
+    "pokemon_form_tree",
+    "pokemon_form_tree_text_markup",
+    "pokemon_form_tree_text_html"
+   ],
+   "badRows": 0
+  },
+  "ndex_names.csv": {
+   "bytes": 141454,
+   "rows": 1025,
+   "columns": [
+    "ndex_id",
+    "name_english",
+    "name_german",
+    "name_french",
+    "name_spanish",
+    "name_italian",
+    "name_japanese",
+    "name_japanese_romanized",
+    "name_korean",
+    "name_korean_romanized",
+    "name_chinese_traditional",
+    "name_chinese_simplified",
+    "name_chinese_romanized",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "platforms.csv": {
+   "bytes": 2777,
+   "rows": 24,
+   "columns": [
+    "name",
+    "icon_path",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokedex_colors.csv": {
+   "bytes": 180,
+   "rows": 10,
+   "columns": [
+    "id",
+    "hex_code",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "pokedex_group_versions.csv": {
+   "bytes": 669,
+   "rows": 27,
+   "columns": [
+    "pokedex_group_identifier",
+    "version_identifier"
+   ],
+   "badRows": 0
+  },
+  "pokedex_groups.csv": {
+   "bytes": 2809,
+   "rows": 23,
+   "columns": [
+    "name",
+    "identifier",
+    "menu_button_image",
+    "shorthand"
+   ],
+   "badRows": 0
+  },
+  "pokedex_to_pokedex_group.csv": {
+   "bytes": 991,
+   "rows": 35,
+   "columns": [
+    "pokedex_identifier",
+    "pokedex_group_identifier",
+    "is_main_pokedex_of_group"
+   ],
+   "badRows": 0
+  },
+  "pokedexes.csv": {
+   "bytes": 2889,
+   "rows": 34,
+   "columns": [
+    "name",
+    "identifier",
+    "toggle_button_image",
+    "shorthand",
+    "regional_dex_display"
+   ],
+   "badRows": 0
+  },
+  "pokemon_cries.csv": {
+   "bytes": 231685,
+   "rows": 2052,
+   "columns": [
+    "ndex_id",
+    "form_name",
+    "version_identifier",
+    "audio_path"
+   ],
+   "badRows": 0
+  },
+  "pokemon_currencies.csv": {
+   "bytes": 515,
+   "rows": 8,
+   "columns": [
+    "identifier",
+    "name",
+    "shorthand",
+    "icon_path"
+   ],
+   "badRows": 0
+  },
+  "pokemon_form_evolution_types.csv": {
+   "bytes": 85914,
+   "rows": 2931,
+   "columns": [
+    "pokemon_form_identifier",
+    "evolution_type"
+   ],
+   "badRows": 0
+  },
+  "pokemon_forms.csv": {
+   "bytes": 1328711,
+   "rows": 1476,
+   "columns": [
+    "id",
+    "ndex_id",
+    "identifier",
+    "form_name",
+    "type_1_id",
+    "type_2_id",
+    "pokemon_category",
+    "shape_id",
+    "footprint_path",
+    "pokedex_color_id",
+    "height_m",
+    "height_ft",
+    "weight_kg",
+    "weight_lbs",
+    "ability_primary_id",
+    "ability_secondary_id",
+    "ability_hidden_id",
+    "ev_yield_hp",
+    "ev_yield_atk",
+    "ev_yield_def",
+    "ev_yield_spatk",
+    "ev_yield_spdef",
+    "ev_yield_speed",
+    "main_image_normal_path",
+    "main_image_normal_path_small",
+    "main_image_normal_path_preview",
+    "main_image_normal_path_medium",
+    "main_image_shiny_path",
+    "main_image_shiny_path_small",
+    "pokemon_cry_path",
+    "stat_hp",
+    "stat_attack",
+    "stat_defense",
+    "stat_spatk",
+    "stat_spdef",
+    "stat_speed",
+    "stat_total",
+    "base_experience",
+    "is_default_form",
+    "include",
+    "type_weakness_chart_id",
+    "is_first_partner",
+    "is_baby",
+    "is_mega_evolution",
+    "is_gmax_form",
+    "is_legendary",
+    "is_mythical",
+    "is_ultrabeast",
+    "is_paradox",
+    "is_fossil",
+    "origin_region_identifier"
+   ],
+   "badRows": 0
+  },
+  "pokemon_forms_pokedex.csv": {
+   "bytes": 250317,
+   "rows": 7900,
+   "columns": [
+    "pokemon_form_identifier",
+    "pokedex_identifier",
+    "pokedex_number"
+   ],
+   "badRows": 0
+  },
+  "pokemon_move_methods.csv": {
+   "bytes": 1108,
+   "rows": 11,
+   "columns": [
+    "id",
+    "name",
+    "description"
+   ],
+   "badRows": 0
+  },
+  "pokemon_moves.csv": {
+   "bytes": 19683007,
+   "rows": 603935,
+   "columns": [
+    "pokemon_form_id",
+    "version_identifier",
+    "move_id",
+    "pokemon_move_method_id",
+    "level",
+    "stab_bonus"
+   ],
+   "badRows": 0
+  },
+  "pokemon_sprites.csv": {
+   "bytes": 47383,
+   "rows": 93,
+   "columns": [
+    "pokemon_form_identifier",
+    "version_identifier",
+    "type",
+    "note",
+    "image_path",
+    "image_path_20",
+    "image_path_40",
+    "image_path_70",
+    "image_path_100"
+   ],
+   "badRows": 0
+  },
+  "ratings.csv": {
+   "bytes": 2845,
+   "rows": 20,
+   "columns": [
+    "agency",
+    "shorthand",
+    "icon_path",
+    "identifier"
+   ],
+   "badRows": 0
+  },
+  "region_areas.csv": {
+   "bytes": 934,
+   "rows": 13,
+   "columns": [
+    "region_identifier",
+    "identifier",
+    "name",
+    "generation_id",
+    "stitched_map_width",
+    "max_native_zoom",
+    "max_actual_zoom",
+    "tilesize",
+    "map_type",
+    "geojson"
+   ],
+   "badRows": 0
+  },
+  "region_artworks.csv": {
+   "bytes": 8189,
+   "rows": 67,
+   "columns": [
+    "region_area_identifier",
+    "version_identifier",
+    "type",
+    "image"
+   ],
+   "badRows": 0
+  },
+  "regions.csv": {
+   "bytes": 195,
+   "rows": 11,
+   "columns": [
+    "id",
+    "identifier",
+    "name"
+   ],
+   "badRows": 0
+  },
+  "shapes.csv": {
+   "bytes": 1509,
+   "rows": 14,
+   "columns": [
+    "id",
+    "description",
+    "image_path"
+   ],
+   "badRows": 0
+  },
+  "status_condition_animations.csv": {
+   "bytes": 4560,
+   "rows": 49,
+   "columns": [
+    "status_condition_id",
+    "generation_id",
+    "image_path"
+   ],
+   "badRows": 0
+  },
+  "status_condition_effects.csv": {
+   "bytes": 122241,
+   "rows": 51,
+   "columns": [
+    "status_condition_id",
+    "short_effect_markup",
+    "short_effect_html",
+    "long_effect_markup",
+    "long_effectlong_effect_html"
+   ],
+   "badRows": 0
+  },
+  "status_condition_images.csv": {
+   "bytes": 6624,
+   "rows": 62,
+   "columns": [
+    "status_condition_id",
+    "version_identifier",
+    "image_path"
+   ],
+   "badRows": 0
+  },
+  "status_conditions.csv": {
+   "bytes": 5563,
+   "rows": 51,
+   "columns": [
+    "id",
+    "identifier",
+    "name",
+    "type",
+    "generation_id",
+    "image_path",
+    "own_entry",
+    "name_jp",
+    "name_jp_romanized",
+    "name_cn_trad",
+    "name_cn_simp",
+    "name_cn_canto",
+    "name_cn_mandarin",
+    "name_finnish",
+    "name_french",
+    "name_german",
+    "name_italian",
+    "name_korean",
+    "name_korean_romanized",
+    "name_polish",
+    "name_portuguese",
+    "name_russian",
+    "name_russian_romanized",
+    "name_spanish",
+    "name_thai",
+    "name_vietnamese",
+    "name_swedish",
+    "name_danish",
+    "name_norwegian",
+    "name_dutch"
+   ],
+   "badRows": 0
+  },
+  "super_contest_effects.csv": {
+   "bytes": 1458,
+   "rows": 22,
+   "columns": [
+    "id",
+    "appeal",
+    "appeal_hearts",
+    "flavor_text"
+   ],
+   "badRows": 0
+  },
+  "type_images.csv": {
+   "bytes": 56931,
+   "rows": 517,
+   "columns": [
+    "type_id",
+    "type_of_image",
+    "version_identifier",
+    "description",
+    "image_path"
+   ],
+   "badRows": 0
+  },
+  "type_weakness_charts.csv": {
+   "bytes": 18277,
+   "rows": 324,
+   "columns": [
+    "id",
+    "defense_type_1_id",
+    "defense_type_2_id",
+    "normal",
+    "fire",
+    "water",
+    "electric",
+    "grass",
+    "ice",
+    "fighting",
+    "poison",
+    "ground",
+    "flying",
+    "psychic",
+    "bug",
+    "rock",
+    "ghost",
+    "dragon",
+    "dark",
+    "steel",
+    "fairy"
+   ],
+   "badRows": 0
+  },
+  "types.csv": {
+   "bytes": 10424,
+   "rows": 21,
+   "columns": [
+    "id",
+    "name",
+    "generation_id",
+    "damage_category_id",
+    "hex_color",
+    "icon_path",
+    "alternate_icon_path",
+    "name_jp",
+    "name_jp_romanized",
+    "name_cn_traditional",
+    "name_cn_simplified",
+    "name_mandarin_romanized",
+    "name_cantonese_romanized",
+    "name_danish",
+    "name_czech",
+    "name_dutch",
+    "name_finnish",
+    "name_fr_fr",
+    "name_fr_ca",
+    "name_ger",
+    "name_greek",
+    "name_greek_romanized",
+    "name_hebrew",
+    "name_hebrew_romanized",
+    "name_hindi",
+    "name_hungarian",
+    "name_indonesian",
+    "name_italian",
+    "name_korean",
+    "name_korean_romanized",
+    "name_malay",
+    "name_norwegian",
+    "name_polish",
+    "name_portuguese_br",
+    "name_portuguese_pt",
+    "name_romanian",
+    "name_russian",
+    "name_russian_romanized",
+    "name_spanish_sp",
+    "name_spanish_latam",
+    "name_swedish",
+    "name_thai",
+    "name_thai_romanized",
+    "name_turkish",
+    "name_vietnamese",
+    "name_bulgarian",
+    "name_bulgarian_romanized",
+    "name_icelandic",
+    "name_slovak"
+   ],
+   "badRows": 0
+  },
+  "version_regions.csv": {
+   "bytes": 1304,
+   "rows": 69,
+   "columns": [
+    "version_identifier",
+    "region_area_identifier"
+   ],
+   "badRows": 0
+  },
+  "versions.csv": {
+   "bytes": 4836,
+   "rows": 82,
+   "columns": [
+    "identifier",
+    "badge_info",
+    "generation_id",
+    "name",
+    "id"
+   ],
+   "badRows": 0
+  }
+ }
+}

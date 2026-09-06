@@ -1,0 +1,22 @@
+identifier,id,source,name_en,shorthand
+poke-dollar,1,both,Pokémon Dollar,
+coin,2,both,Coin,C
+volcanic-ash,3,pokeapi,Volcanic Ash,
+poke-coupon,4,pokeapi,Poké Coupon,
+berry-powder,5,pokeapi,Berry Powder,
+battle-point,6,both,Battle Point,BP
+sphere,7,pokeapi,Sphere,
+castle-point,8,pokeapi,Castle Point,
+watt,9,both,Watt,W
+athlete-point,10,both,Athlete Point,P
+dream-point,11,pokeapi,Dream Point,
+dream-world-berry,12,pokeapi,Berry (Dream World),
+poke-mile,13,pokeapi,Poké Mile,
+festival-coin,14,pokeapi,Festival Coin,
+poke-bean,15,pokeapi,Poké Bean,
+home-point,16,pokeapi,Pokémon HOME Point,
+merit-point,17,pokeapi,Merit Point,
+league-point,18,both,League Point,LP
+blueberry-point,19,pokeapi,Blueberry Point,
+colorful-screws,,pokedb,Colorful Screws,
+dynite-ore,,pokedb,Dynite Ore,

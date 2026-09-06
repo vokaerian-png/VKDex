@@ -1,0 +1,8 @@
+key,column,pokeapi,pokedb,chosen
+bug,name_es,Bicho,Insecto,Bicho
+bug,name_es_419,Insecto,Bicho,Insecto
+grass,name_es_419,Planta,Hierba,Planta
+electric,name_fr,Électrik,Électrique,Électrik
+dark,name_es_419,Siniestro,Oscuridad,Siniestro
+unknown,name_en,???,Unknown,???
+unknown,name_es,???,(?),???

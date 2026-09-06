@@ -1,0 +1,10 @@
+identifier,id,damage_class,is_battle_only,game_index,name_en,name_ja_hrkt,name_fr,name_de,name_es,name_es_419,name_it,name_ko,name_zh_hant,name_zh_hans
+hp,1,,0,1,HP,HP,PV,KP,PS,PS,PS,HP,HP,HP
+attack,2,physical,0,2,Attack,こうげき,Attaque,Angriff,Ataque,Ataque,Attacco,공격,攻擊,攻击
+defense,3,physical,0,3,Defense,ぼうぎょ,Défense,Verteidigung,Defensa,Defensa,Difesa,방어,防禦,防御
+special-attack,4,special,0,5,Special Attack,とくこう,Attaque Spéciale,Spezialangriff,Ataque Especial,Ataque Especial,Attacco Speciale,특수공격,特攻,特攻
+special-defense,5,special,0,6,Special Defense,とくぼう,Défense Spéciale,Spezialverteidigung,Defensa Especial,Defensa Especial,Difesa Speciale,특수방어,特防,特防
+speed,6,,0,4,Speed,すばやさ,Vitesse,Initiative,Velocidad,Velocidad,Velocità,스피드,速度,速度
+accuracy,7,,1,,accuracy,めいちゅう,Précision,Genauigkeit,Precisión,Precisión,precisione,명중률,命中,命中
+evasion,8,,1,,evasion,かいひ,Esquive,Fluchtwert,Evasión,Evasión,elusione,회피율,閃避,闪避
+special,9,special,0,7,,,,,,,,,,

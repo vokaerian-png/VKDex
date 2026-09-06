@@ -1,0 +1,67 @@
+identifier,id,order,name_en,name_fr,name_de
+walk,1,1,Walking in tall grass or a cave,En marchant dans les herbes hautes ou une grotte,Im hohen Gras oder in einer Höhle laufen
+old-rod,2,10,Fishing with an Old Rod,En pêchant avec une Canne,Mit einer normalen Angel angeln
+good-rod,3,11,Fishing with a Good Rod,En pêchant avec une Super Canne,Mit einer Profiangel angeln
+super-rod,4,12,Fishing with a Super Rod,En pêchant avec une Méga Canne,Mit einer Superangel angeln
+surf,5,14,Surfing,En surfant,Surfen
+rock-smash,6,16,Smashing rocks,En brisant des rochers,Steine zertrümmern
+headbutt,7,17,Headbutting trees,En utilisant Coup d’Boule sur un arbre,Bäumen Kopfnüsse geben
+dark-grass,8,5,Walking in dark grass,En marchant dans les herbes sombres,Im dunklen Gras laufen
+grass-spots,9,2,Walking in rustling grass,En marchant dans les herbes mouvantes,Im raschelndem Gras laufen
+cave-spots,10,3,Walking in dust clouds,En marchant dans un nuage de poussière,In Staubwolken laufen
+bridge-spots,11,4,Walking in bridge shadows,En marchant à l’ombre d’un pont,Im Schatten einer Brücke laufen
+super-rod-spots,12,13,Fishing in dark spots,En pêchant dans les endroits sombres,An dunklen stellen angeln
+surf-spots,13,15,Surfing in dark spots,En surfant sur les endroits sombres,An dunklen stellen surfen
+yellow-flowers,14,6,Walking in yellow flowers,En marchant dans les fleurs jaunes,In gelben Blumenfeldern laufen
+purple-flowers,15,7,Walking in purple flowers,En marchant dans les fleurs violettes,In violetten Blumenfeldern laufen
+red-flowers,16,8,Walking in red flowers,En marchant dans les fleurs rouges,In roten Blumenfeldern laufen
+rough-terrain,17,9,Walking on rough terrain,En marchant sur un terrain accidenté,Auf unwegsamen Gelände laufen
+gift,18,18,Receive as a gift,Reçu en cadeau,
+gift-egg,19,19,Receive egg as a gift,Œuf reçu en cadeau,
+static,20,20,Static encounter,Rencontre statique,
+pokeflute,21,21,Playing Pokéflute,En jouant de la Pokéflûte,
+headbutt-low,22,22,Headbutting a low encounter rate tree,En utilisant Coup d’Boule sur un arbre à taux bas,
+headbutt-normal,23,23,Headbutting a normal encounter rate tree,En utilisant Coup d’Boule sur un arbre à taux normal,
+headbutt-high,24,24,Headbutting a high encounter rate tree,En utilisant Coup d’Boule sur un arbre à taux élevé,
+squirt-bottle,25,25,Using the Squirt Bottle on a Sudowoodo,En utilisant la Carapuce à O sur Simularbre,
+wailmer-pail,26,26,Using the Wailmer Pail on a Sudowoodo,En utilisant le Seau Wailmer / Wailmerrosoir sur Simularbre,
+seaweed,27,27,Diving on seaweed,En plongeant dans les algues,
+roaming-grass,28,28,On any overworld patch of grass,Dans les herbes,
+roaming-water,29,29,On any overworld water tile,Sur l’eau,
+devon-scope,30,30,Using Devon Scope,En utilisant le Devon Scope,
+feebas-tile-fishing,31,31,Fishing in a Feebas Tile,En pêchant sur une tuile à Barpau,
+island-scan,32,32,Island Scan,Scan des Îles,
+sos,33,33,SOS Battle,Combat SOS,
+bubbling-spots,34,34,Fishing at bubbling spots in the water,En pêchant sur un point à bulles,
+berry-trees,35,35,Interacting with a Berry Tree,En interagissant avec un arbre à baies,
+npc-trade,36,36,Trade with an NPC,Échange avec un PNJ,
+sos-from-bubbling-spot,37,37,SOS Battle from bubbling spots,Combat SOS dans les points à bulles,
+overworld,38,38,Walking in the overworld,En marchant dans le monde extérieur,
+overworld-water,39,39,Surfing in the overworld,En surfant dans le monde extérieur,
+overworld-flying,40,40,Flying Pokemon in the sky,Pokemon volant dans le ciel,
+overworld-special,41,41,Rare spawn in grass with lure or catch combo,Apparition rare dans les herbes avec un parfum ou un combo capture,
+overworld-flying-special,42,42,Rare spawn in the sky with lure or catch combo,Apparition rare dans le ciel avec un parfum ou un combo capture,
+overworld-water-special,43,43,Rare spawn in water with lure or catch combo,Apparition rare dans l'eau avec un parfum ou un combo capture,
+horde,44,44,"Encountering 5 Pokemon within grass, flowers, or within a cave","Rencontrer 5 Pokémon dans l'herbe, les fleurs ou une grotte",
+colosseum-bonus-disc-us,45,45,Receiving a Jirachi from the USA Colosseum Bonus Disc,Recevoir un Jirachi depuis le disque bonus Pokémon Colosseum aux États-Unis,
+colosseum-bonus-disc-jpn,46,46,Receiving a Celebi or Pikachu from the Japanese Colosseum Bonus Disc,Recevoir depuis le disque bonus Pokemon Colosseum au Japon,
+pokemon-channel-pal,47,47,Receiving a Jirachi from the PAL copy of Pokemon channel,Recevoir depuis la version PAL de Pokémon Channel,
+pokemon-ranger,48,48,Receiving a Manaphy from Pokemon Ranger,Recevoir un œuf depuis Pokémon Ranger,
+pokemon-battle-revolution,49,49,"Receiving a Pikachu, Electivire, or Magmar from Pokemon Battle Revolution",Recevoir depuis Pokémon Battle Revolution,
+new-york-pokecenter-wish-eggs,50,50,Receiving an egg from the Pokemon center in New York City that contains the special move Wish.,Recevoir un œuf du Pokémon Center de New York contenant l'attaque spéciale Vœu,
+snag,51,51,Snagging a Pokemon from a trainer in Pokemon Colosseum or Pokemon XD: Gale of Darkness.,Snatcher un Pokémon d'un dresseur,
+snag-rematch,52,52,"Snagging a Pokemon from a trainer in Pokemon Colosseum or Pokemon XD: Gale of Darkness, after you have failed to capture them once.","Snatcher un Pokémon d'un dresseur, après avoir manqué la capture une première fois",
+pokespot,53,53,Finding a Wild Pokemon at any of the three Pokespots in Pokemon XD: Gale of Darkness.,Poké Place,
+hidden-grotto,54,54,Finding a Pokemon in a Hidden Grotto,Trouée cachée,
+honey-tree,55,55,Slathering a Honey Tree with Honey and waiting for a Pokémon to appear.,Arbre à Miel,
+overworld-dirt,56,56,Overworld spawn coming from underground or within a swamp.,Apparition dans le monde extérieur depuis sous-terre ou un marais,
+wanderer,57,57,Special overworld spawn in a fixed location.,Apparition sur un emplacement fixe dans le monde extérieur,
+wanderer-water,58,58,Special overworld spawn in a fixed location in the water.,Apparition sur un emplacement fixe sur l'eau dans le monde extérieur,
+chase-water,59,59,Get chased by territorial Pokémon when entering the water.,Se faire poursuivre par un Pokémon territorial dans l'eau,
+dynamax-adventure,60,60,Capture during a Dynamax Adventure.,Expédition Dynamax,
+max-raid,61,61,Catch a wild Dynamax or Gigantamax Pokémon in a Max Raid battle.,Raid Dynamax,
+trash-can-ambush,62,62,Ambushed by a Wild Pokemon from a Trash Can,Embuscade depuis une poubelle,
+rustling-bush-ambush,63,63,Ambushed by a Wild Pokemon from a Rustling Bush,Embuscade depuis un buisson qui remue,
+ceiling-ambush,64,64,Ambushed by a Wild Pokemon from the Ceiling of a Cave,Embuscade depuis le plafond d'une grotte,
+ground-ambush,65,65,Ambushed by a Wild Pokemon from the Ground,Embuscade depuis la terre,
+sky-ambush,66,66,Ambushed by a Wild Pokemon from the Sky,Embuscade depuis le ciel,

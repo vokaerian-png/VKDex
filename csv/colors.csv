@@ -1,0 +1,11 @@
+identifier,id,hex_color,name_en,name_ja,name_ja_hrkt,name_fr,name_de,name_es,name_es_419,name_it,name_ko,name_zh_hant,name_zh_hans
+black,1,#282828,Black,黒色,くろいろ,Noir,Schwarz,Negro,Negro,Nero,검정,黑色,黑色
+blue,2,#308bf9,Blue,青色,あおいろ,Bleu,Blau,Azul,Azul,Blu,파랑,藍色,蓝色
+brown,3,#5c3600,Brown,茶色,ちゃいろ,Brun,Braun,Marrón,Marrón,Marrone,갈색,褐色,褐色
+gray,4,#848484,Gray,灰色,はいいろ,Gris,Grau,Gris,Gris,Grigio,회색,灰色,灰色
+green,5,#4acb39,Green,緑色,みどりいろ,Vert,Grün,Verde,Verde,Verde,초록,綠色,绿色
+pink,6,#e445d7,Pink,桃色,ももいろ,Rose,Rosa,Rosa,Rosa,Rosa,담홍,粉紅色,粉红色
+purple,7,#ab00cb,Purple,紫色,むらさきいろ,Violet,Violett,Morado,Morado,Viola,보라,紫色,紫色
+red,8,#f41d1d,Red,赤色,あかいろ,Rouge,Rot,Rojo,Rojo,Rosso,빨강,紅色,红色
+white,9,#dfdfdf,White,白色,しろいろ,Blanc,Weiß,Blanco,Blanco,Bianco,하양,白色,白色
+yellow,10,#e9fc4d,Yellow,黄色,きいろ,Jaune,Gelb,Amarillo,Amarillo,Giallo,노랑,黃色,黄色

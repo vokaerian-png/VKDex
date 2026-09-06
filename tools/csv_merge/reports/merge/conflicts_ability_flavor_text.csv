@@ -1,0 +1,53 @@
+key,column,pokeapi,pokedb,chosen
+insomnia/sword-shield,flavor_text,The Pokémon's insomnia prevents it from falling asleep.,The Pokémon is suffering from insomnia and cannot fall asleep.,The Pokémon's insomnia prevents it from falling asleep.
+flash-fire/x-y,flavor_text,"Powers up the Pokémon’s Fire-
+type moves if it’s hit by one.",Powers up the Pokémon’s Fire- type moves if it’s hit by one.,"Powers up the Pokémon’s Fire-
+type moves if it’s hit by one."
+thick-fat/black-2-white-2,flavor_text,"Ups resistance to Fire-​
+and Ice-type moves.",Ups resistance to Fire-​ and Ice-type moves.,"Ups resistance to Fire-​
+and Ice-type moves."
+thick-fat/black-white,flavor_text,"Ups resistance to Fire-​
+and Ice-type moves.",Ups resistance to Fire-​ and Ice-type moves.,"Ups resistance to Fire-​
+and Ice-type moves."
+thick-fat/diamond-pearl,flavor_text,"Raises resistance to Fire-​
+and Ice-type moves.",Raises resistance to Fire-​ and Ice-type moves.,"Raises resistance to Fire-​
+and Ice-type moves."
+thick-fat/heartgold-soulsilver,flavor_text,"Ups resistance to Fire-​
+and Ice-type moves.",Ups resistance to Fire-​ and Ice-type moves.,"Ups resistance to Fire-​
+and Ice-type moves."
+thick-fat/omega-ruby-alpha-sapphire,flavor_text,"Boosts resistance to Fire-
+and Ice-type moves.",Boosts resistance to Fire- and Ice-type moves.,"Boosts resistance to Fire-
+and Ice-type moves."
+thick-fat/platinum,flavor_text,"Raises resistance to Fire-​
+and Ice-type moves.",Raises resistance to Fire-​ and Ice-type moves.,"Raises resistance to Fire-​
+and Ice-type moves."
+thick-fat/x-y,flavor_text,"Boosts resistance to Fire-​
+and Ice-type moves.",Boosts resistance to Fire-​ and Ice-type moves.,"Boosts resistance to Fire-​
+and Ice-type moves."
+super-luck/black-2-white-2,flavor_text,"Heightens the critical-
+hit ratios of moves.",Heightens the critical- hit ratios of moves.,"Heightens the critical-
+hit ratios of moves."
+super-luck/black-white,flavor_text,"Heightens the critical-
+hit ratios of moves.",Heightens the critical- hit ratios of moves.,"Heightens the critical-
+hit ratios of moves."
+super-luck/heartgold-soulsilver,flavor_text,"Heightens the critical-
+hit ratios of moves.",Heightens the critical- hit ratios of moves.,"Heightens the critical-
+hit ratios of moves."
+filter/diamond-pearl,flavor_text,"Powers down super­
+effective moves.",Powers down super­ effective moves.,"Powers down super­
+effective moves."
+filter/platinum,flavor_text,"Powers down super­
+effective moves.",Powers down super­ effective moves.,"Powers down super­
+effective moves."
+solid-rock/diamond-pearl,flavor_text,"Powers down super­
+effective moves.",Powers down super­ effective moves.,"Powers down super­
+effective moves."
+solid-rock/platinum,flavor_text,"Powers down super­
+effective moves.",Powers down super­ effective moves.,"Powers down super­
+effective moves."
+magic-bounce/black-2-white-2,flavor_text,"Reflects status-
+changing moves.",Reflects status- changing moves.,"Reflects status-
+changing moves."
+magic-bounce/black-white,flavor_text,"Reflects status-
+changing moves.",Reflects status- changing moves.,"Reflects status-
+changing moves."
