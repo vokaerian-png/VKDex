@@ -15,9 +15,9 @@ Code & Implementation by @Claude.AI
 
 ##
 
-Data & assets sources;
-PokeAPI - https://github.com/pokeapi/pokeapi
-PokeDB - https://pokedb.org/
+## Data & assets sources
+[PokeAPI] (https://github.com/pokeapi/pokeapi)
+[PokeDB] (https://pokedb.org/)
 
 ##
 
