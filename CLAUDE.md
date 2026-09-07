@@ -4,11 +4,16 @@
 `memory/SCOPE.md` right after.** Primary truth for this project's file
 layout, versioning, workflow, and session process. This file alone stays at
 the project root (Cowork auto-loads project instructions from a root
-`CLAUDE.md`); its six companions live in `memory/` (§1): `SCOPE.md` (app
-scope/design), `PLAN.md` (committed roadmap), `TODO.md` (ideas under
-consideration), `HISTORY.md` (version changelog), `HISTORY_ARCHIVE.md`
-(`HISTORY.md`'s compacted overflow, §6c), `HISTORY_PUSH.md` (current-
-version release notes for the git pipeline, §6d).
+`CLAUDE.md`); its seven companions live in `memory/` (§1): `SCOPE.md` (app
+scope/design), `PLAN.md` (committed, not-yet-shipped roadmap), `TODO.md`
+(ideas under consideration, plus committed items with a genuinely
+unimplemented remainder), `HISTORY.md` (version changelog),
+`HISTORY_ARCHIVE.md` (`HISTORY.md`'s compacted overflow, §6c),
+`HISTORY_PUSH.md` (current-version release notes for the git pipeline,
+§6d), `SHIPPED.md` (compacted archive of fully-shipped work and standing
+decisions, split out of `PLAN.md`/`TODO.md` 2026-09-07 once nearly every
+entry in both had shipped — not part of the read-every-session set,
+consulted on demand like `HISTORY_ARCHIVE.md`).
 
 **Reflect changes back into the memory bank as part of the same task** —
 code changes here (+`HISTORY.md` for a version bump), design/scope
@@ -40,6 +45,8 @@ VKDex/
     SCOPE.md  PLAN.md  TODO.md  HISTORY.md
     HISTORY_ARCHIVE.md                        <- HISTORY.md's compacted overflow (§6c)
     HISTORY_PUSH.md                            <- current-version release notes (§6d)
+    SHIPPED.md                                 <- fully-shipped work archive, split out of
+                                                   PLAN.md/TODO.md 2026-09-07
   package.json                                <- Tauri CLI/API devDeps, dev/build scripts
   src/                                       <- THE APP. All app edits go here.
     index.html
@@ -78,7 +85,7 @@ VKDex/
   csv/                                        <- merged PokeAPI+PokeDB data source, one CSV per table
                                                  (csv/MANIFEST.md is the schema doc) — built 2026-09-06,
                                                  the live source for src/data/*.js since 0.3.6-0.3.8
-                                                 (PLAN.md's CSV-merge entry)
+                                                 (SHIPPED.md's CSV merge entry)
   tools/                                     <- Node data-pipeline scripts (SCOPE.md §2) + release.js (§2a)
                                                  + csv_merge/ (analysis/compare/merge tooling behind csv/)
                                                  + populate_from_csv.js (live pipeline, reads csv/, 0.3.6+;
@@ -136,7 +143,7 @@ GitHub Release assets, not commits.
 VKDex packaged as a portable Windows `.exe` via Electron from 0.1.0
 through the Tauri migration; **fully retired 2026-09-06** once Tauri's
 shell swap + resize lock + release pipeline were all confirmed on real
-hardware (0.2.16/0.2.17, `PLAN.md`'s Tauri migration entry). No `src/`
+hardware (0.2.16/0.2.17, `SHIPPED.md`'s Tauri entry). No `src/`
 remnants — `is-electron` → `is-tauri` completed in 0.2.11. `electron-app/`
 (wrapper + `node_modules/` + old local `dist/` zips, ~1.6GB, always
 gitignored) still needs manual deletion by the user (§4 `EPERM`); nothing
@@ -194,7 +201,8 @@ Kotlin-daemon fallback on cross-drive paths).
 
 **Android release builds (0.2.20-0.2.22)**: `build:android` runs without
 `--debug`, so Gradle's `release` buildType (`isMinifyEnabled` + ProGuard)
-produces a real-key-signed APK. **APK size** (`TODO.md` #1): Cargo's
+produces a real-key-signed APK. **APK size** (`SHIPPED.md`'s Tauri
+entry): Cargo's
 `[profile.release]` (strip/lto/`codegen-units=1`/`opt-level="z"`) strips
 the `.so`s (universal APK 732 → 289 MB — a stale cached build masked this
 at first; do a genuine clean rebuild before trusting a size figure), and
@@ -227,8 +235,9 @@ root, runs `node tools\release.js` with any passed flags, then `pause`s.
 
 ## 2b. Tauri scaffold — 0.2.11-0.2.17: desktop + Android both confirmed
 
-Replacing Electron (`TODO.md` #1 — Tauri 2.x builds desktop **and** mobile
-from one project); like-for-like shell swap only, no new desktop UI yet.
+Replacing Electron (`SHIPPED.md`'s Tauri entry — Tauri 2.x builds desktop
+**and** mobile from one project); like-for-like shell swap only, no new
+desktop UI yet.
 
 `src-tauri/` + root `package.json` (`@tauri-apps/cli`+`api`, `npm run
 dev`/`build`). `frontendDist: "../src"` — Tauri embeds `src/` directly at
@@ -479,10 +488,10 @@ general "stop and ask" rule.
 
 ## 6. How this memory bank is maintained
 
-These seven files **are** the durable memory bank (the older `stack.md`/
+These eight files **are** the durable memory bank (the older `stack.md`/
 `version.md`/`workflow.md`/`navigation.md`/`MEMORY.md` store is superseded
 as of 2026-09-02, kept only as a possibly-stale record). `CLAUDE.md` stays
-at the project root; the other six live in `memory/` (moved 2026-09-06,
+at the project root; the other seven live in `memory/` (moved 2026-09-06,
 §1) — a plain filename below (`SCOPE.md`, etc.) means `memory/SCOPE.md`
 unless stated otherwise.
 
@@ -491,17 +500,30 @@ unless stated otherwise.
 - **`SCOPE.md`**: app scope and design — what VKDex is, UI/UX conventions,
   navigation and screen behavior, the data model. Split out of `CLAUDE.md`
   2026-09-05 so app-facing decisions don't compete with process/workflow
-  for space here. Read right after this file.
-- **`TODO.md`**: ideas as proposed/considered. **Combine similar ideas
-  into one entry with sub-points**, don't list duplicates. Candidates, not
-  commitments.
-- **`PLAN.md`**: definitive statements about planned/future functionality.
-  Only actual commitments; unpromoted ideas stay in `TODO.md`.
+  for space here. Read right after this file. **Also holds the standing
+  governing rules for shipped features** (the "don't revert/change X
+  without asking" kind) — folded in here rather than left in `PLAN.md`/
+  `SHIPPED.md` since this is what a future pass actually reads for "how
+  does this work / what can't I touch" (2026-09-07 housekeeping, below).
+- **`TODO.md`**: ideas as proposed/considered, plus committed items with a
+  genuinely unimplemented remainder. **Combine similar ideas into one
+  entry with sub-points**, don't list duplicates. A fully-resolved entry
+  moves out entirely into `SHIPPED.md`, not shrunk-and-kept here.
+- **`PLAN.md`**: definitive statements about planned/future functionality
+  **not yet shipped**. Only actual commitments; unpromoted ideas stay in
+  `TODO.md`; a fully-shipped entry moves to `SHIPPED.md`.
 - **`HISTORY.md`**: the 10 most recent version-history entries, newest
   first, one heading per bump (§6c).
 - **`HISTORY_ARCHIVE.md`**: `HISTORY.md`'s compacted overflow (§6c).
 - **`HISTORY_PUSH.md`**: the current version's release notes for
   `tools/release.js` (§6d).
+- **`SHIPPED.md`**: compacted archive of fully-shipped work, split out of
+  `PLAN.md`/`TODO.md` on 2026-09-07 once nearly every entry in both had
+  accumulated a "shipped"/"RESOLVED" status — same density convention as
+  `HISTORY_ARCHIVE.md` (a few lines per entry, not full mechanism detail),
+  not part of the read-every-session set, consulted on demand. A
+  partially-shipped `PLAN.md`/`TODO.md` entry keeps only its genuinely
+  unimplemented remainder behind; the shipped portion moves here.
 
 Section numbering across `CLAUDE.md`/`SCOPE.md` runs sequentially with no
 gaps; a sub-clause of a main section (e.g. §6a/§6b) takes that section's
@@ -511,9 +533,9 @@ number plus a letter, ordered a/b/c by where it appears.
 
 ## 6a. Session-start memory-bank backup
 
-At the start of every session: zip all six memory-bank files — `CLAUDE.md`
-from the project root plus the five in `memory/` (§1) — and write the
-archive directly (file tools — the Dropbox MCP connector can only make
+At the start of every session: zip all eight memory-bank files —
+`CLAUDE.md` from the project root plus the seven in `memory/` (§1) — and
+write the archive directly (file tools — the Dropbox MCP connector can only make
 plain-text files) to the user's **local Dropbox folder**,
 `%USERPROFILE%\Dropbox\Apps\VKDex\backup_memory\` (Cowork sessions get the
 real resolved path from the connected-folder list each session; a
@@ -703,8 +725,9 @@ resumes without re-deriving state.
 ---
 
 **Siblings:** `SCOPE.md` = app scope & design (UI, navigation, data model)
-· `PLAN.md` = committed roadmap · `TODO.md` = ideas under consideration ·
-`HISTORY.md` = version changelog (10-entry rolling window, §6c) ·
-`HISTORY_ARCHIVE.md` = `HISTORY.md`'s compacted overflow ·
+· `PLAN.md` = committed, not-yet-shipped roadmap · `TODO.md` = ideas under
+consideration · `HISTORY.md` = version changelog (10-entry rolling window,
+§6c) · `HISTORY_ARCHIVE.md` = `HISTORY.md`'s compacted overflow ·
 `HISTORY_PUSH.md` = current-version release notes for the git pipeline
-(§6d).
+(§6d) · `SHIPPED.md` = fully-shipped work archive, split out of
+`PLAN.md`/`TODO.md` (2026-09-07).
