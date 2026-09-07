@@ -25,10 +25,10 @@ Code & Implementation by @Claude.AI
 ---
 
 <p align="center">
-  <img src="media/details_1.png" width="24%">
-  <img src="media/details_2.png" width="24%">
-  <img src="media/details_3.png" width="24%">
-  <img src="media/details_4.png" width="24%">
+  <img src="media/details_sprites.png" width="24%">
+  <img src="media/details_abilities.png" width="24%">
+  <img src="media/details_weakness.png" width="24%">
+  <img src="media/details_stats.png" width="24%">
 </p>
 
 ##
