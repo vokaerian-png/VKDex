@@ -456,6 +456,7 @@
   var screens = {
     dex: document.getElementById("dexScreen"),
     favorites: document.getElementById("favoritesScreen"),
+    bag: document.getElementById("bagScreen"),
     typechart: document.getElementById("typeChartScreen"),
     natures: document.getElementById("naturesScreen")
   };
@@ -463,6 +464,7 @@
   var navIcons = {
     dex: document.getElementById("dexIcon"),
     favorites: document.getElementById("favoritesIcon"),
+    bag: document.getElementById("bagIcon"),
     typechart: document.getElementById("typeChartIcon"),
     natures: document.getElementById("naturesIcon")
   };
@@ -488,6 +490,7 @@
     function go() {
       closeMenu();
       closeDetail();
+      closeItemDetail();
       showView(view);
     }
     el.addEventListener("click", go);
@@ -498,6 +501,7 @@
 
   wireNavIcon(navIcons.dex, "dex");
   wireNavIcon(navIcons.favorites, "favorites");
+  wireNavIcon(navIcons.bag, "bag");
   wireNavIcon(navIcons.typechart, "typechart");
   wireNavIcon(navIcons.natures, "natures");
 
@@ -801,6 +805,353 @@
     }
     renderGrid(favoritesList, entries, "");
   }
+
+  // --- Bag screen -------------------------------------------------------
+  // The item catalogue (data/items.js), rendered through the same
+  // renderGrid()/.dex-cell path the Pokedex uses. Three filters stack: the
+  // pocket chip, the quick-search text, and — for machines only — the game
+  // selector, which decides what a TM/HM cell can even show, since the same
+  // machine number teaches a different move (hence a different type icon) in
+  // most generations. `noArt` entries (13 evolution-only items with no
+  // bundled sprite) are catalogue members but never grid members.
+  var POCKETS = [
+    { id: "misc", label: "Items" },
+    { id: "medicine", label: "Medicine" },
+    { id: "pokeballs", label: "Poké Balls" },
+    { id: "machines", label: "TMs & HMs" },
+    { id: "berries", label: "Berries" },
+    { id: "mail", label: "Mail" },
+    // `chip` overrides `label` on the pocket chip only (the chips are a fixed
+    // 4-column grid — "Battle Items" is the one label that overflows its pill).
+    // The Pocket fact row on the item screen still reads POCKET_LABEL.
+    { id: "battle", label: "Battle Items", chip: "Battle" },
+    { id: "key", label: "Key Items" }
+  ];
+  var POCKET_LABEL = {};
+  POCKETS.forEach(function (p) { POCKET_LABEL[p.id] = p.label; });
+
+  // Only 4 hm-{type}.png icons are bundled (the only types HMs ever teach);
+  // anything else falls back to the tm- set, which covers all 18.
+  var HM_ICON_TYPES = { fighting: 1, flying: 1, normal: 1, water: 1 };
+  // ₱ is a placeholder Poke Dollar glyph; every other currency shows its
+  // in-game shorthand. Keys are item_prices.csv's own currency identifiers.
+  var CURRENCY_SHORT = {
+    "poke-dollar": "₱", "battle-point": "BP", "league-point": "LP",
+    "coin": "Coins", "athlete-point": "AP", "watt": "W"
+  };
+
+  var bagTitle = document.getElementById("bagTitle");
+  var pocketBar = document.getElementById("pocketBar");
+  var bagList = document.getElementById("bagList");
+  var bagTools = document.querySelector(".bag-tools");
+  var bagGameSelect = document.getElementById("bagGameSelect");
+  var bagSearchToggle = document.getElementById("bagSearchToggle");
+  var bagSearchInput = document.getElementById("bagSearchInput");
+
+  var activePocket = "";  // "" = no chip selected (whole catalogue)
+  var bagGame = "";       // "" = "Game: All"
+  var BAG_SLUGS = Object.keys(ITEMS_DATA).filter(function (slug) {
+    return !ITEMS_DATA[slug].noArt;
+  });
+
+  function renderPocketBar() {
+    pocketBar.innerHTML = POCKETS.map(function (p) {
+      return '<button class="region-chip" data-pocket="' + p.id + '">' + escapeHtml(p.chip || p.label) + "</button>";
+    }).join("");
+  }
+
+  // <optgroup> per generation, over VERSION_GROUPS (data/machines.js) — the
+  // groups the item data actually holds entries for, not a hardcoded list.
+  function renderGameSelect() {
+    var html = '<option value="">Game: All</option>';
+    var gen = null;
+    VERSION_GROUPS.forEach(function (g) {
+      if (g.gen !== gen) {
+        if (gen !== null) html += "</optgroup>";
+        gen = g.gen;
+        html += '<optgroup label="Generation ' + gen + '">';
+      }
+      html += '<option value="' + escapeHtml(g.id) + '">' + escapeHtml(g.name) + "</option>";
+    });
+    if (gen !== null) html += "</optgroup>";
+    bagGameSelect.innerHTML = html;
+  }
+
+  // Version group id -> generation, for the grid's game filter below.
+  var VG_GEN = {};
+  VERSION_GROUPS.forEach(function (g) { VG_GEN[g.id] = g.gen; });
+
+  // Is this item actually in the selected game? Machines get the exact
+  // answer from MACHINES' per-version-group rows; everything else uses the
+  // item's `gens` (item_game_indices.csv), which is generation grain — so
+  // Red/Blue and Yellow filter identically, correct for all but a handful of
+  // version-exclusive items. An entry with no `gens` at all (oaks-parcel, an
+  // upstream gap) matches no game and so only shows under "Game: All".
+  function itemInGame(slug, it) {
+    if (MACHINES[slug]) return machineMoveIn(slug, bagGame) !== null;
+    return !!it.gens && it.gens.indexOf(VG_GEN[bagGame]) !== -1;
+  }
+
+  // The move a machine teaches in one version group, or null when that group
+  // has no row for it (the machine number didn't exist there yet).
+  function machineMoveIn(slug, vg) {
+    var groups = MACHINES[slug] || [];
+    for (var i = 0; i < groups.length; i++) {
+      if (groups[i].vg.indexOf(vg) !== -1) return groups[i].move;
+    }
+    return null;
+  }
+
+  // Under "Game: All" most machines still have ONE answer: 174 of the 338
+  // teach the same move in every group they appear in (the SwSh TRs, the SV
+  // TMs, hm01-hm04, ...). Those show the move; only a machine number that
+  // was genuinely reused for different moves falls back to the generic
+  // icon / "Varies by game".
+  function machineSoleMove(slug) {
+    var groups = MACHINES[slug] || [];
+    for (var i = 1; i < groups.length; i++) {
+      if (groups[i].move !== groups[0].move) return null;
+    }
+    return groups.length ? groups[0].move : null;
+  }
+
+  // Machines have no per-item art: the icon is the taught move's TYPE for
+  // the selected game. With no game selected there is no single answer, so
+  // the generic TM case stands in — same for a game the machine isn't in.
+  function itemIconUrl(slug) {
+    if (!MACHINES[slug]) return itemSpriteUrl(slug);
+    var move = bagGame ? machineMoveIn(slug, bagGame) : machineSoleMove(slug);
+    var type = move && MOVES[move] ? MOVES[move].type.toLowerCase() : null;
+    if (!type) return itemSpriteUrl("tm-case");
+    var hm = slug.slice(0, 2) === "hm" && HM_ICON_TYPES[type];
+    return itemSpriteUrl((hm ? "hm-" : "tm-") + type);
+  }
+
+  // The cell's bottom slot (where the dex grid puts the dex number): the
+  // taught move for a machine, the item's category for everything else.
+  function bagCellText(slug) {
+    if (!MACHINES[slug]) return escapeHtml(ITEMS_DATA[slug].category || "Item");
+    var move = bagGame ? machineMoveIn(slug, bagGame) : machineSoleMove(slug);
+    if (move) return escapeHtml(move);
+    // The game-filtered grid never reaches "Not in this game" (itemInGame
+    // drops those cells); the item screen's Teaches row still can, when the
+    // game is switched while an item is open.
+    return bagGame ? "Not in this game" : "Varies by game";
+  }
+
+  function renderBagList() {
+    var query = bagSearchInput.value.trim().toLowerCase();
+    var entries = [];
+    BAG_SLUGS.forEach(function (slug) {
+      var it = ITEMS_DATA[slug];
+      if (activePocket && it.pocket !== activePocket) return;
+      if (bagGame && !itemInGame(slug, it)) return;
+      if (query && it.name.toLowerCase().indexOf(query) === -1) return;
+      entries.push({ id: slug, name: it.name });
+    });
+    var empty = query
+      ? "No items match “" + query + "”."
+      : bagGame ? "No items in this game." : "No items in this pocket.";
+    renderGrid(bagList, entries, empty,
+      function (p) { return bagCellText(p.id); },
+      function (p) { return itemIconUrl(p.id); });
+  }
+
+  // Same rule as the dex screen's header/region-chip pair: exactly one of
+  // the title and the chips is ever shown active, and the title clears back
+  // to the whole catalogue.
+  function setPocketFilter(pocket) {
+    activePocket = pocket;
+    bagTitle.classList.toggle("active", !pocket);
+    var chips = pocketBar.querySelectorAll(".region-chip");
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].classList.toggle("active", chips[i].getAttribute("data-pocket") === pocket);
+    }
+    renderBagList();
+  }
+
+  bagTitle.addEventListener("click", function () { setPocketFilter(""); });
+  bagTitle.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setPocketFilter(""); }
+  });
+
+  pocketBar.addEventListener("click", function (e) {
+    var btn = e.target.closest ? e.target.closest(".region-chip") : null;
+    if (!btn) return;
+    var pocket = btn.getAttribute("data-pocket");
+    setPocketFilter(pocket === activePocket ? "" : pocket);
+  });
+
+  // The select and the search input share one flex "track" beside the
+  // fixed-width toggle; .search-open swaps their flex-basis (100%/0 <-> 0/100%)
+  // so the field grows into exactly the space the select gives up.
+  function isBagSearchOpen() {
+    return bagTools.classList.contains("search-open");
+  }
+
+  function setBagSearchOpen(open) {
+    bagTools.classList.toggle("search-open", open);
+    bagSearchToggle.classList.toggle("active", open);
+    bagSearchToggle.setAttribute("aria-expanded", String(open));
+    bagSearchInput.tabIndex = open ? 0 : -1;
+    if (open) {
+      bagSearchInput.focus();
+    } else if (bagSearchInput.value) {
+      bagSearchInput.value = "";
+      renderBagList();
+    }
+  }
+
+  bagSearchToggle.addEventListener("click", function () { setBagSearchOpen(!isBagSearchOpen()); });
+  bagSearchInput.addEventListener("input", renderBagList);
+
+  // With the search open the select doesn't vanish: border-box floors it at
+  // its own padding+border, leaving a ~40px caret stub at the row's left edge.
+  // That stub is the way back — one tap closes the search, lets the select
+  // grow again, and opens the picker. Only the first two need code: the tap
+  // lands on the real <select> and is not cancelled, so the native picker
+  // opens by itself (no showPicker() shim, which no other control here uses).
+  // pointerdown covers touch/mouse, focus covers the keyboard.
+  function reopenGameSelect() {
+    if (isBagSearchOpen()) setBagSearchOpen(false);
+  }
+  bagGameSelect.addEventListener("pointerdown", reopenGameSelect);
+  bagGameSelect.addEventListener("focus", reopenGameSelect);
+
+  bagGameSelect.addEventListener("change", function () {
+    bagGame = bagGameSelect.value;
+    renderBagList();
+    if (isItemDetailOpen()) renderItemDetail();
+  });
+
+  // --- Item detail screen ----------------------------------------------
+  // Its own .detail-screen element rather than a mode on #detailScreen, so
+  // none of the Pokemon detail screen's state has to learn about items.
+  var itemScreen = document.getElementById("itemScreen");
+  var itemBody = document.getElementById("itemBody");
+  var itemNameEl = document.getElementById("itemName");
+  var itemSlug = null;
+
+  function isItemDetailOpen() {
+    return itemSlug !== null;
+  }
+
+  function money(amount, cur) {
+    var unit = CURRENCY_SHORT[cur] || cur;
+    return cur === "poke-dollar" ? unit + amount : amount + " " + unit;
+  }
+
+  function itemPictureCardHtml(slug, it) {
+    return '<div class="detail-section picture-card">' +
+      '<div class="sprite-pair"><div class="sprite-slot">' +
+      '<span class="detail-sprite-wrap item-sprite-wrap"><img class="item-sprite" src="' +
+      itemIconUrl(slug) + '" alt="' + escapeHtml(it.name) + '"' + SPRITE_ONERROR_ATTR + "></span>" +
+      "</div></div>" +
+      (it.description ? '<div class="detail-description-flap">' + escapeHtml(it.description) + "</div>" : "") +
+      "</div>";
+  }
+
+  function itemFactRow(label, valueHtml, column) {
+    return '<div class="detail-row' + (column ? " column" : "") + '"><span class="detail-key">' +
+      escapeHtml(label) + '</span><span class="detail-val">' + valueHtml + "</span></div>";
+  }
+
+  // A machine's "Teaches" row. With a game picked it's one move + its type
+  // pill; under "Game: All" it's every distinct move the machine teaches,
+  // each with the collapsed game list under it (encGamesHtml, same as the
+  // Found In popup's per-line attribution).
+  function teachesRowHtml(slug) {
+    var groups = MACHINES[slug] || [];
+    function movePill(move) {
+      var mv = MOVES[move];
+      return escapeHtml(move) + (mv ? " " + pillHtml(mv.type) : "");
+    }
+    if (bagGame) {
+      var move = machineMoveIn(slug, bagGame);
+      return itemFactRow("Teaches", move ? movePill(move) : "Not in this game");
+    }
+    return itemFactRow("Teaches", groups.map(function (g) {
+      return '<div class="item-teach-line">' + movePill(g.move) + encGamesHtml(g.games) + "</div>";
+    }).join(""), true);
+  }
+
+  function itemFactsHtml(slug, it) {
+    var rows = "";
+    if (it.category) rows += itemFactRow("Category", escapeHtml(it.category));
+    if (it.pocket) rows += itemFactRow("Pocket", escapeHtml(POCKET_LABEL[it.pocket] || it.pocket));
+    if (MACHINES[slug]) {
+      rows += teachesRowHtml(slug);
+    } else if (it.fling) {
+      // "Fling Power (Move)" rather than a bare "Fling": the number is the
+      // power of the MOVE Fling when this item is the one thrown.
+      rows += itemFactRow("Fling Power (Move)",
+        it.fling.power + (it.fling.effect ? " &middot; " + escapeHtml(it.fling.effect) : ""));
+    }
+    return rows ? '<div class="detail-facts">' + rows + "</div>" : "";
+  }
+
+  // One line per collapsed (buy, sell, currency) tuple. A game selection
+  // narrows to that game's tuples and drops the games sub-line, since it
+  // would just repeat the selector.
+  function itemPriceCardHtml(it) {
+    var prices = (it.prices || []).filter(function (p) {
+      return !bagGame || p.vg.indexOf(bagGame) !== -1;
+    });
+    if (!prices.length) return "";
+    return '<div class="detail-section"><p class="detail-section-label">Price</p>' +
+      prices.map(function (p) {
+        var buy = p.buy === null ? "Can’t be bought" : "Buy " + money(p.buy, p.cur);
+        var sell = p.sell === null ? "" : " &middot; Sell " + money(p.sell, p.cur);
+        return '<div class="enc-line">' + buy + sell + (bagGame ? "" : encGamesHtml(p.games)) + "</div>";
+      }).join("") + "</div>";
+  }
+
+  // Reuses the Found In popup's collapsible-area markup verbatim: one
+  // <details> per version group, its acquisition lines inside.
+  function itemWhereCardHtml(it) {
+    var where = (it.where || []).filter(function (w) {
+      return !bagGame || w.vg === bagGame;
+    });
+    if (!where.length) return "";
+    return '<div class="detail-section"><p class="detail-section-label">Where to Find</p>' +
+      where.map(function (w) {
+        var lines = w.lines.map(function (l) {
+          var text = escapeHtml(l.type);
+          if (l.place) text += " &middot; " + escapeHtml(l.place);
+          if (l.detail) text += " &middot; " + escapeHtml(l.detail);
+          return '<div class="enc-line">' + text + encGamesHtml(l.games) + "</div>";
+        }).join("");
+        return '<details class="popup-row area-row"' + (where.length === 1 ? " open" : "") +
+          "><summary>" + escapeHtml(w.games) + '</summary><div class="area-encs">' + lines + "</div></details>";
+      }).join("") + "</div>";
+  }
+
+  function renderItemDetail() {
+    var it = ITEMS_DATA[itemSlug];
+    if (!it) return;
+    itemNameEl.textContent = it.name;
+    itemBody.innerHTML = itemPictureCardHtml(itemSlug, it) + itemFactsHtml(itemSlug, it) +
+      itemPriceCardHtml(it) + itemWhereCardHtml(it);
+  }
+
+  function openItemDetail(slug) {
+    if (!ITEMS_DATA[slug]) return;
+    itemSlug = slug;
+    renderItemDetail();
+    itemBody.scrollTop = 0;
+    itemScreen.classList.add("active");
+    itemScreen.setAttribute("aria-hidden", "false");
+  }
+
+  function closeItemDetail() {
+    if (itemSlug === null) return;
+    itemSlug = null;
+    itemScreen.classList.remove("active");
+    if (itemScreen.contains(document.activeElement)) document.activeElement.blur();
+    itemScreen.setAttribute("aria-hidden", "true");
+  }
+
+  document.getElementById("itemBack").addEventListener("click", closeItemDetail);
 
   // --- Search matcher (used by the dex quick-search) ---------------------
   // Matches on name substring, or on an exact dex number written with or
@@ -2362,6 +2713,13 @@
     openDetail(Number(cell.getAttribute("data-id")), list === dexList ? currentRegionFilter : null, cell.getAttribute("data-forme"));
   }
 
+  // The Bag grid reuses .dex-cell, but its data-id is an item slug, not a
+  // dex number — so which detail screen a cell opens depends on its list.
+  function openFromCell(cell, list) {
+    if (list === bagList) { openItemDetail(cell.getAttribute("data-id")); return; }
+    openDetailFromCell(cell, list);
+  }
+
   // Grab-to-scroll (0.3.12). Touch already scrolls these grids natively —
   // .dex-list is overflow-y:auto and .phone's touch-action is pan-y, and
   // nothing in the drawer's pointer handling reaches inside the grid — so
@@ -2375,7 +2733,7 @@
   var DRAG_SCROLL_SLOP = 5; // logical px
   var dragScrolled = false;
 
-  [dexList, favoritesList].forEach(function (list) {
+  [dexList, favoritesList, bagList].forEach(function (list) {
     var scrollPointerId = null;
     var scrollStartY = 0;
     var scrollStartTop = 0;
@@ -2413,14 +2771,14 @@
       if (dragScrolled) return; // that press was a scroll, not a cell tap
       var cell = e.target.closest ? e.target.closest(".dex-cell") : null;
       if (!cell) return;
-      openDetailFromCell(cell, list);
+      openFromCell(cell, list);
     });
     list.addEventListener("keydown", function (e) {
       if (e.key !== "Enter" && e.key !== " ") return;
       var cell = e.target.closest ? e.target.closest(".dex-cell") : null;
       if (!cell) return;
       e.preventDefault();
-      openDetailFromCell(cell, list);
+      openFromCell(cell, list);
     });
   });
 
@@ -2621,7 +2979,9 @@
     if (isOpen) { closeMenu(); return true; }
     if (isDetailPopupOpen()) { closeDetailPopup(); return true; }
     if (isDetailOpen()) { backDetail(); return true; }
+    if (isItemDetailOpen()) { closeItemDetail(); return true; }
     if (isDexQuickSearchOpen()) { closeDexQuickSearch(); return true; }
+    if (isBagSearchOpen()) { setBagSearchOpen(false); return true; }
     return false;
   }
 
@@ -2641,6 +3001,7 @@
     if (e.key === "/") {
       e.preventDefault();
       closeDetail();
+      closeItemDetail();
       showView("dex");
       openDexQuickSearch();
       return;
@@ -2784,6 +3145,9 @@
     setRegionFilter(saved);
   })();
   renderFavorites();
+  renderPocketBar();
+  renderGameSelect();
+  setPocketFilter("");
   showView("dex");
 
   // Pick up anything the IndexedDB favorites mirror holds that

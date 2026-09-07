@@ -89,6 +89,51 @@
       </div>
     </section>
 
+    <!-- ================= Bag screen =================
+         The item catalogue: the same .dex-panel/.dex-cell grid the Pokedex
+         uses, filtered by pocket chip and a quick-search, over
+         data/items.js's sprite-covered catalogue. The game selector scopes
+         what a machine cell shows (its icon comes from the taught move's
+         type, which changes per game) and what the item detail screen's
+         Price / Where to Find cards list. Built by app.js renderBagList(). -->
+    <section class="screen" id="bagScreen" data-view="bag" hidden>
+      <div class="dex-header">
+        <h1 class="dex-title active" id="bagTitle" role="button" tabindex="0">Bag</h1>
+      </div>
+      <div class="region-bar" id="pocketBar"></div>
+      <!-- One row: the game selector and the quick-search share a "track"
+           that the fixed-width toggle button sits beside. Tapping the toggle
+           wipes the select away (flex-basis 100% -> 0) while the input grows
+           into exactly the space it frees, so the search reads as expanding
+           leftward from the button. The percentages are of the TRACK, not
+           the row — sizing the select against the whole row pushes the
+           button off-screen, since the row's width includes the button. -->
+      <div class="bag-tools">
+        <div class="bag-tools-track" id="bagToolsTrack">
+          <select class="bag-game-select" id="bagGameSelect" aria-label="Game"></select>
+          <div class="bag-search-slot">
+            <input type="text" class="search-input bag-search-input" id="bagSearchInput"
+                   placeholder="Item name" tabindex="-1"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          </div>
+        </div>
+        <button class="dex-search-toggle bag-search-toggle" id="bagSearchToggle" type="button"
+                aria-label="Search items" aria-expanded="false">
+          <svg class="icon-search-toggle" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.3" cy="10.3" r="6"/>
+            <line x1="14.9" y1="14.9" x2="20.3" y2="20.3"/>
+          </svg>
+          <svg class="icon-search-close" viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18"/>
+            <line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dex-panel">
+        <div class="dex-list" id="bagList"></div>
+      </div>
+    </section>
+
     <!-- ================= Type Chart screen (0.3.11) =================
          Static reference: the full 18x18 Gen 9 effectiveness grid, built
          once by app.js renderTypeChart() from data/types.js TYPE_CHART
@@ -163,6 +208,24 @@
       </div>
     </section>
 
+    <!-- ================= Item detail screen =================
+         A second .detail-screen instance, slid in from the right by a Bag
+         grid tap. Deliberately its own element rather than a mode flag on
+         #detailScreen, so the Pokemon detail screen's state
+         (detailEntryId / detailHistory / stepDetail / rerenderDetail) stays
+         untouched. Body built by app.js renderItemDetail(). -->
+    <section class="screen detail-screen" id="itemScreen" data-view="item" aria-hidden="true">
+      <div class="detail-topbar">
+        <button class="detail-back" id="itemBack" aria-label="Back">
+          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+            <path d="M15 5 L8 12 L15 19"/>
+          </svg>
+        </button>
+        <span class="topbar-name topbar-name-static" id="itemName"></span>
+      </div>
+      <div class="detail-body" id="itemBody"></div>
+    </section>
+
     <!-- Dark overlay shown behind the open menu; tapping it closes the menu -->
     <div class="overlay" id="overlay"></div>
 
@@ -203,6 +266,21 @@
               </svg>
             </span>
             <span class="menu-label">Favorites</span>
+          </span>
+        </li>
+
+        <li class="menu-item">
+          <span class="menu-btn" id="bagIcon" role="button" tabindex="0"
+                data-tour="Every item with bundled art, by pocket &#8212; prices, where to find it, and what each TM teaches.">
+            <span class="icon-cube">
+              <!-- Satchel -->
+              <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                <path d="M4.2 8.8h15.6v9.4a1.6 1.6 0 0 1-1.6 1.6H5.8a1.6 1.6 0 0 1-1.6-1.6V8.8z"/>
+                <path d="M8.4 8.8V6.9a3.6 3.6 0 0 1 7.2 0v1.9"/>
+                <path d="M4.2 13h15.6"/>
+              </svg>
+            </span>
+            <span class="menu-label">Bag</span>
           </span>
         </li>
 
@@ -350,6 +428,7 @@
   <script src="data/natures.js"></script>
   <script src="data/experience.js"></script>
   <script src="data/items.js"></script>
+  <script src="data/machines.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

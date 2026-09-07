@@ -2429,6 +2429,7 @@ body {
    below; nothing outside a .menu-btn sets --row-accent. --- */
 #dexIcon       { --row-accent: #ff5a3c; }
 #favoritesIcon { --row-accent: #ffcb05; }
+#bagIcon       { --row-accent: #9a6bd6; }
 #typeChartIcon { --row-accent: #4da3ff; }
 #naturesIcon   { --row-accent: #78c850; }
 #settingsIcon  { --row-accent: #b0b4bb; }
@@ -2691,4 +2692,188 @@ body {
 
 .type-legend .tc-1 {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* --- Bag screen ---
+   The grid, chips and panel are the dex screen's (.dex-header / .region-chip
+   / .dex-panel / .dex-cell) verbatim — only the tool row below the pocket
+   chips is new. */
+
+/* One row, three flex children: a "track" holding the game selector and the
+   search field, plus the fixed-width toggle button. The select/search split
+   is sized as a percentage of the TRACK, never of the row — sizing the
+   select against the row (which includes the 30px button) pushes the button
+   off-screen. The track absorbs whatever the button leaves. */
+.bag-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px 12px;
+  flex-shrink: 0;
+}
+
+.bag-tools-track {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  /* clip, not hidden: `hidden` makes this a scroll container, so focusing the
+     input can scroll the track's content sideways, and it slices the focused
+     control's 3px box-shadow ring off flush against the track's edge. `clip`
+     + a 3px margin paints the ring (the select's and the input's alike) and
+     still can't scroll. `hidden` first as the fallback declaration. */
+  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 3px;
+}
+
+/* Both halves animate the same flex-basis over the same duration/easing, so
+   one wipes away exactly as fast as the other grows — no overlap, no gap. */
+.bag-game-select,
+.bag-search-slot {
+  min-width: 0;
+  transition: flex-basis var(--anim-speed) ease;
+}
+
+.bag-game-select {
+  flex: 0 0 100%;
+}
+
+/* flex-SHRINK 1, unlike the select: a collapsed <select> can never actually
+   reach 0px — border-box floors its used width at its own padding+border
+   (~40px), which is the caret stub the open row keeps at its left edge as the
+   "reopen the game selector" target (see app.js). With shrink 0 the slot's
+   100% basis then overflowed the track by exactly that stub's width, and
+   overflow clipped the input's whole right end — border, corner and all — so
+   the field stopped looking like a closed pill. Shrinking absorbs the stub
+   instead. */
+.bag-search-slot {
+  flex: 0 1 0%;
+  overflow: hidden;
+  overflow: clip;
+}
+
+.bag-tools.search-open .bag-game-select {
+  flex-basis: 0%;
+}
+
+/* Only while open: room for the input's focus ring (see .bag-tools-track).
+   Closed, the slot is 0 wide and the 28px-floored input inside it would
+   otherwise paint a 3px sliver of its left edge out into the button gap. */
+.bag-tools.search-open .bag-search-slot {
+  flex-basis: 100%;
+  overflow-clip-margin: 3px;
+}
+
+/* A native <select> styled as a chip: appearance:none plus a CSS-drawn
+   caret, rather than a custom dropdown — the platform picker is the right
+   control for a 30-option grouped list on a phone. The caret's grey reads
+   on both themes, so it needs no theme variant. */
+.bag-game-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 8px 26px 8px 12px;
+  border: var(--cell-border);
+  border-radius: 999px;
+  background-color: var(--chip-bg);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 6px;
+  color: var(--chip-fg);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  outline: none;
+  box-shadow: var(--raised-shadow-sm);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, flex-basis var(--anim-speed) ease;
+}
+
+.bag-game-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.25);
+}
+
+/* Reuses .search-input wholesale (border, focus ring, placeholder) — only
+   the horizontal padding differs, since this field carries neither the
+   magnifier icon nor the clear button the dex quick-search does. */
+.bag-search-input {
+  width: 100%;
+  padding: 9px 14px;
+}
+
+/* .dex-search-toggle is absolutely positioned against the region bar on the
+   dex screen; here it is a normal, non-shrinking flex child. */
+.bag-search-toggle {
+  position: static;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+}
+
+/* The bag grid's bottom slot holds a move or category name, not a 4-character
+   dex number, so it needs the same 2-line clamp .dex-name already has —
+   otherwise "Species-specific items" grows the whole row. */
+#bagList .dex-number {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+/* Item art is ~30px native and gets UPSCALED into the cell's sprite disc
+   (Pokemon sprites are 96px and get downscaled), so it needs the same
+   crisp/smooth treatment the Settings "Pixel Sprites" toggle drives on the
+   detail screen. */
+#bagList .dex-sprite {
+  image-rendering: var(--sprite-rendering);
+}
+
+/* --- Item detail screen ---
+   Reuses .detail-screen / .detail-section / .detail-facts / the Found In
+   popup's .popup-row.area-row. Only the sprite size and two text colors
+   need their own rules. */
+
+/* Item art is ~30px native, not the Pokemon sprites' 96px, so the picture
+   card's 120px wrap would leave it swimming. */
+.item-sprite-wrap {
+  width: 90px;
+  height: 90px;
+}
+
+.item-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: var(--sprite-rendering);
+}
+
+/* The item name is display-only here (no other-languages popup to open),
+   so it is a <span>, not the Pokemon screen's button. */
+.topbar-name-static {
+  cursor: default;
+}
+
+/* The Teaches row's per-move lines. These sit inside .detail-facts (light
+   --chip-bg), where .enc-games's fixed #9a9a9a would fail contrast — so the
+   shared markup keeps its layout and takes the card's own color here. */
+.item-teach-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--chip-fg);
+  text-align: left;
+}
+
+.detail-facts .enc-games {
+  padding-left: 0;
+  color: var(--chip-fg);
+  opacity: 0.6;
 }

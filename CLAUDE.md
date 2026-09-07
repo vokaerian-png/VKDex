@@ -90,6 +90,8 @@ VKDex/
                                                  + csv_merge/ (analysis/compare/merge tooling behind csv/)
                                                  + populate_from_csv.js (live pipeline, reads csv/, 0.3.6+;
                                                  populate_region.js kept as the old-source cross-check tool)
+                                                 + item_descriptions.js (every non-legacy item's hand-authored
+                                                 description, 0.3.30 — edit there, never in src/data/items.js)
   temp/                                      <- HANDOFF.md, handoff/, PokeAPI + PokeDB clones, SCRAP.md, <task-slug>/ scratch
   cleanup.bat                                <- double-click launcher for tools/cleanup.js (below)
 ```
@@ -263,10 +265,13 @@ compiles clean for both desktop and Android (§2a).
 
 Format **major.minor.regular** (e.g. `0.1.0`). Bump the last number by 1
 per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
-**0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
-version jump, not a +1 continuation; not a new standing pattern.
+**0.1.40 → 0.2.0 and 0.3.31 → 0.4.0 were both user-directed exceptions** —
+deliberate minor-version jumps, not +1 continuations; the second (2026-09-07,
+"Bag & items were major implementations," a pure relabel — no functional
+change) confirms this is a repeatable judgment call for a milestone-sized
+body of shipped work, not a one-off.
 
-**Current version: 0.3.20.** Mirror on every bump, across all of:
+**Current version: 0.4.0.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml` (plus `Cargo.lock`'s own `vkdex` line — a build
@@ -695,9 +700,9 @@ exactly one home.
    pipeline, keystore, `memory/` restructure, §5b, §6e; raised to 700
    on 2026-09-06 (an `overlord` condensing pass the same day brought it
    back well under), to 750 on 2026-09-07 for §6d's drift-prevention
-   rule). `SCOPE.md` carries its own independent cap, currently **≤1150
-   lines** (see its intro — raised several times since, most recently for
-   this same session's Kalos/Unova Alt Formes work). Both raise **50
+   rule). `SCOPE.md` carries its own independent cap, currently **≤1350
+   lines** (see its intro — its own figure is the source of truth; this
+   mention drifted to 1150 once, corrected 2026-09-07). Both raise **50
    lines at a time** if genuinely needed, noted here or in `SCOPE.md`'s
    intro when it happens — flagged
    to the user in the same response, no need to ask first. Every addition
