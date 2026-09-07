@@ -68,6 +68,19 @@
   --t-dark: 112 88 72;
   --t-steel: 184 184 208;
   --t-fairy: 238 153 172;
+  /* The 6 per-stat colors for the Base Stats card (0.3.26) — the table's
+     base-value bars + the radar's conic fill/vertex dots. Same rgb-triple
+     convention as --t-* above, but a separate set: these are stat identity,
+     not type identity, and deliberately don't reuse --accent/--accent-warm/
+     --accent-pink (semantic tokens for other UI). app.js's STAT_VARS maps
+     each stat key to one of these; the radar reads their literal values via
+     getComputedStyle, since SVG/gradient strings can't resolve var(). */
+  --s-hp: 255 93 93;
+  --s-atk: 255 160 64;
+  --s-def: 255 214 64;
+  --s-spa: 96 165 255;
+  --s-spd: 92 214 122;
+  --s-spe: 255 122 190;
 }
 
 /* #4da3ff is only 2.6:1 on white — below the 3:1 minimum for UI components

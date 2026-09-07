@@ -1820,6 +1820,20 @@
   // phone frame, so a 280px-wide SVG fits with the labels.
   var RADAR_MAX = 255;
 
+  // Per-stat colors (0.3.26). The values live once, in styles.css's :root
+  // (--s-*); this maps each stat key to its token name. The table can use
+  // var() directly in an inline style, but SVG presentation attributes and
+  // gradient strings can't resolve custom properties, so the radar looks up
+  // the literal triple at render time.
+  var STAT_VARS = {
+    hp: "--s-hp", attack: "--s-atk", defense: "--s-def",
+    spAttack: "--s-spa", spDefense: "--s-spd", speed: "--s-spe"
+  };
+
+  function statColor(key) {
+    return "rgb(" + getComputedStyle(document.documentElement).getPropertyValue(STAT_VARS[key]).trim() + ")";
+  }
+
   function radarSvg(stats) {
     var cx = 140, cy = 135, r = 105;
 
@@ -1836,18 +1850,37 @@
       return '<polygon points="' + pts + '" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
     }).join("");
 
-    var statPts = RADAR_AXES.map(function (a, i) {
-      return point(i, (Math.min(stats[a.key], RADAR_MAX) / RADAR_MAX) * r).join(",");
-    }).join(" ");
+    var statXY = RADAR_AXES.map(function (a, i) {
+      return point(i, (Math.min(stats[a.key], RADAR_MAX) / RADAR_MAX) * r);
+    });
+    var statPts = statXY.map(function (p) { return p.join(","); }).join(" ");
+
+    // The color fill is an HTML div inside a <foreignObject>: a CSS
+    // conic-gradient (one stop per axis, in RADAR_AXES order) clipped by CSS
+    // clip-path to the same polygon as the outline. Deliberately not an SVG
+    // <linearGradient>/<clipPath> — those need ids, and a species with
+    // several stat cards (any Mega) renders radarSvg more than once per page,
+    // so ids would collide and later charts would inherit the first's fill.
+    var colors = RADAR_AXES.map(function (a) { return statColor(a.key); });
+    var stops = colors.map(function (c, i) { return c + " " + (i * 60) + "deg"; }).join(",") + "," + colors[0] + " 360deg";
+    var clip = statXY.map(function (p) { return p[0] + "px " + p[1] + "px"; }).join(",");
+    var fill = '<foreignObject x="0" y="0" width="280" height="270">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" style="width:280px;height:270px;opacity:.55;clip-path:polygon(' + clip +
+      ');background:conic-gradient(from 0deg at ' + cx + 'px ' + cy + 'px,' + stops + ')"></div></foreignObject>';
+    // Vertex dots keep each axis's color identity readable where the
+    // translucent conic fill desaturates against the dark card.
+    var dots = statXY.map(function (p, i) {
+      return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.5" fill="' + colors[i] + '"/>';
+    }).join("");
 
     var labels = RADAR_AXES.map(function (a, i) {
       var p = point(i, r + 16);
       return '<text x="' + p[0] + '" y="' + p[1] + '" font-size="10" fill="#f4e3b4" text-anchor="middle" dominant-baseline="middle">' + a.label + "</text>";
     }).join("");
 
-    return '<svg class="stat-radar" viewBox="0 0 280 270" aria-hidden="true">' + backdrop + grid +
-      '<polygon points="' + statPts + '" fill="rgba(77,163,255,0.35)" stroke="#4da3ff" stroke-width="1.5"/>' +
-      labels + "</svg>";
+    return '<svg class="stat-radar" viewBox="0 0 280 270" aria-hidden="true">' + backdrop + grid + fill +
+      '<polygon points="' + statPts + '" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>' +
+      dots + labels + "</svg>";
   }
 
   // Shared by the base Base Stats card and any per-forme stat card below
@@ -1857,13 +1890,19 @@
   function statsTableAndRadarHtml(label, stats) {
     var rows = STAT_ROWS.map(function (r) {
       var base = stats[r.key];
-      return "<tr><td>" + r.label + "</td><td>" + base + "</td><td>" + calcStat(base, 1, r.isHp) + "</td><td>" + calcStat(base, 100, r.isHp) + "</td></tr>";
+      // Base value as a share of the same 0-255 scale the radar uses, drawn
+      // as a hard-stop row background so the table reads as a bar chart
+      // without adding a column. Inline (not a per-stat CSS class) because
+      // the stop position is per-Pokemon data.
+      var v = "var(" + STAT_VARS[r.key] + ")", pct = Math.round(base / RADAR_MAX * 100);
+      return '<tr style="background:linear-gradient(90deg,rgb(' + v + ' / .28) ' + pct + '%,transparent ' + pct + '%)">' +
+        '<td style="color:rgb(' + v + ')">' + r.label + "</td><td>" + base + "</td><td>" + calcStat(base, 1, r.isHp) + "</td><td>" + calcStat(base, 100, r.isHp) + "</td></tr>";
     }).join("");
     var bst = STAT_ROWS.reduce(function (sum, r) { return sum + stats[r.key]; }, 0);
     rows += '<tr class="stat-total-row"><td>Total:</td><td>' + bst + "</td><td></td><td></td></tr>";
     return '<div class="detail-section stats-card"><p class="detail-section-label">' + escapeHtml(label) + '</p>' +
       '<table class="stats-table"><thead><tr><th>Stat</th><th>Base</th><th>Lv.1</th><th>Lv.100</th></tr></thead><tbody>' + rows + "</tbody></table>" +
-      '<p class="stats-note">Lv.1/Lv.100 assume 31 IVs, 0 EVs, a neutral nature. Radar scale 0&ndash;' + RADAR_MAX + '.</p>' +
+      '<p class="stats-note">Lv.1/Lv.100 assume 31 IVs, 0 EVs, a neutral nature. Bars and radar scale 0&ndash;' + RADAR_MAX + '.</p>' +
       '<div class="radar-wrap">' + radarSvg(stats) + "</div></div>";
   }
 
