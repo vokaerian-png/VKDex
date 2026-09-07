@@ -9,3 +9,5 @@ cleanup.bat
 memory/
 tools/
 package-lock.json
+CLAUDE.md
+.claude/
