@@ -1,0 +1,468 @@
+item,version_group,version,type,subtype,location_area_pokedb,location_detail,is_repeatable,is_hidden,is_guaranteed,quantity,probability,cost_amount,currency,required_badge,unlock_condition,notes,source
+master-ball,colosseum,colosseum,npc-gift,,,Agate Village (from Eagun after reading his incomplete email inside Realgam Tower),0,0,1,,,,,,,,bulbapedia
+master-ball,colosseum,colosseum,overworld,visible,,Pokémon Colosseum Bonus Disc JP,0,0,1,,,,,,,,bulbapedia
+master-ball,xd,xd,npc-gift,,,Pokémon HQ Lab (from Professor Krane after clearing the Cipher Key Lair),0,0,1,,,,,,,,bulbapedia
+ultra-ball,colosseum,colosseum,overworld,visible,,"Pyrite Cave, Agate Village, The Under Subway, Snagem Hideout",0,0,1,,,,,,,,bulbapedia
+ultra-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,after Duking's first email,,bulbapedia
+ultra-ball,colosseum,colosseum,pickup,,,Pickup,1,0,1,,,,,,,,bulbapedia
+ultra-ball,xd,xd,overworld,visible,,"Phenac City, Realgam Tower, Snagem Hideout, Cipher Key Lair, Citadark Isle",0,0,1,,,,,,,,bulbapedia
+ultra-ball,xd,xd,trainer-reward,visible,,"Realgam Tower (Battle CD 13, 26, and 30 completion prizes)",0,0,1,,,,,,,,bulbapedia
+ultra-ball,xd,xd,shop,poke-mart,,"Gateon, Agate, Pyrite, and Phenac Poké Marts, Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+ultra-ball,xd,xd,pickup,,,Pickup (Lv. 1-90),1,0,1,,,,,,,,bulbapedia
+great-ball,colosseum,colosseum,overworld,visible,,Pyrite Bldg,0,0,1,,,,,,,,bulbapedia
+great-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+great-ball,xd,xd,overworld,visible,,"Cipher Lab, Pyrite Town",0,0,1,,,,,,,,bulbapedia
+great-ball,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 03 and 07 completion prizes),0,0,1,,,,,,,,bulbapedia
+great-ball,xd,xd,shop,poke-mart,,"Gateon, Agate, Pyrite, and Phenac Poké Marts, Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+great-ball,xd,xd,pickup,,,Pickup (Lv. 1-40),1,0,1,,,,,,,,bulbapedia
+net-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+net-ball,xd,xd,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+dive-ball,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+dive-ball,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+nest-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+nest-ball,xd,xd,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+repeat-ball,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+repeat-ball,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+timer-ball,colosseum,colosseum,overworld,visible,,The Under Subway,0,0,1,,,,,,,,bulbapedia
+timer-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,after Duking's first email,,bulbapedia
+timer-ball,xd,xd,overworld,visible,,Citadark Isle,0,0,1,,,,,,,,bulbapedia
+timer-ball,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 27 and 28 completion prizes),0,0,1,,,,,,,,bulbapedia
+timer-ball,xd,xd,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+luxury-ball,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+luxury-ball,xd,xd,overworld,visible,,S.S. Libra,0,0,1,,,,,,,,bulbapedia
+premier-ball,colosseum,colosseum,shop,,,Outskirt Stand (buy 10 or more Poké Balls at once),1,0,1,,,,,,,,bulbapedia
+premier-ball,xd,xd,shop,poke-mart,,Any Poké Mart (buy 10 or more Poké Balls at once),1,0,1,,,,,,,,bulbapedia
+potion,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+potion,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+potion,xd,xd,overworld,visible,,"Pokémon HQ Lab, Agate Village, Gateon Port",0,0,1,,,,,,,,bulbapedia
+potion,xd,xd,shop,poke-mart,,Gateon and Agate Poké Marts,1,0,1,,,,,,,,bulbapedia
+potion,xd,xd,pickup,,,Pickup (Lv. 1-10),1,0,1,,,,,,,,bulbapedia
+antidote,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+antidote,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite Poké Marts; Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+antidote,xd,xd,trainer-reward,visible,,"Pokémon HQ Lab, Realgam Tower (Battle CD 04 completion prize)",0,0,1,,,,,,,,bulbapedia
+antidote,xd,xd,shop,poke-mart,,"Phenac, Agate, Gateon Poké Marts",1,0,1,,,,,,,,bulbapedia
+antidote,xd,xd,pickup,,,Pickup (Lv. 1-20),1,0,1,,,,,,,,bulbapedia
+burn-heal,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+burn-heal,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite Poké Marts; Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+burn-heal,xd,xd,trainer-reward,visible,,"Relic Cave, Realgam Tower (Battle CD 19 completion prize)",0,0,1,,,,,,,,bulbapedia
+burn-heal,xd,xd,shop,poke-mart,,"Phenac, Agate, Gateon Poké Marts",1,0,1,,,,,,,,bulbapedia
+burn-heal,xd,xd,pickup,,,Pickup (Lv. 1-60),1,0,1,,,,,,,,bulbapedia
+ice-heal,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+ice-heal,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite Poké Marts; Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+ice-heal,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 06 completion prize),0,0,1,,,,,,,,bulbapedia
+ice-heal,xd,xd,shop,poke-mart,,"Phenac, Agate, Gateon Poké Marts",1,0,1,,,,,,,,bulbapedia
+awakening,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+awakening,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite Poké Marts; Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+awakening,xd,xd,trainer-reward,visible,,"Gateon Port, Realgam Tower (Battle CD 20 completion prize)",0,0,1,,,,,,,,bulbapedia
+awakening,xd,xd,shop,poke-mart,,"Phenac, Agate, Gateon Poké Marts",1,0,1,,,,,,,,bulbapedia
+paralyze-heal,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+paralyze-heal,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite Poké Marts; Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+paralyze-heal,xd,xd,trainer-reward,visible,,"Pyrite Town, Gateon Port, Realgam Tower (Battle CD 05 completion prize)",0,0,1,,,,,,,,bulbapedia
+paralyze-heal,xd,xd,shop,poke-mart,,"Phenac, Agate, Gateon Poké Marts",1,0,1,,,,,,,,bulbapedia
+paralyze-heal,xd,xd,pickup,,,Pickup,1,0,1,,,,,,,,bulbapedia
+full-restore,colosseum,colosseum,overworld,visible,,Shadow PKMN Lab,0,0,1,,,,,,,,bulbapedia
+full-restore,colosseum,colosseum,shop,poke-mart,,The Under Poké Mart,1,0,1,,,,,,,,bulbapedia
+full-restore,colosseum,colosseum,pickup,,,Pickup,1,0,1,,,,,,,,bulbapedia
+full-restore,xd,xd,trainer-reward,visible,,"Cipher Key Lair, Citadark Isle (×4) Realgam Tower (Battle CD 31, 42, and 43 completion prizes)",0,0,1,4,,,,,,,bulbapedia
+full-restore,xd,xd,shop,poke-mart,,Gateon Poké Mart,1,0,1,,,,,,after clearing Cipher Key Lair,,bulbapedia
+full-restore,xd,xd,pickup,,,"Pickup (Lv. 21-40, 61-100 (E))",1,0,1,,,,,,,,bulbapedia
+max-potion,colosseum,colosseum,overworld,visible,,"Pyrite Cave, The Under Subway, Snagem Hideout",0,0,1,,,,,,,,bulbapedia
+max-potion,colosseum,colosseum,shop,poke-mart,,The Under Poké Mart,1,0,1,,,,,,,,bulbapedia
+max-potion,xd,xd,overworld,visible,,Citadark Isle,0,0,1,,,,,,,,bulbapedia
+max-potion,xd,xd,shop,poke-mart,,Gateon Poké Mart,1,0,1,,,,,,after clearing Cipher Key Lair,,bulbapedia
+hyper-potion,colosseum,colosseum,overworld,visible,,"The Under, Pyrite Cave, Pyrite Bldg",0,0,1,,,,,,,,bulbapedia
+hyper-potion,colosseum,colosseum,shop,poke-mart,,"Pyrite, Phenac, and Agate Poké Marts",1,0,1,,,,,,,,bulbapedia
+hyper-potion,xd,xd,overworld,visible,,"Phenac City, Pyrite Town, Snagem Hideout, Cipher Key Lair, Citadark Isle",0,0,1,,,,,,,,bulbapedia
+hyper-potion,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 12 and 14 completion prizes),0,0,1,,,,,,,,bulbapedia
+hyper-potion,xd,xd,shop,poke-mart,,"Gateon Poké Mart, Outskirt Stand shop, Realgam Tower shop",1,0,1,,,,,,,,bulbapedia
+hyper-potion,xd,xd,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+super-potion,colosseum,colosseum,overworld,visible,,Phenac City,0,0,1,,,,,,,,bulbapedia
+super-potion,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+super-potion,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite, and Agate Poké Marts",1,0,1,,,,,,,,bulbapedia
+super-potion,xd,xd,overworld,visible,,"Agate Village, Cipher Lab, Gateon Port",0,0,1,,,,,,,,bulbapedia
+super-potion,xd,xd,trainer-reward,visible,,"Realgam Tower (Battle CD 01, 02, and 08 completion prizes)",0,0,1,,,,,,,,bulbapedia
+super-potion,xd,xd,shop,poke-mart,,"Gateon, Agate, Pyrite, and Phenac Poké Marts, Outskirt Stand shop",1,0,1,,,,,,,,bulbapedia
+super-potion,xd,xd,pickup,,,Pickup (Lv. 1-30),1,0,1,,,,,,,,bulbapedia
+full-heal,colosseum,colosseum,overworld,visible,,"Pyrite Cave, Shadow PKMN Lab",0,0,1,,,,,,,,bulbapedia
+full-heal,colosseum,colosseum,starting-item,,,In the 's Bag at the start of the game,0,0,1,,,,,,,,bulbapedia
+full-heal,colosseum,colosseum,shop,poke-mart,,"Phenac, Pyrite, Agate, The Under Poké Marts; Outskirt Stand",1,0,1,,,,,,after rescuing Rui,,bulbapedia
+full-heal,colosseum,colosseum,pickup,,,Pickup (Any level: 10%),1,0,1,,,,,,,,bulbapedia
+full-heal,xd,xd,trainer-reward,visible,,"Cipher Lab, Snagem Hideout, Cipher Key Lair, Citadark Isle, Mt. Battle, Realgam Tower (Battle CD 09, 10, 11, and 16 completion prizes)",0,0,1,,,,,,,,bulbapedia
+full-heal,xd,xd,shop,poke-mart,,"Phenac, Pyrite, Gateon Poké Marts; Realgam Tower shop, Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+full-heal,xd,xd,pickup,,,Pickup (Lv. 1-80),1,0,1,,,,,,,,bulbapedia
+revive,colosseum,colosseum,overworld,visible,,"Pyrite Bldg, Shadow PKMN Lab",0,0,1,,,,,,,,bulbapedia
+revive,colosseum,colosseum,shop,poke-mart,,"Pyrite, Agate, and The Under Poké Marts",1,0,1,,,,,,,,bulbapedia
+revive,colosseum,colosseum,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+revive,xd,xd,overworld,visible,,"Cipher Lab, ONBS, Snagem Hideout, Cipher Key Lair, Citadark Isle",0,0,1,,,,,,,,bulbapedia
+revive,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 15 and 32 completion prizes),0,0,1,,,,,,,,bulbapedia
+revive,xd,xd,shop,poke-mart,,"Gateon, Pyrite, and Phenac Poké Marts, Realgam Tower shop, Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+revive,xd,xd,pickup,,,Pickup (Lv. 41-100),1,0,1,,,,,,,,bulbapedia
+max-revive,colosseum,colosseum,overworld,visible,,Snagem Hideout,0,0,1,,,,,,,,bulbapedia
+max-revive,xd,xd,overworld,visible,,"Cipher Key Lair, Citadark Isle",0,0,1,,,,,,,,bulbapedia
+max-revive,xd,xd,trainer-reward,visible,,Realgam Tower (Special Battle Bingo and Battle CD 47 and 48 completion prizes),0,0,1,,,,,,,,bulbapedia
+max-revive,xd,xd,pickup,,,Pickup (Lv. 71-100),1,0,1,,,,,,,,bulbapedia
+fresh-water,colosseum,colosseum,vending-machine,vending-machine,,The Under vending machine,1,0,1,,,,,,,,bulbapedia
+fresh-water,xd,xd,vending-machine,vending-machine,,Pyrite Town vending machine,1,0,1,,,,,,,,bulbapedia
+soda-pop,colosseum,colosseum,vending-machine,vending-machine,,The Under vending machine,1,0,1,,,,,,,,bulbapedia
+soda-pop,xd,xd,vending-machine,vending-machine,,Pyrite Town vending machine,1,0,1,,,,,,,,bulbapedia
+lemonade,colosseum,colosseum,vending-machine,vending-machine,,The Under Vending Machine,1,0,1,,,,,,,,bulbapedia
+lemonade,xd,xd,vending-machine,vending-machine,,Pyrite Town Vending Machine,1,0,1,,,,,,,,bulbapedia
+moomoo-milk,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+moomoo-milk,xd,xd,vending-machine,vending-machine,,Pyrite Town vending machine,1,0,1,,,,,,,,bulbapedia
+energy-powder,colosseum,colosseum,shop,,,The Under (Herb Shop),1,0,1,,,,,,,,bulbapedia
+energy-powder,xd,xd,shop,,,"Gateon Port (Herb Shop), Poké Spots",1,0,1,,,,,,,,bulbapedia
+energy-root,colosseum,colosseum,shop,,,The Under (Herb Shop),1,0,1,,,,,,,,bulbapedia
+energy-root,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 17 completion prize),0,0,1,,,,,,,,bulbapedia
+energy-root,xd,xd,shop,,,"Gateon Port (Herb Shop), Poké Spots",1,0,1,,,,,,,,bulbapedia
+heal-powder,colosseum,colosseum,shop,,,The Under (Herb Shop),1,0,1,,,,,,,,bulbapedia
+heal-powder,xd,xd,shop,,,"Gateon Port (Herb Shop), Poké Spots",1,0,1,,,,,,,,bulbapedia
+revival-herb,colosseum,colosseum,shop,,,The Under (Herb Shop),1,0,1,,,,,,,,bulbapedia
+revival-herb,xd,xd,shop,,,"Gateon Port (Herb Shop), Poké Spots",1,0,1,,,,,,,,bulbapedia
+ether,colosseum,colosseum,overworld,visible,,Pyrite Cave (×3),0,0,1,3,,,,,,,bulbapedia
+ether,xd,xd,trainer-reward,visible,,"Agate Village, ONBS, Cipher Lab (×2), Realgam Tower (×2; Novice Battle Bingo completion prize)",0,0,1,2,,,,,,,bulbapedia
+ether,xd,xd,pickup,,,Pickup (Lv. 31-50),1,0,1,,,,,,,,bulbapedia
+max-ether,colosseum,colosseum,overworld,visible,,Snagem Hideout,0,0,1,,,,,,,,bulbapedia
+max-ether,xd,xd,trainer-reward,visible,,"Citadark Isle, S.S. Libra, Realgam Tower (Regular Battle Bingo and Battle CD 38 and 39 completion prizes)",0,0,1,,,,,,,,bulbapedia
+elixir,colosseum,colosseum,overworld,visible,,"Shadow PKMN Lab (×3), Snagem Hideout",0,0,1,3,,,,,,,bulbapedia
+elixir,colosseum,colosseum,pickup,,,Pickup,1,0,1,,,,,,,,bulbapedia
+elixir,xd,xd,trainer-reward,visible,,"Citadark Isle, Cipher Key Lair, Realgam Tower (Expert Battle Bingo and Battle CD 29 completion prizes)",0,0,1,,,,,,,,bulbapedia
+elixir,xd,xd,pickup,,,Pickup (Lv. 61-80),1,0,1,,,,,,,,bulbapedia
+max-elixir,colosseum,colosseum,overworld,visible,,Snagem Hideout,0,0,1,,,,,,,,bulbapedia
+max-elixir,xd,xd,trainer-reward,visible,,"Citadark Isle, Realgam Tower (Extra Battle Bingo completion prize)",0,0,1,,,,,,,,bulbapedia
+max-elixir,xd,xd,pickup,,,Pickup (Lv. 91-100),1,0,1,,,,,,,,bulbapedia
+lava-cookie,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lava-cookie,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+sacred-ash,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+sacred-ash,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 46 completion prize),0,0,1,,,,,,,,bulbapedia
+hp-up,colosseum,colosseum,overworld,visible,,Shadow PKMN Lab,0,0,1,,,,,,,,bulbapedia
+hp-up,colosseum,colosseum,shop,poke-mart,,Agate Poké Mart,1,0,1,,,,,,,,bulbapedia
+hp-up,xd,xd,overworld,visible,,"ONBS, Cipher Key Lair",0,0,1,,,,,,,,bulbapedia
+hp-up,xd,xd,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+hp-up,xd,xd,pickup,,,Pickup (Lv. 51-100),1,0,1,,,,,,,,bulbapedia
+protein,colosseum,colosseum,overworld,visible,,Pyrite Cave,0,0,1,,,,,,,,bulbapedia
+protein,colosseum,colosseum,shop,poke-mart,,Agate Poké Mart,1,0,1,,,,,,,,bulbapedia
+protein,colosseum,colosseum,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+protein,xd,xd,overworld,visible,,Realgam Tower,0,0,1,,,,,,,,bulbapedia
+protein,xd,xd,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+protein,xd,xd,pickup,,,Pickup (Lv. 31-100),1,0,1,,,,,,,,bulbapedia
+iron,colosseum,colosseum,overworld,visible,,Pyrite Cave,0,0,1,,,,,,,,bulbapedia
+iron,colosseum,colosseum,shop,poke-mart,,Agate Poké Mart,1,0,1,,,,,,,,bulbapedia
+iron,xd,xd,overworld,visible,,S.S. Libra,0,0,1,,,,,,,,bulbapedia
+iron,xd,xd,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+carbos,colosseum,colosseum,overworld,visible,,Pyrite Cave,0,0,1,,,,,,,,bulbapedia
+carbos,colosseum,colosseum,shop,poke-mart,,Agate Poké Mart,1,0,1,,,,,,,,bulbapedia
+carbos,xd,xd,overworld,visible,,Realgam Tower,0,0,1,,,,,,,,bulbapedia
+carbos,xd,xd,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+calcium,colosseum,colosseum,shop,poke-mart,,Agate Poké Mart,1,0,1,,,,,,,,bulbapedia
+calcium,xd,xd,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+rare-candy,colosseum,colosseum,overworld,visible,,"The Under, Snagem Hideout",0,0,1,,,,,,,,bulbapedia
+rare-candy,colosseum,colosseum,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+rare-candy,xd,xd,trainer-reward,visible,,"Kaminko's House, Snagem Hideout, Cipher Key Lair, Citadark Isle (×3), Realgam Tower (Battle CD 22, 40, and 41 completion prizes)",0,0,1,3,,,,,,,bulbapedia
+rare-candy,xd,xd,pickup,,,Pickup (Lv. 21-100),1,0,1,,,,,,,,bulbapedia
+pp-up,colosseum,colosseum,overworld,visible,,"Shadow PKMN Lab, Snagem Hideout",0,0,1,,,,,,,,bulbapedia
+pp-up,colosseum,colosseum,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+pp-up,xd,xd,trainer-reward,visible,,"Phenac Stadium, S.S. Libra, Snagem Hideout, Cipher Key Lair, Citadark Isle, Realgam Tower (Battle CD 36 and 37 completion prizes)",0,0,1,,,,,,,,bulbapedia
+pp-up,xd,xd,pickup,,,Pickup (Lv. 81-100),1,0,1,,,,,,,,bulbapedia
+zinc,colosseum,colosseum,overworld,visible,,Pyrite Cave,0,0,1,,,,,,,,bulbapedia
+zinc,colosseum,colosseum,shop,poke-mart,,Agate Poké Mart,1,0,1,,,,,,,,bulbapedia
+zinc,xd,xd,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+pp-max,colosseum,colosseum,overworld,visible,,Pokémon Colosseum Bonus Disc JP,0,0,1,,,,,,,,bulbapedia
+pp-max,xd,xd,overworld,visible,,Citadark Isle,0,0,1,,,,,,,,bulbapedia
+guard-spec,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+guard-spec,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 18 completion prize),0,0,1,,,,,,,,bulbapedia
+guard-spec,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+dire-hit,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+dire-hit,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-attack,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-attack,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-attack,xd,xd,pickup,,,Pickup (Lv. 1-70),1,0,1,,,,,,,,bulbapedia
+x-defense,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-defense,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-speed,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-speed,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-accuracy,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-accuracy,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 35 completion prize),0,0,1,,,,,,,,bulbapedia
+x-accuracy,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-sp-atk,colosseum,colosseum,shop,poke-mart,,Phenac Poké Mart,1,0,1,,,,,,,,bulbapedia
+x-sp-atk,xd,xd,shop,poke-mart,,Pyrite Poké Mart,1,0,1,,,,,,,,bulbapedia
+poke-doll,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+poke-doll,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+fluffy-tail,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+fluffy-tail,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+blue-flute,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+blue-flute,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+yellow-flute,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+yellow-flute,xd,xd,overworld,visible,,S.S. Libra,0,0,1,,,,,,,,bulbapedia
+red-flute,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+red-flute,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+black-flute,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+black-flute,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+white-flute,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+white-flute,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+shoal-salt,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+shoal-salt,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+shoal-shell,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+shoal-shell,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+red-shard,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+red-shard,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+blue-shard,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+blue-shard,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+yellow-shard,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+yellow-shard,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+green-shard,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+green-shard,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+super-repel,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+super-repel,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+max-repel,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+max-repel,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+escape-rope,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+escape-rope,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+repel,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+repel,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+sun-stone,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+sun-stone,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+moon-stone,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+moon-stone,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+fire-stone,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+fire-stone,xd,xd,overworld,visible,,"S.S. Libra, Gateon Port",0,0,1,,,,,,,,bulbapedia
+fire-stone,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+thunder-stone,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+thunder-stone,xd,xd,overworld,visible,,Gateon Port,0,0,1,,,,,,,,bulbapedia
+thunder-stone,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+water-stone,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+water-stone,xd,xd,overworld,visible,,"Phenac Stadium, Gateon Port",0,0,1,,,,,,,,bulbapedia
+water-stone,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+leaf-stone,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+leaf-stone,xd,xd,overworld,visible,,Cipher Lab,0,0,1,,,,,,,,bulbapedia
+leaf-stone,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+tiny-mushroom,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+tiny-mushroom,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+big-mushroom,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+big-mushroom,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+big-pearl,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+big-pearl,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+stardust,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+stardust,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+star-piece,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+star-piece,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+nugget,colosseum,colosseum,wild-pokemon,held,,Held by Tyranitar,0,0,1,,,,,,,,bulbapedia
+nugget,colosseum,colosseum,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+nugget,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 33 and 34 completion prizes),0,0,1,,,,,,,,bulbapedia
+nugget,xd,xd,pickup,,,Pickup (Lv. 1-20),1,0,1,,,,,,,,bulbapedia
+heart-scale,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+heart-scale,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+cheri-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+cheri-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+chesto-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+chesto-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+pecha-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+pecha-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+rawst-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+rawst-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+aspear-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+aspear-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+leppa-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+leppa-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+oran-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+oran-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+persim-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+persim-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+lum-berry,colosseum,colosseum,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+lum-berry,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 24 completion prize),0,0,1,,,,,,,,bulbapedia
+lum-berry,xd,xd,npc-gift,,,Reward for defeating Justy,0,0,1,,,,,,,,bulbapedia
+lum-berry,xd,xd,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+sitrus-berry,colosseum,colosseum,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+sitrus-berry,xd,xd,npc-gift,,,Reward for solving Battle CD 24,0,0,1,,,,,,,,bulbapedia
+sitrus-berry,xd,xd,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+sitrus-berry,xd,xd,npc-gift,,,Reward for defeating Justy,1,0,1,,,,,,,,bulbapedia
+figy-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+figy-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+wiki-berry,colosseum,colosseum,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+wiki-berry,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+mago-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+mago-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+aguav-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+aguav-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+iapapa-berry,colosseum,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+iapapa-berry,xd,,overworld,,,Agate Village,1,0,1,,,,,,,,bulbapedia
+razz-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+razz-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+bluk-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+bluk-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+nanab-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+nanab-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+wepear-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+wepear-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pinap-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pinap-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pomeg-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pomeg-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+kelpsy-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+kelpsy-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+qualot-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+qualot-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+hondew-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+hondew-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+grepa-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+grepa-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+tamato-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+tamato-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+cornn-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+cornn-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+magost-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+magost-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+rabuta-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+rabuta-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+nomel-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+nomel-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+spelon-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+spelon-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pamtre-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pamtre-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+watmel-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+watmel-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+durin-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+durin-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+belue-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+belue-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+liechi-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+liechi-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+ganlon-berry,colosseum,,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+ganlon-berry,xd,,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+salac-berry,colosseum,colosseum,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+salac-berry,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 44 and 45 completion prizes),0,0,1,,,,,,,,bulbapedia
+salac-berry,xd,xd,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+petaya-berry,colosseum,,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+petaya-berry,xd,,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+apicot-berry,colosseum,,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+apicot-berry,xd,,overworld,,,"Mt. Battle (15,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+lansat-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lansat-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+starf-berry,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+starf-berry,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+bright-powder,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+bright-powder,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+white-herb,colosseum,colosseum,overworld,visible,,Prestige Precept Center (prize for defeating Justy's four junior Trainers),0,0,1,,,,,,,,bulbapedia
+white-herb,colosseum,colosseum,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+white-herb,xd,xd,trainer-reward,visible,,"Citadark Isle (×2), Gateon Port (answer ""Yes"" to exactly one question), Realgam Tower (Battle CD 25 completion prize)",0,0,1,2,,,,,,,bulbapedia
+white-herb,xd,xd,overworld,,,"Mt. Battle (6,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+white-herb,xd,xd,pickup,,,Pickup (Lv. 41-60),1,0,1,,,,,,,,bulbapedia
+macho-brace,colosseum,colosseum,overworld,visible,,Pyrite Cave,0,0,1,,,,,,,,bulbapedia
+macho-brace,xd,xd,overworld,visible,,Mt. Battle (prize for first clear of Mt. Battle Area 1),0,0,1,,,,,,,,bulbapedia
+exp-share,colosseum,colosseum,overworld,visible,,Agate Village,0,0,1,,,,,,,,bulbapedia
+exp-share,xd,xd,npc-gift,,,Phenac City (from Mayor Trest after rescuing the city),0,0,1,,,,,,,,bulbapedia
+quick-claw,colosseum,colosseum,overworld,visible,,Agate Village,0,0,1,,,,,,,,bulbapedia
+quick-claw,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+quick-claw,xd,xd,overworld,visible,,Gateon Port,0,0,1,,,,,,"after answering ""No"" to all questions",,bulbapedia
+quick-claw,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+soothe-bell,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+soothe-bell,xd,xd,overworld,visible,,ONBS (permanently missable),0,0,1,,,,,,,,bulbapedia
+mental-herb,colosseum,colosseum,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+mental-herb,xd,xd,trainer-reward,visible,,"Gateon Port (answer ""Yes"" to exactly two questions), Realgam Tower (Battle CD 23 completion prize)",0,0,1,,,,,,,,bulbapedia
+mental-herb,xd,xd,overworld,,,"Mt. Battle (6,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+choice-band,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+choice-band,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+kings-rock,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+kings-rock,colosseum,colosseum,pickup,,,Pickup (any level),1,0,1,,,,,,,,bulbapedia
+kings-rock,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+kings-rock,xd,xd,pickup,,,Pickup (Lv. 11-30),1,0,1,,,,,,,,bulbapedia
+silver-powder,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Ariados,0,0,1,,,,,,,,bulbapedia
+silver-powder,xd,xd,wild-pokemon,held,,Held by Shadow Venomoth,0,0,1,,,,,,,,bulbapedia
+amulet-coin,colosseum,colosseum,overworld,visible,,The Under,0,0,1,,,,,,requires the L-Disk,,bulbapedia
+amulet-coin,xd,xd,overworld,visible,,"Gateon Port (answer ""Yes"" to all questions)",0,0,1,,,,,,,,bulbapedia
+cleanse-tag,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+cleanse-tag,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+soul-dew,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+soul-dew,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+deep-sea-tooth,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+deep-sea-tooth,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+deep-sea-scale,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+deep-sea-scale,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+smoke-ball,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+smoke-ball,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+everstone,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+everstone,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+focus-band,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+focus-band,xd,xd,overworld,visible,,Pyrite Town (Pyrite Super Grand Hotel),0,0,1,,,,,,,,bulbapedia
+focus-band,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+lucky-egg,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lucky-egg,xd,xd,overworld,visible,,Agate Village,0,0,1,,,,,,,,bulbapedia
+scope-lens,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+scope-lens,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+metal-coat,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Metagross,0,0,1,,,,,,,,bulbapedia
+metal-coat,xd,xd,wild-pokemon,held,,Held by Shadow Magneton,0,0,1,,,,,,,,bulbapedia
+leftovers,colosseum,colosseum,overworld,,,"Mt. Battle (10,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+leftovers,xd,xd,overworld,visible,,S.S. Libra,0,0,1,,,,,,,,bulbapedia
+leftovers,xd,xd,wild-pokemon,held,,Held by Snorlax,0,0,1,,,,,,,,bulbapedia
+leftovers,xd,xd,pickup,,,Pickup (Lv. 81–100),1,0,1,,,,,,,,bulbapedia
+dragon-scale,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+dragon-scale,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+light-ball,colosseum,colosseum,wild-pokemon,held,,Held by Colosseum Pikachu (Pokémon Colosseum Bonus Disc) JP,0,0,1,,,,,,,,bulbapedia
+light-ball,xd,xd,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+soft-sand,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Piloswine,0,0,1,,,,,,,,bulbapedia
+soft-sand,xd,xd,wild-pokemon,held,,Held by Shadow Dugtrio,0,0,1,,,,,,,,bulbapedia
+hard-stone,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Sudowoodo,0,0,1,,,,,,,,bulbapedia
+hard-stone,xd,xd,wild-pokemon,held,,Held by Shadow Lunatone,0,0,1,,,,,,,,bulbapedia
+miracle-seed,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Bayleef,0,0,1,,,,,,,,bulbapedia
+miracle-seed,xd,xd,wild-pokemon,held,,Held by Shadow Tangela,0,0,1,,,,,,,,bulbapedia
+black-glasses,colosseum,colosseum,overworld,visible,,The Under Subway,0,0,1,,,,,,,,bulbapedia
+black-glasses,xd,xd,wild-pokemon,held,,Held by Shadow Carvanha,0,0,1,,,,,,,,bulbapedia
+magnet,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+magnet,xd,xd,wild-pokemon,held,,Held by Shadow Voltorb,0,0,1,,,,,,,,bulbapedia
+mystic-water,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Croconaw,0,0,1,,,,,,,,bulbapedia
+mystic-water,xd,xd,wild-pokemon,held,,Held by Shadow Seel,0,0,1,,,,,,,,bulbapedia
+sharp-beak,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Skarmory,0,0,1,,,,,,,,bulbapedia
+sharp-beak,xd,xd,wild-pokemon,held,,Held by Shadow Spearow,0,0,1,,,,,,,,bulbapedia
+poison-barb,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Qwilfish during the first battle,0,0,1,,,,,,,,bulbapedia
+poison-barb,xd,xd,wild-pokemon,held,,Held by Shadow Beedrill,0,0,1,,,,,,,,bulbapedia
+never-melt-ice,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Delibird,0,0,1,,,,,,,,bulbapedia
+never-melt-ice,xd,xd,wild-pokemon,held,,Held by Shadow Swinub,0,0,1,,,,,,,,bulbapedia
+spell-tag,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Misdreavus,0,0,1,,,,,,,,bulbapedia
+spell-tag,xd,xd,wild-pokemon,held,,Held by Shadow Banette,0,0,1,,,,,,,,bulbapedia
+twisted-spoon,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Meditite,0,0,1,,,,,,,,bulbapedia
+twisted-spoon,xd,xd,wild-pokemon,held,,Held by Shadow Ralts,0,0,1,,,,,,,,bulbapedia
+charcoal,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Quilava,0,0,1,,,,,,,,bulbapedia
+charcoal,xd,xd,wild-pokemon,held,,Held by Shadow Numel,0,0,1,,,,,,,,bulbapedia
+dragon-fang,colosseum,colosseum,wild-pokemon,held,,Held by Shadow Vibrava,0,0,1,,,,,,,,bulbapedia
+dragon-fang,xd,xd,wild-pokemon,held,,Held by Shadow Altaria,0,0,1,,,,,,,,bulbapedia
+silk-scarf,colosseum,colosseum,overworld,visible,,Agate Village,0,0,1,,,,,,,,bulbapedia
+silk-scarf,xd,xd,wild-pokemon,held,,Held by Shadow Zangoose,0,0,1,,,,,,,,bulbapedia
+up-grade,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+up-grade,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+shell-bell,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+shell-bell,xd,xd,overworld,,,"Mt. Battle (8,000 Poké Coupons)",1,0,1,,,,,,,,bulbapedia
+sea-incense,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+sea-incense,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lax-incense,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lax-incense,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lucky-punch,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lucky-punch,xd,xd,wild-pokemon,held,,Held by Shadow Chansey,0,0,1,,,,,,,,bulbapedia
+metal-powder,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+metal-powder,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+thick-club,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+thick-club,xd,xd,wild-pokemon,held,,Held by Marowak,0,0,1,,,,,,,,bulbapedia
+stick,colosseum,colosseum,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+stick,xd,xd,wild-pokemon,held,,Held by Farfetch'd,0,0,1,,,,,,,,bulbapedia
+red-scarf,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+red-scarf,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+blue-scarf,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+blue-scarf,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pink-scarf,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+pink-scarf,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+green-scarf,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+green-scarf,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+yellow-scarf,colosseum,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+yellow-scarf,xd,,trade,trade,,Trade,1,0,1,,,,,,,,bulbapedia
+lagreat-ball,colosseum,colosseum,overworld,visible,,Pyrite Bldg,0,0,1,,,,,,,,bulbapedia
+lagreat-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,,,bulbapedia
+lagreat-ball,xd,xd,overworld,visible,,"Cipher Lab, Pyrite Town",0,0,1,,,,,,,,bulbapedia
+lagreat-ball,xd,xd,trainer-reward,visible,,Realgam Tower (Battle CD 03 and 07 completion prizes),0,0,1,,,,,,,,bulbapedia
+lagreat-ball,xd,xd,shop,poke-mart,,"Gateon, Agate, Pyrite, and Phenac Poké Marts, Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+lagreat-ball,xd,xd,pickup,,,Pickup (Lv. 1-40),1,0,1,,,,,,,,bulbapedia
+laultra-ball,colosseum,colosseum,overworld,visible,,"Pyrite Cave, Agate Village, The Under Subway, Snagem Hideout",0,0,1,,,,,,,,bulbapedia
+laultra-ball,colosseum,colosseum,shop,,,Outskirt Stand,1,0,1,,,,,,after Duking's first email,,bulbapedia
+laultra-ball,colosseum,colosseum,pickup,,,Pickup,1,0,1,,,,,,,,bulbapedia
+laultra-ball,xd,xd,overworld,visible,,"Phenac City, Realgam Tower, Snagem Hideout, Cipher Key Lair, Citadark Isle",0,0,1,,,,,,,,bulbapedia
+laultra-ball,xd,xd,trainer-reward,visible,,"Realgam Tower (Battle CD 13, 26, and 30 completion prizes)",0,0,1,,,,,,,,bulbapedia
+laultra-ball,xd,xd,shop,poke-mart,,"Gateon, Agate, Pyrite, and Phenac Poké Marts, Outskirt Stand",1,0,1,,,,,,,,bulbapedia
+laultra-ball,xd,xd,pickup,,,Pickup (Lv. 1-90),1,0,1,,,,,,,,bulbapedia

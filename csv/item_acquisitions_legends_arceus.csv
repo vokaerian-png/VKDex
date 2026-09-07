@@ -1,387 +1,628 @@
-item,version_group,version,type,subtype,location_area_pokedb,location_detail,is_repeatable,is_hidden,is_guaranteed,quantity,probability,cost_amount,currency,required_badge,unlock_condition,notes
-adamant-crystal,legends-arceus,legends-arceus,request,,lake-valor-hisui,"Reward for defeating Adaman to complete Request 89: ""The Diamond Clan's Treasure""",0,0,1,,,,,,,
-apricorn,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Rei/Akari during Mission 3: The Basics of Crafting,0,0,1,20,,,,,During Mission 3,
-apricorn,legends-arceus,legends-arceus,trainer-reward,,galaxy-hall,Reward for completing Request 95: A New Anomaly,0,0,1,60,,,,,,
-apricorn,legends-arceus,legends-arceus,trainer-reward,,crimson-mirelands,Reward for completing Request 97: Massive Mass Outbreak in the Mirelands,0,0,1,20,,,,,,
-apricorn,legends-arceus,legends-arceus,trainer-reward,,coronet-highlands,Reward for completing Request 100: Massive Mass Outbreak in the Highlands,0,0,1,30,,,,,,
-apricorn,legends-arceus,legends-arceus,harvest,,,Apricorn trees across Hisui,1,0,0,,,,,,,
-apricorn,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,
-aux-evasion,legends-arceus,legends-arceus,crafting,recipe,,Crafted using 2 Doppel Bonnets and 1 Candy Truffle,1,0,1,1,,,,,,
-aux-evasion,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 41: ""An Elegant Tail""",0,0,1,2,,,,,,
-aux-guard,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 21: ""Back-Alley Mr. Mime""",0,0,1,2,,,,,,
-aux-guard,legends-arceus,legends-arceus,crafting,recipe,,Craft using 2 Iron Barktongues and 1 Pep-Up Plant,1,0,1,,,,,,,
-aux-power,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 9: ""Zubat's Eyes""",0,0,1,2,,,,,,
-aux-power,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,Requires 2 Swordcaps and 1 Pep-Up Plant
-aux-powerguard,legends-arceus,legends-arceus,request,,ginkgo-landing,Reward for completing Request 56: Getting Help from Machoke,0,0,1,,,,,,,
-aux-powerguard,legends-arceus,legends-arceus,crafting,recipe,,"Crafted using 1 Aux Power, 1 Aux Guard, and 1 King's Leaf",1,0,1,,,,,,,
-azelfs-fang,legends-arceus,legends-arceus,npc-gift,,valor-cavern-hisui,"Received from Azelf after completing its challenge during Mission 15: ""The Trial of Lake Valor""",0,0,1,,,,,,During Mission 15: The Trial of Lake Valor,
-azure-flute,legends-arceus,legends-arceus,story,,temple-of-sinnoh,Reward after defeating Volo and Giratina (Mission 26: Seeking the Remaining Plates),0,0,1,,,,,,,
-ball-of-mud,legends-arceus,legends-arceus,request,,,"Highlands, Mountain, or Summit Camp",0,0,1,20,,,,,"Reward for completing Request 100: ""Massive Mass Outbreak in the Highlands""",
-ball-of-mud,legends-arceus,legends-arceus,request,,,Snowfields or Icepeak Camp,0,0,1,20,,,,,"Reward for completing Request 101: ""Massive Mass Outbreak in the Icelands""",
-ball-of-mud,legends-arceus,legends-arceus,overworld,recurring,lava-dome-sanctum,,1,0,1,,,,,,,
-ball-of-mud,legends-arceus,legends-arceus,overworld,sparkling,alabaster-icelands,Snow piles,1,0,0,,,,,,,
-ball-of-mud,legends-arceus,legends-arceus,dropped,,,Practice field balloon minigame,1,0,0,,,,,,,Random reward
-ball-of-mud,legends-arceus,legends-arceus,harvest,,,Found by Ursaluna,1,1,0,,,,,,,
-ball-of-mud,legends-arceus,legends-arceus,story,,,"Highlands, Mountain, or Summit Camp",0,0,1,100,,,,,"From Adaman during Request 100: ""Massive Mass Outbreak in the Highlands""",
-basculegion-food,legends-arceus,legends-arceus,npc-gift,,aipom-hill,"From Iscan after bringing him a Dusclops during Mission 10: ""The Lordless Island""",0,0,1,,,,,,"After progressing Mission 10: ""The Lordless Island""",
-bean-cake,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,poke-dollar,,,Randomly sold
-bean-cake,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 61: ""Even More New Wares""",
-bean-cake,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 53: ""Octillery's Ink""",0,0,1,5,,,,,,
-bean-cake,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 1 Plump Beans and 1 Cake-Lure Base,1,0,1,,,,,,,
-black-augurite,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 68: ""A Nosepass to Guide the Way""",0,0,1,,,,,,,
-black-augurite,legends-arceus,legends-arceus,shop,vendor,jubilife-village,"Ginkgo Guild cart (Ginter, sold as ""Jet-Black Rock"")",1,0,0,,,,poke-dollar,,Random daily stock,
-black-augurite,legends-arceus,legends-arceus,harvest,,,Found by Ursaluna,1,0,0,,,,,,,
-black-augurite,legends-arceus,legends-arceus,dropped,,,Space-time distortions,1,0,0,,,,,,,
-black-tumblestone,legends-arceus,legends-arceus,request,,,Mirelands or Bogbound Camp,0,0,1,30,,,,,"Reward for completing Request 97: ""Massive Mass Outbreak in the Mirelands""",
-black-tumblestone,legends-arceus,legends-arceus,mining,,,"Black ore deposits (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands)",1,0,0,,,,,,,
-black-tumblestone,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,
-black-tumblestone,legends-arceus,legends-arceus,harvest,,,Sometimes found by Ursaluna,1,0,0,,,,,,,
-blank-plate,legends-arceus,legends-arceus,story,,snowpoint-temple,"Reward for catching Regigigas at the end of Mission 24: ""The Plate of Snowpoint Temple""",0,0,1,,,,,,Complete Mission 24 and catch Regigigas,
-bold-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-brave-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-bugwort,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,
-bugwort,legends-arceus,legends-arceus,harvest,,,Farm (medicinal harvest),1,0,1,,,,,,,
-bugwort,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,
-bugwort,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,
-bugwort,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,
-bugwort,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,
-bugwort,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-cake-lure-base,legends-arceus,legends-arceus,request,,,"Reward from Morel after giving a Springy Mushroom during Request 6: ""Mushroom Cake Marketing""",0,0,1,5,,,,,"During Request 6: ""Mushroom Cake Marketing""",
-cake-lure-base,legends-arceus,legends-arceus,shop,vendor,,General store,1,0,1,,,100,poke-dollar,,,
-cake-lure-base,legends-arceus,legends-arceus,shop,vendor,,Craftworks,1,0,1,,,100,poke-dollar,,,
-cake-lure-base,legends-arceus,legends-arceus,shop,vendor,,Base camp stores,1,0,1,,,100,poke-dollar,,,
-cake-lure-base,legends-arceus,legends-arceus,shop,vendor,ancient-retreat,Sold by Volo,1,0,1,,,100,poke-dollar,,"Available during Missions 14, 15, and 16 only",
-calm-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-candy-truffle,legends-arceus,legends-arceus,story,,,"From Melli during Mission 18: ""The Counterpart""",0,0,1,3,,,,,During Mission 18: The Counterpart,
-candy-truffle,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 33: ""What a Massive Mushroom!""",0,0,1,5,,,,,After completing Request 33,
-candy-truffle,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mushroom harvest,1,0,0,,,,,,,
-candy-truffle,legends-arceus,legends-arceus,dropped,,,Found by Ursaluna,1,0,0,,,,,,,
-candy-truffle,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild-cart,Tuli,1,0,1,,,600,poke-dollar,,After starting Mission 10: The Lordless Island,
-careful-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-caster-fern,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,"Dropped by Carnivine, Lickitung, Lickilicky, Glameow, Purugly, Hisuian Voltorb, and Hisuian Electrode"
-caster-fern,legends-arceus,legends-arceus,harvest,,,Farm,1,0,1,,,,,,,Vegetable harvest
-caster-fern,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,
-caster-fern,legends-arceus,legends-arceus,npc-gift,,,Adaman during Request 100: Massive Mass Outbreak in the Highlands,0,0,1,100,,,,,Completing Request 100,
-caster-fern,legends-arceus,legends-arceus,npc-gift,,,Reward for completing Request 101: Massive Mass Outbreak in the Icelands,0,0,1,20,,,,,Completing Request 101,
-caster-fern,legends-arceus,legends-arceus,overworld,recurring,,"Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,0,,,,,,,Recurring item
-caster-fern,legends-arceus,legends-arceus,overworld,,crimson-mirelands,Haystacks,1,0,0,,,,,,,
-celestica-flute,legends-arceus,legends-arceus,story,,,"Received from Adaman during Mission 7: ""The Frenzy of the Lord of the Woods""",0,0,1,,,,,,,
-choice-dumpling,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 3 Caster Ferns, 1 Swordcap, 1 Direshroom, and 2 Hearty Grains",1,0,1,,,,,,,
-crafting-kit,legends-arceus,legends-arceus,npc-gift,,horseshoe-plains,"Received from Rei/Akari during Mission 4: ""Getting to Work on Research Tasks""",0,0,1,,,,,,During Mission 4: Getting to Work on Research Tasks,
-crunchy-salt,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,
-crunchy-salt,legends-arceus,legends-arceus,harvest,,coronet-highlands,Ursaluna,1,0,0,,,,,,,Sometimes found
-crunchy-salt,legends-arceus,legends-arceus,harvest,,alabaster-icelands,Ursaluna,1,0,0,,,,,,,Sometimes found
-crunchy-salt,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,
-crunchy-salt,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,
-dazzling-honey,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 57: ""The Taste of Honey""",0,0,1,3,,,,,After completing Request 57,
-dazzling-honey,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,Recurring item spawn,1,0,0,,,,,,,
-dazzling-honey,legends-arceus,legends-arceus,harvest,,crimson-mirelands,Leaf piles,1,0,0,,,,,,,
-dazzling-honey,legends-arceus,legends-arceus,harvest,,cobalt-coastlands,Leaf piles,1,0,0,,,,,,,
-dazzling-honey,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-dazzling-honey,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,"Dropped by Beautifly, Dustox, Mothim, Combee, Heracross, Teddiursa, and Ursaring"
-dazzling-honey,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 1: ""Wurmple Can Evolve""",0,0,1,3,,,,,After completing Request 1,
-direshroom,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,
-direshroom,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-direshroom,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,
-direshroom,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,
-direshroom,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,480,poke-dollar,,"After starting Mission 10: ""The Lordless Island""",
-doppel-bonnets,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,Recurring item spawn
-doppel-bonnets,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,Recurring item spawn
-doppel-bonnets,legends-arceus,legends-arceus,harvest,,,Farm mushroom harvest,1,0,1,,,,,,,
-doppel-bonnets,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,480,poke-dollar,,After starting Mission 11: Scaling Perilous Heights,
-draco-plate,legends-arceus,legends-arceus,story,,lake-verity-hisui,Mission 21 reward,0,0,1,,,,,,"Reward for catching Uxie, Mesprit, and Azelf",
-dread-plate,legends-arceus,legends-arceus,story,,moonview-arena,Mission 23 reward for catching Cresselia,0,0,1,,,,,,,
-earth-plate,legends-arceus,legends-arceus,story,,sludge-mound,Mission 8: Arezu's Predicament,0,0,1,,,,,,After defeating Ursaluna,
-eternal-ice,legends-arceus,legends-arceus,overworld,visible,avaluggs-legacy,On top of the biggest ice formation; requires Ride Braviary,0,0,1,,,,,,,
-exp-candy-s,legends-arceus,legends-arceus,request,,jubilife-village,Rewards from multiple Requests,0,0,1,,,,,,By completing specific requests,
-exp-candy-xl,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Vessa for collecting 90 wisps,0,0,1,,,,,,After collecting 90 wisps,
-lafeather-ball,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,140,poke-dollar,,"After completing Request 23: ""Getting Ahold of New Wares""",
-lafeather-ball,legends-arceus,legends-arceus,request,,,"Reward for completing Request 15: ""Balloon Race in the Fieldlands""",0,0,1,15,,,,,,
-lafeather-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,30,,,,,,Randomly sold
-lafeather-ball,legends-arceus,legends-arceus,crafting,recipe,,1 Apricorn and 1 Sky Tumblestone,1,0,1,,,,,,,
-fine-remedy,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,Requires 1 Remedy and 1 Pep-Up Plant,
-fine-remedy,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 29: ""The Search for Bitter Leaves""",0,0,1,3,,,,,,
-fist-plate,legends-arceus,legends-arceus,story,,prelude-beach,Mission 25 reward from Kamado,0,0,1,,,,,,After defeating Kamado,
-flame-plate,legends-arceus,legends-arceus,story,,molten-arena,Reward for defeating Noble Hisuian Arcanine,0,0,1,,,,,,Mission 10: The Lordless Island,
-forest-balm,legends-arceus,legends-arceus,story,,grandtree-arena,"During Mission 7: ""The Frenzy of the Lord of the Woods"" and post-game rematches",1,0,1,,,,,,During Mission 7 and in post-game rematches against Kleavor,
-gentle-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-lagigaton-ball,legends-arceus,legends-arceus,event,,,"Ultra, Gigaton and Jet Balls event",0,0,1,,,,,,,
-lagigaton-ball,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 1 Apricorn, 2 Black Tumblestones, and 2 Iron Chunks",1,0,1,,,,,,,
-lagigaton-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,20,,,,,Randomly sold,
-grain-cake,legends-arceus,legends-arceus,request,,,"Reward for completing Request 30: ""A Beautiful Rose...""",0,0,1,5,,,,,,
-grain-cake,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,Requires 1 Hearty Grains and 1 Cake-Lure Base.
-grain-cake,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Boxes,1,0,0,,,,,,,
-grain-cake,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Boxes,1,0,0,,,,,,,
-grain-cake,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 43: ""More New Wares""",
-grain-cake,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold.
-great-ball-hisuian,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 26: ""Aim for the Big Leagues!""",0,0,1,15,,,,,,
-great-ball-hisuian,legends-arceus,legends-arceus,crafting,recipe,,"1 Apricorn, 1 Tumblestone, and 1 Iron Chunk",1,0,1,,,,,,,
-great-ball-hisuian,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,300,poke-dollar,,"After completing Request 43: ""More New Wares""",
-griseous-core,legends-arceus,legends-arceus,request,,turnback-cave,"Reward for completing Request 91: ""On the Trail of Giratina"" after catching or defeating Giratina",0,0,1,,,,,,,
-grit-dust,legends-arceus,legends-arceus,tournament,,training-grounds,Random Path of Solitude reward,1,0,0,3,,,,,,
-grit-dust,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 5: ""What It Takes to Be Awesome""",0,0,1,3,,,,,,
-grit-dust,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,
-grit-dust,legends-arceus,legends-arceus,story,,pastures,Obtained after releasing Pokémon,1,0,1,,,,,,,
-grit-gravel,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"From Lian during Mission 10: ""The Lordless Island""",0,0,1,3,,,,,During Mission 10,
-grit-gravel,legends-arceus,legends-arceus,request,,,"Reward for completing Request 35: ""Battling with Pachirisu""",0,0,1,,,,,,,
-grit-gravel,legends-arceus,legends-arceus,request,,,"Reward for completing Request 40: ""The Charm Lost in the Swamp""",0,0,1,,,,,,,
-grit-gravel,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 41: ""An Elegant Tail""",0,0,1,2,,,,,,
-grit-gravel,legends-arceus,legends-arceus,request,,ginkgo-landing,"Reward for completing Request 56: ""Getting Help from Machoke""",0,0,1,3,,,,,,
-grit-gravel,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,
-grit-gravel,legends-arceus,legends-arceus,dropped,,pastures,After releasing Pokémon,1,0,0,,,,,,,
-grit-gravel,legends-arceus,legends-arceus,exchange,,training-grounds,Trade 10 Grit Dusts with Zisu,1,0,1,,,10,,,,
-grit-pebble,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"From Lian during Mission 10: ""The Lordless Island""",0,0,1,2,,,,,During Mission 10,
-grit-pebble,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Vessa for collecting 60 wisps,0,0,1,5,,,,,After collecting 60 wisps,
-grit-pebble,legends-arceus,legends-arceus,request,,pearl-settlement,"Reward for completing Request 84: ""The Bergmite Enthusiast""",0,0,1,3,,,,,After completing Request 84,
-grit-pebble,legends-arceus,legends-arceus,achievement,,galaxy-hall,From Cyllene for achieving Ninth Star rank,0,0,1,20,,,,,After achieving Ninth Star rank,
-grit-pebble,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,
-grit-pebble,legends-arceus,legends-arceus,dropped,,pastures,After releasing Pokémon,1,0,0,,,,,,,
-grit-pebble,legends-arceus,legends-arceus,exchange,,training-grounds,Trade 10 Grit Gravels with Zisu,1,0,1,1,,10,,,,Cost is 10 Grit Gravels
-grit-pebble,legends-arceus,legends-arceus,npc-defeat,,moonview-arena,From Melli for defeating noble Electrode in a rematch without taking damage,1,0,1,3,,,,,Defeat noble Electrode in a rematch without taking damage,
-grit-pebble,legends-arceus,legends-arceus,npc-defeat,,icepeak-arena,From Gaeric for defeating noble Avalugg in a rematch without taking damage,1,0,1,3,,,,,Defeat noble Avalugg in a rematch without taking damage,
-grit-rock,legends-arceus,legends-arceus,request,,training-grounds,Reward for completing Request 88: Steely Lucario,0,0,1,,,,,,,
-grit-rock,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Vessa for collecting 100 wisps,0,0,1,3,,,,,After collecting 100 wisps,
-grit-rock,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for completing Request 91: On the Trail of Giratina,0,0,1,,,,,,,
-grit-rock,legends-arceus,legends-arceus,request,,floaro-gardens,Reward for completing Request 92: A Token of Gratitude,0,0,1,,,,,,,
-grit-rock,legends-arceus,legends-arceus,request,,oreburrow-tunnel,Reward for completing Request 103: Digging for Tomorrow,0,0,1,,,,,,,
-grit-rock,legends-arceus,legends-arceus,request,,training-grounds,Reward for completing Request 104: Battling the Security Corps' Secret Weapon,0,0,1,3,,,,,,
-grit-rock,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,From Cyllene for achieving Full Star rank,0,0,1,10,,,,,After achieving Full Star rank,
-grit-rock,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,
-grit-rock,legends-arceus,legends-arceus,dropped,,pastures,After releasing Pokémon,1,0,0,,,,,,,
-grit-rock,legends-arceus,legends-arceus,exchange,,training-grounds,Trade 10 Grit Pebbles with Zisu,1,0,1,,,10,,,,Cost is in Grit Pebbles
-grit-rock,legends-arceus,legends-arceus,tournament,,,Eternal Battle Reverie,1,0,0,,,,,,,
-hasty-mint,legends-arceus,legends-arceus,harvest,,,Farm mint harvest,1,0,0,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Recurring item locations,1,0,1,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Budew,1,0,0,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Roselia,1,0,0,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Roserade,1,0,0,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Yanma,1,0,0,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Yanmega,1,0,0,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,harvest,,,Farm (vegetable harvest),1,0,1,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-hearty-grains,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,Recurring item locations,1,0,1,,,,,,,
-heavy-ball,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,120,poke-dollar,,After completing Request 23: Getting Ahold of New Wares,
-heavy-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,30,,,poke-dollar,,,Randomly sold.
-heavy-ball,legends-arceus,legends-arceus,request,,,Reward for completing Request 36: Watering with Care,0,0,1,15,,,,,,
-heavy-ball,legends-arceus,legends-arceus,crafting,recipe,,Crafting with 1 Apricorn and 1 Black Tumblestone,1,0,1,,,,,,,
-hometown-muffin,legends-arceus,legends-arceus,request,,jubilife-village,Given by Floaro after completing Request 48,0,0,1,,,,,,"After giving Floaro 3 Hearty Grains, 2 Hopo Berries, and 1 Razz Berry",
-honey-cake,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 12: ""A Perfect Pickling Stone""",0,0,1,3,,,,,,
-honey-cake,legends-arceus,legends-arceus,crafting,recipe,,1 Dazzling Honey and 1 Cake-Lure Base,1,0,1,,,,,,,
-honey-cake,legends-arceus,legends-arceus,dropped,,cobalt-coastlands,Boxes,1,0,0,,,,,,,
-honey-cake,legends-arceus,legends-arceus,dropped,,coronet-highlands,Boxes,1,0,0,,,,,,,
-honey-cake,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 23: ""Getting Ahold of New Wares""",
-honey-cake,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold
-hopo-berry,legends-arceus,legends-arceus,berry-tree,,,"Yellow berry trees in Crimson Mirelands, Coronet Highlands, and Alabaster Icelands",1,0,0,,,,,,,
-hopo-berry,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Usual berry harvest,1,0,0,,,,,,,
-hopo-berry,legends-arceus,legends-arceus,shop,vendor,jubilife-village,"Ginkgo Guild cart (Ginter, random)",1,0,0,10,,,,,,
-hopo-berry,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,0,,,,,,,
-hopo-berry,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 29: ""The Search for Bitter Leaves""",0,0,1,5,,,,,,
-icicle-plate,legends-arceus,legends-arceus,story,,icepeak-arena,Reward for defeating the noble Hisuian Avalugg during Mission 12,0,0,1,,,,,,Mission 12: The Slumbering Lord of the Tundra,
-impish-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,1,,,,,,,
-insect-plate,legends-arceus,legends-arceus,story,,grandtree-arena,Reward for defeating Noble Kleavor during Mission 7,0,0,1,,,,,,,
-iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,
-iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,
-iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,
-iron-barktongue,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,
-iron-barktongue,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,
-iron-chunk,legends-arceus,legends-arceus,request,,,Request 40: The Charm Lost in the Swamp,0,0,1,5,,,,,,
-iron-chunk,legends-arceus,legends-arceus,mining,,oreburrow-tunnel,Breakable rock,1,0,1,3,,,,,,
-iron-chunk,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-iron-chunk,legends-arceus,legends-arceus,walking-pokemon,,,Found by Ursaluna,1,0,0,,,,,,,Sometimes
-iron-plate,legends-arceus,legends-arceus,story,,lava-dome-sanctum,Mission 22 reward,0,0,1,,,,,,After catching Heatran,
-lajet-ball,legends-arceus,legends-arceus,event,,,,0,0,1,,,,,,,
-lajet-ball,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,"Requires 1 Apricorn, 2 Sky Tumblestones, and 2 Iron Chunks",
-lajet-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,20,,,,,Randomly sold,
-jolly-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-jubilife-muffin,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 2 Hearty Grains, 2 Hopo Berries, 1 Razz Berry, and 1 Cake-Lure Base",1,0,1,,,,,,,
-kings-leaf,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Medicinal harvest,1,0,0,,,,,,,
-kings-leaf,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,1000,poke-dollar,,"After starting Mission 12: ""The Slumbering Lord of the Tundra""",
-kings-leaf,legends-arceus,legends-arceus,overworld,visible,,"Leaf piles in Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,0,,,,,,,
-kings-leaf,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 57: ""The Taste of Honey""",0,0,1,3,,,,,,
-kings-leaf,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,0,,,,,,,Recurring item
-lax-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-laleaden-ball,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 1 Apricorn, 1 Black Tumblestone, and 1 Iron Chunk",1,0,1,1,,,,,,
-laleaden-ball,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,1,,320,poke-dollar,,After completing Request 61: Even More New Wares,
-laleaden-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,20,,,,,,Randomly sold
-laleaden-ball,legends-arceus,legends-arceus,contest,,practice-field,Balloon minigame reward,1,0,0,,,,,,,Random reward
-laleaden-ball,legends-arceus,legends-arceus,contest,,cobalt-coastlands,Balloon Race,1,0,0,,,,,,,Random reward
-legend-plate,legends-arceus,legends-arceus,story,,hall-of-origin,"Reward for defeating Arceus during Mission 27: ""The Deified Pokémon""",0,0,1,,,,,,,
-linking-cord,legends-arceus,legends-arceus,story,,jubilife-village,Reward from Vessa for collecting 50 wisps; Request 64: Getting to Know Ghosts,0,0,1,,,,,,,
-linking-cord,legends-arceus,legends-arceus,exchange,,trading-post,Trading Post,1,0,1,,,1000,league-point,,,Cost is in Merit Points (MP)
-linking-cord,legends-arceus,legends-arceus,shop,vendor,jubilife-village,"Ginkgo Guild cart (Ginter, sold as Mysterious Cord)",1,0,0,,,,,,,Randomly sold
-linking-cord,legends-arceus,legends-arceus,overworld,recurring,,Space-time distortions,1,0,0,,,,,,,
-lonely-mint,legends-arceus,legends-arceus,harvest,,,Farm,1,0,0,,,,,,,Mint harvest
-lost-satchel,legends-arceus,legends-arceus,overworld,recurring,,Various points in every area except Jubilife Village and the Ancient Retreat,1,0,1,,,,,,,
-lustrous-globe,legends-arceus,legends-arceus,story,,pearl-settlement,"Reward for defeating Irida to complete Request 90: ""The Pearl Clan's Treasure""",0,0,1,,,,,,,
-marsh-balm,legends-arceus,legends-arceus,story,,valor-cavern-hisui,"During Mission 15: ""The Trial of Lake Valor""",0,0,1,,,,,,During Mission 15,
-marsh-balm,legends-arceus,legends-arceus,story,,brava-arena,"During Mission 8: ""Arezu's Predicament"" and post-game rematches",1,0,1,,,,,,During Mission 8,
-meadow-plate,legends-arceus,legends-arceus,story,,brava-arena,Reward for defeating Hisuian Lilligant,0,0,1,,,,,,Mission 8: Arezu's Predicament,
-medicinal-leek,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,Haystacks,1,0,0,,,,,,,
-medicinal-leek,legends-arceus,legends-arceus,harvest,,jubilife-village,Farm (medicinal harvest),1,0,1,,,,,,,
-medicinal-leek,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,
-medicinal-leek,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,
-medicinal-leek,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,1,,,,,,,
-mesprits-plume,legends-arceus,legends-arceus,story,,verity-cavern-hisui,"Obtained from Mesprit after passing its challenge during Mission 14: ""The Trial of Lake Verity""",0,0,1,,,,,,During Mission 14: The Trial of Lake Verity,
-mild-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-mountain-balm,legends-arceus,legends-arceus,story,,moonview-arena,During Mission 11: Scaling Perilous Heights and post-game rematches,1,0,1,,,,,,During Mission 11 and post-game rematches,
-mushroom-cake,legends-arceus,legends-arceus,crafting,recipe,,1 Springy Mushroom and 1 Cake-Lure Base,1,0,1,1,,,,,,
-mushroom-cake,legends-arceus,legends-arceus,overworld,visible,cobalt-coastlands,Boxes,1,0,0,1,,,,,,
-mushroom-cake,legends-arceus,legends-arceus,overworld,visible,coronet-highlands,Boxes,1,0,0,1,,,,,,
-mushroom-cake,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,1,,400,poke-dollar,,After completing Request 23: Getting Ahold of New Wares,
-mushroom-cake,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold
-mysterious-balm,legends-arceus,legends-arceus,story,,hall-of-origin,"During Mission 27: ""The Deified Pokémon"" and in rematches",1,0,1,,,,,,During Mission 27 after gaining access to the Hall of Origin,
-naive-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-naughty-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-odd-keystone,legends-arceus,legends-arceus,npc-gift,,jubilife-village,Vessa,0,0,1,,,,,,After completing Mission 7: The Frenzy of the Lord of the Woods,
-old-journal,legends-arceus,legends-arceus,overworld,visible,avalanche-slopes,Near two Snorunt during Request 82: Traces of a Lost Village,0,0,1,,,,,,During Request 82: Traces of a Lost Village,
-old-verse-01,legends-arceus,legends-arceus,field-move,,gapejaw-bog,,0,0,1,,,,,,While riding Ursaluna,
-laorigin-ball,legends-arceus,legends-arceus,story,,galaxy-hall,"Received from Professor Laventon after obtaining the Origin Ore during Mission 18: ""The Counterpart""",0,0,1,,,,,,"After obtaining the Origin Ore in Mission 18: ""The Counterpart""",
-origin-ore,legends-arceus,legends-arceus,npc-gift,,primeval-grotto,"Received from Lian inside the cave after defeating the Miss Fortunes during Mission 18: ""The Counterpart""",0,0,1,,,,,,"After defeating the Miss Fortunes during Mission 18: ""The Counterpart""",
-peat-block,legends-arceus,legends-arceus,shop,vendor,,"Ginkgo Guild cart (sold by Ginter as ""Hunk of Coal"")",1,0,0,,,,,,,Randomly sold
-peat-block,legends-arceus,legends-arceus,request,,galaxy-hall,"Reward for completing Request 86: ""Gone Astray...in the Icelands""",0,0,1,,,,,,,
-peat-block,legends-arceus,legends-arceus,dropped,,,Sometimes found by Ursaluna,1,0,0,,,,,,,
-peat-block,legends-arceus,legends-arceus,overworld,recurring,,Space-time distortions,1,0,0,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,dropped,,,"Dropped by wild Stantler, Wyrdeer, Hisuian Sneasel, and Sneasler",1,0,0,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,harvest,,jubilife-village,Farm (medicinal harvest),1,0,1,,,,,,,
-pep-up-plant,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,,,,"After starting Mission 10: ""The Lordless Island""",
-pixie-plate,legends-arceus,legends-arceus,story,,ancient-retreat,From Cogita during Mission 26,0,0,1,,,,,,After giving Cogita three pieces of Wood,
-plump-beans,legends-arceus,legends-arceus,harvest,,,Farm (vegetable harvest),1,0,0,,,,,,,
-plump-beans,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Recurring item,1,0,1,,,,,,,
-plump-beans,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-plump-beans,legends-arceus,legends-arceus,walking-pokemon,,cobalt-coastlands,Found by Ursaluna,1,0,0,,,,,,,
-poke-ball-hisuian,legends-arceus,legends-arceus,request,,jubilife-village,Reward for completing Request 2: Adorable Starly,0,0,1,10,,,,,,
-poke-ball-hisuian,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,Professor Laventon after starting Mission 2: The Galaxy Team's Entry Trial,0,0,1,20,,,,,After starting Mission 2,
-poke-ball-hisuian,legends-arceus,legends-arceus,request,,deertrack-path,Reward for completing Request 13: Trees That Bear Berries,0,0,1,15,,,,,,
-poke-ball-hisuian,legends-arceus,legends-arceus,crafting,recipe,,1 Apricorn and 1 Tumblestone,1,0,1,1,,,,,,
-poke-ball-hisuian,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,100,poke-dollar,,,
-pokeshi-doll,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 18: ""Please! Make me a Pokéshi Doll!""",0,0,1,,,,,,,
-pokeshi-doll,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 3 Wood,1,0,1,,,,,,,
-pop-pod,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-pop-pod,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,
-pop-pod,legends-arceus,legends-arceus,dropped,,,,1,0,0,,,,,,,Dropped by wild Pokémon
-pop-pod,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-quiet-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,1,,,,,,,
-rash-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-red-chain,legends-arceus,legends-arceus,story,,shrouded-ruins,Created by the lake guardians after obtaining their respective materials,0,0,1,,,,,,"After obtaining Azelf's Fang, Uxie's Claw, and Mesprit's Plume",
-relaxed-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-remedy,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 2 Bugworts,1,0,1,1,,,,,,
-reveal-glass,legends-arceus,legends-arceus,npc-gift,,ancient-retreat,Cogita,0,0,1,,,,,,After completing the Pokédex entries of all the forces of nature,
-salt-cake,legends-arceus,legends-arceus,crafting,recipe,,Requires 1 Crunchy Salt and 1 Cake-Lure Base,1,0,1,,,,,,,
-salt-cake,legends-arceus,legends-arceus,request,,galaxy-hall,"Reward for completing Request 67: ""The Clefairy's Moonlit Dance""",0,0,1,5,,,,,,
-salt-cake,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 71: ""New Wares Yet Again""",
-salt-cake,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild-cart,Randomly sold by Ginter (×10),1,0,0,10,,,,,,
-sand-radish,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,Recurring item spawn,1,0,1,,,,,,,
-sand-radish,legends-arceus,legends-arceus,harvest,,,Farm vegetable harvest,1,0,1,,,,,,,
-sand-radish,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,,,,"After starting Mission 12: ""The Slumbering Lord of the Tundra""",
-sassy-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,
-scatter-bang,legends-arceus,legends-arceus,tournament,,practice-field,Balloon minigame reward,1,0,0,,,,,,,Random reward.
-scatter-bang,legends-arceus,legends-arceus,npc-gift,,veilstone-cape,"Reward for completing Request 49: ""Keep an Eye Out for Aipom!""",0,0,1,5,,,,,,
-scatter-bang,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,Requires 1 Pop Pod and 1 Caster Fern.
-scatter-bang,legends-arceus,legends-arceus,dropped,,cobalt-coastlands,Boxes and chests,1,0,0,,,,,,,
-scatter-bang,legends-arceus,legends-arceus,dropped,,coronet-highlands,Boxes and chests,1,0,0,,,,,,,
-scatter-bang,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold.
-scatter-bang,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,500,poke-dollar,,"After completing Request 43: ""More New Wares""",
-secret-medicine,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,From Tomma after speaking with Martia at the Diamond Settlement,0,0,1,,,,,,Request 32: The Headache-Stricken Psyduck,
-seed-of-mastery,legends-arceus,legends-arceus,dropped,,,Dropped by wild alpha Pokémon,1,0,0,1,,,,,,
-seed-of-mastery,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Vessa, for collecting 20 wisps",0,0,1,1,,,,,After collecting 20 wisps,
-seed-of-mastery,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Vessa, for collecting 80 wisps",0,0,1,3,,,,,After collecting 80 wisps,
-seed-of-mastery,legends-arceus,legends-arceus,request,,ramanas-island,Reward for completing Request 51: Coming Up Roses,0,0,1,1,,,,,,
-serious-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-shiny-charm,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,Cyllene,0,0,1,,,,,,After reaching research level 10 for all Pokémon excluding Mythical Pokémon except Arceus,
-sky-plate,legends-arceus,legends-arceus,story,,snowpoint-temple,Mission 12 reward,0,0,1,,,,,,After defeating Hisuian Braviary,
-sky-tumblestone,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,
-sky-tumblestone,legends-arceus,legends-arceus,request,,ginkgo-landing,"Reward for completing Request 98: ""Massive Mass Outbreak in the Coastlands""",0,0,1,30,,,,,,
-sky-tumblestone,legends-arceus,legends-arceus,mining,,,Blue ore deposits,1,0,0,,,,,,,"Found in Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, and Alabaster Icelands"
-sky-tumblestone,legends-arceus,legends-arceus,harvest,,,Sometimes found by Ursaluna,1,1,0,,,,,,,
-smoke-bomb,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,After completing Request 23,
-smoke-bomb,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Boxes and chests,1,0,0,,,,,,,
-smoke-bomb,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Boxes and chests,1,0,0,,,,,,,
-smoke-bomb,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for completing Request 37 and Request 38,0,0,1,5,,,,,After completing specific requests,
-smoke-bomb,legends-arceus,legends-arceus,request,,jubilife-village,Reward for completing Request 96,0,0,1,20,,,,,After completing Request 96,
-smoke-bomb,legends-arceus,legends-arceus,crafting,recipe,,Craft using 1 Sootfoot Root and 1 Caster Fern,1,0,1,,,,,,,
-snow-balm,legends-arceus,legends-arceus,story,,icepeak-arena,"During Mission 12: ""The Slumbering Lord of the Tundra"" and post-game rematches",1,0,1,,,,,,,
-sootfoot-root,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-sootfoot-root,legends-arceus,legends-arceus,harvest,,,Farm (vegetable harvest),1,0,1,,,,,,,
-sootfoot-root,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,
-sootfoot-root,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,
-sootfoot-root,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,
-space-balm,legends-arceus,legends-arceus,story,,temple-of-sinnoh,"During Mission 18: ""The Counterpart"" and post-game rematches if Adaman was chosen in Mission 13",1,0,1,,,,,,"Choose Adaman during Mission 13: ""Disaster Looming""",
-spoiled-apricorn,legends-arceus,legends-arceus,harvest,,,Apricorn trees,1,0,0,,,,,,,Found in all regions
-spoiled-apricorn,legends-arceus,legends-arceus,npc-gift,,,Adaman during Request 100: Massive Mass Outbreak in the Highlands,0,0,1,100,,,,,During Request 100,
-spoiled-apricorn,legends-arceus,legends-arceus,overworld,recurring,,Leaf piles,1,0,0,,,,,,,
-spoiled-apricorn,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Apricorn harvest,1,0,1,,,,,,,
-springy-mushroom,legends-arceus,legends-arceus,harvest,,,"Leaf piles in Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,0,,,,,,,
-springy-mushroom,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,1,,,,,,,Recurring item spawns
-springy-mushroom,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-springy-mushroom,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,
-springy-mushroom,legends-arceus,legends-arceus,tournament,,obsidian-fieldlands,Balloon Race random reward,1,0,0,,,,,,,
-springy-mushroom,legends-arceus,legends-arceus,dropped,,obsidian-fieldlands,Sometimes found by Ursaluna,1,0,0,,,,,,,
-stealth-spray,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 1 Hopo Berry and 3 Bugworts,1,0,1,,,,,,,
-stealth-spray,legends-arceus,legends-arceus,overworld,visible,cobalt-coastlands,Chests,1,0,0,,,,,,,
-stealth-spray,legends-arceus,legends-arceus,overworld,visible,coronet-highlands,Chests,1,0,0,,,,,,,
-stealth-spray,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,800,poke-dollar,,"After completing Request 43: ""More New Wares""",
-stealth-spray,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,5,,,,,,Randomly sold
-sticky-glob,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,800,poke-dollar,,After completing Request 71: New Wares Yet Again,
-sticky-glob,legends-arceus,legends-arceus,story,,sacred-plaza,Reward for completing Request 87: Rolling with Spheal,0,0,1,5,,,,,,
-sticky-glob,legends-arceus,legends-arceus,story,,jubilife-village,From Gaeric during Request 98: Massive Mass Outbreak in the Coastlands,0,0,1,30,,,,,,
-sticky-glob,legends-arceus,legends-arceus,crafting,recipe,,"Crafted using 1 Ball of Mud, 1 Spoiled Apricorn, and 1 Caster Fern",1,0,1,,,,,,,
-sticky-glob,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Found in boxes and chests,1,0,0,,,,,,,
-sticky-glob,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Found in boxes and chests,1,0,0,,,,,,,
-sticky-glob,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild-cart,Randomly sold by Ginter,1,0,0,10,,,poke-dollar,,,
-sticky-glob,legends-arceus,legends-arceus,contest,,practice-field,Random reward from balloon minigame,1,0,0,,,,,,,
-sticky-glob,legends-arceus,legends-arceus,contest,,alabaster-icelands,Balloon Race random reward,1,0,0,,,,,,,
-superb-remedy,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 1 Fine Remedy and 1 Vivichoke,1,0,1,,,,,,,
-survival-charm,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Folk Shrine (Charm Lady Lucille),1,0,1,,,,,,,
-swap-snack,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,"Requires 1 Candy Truffle, 1 Sootfoot Root, 1 Springy Mushroom, and 1 Hopo Berry."
-swordcap,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,
-swordcap,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,1,,,,,,,
-swordcap,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Tuli),1,0,1,,,240,poke-dollar,,,
-tempting-charm,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Folk Shrine (Charm Lady Lucille),1,0,1,,,,,,,
-time-balm,legends-arceus,legends-arceus,story,,temple-of-sinnoh,"During Mission 18: The Counterpart, and post-game rematches if Irida was chosen during Mission 13: Disaster Looming",1,0,1,,,,,,Choose Irida during Mission 13: Disaster Looming,
-timid-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,
-torn-journal,legends-arceus,legends-arceus,overworld,visible,arenas-approach,Near two Snorunt in the Alabaster Icelands,0,0,1,,,,,,During Request 82: Traces of a Lost Village,
-toxic-plate,legends-arceus,legends-arceus,story,,clamberclaw-cliffs,Reward from Sneasler during Mission 11,0,0,1,,,,,,Mission 11: Scaling Perilous Heights,
-tumblestone,legends-arceus,legends-arceus,harvest,,,Sometimes found by Ursaluna,1,0,0,,,,,,,
-tumblestone,legends-arceus,legends-arceus,story,,jubilife-village,From Rei/Akari during Mission 3: The Basics of Crafting,0,0,1,20,,,,,,
-tumblestone,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for completing Request 95: A New Anomaly,0,0,1,60,,,,,,
-tumblestone,legends-arceus,legends-arceus,request,,,Reward for completing Request 96: Massive Mass Outbreak in the Fieldlands,0,0,1,30,,,,,,
-tumblestone,legends-arceus,legends-arceus,request,,ginkgo-landing,Reward for completing Request 98: Massive Mass Outbreak in the Coastlands,0,0,1,30,,,,,,
-tumblestone,legends-arceus,legends-arceus,request,,,Reward for completing Request 100: Massive Mass Outbreak in the Highlands,0,0,1,30,,,,,,
-tumblestone,legends-arceus,legends-arceus,mining,,,Red ore deposits in Hisui,1,0,0,,,,,,,
-tumblestone,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,
-twice-spiced-radish,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 2 Sand Radishes, 2 Crunchy Salts, 2 Plump Beans, and 2 King's Leaves",1,0,1,,,,,,,
-twice-spiced-radish,legends-arceus,legends-arceus,request,,,"Reward for completing Request 22: ""Eerie Apparitions in the Night""",0,0,1,3,,,,,,
-ultra-ball-hisui,legends-arceus,legends-arceus,story,,temple-of-sinnoh,From Kamado during Mission 17: Atop Mount Coronet,0,0,1,10,,,,,During Mission 17,
-ultra-ball-hisui,legends-arceus,legends-arceus,request,,,Reward for Request 47: Balloon Race in the Coastlands,0,0,1,,,,,,After completing Request 47,
-ultra-ball-hisui,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for Request 95: A New Anomaly,0,0,1,30,,,,,After completing Request 95,
-ultra-ball-hisui,legends-arceus,legends-arceus,crafting,recipe,,"1 Apricorn, 2 Tumblestones, 2 Iron Chunks",1,0,1,,,,,,,
-ultra-ball-hisui,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,600,poke-dollar,,After completing Request 71: New Wares Yet Again,
-up-grade,legends-arceus,legends-arceus,exchange,vendor,trading-post,,1,0,1,,,1000,league-point,,,
-uxies-claw,legends-arceus,legends-arceus,npc-gift,,acuity-cavern-hisui,"Received from Uxie after passing its challenge during Mission 16: ""The Trial of Lake Acuity""",0,0,1,,,,,,After completing Mission 16: The Trial of Lake Acuity,
-vivichoke,legends-arceus,legends-arceus,harvest,,jubilife-village,Farm (medicinal harvest),1,0,0,,,,,,,
-vivichoke,legends-arceus,legends-arceus,request,,,Reward for completing Request 11: The Timbre of the Fields,0,0,1,3,,,,,,
-vivichoke,legends-arceus,legends-arceus,request,,jubilife-village,Reward for completing Request 17: To Bloom or Not to Bloom,0,0,1,5,,,,,,
-vivichoke,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,0,,,,,,,Recurring item spawn
-vivichoke,legends-arceus,legends-arceus,harvest,,crimson-mirelands,Haystacks,1,0,0,,,,,,,
-vivichoke,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,400,poke-dollar,,,
-volcano-balm,legends-arceus,legends-arceus,story,,molten-arena,"During Mission 10: ""The Lordless Island"" and post-game rematches",1,0,1,,,,,,"During Mission 10: ""The Lordless Island""",
-wall-fragment,legends-arceus,legends-arceus,story,,golden-lowlands,"From the Miss Fortune sisters after defeating Coin during Mission 8: ""Arezu's Predicament""",0,0,1,,,,,,"During Mission 8: ""Arezu's Predicament""",
-warding-charm,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Folk Shrine (Charm Lady Lucille),1,0,1,,,,,,,
-lawing-ball,legends-arceus,legends-arceus,crafting,recipe,,"Crafted using 1 Apricorn, 1 Sky Tumblestone, and 1 Iron Chunk",1,0,1,,,,,,,
-lawing-ball,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,340,poke-dollar,,"After completing Request 61: ""Even More New Wares""",
-lawing-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,20,,,poke-dollar,,Randomly sold,
-lawing-ball,legends-arceus,legends-arceus,contest,,,Practice field balloon minigame,1,0,0,,,,,,,Random reward
-lawing-ball,legends-arceus,legends-arceus,contest,,cobalt-coastlands,Balloon Race,1,0,0,,,,,,,Random reward
-wood,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,
-wood,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,
-wood,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,
-wood,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,
-wood,legends-arceus,legends-arceus,dropped,,,Dropped by wild Scyther,1,0,0,,,,,,,
-wood,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,
-zap-plate,legends-arceus,legends-arceus,story,,moonview-arena,Reward for defeating noble Hisuian Electrode,0,0,1,,,,,,Mission 11: Scaling Perilous Heights,
+item,version_group,version,type,subtype,location_area_pokedb,location_detail,is_repeatable,is_hidden,is_guaranteed,quantity,probability,cost_amount,currency,required_badge,unlock_condition,notes,source
+adamant-crystal,legends-arceus,legends-arceus,request,,lake-valor-hisui,"Reward for defeating Adaman to complete Request 89: ""The Diamond Clan's Treasure""",0,0,1,,,,,,,,pokedb
+apricorn,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Rei/Akari during Mission 3: The Basics of Crafting,0,0,1,20,,,,,During Mission 3,,pokedb
+apricorn,legends-arceus,legends-arceus,trainer-reward,,galaxy-hall,Reward for completing Request 95: A New Anomaly,0,0,1,60,,,,,,,pokedb
+apricorn,legends-arceus,legends-arceus,trainer-reward,,crimson-mirelands,Reward for completing Request 97: Massive Mass Outbreak in the Mirelands,0,0,1,20,,,,,,,pokedb
+apricorn,legends-arceus,legends-arceus,trainer-reward,,coronet-highlands,Reward for completing Request 100: Massive Mass Outbreak in the Highlands,0,0,1,30,,,,,,,pokedb
+apricorn,legends-arceus,legends-arceus,harvest,,,Apricorn trees across Hisui,1,0,0,,,,,,,,pokedb
+apricorn,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,,pokedb
+aux-evasion,legends-arceus,legends-arceus,crafting,recipe,,Crafted using 2 Doppel Bonnets and 1 Candy Truffle,1,0,1,1,,,,,,,pokedb
+aux-evasion,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 41: ""An Elegant Tail""",0,0,1,2,,,,,,,pokedb
+aux-guard,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 21: ""Back-Alley Mr. Mime""",0,0,1,2,,,,,,,pokedb
+aux-guard,legends-arceus,legends-arceus,crafting,recipe,,Craft using 2 Iron Barktongues and 1 Pep-Up Plant,1,0,1,,,,,,,,pokedb
+aux-power,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 9: ""Zubat's Eyes""",0,0,1,2,,,,,,,pokedb
+aux-power,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,Requires 2 Swordcaps and 1 Pep-Up Plant,pokedb
+aux-powerguard,legends-arceus,legends-arceus,request,,ginkgo-landing,Reward for completing Request 56: Getting Help from Machoke,0,0,1,,,,,,,,pokedb
+aux-powerguard,legends-arceus,legends-arceus,crafting,recipe,,"Crafted using 1 Aux Power, 1 Aux Guard, and 1 King's Leaf",1,0,1,,,,,,,,pokedb
+azelfs-fang,legends-arceus,legends-arceus,npc-gift,,valor-cavern-hisui,"Received from Azelf after completing its challenge during Mission 15: ""The Trial of Lake Valor""",0,0,1,,,,,,During Mission 15: The Trial of Lake Valor,,pokedb
+azure-flute,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (reward after defeating Volo and Giratina to complete Mission 26: ""Seeking the Remaining Plates"")",0,0,1,,,,,,,,bulbapedia
+ball-of-mud,legends-arceus,legends-arceus,request,,,"Highlands, Mountain, or Summit Camp",0,0,1,20,,,,,"Reward for completing Request 100: ""Massive Mass Outbreak in the Highlands""",,pokedb
+ball-of-mud,legends-arceus,legends-arceus,request,,,Snowfields or Icepeak Camp,0,0,1,20,,,,,"Reward for completing Request 101: ""Massive Mass Outbreak in the Icelands""",,pokedb
+ball-of-mud,legends-arceus,legends-arceus,overworld,recurring,lava-dome-sanctum,,1,0,1,,,,,,,,pokedb
+ball-of-mud,legends-arceus,legends-arceus,overworld,sparkling,alabaster-icelands,Snow piles,1,0,0,,,,,,,,pokedb
+ball-of-mud,legends-arceus,legends-arceus,dropped,,,Practice field balloon minigame,1,0,0,,,,,,,Random reward,pokedb
+ball-of-mud,legends-arceus,legends-arceus,harvest,,,Found by Ursaluna,1,1,0,,,,,,,,pokedb
+ball-of-mud,legends-arceus,legends-arceus,story,,,"Highlands, Mountain, or Summit Camp",0,0,1,100,,,,,"From Adaman during Request 100: ""Massive Mass Outbreak in the Highlands""",,pokedb
+basculegion-food,legends-arceus,legends-arceus,npc-gift,,aipom-hill,"From Iscan after bringing him a Dusclops during Mission 10: ""The Lordless Island""",0,0,1,,,,,,"After progressing Mission 10: ""The Lordless Island""",,pokedb
+bean-cake,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,poke-dollar,,,Randomly sold,pokedb
+bean-cake,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 61: ""Even More New Wares""",,pokedb
+bean-cake,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 53: ""Octillery's Ink""",0,0,1,5,,,,,,,pokedb
+bean-cake,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 1 Plump Beans and 1 Cake-Lure Base,1,0,1,,,,,,,,pokedb
+black-augurite,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 68: ""A Nosepass to Guide the Way"")",0,0,1,,,,,,,,bulbapedia
+black-augurite,legends-arceus,,wild-pokemon,held,,Held by wild Graveler (5% chance),1,0,0,,5,,,,,,bulbapedia
+black-augurite,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Jet-Black Rock"")",1,0,1,,,,,,,,bulbapedia
+black-augurite,legends-arceus,,overworld,,,Sometimes found by Ursaluna,1,0,1,,,,,,,,bulbapedia
+black-augurite,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+black-tumblestone,legends-arceus,legends-arceus,request,,,Mirelands or Bogbound Camp,0,0,1,30,,,,,"Reward for completing Request 97: ""Massive Mass Outbreak in the Mirelands""",,pokedb
+black-tumblestone,legends-arceus,legends-arceus,mining,,,"Black ore deposits (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands)",1,0,0,,,,,,,,pokedb
+black-tumblestone,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,,pokedb
+black-tumblestone,legends-arceus,legends-arceus,harvest,,,Sometimes found by Ursaluna,1,0,0,,,,,,,,pokedb
+blank-plate,legends-arceus,legends-arceus,story,,snowpoint-temple,"Reward for catching Regigigas at the end of Mission 24: ""The Plate of Snowpoint Temple""",0,0,1,,,,,,Complete Mission 24 and catch Regigigas,,pokedb
+bold-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+brave-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,harvest,,,Farm (medicinal harvest),1,0,1,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,,pokedb
+bugwort,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+cake-lure-base,legends-arceus,legends-arceus,request,,,"Reward from Morel after giving a Springy Mushroom during Request 6: ""Mushroom Cake Marketing""",0,0,1,5,,,,,"During Request 6: ""Mushroom Cake Marketing""",,pokedb
+cake-lure-base,legends-arceus,legends-arceus,shop,vendor,,General store,1,0,1,,,100,poke-dollar,,,,pokedb
+cake-lure-base,legends-arceus,legends-arceus,shop,vendor,,Craftworks,1,0,1,,,100,poke-dollar,,,,pokedb
+cake-lure-base,legends-arceus,legends-arceus,shop,vendor,,Base camp stores,1,0,1,,,100,poke-dollar,,,,pokedb
+cake-lure-base,legends-arceus,legends-arceus,shop,vendor,ancient-retreat,Sold by Volo,1,0,1,,,100,poke-dollar,,"Available during Missions 14, 15, and 16 only",,pokedb
+calm-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+candy-truffle,legends-arceus,legends-arceus,story,,,"From Melli during Mission 18: ""The Counterpart""",0,0,1,3,,,,,During Mission 18: The Counterpart,,pokedb
+candy-truffle,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 33: ""What a Massive Mushroom!""",0,0,1,5,,,,,After completing Request 33,,pokedb
+candy-truffle,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mushroom harvest,1,0,0,,,,,,,,pokedb
+candy-truffle,legends-arceus,legends-arceus,dropped,,,Found by Ursaluna,1,0,0,,,,,,,,pokedb
+candy-truffle,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild-cart,Tuli,1,0,1,,,600,poke-dollar,,After starting Mission 10: The Lordless Island,,pokedb
+careful-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+caster-fern,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,"Dropped by Carnivine, Lickitung, Lickilicky, Glameow, Purugly, Hisuian Voltorb, and Hisuian Electrode",pokedb
+caster-fern,legends-arceus,legends-arceus,harvest,,,Farm,1,0,1,,,,,,,Vegetable harvest,pokedb
+caster-fern,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,,pokedb
+caster-fern,legends-arceus,legends-arceus,npc-gift,,,Adaman during Request 100: Massive Mass Outbreak in the Highlands,0,0,1,100,,,,,Completing Request 100,,pokedb
+caster-fern,legends-arceus,legends-arceus,npc-gift,,,Reward for completing Request 101: Massive Mass Outbreak in the Icelands,0,0,1,20,,,,,Completing Request 101,,pokedb
+caster-fern,legends-arceus,legends-arceus,overworld,recurring,,"Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,0,,,,,,,Recurring item,pokedb
+caster-fern,legends-arceus,legends-arceus,overworld,,crimson-mirelands,Haystacks,1,0,0,,,,,,,,pokedb
+celestica-flute,legends-arceus,legends-arceus,story,,,"Received from Adaman during Mission 7: ""The Frenzy of the Lord of the Woods""",0,0,1,,,,,,,,pokedb
+choice-dumpling,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 3 Caster Ferns, 1 Swordcap, 1 Direshroom, and 2 Hearty Grains",1,0,1,,,,,,,,pokedb
+crafting-kit,legends-arceus,legends-arceus,npc-gift,,horseshoe-plains,"Received from Rei/Akari during Mission 4: ""Getting to Work on Research Tasks""",0,0,1,,,,,,During Mission 4: Getting to Work on Research Tasks,,pokedb
+crunchy-salt,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,,pokedb
+crunchy-salt,legends-arceus,legends-arceus,harvest,,coronet-highlands,Ursaluna,1,0,0,,,,,,,Sometimes found,pokedb
+crunchy-salt,legends-arceus,legends-arceus,harvest,,alabaster-icelands,Ursaluna,1,0,0,,,,,,,Sometimes found,pokedb
+crunchy-salt,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,,pokedb
+crunchy-salt,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,,pokedb
+dazzling-honey,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 57: ""The Taste of Honey""",0,0,1,3,,,,,After completing Request 57,,pokedb
+dazzling-honey,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,Recurring item spawn,1,0,0,,,,,,,,pokedb
+dazzling-honey,legends-arceus,legends-arceus,harvest,,crimson-mirelands,Leaf piles,1,0,0,,,,,,,,pokedb
+dazzling-honey,legends-arceus,legends-arceus,harvest,,cobalt-coastlands,Leaf piles,1,0,0,,,,,,,,pokedb
+dazzling-honey,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+dazzling-honey,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,"Dropped by Beautifly, Dustox, Mothim, Combee, Heracross, Teddiursa, and Ursaring",pokedb
+dazzling-honey,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 1: ""Wurmple Can Evolve""",0,0,1,3,,,,,After completing Request 1,,pokedb
+direshroom,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,,pokedb
+direshroom,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+direshroom,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,,pokedb
+direshroom,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,,pokedb
+direshroom,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,480,poke-dollar,,"After starting Mission 10: ""The Lordless Island""",,pokedb
+doppel-bonnets,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,Recurring item spawn,pokedb
+doppel-bonnets,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,Recurring item spawn,pokedb
+doppel-bonnets,legends-arceus,legends-arceus,harvest,,,Farm mushroom harvest,1,0,1,,,,,,,,pokedb
+doppel-bonnets,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,480,poke-dollar,,After starting Mission 11: Scaling Perilous Heights,,pokedb
+draco-plate,legends-arceus,,request,,,"Lake Verity (If Mesprit was caught last)/Lake Valor (If Azelf was caught last)/Lake Acuity (If Uxie was caught last) (reward for catching Uxie, Mesprit, and Azelf during Mission 21: ""The Plate of the Lakes"")",0,0,1,,,,,,,,bulbapedia
+dread-plate,legends-arceus,,request,,moonview-arena,"Moonview Arena (reward for catching Cresselia during Mission 23: ""The Plate of Moonview Arena"")",0,0,1,,,,,,,,bulbapedia
+earth-plate,legends-arceus,,request,,sludge-mound,"Sludge Mound (reward for defeating Ursaluna during Mission 8: ""Arezu's Predicament"")",0,0,1,,,,,,,,bulbapedia
+eternal-ice,legends-arceus,legends-arceus,overworld,visible,avaluggs-legacy,On top of the biggest ice formation; requires Ride Braviary,0,0,1,,,,,,,,pokedb
+exp-candy-s,legends-arceus,legends-arceus,request,,jubilife-village,Rewards from multiple Requests,0,0,1,,,,,,By completing specific requests,,pokedb
+exp-candy-xl,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Vessa for collecting 90 wisps,0,0,1,,,,,,After collecting 90 wisps,,pokedb
+lafeather-ball,legends-arceus,,request,,,"Heights Camp (×15; reward for completing Request 15: ""Balloon Race in the Fieldlands"")",0,0,1,15,,,,,,,bulbapedia
+lafeather-ball,legends-arceus,,crafting,apricorn,,Crafting: 1 Apricorn and 1 Sky Tumblestone,1,0,1,,,,,,,,bulbapedia
+lafeather-ball,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 23: ""Getting Ahold of New Wares""",,bulbapedia
+lafeather-ball,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×30; randomly sold by Ginter),1,0,1,30,,,,,,,bulbapedia
+fine-remedy,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,Requires 1 Remedy and 1 Pep-Up Plant,,pokedb
+fine-remedy,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 29: ""The Search for Bitter Leaves""",0,0,1,3,,,,,,,pokedb
+fist-plate,legends-arceus,,request,,prelude-beach,"Prelude Beach (reward for defeating Kamado during Mission 25: ""The Plate of Prelude Beach"")",0,0,1,,,,,,,,bulbapedia
+flame-plate,legends-arceus,,request,,molten-arena,"Molten Arena (reward for defeating the noble Hisuian Arcanine during Mission 10: ""The Lordless Island"")",0,0,1,,,,,,,,bulbapedia
+forest-balm,legends-arceus,legends-arceus,story,,grandtree-arena,"During Mission 7: ""The Frenzy of the Lord of the Woods"" and post-game rematches",1,0,1,,,,,,During Mission 7 and in post-game rematches against Kleavor,,pokedb
+gentle-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+lagigaton-ball,legends-arceus,,event,,,Event,0,0,1,,,,,,,,bulbapedia
+lagigaton-ball,legends-arceus,,crafting,apricorn,,"Crafting: 1 Apricorn, 2 Black Tumblestones, and 2 Iron Chunks",1,0,1,,,,,,,,bulbapedia
+lagigaton-ball,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×20; randomly sold by Ginter),1,0,1,20,,,,,,,bulbapedia
+grain-cake,legends-arceus,legends-arceus,request,,,"Reward for completing Request 30: ""A Beautiful Rose...""",0,0,1,5,,,,,,,pokedb
+grain-cake,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,Requires 1 Hearty Grains and 1 Cake-Lure Base.,pokedb
+grain-cake,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Boxes,1,0,0,,,,,,,,pokedb
+grain-cake,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Boxes,1,0,0,,,,,,,,pokedb
+grain-cake,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 43: ""More New Wares""",,pokedb
+grain-cake,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold.,pokedb
+great-ball-hisuian,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 26: ""Aim for the Big Leagues!""",0,0,1,15,,,,,,,pokedb
+great-ball-hisuian,legends-arceus,legends-arceus,crafting,recipe,,"1 Apricorn, 1 Tumblestone, and 1 Iron Chunk",1,0,1,,,,,,,,pokedb
+great-ball-hisuian,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,300,poke-dollar,,"After completing Request 43: ""More New Wares""",,pokedb
+griseous-core,legends-arceus,legends-arceus,request,,turnback-cave,"Reward for completing Request 91: ""On the Trail of Giratina"" after catching or defeating Giratina",0,0,1,,,,,,,,pokedb
+grit-dust,legends-arceus,legends-arceus,tournament,,training-grounds,Random Path of Solitude reward,1,0,0,3,,,,,,,pokedb
+grit-dust,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 5: ""What It Takes to Be Awesome""",0,0,1,3,,,,,,,pokedb
+grit-dust,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,,pokedb
+grit-dust,legends-arceus,legends-arceus,story,,pastures,Obtained after releasing Pokémon,1,0,1,,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"From Lian during Mission 10: ""The Lordless Island""",0,0,1,3,,,,,During Mission 10,,pokedb
+grit-gravel,legends-arceus,legends-arceus,request,,,"Reward for completing Request 35: ""Battling with Pachirisu""",0,0,1,,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,request,,,"Reward for completing Request 40: ""The Charm Lost in the Swamp""",0,0,1,,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 41: ""An Elegant Tail""",0,0,1,2,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,request,,ginkgo-landing,"Reward for completing Request 56: ""Getting Help from Machoke""",0,0,1,3,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,dropped,,pastures,After releasing Pokémon,1,0,0,,,,,,,,pokedb
+grit-gravel,legends-arceus,legends-arceus,exchange,,training-grounds,Trade 10 Grit Dusts with Zisu,1,0,1,,,10,,,,,pokedb
+grit-pebble,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"From Lian during Mission 10: ""The Lordless Island""",0,0,1,2,,,,,During Mission 10,,pokedb
+grit-pebble,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Vessa for collecting 60 wisps,0,0,1,5,,,,,After collecting 60 wisps,,pokedb
+grit-pebble,legends-arceus,legends-arceus,request,,pearl-settlement,"Reward for completing Request 84: ""The Bergmite Enthusiast""",0,0,1,3,,,,,After completing Request 84,,pokedb
+grit-pebble,legends-arceus,legends-arceus,achievement,,galaxy-hall,From Cyllene for achieving Ninth Star rank,0,0,1,20,,,,,After achieving Ninth Star rank,,pokedb
+grit-pebble,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,,pokedb
+grit-pebble,legends-arceus,legends-arceus,dropped,,pastures,After releasing Pokémon,1,0,0,,,,,,,,pokedb
+grit-pebble,legends-arceus,legends-arceus,exchange,,training-grounds,Trade 10 Grit Gravels with Zisu,1,0,1,1,,10,,,,Cost is 10 Grit Gravels,pokedb
+grit-pebble,legends-arceus,legends-arceus,npc-defeat,,moonview-arena,From Melli for defeating noble Electrode in a rematch without taking damage,1,0,1,3,,,,,Defeat noble Electrode in a rematch without taking damage,,pokedb
+grit-pebble,legends-arceus,legends-arceus,npc-defeat,,icepeak-arena,From Gaeric for defeating noble Avalugg in a rematch without taking damage,1,0,1,3,,,,,Defeat noble Avalugg in a rematch without taking damage,,pokedb
+grit-rock,legends-arceus,legends-arceus,request,,training-grounds,Reward for completing Request 88: Steely Lucario,0,0,1,,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,npc-gift,,jubilife-village,From Vessa for collecting 100 wisps,0,0,1,3,,,,,After collecting 100 wisps,,pokedb
+grit-rock,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for completing Request 91: On the Trail of Giratina,0,0,1,,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,request,,floaro-gardens,Reward for completing Request 92: A Token of Gratitude,0,0,1,,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,request,,oreburrow-tunnel,Reward for completing Request 103: Digging for Tomorrow,0,0,1,,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,request,,training-grounds,Reward for completing Request 104: Battling the Security Corps' Secret Weapon,0,0,1,3,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,From Cyllene for achieving Full Star rank,0,0,1,10,,,,,After achieving Full Star rank,,pokedb
+grit-rock,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,dropped,,pastures,After releasing Pokémon,1,0,0,,,,,,,,pokedb
+grit-rock,legends-arceus,legends-arceus,exchange,,training-grounds,Trade 10 Grit Pebbles with Zisu,1,0,1,,,10,,,,Cost is in Grit Pebbles,pokedb
+grit-rock,legends-arceus,legends-arceus,tournament,,,Eternal Battle Reverie,1,0,0,,,,,,,,pokedb
+hasty-mint,legends-arceus,legends-arceus,harvest,,,Farm mint harvest,1,0,0,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Recurring item locations,1,0,1,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Budew,1,0,0,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Roselia,1,0,0,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Roserade,1,0,0,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Yanma,1,0,0,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,dropped,,,Dropped by wild Yanmega,1,0,0,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,harvest,,,Farm (vegetable harvest),1,0,1,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+hearty-grains,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,Recurring item locations,1,0,1,,,,,,,,pokedb
+heavy-ball,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,120,poke-dollar,,After completing Request 23: Getting Ahold of New Wares,,pokedb
+heavy-ball,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,30,,,poke-dollar,,,Randomly sold.,pokedb
+heavy-ball,legends-arceus,legends-arceus,request,,,Reward for completing Request 36: Watering with Care,0,0,1,15,,,,,,,pokedb
+heavy-ball,legends-arceus,legends-arceus,crafting,recipe,,Crafting with 1 Apricorn and 1 Black Tumblestone,1,0,1,,,,,,,,pokedb
+hometown-muffin,legends-arceus,legends-arceus,request,,jubilife-village,Given by Floaro after completing Request 48,0,0,1,,,,,,"After giving Floaro 3 Hearty Grains, 2 Hopo Berries, and 1 Razz Berry",,pokedb
+honey-cake,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 12: ""A Perfect Pickling Stone""",0,0,1,3,,,,,,,pokedb
+honey-cake,legends-arceus,legends-arceus,crafting,recipe,,1 Dazzling Honey and 1 Cake-Lure Base,1,0,1,,,,,,,,pokedb
+honey-cake,legends-arceus,legends-arceus,dropped,,cobalt-coastlands,Boxes,1,0,0,,,,,,,,pokedb
+honey-cake,legends-arceus,legends-arceus,dropped,,coronet-highlands,Boxes,1,0,0,,,,,,,,pokedb
+honey-cake,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 23: ""Getting Ahold of New Wares""",,pokedb
+honey-cake,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold,pokedb
+hopo-berry,legends-arceus,legends-arceus,berry-tree,,,"Yellow berry trees in Crimson Mirelands, Coronet Highlands, and Alabaster Icelands",1,0,0,,,,,,,,pokedb
+hopo-berry,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Usual berry harvest,1,0,0,,,,,,,,pokedb
+hopo-berry,legends-arceus,legends-arceus,shop,vendor,jubilife-village,"Ginkgo Guild cart (Ginter, random)",1,0,0,10,,,,,,,pokedb
+hopo-berry,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,0,,,,,,,,pokedb
+hopo-berry,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 29: ""The Search for Bitter Leaves""",0,0,1,5,,,,,,,pokedb
+icicle-plate,legends-arceus,,request,,icepeak-arena,"Icepeak Arena (reward for defeating the noble Hisuian Avalugg during Mission 12: ""The Slumbering Lord of the Tundra"")",0,0,1,,,,,,,,bulbapedia
+impish-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,1,,,,,,,,pokedb
+insect-plate,legends-arceus,,request,,grandtree-arena,"Grandtree Arena (reward for defeating the noble Kleavor during Mission 7: ""The Frenzy of the Lord of the Woods"")",0,0,1,,,,,,,,bulbapedia
+iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,,pokedb
+iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,,pokedb
+iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+iron-barktongue,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,,pokedb
+iron-barktongue,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,,pokedb
+iron-barktongue,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,pokedb
+iron-chunk,legends-arceus,legends-arceus,request,,,Request 40: The Charm Lost in the Swamp,0,0,1,5,,,,,,,pokedb
+iron-chunk,legends-arceus,legends-arceus,mining,,oreburrow-tunnel,Breakable rock,1,0,1,3,,,,,,,pokedb
+iron-chunk,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+iron-chunk,legends-arceus,legends-arceus,walking-pokemon,,,Found by Ursaluna,1,0,0,,,,,,,Sometimes,pokedb
+iron-plate,legends-arceus,,request,,lava-dome-sanctum,"Lava Dome Sanctum (reward for catching Heatran during Mission 22: ""The Plate of Firespit Island"")",0,0,1,,,,,,,,bulbapedia
+lajet-ball,legends-arceus,,event,,,Event,0,0,1,,,,,,,,bulbapedia
+lajet-ball,legends-arceus,,crafting,apricorn,,"Crafting: 1 Apricorn, 2 Sky Tumblestones, and 2 Iron Chunks",1,0,1,,,,,,,,bulbapedia
+lajet-ball,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×20; randomly sold by Ginter),1,0,1,20,,,,,,,bulbapedia
+jolly-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+jubilife-muffin,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 2 Hearty Grains, 2 Hopo Berries, 1 Razz Berry, and 1 Cake-Lure Base",1,0,1,,,,,,,,pokedb
+kings-leaf,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Medicinal harvest,1,0,0,,,,,,,,pokedb
+kings-leaf,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,1000,poke-dollar,,"After starting Mission 12: ""The Slumbering Lord of the Tundra""",,pokedb
+kings-leaf,legends-arceus,legends-arceus,overworld,visible,,"Leaf piles in Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,0,,,,,,,,pokedb
+kings-leaf,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Reward for completing Request 57: ""The Taste of Honey""",0,0,1,3,,,,,,,pokedb
+kings-leaf,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,0,,,,,,,Recurring item,pokedb
+lax-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+laleaden-ball,legends-arceus,,crafting,apricorn,,"Crafting: 1 Apricorn, 1 Black Tumblestone, and 1 Iron Chunk",1,0,1,,,,,,,,bulbapedia
+laleaden-ball,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 61: ""Even More New Wares""",,bulbapedia
+laleaden-ball,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×20; randomly sold by Ginter),1,0,1,20,,,,,,,bulbapedia
+laleaden-ball,legends-arceus,,npc-gift,,practice-field,Practice field (random balloon minigame reward),1,0,1,,,,,,,,bulbapedia
+laleaden-ball,legends-arceus,,npc-gift,,cobalt-coastlands,Cobalt Coastlands Balloon Race (random reward),1,0,1,,,,,,,,bulbapedia
+legend-plate,legends-arceus,legends-arceus,story,,hall-of-origin,"Reward for defeating Arceus during Mission 27: ""The Deified Pokémon""",0,0,1,,,,,,,,pokedb
+linking-cord,legends-arceus,legends-arceus,story,,jubilife-village,Reward from Vessa for collecting 50 wisps; Request 64: Getting to Know Ghosts,0,0,1,,,,,,,,pokedb
+linking-cord,legends-arceus,legends-arceus,exchange,,trading-post,Trading Post,1,0,1,,,1000,league-point,,,Cost is in Merit Points (MP),pokedb
+linking-cord,legends-arceus,legends-arceus,shop,vendor,jubilife-village,"Ginkgo Guild cart (Ginter, sold as Mysterious Cord)",1,0,0,,,,,,,Randomly sold,pokedb
+linking-cord,legends-arceus,legends-arceus,overworld,recurring,,Space-time distortions,1,0,0,,,,,,,,pokedb
+lonely-mint,legends-arceus,legends-arceus,harvest,,,Farm,1,0,0,,,,,,,Mint harvest,pokedb
+lost-satchel,legends-arceus,legends-arceus,overworld,recurring,,Various points in every area except Jubilife Village and the Ancient Retreat,1,0,1,,,,,,,,pokedb
+lustrous-globe,legends-arceus,legends-arceus,story,,pearl-settlement,"Reward for defeating Irida to complete Request 90: ""The Pearl Clan's Treasure""",0,0,1,,,,,,,,pokedb
+marsh-balm,legends-arceus,legends-arceus,story,,valor-cavern-hisui,"During Mission 15: ""The Trial of Lake Valor""",0,0,1,,,,,,During Mission 15,,pokedb
+marsh-balm,legends-arceus,legends-arceus,story,,brava-arena,"During Mission 8: ""Arezu's Predicament"" and post-game rematches",1,0,1,,,,,,During Mission 8,,pokedb
+meadow-plate,legends-arceus,,request,,brava-arena,"Brava Arena (reward for defeating the noble Hisuian Lilligant during Mission 8: ""Arezu's Predicament"")",0,0,1,,,,,,,,bulbapedia
+medicinal-leek,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,Haystacks,1,0,0,,,,,,,,pokedb
+medicinal-leek,legends-arceus,legends-arceus,harvest,,jubilife-village,Farm (medicinal harvest),1,0,1,,,,,,,,pokedb
+medicinal-leek,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,pokedb
+medicinal-leek,legends-arceus,legends-arceus,dropped,,,Dropped by wild Pokémon,1,0,0,,,,,,,,pokedb
+medicinal-leek,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,1,,,,,,,,pokedb
+mesprits-plume,legends-arceus,legends-arceus,story,,verity-cavern-hisui,"Obtained from Mesprit after passing its challenge during Mission 14: ""The Trial of Lake Verity""",0,0,1,,,,,,During Mission 14: The Trial of Lake Verity,,pokedb
+mild-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+mountain-balm,legends-arceus,legends-arceus,story,,moonview-arena,During Mission 11: Scaling Perilous Heights and post-game rematches,1,0,1,,,,,,During Mission 11 and post-game rematches,,pokedb
+mushroom-cake,legends-arceus,legends-arceus,crafting,recipe,,1 Springy Mushroom and 1 Cake-Lure Base,1,0,1,1,,,,,,,pokedb
+mushroom-cake,legends-arceus,legends-arceus,overworld,visible,cobalt-coastlands,Boxes,1,0,0,1,,,,,,,pokedb
+mushroom-cake,legends-arceus,legends-arceus,overworld,visible,coronet-highlands,Boxes,1,0,0,1,,,,,,,pokedb
+mushroom-cake,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,1,,400,poke-dollar,,After completing Request 23: Getting Ahold of New Wares,,pokedb
+mushroom-cake,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold,pokedb
+mysterious-balm,legends-arceus,legends-arceus,story,,hall-of-origin,"During Mission 27: ""The Deified Pokémon"" and in rematches",1,0,1,,,,,,During Mission 27 after gaining access to the Hall of Origin,,pokedb
+naive-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+naughty-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+odd-keystone,legends-arceus,,request,,jubilife-village,"Jubilife Village (from Vessa after completing Mission 7: ""The Frenzy of the Lord of the Woods"")",0,0,1,,,,,,,,bulbapedia
+old-journal,legends-arceus,legends-arceus,overworld,visible,avalanche-slopes,Near two Snorunt during Request 82: Traces of a Lost Village,0,0,1,,,,,,During Request 82: Traces of a Lost Village,,pokedb
+old-verse-01,legends-arceus,legends-arceus,field-move,,gapejaw-bog,,0,0,1,,,,,,While riding Ursaluna,,pokedb
+laorigin-ball,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (from Professor Laventon after obtaining the Origin Ore during Mission 18: ""The Counterpart"")",0,0,1,,,,,,,,bulbapedia
+origin-ore,legends-arceus,legends-arceus,npc-gift,,primeval-grotto,"Received from Lian inside the cave after defeating the Miss Fortunes during Mission 18: ""The Counterpart""",0,0,1,,,,,,"After defeating the Miss Fortunes during Mission 18: ""The Counterpart""",,pokedb
+peat-block,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (reward for completing Request 86: ""Gone Astray...in the Icelands"")",0,0,1,,,,,,,,bulbapedia
+peat-block,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Hunk of Coal"")",1,0,1,,,,,,,,bulbapedia
+peat-block,legends-arceus,,overworld,,,Sometimes found by Ursaluna,1,0,1,,,,,,,,bulbapedia
+pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,dropped,,,"Dropped by wild Stantler, Wyrdeer, Hisuian Sneasel, and Sneasler",1,0,0,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,harvest,,jubilife-village,Farm (medicinal harvest),1,0,1,,,,,,,,pokedb
+pep-up-plant,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,,,,"After starting Mission 10: ""The Lordless Island""",,pokedb
+pixie-plate,legends-arceus,,request,,ancient-retreat,"Ancient Retreat (from Cogita after giving her three pieces of Wood during Mission 26: ""Seeking the Remaining Plates"")",0,0,1,,,,,,,,bulbapedia
+plump-beans,legends-arceus,legends-arceus,harvest,,,Farm (vegetable harvest),1,0,0,,,,,,,,pokedb
+plump-beans,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Recurring item,1,0,1,,,,,,,,pokedb
+plump-beans,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+plump-beans,legends-arceus,legends-arceus,walking-pokemon,,cobalt-coastlands,Found by Ursaluna,1,0,0,,,,,,,,pokedb
+poke-ball-hisuian,legends-arceus,legends-arceus,request,,jubilife-village,Reward for completing Request 2: Adorable Starly,0,0,1,10,,,,,,,pokedb
+poke-ball-hisuian,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,Professor Laventon after starting Mission 2: The Galaxy Team's Entry Trial,0,0,1,20,,,,,After starting Mission 2,,pokedb
+poke-ball-hisuian,legends-arceus,legends-arceus,request,,deertrack-path,Reward for completing Request 13: Trees That Bear Berries,0,0,1,15,,,,,,,pokedb
+poke-ball-hisuian,legends-arceus,legends-arceus,crafting,recipe,,1 Apricorn and 1 Tumblestone,1,0,1,1,,,,,,,pokedb
+poke-ball-hisuian,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,100,poke-dollar,,,,pokedb
+pokeshi-doll,legends-arceus,legends-arceus,request,,jubilife-village,"Reward for completing Request 18: ""Please! Make me a Pokéshi Doll!""",0,0,1,,,,,,,,pokedb
+pokeshi-doll,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 3 Wood,1,0,1,,,,,,,,pokedb
+pop-pod,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+pop-pod,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,,pokedb
+pop-pod,legends-arceus,legends-arceus,dropped,,,,1,0,0,,,,,,,Dropped by wild Pokémon,pokedb
+pop-pod,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+quiet-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,1,,,,,,,,pokedb
+rash-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+red-chain,legends-arceus,,npc-gift,,shrouded-ruins,Shrouded Ruins (created by the lake guardians after obtaining the respective materials from each of them),0,0,1,,,,,,,,bulbapedia
+relaxed-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+remedy,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 2 Bugworts,1,0,1,1,,,,,,,pokedb
+reveal-glass,legends-arceus,,npc-gift,,ancient-retreat,Ancient Retreat (from Cogita after completing the Pokédex entries of all the forces of nature),0,0,1,,,,,,,,bulbapedia
+salt-cake,legends-arceus,legends-arceus,crafting,recipe,,Requires 1 Crunchy Salt and 1 Cake-Lure Base,1,0,1,,,,,,,,pokedb
+salt-cake,legends-arceus,legends-arceus,request,,galaxy-hall,"Reward for completing Request 67: ""The Clefairy's Moonlit Dance""",0,0,1,5,,,,,,,pokedb
+salt-cake,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,400,poke-dollar,,"After completing Request 71: ""New Wares Yet Again""",,pokedb
+salt-cake,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild-cart,Randomly sold by Ginter (×10),1,0,0,10,,,,,,,pokedb
+sand-radish,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,Recurring item spawn,1,0,1,,,,,,,,pokedb
+sand-radish,legends-arceus,legends-arceus,harvest,,,Farm vegetable harvest,1,0,1,,,,,,,,pokedb
+sand-radish,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,,,,"After starting Mission 12: ""The Slumbering Lord of the Tundra""",,pokedb
+sassy-mint,legends-arceus,legends-arceus,harvest,,,Farm (mint harvest),1,0,0,,,,,,,,pokedb
+scatter-bang,legends-arceus,legends-arceus,tournament,,practice-field,Balloon minigame reward,1,0,0,,,,,,,Random reward.,pokedb
+scatter-bang,legends-arceus,legends-arceus,npc-gift,,veilstone-cape,"Reward for completing Request 49: ""Keep an Eye Out for Aipom!""",0,0,1,5,,,,,,,pokedb
+scatter-bang,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,Requires 1 Pop Pod and 1 Caster Fern.,pokedb
+scatter-bang,legends-arceus,legends-arceus,dropped,,cobalt-coastlands,Boxes and chests,1,0,0,,,,,,,,pokedb
+scatter-bang,legends-arceus,legends-arceus,dropped,,coronet-highlands,Boxes and chests,1,0,0,,,,,,,,pokedb
+scatter-bang,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,10,,,,,,Randomly sold.,pokedb
+scatter-bang,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,500,poke-dollar,,"After completing Request 43: ""More New Wares""",,pokedb
+secret-medicine,legends-arceus,legends-arceus,npc-gift,,galaxy-hall,From Tomma after speaking with Martia at the Diamond Settlement,0,0,1,,,,,,Request 32: The Headache-Stricken Psyduck,,pokedb
+seed-of-mastery,legends-arceus,legends-arceus,dropped,,,Dropped by wild alpha Pokémon,1,0,0,1,,,,,,,pokedb
+seed-of-mastery,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Vessa, for collecting 20 wisps",0,0,1,1,,,,,After collecting 20 wisps,,pokedb
+seed-of-mastery,legends-arceus,legends-arceus,npc-gift,,jubilife-village,"Vessa, for collecting 80 wisps",0,0,1,3,,,,,After collecting 80 wisps,,pokedb
+seed-of-mastery,legends-arceus,legends-arceus,request,,ramanas-island,Reward for completing Request 51: Coming Up Roses,0,0,1,1,,,,,,,pokedb
+serious-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+shiny-charm,legends-arceus,,npc-gift,,galaxy-hall,"Galaxy Hall 1F (from Cyllene after reaching research level 10 for all Pokémon in the game, excluding Mythical Pokémon except Arceus)",0,0,1,,,,,,,,bulbapedia
+sky-plate,legends-arceus,,request,,snowpoint-temple,"Snowpoint Temple (reward for defeating Hisuian Braviary during Mission 12: ""The Slumbering Lord of the Tundra"")",0,0,1,,,,,,,,bulbapedia
+sky-tumblestone,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,,pokedb
+sky-tumblestone,legends-arceus,legends-arceus,request,,ginkgo-landing,"Reward for completing Request 98: ""Massive Mass Outbreak in the Coastlands""",0,0,1,30,,,,,,,pokedb
+sky-tumblestone,legends-arceus,legends-arceus,mining,,,Blue ore deposits,1,0,0,,,,,,,"Found in Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, and Alabaster Icelands",pokedb
+sky-tumblestone,legends-arceus,legends-arceus,harvest,,,Sometimes found by Ursaluna,1,1,0,,,,,,,,pokedb
+smoke-bomb,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,400,poke-dollar,,After completing Request 23,,pokedb
+smoke-bomb,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Boxes and chests,1,0,0,,,,,,,,pokedb
+smoke-bomb,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Boxes and chests,1,0,0,,,,,,,,pokedb
+smoke-bomb,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for completing Request 37 and Request 38,0,0,1,5,,,,,After completing specific requests,,pokedb
+smoke-bomb,legends-arceus,legends-arceus,request,,jubilife-village,Reward for completing Request 96,0,0,1,20,,,,,After completing Request 96,,pokedb
+smoke-bomb,legends-arceus,legends-arceus,crafting,recipe,,Craft using 1 Sootfoot Root and 1 Caster Fern,1,0,1,,,,,,,,pokedb
+snow-balm,legends-arceus,legends-arceus,story,,icepeak-arena,"During Mission 12: ""The Slumbering Lord of the Tundra"" and post-game rematches",1,0,1,,,,,,,,pokedb
+sootfoot-root,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+sootfoot-root,legends-arceus,legends-arceus,harvest,,,Farm (vegetable harvest),1,0,1,,,,,,,,pokedb
+sootfoot-root,legends-arceus,legends-arceus,crafting,craftworks,,,1,0,1,,,,,,,,pokedb
+sootfoot-root,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,,pokedb
+sootfoot-root,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,,pokedb
+space-balm,legends-arceus,legends-arceus,story,,temple-of-sinnoh,"During Mission 18: ""The Counterpart"" and post-game rematches if Adaman was chosen in Mission 13",1,0,1,,,,,,"Choose Adaman during Mission 13: ""Disaster Looming""",,pokedb
+spoiled-apricorn,legends-arceus,legends-arceus,harvest,,,Apricorn trees,1,0,0,,,,,,,Found in all regions,pokedb
+spoiled-apricorn,legends-arceus,legends-arceus,npc-gift,,,Adaman during Request 100: Massive Mass Outbreak in the Highlands,0,0,1,100,,,,,During Request 100,,pokedb
+spoiled-apricorn,legends-arceus,legends-arceus,overworld,recurring,,Leaf piles,1,0,0,,,,,,,,pokedb
+spoiled-apricorn,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Apricorn harvest,1,0,1,,,,,,,,pokedb
+springy-mushroom,legends-arceus,legends-arceus,harvest,,,"Leaf piles in Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,0,,,,,,,,pokedb
+springy-mushroom,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,1,,,,,,,Recurring item spawns,pokedb
+springy-mushroom,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+springy-mushroom,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,,pokedb
+springy-mushroom,legends-arceus,legends-arceus,tournament,,obsidian-fieldlands,Balloon Race random reward,1,0,0,,,,,,,,pokedb
+springy-mushroom,legends-arceus,legends-arceus,dropped,,obsidian-fieldlands,Sometimes found by Ursaluna,1,0,0,,,,,,,,pokedb
+stealth-spray,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 1 Hopo Berry and 3 Bugworts,1,0,1,,,,,,,,pokedb
+stealth-spray,legends-arceus,legends-arceus,overworld,visible,cobalt-coastlands,Chests,1,0,0,,,,,,,,pokedb
+stealth-spray,legends-arceus,legends-arceus,overworld,visible,coronet-highlands,Chests,1,0,0,,,,,,,,pokedb
+stealth-spray,legends-arceus,legends-arceus,shop,vendor,,General store and base camp stores,1,0,1,,,800,poke-dollar,,"After completing Request 43: ""More New Wares""",,pokedb
+stealth-spray,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Ginter),1,0,0,5,,,,,,Randomly sold,pokedb
+sticky-glob,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,800,poke-dollar,,After completing Request 71: New Wares Yet Again,,pokedb
+sticky-glob,legends-arceus,legends-arceus,story,,sacred-plaza,Reward for completing Request 87: Rolling with Spheal,0,0,1,5,,,,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,story,,jubilife-village,From Gaeric during Request 98: Massive Mass Outbreak in the Coastlands,0,0,1,30,,,,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,crafting,recipe,,"Crafted using 1 Ball of Mud, 1 Spoiled Apricorn, and 1 Caster Fern",1,0,1,,,,,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,Found in boxes and chests,1,0,0,,,,,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,Found in boxes and chests,1,0,0,,,,,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,shop,vendor,ginkgo-guild-cart,Randomly sold by Ginter,1,0,0,10,,,poke-dollar,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,contest,,practice-field,Random reward from balloon minigame,1,0,0,,,,,,,,pokedb
+sticky-glob,legends-arceus,legends-arceus,contest,,alabaster-icelands,Balloon Race random reward,1,0,0,,,,,,,,pokedb
+superb-remedy,legends-arceus,legends-arceus,crafting,recipe,,Crafting using 1 Fine Remedy and 1 Vivichoke,1,0,1,,,,,,,,pokedb
+survival-charm,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Folk Shrine (Charm Lady Lucille),1,0,1,,,,,,,,pokedb
+swap-snack,legends-arceus,legends-arceus,crafting,recipe,,,1,0,1,,,,,,,"Requires 1 Candy Truffle, 1 Sootfoot Root, 1 Springy Mushroom, and 1 Hopo Berry.",pokedb
+swordcap,legends-arceus,legends-arceus,harvest,,,Farm (mushroom harvest),1,0,1,,,,,,,,pokedb
+swordcap,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands",1,0,1,,,,,,,,pokedb
+swordcap,legends-arceus,legends-arceus,shop,vendor,,Ginkgo Guild cart (Tuli),1,0,1,,,240,poke-dollar,,,,pokedb
+tempting-charm,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Folk Shrine (Charm Lady Lucille),1,0,1,,,,,,,,pokedb
+time-balm,legends-arceus,legends-arceus,story,,temple-of-sinnoh,"During Mission 18: The Counterpart, and post-game rematches if Irida was chosen during Mission 13: Disaster Looming",1,0,1,,,,,,Choose Irida during Mission 13: Disaster Looming,,pokedb
+timid-mint,legends-arceus,legends-arceus,harvest,,jubilife-village-farm,Mint harvest,1,0,0,,,,,,,,pokedb
+torn-journal,legends-arceus,legends-arceus,overworld,visible,arenas-approach,Near two Snorunt in the Alabaster Icelands,0,0,1,,,,,,During Request 82: Traces of a Lost Village,,pokedb
+toxic-plate,legends-arceus,,request,,clamberclaw-cliffs,"Clamberclaw Cliffs (reward from Sneasler during Mission 11: ""Scaling Perilous Heights"")",0,0,1,,,,,,,,bulbapedia
+tumblestone,legends-arceus,legends-arceus,harvest,,,Sometimes found by Ursaluna,1,0,0,,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,story,,jubilife-village,From Rei/Akari during Mission 3: The Basics of Crafting,0,0,1,20,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for completing Request 95: A New Anomaly,0,0,1,60,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,request,,,Reward for completing Request 96: Massive Mass Outbreak in the Fieldlands,0,0,1,30,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,request,,ginkgo-landing,Reward for completing Request 98: Massive Mass Outbreak in the Coastlands,0,0,1,30,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,request,,,Reward for completing Request 100: Massive Mass Outbreak in the Highlands,0,0,1,30,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,mining,,,Red ore deposits in Hisui,1,0,0,,,,,,,,pokedb
+tumblestone,legends-arceus,legends-arceus,crafting,craftworks,,Craftworks,1,0,1,,,,,,,,pokedb
+twice-spiced-radish,legends-arceus,legends-arceus,crafting,recipe,,"Crafting using 2 Sand Radishes, 2 Crunchy Salts, 2 Plump Beans, and 2 King's Leaves",1,0,1,,,,,,,,pokedb
+twice-spiced-radish,legends-arceus,legends-arceus,request,,,"Reward for completing Request 22: ""Eerie Apparitions in the Night""",0,0,1,3,,,,,,,pokedb
+ultra-ball-hisui,legends-arceus,legends-arceus,story,,temple-of-sinnoh,From Kamado during Mission 17: Atop Mount Coronet,0,0,1,10,,,,,During Mission 17,,pokedb
+ultra-ball-hisui,legends-arceus,legends-arceus,request,,,Reward for Request 47: Balloon Race in the Coastlands,0,0,1,,,,,,After completing Request 47,,pokedb
+ultra-ball-hisui,legends-arceus,legends-arceus,request,,galaxy-hall,Reward for Request 95: A New Anomaly,0,0,1,30,,,,,After completing Request 95,,pokedb
+ultra-ball-hisui,legends-arceus,legends-arceus,crafting,recipe,,"1 Apricorn, 2 Tumblestones, 2 Iron Chunks",1,0,1,,,,,,,,pokedb
+ultra-ball-hisui,legends-arceus,legends-arceus,shop,vendor,jubilife-village,General store and base camp stores,1,0,1,,,600,poke-dollar,,After completing Request 71: New Wares Yet Again,,pokedb
+up-grade,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+up-grade,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Mysterious Box"")",1,0,1,,,,,,,,bulbapedia
+up-grade,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+uxies-claw,legends-arceus,legends-arceus,npc-gift,,acuity-cavern-hisui,"Received from Uxie after passing its challenge during Mission 16: ""The Trial of Lake Acuity""",0,0,1,,,,,,After completing Mission 16: The Trial of Lake Acuity,,pokedb
+vivichoke,legends-arceus,legends-arceus,harvest,,jubilife-village,Farm (medicinal harvest),1,0,0,,,,,,,,pokedb
+vivichoke,legends-arceus,legends-arceus,request,,,Reward for completing Request 11: The Timbre of the Fields,0,0,1,3,,,,,,,pokedb
+vivichoke,legends-arceus,legends-arceus,request,,jubilife-village,Reward for completing Request 17: To Bloom or Not to Bloom,0,0,1,5,,,,,,,pokedb
+vivichoke,legends-arceus,legends-arceus,overworld,recurring,,"Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands",1,0,0,,,,,,,Recurring item spawn,pokedb
+vivichoke,legends-arceus,legends-arceus,harvest,,crimson-mirelands,Haystacks,1,0,0,,,,,,,,pokedb
+vivichoke,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Ginkgo Guild cart (Tuli),1,0,1,,,400,poke-dollar,,,,pokedb
+volcano-balm,legends-arceus,legends-arceus,story,,molten-arena,"During Mission 10: ""The Lordless Island"" and post-game rematches",1,0,1,,,,,,"During Mission 10: ""The Lordless Island""",,pokedb
+wall-fragment,legends-arceus,legends-arceus,story,,golden-lowlands,"From the Miss Fortune sisters after defeating Coin during Mission 8: ""Arezu's Predicament""",0,0,1,,,,,,"During Mission 8: ""Arezu's Predicament""",,pokedb
+warding-charm,legends-arceus,legends-arceus,shop,vendor,jubilife-village,Folk Shrine (Charm Lady Lucille),1,0,1,,,,,,,,pokedb
+lawing-ball,legends-arceus,,crafting,apricorn,,"Crafting: 1 Apricorn, 1 Sky Tumblestone, and 1 Iron Chunk",1,0,1,,,,,,,,bulbapedia
+lawing-ball,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 61: ""Even More New Wares""",,bulbapedia
+lawing-ball,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×20; randomly sold by Ginter),1,0,1,20,,,,,,,bulbapedia
+lawing-ball,legends-arceus,,npc-gift,,practice-field,Practice field (random balloon minigame reward),1,0,1,,,,,,,,bulbapedia
+lawing-ball,legends-arceus,,npc-gift,,cobalt-coastlands,Cobalt Coastlands Balloon Race (random reward),1,0,1,,,,,,,,bulbapedia
+wood,legends-arceus,legends-arceus,overworld,recurring,crimson-mirelands,,1,0,1,,,,,,,,pokedb
+wood,legends-arceus,legends-arceus,overworld,recurring,cobalt-coastlands,,1,0,1,,,,,,,,pokedb
+wood,legends-arceus,legends-arceus,overworld,recurring,coronet-highlands,,1,0,1,,,,,,,,pokedb
+wood,legends-arceus,legends-arceus,overworld,recurring,alabaster-icelands,,1,0,1,,,,,,,,pokedb
+wood,legends-arceus,legends-arceus,dropped,,,Dropped by wild Scyther,1,0,0,,,,,,,,pokedb
+wood,legends-arceus,legends-arceus,overworld,recurring,obsidian-fieldlands,,1,0,1,,,,,,,,pokedb
+zap-plate,legends-arceus,,request,,moonview-arena,"Moonview Arena (reward for defeating the noble Hisuian Electrode during Mission 11: ""Scaling Perilous Heights"")",0,0,1,,,,,,,,bulbapedia
+potion,legends-arceus,,npc-defeat,,jubilife-village,Jubilife Village (×5; from Volo after defeating him),0,0,1,5,,,,,,,bulbapedia
+potion,legends-arceus,,request,,jubilife-village,"Jubilife Village (×3; reward for completing Request 3: ""What Did Shinx's Ears Look Like?"")",0,0,1,3,,,,,,,bulbapedia
+potion,legends-arceus,,crafting,,,Crafting: 1 Oran Berry and 1 Medicinal Leek,1,0,1,,,,,,,,bulbapedia
+potion,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,,,bulbapedia
+potion,legends-arceus,,overworld,,ancient-retreat,"Ancient Retreat (sold by Volo, during Missions 14, 15, and 16 only)",1,0,1,,,,,,,,bulbapedia
+potion,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+potion,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+full-restore,legends-arceus,,request,,,"Icepeak Camp (×3; reward for completing Request 81: ""In Search of a Fiery Pokémon"")",0,0,1,3,,,,,,,bulbapedia
+full-restore,legends-arceus,,crafting,,,Crafting: 1 Max Potion and 1 Full Heal,1,0,1,,,,,,,,bulbapedia
+full-restore,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 71: ""New Wares Yet Again""",,bulbapedia
+full-restore,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+full-restore,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+max-potion,legends-arceus,,crafting,,,Crafting: 1 Sitrus Berry and 1 King's Leaf,1,0,1,,,,,,,,bulbapedia
+max-potion,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 61: ""Even More New Wares""",,bulbapedia
+max-potion,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+max-potion,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+hyper-potion,legends-arceus,,request,,tombolo-walk,"Tombolo Walk (×3; reward for completing Request 55: ""Poor, Peckish Piplup"")",0,0,1,3,,,,,,,bulbapedia
+hyper-potion,legends-arceus,,crafting,,,Crafting: 1 Super Potion and 1 Vivichoke,1,0,1,,,,,,,,bulbapedia
+hyper-potion,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 43: ""More New Wares""",,bulbapedia
+hyper-potion,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+hyper-potion,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+super-potion,legends-arceus,,npc-defeat,,jubilife-village,Jubilife Village (×3; from Volo after defeating him),0,0,1,3,,,,,,,bulbapedia
+super-potion,legends-arceus,,crafting,,,Crafting: 1 Potion and 1 Pep-Up Plant,1,0,1,,,,,,,,bulbapedia
+super-potion,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 23: ""Getting Ahold of New Wares""",,bulbapedia
+super-potion,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+super-potion,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+full-heal,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (×3; reward for completing Request 34: ""Croagunk's Curative Poison"")",0,0,1,3,,,,,,,bulbapedia
+full-heal,legends-arceus,,crafting,,,"Crafting: 1 Cheri Berry, 1 Pecha Berry, 1 Rawst Berry, and 1 Aspear Berry",1,0,1,,,,,,,,bulbapedia
+full-heal,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 43: ""More New Wares""",,bulbapedia
+full-heal,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+full-heal,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+revive,legends-arceus,,request,,jubilife-village,"Jubilife Village (×3; reward for completing Request 14: ""Berry Helpful"")",0,0,1,3,,,,,,,bulbapedia
+revive,legends-arceus,,crafting,,,Crafting: 1 Vivichoke and 2 Medicinal Leeks,1,0,1,,,,,,,,bulbapedia
+revive,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,,,bulbapedia
+revive,legends-arceus,,overworld,,ancient-retreat,"Ancient Retreat (sold by Volo, during Missions 14, 15, and 16 only)",1,0,1,,,,,,,,bulbapedia
+revive,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+revive,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+max-revive,legends-arceus,,request,,jubilife-village,"Jubilife Village (from a child during Mission 17: ""Atop Mount Coronet"")",0,0,1,,,,,,,,bulbapedia
+max-revive,legends-arceus,,request,,diamond-settlement,"Diamond Settlement (reward for completing Request 32: ""The Headache-Stricken Psyduck"")",0,0,1,,,,,,,,bulbapedia
+max-revive,legends-arceus,,request,,bonechill-wastes,"Bonechill Wastes (×2; reward for completing Request 74: ""A Bit of Help from Blissey"")",0,0,1,2,,,,,,,bulbapedia
+max-revive,legends-arceus,,crafting,,,Crafting: 1 Revive and 2 King's Leaves,1,0,1,,,,,,,,bulbapedia
+max-revive,legends-arceus,,shop,,,"General store, base camp stores",1,0,1,,,,,,"after completing Request 71: ""New Wares Yet Again""",,bulbapedia
+max-revive,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×3; randomly sold by Ginter),1,0,1,3,,,,,,,bulbapedia
+max-revive,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (sold by Volo, during Mission 17: ""Atop Mount Coronet"" only)",1,0,1,,,,,,,,bulbapedia
+max-revive,legends-arceus,,request,,,"Stone Portal (sold by Volo, during Mission 18: ""The Counterpart"" only)",1,0,1,,,,,,,,bulbapedia
+max-ether,legends-arceus,,crafting,,,Crafting: 1 Leppa Berry and 2 Pep-Up Plants,1,0,1,,,,,,,,bulbapedia
+max-elixir,legends-arceus,,crafting,,,Crafting: 1 Max Ether and 2 King's Leaves,1,0,1,,,,,,,,bulbapedia
+rare-candy,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 8: ""Bothersome Bidoof"", Request 15: ""Balloon Race in the Fieldlands"", Request 28: ""Measuring Your Compatibility"", Request 52: ""Eevee's Evolutions"", Request 85: ""At Home under the Eaves"")",0,0,1,,,,,,,,bulbapedia
+rare-candy,legends-arceus,,npc-gift,,jubilife-village,Jubilife Village (from Vessa for collecting 10 wisps),0,0,1,,,,,,,,bulbapedia
+rare-candy,legends-arceus,,request,,sacred-plaza,"Sacred Plaza (reward for completing Request 87: ""Rolling with Spheal"")",0,0,1,,,,,,,,bulbapedia
+rare-candy,legends-arceus,,npc-gift,,galaxy-hall,Galaxy Hall (×10; from Cyllene upon achieving Ninth Star rank),0,0,1,10,,,,,,,bulbapedia
+rare-candy,legends-arceus,,npc-gift,,galaxy-hall,Galaxy Hall (×20; from Cyllene upon achieving Full Star rank),0,0,1,20,,,,,,,bulbapedia
+rare-candy,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+rare-candy,legends-arceus,,npc-gift,,,Any Balloon Race (perfect clear reward),1,0,1,,,,,,,,bulbapedia
+old-gateau,legends-arceus,,crafting,,,"Crafting: 1 Plump Beans, 1 Dazzling Honey, 1 Sootfoot Root, and 1 Cake-Lure Base",1,0,1,,,,,,,,bulbapedia
+dire-hit,legends-arceus,,crafting,,,Crafting: 2 Direshrooms and 1 Candy Truffle,1,0,1,,,,,,,,bulbapedia
+red-shard,legends-arceus,,npc-gift,,obsidian-falls,"Obsidian Falls (from a man, if the player chose his right hand)",0,0,1,,,,,,,,bulbapedia
+red-shard,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+blue-shard,legends-arceus,,npc-gift,,obsidian-falls,"Obsidian Falls (from a man, if the player chose his left hand)",0,0,1,,,,,,,,bulbapedia
+blue-shard,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+green-shard,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+sun-stone,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 85: ""At Home under the Eaves"")",0,0,1,,,,,,,,bulbapedia
+sun-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+sun-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Sunlike Rock"")",1,0,1,,,,,,,,bulbapedia
+sun-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+moon-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+moon-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Moonlike Rock"")",1,0,1,,,,,,,,bulbapedia
+moon-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+moon-stone,legends-arceus,,overworld,,,Sometimes found by Ursaluna,1,0,1,,,,,,,,bulbapedia
+fire-stone,legends-arceus,,overworld,,,"Red ore deposits (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands)",1,0,1,,,,,,,,bulbapedia
+fire-stone,legends-arceus,,overworld,,,Black ore deposits (Cobalt Coastlands),1,0,1,,,,,,,,bulbapedia
+fire-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+fire-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Flame-Patterned Rock"")",1,0,1,,,,,,,,bulbapedia
+fire-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+fire-stone,legends-arceus,,overworld,,,Path of Tenacity,1,0,1,,,,,,,,bulbapedia
+thunder-stone,legends-arceus,,overworld,,,"Black ore deposits (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands)",1,0,1,,,,,,,,bulbapedia
+thunder-stone,legends-arceus,,overworld,,,"Blue ore deposits (Crimson Mirelands, Cobalt Coastlands)",1,0,1,,,,,,,,bulbapedia
+thunder-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+thunder-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Lightning-Bolt Rock"")",1,0,1,,,,,,,,bulbapedia
+thunder-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+water-stone,legends-arceus,,overworld,,,"Blue ore deposits (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands)",1,0,1,,,,,,,,bulbapedia
+water-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+water-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Water-Droplet Rock"")",1,0,1,,,,,,,,bulbapedia
+water-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+leaf-stone,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 73: ""Which Is the Real Burmy?"")",0,0,1,,,,,,,,bulbapedia
+leaf-stone,legends-arceus,,request,,ginkgo-landing,"Ginkgo Landing (reward for completing Request 106: ""Adaman's Hope"")",0,0,1,,,,,,,,bulbapedia
+leaf-stone,legends-arceus,,overworld,,,"Leaf piles (Crimson Mirelands, Cobalt Coastlands, Coronet Highlands)",1,0,1,,,,,,,,bulbapedia
+leaf-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+leaf-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Leaf-Imprinted Rock"")",1,0,1,,,,,,,,bulbapedia
+leaf-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+stardust,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 7: ""Playing With Drifloon"")",0,0,1,,,,,,,,bulbapedia
+stardust,legends-arceus,,request,,jubilife-village,"Jubilife Village (×3; reward for completing Request 39: ""All About Magikarp"")",0,0,1,3,,,,,,,bulbapedia
+stardust,legends-arceus,,overworld,,,"Shiny ore deposits (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+stardust,legends-arceus,,npc-gift,,alabaster-icelands,Alabaster Icelands Balloon Race (random reward),1,0,1,,,,,,,,bulbapedia
+stardust,legends-arceus,,wild-pokemon,,,Dropped by the Miss Fortunes after rematches,1,0,1,,,,,,,,bulbapedia
+stardust,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+star-piece,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 50: ""Double the Tails, Double the Fun"")",0,0,1,,,,,,,,bulbapedia
+star-piece,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (reward for completing Request 58: ""Gone Astray...in the Coastlands"")",0,0,1,,,,,,,,bulbapedia
+star-piece,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (×2; reward for completing Request 69: ""Gone Astray...in the Highlands"")",0,0,1,2,,,,,,,bulbapedia
+star-piece,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (×3; reward for completing Request 77: ""Gone Astray...in the Fieldlands"")",0,0,1,3,,,,,,,bulbapedia
+star-piece,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (×5; reward for completing Request 86: ""Gone Astray...in the Icelands"")",0,0,1,5,,,,,,,bulbapedia
+star-piece,legends-arceus,,request,,jubilife-village,"Jubilife Village (×3; reward for completing Request 99: ""Tricky Treat Strategy"")",0,0,1,3,,,,,,,bulbapedia
+star-piece,legends-arceus,,crafting,,,"Crafting: 3 Red Shards, 3 Blue Shards, 3 Green Shards, and 1 Stardust",1,0,1,,,,,,,,bulbapedia
+star-piece,legends-arceus,,overworld,,,Sometimes found by Ursaluna,1,0,1,,,,,,,,bulbapedia
+star-piece,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,request,,jubilife-village,"Jubilife Village (reward for completing Request 26: ""Aim for the Big Leagues!"")",0,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,request,,,"Coastlands Camp (reward for completing Request 47: ""Balloon Race in the Coastlands"")",0,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,request,,,"Icepeak Camp (×3; reward for completing Request 79: ""Balloon Race in the Icelands"")",0,0,1,3,,,,,,,bulbapedia
+nugget,legends-arceus,,request,,,"Summit Camp (×5; reward for completing Request 105: ""The Ultimate Balloon Race"")",0,0,1,5,,,,,,,bulbapedia
+nugget,legends-arceus,,overworld,,,"Chests (Cobalt Coastlands, Coronet Highlands)",1,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,npc-gift,,practice-field,Practice field (random balloon minigame reward),1,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,npc-gift,,,Any Balloon Race (perfect clear reward),1,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,wild-pokemon,,,Dropped by the Miss Fortunes after rematches,1,0,1,,,,,,,,bulbapedia
+nugget,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+shiny-stone,legends-arceus,,request,,bonechill-wastes,"Bonechill Wastes (reward for completing Request 74: ""A Bit of Help from Blissey"")",0,0,1,,,,,,,,bulbapedia
+shiny-stone,legends-arceus,,overworld,,,"Red ore deposits (Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+shiny-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,200 MP)",1,0,1,,,,,,,,bulbapedia
+shiny-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Dazzling Rock"")",1,0,1,,,,,,,,bulbapedia
+shiny-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+shiny-stone,legends-arceus,,overworld,,,Path of Tenacity,1,0,1,,,,,,,,bulbapedia
+dusk-stone,legends-arceus,,npc-gift,,jubilife-village,Jubilife Village (from Vessa for collecting 30 wisps),0,0,1,,,,,,,,bulbapedia
+dusk-stone,legends-arceus,,overworld,,,"Black ore deposits (Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+dusk-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,200 MP)",1,0,1,,,,,,,,bulbapedia
+dusk-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Deep-Dark Rock"")",1,0,1,,,,,,,,bulbapedia
+dusk-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+dawn-stone,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (reward for completing Request 82: ""Traces of a Lost Village"")",0,0,1,,,,,,,,bulbapedia
+dawn-stone,legends-arceus,,request,,obsidian-fieldlands,"Obsidian Fieldlands (reward for completing Request 102: ""Daybreak"")",0,0,1,,,,,,,,bulbapedia
+dawn-stone,legends-arceus,,overworld,,,"Blue ore deposits (Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+dawn-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,200 MP)",1,0,1,,,,,,,,bulbapedia
+dawn-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Eye-Like Rock"")",1,0,1,,,,,,,,bulbapedia
+dawn-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+oval-stone,legends-arceus,,npc-gift,,jubilife-village,Jubilife Village (from Vessa for collecting 5 wisps),0,0,1,,,,,,,,bulbapedia
+oval-stone,legends-arceus,,overworld,,trading-post,Trading post (400 MP),1,0,1,,,,,,,,bulbapedia
+oval-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Egg-Like Rock"")",1,0,1,,,,,,,,bulbapedia
+cheri-berry,legends-arceus,,berry-tree,,,Blue and red berry trees (Obsidian Fieldlands),1,0,1,,,,,,,,bulbapedia
+cheri-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Shinx, Luxio, Luxray, Elekid, Electabuzz, and Electivire",1,0,1,,,,,,,,bulbapedia
+cheri-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,bulbapedia
+chesto-berry,legends-arceus,,berry-tree,,,"Blue berry trees (Crimson Mirelands, Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+chesto-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Zubat, Golbat, Crobat, Mime Jr., Mr. Mime, Gastly, Haunter, and Gengar",1,0,1,,,,,,,,bulbapedia
+chesto-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,bulbapedia
+pecha-berry,legends-arceus,,berry-tree,,,"Pink berry trees (Cobalt Coastlands, Crimson Mirelands)",1,0,1,,,,,,,,bulbapedia
+pecha-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Tentacool, Tentacruel, Stunky, and Skuntank",1,0,1,,,,,,,,bulbapedia
+pecha-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,bulbapedia
+rawst-berry,legends-arceus,,berry-tree,,,Blue berry trees (Cobalt Coastlands),1,0,1,,,,,,,,bulbapedia
+rawst-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Ponyta, Rapidash, Hisuian Growlithe, Hisuian Arcanine, Vulpix, Ninetales, Magby, Magmar, and Magmortar",1,0,1,,,,,,,,bulbapedia
+rawst-berry,legends-arceus,,request,,ginkgo-guild-cart,"Ginkgo Guild cart (Tuli, after starting Mission 10: ""The Lordless Island"")",1,0,1,,,,,,,,bulbapedia
+aspear-berry,legends-arceus,,berry-tree,,,"Yellow berry trees (Crimson Mirelands, Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+aspear-berry,legends-arceus,,wild-pokemon,,,Dropped by wild Vulpix,1,0,1,,,,,,,,bulbapedia
+aspear-berry,legends-arceus,,request,,ginkgo-guild-cart,"Ginkgo Guild cart (Tuli, after starting Mission 10: ""The Lordless Island"")",1,0,1,,,,,,,,bulbapedia
+leppa-berry,legends-arceus,,berry-tree,,,"Red berry trees (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+leppa-berry,legends-arceus,,berry-tree,,,Blue berry trees (Obsidian Fieldlands),1,0,1,,,,,,,,bulbapedia
+leppa-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Togepi, Togetic, Togekiss, Cleffa, Clefairy, and Clefable",1,0,1,,,,,,,,bulbapedia
+leppa-berry,legends-arceus,,overworld,,,Farm (usual berry harvest),1,0,1,,,,,,,,bulbapedia
+leppa-berry,legends-arceus,,request,,ginkgo-guild-cart,"Ginkgo Guild cart (Tuli, after starting Mission 11: ""Scaling Perilous Heights"")",1,0,1,,,,,,,,bulbapedia
+oran-berry,legends-arceus,,request,,jubilife-village,"Jubilife Village (×5; reward for completing Request 4: ""Big Buizel, Little Buizel"")",0,0,1,5,,,,,,,bulbapedia
+oran-berry,legends-arceus,,berry-tree,,,"Blue berry trees (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+oran-berry,legends-arceus,,berry-tree,,,"Yellow berry trees (Obsidian Fieldlands, Coronet Highlands)",1,0,1,,,,,,,,bulbapedia
+oran-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Rowlet, Cyndaquil, Oshawott, Bidoof, Bibarel, Pichu, Pikachu, Chimchar, Buneary, Lopunny, Barboach, Pachirisu, Turtwig, and Piplup",1,0,1,,,,,,,,bulbapedia
+oran-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,bulbapedia
+lum-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Burmy, Wormadam, Cherubi, Cherrim, Petilil, and Hisuian Lilligant",1,0,1,,,,,,,,bulbapedia
+lum-berry,legends-arceus,,overworld,,,Farm (usual Berry harvest),1,0,1,,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,request,,grandtree-arena,"Grandtree Arena (×3; from Irida during Mission 7: ""The Frenzy of the Lord of the Woods"")",0,0,1,3,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,request,,,"Mirelands Camp (×3; reward for completing Request 35: ""Battling with Pachirisu"")",0,0,1,3,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,berry-tree,,,"Yellow berry trees (Obsidian Fieldlands, Coronet Highlands)",1,0,1,,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,berry-tree,,,"Blue berry trees (Crimson Mirelands, Cobalt Coastlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Dartrix, Hisuian Decidueye, Quilava, Hisuian Typhlosion, Dewott, Hisuian Samurott, Raichu, Snorlax, Whiscash, Grotle, Torterra, Prinplup, Empoleon, Monferno, Infernape, Munchlax, and Ursaluna",1,0,1,,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,overworld,,,Farm (usual berry harvest),1,0,1,,,,,,,,bulbapedia
+sitrus-berry,legends-arceus,,request,,ginkgo-guild-cart,"Ginkgo Guild cart (Tuli, after starting Mission 11: ""Scaling Perilous Heights"")",1,0,1,,,,,,,,bulbapedia
+figy-berry,legends-arceus,,overworld,,,Farm (special berry harvest),1,0,1,,,,,,,,bulbapedia
+wiki-berry,legends-arceus,,overworld,,,Farm (special berry harvest),1,0,1,,,,,,,,bulbapedia
+mago-berry,legends-arceus,,overworld,,,Farm (special berry harvest),1,0,1,,,,,,,,bulbapedia
+aguav-berry,legends-arceus,,request,,,"Mirelands or Bogbound Camp (×20; from Melli during Request 97: ""Massive Mass Outbreak in the Mirelands"")",0,0,1,20,,,,,,,bulbapedia
+aguav-berry,legends-arceus,,request,,,"Snowfields or Icepeak Camp (×30; from Lian during Request 99: ""Tricky Treat Strategy"")",0,0,1,30,,,,,,,bulbapedia
+aguav-berry,legends-arceus,,npc-gift,,,Possible Balloon Race reward,1,0,1,,,,,,,,bulbapedia
+aguav-berry,legends-arceus,,overworld,,,Massive mass outbreaks,1,0,1,,,,,,,,bulbapedia
+aguav-berry,legends-arceus,,overworld,,,Farm (special berry harvest),1,0,1,,,,,,,,bulbapedia
+iapapa-berry,legends-arceus,,overworld,,,Farm (special berry harvest),1,0,1,,,,,,,,bulbapedia
+razz-berry,legends-arceus,,request,,jubilife-village,"Jubilife Village (×5; reward for completing Request 19: ""A Peculiar Ponyta"")",0,0,1,5,,,,,,,bulbapedia
+razz-berry,legends-arceus,,request,,tombolo-walk,"Tombolo Walk (×5; reward for completing Request 55: ""Poor, Peckish Piplup"")",0,0,1,5,,,,,,,bulbapedia
+razz-berry,legends-arceus,,berry-tree,,,"Red berry trees (Obsidian Fieldlands, Crimson Mirelands, Cobalt Coastlands, Coronet Highlands, Alabaster Icelands)",1,0,1,,,,,,,,bulbapedia
+razz-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Eevee, Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, Glaceon, Sylveon, Happiny, Chansey, and Blissey",1,0,1,,,,,,,,bulbapedia
+razz-berry,legends-arceus,,overworld,,,Farm (usual berry harvest),1,0,1,,,,,,,,bulbapedia
+razz-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×10; randomly sold by Ginter),1,0,1,10,,,,,,,bulbapedia
+razz-berry,legends-arceus,,request,,ginkgo-guild-cart,"Ginkgo Guild cart (Tuli, after starting Mission 11: ""Scaling Perilous Heights"")",1,0,1,,,,,,,,bulbapedia
+razz-berry,legends-arceus,,npc-gift,,practice-field,Practice field (random balloon minigame reward),1,0,1,,,,,,,,bulbapedia
+razz-berry,legends-arceus,,npc-gift,,obsidian-fieldlands,Obsidian Fieldlands Balloon Race (random reward),1,0,1,,,,,,,,bulbapedia
+nanab-berry,legends-arceus,,request,,jubilife-village,"Jubilife Village (×7; reward for completing Request 16: ""Strange Happenings at Midnight"")",0,0,1,7,,,,,,,bulbapedia
+nanab-berry,legends-arceus,,berry-tree,,,"Pink berry trees (Obsidian Fieldlands, Cobalt Coastlands)",1,0,1,,,,,,,,bulbapedia
+nanab-berry,legends-arceus,,wild-pokemon,,,"Dropped by wild Aipom, Ambipom, and Shellos",1,0,1,,,,,,,,bulbapedia
+nanab-berry,legends-arceus,,overworld,,,Farm (usual berry harvest),1,0,1,,,,,,,,bulbapedia
+nanab-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×10; randomly sold by Ginter),1,0,1,10,,,,,,,bulbapedia
+nanab-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (Tuli),1,0,1,,,,,,,,bulbapedia
+pinap-berry,legends-arceus,,berry-tree,,,"Yellow berry trees (Obsidian Fieldlands, Cobalt Coastlands)",1,0,1,,,,,,,,bulbapedia
+pinap-berry,legends-arceus,,wild-pokemon,,,Dropped by wild Gastrodon,1,0,1,,,,,,,,bulbapedia
+pinap-berry,legends-arceus,,overworld,,,Farm (usual berry harvest),1,0,1,,,,,,,,bulbapedia
+pinap-berry,legends-arceus,,overworld,,ginkgo-guild-cart,Ginkgo Guild cart (×10; randomly sold by Ginter),1,0,1,10,,,,,,,bulbapedia
+pinap-berry,legends-arceus,,request,,ginkgo-guild-cart,"Ginkgo Guild cart (Tuli, after starting Mission 10: ""The Lordless Island"")",1,0,1,,,,,,,,bulbapedia
+metal-coat,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+metal-coat,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Metallic Spread"")",1,0,1,,,,,,,,bulbapedia
+metal-coat,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+splash-plate,legends-arceus,,request,,ginkgo-landing,"Ginkgo Landing (reward from Basculegion after giving him Basculegion Food during Mission 10: ""The Lordless Island"")",0,0,1,,,,,,,,bulbapedia
+mind-plate,legends-arceus,,request,,,"Heights Camp (reward from Wyrdeer during Mission 7: ""The Frenzy of the Lord of the Woods"")",0,0,1,,,,,,,,bulbapedia
+stone-plate,legends-arceus,,request,,grueling-grove,"Grueling Grove (reward for defeating the alpha Vespiquen during Mission 20: ""The Researcher of Myths"")",0,0,1,,,,,,,,bulbapedia
+spooky-plate,legends-arceus,,request,,temple-of-sinnoh,"Temple of Sinnoh (reward for defeating Volo and Giratina during Mission 26: ""Seeking the Remaining Plates"")",0,0,1,,,,,,,,bulbapedia
+protector,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+protector,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Unwieldy Armor"")",1,0,1,,,,,,,,bulbapedia
+protector,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+electirizer,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+electirizer,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Electric Box"")",1,0,1,,,,,,,,bulbapedia
+electirizer,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+magmarizer,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+magmarizer,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Magma Box"")",1,0,1,,,,,,,,bulbapedia
+magmarizer,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+dubious-disc,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+dubious-disc,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Transparent Mechanism"")",1,0,1,,,,,,,,bulbapedia
+dubious-disc,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+reaper-cloth,legends-arceus,,npc-gift,,jubilife-village,Jubilife Village (from Vessa for collecting 70 wisps),0,0,1,,,,,,,,bulbapedia
+reaper-cloth,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+reaper-cloth,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Mysterious Cloth"")",1,0,1,,,,,,,,bulbapedia
+reaper-cloth,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+razor-claw,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+razor-claw,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Mystery Claw"")",1,0,1,,,,,,,,bulbapedia
+razor-claw,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+razor-fang,legends-arceus,,overworld,,trading-post,"Trading post (1,400 MP)",1,0,1,,,,,,,,bulbapedia
+razor-fang,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Mystery Fang"")",1,0,1,,,,,,,,bulbapedia
+razor-fang,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+secret-potion,legends-arceus,,npc-gift,,galaxy-hall,"Galaxy Hall (from Tomma, after speaking with Martia at the Diamond Settlement)",0,0,1,,,,,,,,bulbapedia
+gracidea,legends-arceus,,request,,,"Fieldlands Camp (from Medi during Request 92: ""A Token of Gratitude"")",0,0,1,,,,,,,,bulbapedia
+comet-shard,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (×3; reward for completing Request 66: ""The Sea's Legend"")",0,0,1,3,,,,,,,bulbapedia
+comet-shard,legends-arceus,,request,,,"Lake Valor (×3; reward for completing Request 89: ""The Diamond Clan's Treasure"")",0,0,1,3,,,,,,,bulbapedia
+comet-shard,legends-arceus,,request,,pearl-settlement,"Pearl Settlement (×3; reward for completing Request 90: ""The Pearl Clan's Treasure"")",0,0,1,3,,,,,,,bulbapedia
+comet-shard,legends-arceus,,request,,galaxy-hall,"Galaxy Hall (from Kamado, after completing Mission 25: ""The Plate of Prelude Beach"")",0,0,1,,,,,,,,bulbapedia
+comet-shard,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
+snowball,legends-arceus,,overworld,,,Snow piles (Alabaster Icelands),1,0,1,,,,,,,,bulbapedia
+ice-stone,legends-arceus,,request,,diamond-settlement,"Diamond Settlement (reward for completing Request 107: ""Irida's Wish"")",0,0,1,,,,,,,,bulbapedia
+ice-stone,legends-arceus,,overworld,,,Snow piles (Alabaster Icelands),1,0,1,,,,,,,,bulbapedia
+ice-stone,legends-arceus,,overworld,,trading-post,"Trading post (1,000 MP)",1,0,1,,,,,,,,bulbapedia
+ice-stone,legends-arceus,,overworld,,ginkgo-guild-cart,"Ginkgo Guild cart (randomly sold by Ginter, as ""Snow-Patterned Rock"")",1,0,1,,,,,,,,bulbapedia
+ice-stone,legends-arceus,,overworld,,,Space-time distortions,1,0,1,,,,,,,,bulbapedia
