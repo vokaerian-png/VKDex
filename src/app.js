@@ -1107,14 +1107,16 @@
   }
 
   // Reuses the Found In popup's collapsible-area markup verbatim: one
-  // <details> per version group, its acquisition lines inside.
+  // <details> per version group, its acquisition lines inside. Always
+  // renders — no `where` data at all, or none matching `bagGame`, shows a
+  // placeholder line instead of hiding the card, so the (large) upstream
+  // data gap is visible rather than silent (0.4.1).
   function itemWhereCardHtml(it) {
     var where = (it.where || []).filter(function (w) {
       return !bagGame || w.vg === bagGame;
     });
-    if (!where.length) return "";
     return '<div class="detail-section"><p class="detail-section-label">Where to Find</p>' +
-      where.map(function (w) {
+      (where.length ? where.map(function (w) {
         var lines = w.lines.map(function (l) {
           var text = escapeHtml(l.type);
           if (l.place) text += " &middot; " + escapeHtml(l.place);
@@ -1123,7 +1125,7 @@
         }).join("");
         return '<details class="popup-row area-row"' + (where.length === 1 ? " open" : "") +
           "><summary>" + escapeHtml(w.games) + '</summary><div class="area-encs">' + lines + "</div></details>";
-      }).join("") + "</div>";
+      }).join("") : '<div class="enc-line">No location data recorded yet.</div>') + "</div>";
   }
 
   function renderItemDetail() {

@@ -11,3 +11,4 @@ tools/
 package-lock.json
 CLAUDE.md
 .claude/
+scrape_bulbapedia.bat
