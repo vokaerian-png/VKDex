@@ -1,6 +1,6 @@
 <img src="image.png" align="right" width="220" hspace="20" alt="VKDex screenshot">
 
-![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) [<img alt="Windows Release" src="https://img.shields.io/badge/Windows-v0.3.21-0078D6?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.21) [<img alt="Android Release" src="https://img.shields.io/badge/Android-v0.3.15-3DDC84?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.15) [<img alt="License" src="https://img.shields.io/badge/license-BSD--3--Clause-brightgreen">](https://github.com/vokaerian-png/VKDex/blob/main/LICENSE.md)
+![Static Badge](https://img.shields.io/badge/ClaudeAI-orange?style=for-the-badge) [<img alt="Windows Release" src="https://img.shields.io/badge/Windows-v0.3.25-0078D6?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.25) [<img alt="Android Release" src="https://img.shields.io/badge/Android-v0.3.15-3DDC84?style=for-the-badge">](https://github.com/vokaerian-png/VKDex/releases/tag/v0.3.15) [<img alt="License" src="https://img.shields.io/badge/license-BSD--3--Clause-brightgreen">](https://github.com/vokaerian-png/VKDex/blob/main/LICENSE.md)
 
 
 
