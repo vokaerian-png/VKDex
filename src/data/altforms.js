@@ -96,6 +96,42 @@ var ALT_FORMS = {
       { key: "snowy", name: "Snowy Form", sprite: "castform_snowy", types: ["Ice"] }
     ]
   },
+  854: { // Sinistea — Phony (default, in POKEMON_DATA) + Antique. Cosmetic-only:
+    // pokemon_forms.csv's id 10344 has no row in pokemon_stats.csv /
+    // pokemon_types.csv / pokemon_abilities.csv, so it shares the base's
+    // stats/types/abilities exactly and sets none of those fields. NOT
+    // recolorOnly by user decision 2026-09-07 — both formes stay their own
+    // always-visible bubble (rule 7 shape, Floette 670 precedent) instead of
+    // collapsing into rule 6's "+N" popup gallery.
+    // 3 bubbles (user decision 2026-09-07): Front | Phony | Antique. There are
+    // 3 distinct renders in play — the species' shipped default sprite and a
+    // separate Bulbapedia "Phony" render of the *same* in-game form at another
+    // camera angle — so bubble 0's `baseName` is the literal "Front" (an angle,
+    // not a form name; the exception to the baseName-is-a-forme-name convention
+    // used elsewhere), and "Phony" gets its own bubble. `hideInEvoLine` keeps
+    // both cosmetic formes from relabeling the Evolution Line card's self node.
+    baseName: "Front",
+    formes: [
+      { key: "phony", name: "Phony", sprite: "sinistea_phony", hideInEvoLine: true },
+      { key: "antique", name: "Antique", sprite: "sinistea_antique", hideInEvoLine: true }
+    ]
+  },
+  855: { // Polteageist — same 3-bubble cosmetic-only case as Sinistea 854 above
+    // (form id 10345, no stats/types/abilities rows): Front | Phony | Antique,
+    // bubble 0 labeled by camera angle since "Phony" has its own render.
+    baseName: "Front",
+    formes: [
+      { key: "phony", name: "Phony", sprite: "polteageist_phony", hideInEvoLine: true },
+      { key: "antique", name: "Antique", sprite: "polteageist_antique", hideInEvoLine: true }
+    ]
+  },
+  741: { // Oricorio — 4 nectar-driven styles (Baile is the base/default, already in pokemon.js); differently-typed (secondary type only), stats/ability identical across all forms — CSV-confirmed
+    formes: [
+      { key: "pom-pom", name: "Pom-Pom Style", sprite: "oricorio_pom_pom", types: ["Electric", "Flying"] },
+      { key: "pau", name: "Pa’u Style", sprite: "oricorio_pau", types: ["Psychic", "Flying"] },
+      { key: "sensu", name: "Sensu Style", sprite: "oricorio_sensu", types: ["Ghost", "Flying"] }
+    ]
+  },
   201: { // Unown — rule 6, 28 pure-recolor letter formes (A-Z, !, ?)
     recolorOnly: true,
     formes: [
@@ -834,6 +870,25 @@ var ALT_FORMS = {
       { key: "roaming", name: "Roaming Form", sprite: "gimmighoul_roaming",
         stats: { hp: 45, attack: 30, defense: 25, spAttack: 75, spDefense: 45, speed: 80 },
         abilities: ["Run Away"] }
+    ]
+  },
+  1012: { // Poltchageist — 3-bubble cosmetic-only case, same as Sinistea 854 /
+    // Polteageist 855 above (form id 10447 has no stats/types/abilities rows of
+    // its own), likewise not recolorOnly: Front | Counterfeit | Artisan, bubble
+    // 0 labeled by camera angle since "Counterfeit" has its own render.
+    baseName: "Front",
+    formes: [
+      { key: "counterfeit", name: "Counterfeit", sprite: "poltchageist_counterfeit", hideInEvoLine: true },
+      { key: "artisan", name: "Artisan", sprite: "poltchageist_artisan", hideInEvoLine: true }
+    ]
+  },
+  1013: { // Sinistcha — same as Poltchageist 1012 above (form id 10448):
+    // Front | Unremarkable | Masterpiece, bubble 0 labeled by camera angle
+    // since "Unremarkable" has its own render.
+    baseName: "Front",
+    formes: [
+      { key: "unremarkable", name: "Unremarkable", sprite: "sinistcha_unremarkable", hideInEvoLine: true },
+      { key: "masterpiece", name: "Masterpiece", sprite: "sinistcha_masterpiece", hideInEvoLine: true }
     ]
   },
   1017: { // Ogerpon — rule 7: the 3 extra masks each add a second type AND

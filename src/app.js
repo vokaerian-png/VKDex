@@ -1070,7 +1070,11 @@
       body = altFormsRecolorBubbleHtml(entry, data);
     } else {
       var anyTappable = data.formes.some(altFormeTappable);
-      body = anyTappable ? altFormStageHtml("", entry.name, displaySpriteUrl(entry.id), " altform-active") : "";
+      // Optional per-species `baseName` (0.3.20): the base bubble's own forme
+      // name where the species has one (Sinistea's "Phony", Sinistcha's
+      // "Unremarkable"), so the row reads Phony/Antique rather than repeating
+      // the species name. Unset everywhere else → base bubble stays entry.name.
+      body = anyTappable ? altFormStageHtml("", data.baseName || entry.name, displaySpriteUrl(entry.id), " altform-active") : "";
       body += data.formes.map(function (forme) {
         return altFormStageHtml(forme.key, forme.name, altFormSpriteUrl(forme.sprite), altFormeTappable(forme) ? "" : " altform-inert");
       }).join("");
@@ -1273,7 +1277,14 @@
   // from a specific forme of this species (fromFormeKey, set above) — the
   // ancestor that actually produces that branch, not its base form.
   function evoStageForme(id, nextStep) {
-    if (id === detailEntryId && activeFormeKey) return findForme(id, activeFormeKey);
+    if (id === detailEntryId && activeFormeKey) {
+      // `hideInEvoLine` (0.3.20): a purely cosmetic forme (Sinistea's Antique
+      // and friends) shouldn't relabel this chain's node — the evolution line
+      // stays on the base species no matter which bubble is active. Picture/
+      // Facts/Alt Formes cards read activeFormeKey directly and are unaffected.
+      var selfForme = findForme(id, activeFormeKey);
+      return selfForme && selfForme.hideInEvoLine ? null : selfForme;
+    }
     if (nextStep && nextStep.via && nextStep.via.fromFormeKey) return findForme(id, nextStep.via.fromFormeKey);
     return null;
   }

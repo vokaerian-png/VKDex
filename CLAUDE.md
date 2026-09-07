@@ -257,7 +257,7 @@ per change, max 999 (rollover behavior TBD). User-specified 2026-09-02.
 **0.1.40 → 0.2.0 was a user-directed exception** — a deliberate minor-
 version jump, not a +1 continuation; not a new standing pattern.
 
-**Current version: 0.3.15.** Mirror on every bump, across all of:
+**Current version: 0.3.20.** Mirror on every bump, across all of:
 `src/data.js`'s `APP_VERSION` (feeds the "VKDex v<version>" line in
 Settings, `#appVersion`), root `package.json`, `src-tauri/tauri.conf.json`,
 and `src-tauri/Cargo.toml` (plus `Cargo.lock`'s own `vkdex` line — a build
@@ -267,6 +267,15 @@ regenerates it anyway, but hand-bumping keeps the tree clean).
 `TODO.md`/`HISTORY.md`) and `tools/`-only changes don't trigger a bump —
 only `src/` changes do. User-confirmed 2026-09-02. The changelog lives in
 `HISTORY.md`, not here.
+
+**Same-session minor-fix exception (user-specified 2026-09-07):** if a
+version has already been bumped earlier in the *current* session, a further
+minor fix continuing that same work (a follow-up correction, not a new
+feature) does not get its own bump — fold it into the already-bumped
+version's existing `HISTORY.md` entry instead (amend in place, don't append
+a new heading). Only applies when a bump already happened this session; the
+first `src/` change of a session still bumps normally regardless of how
+small it is.
 
 ---
 
@@ -488,7 +497,7 @@ unless stated otherwise.
   commitments.
 - **`PLAN.md`**: definitive statements about planned/future functionality.
   Only actual commitments; unpromoted ideas stay in `TODO.md`.
-- **`HISTORY.md`**: the 15 most recent version-history entries, newest
+- **`HISTORY.md`**: the 10 most recent version-history entries, newest
   first, one heading per bump (§6c).
 - **`HISTORY_ARCHIVE.md`**: `HISTORY.md`'s compacted overflow (§6c).
 - **`HISTORY_PUSH.md`**: the current version's release notes for
@@ -554,12 +563,13 @@ working. User-specified 2026-09-06.
 
 ## 6c. HISTORY.md rolling window + HISTORY_ARCHIVE.md
 
-User-directed 2026-09-06 (token/speed concern). `HISTORY.md` keeps only
-its **15** most recent version entries; new entries are still written
-there in full. Once a 16th accumulates, architect compacts the oldest —
-a few lines: what shipped, key numbers, any decision a later session might
-need to cite, not the full mechanism/verification detail — and moves it
-into `HISTORY_ARCHIVE.md`. Compact entries are written for density, not
+User-directed 2026-09-06 (token/speed concern); window size reduced
+15→**10** on 2026-09-07 (user-directed). `HISTORY.md` keeps only its **10**
+most recent version entries; new entries are still written there in full.
+Once an 11th accumulates, architect compacts the oldest — a few lines: what
+shipped, key numbers, any decision a later session might need to cite, not
+the full mechanism/verification detail — and moves it into
+`HISTORY_ARCHIVE.md`. Compact entries are written for density, not
 readability: `PLAN.md`/`TODO.md`/`SCOPE.md` already carry the durable
 "what was decided and why," so the archive is a forensic record, not
 load-bearing documentation, and carries no line cap of its own (an
@@ -569,13 +579,21 @@ ever-growing log, not read every session).
 
 ## 6d. HISTORY_PUSH.md — release-notes staging file
 
-Added 2026-09-06. Holds exactly one entry — the current version's
-changelog at `HISTORY_ARCHIVE.md`'s compact density — whose literal
-content `tools/release.js` writes as the GitHub Release notes body (§2a).
+Added 2026-09-06; scope clarified 2026-09-07. Holds the changelog for
+**every version shipped since the last actual GitHub Release**, not just
+the version currently being bumped — `release.js` runs on demand, not per
+bump, so the two rarely line up 1:1 (last release 0.3.18, tree now at
+0.3.20 → the file covers 0.3.19 and 0.3.20 both). Content is release-note
+quality (`HISTORY_ARCHIVE.md`'s compact density: what shipped and why it
+matters, not verification/handoff detail), whose literal content
+`tools/release.js` writes as the GitHub Release notes body (§2a).
 **Overwritten, not appended** (same convention as `HANDOFF.md`, §6b):
-whoever bumps the version rewrites this file's single entry as part of the
-same task that updates `HISTORY.md`. An HTML comment at the top explains
-the file to a human editor without leaking into the rendered notes.
+whoever bumps the version extends this file's entry — adding the new
+version's notes, keeping any not-yet-released ones — as part of the same
+task that updates `HISTORY.md`. Once `release.js` actually publishes, the
+next bump starts a fresh single-version entry (everything prior is now
+covered by the published release). An HTML comment at the top explains the
+file to a human editor without leaking into the rendered notes.
 `release.js` (real run and `--check`) fails loudly if the file doesn't
 mention "→ `<current APP_VERSION>`" — catching a stale leftover entry
 before it ships as this release's notes.
@@ -670,7 +688,7 @@ resumes without re-deriving state.
 
 **Siblings:** `SCOPE.md` = app scope & design (UI, navigation, data model)
 · `PLAN.md` = committed roadmap · `TODO.md` = ideas under consideration ·
-`HISTORY.md` = version changelog (15-entry rolling window, §6c) ·
+`HISTORY.md` = version changelog (10-entry rolling window, §6c) ·
 `HISTORY_ARCHIVE.md` = `HISTORY.md`'s compacted overflow ·
 `HISTORY_PUSH.md` = current-version release notes for the git pipeline
 (§6d).
