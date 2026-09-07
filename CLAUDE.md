@@ -598,6 +598,19 @@ file to a human editor without leaking into the rendered notes.
 mention "→ `<current APP_VERSION>`" — catching a stale leftover entry
 before it ships as this release's notes.
 
+**Drift-prevention rule, added 2026-09-07**: the reset-after-release rule
+above only fires when architect *notices* a release happened — a release
+made outside `tools/release.js` (manual GitHub UI, a prior session) is
+otherwise invisible, and one real case drifted 3 already-released versions
+undetected across a session boundary. **Fix, once per session**: the first
+time this file is touched, verify the real latest release via a live
+GitHub API call — `GET /repos/vokaerian-png/VKDex/releases?per_page=1`,
+first `draft: false` entry's `tag_name` — through the built-in browser
+(`mcp__Claude_Browser__*`; `request_access` on `api.github.com`,
+`scope: "site"` avoids re-prompting; **sandbox `curl`/bash can't reach
+this endpoint**, blocked by its allowlist). Newer than this file's window
+start → reset the window to begin right after that release first.
+
 ---
 
 ## 6e. temp/ relevance audit — on-demand, not per-session
@@ -655,13 +668,16 @@ exactly one home.
    their parent, which links down to them. Reconsider on creation whether
    the content is load-bearing enough to number instead (as `SCOPE.md`'s
    §6-§8 were, 2026-09-05).
-3. **Target: ≤700 lines total, standing cap** (raised 50 at a time from
+3. **Target: ≤750 lines total, standing cap** (raised 50 at a time from
    450 over 2026-09-05/06 as real load-bearing sections landed — release
-   pipeline, keystore, `memory/` restructure, §5b, §6e; last raise to 700
-   on 2026-09-06; an `overlord` condensing pass the same day brought it
-   back well under). `SCOPE.md` carries its own independent cap of **≤800
-   lines** (see its intro). Both raise **50 lines at a time** if genuinely
-   needed, noted here or in `SCOPE.md`'s intro when it happens — flagged
+   pipeline, keystore, `memory/` restructure, §5b, §6e; raised to 700
+   on 2026-09-06 (an `overlord` condensing pass the same day brought it
+   back well under), to 750 on 2026-09-07 for §6d's drift-prevention
+   rule). `SCOPE.md` carries its own independent cap, currently **≤1150
+   lines** (see its intro — raised several times since, most recently for
+   this same session's Kalos/Unova Alt Formes work). Both raise **50
+   lines at a time** if genuinely needed, noted here or in `SCOPE.md`'s
+   intro when it happens — flagged
    to the user in the same response, no need to ask first. Every addition
    gets an evaluate-and-compress pass in the same edit, per rule 4.
 4. **Applies to every memory-bank edit** (`SCOPE.md`/`PLAN.md`/`TODO.md`/
