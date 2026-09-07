@@ -22,6 +22,15 @@ Code & Implementation by @Claude.AI
 ## Data & assets sources
 [PokeAPI](https://github.com/pokeapi/pokeapi)  -  [PokeDB](https://pokedb.org/)
 
+---
+
+<p align="center">
+  <img src="media/details_1.png" width="24%">
+  <img src="media/details_2.png" width="24%">
+  <img src="media/details_3.png" width="24%">
+  <img src="media/details_4.png" width="24%">
+</p>
+
 ##
 
 VKDex is not affiliated with, endorsed by, or sponsored by Nintendo, The Pokémon Company, GAME FREAK, Creatures Inc., or Niantic, Inc., and does not reflect the views or opinions of these companies or anyone officially involved in producing or managing Pokémon. Pokémon and all related titles, logos, characters, and distinctive likenesses are trademarks of and © Nintendo, Creatures, GAME FREAK, and The Pokémon Company. All game content and materials are copyrights of their respective owners.
