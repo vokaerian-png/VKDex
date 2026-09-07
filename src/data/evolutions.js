@@ -465,7 +465,7 @@ var EVOLUTIONS = {
   419: { evolvesTo: [] },
   420: { evolvesTo: [{ id: 421, method: "level", level: 25 }] },
   421: { evolvesTo: [] },
-  422: { evolvesTo: [{ id: 423, method: "level", level: 30 }] },
+  422: { evolvesTo: [{ id: 423, method: "level", level: 30, forme: "west" }] },
   423: { evolvesTo: [] },
   424: { evolvesTo: [] },
   425: { evolvesTo: [{ id: 426, method: "level", level: 28 }] },
@@ -593,7 +593,10 @@ var EVOLUTIONS = {
   547: { evolvesTo: [] },
   548: { evolvesTo: [{ id: 549, method: "stone", item: "sun-stone" }] },
   549: { evolvesTo: [] },
-  550: { evolvesTo: [{ id: 902, method: "other" }], note: "Evolves after taking 294 HP in recoil damage." },
+  // Only White-Striped Basculin becomes Basculegion — the edge lives on that
+  // forme in altforms.js (TODO.md #4), not here, so Red-/Blue-Striped correctly
+  // show no evolution at all.
+  550: { evolvesTo: [], note: "Evolves after taking 294 HP in recoil damage." },
   551: { evolvesTo: [{ id: 552, method: "level", level: 29 }] },
   552: { evolvesTo: [{ id: 553, method: "level", level: 40 }] },
   553: { evolvesTo: [] },

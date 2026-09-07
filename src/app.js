@@ -955,12 +955,17 @@
 
   // --- Picture card ---
   // The card's two sprites are driven by two independent bits of state: the
-  // active alt forme and the gender toggle. A forme wins outright — no
-  // gendered alt-forme art is bundled (the one file that exists, 10235.png
-  // for Hisuian Sneasel, isn't wired to anything) — and the gender choice
-  // re-applies as soon as the base forme is selected again.
+  // active alt forme and the gender toggle. A forme normally wins outright,
+  // since almost no gendered alt-forme art is bundled; the exception is a
+  // forme carrying `femaleSpriteId` (0.3.22 — Hisuian Sneasel's 10235.png),
+  // which resolves through the same femaleSpriteUrl() the base gender toggle
+  // uses. Either way the gender choice re-applies as soon as the base forme
+  // is selected again.
   function pictureSpriteUrl(entry, forme, shiny) {
-    if (forme) return altFormSpriteUrl(forme.sprite, shiny);
+    if (forme) {
+      if (activeGender === "female" && forme.femaleSpriteId) return femaleSpriteUrl(forme.femaleSpriteId, shiny);
+      return altFormSpriteUrl(forme.sprite, shiny);
+    }
     if (activeGender === "female" && entry.hasFemaleSprite) return femaleSpriteUrl(entry.id, shiny);
     return shiny ? displayShinySpriteUrl(entry.id) : displaySpriteUrl(entry.id);
   }
@@ -1074,13 +1079,30 @@
       // name where the species has one (Sinistea's "Phony", Sinistcha's
       // "Unremarkable"), so the row reads Phony/Antique rather than repeating
       // the species name. Unset everywhere else → base bubble stays entry.name.
-      body = anyTappable ? altFormStageHtml("", data.baseName || entry.name, displaySpriteUrl(entry.id), " altform-active") : "";
-      body += data.formes.map(function (forme) {
+      var bubbles = data.formes.map(function (forme) {
         return altFormStageHtml(forme.key, forme.name, altFormSpriteUrl(forme.sprite), altFormeTappable(forme) ? "" : " altform-inert");
-      }).join("");
+      });
+      // Optional entry-level `baseIndex` (0.3.24): how many forme bubbles
+      // render BEFORE the base one. Absent (every species but Pumpkaboo/
+      // Gourgeist) → 0, i.e. the base stays bubble 0 exactly as before.
+      // Splice, not prepend, so Pumpkaboo reads Small/Average/Large/Super —
+      // its base "Average" is the middle of a size range, not an edge case.
+      // Purely presentational: every active-state and revert path keys off
+      // data-forme-key="" (position-independent), never DOM position.
+      if (anyTappable) {
+        bubbles.splice(data.baseIndex || 0, 0,
+          altFormStageHtml("", data.baseName || entry.name, displaySpriteUrl(entry.id), " altform-active"));
+      }
+      body = bubbles.join("");
     }
+    // Optional entry-level `note` (0.3.22): one explanatory line under the
+    // whole bubble row, for a forme whose trigger condition the bubbles alone
+    // don't convey (Keldeo's Resolute Forme needs the move Secret Sword).
+    // Same .detail-section-note markup evoDescriptorHtml() uses.
     return '<div class="detail-section altforms-card"><p class="detail-section-label">Alt Formes</p>' +
-      '<div class="evo-row altforms-row">' + body + "</div></div>";
+      '<div class="evo-row altforms-row">' + body + "</div>" +
+      (data.note ? '<p class="detail-section-note">' + escapeHtml(data.note) + "</p>" : "") +
+      "</div>";
   }
 
   // Tapping an alt-forme bubble (or the base bubble 0, to revert) swaps
@@ -1131,6 +1153,15 @@
           swapEntry.hiddenAbility = forme.hiddenAbility;
         }
       }
+      // Per-forme height/weight (0.3.24, Pumpkaboo/Gourgeist's four sizes)
+      // swaps INDEPENDENTLY of altFormeSwaps(): those formes share the base's
+      // type and ability, so rule 9's `swaps` gate is false for them, but
+      // their Height/Weight row genuinely differs.
+      if (tappable && (forme.height !== undefined || forme.weight !== undefined)) {
+        if (swapEntry === entry) swapEntry = Object.assign({}, entry);
+        if (forme.height !== undefined) swapEntry.height = forme.height;
+        if (forme.weight !== undefined) swapEntry.weight = forme.weight;
+      }
       factsEl.innerHTML = factsRowsHtml(swapEntry);
     }
 
@@ -1159,13 +1190,16 @@
       stages[j].classList.toggle("altform-active", stages[j].getAttribute("data-forme-key") === (tappable ? formeKey : ""));
     }
 
-    // No gendered alt-forme art is bundled, so while a non-base forme is
-    // active the toggle has nothing to switch (0.2.4). Native `disabled`
-    // blocks both the click and keyboard activation on its own; CSS only
-    // dims it. Reverting to base clears it. A species with no ALT_FORMS
-    // never reaches here with tappable true, so its buttons stay live.
+    // An active non-base forme usually has no gendered art to switch to, so
+    // the toggle is disabled while it's up (0.2.4). A forme that DOES have
+    // its own female art (`femaleSpriteId`, 0.3.22) keeps the buttons live
+    // instead — pictureSpriteUrl resolves it. Native `disabled` blocks both
+    // the click and keyboard activation on its own; CSS only dims it.
+    // Reverting to base clears it. A species with no ALT_FORMS never reaches
+    // here with tappable true, so its buttons stay live.
+    var gendered = tappable && !!forme.femaleSpriteId;
     var genderBtns = detailBody.querySelectorAll(".gender-btn");
-    for (var k = 0; k < genderBtns.length; k++) genderBtns[k].disabled = tappable;
+    for (var k = 0; k < genderBtns.length; k++) genderBtns[k].disabled = tappable && !gendered;
   }
 
   // Picture card gender toggle. Re-runs setActiveForme with the key that's
@@ -1276,7 +1310,7 @@
   // card swap), OR the edge leading INTO the next step in this path came
   // from a specific forme of this species (fromFormeKey, set above) — the
   // ancestor that actually produces that branch, not its base form.
-  function evoStageForme(id, nextStep) {
+  function evoStageForme(id, nextStep, incomingVia) {
     if (id === detailEntryId && activeFormeKey) {
       // `hideInEvoLine` (0.3.20): a purely cosmetic forme (Sinistea's Antique
       // and friends) shouldn't relabel this chain's node — the evolution line
@@ -1286,6 +1320,14 @@
       return selfForme && selfForme.hideInEvoLine ? null : selfForme;
     }
     if (nextStep && nextStep.via && nextStep.via.fromFormeKey) return findForme(id, nextStep.via.fromFormeKey);
+    // Target-side color, inherited from the INCOMING edge that produced this
+    // step (0.3.25, Shellos/Gastrodon) — the mirror of `fromFormeKey` above,
+    // which resolves the SOURCE side from the OUTGOING edge. An edge's own
+    // `forme` names which forme of its TARGET it arrives at, so East Shellos'
+    // arrow lands on an East-colored Gastrodon. Unresolvable keys fall through
+    // to null (= base art), so tagging an edge whose target has no such forme
+    // is a harmless no-op — that's how base/West Shellos keeps base Gastrodon.
+    if (incomingVia && incomingVia.forme) return findForme(id, incomingVia.forme);
     return null;
   }
 
@@ -1456,7 +1498,7 @@
         html += '<div class="evo-fan-row">';
         paths.slice(r, r + FAN_ROW_SIZE).forEach(function (path) {
           var leaf = path[1];
-          var leafForme = evoStageForme(leaf.id, null);
+          var leafForme = evoStageForme(leaf.id, null, leaf.via);
           html += '<div class="evo-fan-branch"><span class="evo-arrow">' + evoArrowIconsHtml(leaf.via) +
             '<span class="evo-level">' + escapeHtml(evoArrowLabel(leaf.via)) + "</span></span>" +
             evoStageHtml(leaf.id, leafForme && altFormSpriteUrl(leafForme.sprite, false), leafForme && leafForme.name) + "</div>";
@@ -1481,7 +1523,7 @@
         // An active/producing alt forme (0.3.9) takes priority over that:
         // the two never co-occur in the shipped data.
         var next = path[i + 1];
-        var stepForme = evoStageForme(step.id, next);
+        var stepForme = evoStageForme(step.id, next, step.via);
         var spriteSrc = stepForme
           ? altFormSpriteUrl(stepForme.sprite, false)
           : evoGenderSpriteUrl(step.id, next && next.via && next.via.gender);

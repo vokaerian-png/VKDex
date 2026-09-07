@@ -13,6 +13,16 @@
 //              altFormSpriteUrl() and never render a shiny variant — so a
 //              flat "201-a"/"493" works, and a form with its own PokeAPI
 //              pokemon id spells the subfolder out ("alt formes/...").
+//   femaleSpriteId - OPTIONAL number. This forme's own raw PokeAPI id, used
+//              to resolve gendered art via the same femaleSpriteUrl() helper
+//              the base species' gender toggle already uses
+//              (data/sprites/pokemon/female/{id}.png,
+//              .../shiny/female/{id}.png). Only meaningful on a species
+//              whose BASE entry already has hasFemaleSprite: true (that's
+//              what makes the toggle render at all) — this field just keeps
+//              the toggle live while this forme is active, instead of
+//              disabling it (the default when no gendered art exists for
+//              the active forme).
 //   types    - OPTIONAL: present only if this forme's type differs from the
 //              base entry's `types` in pokemon.js. Absence means "same as
 //              base" (e.g. Deoxys's formes never set this).
@@ -22,6 +32,17 @@
 //              detail screen's stats card renders only the shared base
 //              card in that case, one card per distinct-stats forme
 //              otherwise.
+//   height / weight - OPTIONAL numbers, same shape and units as pokemon.js's
+//              own `height` (metres) / `weight` (kg) fields. Present only on a
+//              forme whose real-game size differs from the base entry's;
+//              absence means "identical to base". Unlike `stats` (its own
+//              card) these feed the FACTS card's merged "Height / Weight" row,
+//              and — unlike `types`/`abilities` — they swap INDEPENDENTLY of
+//              altFormeSwaps(): Pumpkaboo/Gourgeist's sizes share the base's
+//              type and ability, so rule 9's swap gate is false for them while
+//              their size still changes. Set on those two species only
+//              (0.3.24); other genuinely size-varying species (Zygarde etc.)
+//              are deliberately out of scope for now.
 //   ability  - OPTIONAL: one ability NAME (string, looked up in ABILITIES
 //              like every other ability reference) for a single forme-
 //              specific ability APPENDED to the base's list (rule 4). Tag
@@ -78,6 +99,22 @@
 //              Plate formes changing type in the real games — the user
 //              confirmed 2026-09-04 to treat it identically to Unown (no
 //              type field, no swap-on-tap) rather than as a rule 7 case.
+//   baseIndex - OPTIONAL number, set at the ALT_FORMS[id] level (sibling to
+//              `formes`, not per-forme). How many forme bubbles render BEFORE
+//              the base/default species bubble in the Alt Formes row. Absent
+//              (every species but Pumpkaboo/Gourgeist) means 0 — the base
+//              stays bubble 0, the universal default. Set to 1 on 710/711 so
+//              their row reads Small / Average (base) / Large / Super, since
+//              Average is the middle of a size range rather than an edge case.
+//              Purely presentational: the active-state and revert-on-tap logic
+//              keys off data-forme-key="" and never on DOM position.
+//   note     - OPTIONAL string, set at the ALT_FORMS[id] level (sibling to
+//              `formes`). A single explanatory line rendered under the Alt
+//              Formes bubble row (not per-forme) — for a forme whose
+//              trigger condition isn't obvious from the bubbles alone
+//              (Keldeo's Resolute Forme requires knowing the move Secret
+//              Sword). Same `.detail-section-note` markup/class the
+//              Evolution Line's evoDescriptorHtml() already uses elsewhere.
 var ALT_FORMS = {
   386: { // Deoxys — same-typed (all Psychic), each forme has fully distinct stats
     formes: [
@@ -132,6 +169,93 @@ var ALT_FORMS = {
       { key: "sensu", name: "Sensu Style", sprite: "oricorio_sensu", types: ["Ghost", "Flying"] }
     ]
   },
+  710: { // Pumpkaboo — 4 sizes, same type/ability, distinct stats/height/weight
+    // per size (Average Size is the base/default already in pokemon.js/
+    // stats.js: 0.4 m / 5 kg). baseIndex 1 puts it between Small and Large.
+    baseIndex: 1,
+    formes: [
+      { key: "small", name: "Small Size", sprite: "pumpkaboo_small", height: 0.3, weight: 3.5,
+        stats: { hp: 44, attack: 66, defense: 70, spAttack: 44, spDefense: 55, speed: 56 } },
+      { key: "large", name: "Large Size", sprite: "pumpkaboo_large", height: 0.5, weight: 7.5,
+        stats: { hp: 54, attack: 66, defense: 70, spAttack: 44, spDefense: 55, speed: 46 } },
+      { key: "super", name: "Super Size", sprite: "pumpkaboo_super", height: 0.8, weight: 15,
+        stats: { hp: 59, attack: 66, defense: 70, spAttack: 44, spDefense: 55, speed: 41 } }
+    ]
+  },
+  711: { // Gourgeist — 4 sizes, same type/ability, distinct stats/height/weight
+    // per size (Average Size is the base: 0.9 m / 12.5 kg).
+    baseIndex: 1,
+    formes: [
+      { key: "small", name: "Small Size", sprite: "gourgeist_small", height: 0.7, weight: 9.5,
+        stats: { hp: 55, attack: 85, defense: 122, spAttack: 58, spDefense: 75, speed: 99 } },
+      { key: "large", name: "Large Size", sprite: "gourgeist_large", height: 1.1, weight: 14,
+        stats: { hp: 75, attack: 95, defense: 122, spAttack: 58, spDefense: 75, speed: 69 } },
+      { key: "super", name: "Super Size", sprite: "gourgeist_super", height: 1.7, weight: 39,
+        stats: { hp: 85, attack: 100, defense: 122, spAttack: 58, spDefense: 75, speed: 54 } }
+    ]
+  },
+  720: { // Hoopa — Confined (base) to Unbound, real type change, same ability, distinct stats
+    formes: [
+      { key: "unbound", name: "Hoopa Unbound", sprite: "hoopa_unbound",
+        types: ["Psychic", "Dark"],
+        stats: { hp: 80, attack: 160, defense: 60, spAttack: 170, spDefense: 130, speed: 80 } }
+    ]
+  },
+  646: { // Kyurem — Black/White fusions, same type, distinct ability + stats, NOT battle-only (permanent DNA Splicer fusion)
+    formes: [
+      { key: "black", name: "Black Kyurem", sprite: "kyurem_black",
+        abilities: ["Teravolt"],
+        stats: { hp: 125, attack: 170, defense: 100, spAttack: 120, spDefense: 90, speed: 95 } },
+      { key: "white", name: "White Kyurem", sprite: "kyurem_white",
+        abilities: ["Turboblaze"],
+        stats: { hp: 125, attack: 120, defense: 90, spAttack: 170, spDefense: 100, speed: 95 } }
+    ]
+  },
+  641: { // Tornadus — Therian Forme, same type, distinct ability (no hidden) + stats, permanent via Reveal Glass
+    formes: [
+      { key: "therian", name: "Therian Forme", sprite: "tornadus_therian",
+        abilities: ["Regenerator"],
+        stats: { hp: 79, attack: 100, defense: 80, spAttack: 110, spDefense: 90, speed: 121 } }
+    ]
+  },
+  642: { // Thundurus — Therian Forme, same type, distinct ability (no hidden) + stats, permanent via Reveal Glass
+    formes: [
+      { key: "therian", name: "Therian Forme", sprite: "thundurus_therian",
+        abilities: ["Volt Absorb"],
+        stats: { hp: 79, attack: 105, defense: 70, spAttack: 145, spDefense: 80, speed: 101 } }
+    ]
+  },
+  645: { // Landorus — Therian Forme, same type, distinct ability (no hidden) + stats, permanent via Reveal Glass
+    formes: [
+      { key: "therian", name: "Therian Forme", sprite: "landorus_therian",
+        abilities: ["Intimidate"],
+        stats: { hp: 89, attack: 145, defense: 90, spAttack: 105, spDefense: 80, speed: 91 } }
+    ]
+  },
+  550: { // Basculin — Blue-/White-Striped. Type and stats identical to base
+    // Red-Striped across all 3 colors (CSV: water / 70-92-65-80-55-98), but
+    // the ABILITY SETS differ in slot 1 — Red reckless, Blue rock-head, White
+    // rattled (slot 2 adaptability + hidden mold-breaker shared) — so both
+    // formes carry a full `abilities` replacement, same shape as Squawkabilly
+    // (931). Only White-Striped evolves into Basculegion; that edge used to
+    // sit on the base evolutions.js entry, where it wrongly applied to all 3
+    // colors, and now lives here per TODO.md #4's forme-evolution mechanism.
+    // The recoil-damage sentence stays as EVOLUTIONS[550].note (card-bottom
+    // line) — an edge-level `note` is a short arrow LABEL, not a sentence.
+    formes: [
+      { key: "blue", name: "Blue-Striped Form", sprite: "basculin_blue_striped",
+        abilities: ["Rock Head", "Adaptability", "Mold Breaker"], hiddenAbility: "Mold Breaker" },
+      { key: "white", name: "White-Striped Form", sprite: "basculin_white_striped",
+        abilities: ["Rattled", "Adaptability", "Mold Breaker"], hiddenAbility: "Mold Breaker",
+        evolvesTo: [{ id: 902, method: "other" }] }
+    ]
+  },
+  647: { // Keldeo — Resolute Form, cosmetic-only (identical type/ability/stats), ordinary side-by-side bubble per Sinistea-line precedent, plus a condition note
+    note: "Keldeo can change to its Resolute Forme when it knows the move Secret Sword.",
+    formes: [
+      { key: "resolute", name: "Resolute Form", sprite: "keldeo_resolute" }
+    ]
+  },
   201: { // Unown — rule 6, 28 pure-recolor letter formes (A-Z, !, ?)
     recolorOnly: true,
     formes: [
@@ -178,6 +302,30 @@ var ALT_FORMS = {
     formes: [
       { key: "overcast", name: "Overcast Form", sprite: "421-overcast" },
       { key: "sunshine", name: "Sunshine Form", sprite: "421-sunshine" }
+    ]
+  },
+  422: { // Shellos — West/East Sea. Base sprite (422.png) is byte-identical
+    // to 422-west.png (md5-confirmed, normal+shiny) — West Sea IS the base
+    // look, so only East gets its own bubble (Tornadus/Thundurus's
+    // single-extra-forme shape, not recolorOnly's collapsed popup: real
+    // side-by-side bubbles per user request 2026-09-07). No stat/type/
+    // ability difference (PokeAPI ships no separate east rows), but the
+    // evolution target's own color should still track which Shellos color
+    // is active — see the `forme` field below and EVOLUTIONS[422].
+    // Sprite copied from the flat pokemon/ root (422-east.png) into
+    // pokemon/alt formes/ + shiny/alt formes/ as shellos_east.png, since
+    // ordinary (non-recolorOnly) formes resolve under alt formes/ and use
+    // that tree's species-name naming — same move Floette 670 made.
+    formes: [
+      { key: "east", name: "Shellos (East Sea)", sprite: "shellos_east",
+        evolvesTo: [{ id: 423, method: "level", level: 30, forme: "east" }] }
+    ]
+  },
+  423: { // Gastrodon — West/East Sea, same as Shellos above. Base sprite
+    // (423.png) byte-identical to 423-west.png; east art copied to
+    // alt formes/gastrodon_east.png (+ shiny) for the same reason.
+    formes: [
+      { key: "east", name: "Gastrodon (East Sea)", sprite: "gastrodon_east" }
     ]
   },
   493: { // Arceus — rule 6 per user override 2026-09-04 (Plate formes really do
@@ -443,7 +591,7 @@ var ALT_FORMS = {
   215: { // Sneasel — Hisuian Sneasel, Fighting/Poison, stats identical to base
     formes: [
       { key: "hisui", name: "Hisuian Sneasel", sprite: "hisui/sneasel",
-        types: ["Fighting", "Poison"],
+        types: ["Fighting", "Poison"], femaleSpriteId: 10235,
         evolvesTo: [{ id: 903, method: "held", item: "razor-claw", timeOfDay: "day" }] }
     ]
   },
@@ -1509,8 +1657,15 @@ var ALT_FORMS = {
         ability: "No Guard" }
     ]
   },
-  718: { // Zygarde — Mega Evolution
+  718: { // Zygarde — 10% Forme + Mega Evolution (non-Mega forme first, same
+    // shape as Raichu 26 / Slowbro 80). 10% keeps the base's Dragon/Ground
+    // typing; pokemon_abilities.csv models it with TWO non-hidden slots
+    // (aura-break, power-construct), so both go in `abilities` and no
+    // hiddenAbility is set.
     formes: [
+      { key: "10", name: "10% Forme", sprite: "zygarde_10",
+        abilities: ["Aura Break", "Power Construct"],
+        stats: { hp: 54, attack: 100, defense: 71, spAttack: 61, spDefense: 85, speed: 115 } },
       { key: "mega", name: "Mega Zygarde", sprite: "mega/zygarde", isMega: true,
         stats: { hp: 216, attack: 70, defense: 91, spAttack: 216, spDefense: 85, speed: 100 } }
     ]

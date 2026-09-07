@@ -337,4 +337,5 @@ var ABILITIES = {
   "Mimicry": { description: "Changes the Pokémon's type to match the terrain currently in effect.", names: { ja: "ぎたい", fr: "Mimétisme", de: "Mimese", ko: "의태" } },
   "Tera Shell": { description: "Its shell holds the power of every type, so any damaging move that lands while its HP is full is not very effective.", names: { ja: "テラスシェル", fr: "Téra-Carapace", de: "Tera-Panzer", ko: "테라셸" } },
   "Teraform Zero": { description: "Shifting into its Stellar Form wipes out every weather and terrain effect in play.", names: { ja: "ゼロフォーミング", fr: "Téraformation 0", de: "Teraforming Null", ko: "제로포밍" } },
+  "Power Construct": { description: "Other cells rush in to help once its HP drops to half or less, and it takes on its Complete Forme.", names: { ja: "スワームチェンジ", fr: "Rassemblement", de: "Scharwandel", ko: "스웜체인지" } },
 };
