@@ -2350,12 +2350,15 @@
     var rows = STAT_ROWS.map(function (r) {
       var base = stats[r.key];
       // Base value as a share of the same 0-255 scale the radar uses, drawn
-      // as a hard-stop row background so the table reads as a bar chart
-      // without adding a column. Inline (not a per-stat CSS class) because
-      // the stop position is per-Pokemon data.
+      // as a small gauge under the stat name — magnitude and stat identity in
+      // one mark, with CSS zebra stripes handling row separation. Inline (not
+      // a per-stat CSS class) because width/colour are per-Pokemon data;
+      // min-width keeps a 1-base-stat species (Shedinja's HP) visible.
       var v = "var(" + STAT_VARS[r.key] + ")", pct = Math.round(base / RADAR_MAX * 100);
-      return '<tr style="background:linear-gradient(90deg,rgb(' + v + ' / .28) ' + pct + '%,transparent ' + pct + '%)">' +
-        '<td style="color:rgb(' + v + ')">' + r.label + "</td><td>" + base + "</td><td>" + calcStat(base, 1, r.isHp) + "</td><td>" + calcStat(base, 100, r.isHp) + "</td></tr>";
+      var gauge = '<div class="stat-gauge-track"><div class="stat-gauge-fill" style="width:' + pct +
+        '%;min-width:4px;background:rgb(' + v + ')"></div></div>';
+      return "<tr><td>" + r.label + gauge + "</td><td>" + base + "</td><td>" +
+        calcStat(base, 1, r.isHp) + "</td><td>" + calcStat(base, 100, r.isHp) + "</td></tr>";
     }).join("");
     var bst = STAT_ROWS.reduce(function (sum, r) { return sum + stats[r.key]; }, 0);
     rows += '<tr class="stat-total-row"><td>Total:</td><td>' + bst + "</td><td></td><td></td></tr>";

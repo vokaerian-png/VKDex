@@ -1778,10 +1778,12 @@ var ALT_FORMS = {
   // abilities, so these carry no `stats`/`types`/`abilities`/`ability` field
   // (statsCardHtml skips a forme with no `stats`, so no extra stats card).
   // The 5 species that already had an entry above (3/6/9/52/94) got their
-  // gmax forme appended there instead. Deliberately absent: Toxtricity (849)
-  // and Urshifu (892) — two Gmax sprites each, tied to a base-forme split
-  // neither models yet; Alcremie (869) — recolorOnly, which collapses the
-  // whole entry and can't host an ordinary forme.
+  // gmax forme appended there instead. Toxtricity (849) has two Gmax sprites
+  // (Amped/Low-Key), but they're identical artwork at different sizes, so one
+  // plain entry covers it — no base-forme split; Urshifu (892) genuinely needs
+  // one and uses the `gmaxOf` entry below. Deliberately absent: Alcremie (869)
+  // — recolorOnly, which collapses the whole entry and can't host an ordinary
+  // forme.
   12: { formes: [{ key: "gmax", name: "Gigantamax Butterfree", sprite: "gmax/butterfree", isGmax: true }] },
   25: { formes: [{ key: "gmax", name: "Gigantamax Pikachu", sprite: "gmax/pikachu", isGmax: true }] },
   68: { formes: [{ key: "gmax", name: "Gigantamax Machamp", sprite: "gmax/machamp", isGmax: true }] },
@@ -1801,6 +1803,7 @@ var ALT_FORMS = {
   841: { formes: [{ key: "gmax", name: "Gigantamax Flapple", sprite: "gmax/flapple", isGmax: true }] },
   842: { formes: [{ key: "gmax", name: "Gigantamax Appletun", sprite: "gmax/appletun", isGmax: true }] },
   844: { formes: [{ key: "gmax", name: "Gigantamax Sandaconda", sprite: "gmax/sandaconda", isGmax: true }] },
+  849: { formes: [{ key: "gmax", name: "Gigantamax Toxtricity", sprite: "gmax/toxtricity_amped", isGmax: true }] },
   851: { formes: [{ key: "gmax", name: "Gigantamax Centiskorch", sprite: "gmax/centiskorch", isGmax: true }] },
   858: { formes: [{ key: "gmax", name: "Gigantamax Hatterene", sprite: "gmax/hatterene", isGmax: true }] },
   861: { formes: [{ key: "gmax", name: "Gigantamax Grimmsnarl", sprite: "gmax/grimmsnarl", isGmax: true }] },

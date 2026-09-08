@@ -4,11 +4,15 @@
   --menu-width: 180px; /* floored at the header's measured width in app.js */
   --anim-speed: 0.25s;
   --window-radius: 18px;
-  --screen-bg: #ffffff;
-  --screen-fg: #1b1b1b;
+  /* Light mode's own blue identity (0.4.6) — the theme tokens below are the
+     LIGHT values; .phone.theme-dark overrides each with the dark-gray/red
+     set. Echoes the classic paired game versions (Red/Blue): chrome and
+     Pokedex-device panels go blue in light mode, stay red in dark. */
+  --screen-bg: #cfe2f5;
+  --screen-fg: #152230;
   --chip-bg: #eef0f2;
   --chip-fg: #33363b;
-  --divider: rgba(0, 0, 0, 0.08);
+  --divider: rgba(20, 40, 70, 0.12);
   --accent: #4da3ff;
   /* Same blue as --accent, as a space-separated rgb triple so translucent
      variants can be written rgb(var(--accent-rgb) / .25) instead of
@@ -23,7 +27,14 @@
   --accent-warm: #ffcb05;
   --accent-warm-fg: #3a2c00;
   --accent-warm-grad: linear-gradient(180deg, #ffe066 0%, #ffcb05 100%);
-  --dex-panel-bg: #4a1f20;
+  /* Pokedex-device panel gradient (header, dex panel, every .detail-section
+     card): --panel-top is the lighter top stop, --dex-panel-bg the bottom.
+     Light values here, red pair in .phone.theme-dark. */
+  --panel-top: #6fa8dc;
+  --dex-panel-bg: #4a7fc9;
+  /* Wordmark outline (.dex-title, .topbar-name). #2a75bb is the dark-mode
+     value; light mode deepens it in .phone:not(.theme-dark). */
+  --wordmark-stroke: #2a75bb;
   --grid-cols: 5;
   --region-cols: 4;
   --cell-border: 1px solid #000;
@@ -81,14 +92,22 @@
   --s-spa: 96 165 255;
   --s-spd: 92 214 122;
   --s-spe: 255 122 190;
+  /* Alpha of .detail-screen's two type-glow layers. Light mode's lighter
+     --screen-bg gives colour-on-light less perceptual pop than dark mode's
+     near-black, so it overrides these higher to read at the same intensity. */
+  --glow-alpha-1: 0.42;
+  --glow-alpha-2: 0.22;
 }
 
-/* #4da3ff is only 2.6:1 on white — below the 3:1 minimum for UI components
-   (focus rings, the switch track, active chips). Light mode gets a slightly
-   deeper blue via the same theme mechanism; dark mode is unaffected. */
+/* #4da3ff is too pale against light mode's --screen-bg for UI components
+   (focus rings, the switch track, active chips). Light mode gets a deeper
+   blue via the same theme mechanism; dark mode is unaffected. */
 .phone:not(.theme-dark) {
-  --accent: #2f8ae6;
-  --accent-rgb: 47 138 230;
+  --accent: #2f6fe0;
+  --accent-rgb: 47 111 224;
+  --wordmark-stroke: #1f4e9c;
+  --glow-alpha-1: 0.58;
+  --glow-alpha-2: 0.30;
 }
 
 .phone.smooth-sprites {
@@ -173,6 +192,8 @@ body {
   --chip-bg: #2a2c30;
   --chip-fg: #e8e8e8;
   --divider: rgba(255, 255, 255, 0.08);
+  --panel-top: #5c2628;
+  --dex-panel-bg: #4a1f20;
 }
 
 /* Same "inset card" treatment as .dex-panel below: dark red background,
@@ -188,7 +209,7 @@ body {
   text-align: center;
   background:
     repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0 2px, transparent 2px 7px),
-    linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+    linear-gradient(180deg, var(--panel-top) 0%, var(--dex-panel-bg) 100%);
   border: var(--panel-border);
   border-radius: var(--window-radius);
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 0 rgba(0, 0, 0, 0.35), var(--raised-shadow);
@@ -249,7 +270,7 @@ body {
   font-size: 27px;
   letter-spacing: 0.5px;
   color: #ffcb05;
-  -webkit-text-stroke: 1.4px #2a75bb;
+  -webkit-text-stroke: 1.4px var(--wordmark-stroke);
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
   cursor: pointer;
   user-select: none;
@@ -427,7 +448,7 @@ body {
      reads as a recessed tray the cells sit in rather than a flat fill. */
   background:
     repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0 2px, transparent 2px 7px),
-    linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+    linear-gradient(180deg, var(--panel-top) 0%, var(--dex-panel-bg) 100%);
   border: var(--panel-border);
   border-radius: var(--window-radius);
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 0 rgba(0, 0, 0, 0.35), var(--raised-shadow);
@@ -723,6 +744,17 @@ body {
 
 .drawer-handle:active::before {
   transform: translateY(-50%) scale(0.85);
+}
+
+/* The neutral gray pill above is tuned for dark mode; on light mode's
+   --screen-bg it all but disappears. Light mode only — dark is untouched.
+   Alphas raised (0.5/0.7 -> 0.65/0.85) after real-hardware review, 0.4.7. */
+.phone:not(.theme-dark) .drawer-handle::before {
+  background: rgba(40, 44, 50, 0.65);
+}
+
+.phone:not(.theme-dark) .drawer-handle:hover::before {
+  background: rgba(40, 44, 50, 0.85);
 }
 
 /* Dim background shown while the menu is open; tapping it closes the menu */
@@ -1234,8 +1266,8 @@ body {
      neutral grey, so a species with no types can't break the background.
      background-color stays separately themed (SCOPE.md §7). */
   background-image:
-    radial-gradient(ellipse 130% 42% at 50% -4%, rgb(var(--t1, 128 128 128) / 0.42), transparent 70%),
-    radial-gradient(ellipse 80% 40% at 100% 100%, rgb(var(--t2, var(--t1, 128 128 128)) / 0.22), transparent 70%),
+    radial-gradient(ellipse 130% 42% at 50% -4%, rgb(var(--t1, 128 128 128) / var(--glow-alpha-1, 0.42)), transparent 70%),
+    radial-gradient(ellipse 80% 40% at 100% 100%, rgb(var(--t2, var(--t1, 128 128 128)) / var(--glow-alpha-2, 0.22)), transparent 70%),
     radial-gradient(circle, rgb(128 128 128 / 0.16) 1px, transparent 1.6px),
     radial-gradient(ellipse at 50% 30%, rgb(128 128 128 / 0.10), transparent 65%);
   background-size: auto, auto, 9px 9px, 100% 100%;
@@ -1349,7 +1381,7 @@ body {
 .detail-section {
   position: relative;
   padding: 12px;
-  background: linear-gradient(180deg, #5c2628 0%, var(--dex-panel-bg) 100%);
+  background: linear-gradient(180deg, var(--panel-top) 0%, var(--dex-panel-bg) 100%);
   border: var(--panel-border);
   border-radius: var(--window-radius);
   box-shadow: var(--raised-shadow);
@@ -1402,7 +1434,7 @@ body {
   letter-spacing: 0.5px;
   text-align: center;
   color: #ffcb05;
-  -webkit-text-stroke: 1px #2a75bb;
+  -webkit-text-stroke: 1px var(--wordmark-stroke);
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
   white-space: nowrap;
   overflow: hidden;
@@ -2241,20 +2273,64 @@ body {
 }
 
 .stats-table td {
-  padding: 3px 4px;
+  padding: 4px 4px 7px;
   text-align: right;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  color: #f2f2f2;
+  color: var(--screen-fg);
 }
 
+/* Extra bottom padding above clears the per-row gauge pinned to this cell. */
 .stats-table td:first-child {
   text-align: left;
   font-weight: 700;
+  border-radius: 4px 0 0 4px;
+  position: relative;
 }
 
-/* BST row: slightly larger than the 11.5px stat rows to highlight it. */
+.stats-table td:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+/* Zebra stripes replace the old per-stat gradient wash as the row-separation
+   cue; :not(.stat-total-row) keeps the total row's own rules from losing a
+   specificity fight against these. */
+.stats-table tbody tr:not(.stat-total-row):nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.stats-table tbody tr:not(.stat-total-row):nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Magnitude + stat identity in one mark: a gauge pinned to the bottom of the
+   stat-name cell. Fill width/colour are inline (per-Pokemon data). */
+.stat-gauge-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 2px;
+}
+
+.stat-gauge-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #000;
+}
+
+/* BST row: slightly larger than the 11.5px stat rows to highlight it, and no
+   gauge below it, so it keeps the tighter padding. */
+.stats-table tr.stat-total-row {
+  border-top: 2px solid rgba(255, 255, 255, 0.25);
+}
+
 .stats-table tr.stat-total-row td {
   font-size: 13px;
+  padding: 4px;
 }
 
 .stats-note {
@@ -2263,6 +2339,14 @@ body {
   text-align: center;
   color: #f4e3b4;
   opacity: 0.6;
+}
+
+/* The cream header/note text was tuned for the old fixed dark-red card; on
+   light mode's blue panel it drops to ~2.5:1. Light mode only — the cells
+   themselves are already theme-uniform via --screen-fg above. */
+.phone:not(.theme-dark) .stats-table th,
+.phone:not(.theme-dark) .stats-note {
+  color: var(--screen-fg);
 }
 
 .radar-wrap {
