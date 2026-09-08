@@ -11,14 +11,17 @@
 // macOS, so on Windows there is nothing to remove here.
 
 // Live 360:800 aspect lock via WM_SIZING — Windows only, see the module doc.
-#[cfg(target_os = "windows")]
+// Skipped entirely under the `desktop-ui` Cargo feature (Cargo.toml): that
+// build ships src-desktop/, a real resizable three-pane desktop UI, for which
+// a phone aspect ratio is exactly wrong. Default builds are unaffected.
+#[cfg(all(target_os = "windows", not(feature = "desktop-ui")))]
 mod resize_lock;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .setup(|_app| {
-            #[cfg(target_os = "windows")]
+            #[cfg(all(target_os = "windows", not(feature = "desktop-ui")))]
             resize_lock::install(_app.handle());
             Ok(())
         })

@@ -5,6 +5,8 @@ release.bat
 /src-tauri/target
 /src-tauri/gen
 /releases/
+/src-desktop/data
+/src-desktop/data.js
 cleanup.bat
 memory/
 tools/

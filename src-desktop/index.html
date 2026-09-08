@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VKDex</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<!-- Default markup is the COLLAPSED rail, because the persisted default of
+     "Collapse sidebar by default" is on (PLAN.md, user's explicit call).
+     app.js reads localStorage synchronously before its first render and
+     removes .rail if the user turned it off, so the sidebar never paints at
+     the wrong width. Same read-before-first-render convention src/app.js
+     uses for theme/grid-width/units (SCOPE.md §3). -->
+<body>
+<div class="app rail" id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="wordmark"><span class="full">VKDex</span><span class="mini">VK</span></div>
+    <nav class="nav">
+      <a data-screen="dex" class="active" style="--row-accent:#ff5a3c"><span class="tile">&#9673;</span><span class="lbl">Dex</span><span class="kbd">Ctrl+1</span></a>
+      <a data-screen="favorites" style="--row-accent:#ffcb05"><span class="tile">&#9733;</span><span class="lbl">Favorites</span><span class="kbd">Ctrl+2</span></a>
+      <a data-screen="bag" style="--row-accent:#9a6bd6"><span class="tile">&#9635;</span><span class="lbl">Bag</span><span class="kbd">Ctrl+3</span></a>
+      <a data-screen="types" style="--row-accent:#4da3ff"><span class="tile">&#8862;</span><span class="lbl">Type Chart</span><span class="kbd">Ctrl+4</span></a>
+      <a data-screen="natures" style="--row-accent:#78c850"><span class="tile">&#10059;</span><span class="lbl">Natures</span><span class="kbd">Ctrl+5</span></a>
+      <a data-screen="settings" style="--row-accent:#b0b4bb"><span class="tile">&#9881;</span><span class="lbl">Settings</span><span class="kbd">Ctrl+,</span></a>
+      <div class="sep"></div>
+      <div class="ctx">Detail</div>
+      <a class="detail-row" id="navDetail"><span class="tile" id="navDetailTile"></span><span class="lbl name" id="navDetailName"></span><span class="kbd" id="navDetailKbd"></span></a>
+      <div class="sep"></div>
+      <a class="rail-toggle" data-rail title="Collapse / expand the sidebar (Ctrl+B). Collapsed, it reopens while hovered."><span class="tile" id="railTile">&#187;</span><span class="lbl">Collapse sidebar</span><span class="kbd">Ctrl+B</span></a>
+    </nav>
+    <div class="foot" id="sidebarFoot"></div>
+  </aside>
+
+  <div class="work" id="work">
+    <main class="center" id="center"></main>
+    <button class="edge" id="edge" data-expand title="Expand detail to a full document (Esc closes)"></button>
+    <aside class="detail" id="detail">
+      <div class="compact" id="compact"></div>
+      <div class="doc" id="doc"></div>
+    </aside>
+  </div>
+
+  <footer class="status">
+    <span>Showing <b id="statusCount"></b></span>
+    <span>Selected: <b id="statusSel"></b></span>
+    <span>&#8593;&#8595;&#8592;&#8594; move selection &middot; &#10094; expands detail &middot; Esc collapses &middot; Ctrl+B collapses sidebar (hover reopens)</span>
+    <span class="right" id="statusVersion"></span>
+  </footer>
+</div>
+
+<!-- Data layer, read-only, shared verbatim with the mobile frontend: these are
+     src/data/*.js, loaded as plain <script> tags exactly the way src/index.html
+     loads them (no bundler, no fetch(), no ES imports — CLAUDE.md §1).
+     Deliberately a SUBSET of src/index.html's list: pass 1 renders no moves,
+     locations, items, machines, translated names or experience curves, and
+     those are by far the largest files, so loading them would cost startup
+     time for nothing. Add the file here at the same time as the screen that
+     needs it.
+
+     Paths are relative to src-desktop/ itself, NOT ../src/, because Tauri
+     embeds only frontendDist (src-desktop/) into the packaged .exe — anything
+     outside it 404s at tauri://localhost. Both names below are local, gitignored
+     build artifacts that tools/release.js creates before a --frontend=desktop
+     build:
+       data/     -> a Windows directory junction to src/data (no copy: the
+                    sprite bundle alone is ~70MB), transparent to Tauri's asset
+                    walker and admin-free unlike a symlink.
+       data.js   -> a plain copy of src/data.js (APP_VERSION + REGIONS, 1.6KB).
+                    It sits beside src/data rather than inside it and a junction
+                    can't cover a single file, so it's copied fresh each build.
+     Neither exists in a fresh clone until `node tools/release.js
+     --frontend=desktop ...` runs once; after that, file:// and `tauri dev`
+     work off the same two names. -->
+<script src="data.js"></script>
+<script src="data/types.js"></script>
+<script src="data/pokemon.js"></script>
+<script src="data/abilities.js"></script>
+<script src="data/evolutions.js"></script>
+<script src="data/stats.js"></script>
+<script src="data/hisui.js"></script>
+<script src="data/orre.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
