@@ -221,11 +221,24 @@ body {
 
 /* ------------------------------------------------------------- dex grid */
 
+/* The grid IS the red device panel (0.4.9): same --panel-top/--dex-panel-bg
+   gradient + diagonal micro-texture the wordmark and mobile's .dex-panel use.
+   It stays the scroll container — margin makes it read as an inset card, the
+   border/shadow stay put while the cards scroll inside it. */
 .grid {
-  flex: 1; overflow-y: auto; padding: 14px 16px 20px;
+  flex: 1; overflow-y: auto;
+  margin: 12px 16px 14px;
+  padding: 14px;
+  border: 2px solid #000;
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, .08) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, var(--panel-top) 0%, var(--dex-panel-bg) 100%);
+  box-shadow: var(--raised-shadow);
   display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; align-content: start;
 }
-.grid .empty { grid-column: 1 / -1; color: #7d818a; padding: 30px 0; text-align: center; }
+/* Lighter than the other muted greys — this one now sits on the red panel. */
+.grid .empty { grid-column: 1 / -1; color: #e3c9c9; padding: 30px 0; text-align: center; }
 .card {
   position: relative;
   background: var(--chip-bg);
@@ -314,7 +327,15 @@ body {
 }
 .work.expanded .compact { opacity: 0; pointer-events: none; }
 
-.detail-head { padding: 14px 16px 12px; border-bottom: 1px solid var(--divider); background: linear-gradient(180deg, rgb(var(--t) / .22), transparent); }
+/* Type-keyed panel treatment (0.4.9, PLAN.md's "Option C"): the head's tint
+   gradient over a diagonal micro-texture. --t is set on #compact/#doc by
+   renderDetail(), so the .box rule below reads the same species' type. */
+.detail-head, .dhead {
+  background:
+    linear-gradient(180deg, rgb(var(--t) / .38) 0%, rgb(var(--t) / .1) 60%, transparent 100%),
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, .07) 0 2px, transparent 2px 7px);
+}
+.detail-head { padding: 14px 16px 12px; border-bottom: 1px solid var(--divider); }
 .detail-head .top { display: flex; align-items: center; gap: 12px; }
 .detail-head .sprite { width: 96px; height: 96px; margin: 0; flex: none; }
 .detail-head .id { font-size: 12px; color: #9aa0aa; }
@@ -342,13 +363,27 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .stats .v { text-align: right; font-variant-numeric: tabular-nums; }
 .bar { height: 9px; background: var(--screen-bg); border-radius: 999px; border: 1px solid #000; overflow: hidden; }
 .bar i { display: block; height: 100%; background: rgb(var(--s)); border-radius: 999px; transition: width .25s; }
-.evo { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.evo .stage { display: flex; align-items: center; gap: 6px; background: var(--screen-bg); border: 1px solid #000; border-radius: 999px; padding: 3px 10px 3px 3px; font-size: 12px; cursor: pointer; }
+/* Trunk row + one row per branch (0.4.9). The trunk never wraps — a narrow
+   pane scrolls it sideways rather than dropping a stage onto its own line —
+   and every branch is a full row, so a wrap can only ever happen at a branch
+   boundary. Long fans (Eevee's 8) just make the card taller; .detail-body /
+   .doc already scroll. */
+.evo { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.evo .trunk { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; max-width: 100%; overflow-x: auto; padding-bottom: 2px; }
+.evo .fanrow { display: flex; align-items: center; gap: 6px; margin-left: 14px; max-width: 100%; }
+.evo .stage { flex: none; display: flex; align-items: center; gap: 6px; background: var(--screen-bg); border: 1px solid #000; border-radius: 999px; padding: 3px 10px 3px 3px; font-size: 12px; cursor: pointer; }
 .evo .stage:hover { border-color: var(--accent); }
 .evo .stage.cur { border-color: var(--accent); background: rgb(var(--accent-rgb) / .14); }
 .evo .stage img { width: 32px; height: 32px; image-rendering: var(--sprite-rendering); }
-.evo .arrow { color: #7d818a; font-size: 12px; }
-.evo .branch { display: flex; flex-direction: column; gap: 4px; }
+.evo .arrow { color: #7d818a; font-size: 12px; flex: none; }
+.evo .cond { color: #7d818a; font-size: 10px; white-space: nowrap; }
+
+/* Mega / Gigantamax bubbles — read-only for this pass (no tap-to-swap). */
+.formes { display: flex; flex-wrap: wrap; gap: 6px; }
+.forme { display: flex; align-items: center; gap: 6px; background: var(--screen-bg); border: 1px solid #000; border-radius: 999px; padding: 3px 10px 3px 3px; font-size: 12px; }
+.forme img { width: 32px; height: 32px; image-rendering: var(--sprite-rendering); }
+.ftag { font-size: 9px; font-weight: 700; letter-spacing: .03em; padding: 1px 6px; border-radius: 999px; background: #b53434; color: #fff; }
+.ftag.gmax { background: #6b3fa0; }
 .stub { background: var(--screen-bg); border: 1px solid #000; border-radius: 10px; padding: 8px 10px; color: #8a8f99; font-size: 12px; }
 .pillrow { display: flex; flex-wrap: wrap; gap: 4px; }
 .pillrow .none { color: #6c7079; font-size: 12px; }
@@ -373,7 +408,6 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
   display: flex; align-items: center; gap: 18px;
   padding: 18px 28px 16px 40px;
   border-bottom: 1px solid var(--divider);
-  background: linear-gradient(180deg, rgb(var(--t) / .24), transparent);
   position: sticky; top: 0; backdrop-filter: blur(6px); z-index: 1;
 }
 .dhead .sprite { width: 140px; height: 140px; margin: 0; flex: none; }
@@ -386,13 +420,22 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .dhead .iconbtn { width: auto; padding: 0 10px; font-size: 13px; display: flex; gap: 6px; }
 .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding: 18px 28px 28px 40px; align-items: start; }
 .col { display: flex; flex-direction: column; gap: 14px; }
-.box { background: var(--chrome); border: 1px solid #000; border-radius: 14px; padding: 12px 14px; }
+/* Texture ON TOP here (the tint gradient's second stop is opaque --chrome, so
+   a texture layered under it would be covered from 55% down). */
+.box {
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, .05) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, rgb(var(--t) / .16) 0%, var(--chrome) 55%);
+  border: 1px solid #000; border-radius: 14px; padding: 12px 14px;
+}
 .box h3 { margin: 0 0 10px; }
 .doc .abil div { background: none; border: 0; border-bottom: 1px solid var(--divider); border-radius: 0; padding: 6px 0; }
 .doc .abil { gap: 0; }
 .doc .abil div:last-child { border-bottom: 0; }
 .doc .stats { grid-template-columns: 62px 36px 1fr; gap: 6px 10px; }
 .doc .bar { height: 10px; }
+/* Stat radar (0.4.9) — same SVG src/app.js draws, scaled to the card. */
+.radar { display: block; width: 100%; max-width: 280px; margin: 0 auto; }
 
 /* ---------------------------------------------------------- status bar */
 

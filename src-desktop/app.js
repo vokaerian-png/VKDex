@@ -44,15 +44,22 @@
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
   function pad(n) { return String(n).padStart(3, "0"); }
-  function typeVar(t) { return "--t:var(--t-" + String(t).toLowerCase() + ")"; }
+  function typeRef(t) { return "var(--t-" + String(t).toLowerCase() + ")"; }
+  function typeVar(t) { return "--t:" + typeRef(t); }
+  function primaryType(p) { return (p.types || ["Normal"])[0]; }
   function byId(id) { return MON_BY_ID[id]; }
 
   // Every sprite falls back to 0.png (the same missing-sprite placeholder
   // src/app.js uses) rather than rendering a broken-image icon.
-  function spriteImg(id, cls) {
-    return '<img class="' + (cls || "sprite") + '" loading="lazy" alt="" src="' + SPRITE + id + '.png"' +
+  function imgTag(src, cls) {
+    return '<img class="' + (cls || "sprite") + '" loading="lazy" alt="" src="' + src + '"' +
       ' onerror="this.onerror=null;this.src=\'' + MISSING_SPRITE + '\';">';
   }
+  function spriteImg(id, cls) { return imgTag(SPRITE + id + ".png", cls); }
+  // Alt-forme sprites are named by forme slug rather than dex id and live in
+  // their own subtree — note the literal space in "alt formes", matching the
+  // folder on disk (ported from src/app.js's altFormSpriteUrl()).
+  function altFormeImg(sprite, cls) { return imgTag(SPRITE + "alt formes/" + sprite + ".png", cls); }
   function typePills(types) {
     if (!types || !types.length) return "";
     return '<div class="types">' + types.map(function (t) {
@@ -250,23 +257,156 @@
     return "<h3>Base stats<span class=\"r\">Total " + total + '</span></h3><div class="stats">' + rows + "</div>";
   }
 
+  // The evolvesTo entry that produced `id`, so a fan row can say why it happens.
+  function evoStep(id) {
+    var from = EVO_PARENT[id];
+    var list = from == null ? [] : (EVOLUTIONS[from] || {}).evolvesTo || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+
+  // Deliberately minimal — just enough to tell two branches of the same tier
+  // apart. Mobile's evoArrowLabel() (moves, notes, forme overrides) is not
+  // ported; PLAN.md's pass-2 spec calls for the short version only.
+  function evoCond(e) {
+    // `item` alone isn't enough to read the method off: a trade/held evolution
+    // carries one too, and a move-taught one (Hydrapple) carries a TM slug.
+    if (e.move) return e.move;
+    if (e.method === "trade") return "Trade" + (e.item ? " w/ " + itemName(e.item) : "");
+    if (e.method === "held") return "Level up holding " + itemName(e.item);
+    if (e.item) return itemName(e.item);
+    if (e.level) return "Lv " + e.level;
+    if (e.timeOfDay) return "Level up (" + e.timeOfDay + ")";
+    return "Level up";
+  }
+  function itemName(slug) {
+    return String(slug).replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
+  }
+
+  function evoStage(id, curId) {
+    var q = byId(id);
+    return '<span class="stage' + (id === curId ? " cur" : "") + '" data-id="' + id + '">' +
+      spriteImg(id, "") + esc(q ? q.name : "#" + id) + "</span>";
+  }
+
+  // Trunk = the leading run of single-id tiers, kept on ONE non-wrapping row so
+  // it can never split mid-chain (it scrolls sideways instead). From the first
+  // branching tier on, every id gets its own arrow-prefixed row with its own
+  // condition label, so a fan can't interleave with the trunk — PLAN.md's
+  // pass-2 "AFTER" layout. A plain linear chain has no fan and renders exactly
+  // as it did before.
   function evoHtml(p) {
     var groups = evoStages(p.id);
     if (groups.length < 2) return '<div class="stub">' + esc(p.name) + " does not evolve.</div>";
-    return '<div class="evo">' + groups.map(function (ids, i) {
-      var col = ids.map(function (id) {
-        var q = byId(id);
-        return '<span class="stage' + (id === p.id ? " cur" : "") + '" data-id="' + id + '">' +
-          spriteImg(id, "") + esc(q ? q.name : "#" + id) + "</span>";
+
+    var split = 0;
+    while (split < groups.length && groups[split].length === 1) split++;
+
+    var trunk = groups.slice(0, split).map(function (ids, i) {
+      return (i ? '<span class="arrow">▶</span>' : "") + evoStage(ids[0], p.id);
+    }).join("");
+    var fan = groups.slice(split).reduce(function (a, ids) { return a.concat(ids); }, [])
+      .map(function (id) {
+        var step = evoStep(id);
+        return '<div class="fanrow"><span class="arrow">▶</span>' + evoStage(id, p.id) +
+          (step ? '<span class="cond">' + esc(evoCond(step)) + "</span>" : "") + "</div>";
       }).join("");
-      return (i ? '<span class="arrow">▶</span>' : "") +
-        (ids.length > 1 ? '<span class="branch">' + col + "</span>" : col);
+
+    return '<div class="evo"><div class="trunk">' + trunk + "</div>" + fan + "</div>";
+  }
+
+  // ------------------------------------------------------- Mega / Gigantamax
+  // Read-only bubbles for this pass: no tap-to-swap (mobile's setActiveForme()
+  // state machine) — deliberately deferred until the user judges these on a
+  // real screenshot. Species with no Mega/Gmax forme render no card at all.
+  function megaGmaxHtml(p) {
+    var formes = ((ALT_FORMS[p.id] || {}).formes || []).filter(function (f) { return f.isMega || f.isGmax; });
+    if (!formes.length) return "";
+    return '<div class="formes">' + formes.map(function (f) {
+      // Same short label mobile's altFormeShortLabel() produces: "Mega X" /
+      // "Mega Y" from the forme name minus the species, "Gmax" always.
+      var tag = f.isGmax ? "Gmax" : (f.name.replace(p.name, "").replace(/\s+/g, " ").trim() || "Mega");
+      return '<span class="forme">' + altFormeImg(f.sprite, "") + esc(f.name) +
+        '<span class="ftag' + (f.isGmax ? " gmax" : "") + '">' + esc(tag) + "</span></span>";
     }).join("") + "</div>";
   }
 
+  // ------------------------------------------------------------- stat radar
+  // Ported from src/app.js's radarSvg(): identical math, fixed 0-255 scale,
+  // HP/Atk/Def/Spe/SpD/SpA axis order, a per-axis conic-gradient fill clipped
+  // to the stat polygon, colored vertex dots, backdrop hexagon + 2 grid rings.
+  // Only the token names differ — desktop spells its --s-* vars out in full.
+  var RADAR_AXES = [
+    { key: "hp", label: "HP" }, { key: "attack", label: "Atk" }, { key: "defense", label: "Def" },
+    { key: "speed", label: "Spe" }, { key: "spDefense", label: "SpD" }, { key: "spAttack", label: "SpA" }
+  ];
+  var RADAR_MAX = 255;
+
+  // SVG presentation attributes and gradient strings can't resolve CSS custom
+  // properties, so the literal triple is read off :root at render time.
+  function statColor(key) {
+    return "rgb(" + getComputedStyle(document.documentElement).getPropertyValue("--s-" + key).trim() + ")";
+  }
+
+  function radarSvg(stats) {
+    var cx = 140, cy = 135, r = 105;
+
+    function point(i, radius) {
+      var angle = -Math.PI / 2 + i * (Math.PI * 2 / 6);
+      return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+    }
+
+    var outerPts = RADAR_AXES.map(function (a, i) { return point(i, r).join(","); }).join(" ");
+    var backdrop = '<polygon points="' + outerPts + '" fill="rgba(120,120,130,0.35)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+
+    var grid = [1 / 3, 2 / 3].map(function (frac) {
+      var pts = RADAR_AXES.map(function (a, i) { return point(i, r * frac).join(","); }).join(" ");
+      return '<polygon points="' + pts + '" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
+    }).join("");
+
+    var statXY = RADAR_AXES.map(function (a, i) {
+      return point(i, (Math.min(stats[a.key] || 0, RADAR_MAX) / RADAR_MAX) * r);
+    });
+    var statPts = statXY.map(function (p) { return p.join(","); }).join(" ");
+
+    // The fill is an HTML div inside a <foreignObject>: a CSS conic-gradient
+    // (one stop per axis, in RADAR_AXES order) clipped by clip-path to the
+    // same polygon as the outline. Not an SVG <linearGradient>/<clipPath>,
+    // which would need ids — and ids collide once a page draws two radars.
+    var colors = RADAR_AXES.map(function (a) { return statColor(a.key); });
+    var stops = colors.map(function (c, i) { return c + " " + (i * 60) + "deg"; }).join(",") + "," + colors[0] + " 360deg";
+    var clip = statXY.map(function (p) { return p[0] + "px " + p[1] + "px"; }).join(",");
+    var fill = '<foreignObject x="0" y="0" width="280" height="270">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" style="width:280px;height:270px;opacity:.55;clip-path:polygon(' + clip +
+      ');background:conic-gradient(from 0deg at ' + cx + 'px ' + cy + 'px,' + stops + ')"></div></foreignObject>';
+    // Vertex dots keep each axis's color identity readable where the
+    // translucent conic fill desaturates against the dark card.
+    var dots = statXY.map(function (p, i) {
+      return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.5" fill="' + colors[i] + '"/>';
+    }).join("");
+
+    var labels = RADAR_AXES.map(function (a, i) {
+      var p = point(i, r + 16);
+      return '<text x="' + p[0] + '" y="' + p[1] + '" font-size="10" fill="#f4e3b4" text-anchor="middle" dominant-baseline="middle">' + a.label + "</text>";
+    }).join("");
+
+    return '<svg class="radar" viewBox="0 0 280 270" aria-hidden="true">' + backdrop + grid + fill +
+      '<polygon points="' + statPts + '" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>' +
+      dots + labels + "</svg>";
+  }
+
+  // Doc view only for this pass — compactHtml()'s column is too narrow to be
+  // worth it without its own design pass.
+  function radarBox(p) {
+    var s = STATS[p.id];
+    return s ? '<div class="box"><h3>Base stats · radar</h3>' + radarSvg(s) + "</div>" : "";
+  }
+
+  // --t is set once on #compact/#doc by renderDetail(), so it cascades to the
+  // boxes here as well as to the head — it used to sit inline on the head only.
   function compactHtml(p) {
-    var t = typeVar((p.types || ["Normal"])[0]);
-    return '<div class="detail-head" style="' + t + '"><div class="top">' + spriteImg(p.id) +
+    var formes = megaGmaxHtml(p);
+    return '<div class="detail-head"><div class="top">' + spriteImg(p.id) +
       '<div><div class="id">#' + pad(p.id) + " · " + esc(p.region) + "</div><h2>" + esc(p.name) + "</h2>" +
       typePills(p.types) + "</div>" +
       '<div class="actions"><button class="iconbtn" data-expand title="Expand to document">⤡</button></div>' +
@@ -281,6 +421,7 @@
       "</div>" +
       "<section><h3>Abilities</h3>" + abilityRows(p, false) + "</section>" +
       "<section>" + statsHtml(p) + "</section>" +
+      (formes ? "<section><h3>Mega &amp; Gigantamax</h3>" + formes + "</section>" : "") +
       "<section><h3>Evolution</h3>" + evoHtml(p) + "</section>" +
       '<section><h3>Moves &middot; Locations &middot; Alt formes</h3><div class="stub">Not wired into the desktop pane yet — a later pass.</div></section>' +
       "</div>";
@@ -323,7 +464,7 @@
   }
 
   function docHtml(p) {
-    var t = typeVar((p.types || ["Normal"])[0]);
+    var formes = megaGmaxHtml(p);
     var list = currentList();
     var i = list.indexOf(p);
     var prev = (list[i - 1] || p).id, next = (list[i + 1] || p).id;
@@ -332,7 +473,7 @@
       return "<div>" + esc(r) + '<span class="r">#' + pad(dexNums[r]) + "</span></div>";
     }).join("");
 
-    return '<div class="dhead" style="' + t + '">' + spriteImg(p.id) +
+    return '<div class="dhead">' + spriteImg(p.id) +
       '<div><div class="id">#' + pad(p.id) + " · " + esc(p.region) +
       (p.category ? " · " + esc(p.category) : "") + "</div><h2>" + esc(p.name) + "</h2>" +
       typePills(p.types) + (p.description ? '<p class="desc">' + esc(p.description) + "</p>" : "") + "</div>" +
@@ -350,6 +491,7 @@
       '<div class="fact"><b>Weight</b><span>' + kilos(p.weight) + "</span></div>" +
       "</div></div>" +
       '<div class="box"><h3>Abilities</h3>' + abilityRows(p, true) + "</div>" +
+      (formes ? '<div class="box"><h3>Mega &amp; Gigantamax</h3>' + formes + "</div>" : "") +
       '<div class="box"><h3>Evolution</h3>' + evoHtml(p) + "</div>" +
       "</div>" +
       '<div class="col">' +
@@ -357,6 +499,7 @@
       defenseBox(p) +
       "</div>" +
       '<div class="col">' +
+      radarBox(p) +
       trainingBox(p) +
       (dexRows ? '<div class="box"><h3>Regional dex numbers</h3><div class="kv">' + dexRows + "</div></div>" : "") +
       '<div class="box"><h3>Moves &middot; Locations &middot; Alt formes</h3>' +
@@ -383,6 +526,13 @@
     }
 
     var p = byId(selectedId);
+    // Set the species' type key ONCE on each container: .detail-head/.dhead
+    // are siblings of the .box cards, not their ancestors, so an inline --t on
+    // the head alone never reached them and every box fell back to flat chrome.
+    var tv = typeRef(primaryType(p));
+    compact.style.setProperty("--t", tv);
+    doc.style.setProperty("--t", tv);
+
     compact.innerHTML = compactHtml(p);
     doc.innerHTML = docHtml(p);
     document.getElementById("navDetailTile").innerHTML = spriteImg(p.id, "");
