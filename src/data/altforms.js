@@ -533,7 +533,11 @@ var ALT_FORMS = {
       { key: "ruby-swirl-ribbon-sweet", name: "Ruby Swirl Ribbon Sweet", sprite: "869-ruby-swirl-ribbon-sweet" },
       { key: "caramel-swirl-ribbon-sweet", name: "Caramel Swirl Ribbon Sweet", sprite: "869-caramel-swirl-ribbon-sweet" },
       { key: "rainbow-swirl-ribbon-sweet", name: "Rainbow Swirl Ribbon Sweet", sprite: "869-rainbow-swirl-ribbon-sweet" }
-    ]
+    ],
+    // Optional entry-level `gmaxForme`: one ordinary tappable bubble rendered
+    // beside the collapsed "+62" recolor bubble. Only Alcremie has one — a
+    // recolorOnly entry otherwise collapses everything, Gmax included.
+    gmaxForme: { key: "gmax", name: "Gigantamax Alcremie", sprite: "gmax/alcremie", isGmax: true }
   },
   // --- Hisuian regional forms (Legends: Arceus) ---
   // One "hisui" forme each; every one is differently-typed from its base
@@ -751,7 +755,8 @@ var ALT_FORMS = {
         types: ["Steel"],
         stats: { hp: 50, attack: 65, defense: 55, spAttack: 40, spDefense: 40, speed: 40 },
         abilities: ["Pickup", "Tough Claws", "Unnerve"], hiddenAbility: "Unnerve",
-        evolvesTo: [{ id: 863, method: "level", level: 28 }] }
+        evolvesTo: [{ id: 863, method: "level", level: 28 }] },
+      { key: "gmax", name: "Gigantamax Meowth", sprite: "gmax/meowth", isGmax: true }
     ]
   },
   53: { // Persian — Alolan Persian, Dark, own base stats
@@ -1077,7 +1082,8 @@ var ALT_FORMS = {
     formes: [
       { key: "mega", name: "Mega Venusaur", sprite: "mega/venusaur", isMega: true,
         stats: { hp: 80, attack: 100, defense: 123, spAttack: 122, spDefense: 120, speed: 80 },
-        ability: "Thick Fat" }
+        ability: "Thick Fat" },
+      { key: "gmax", name: "Gigantamax Venusaur", sprite: "gmax/venusaur", isGmax: true }
     ]
   },
   6: { // Charizard — Mega Evolutions (X/Y)
@@ -1088,14 +1094,16 @@ var ALT_FORMS = {
         ability: "Tough Claws" },
       { key: "mega-y", name: "Mega Charizard Y", sprite: "mega/charizard_y", isMega: true,
         stats: { hp: 78, attack: 104, defense: 78, spAttack: 159, spDefense: 115, speed: 100 },
-        ability: "Drought" }
+        ability: "Drought" },
+      { key: "gmax", name: "Gigantamax Charizard", sprite: "gmax/charizard", isGmax: true }
     ]
   },
   9: { // Blastoise — Mega Evolution
     formes: [
       { key: "mega", name: "Mega Blastoise", sprite: "mega/blastoise", isMega: true,
         stats: { hp: 79, attack: 103, defense: 120, spAttack: 135, spDefense: 115, speed: 78 },
-        ability: "Mega Launcher" }
+        ability: "Mega Launcher" },
+      { key: "gmax", name: "Gigantamax Blastoise", sprite: "gmax/blastoise", isGmax: true }
     ]
   },
   15: { // Beedrill — Mega Evolution
@@ -1163,7 +1171,8 @@ var ALT_FORMS = {
     formes: [
       { key: "mega", name: "Mega Gengar", sprite: "mega/gengar", isMega: true,
         stats: { hp: 60, attack: 65, defense: 80, spAttack: 170, spDefense: 95, speed: 130 },
-        ability: "Shadow Tag" }
+        ability: "Shadow Tag" },
+      { key: "gmax", name: "Gigantamax Gengar", sprite: "gmax/gengar", isGmax: true }
     ]
   },
   115: { // Kangaskhan — Mega Evolution
@@ -1502,14 +1511,19 @@ var ALT_FORMS = {
   },
   485: { // Heatran — Mega Evolution
     formes: [
+      // These Legends: Z-A Megas keep their base species' own ability rather
+      // than gaining a signature one (user-confirmed research) — the CSV has
+      // no ability row for them, so the value is hand-set here.
       { key: "mega", name: "Mega Heatran", sprite: "mega/heatran", isMega: true,
-        stats: { hp: 91, attack: 120, defense: 106, spAttack: 175, spDefense: 141, speed: 67 } } // CSV carries no ability row for this Mega yet
+        stats: { hp: 91, attack: 120, defense: 106, spAttack: 175, spDefense: 141, speed: 67 },
+        ability: "Flash Fire" }
     ]
   },
   491: { // Darkrai — Mega Evolution
     formes: [
       { key: "mega", name: "Mega Darkrai", sprite: "mega/darkrai", isMega: true,
-        stats: { hp: 70, attack: 120, defense: 130, spAttack: 165, spDefense: 130, speed: 85 } } // CSV carries no ability row for this Mega yet
+        stats: { hp: 70, attack: 120, defense: 130, spAttack: 165, spDefense: 130, speed: 85 },
+        ability: "Bad Dreams" }
     ]
   },
   500: { // Emboar — Mega Evolution
@@ -1667,7 +1681,8 @@ var ALT_FORMS = {
         abilities: ["Aura Break", "Power Construct"],
         stats: { hp: 54, attack: 100, defense: 71, spAttack: 61, spDefense: 85, speed: 115 } },
       { key: "mega", name: "Mega Zygarde", sprite: "mega/zygarde", isMega: true,
-        stats: { hp: 216, attack: 70, defense: 91, spAttack: 216, spDefense: 85, speed: 100 } }
+        stats: { hp: 216, attack: 70, defense: 91, spAttack: 216, spDefense: 85, speed: 100 },
+        ability: "Aura Break" }
     ]
   },
   719: { // Diancie — Mega Evolution
@@ -1688,7 +1703,8 @@ var ALT_FORMS = {
     formes: [
       { key: "mega", name: "Mega Golisopod", sprite: "mega/golisopod", isMega: true,
         types: ["Bug", "Steel"],
-        stats: { hp: 75, attack: 150, defense: 175, spAttack: 70, spDefense: 120, speed: 40 } }
+        stats: { hp: 75, attack: 150, defense: 175, spAttack: 70, spDefense: 120, speed: 40 },
+        ability: "Emergency Exit" }
     ]
   },
   780: { // Drampa — Mega Evolution
@@ -1701,15 +1717,18 @@ var ALT_FORMS = {
   801: { // Magearna — Mega Evolutions (X/Y)
     formes: [
       { key: "mega", name: "Mega Magearna", sprite: "mega/magearna", isMega: true,
-        stats: { hp: 80, attack: 125, defense: 115, spAttack: 170, spDefense: 115, speed: 95 } },
+        stats: { hp: 80, attack: 125, defense: 115, spAttack: 170, spDefense: 115, speed: 95 },
+        ability: "Soul Heart" },
       { key: "mega-original", name: "Mega Original Magearna", sprite: "mega/magearna_original", isMega: true,
-        stats: { hp: 80, attack: 125, defense: 115, spAttack: 170, spDefense: 115, speed: 95 } }
+        stats: { hp: 80, attack: 125, defense: 115, spAttack: 170, spDefense: 115, speed: 95 },
+        ability: "Soul Heart" }
     ]
   },
   807: { // Zeraora — Mega Evolution
     formes: [
       { key: "mega", name: "Mega Zeraora", sprite: "mega/zeraora", isMega: true,
-        stats: { hp: 88, attack: 157, defense: 75, spAttack: 147, spDefense: 80, speed: 153 } }
+        stats: { hp: 88, attack: 157, defense: 75, spAttack: 147, spDefense: 80, speed: 153 },
+        ability: "Volt Absorb" }
     ]
   },
   870: { // Falinks — Mega Evolution
@@ -1743,13 +1762,62 @@ var ALT_FORMS = {
       { key: "droopy", name: "Droopy Form", sprite: "tatsugiri_droopy" },
       { key: "stretchy", name: "Stretchy Form", sprite: "tatsugiri_stretchy" },
       { key: "mega", name: "Mega Tatsugiri", sprite: "mega/tatsugiri_curly", isMega: true,
-        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 } }
+        stats: { hp: 68, attack: 65, defense: 90, spAttack: 135, spDefense: 125, speed: 92 },
+        ability: "Commander" }
     ]
   },
   998: { // Baxcalibur — Mega Evolution
     formes: [
       { key: "mega", name: "Mega Baxcalibur", sprite: "mega/baxcalibur", isMega: true,
-        stats: { hp: 115, attack: 175, defense: 117, spAttack: 105, spDefense: 101, speed: 87 } }
+        stats: { hp: 115, attack: 175, defense: 117, spAttack: 105, spDefense: 101, speed: 87 },
+        ability: "Thermal Exchange" }
+    ]
+  },
+
+  // Gigantamax formes — appearance only: Gmax never changes stats, types or
+  // abilities, so these carry no `stats`/`types`/`abilities`/`ability` field
+  // (statsCardHtml skips a forme with no `stats`, so no extra stats card).
+  // The 5 species that already had an entry above (3/6/9/52/94) got their
+  // gmax forme appended there instead. Deliberately absent: Toxtricity (849)
+  // and Urshifu (892) — two Gmax sprites each, tied to a base-forme split
+  // neither models yet; Alcremie (869) — recolorOnly, which collapses the
+  // whole entry and can't host an ordinary forme.
+  12: { formes: [{ key: "gmax", name: "Gigantamax Butterfree", sprite: "gmax/butterfree", isGmax: true }] },
+  25: { formes: [{ key: "gmax", name: "Gigantamax Pikachu", sprite: "gmax/pikachu", isGmax: true }] },
+  68: { formes: [{ key: "gmax", name: "Gigantamax Machamp", sprite: "gmax/machamp", isGmax: true }] },
+  99: { formes: [{ key: "gmax", name: "Gigantamax Kingler", sprite: "gmax/kingler", isGmax: true }] },
+  131: { formes: [{ key: "gmax", name: "Gigantamax Lapras", sprite: "gmax/lapras", isGmax: true }] },
+  133: { formes: [{ key: "gmax", name: "Gigantamax Eevee", sprite: "gmax/eevee", isGmax: true }] },
+  143: { formes: [{ key: "gmax", name: "Gigantamax Snorlax", sprite: "gmax/snorlax", isGmax: true }] },
+  569: { formes: [{ key: "gmax", name: "Gigantamax Garbodor", sprite: "gmax/garbodor", isGmax: true }] },
+  809: { formes: [{ key: "gmax", name: "Gigantamax Melmetal", sprite: "gmax/melmetal", isGmax: true }] },
+  812: { formes: [{ key: "gmax", name: "Gigantamax Rillaboom", sprite: "gmax/rillaboom", isGmax: true }] },
+  815: { formes: [{ key: "gmax", name: "Gigantamax Cinderace", sprite: "gmax/cinderace", isGmax: true }] },
+  818: { formes: [{ key: "gmax", name: "Gigantamax Inteleon", sprite: "gmax/inteleon", isGmax: true }] },
+  823: { formes: [{ key: "gmax", name: "Gigantamax Corviknight", sprite: "gmax/corviknight", isGmax: true }] },
+  826: { formes: [{ key: "gmax", name: "Gigantamax Orbeetle", sprite: "gmax/orbeetle", isGmax: true }] },
+  834: { formes: [{ key: "gmax", name: "Gigantamax Drednaw", sprite: "gmax/drednaw", isGmax: true }] },
+  839: { formes: [{ key: "gmax", name: "Gigantamax Coalossal", sprite: "gmax/coalossal", isGmax: true }] },
+  841: { formes: [{ key: "gmax", name: "Gigantamax Flapple", sprite: "gmax/flapple", isGmax: true }] },
+  842: { formes: [{ key: "gmax", name: "Gigantamax Appletun", sprite: "gmax/appletun", isGmax: true }] },
+  844: { formes: [{ key: "gmax", name: "Gigantamax Sandaconda", sprite: "gmax/sandaconda", isGmax: true }] },
+  851: { formes: [{ key: "gmax", name: "Gigantamax Centiskorch", sprite: "gmax/centiskorch", isGmax: true }] },
+  858: { formes: [{ key: "gmax", name: "Gigantamax Hatterene", sprite: "gmax/hatterene", isGmax: true }] },
+  861: { formes: [{ key: "gmax", name: "Gigantamax Grimmsnarl", sprite: "gmax/grimmsnarl", isGmax: true }] },
+  879: { formes: [{ key: "gmax", name: "Gigantamax Copperajah", sprite: "gmax/copperajah", isGmax: true }] },
+  884: { formes: [{ key: "gmax", name: "Gigantamax Duraludon", sprite: "gmax/duraludon", isGmax: true }] },
+  // Urshifu — the one entry using per-forme `gmaxOf` (a style key, "" = the
+  // base bubble): two fighting styles, each with its own Gmax, so the module
+  // renders as a 2-column grid (style on top, its Gmax underneath) instead of
+  // the usual flat row. Both styles share Unseen Fist and one identical stat
+  // line, so no forme sets `abilities`/`stats` — the base's own values pass
+  // through untouched and one Base Stats card covers both.
+  892: {
+    baseName: "Single Strike Style Urshifu",
+    formes: [
+      { key: "rapid-strike", name: "Rapid Strike Style Urshifu", sprite: "urshifu_rapid_strike", types: ["Fighting", "Water"] },
+      { key: "single-strike-gmax", name: "Gigantamax Urshifu", sprite: "gmax/urshifu_single_strike", isGmax: true, gmaxOf: "" },
+      { key: "rapid-strike-gmax", name: "Gigantamax Urshifu", sprite: "gmax/urshifu_rapid_strike", isGmax: true, gmaxOf: "rapid-strike" }
     ]
   }
 };

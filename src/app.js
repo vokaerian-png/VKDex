@@ -1092,18 +1092,19 @@
 
   // One line per collapsed (buy, sell, currency) tuple. A game selection
   // narrows to that game's tuples and drops the games sub-line, since it
-  // would just repeat the selector.
+  // would just repeat the selector. Always renders — no price data at all,
+  // or none matching `bagGame`, shows a placeholder line instead of hiding
+  // the card, same as itemWhereCardHtml below (0.4.1's data-gap rule).
   function itemPriceCardHtml(it) {
     var prices = (it.prices || []).filter(function (p) {
       return !bagGame || p.vg.indexOf(bagGame) !== -1;
     });
-    if (!prices.length) return "";
     return '<div class="detail-section"><p class="detail-section-label">Price</p>' +
-      prices.map(function (p) {
+      (prices.length ? prices.map(function (p) {
         var buy = p.buy === null ? "Can’t be bought" : "Buy " + money(p.buy, p.cur);
         var sell = p.sell === null ? "" : " &middot; Sell " + money(p.sell, p.cur);
         return '<div class="enc-line">' + buy + sell + (bagGame ? "" : encGamesHtml(p.games)) + "</div>";
-      }).join("") + "</div>";
+      }).join("") : '<div class="enc-line">No price data recorded yet.</div>') + "</div>";
   }
 
   // Reuses the Found In popup's collapsible-area markup verbatim: one
@@ -1369,10 +1370,14 @@
   // Non-Mega/Gmax formes tag their ability (rule 4, generalized) with their
   // own short label rather than literally "Mega"/"Gmax" — derived from the
   // forme's `key` since every entry keys formes with a short, display-ready
-  // word ("attack", "sunny", ...). Mega/Gmax formes tag with their name
-  // minus the species name, so Charizard's two read "Mega X"/"Mega Y".
+  // word ("attack", "sunny", ...). Mega formes tag with their name minus the
+  // species name, so Charizard's two read "Mega X"/"Mega Y". Gmax formes are
+  // always literally "Gmax" (0.4.3): their names are "Gigantamax <Species>",
+  // so the strip would yield the full 10-character word — too wide for the
+  // bubble, and no Gmax forme in this data needs a variant tag.
   function altFormeShortLabel(forme, entry) {
-    if (forme.isMega || forme.isGmax) return forme.name.replace(entry.name, "").replace(/\s+/g, " ").trim() || (forme.isMega ? "Mega" : "Gmax");
+    if (forme.isGmax) return "Gmax";
+    if (forme.isMega) return forme.name.replace(entry.name, "").replace(/\s+/g, " ").trim() || "Mega";
     return forme.key.charAt(0).toUpperCase() + forme.key.slice(1);
   }
 
@@ -1420,12 +1425,55 @@
     }).join("") + "</div>";
   }
 
+  // The marker for "this species has genuinely equal-weight alternate styles"
+  // (0.4.4, Urshifu only): per-forme `gmaxOf` drives the grid layout below and
+  // also licenses `baseName` in the topbar (setActiveForme). "gmaxOf" in f,
+  // not a truthiness test: "" is a meaningful value (the base bubble's own
+  // key), not an absent field.
+  function usesGmaxGrid(data) {
+    return !!(data && data.formes && data.formes.some(function (f) { return "gmaxOf" in f; }));
+  }
+
+  // Opt-in grid layout (0.4.4, Urshifu only): a forme carrying `gmaxOf`
+  // renders BENEATH the style bubble whose key it names ("" = the base
+  // bubble) instead of continuing the flat row, so each fighting style and
+  // its own Gmax read as one column. Bubble markup/classes are the flat
+  // row's, unchanged — only the grouping differs, so findForme/
+  // setActiveForme (which scan the flat `formes` array and key off
+  // data-forme-key) need no changes. `baseIndex` is deliberately not
+  // consulted here: the base is always column 0 in this layout.
+  function altFormsGridHtml(entry, data) {
+    var cols = [], byKey = {};
+    function col(key, bubble) { var c = { bubbles: [bubble] }; byKey[key] = c; cols.push(c); }
+    col("", altFormStageHtml("", data.baseName || entry.name, displaySpriteUrl(entry.id), " altform-active"));
+    data.formes.forEach(function (f) {
+      if (!("gmaxOf" in f)) col(f.key, altFormStageHtml(f.key, f.name, altFormSpriteUrl(f.sprite), altFormeTappable(f) ? "" : " altform-inert"));
+    });
+    data.formes.forEach(function (f) {
+      if (!("gmaxOf" in f)) return;
+      var html = altFormStageHtml(f.key, f.name, altFormSpriteUrl(f.sprite), altFormeTappable(f) ? "" : " altform-inert");
+      // An unmatched gmaxOf gets its own column rather than vanishing.
+      if (byKey[f.gmaxOf]) byKey[f.gmaxOf].bubbles.push(html); else col(f.key, html);
+    });
+    return cols.map(function (c) { return '<div class="altforms-col">' + c.bubbles.join("") + "</div>"; }).join("");
+  }
+
   function altFormsCardHtml(entry) {
     var data = ALT_FORMS[entry.id];
     if (!data || !data.formes || !data.formes.length) return "";
-    var body;
+    var body, rowClass = "evo-row altforms-row";
     if (data.recolorOnly) {
       body = altFormsRecolorBubbleHtml(entry, data);
+      // Optional entry-level `gmaxForme` (0.4.4, Alcremie only): recolorOnly
+      // collapses every forme into the "+N" bubble, which would swallow a
+      // Gmax that isn't a recolor at all — so it renders as one ordinary
+      // tappable bubble beside it, in the same flat row.
+      if (data.gmaxForme) {
+        body += altFormStageHtml(data.gmaxForme.key, data.gmaxForme.name, altFormSpriteUrl(data.gmaxForme.sprite), "");
+      }
+    } else if (usesGmaxGrid(data)) {
+      body = altFormsGridHtml(entry, data);
+      rowClass = "altforms-grid";
     } else {
       var anyTappable = data.formes.some(altFormeTappable);
       // Optional per-species `baseName` (0.3.20): the base bubble's own forme
@@ -1453,7 +1501,7 @@
     // don't convey (Keldeo's Resolute Forme needs the move Secret Sword).
     // Same .detail-section-note markup evoDescriptorHtml() uses.
     return '<div class="detail-section altforms-card"><p class="detail-section-label">Alt Formes</p>' +
-      '<div class="evo-row altforms-row">' + body + "</div>" +
+      '<div class="' + rowClass + '">' + body + "</div>" +
       (data.note ? '<p class="detail-section-note">' + escapeHtml(data.note) + "</p>" : "") +
       "</div>";
   }
@@ -1468,11 +1516,30 @@
   // and the evolution card's per-forme override lookup (evoEdgesFor).
   function findForme(id, formeKey) {
     var altData = ALT_FORMS[id];
-    if (!formeKey || !altData || !altData.formes) return null;
-    for (var i = 0; i < altData.formes.length; i++) {
-      if (altData.formes[i].key === formeKey) return altData.formes[i];
+    if (!formeKey || !altData) return null;
+    var formes = altData.formes || [];
+    for (var i = 0; i < formes.length; i++) {
+      if (formes[i].key === formeKey) return formes[i];
     }
+    // `gmaxForme` (0.4.4, Alcremie) is a sibling of `formes`, not a member of
+    // it — checked last, so a real forme with the same key would still win.
+    if (altData.gmaxForme && altData.gmaxForme.key === formeKey) return altData.gmaxForme;
     return null;
+  }
+
+  // Topbar name with no forme active. Normally the plain species name; for a
+  // gmax-grid species (Urshifu) the base bubble is one of two equal-weight
+  // styles, so its `baseName` is used instead — shortened by the same " Style "
+  // rule as an active forme's, for length parity ("Single Strike Urshifu").
+  // Gated on usesGmaxGrid, NOT on baseName alone: a cosmetic baseName
+  // (Sinistea's "Phony") is deliberately bubble-only. Both entry points into
+  // the topbar — renderDetail (fresh open) and setActiveForme (tap back to the
+  // base bubble) — go through here, or one of the two would show a stale name.
+  function topbarBaseName(entry) {
+    var data = ALT_FORMS[entry.id];
+    return usesGmaxGrid(data) && data.baseName
+      ? data.baseName.replace(/ Style (?=\S)/, " ")
+      : entry.name;
   }
 
   function setActiveForme(formeKey) {
@@ -1488,7 +1555,12 @@
     if (mainImg) mainImg.src = pictureSpriteUrl(entry, tappable ? forme : null, false);
     var shinyImg = document.getElementById("pictureShinySprite");
     if (shinyImg) shinyImg.src = pictureSpriteUrl(entry, tappable ? forme : null, true);
-    detailName.textContent = tappable ? forme.name : entry.name;
+    // Topbar only: "Gigantamax Venusaur" overflows the 360px frame, so the
+    // prefix is shortened to "Gmax" here. The Alt Formes bubble caption keeps
+    // the full name (it wraps, and the user confirmed that reads fine).
+    detailName.textContent = tappable
+      ? (forme.isGmax ? forme.name.replace(/^Gigantamax\b/, "Gmax") : forme.name.replace(/ Style (?=\S)/, " "))
+      : topbarBaseName(entry);
     // Same resolution the Facts card's swapEntry uses below: a forme's own
     // types only count while it actually swaps them.
     applyDetailTypeGlow((swaps && forme.types) || entry.types);
@@ -1663,14 +1735,26 @@
   // card swap), OR the edge leading INTO the next step in this path came
   // from a specific forme of this species (fromFormeKey, set above) — the
   // ancestor that actually produces that branch, not its base form.
-  function evoStageForme(id, nextStep, incomingVia) {
+  // `preferEdgeForme` (0.4.4, Urshifu): set only for a leaf whose id is reached
+  // by 2+ sibling paths (Kubfu's two scrolls both target 892, told apart only
+  // by the edge's own `forme`). Such a branch is structurally determined by ITS
+  // OWN edge, not by whatever forme happens to be active on the viewed page, so
+  // the rows are a static display. A missing `.forme` here means "this edge
+  // lands on the base/default forme" and must NOT fall through to the
+  // self-active-forme check below, or both siblings collapse onto one forme
+  // again. Every other species has exactly one path per leaf id, so the flag is
+  // always false for them and their behavior is unchanged.
+  function evoStageForme(id, nextStep, incomingVia, preferEdgeForme) {
+    if (preferEdgeForme) return (incomingVia && incomingVia.forme) ? findForme(id, incomingVia.forme) : null;
     if (id === detailEntryId && activeFormeKey) {
-      // `hideInEvoLine` (0.3.20): a purely cosmetic forme (Sinistea's Antique
-      // and friends) shouldn't relabel this chain's node — the evolution line
-      // stays on the base species no matter which bubble is active. Picture/
+      // Three kinds of forme never relabel this chain's node — the evolution
+      // line stays on the base species no matter which bubble is active:
+      // `hideInEvoLine` (0.3.20) for a purely cosmetic forme (Sinistea's
+      // Antique and friends), and isMega/isGmax (0.4.3), which are battle-only
+      // transformations and not part of the actual evolution line. Picture/
       // Facts/Alt Formes cards read activeFormeKey directly and are unaffected.
       var selfForme = findForme(id, activeFormeKey);
-      return selfForme && selfForme.hideInEvoLine ? null : selfForme;
+      return selfForme && (selfForme.hideInEvoLine || selfForme.isMega || selfForme.isGmax) ? null : selfForme;
     }
     if (nextStep && nextStep.via && nextStep.via.fromFormeKey) return findForme(id, nextStep.via.fromFormeKey);
     // Target-side color, inherited from the INCOMING edge that produced this
@@ -1682,6 +1766,18 @@
     // is a harmless no-op — that's how base/West Shellos keeps base Gastrodon.
     if (incomingVia && incomingVia.forme) return findForme(id, incomingVia.forme);
     return null;
+  }
+
+  // Label for a stage bubble. A `preferEdgeForme` leaf whose edge carries no
+  // `forme` lands on the species' base forme — the right sprite, but the bare
+  // species name hides that it's specifically one of two equal-weight styles,
+  // so ALT_FORMS' `baseName` labels it ("Single Strike Style Urshifu"),
+  // symmetric with its "Rapid Strike Style Urshifu" sibling. Only ever fires
+  // for such a collision leaf: a cosmetic baseName (Sinistea's "Front") must
+  // not leak into a normal chain, where preferEdgeForme is always false.
+  function evoStageName(id, forme, preferEdgeForme) {
+    if (forme) return forme.name;
+    return (preferEdgeForme && ALT_FORMS[id] && ALT_FORMS[id].baseName) || null;
   }
 
   function evolutionPaths(rootId) {
@@ -1836,6 +1932,11 @@
     // draw the root once and hang the branches off it instead. Anything
     // deeper or mixed keeps the per-path rows.
     var descriptor = evoDescriptorHtml(root);
+    // How many paths end on each id — >1 means sibling branches converge on the
+    // same species (Urshifu), which makes those leaves edge-determined rather
+    // than active-forme-driven. See evoStageForme's `preferEdgeForme`.
+    var lastIdCounts = {};
+    paths.forEach(function (p) { var lastId = p[p.length - 1].id; lastIdCounts[lastId] = (lastIdCounts[lastId] || 0) + 1; });
     var isFan = paths.length >= 3 && paths.every(function (p) { return p.length === 2; });
     if (isFan) {
       // Every branch leaves the same root, so the chevron is drawn once
@@ -1851,10 +1952,11 @@
         html += '<div class="evo-fan-row">';
         paths.slice(r, r + FAN_ROW_SIZE).forEach(function (path) {
           var leaf = path[1];
-          var leafForme = evoStageForme(leaf.id, null, leaf.via);
+          var leafPrefersEdge = lastIdCounts[leaf.id] > 1;
+          var leafForme = evoStageForme(leaf.id, null, leaf.via, leafPrefersEdge);
           html += '<div class="evo-fan-branch"><span class="evo-arrow">' + evoArrowIconsHtml(leaf.via) +
             '<span class="evo-level">' + escapeHtml(evoArrowLabel(leaf.via)) + "</span></span>" +
-            evoStageHtml(leaf.id, leafForme && altFormSpriteUrl(leafForme.sprite, false), leafForme && leafForme.name) + "</div>";
+            evoStageHtml(leaf.id, leafForme && altFormSpriteUrl(leafForme.sprite, false), evoStageName(leaf.id, leafForme, leafPrefersEdge)) + "</div>";
         });
         html += "</div>";
       }
@@ -1876,11 +1978,12 @@
         // An active/producing alt forme (0.3.9) takes priority over that:
         // the two never co-occur in the shipped data.
         var next = path[i + 1];
-        var stepForme = evoStageForme(step.id, next, step.via);
+        var stepPrefersEdge = !next && lastIdCounts[step.id] > 1;
+        var stepForme = evoStageForme(step.id, next, step.via, stepPrefersEdge);
         var spriteSrc = stepForme
           ? altFormSpriteUrl(stepForme.sprite, false)
           : evoGenderSpriteUrl(step.id, next && next.via && next.via.gender);
-        html += evoStageHtml(step.id, spriteSrc, stepForme && stepForme.name);
+        html += evoStageHtml(step.id, spriteSrc, evoStageName(step.id, stepForme, stepPrefersEdge));
       });
       html += "</div>";
     });
@@ -2105,7 +2208,10 @@
     var rows = list.map(function (m) {
       var isLevelUp = tab.key === "levelUp";
       var name = isLevelUp ? m.move : m;
-      var req = isLevelUp ? '<span class="move-req">Lv ' + m.level + "</span>" : "";
+      // PokeAPI encodes "learned on evolution" as level 0 — show "Evo",
+      // not a nonsensical "Lv 0" (271 MOVESETS rows / 254 species, plus 26
+      // in MOVESETS_HISUI; one shared function covers both tables).
+      var req = isLevelUp ? '<span class="move-req">' + (m.level === 0 ? "Evo" : "Lv " + m.level) + "</span>" : "";
       var data = MOVES[name];
       return '<div class="move-row">' + req + (data ? pillHtml(data.type) : "") + '<span class="move-name">' + escapeHtml(name) + "</span></div>";
     }).join("");
@@ -2592,7 +2698,7 @@
   }
 
   function renderDetail(entry) {
-    detailName.textContent = entry.name;
+    detailName.textContent = topbarBaseName(entry);
     applyDetailTypeGlow(entry.types);
     detailBody.innerHTML = pictureCardHtml(entry) +
       altFormsCardHtml(entry) +

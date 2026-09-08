@@ -937,7 +937,16 @@ var EVOLUTIONS = {
   888: { evolvesTo: [] },
   889: { evolvesTo: [] },
   890: { evolvesTo: [] },
-  891: { evolvesTo: [{ id: 892, method: "stone", item: "scroll-of-darkness" }] },
+  // Two Scrolls, two styles: the edge-level `forme` (0.3.25) names the
+  // TARGET's own ALT_FORMS key, so the Water branch's arrow shows Rapid
+  // Strike's sprite/name instead of a second Single Strike bubble.
+  891: { evolvesTo: [
+    // Neither scroll has bundled sprite art, so both arrows would read the
+    // generic "Stone" with no icon — the edge-level `note` names the item
+    // instead (same fix as Galarian Slowpoke's two Galarica items).
+    { id: 892, method: "stone", item: "scroll-of-darkness", note: "Scroll of Darkness" },
+    { id: 892, method: "stone", item: "scroll-of-water", forme: "rapid-strike", note: "Scroll of Water" }
+  ] },
   892: { evolvesTo: [] },
   893: { evolvesTo: [] },
   894: { evolvesTo: [] },

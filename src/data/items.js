@@ -41140,6 +41140,18 @@ var ITEMS_DATA = {
       ] },
     ],
   },
+  "scroll-of-water": {
+    name: "Scroll of Water",
+    description: "A scroll of rippling calm; Kubfu masters it to become Rapid Strike Style Urshifu.",
+    noArt: true,
+    category: "Gameplay", pocket: "key",
+    gens: [9],
+    where: [
+      { vg: "scarlet-violet", games: "Scarlet/Violet", lines: [
+        { type: "Auction", place: "Porto Marinada auction", detail: "if the player owns a Kubfu" },
+      ] },
+    ],
+  },
   "malicious-armor": {
     name: "Malicious Armor",
     description: "Armour bound with the malice of its maker; Charcadet evolves into Ceruledge when given it.",
