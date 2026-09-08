@@ -49,6 +49,11 @@
   </footer>
 </div>
 
+<!-- Sprite-enlarge popup (0.4.10). One shared overlay rather than one per
+     sprite: the enlarge buttons beside the detail pane's normal/shiny sprites
+     only hand app.js a URL. Esc or a click outside the image closes it. -->
+<div class="lightbox" id="lightbox" hidden><img id="lightboxImg" alt=""></div>
+
 <!-- Data layer, read-only, shared verbatim with the mobile frontend: these are
      src/data/*.js, loaded as plain <script> tags exactly the way src/index.html
      loads them (no bundler, no fetch(), no ES imports — CLAUDE.md §1).

@@ -25,6 +25,13 @@
   --divider: rgba(255, 255, 255, 0.08);
   --panel-top: #5c2628;
   --dex-panel-bg: #4a1f20;
+  /* Region-chip plaque tints (0.4.10): the 9 mainline regions wear the same
+     red device panel as the grid, Hisui purple, Orre brown/dark-orange. The
+     last two used to share one purple .standalone fill. */
+  --panel-top-purple: #4a2d6b;
+  --dex-panel-bg-purple: #33204a;
+  --panel-top-orre: #8a5426;
+  --dex-panel-bg-orre: #6b3f1a;
 
   /* ...and its theme-independent tokens, verbatim. */
   --accent: #4da3ff;
@@ -74,7 +81,14 @@
   --detail-w: 400px;
   --slide-t: 240ms;
   --slide-ease: cubic-bezier(.2, .8, .2, 1);
+  /* Settings' Grid Width row (0.4.10). The desktop grid is auto-fill, not a
+     fixed column count, so mobile's 3/4/5 drives the card's minimum width. */
+  --card-min: 132px;
 }
+
+/* Settings' Pixel Sprites row, off = smooth. Custom properties inherit, so
+   overriding the token on <body> reaches every sprite in the app. */
+body.smooth-sprites { --sprite-rendering: auto; }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
@@ -194,30 +208,46 @@ body {
 .select:hover, .btn:hover { border-color: #5a5e67; background: #33363c; }
 .toolbar .count { margin-left: auto; color: #8a8f99; font-size: 12px; white-space: nowrap; }
 
-/* Region chips: larger stylized pills. Hisui/Orre carry the same purple
-   standalone-dex tint the mobile region bar uses (--accent-purple). */
-.regions { display: flex; gap: 8px; padding: 12px 16px 2px; flex-wrap: wrap; }
+/* Region chips (0.4.10, signed-off mockup temp/pass3-mockup-2026-09-08): a
+   beveled plaque with a corner dot marker, filled with the SAME diagonal
+   micro-texture over a region-tinted panel gradient the dex grid and wordmark
+   use — so a chip reads as a small piece of the same device. Selected
+   brightens/saturates that texture and adds an accent glow ring rather than
+   swapping to a flat blue fill. Tint is keyed off data-region, so the
+   .standalone class stays purely a data marker. */
+.regions { display: flex; gap: 10px; padding: 12px 16px 2px; flex-wrap: wrap; }
 .regions button {
-  background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(0, 0, 0, .08)), var(--chip-bg);
-  border: 1.5px solid #4d515a;
-  color: #d8dbe1;
-  border-radius: 999px;
-  padding: 7px 16px;
+  --top: var(--panel-top);
+  --bg: var(--dex-panel-bg);
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, var(--top), var(--bg));
+  border: 1px solid #000;
+  color: #e8ddd0;
+  border-radius: 12px;
+  padding: 8px 18px 8px 30px;
   font: inherit; font-size: 13px; font-weight: 700; letter-spacing: .02em;
   cursor: pointer;
-  box-shadow: var(--raised-shadow-sm);
-  transition: transform .1s, filter .12s, border-color .12s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), var(--raised-shadow-sm);
+  transition: transform .1s, filter .12s, box-shadow .12s;
 }
-.regions button:hover { border-color: #858a94; filter: brightness(1.12); }
-.regions button:active { transform: scale(.95); box-shadow: inset 0 2px 4px rgba(0, 0, 0, .35); }
-.regions button.on { background: linear-gradient(180deg, #7fc1ff 0%, var(--accent) 100%); border-color: #2a75bb; color: #08131f; }
-.regions button.standalone {
-  background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(0, 0, 0, .08)), rgb(var(--accent-purple-rgb) / .28);
-  border-color: var(--accent-purple);
-  color: #e4d4fb;
+.regions button::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(135deg, rgba(255, 255, 255, .06) 0 2px, transparent 2px 7px);
 }
-.regions button.standalone:hover { border-color: #c49bf0; }
-.regions button.standalone.on { background: var(--accent-purple-grad); border-color: #6f45a8; color: #fff; }
+.regions button::before {
+  content: ""; position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  width: 9px; height: 9px; border-radius: 3px; background: rgba(255, 255, 255, .35); z-index: 1;
+}
+.regions button span { position: relative; z-index: 1; }
+.regions button[data-region="hisui"] { --top: var(--panel-top-purple); --bg: var(--dex-panel-bg-purple); }
+.regions button[data-region="orre"] { --top: var(--panel-top-orre); --bg: var(--dex-panel-bg-orre); }
+.regions button:hover { filter: brightness(1.12); }
+.regions button:active { transform: scale(.95); }
+.regions button.on {
+  filter: brightness(1.25) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 0 0 2px rgb(var(--accent-rgb) / .55);
+}
+.regions button.on::before { background: #fff; }
 
 /* ------------------------------------------------------------- dex grid */
 
@@ -235,7 +265,7 @@ body {
     repeating-linear-gradient(135deg, rgba(0, 0, 0, .08) 0 2px, transparent 2px 7px),
     linear-gradient(180deg, var(--panel-top) 0%, var(--dex-panel-bg) 100%);
   box-shadow: var(--raised-shadow);
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; align-content: start;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--card-min), 1fr)); gap: 10px; align-content: start;
 }
 /* Lighter than the other muted greys — this one now sits on the red panel. */
 .grid .empty { grid-column: 1 / -1; color: #e3c9c9; padding: 30px 0; text-align: center; }
@@ -259,6 +289,9 @@ body {
 .card .num { position: absolute; top: 7px; left: 9px; font-size: 11px; color: #7d818a; }
 .card .tag { position: absolute; top: 7px; right: 9px; font-size: 10px; font-weight: 700; color: var(--accent-purple); }
 .card .name { font-weight: 600; font-size: 13px; }
+/* Search-only Mega/Gmax cards (0.4.10): same shape as a species card, told
+   apart by the existing Mega/Gmax pill in the corner. */
+.card .ftag { position: absolute; top: 6px; right: 7px; }
 .sprite {
   width: 72px; height: 72px; margin: 4px auto 2px; display: block;
   image-rendering: var(--sprite-rendering);
@@ -288,6 +321,19 @@ body {
 .sw::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #b0b4bb; transition: left .12s; }
 .sw:checked { background: var(--accent); }
 .sw:checked::after { left: 18px; background: #fff; }
+.sw:disabled { cursor: default; opacity: .5; }
+/* Dark Mode is mirrored for parity but inert — the desktop build has no light
+   theme yet (styles.css's own header note). */
+.frow.off > div:first-child { color: #8a8f99; }
+/* Measurements / Grid Width: mobile's segmented radio group, desktop chrome. */
+.seg { display: flex; gap: 0; border: 1px solid #000; border-radius: 9px; overflow: hidden; }
+.seg button {
+  background: #3a3d44; color: #cfd2d8; border: 0; border-left: 1px solid #000;
+  padding: 6px 14px; font: inherit; font-size: 12px; cursor: pointer; min-width: 40px;
+}
+.seg button:first-child { border-left: 0; }
+.seg button:hover { background: #4a4e57; color: #fff; }
+.seg button.on { background: var(--accent); color: #08131f; font-weight: 600; }
 
 /* --------------------------------------------------------- detail pane */
 
@@ -337,8 +383,60 @@ body {
 }
 .detail-head { padding: 14px 16px 12px; border-bottom: 1px solid var(--divider); }
 .detail-head .top { display: flex; align-items: center; gap: 12px; }
-.detail-head .sprite { width: 96px; height: 96px; margin: 0; flex: none; }
 .detail-head .id { font-size: 12px; color: #9aa0aa; }
+
+/* Sprite bay (0.4.10): normal + shiny side by side, each with its own
+   enlarge button; on a Mega/Gmax screen a small base-form sprite sits to the
+   left and navigates back. The type halo that .sprite paints from --t is
+   suppressed here and on the evolution grid (TODO #19) — it was an unintended
+   side effect of 0.4.9's --t cascade fix. Dex-grid cards keep theirs. */
+/* Top-aligned (0.4.11) so the labelled shiny cell, which is taller than the
+   unlabelled normal one, still lines its ARTWORK up with it. */
+.spritebay { display: flex; align-items: flex-start; gap: 6px; flex: none; }
+.spritecell { flex: none; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.spriteimg { position: relative; }
+.spritecell .sprite,
+.baseback .sprite, .baseback img,
+.evo-slot img, .lightbox img { background: none; }
+.detail-head .spritecell .sprite { width: 84px; height: 84px; margin: 0; }
+.dhead .spritecell .sprite { width: 124px; height: 124px; margin: 0; }
+/* 0.4.11: a non-interactive pill under the sprite, in the same outlined-pill
+   language as .abil .tag's "Hidden" badge — it used to be plain text absolutely
+   positioned over the artwork's bottom-left corner. Still a <span>, never a
+   button: it labels, it doesn't do anything. */
+.slabel {
+  font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--accent-warm); border: 1px solid var(--accent-warm);
+  border-radius: 999px; padding: 1px 7px; line-height: 1.5;
+  pointer-events: none; white-space: nowrap;
+}
+.zoombtn {
+  position: absolute; right: -2px; bottom: -2px;
+  width: 20px; height: 20px; padding: 3px; border-radius: 6px;
+  background: var(--chip-bg); border: 1px solid #000; color: #cfd2d8;
+  cursor: pointer; display: grid; place-items: center;
+  box-shadow: var(--raised-shadow-sm);
+}
+.zoombtn:hover { border-color: var(--accent); color: #fff; background: #33363c; }
+.zoombtn svg { width: 100%; height: 100%; display: block; }
+.baseback {
+  flex: none; align-self: center; padding: 2px; border-radius: 10px; cursor: pointer;
+  background: var(--screen-bg); border: 1px solid #000; display: grid; place-items: center;
+}
+.baseback:hover { border-color: var(--accent); }
+.baseback img { width: 44px; height: 44px; image-rendering: var(--sprite-rendering); display: block; }
+
+/* Regional dex numbers, relocated out of their own card (0.4.10): a
+   right-aligned line along the bottom of the header, under the description. */
+.dexnums {
+  flex-basis: 100%; margin-top: 8px;
+  display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: flex-end;
+  font-size: 11px; color: #8a8f99;
+}
+/* REGIONS keys are lowercase slugs in the data; the old card showed them raw
+   and this line is more prominent, so capitalise in CSS rather than the data. */
+.dexnums span { text-transform: capitalize; }
+.dexnums b { color: #cfd2d8; font-weight: 600; font-variant-numeric: tabular-nums; }
 .detail-head h2 { margin: 0; font-size: 24px; line-height: 1.1; }
 .detail-head .types { justify-content: flex-start; margin-top: 8px; }
 .detail-head .pill { font-size: 11px; padding: 3px 9px; }
@@ -363,24 +461,60 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .stats .v { text-align: right; font-variant-numeric: tabular-nums; }
 .bar { height: 9px; background: var(--screen-bg); border-radius: 999px; border: 1px solid #000; overflow: hidden; }
 .bar i { display: block; height: 100%; background: rgb(var(--s)); border-radius: 999px; transition: width .25s; }
-/* Trunk row + one row per branch (0.4.9). The trunk never wraps — a narrow
-   pane scrolls it sideways rather than dropping a stage onto its own line —
-   and every branch is a full row, so a wrap can only ever happen at a branch
-   boundary. Long fans (Eevee's 8) just make the card taller; .detail-body /
-   .doc already scroll. */
-.evo { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.evo .trunk { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; max-width: 100%; overflow-x: auto; padding-bottom: 2px; }
-.evo .fanrow { display: flex; align-items: center; gap: 6px; margin-left: 14px; max-width: 100%; }
-.evo .stage { flex: none; display: flex; align-items: center; gap: 6px; background: var(--screen-bg); border: 1px solid #000; border-radius: 999px; padding: 3px 10px 3px 3px; font-size: 12px; cursor: pointer; }
-.evo .stage:hover { border-color: var(--accent); }
-.evo .stage.cur { border-color: var(--accent); background: rgb(var(--accent-rgb) / .14); }
-.evo .stage img { width: 32px; height: 32px; image-rendering: var(--sprite-rendering); }
-.evo .arrow { color: #7d818a; font-size: 12px; flex: none; }
-.evo .cond { color: #7d818a; font-size: 10px; white-space: nowrap; }
+/* Evolution line: a genuine merged-cell grid (0.4.10, sh4-evo-reference.png).
+   app.js places every cell explicitly — stage i in column 2i+1, the arrow into
+   it in column 2i — and gives the shared leading stages a grid-row span
+   covering every branch's row, so a shared ancestor is drawn ONCE and each
+   branch lays its own remaining steps on its own row. grid-auto-rows:1fr keeps
+   the spanning cell vertically centred against its branches. */
+.evo-grid { display: grid; column-gap: 14px; row-gap: 8px; grid-auto-rows: 1fr; justify-content: start; }
+.evo-slot {
+  background: var(--screen-bg); border: 1px solid #000; border-radius: 14px;
+  padding: 8px 10px; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 3px; font: inherit; font-size: 11px; color: var(--screen-fg);
+  cursor: pointer; min-width: 84px; align-self: stretch;
+}
+.evo-slot:hover { border-color: var(--accent); }
+.evo-slot.cur { border-color: var(--accent); background: rgb(var(--accent-rgb) / .14); }
+.evo-slot img { width: 56px; height: 56px; image-rendering: var(--sprite-rendering); display: block; }
+.evo-name { text-align: center; line-height: 1.2; }
+.evo-arrowcell {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  color: #7d818a; align-self: stretch;
+}
+.evo-lv {
+  background: #e8e8e8; color: #222; font-size: 9px; font-weight: 700;
+  border-radius: 5px; padding: 2px 5px; white-space: nowrap; max-width: 96px;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.evo-icons { display: flex; align-items: center; gap: 3px; }
+.evo-item { width: 18px; height: 18px; image-rendering: var(--sprite-rendering); }
+.evo-cond-icon { width: 13px; height: 13px; color: var(--accent-warm); }
+.evo-gender { font-size: 12px; font-weight: 700; }
+.evo-gender.gender-female { color: #ff8fb8; }
+.evo-gender.gender-male { color: #7fb8ff; }
+.evo-icons .pill { font-size: 8px; padding: 1px 5px; }
+.evo-chev { width: 20px; height: 14px; display: block; }
+.evo-note { margin: 8px 0 0; color: #8a8f99; font-size: 11px; }
+/* The card hugs its content with equal left/right padding and is capped at the
+   combined width of columns 1+2 (its .colgroup parent) — never into the third,
+   however wide the chain gets. Pre-0.4.11 this was `grid-column: span 2` on the
+   shared 3-track grid; the cap is now the parent's own width. */
+.docband { align-self: start; width: max-content; max-width: 100%; }
+/* The 400px compact pane is narrower than a 3-stage branching chain, so that
+   one scrolls sideways rather than squashing the slots. */
+.detail-body .evosection { min-width: 0; overflow-x: auto; }
 
-/* Mega / Gigantamax bubbles — read-only for this pass (no tap-to-swap). */
+/* Mega / Gigantamax bubbles. Clicking one opens that forme's own detail
+   screen (0.4.10) — read-only bubbles until then. */
 .formes { display: flex; flex-wrap: wrap; gap: 6px; }
-.forme { display: flex; align-items: center; gap: 6px; background: var(--screen-bg); border: 1px solid #000; border-radius: 999px; padding: 3px 10px 3px 3px; font-size: 12px; }
+.forme {
+  display: flex; align-items: center; gap: 6px; background: var(--screen-bg);
+  border: 1px solid #000; border-radius: 999px; padding: 3px 10px 3px 3px;
+  font: inherit; font-size: 12px; color: var(--screen-fg); cursor: pointer;
+}
+.forme:hover { border-color: var(--accent); }
+.forme.on { border-color: var(--accent); background: rgb(var(--accent-rgb) / .14); }
 .forme img { width: 32px; height: 32px; image-rendering: var(--sprite-rendering); }
 .ftag { font-size: 9px; font-weight: 700; letter-spacing: .03em; padding: 1px 6px; border-radius: 999px; background: #b53434; color: #fff; }
 .ftag.gmax { background: #6b3fa0; }
@@ -405,12 +539,12 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
    while the pane animates back. */
 .work:not(.expanded) .doc { visibility: hidden; transition: visibility 0s linear var(--slide-t); }
 .dhead {
-  display: flex; align-items: center; gap: 18px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
   padding: 18px 28px 16px 40px;
   border-bottom: 1px solid var(--divider);
   position: sticky; top: 0; backdrop-filter: blur(6px); z-index: 1;
 }
-.dhead .sprite { width: 140px; height: 140px; margin: 0; flex: none; }
+.dheadmain { min-width: 0; }
 .dhead .id { font-size: 12px; color: #9aa0aa; }
 .dhead h2 { margin: 0; font-size: 34px; line-height: 1.05; }
 .dhead .types { justify-content: flex-start; margin-top: 8px; gap: 6px; }
@@ -418,7 +552,18 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .dhead .desc { margin: 8px 0 0; max-width: 620px; }
 .dhead .nav2 { margin-left: auto; align-self: flex-start; display: flex; gap: 6px; align-items: center; }
 .dhead .iconbtn { width: auto; padding: 0 10px; font-size: 13px; display: flex; gap: 6px; }
-.cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding: 18px 28px 28px 40px; align-items: start; }
+/* 0.4.11 — the whole point of this shape. Columns 1+2 and the Evolution /
+   Mega-Gmax bands share a .colgroup; column 3 is an independent sibling strip.
+   A flex item's height never shifts a sibling's block position, so the bands
+   now start under max(col1, col2) instead of under the tallest of all three
+   (column 3, with the radar + Training + stub, is usually the tallest, which
+   pushed the bands ~300px down and left a dead gap). Widths still read 1:1:1 to
+   within a couple of px of the old three-track grid. */
+.cols { display: flex; align-items: flex-start; gap: 16px; padding: 18px 28px 28px 40px; }
+.colgroup { flex: 2 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.colgroup > * { max-width: 100%; }
+.colpair { align-self: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.cols > .col { flex: 1 1 0; min-width: 0; }
 .col { display: flex; flex-direction: column; gap: 14px; }
 /* Texture ON TOP here (the tint gradient's second stop is opaque --chrome, so
    a texture layered under it would be covered from 55% down). */
@@ -428,7 +573,11 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
     linear-gradient(160deg, rgb(var(--t) / .16) 0%, var(--chrome) 55%);
   border: 1px solid #000; border-radius: 14px; padding: 12px 14px;
 }
-.box h3 { margin: 0 0 10px; }
+/* 0.4.11: flex + .r mirrors the compact pane's own `section h3 .r` slot, so a
+   card title and its right-aligned header value (Base stats / "Total: 405")
+   don't butt straight up against each other. */
+.box h3 { margin: 0 0 10px; display: flex; align-items: baseline; }
+.box h3 .r { margin-left: auto; font-size: 12px; font-weight: 400; color: #8a8f99; font-variant-numeric: tabular-nums; }
 .doc .abil div { background: none; border: 0; border-bottom: 1px solid var(--divider); border-radius: 0; padding: 6px 0; }
 .doc .abil { gap: 0; }
 .doc .abil div:last-child { border-bottom: 0; }
@@ -436,6 +585,24 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .doc .bar { height: 10px; }
 /* Stat radar (0.4.9) — same SVG src/app.js draws, scaled to the card. */
 .radar { display: block; width: 100%; max-width: 280px; margin: 0 auto; }
+
+/* --------------------------------------------------- sprite lightbox */
+/* The codebase's first popup of any kind (0.4.10). One shared element in
+   index.html; the enlarge buttons only hand it a URL. Closes on Esc or on a
+   click anywhere outside the image itself. */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  background: rgba(0, 0, 0, .72);
+  backdrop-filter: blur(3px);
+}
+.lightbox[hidden] { display: none; }
+.lightbox img {
+  width: min(60vh, 60vw); height: auto;
+  image-rendering: var(--sprite-rendering);
+  background: none;
+  filter: drop-shadow(0 12px 40px rgba(0, 0, 0, .7));
+}
 
 /* ---------------------------------------------------------- status bar */
 
