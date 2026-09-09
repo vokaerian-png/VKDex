@@ -199,6 +199,17 @@
   var mapZoom = 1;             // 1 = 100%, clamped to MAP_ZOOM_MIN..MAX
   var mapPanX = 0, mapPanY = 0; // px, applied as a translate before the scale
   var mapDrag = null;          // {x, y, panX, panY, id} while a drag is live
+  // A pan and a click on a hit-region start identically, so movement past
+  // MAP_DRAG_SLOP flips this and the click handler swallows the click that ends
+  // the pan. Same shape as mobile's dragScrolled (SCOPE.md §3): reset on every
+  // pointerdown, so a stale true can't survive into the next press.
+  var mapDragged = false;
+  // The Map screen's selected area, by its LOCATIONS[...][region][].area name —
+  // what the detail pane renders instead of a species. Mirrors selectedId for
+  // the Dex; null = nothing picked yet. Cleared when the map's region changes,
+  // since an area name is only meaningful within its own region.
+  var selectedArea = null;
+  var selectedAreaKind = "";   // "Route" / "Gym city" / ... from the SVG's data-kind
   var rail = true;             // live sidebar state
   var railDefault = true;      // persisted "collapse by default" setting
   // Mirrored-from-mobile settings state.
@@ -345,6 +356,7 @@
   // to a "not mapped yet" note until its own map is drawn.
 
   var MAP_ZOOM_MIN = 1, MAP_ZOOM_MAX = 3, MAP_ZOOM_STEP = 0.25;
+  var MAP_DRAG_SLOP = 5;   // logical px before a press counts as a pan, not a click
   // Region ids with a maps/<id>.svg on disk. One entry for now; adding a map
   // means adding the file and its id here.
   var MAPPED_REGIONS = { kanto: 1 };
@@ -488,6 +500,77 @@
       var later = document.getElementById("mapSvg");
       if (later) later.classList.remove("gpu-layer");
     }, 200);
+  }
+
+  // ------------------------------------------------- map area detail pane
+  // Clicking a hit-region in maps/<region>.svg (a transparent <path>/<rect>
+  // carrying data-area + data-kind, layered over the finished art) selects that
+  // area and the detail pane renders it instead of a species.
+
+  // LOCATIONS is keyed species -> region -> areas, i.e. the wrong direction for
+  // "what lives here". This is the reverse index, computed on read — locations.js
+  // itself gains no field. Region is a real parameter: every region's map needs
+  // exactly this lookup, so hardcoding "kanto" would only have to be undone.
+  // ponytail: a linear scan of 1025 ids per click, no cache. It runs once per
+  // area click on an already-parsed object; index it if that ever measures.
+  function areaEncounters(region, areaName) {
+    var out = [];
+    Object.keys(LOCATIONS).forEach(function (key) {
+      var areas = (LOCATIONS[key] || {})[region] || [];
+      var enc = [];
+      areas.forEach(function (a) {
+        // A pre-0.2.7 bare-string entry has no .enc and can't be matched by area.
+        if (a && a.area === areaName) enc = enc.concat(a.enc || []);
+      });
+      if (!enc.length) return;   // no lines to show -> not worth a row
+      var id = +key;
+      out.push({ id: id, name: (byId(id) || {}).name || "#" + id, enc: enc });
+    });
+    return out;
+  }
+
+  // One encounter line, same convention as mobile's Found In popup
+  // (openLocationPopup): "Method · Lv a–b · N%" with the games on their own
+  // sub-line. min/max/rate are all optional in the newer data shapes, so each
+  // part degrades to nothing rather than rendering "Lv undefined".
+  function encLineHtml(e) {
+    var lv = e.min === undefined ? "" : " &middot; Lv " + (e.min === e.max ? e.min : e.min + "&ndash;" + e.max);
+    var rate = e.rate === undefined ? "" : " &middot; " + (typeof e.rate === "number" ? e.rate + "%" : esc(e.rate));
+    return '<div class="enc-line">' + esc(e.method) + lv + rate +
+      (e.games ? '<span class="enc-games">' + esc(e.games) + "</span>" : "") + "</div>";
+  }
+
+  // A collapsible section, native <details> — the marker, the toggle state,
+  // Enter/Space and the screen-reader semantics all come for free.
+  function areaFold(title, body) {
+    return '<section><details class="area-fold"><summary>' + esc(title) + "</summary>" +
+      body + "</details></section>";
+  }
+
+  function areaDetailHtml() {
+    if (!selectedArea) {
+      return '<div class="detail-body"><div class="stub">Click an area on the map to see its details.</div></div>';
+    }
+    var mons = areaEncounters(mapRegion, selectedArea);
+    var encs = mons.map(function (m) {
+      return '<div class="area-mon"><b>' + esc(m.name) + "</b>" +
+        m.enc.map(encLineHtml).join("") + "</div>";
+    }).join("");
+
+    return '<div class="detail-head"><div class="top"><div>' +
+      '<div class="id">' + esc(selectedAreaKind || "Area") + "</div><h2>" + esc(selectedArea) + "</h2>" +
+      "</div></div></div>" +
+      '<div class="detail-body">' +
+      // Points of interest is a static list, not a fold (user's call on the
+      // mockup). NPCs/Trainers have no data source yet — a Bulbapedia scrape is
+      // a later phase — so every area shows their empty state for now.
+      "<section><h3>Points of interest</h3>" +
+      '<div class="stub">No points of interest catalogued yet.</div></section>' +
+      areaFold("Important NPCs", '<div class="stub">No important NPCs catalogued yet.</div>') +
+      areaFold("Trainers", '<div class="stub">No trainers found here.</div>') +
+      areaFold("Pokémon encounters",
+        encs || '<div class="stub">No wild encounters here.</div>') +
+      "</div>";
   }
 
   // ------------------------------------------------------------ settings
@@ -1157,7 +1240,14 @@
 
     work.classList.toggle("no-doc", !isDex);
     if (!isDex) {
-      compact.innerHTML = '<div class="detail-body"><div class="stub">Nothing selected on this screen yet.</div></div>';
+      // --t is a species' type key; the last Dex selection's would otherwise
+      // stay on the element and tint an area panel at random.
+      compact.style.removeProperty("--t");
+      // The Map screen renders the selected area here. Nothing else does yet, so
+      // every other screen keeps the generic stub. `doc` stays empty either way:
+      // expand-to-document is Dex-only.
+      compact.innerHTML = screen === "map" ? areaDetailHtml()
+        : '<div class="detail-body"><div class="stub">Nothing selected on this screen yet.</div></div>';
       doc.innerHTML = "";
       document.getElementById("navDetailTile").innerHTML = "";
       document.getElementById("navDetailName").textContent = "—";
@@ -1316,6 +1406,8 @@
         mapZoom = 1;
         mapPanX = 0;
         mapPanY = 0;
+        selectedArea = null;   // an area name only means anything in its own region
+        selectedAreaKind = "";
         render();
         return;
       }
@@ -1336,6 +1428,20 @@
         zoomMapAt(mzR.left + mzR.width / 2, mzR.top + mzR.height / 2,
           mz.dataset.mapzoom === "in" ? MAP_ZOOM_STEP : -MAP_ZOOM_STEP);
       }
+      return;
+    }
+
+    // A map hit-region: one delegated listener over the inlined SVG's
+    // transparent overlay (0.4.33). Scoped to the Map screen because
+    // [data-area] is the map asset's own attribute and nothing else uses it.
+    var hit = screen === "map" && e.target.closest("[data-area]");
+    if (hit) {
+      // The click that ends a pan lands on whatever is under the cursor; that
+      // press was a drag, not a selection.
+      if (mapDragged) return;
+      selectedArea = hit.dataset.area;
+      selectedAreaKind = hit.dataset.kind || "";
+      renderDetail();   // the map's own pan/zoom/markup state is untouched
       return;
     }
 
@@ -1455,6 +1561,7 @@
   // ponytail: no pan-bounds clamp, add if the map can be dragged fully out of
   // view and that's confirmed to be a problem.
   document.addEventListener("pointerdown", function (e) {
+    mapDragged = false;   // before the guards, so no stale true reaches a click
     if (screen !== "map") return;
     var vp = e.target.closest("#mapViewport");
     // Don't start a drag on the zoom cluster — those are buttons.
@@ -1471,6 +1578,8 @@
 
   document.addEventListener("pointermove", function (e) {
     if (!mapDrag || e.pointerId !== mapDrag.id) return;
+    if (Math.abs(e.clientX - mapDrag.x) >= MAP_DRAG_SLOP ||
+        Math.abs(e.clientY - mapDrag.y) >= MAP_DRAG_SLOP) mapDragged = true;
     mapPanX = mapDrag.panX + (e.clientX - mapDrag.x);
     mapPanY = mapDrag.panY + (e.clientY - mapDrag.y);
     applyMapTransform();  // never render(), same reason as the zoom path
