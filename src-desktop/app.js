@@ -424,27 +424,28 @@
     if (im.decode) im.decode().catch(function () {});   // best-effort
   }
 
-  // 0.4.25 blur fix. The map rendered soft on first open until you navigated
-  // away and back — which works because a screen switch runs renderCenter(),
-  // destroying the old <img id="mapSvg"> and building a brand new one. So do
-  // that ourselves, once, a frame after the Map screen first paints.
+  // Blur fix, 0.4.25 -> widened 0.4.27. The Map screen renders soft on first
+  // open until you navigate away and back. That workaround works because a
+  // screen switch re-runs renderCenter()'s `el.innerHTML = mapHtml()` for the
+  // WHOLE #center pane — toolbar title, region chips and viewport alike — so
+  // do exactly that ourselves, once, a frame after the Map screen first paints.
+  // 0.4.25 rebuilt only #mapViewport, which never touched the blurry title/chip
+  // text the original report named; that narrower scope is why it didn't match
+  // the manual fix.
   // Two nested rAFs: the first callback runs *before* the paint of the markup
   // renderCenter() just wrote, the second runs after that paint has happened —
-  // i.e. once the viewport box is genuinely laid out. No magic-number delay.
-  // ponytail: this reproduces the user's manual workaround rather than fixing
-  // the underlying decode timing. Likely cause is maps/kanto.svg having a
-  // viewBox but no width/height, so its intrinsic size is ambiguous and an
-  // early decode can rasterise against a not-yet-settled box (a later CSS
-  // transform:scale only composites that bitmap, it doesn't re-decode).
-  // Upgrade path: give the SVG width="1300" height="920" and see if this
-  // whole function becomes unnecessary.
+  // i.e. once the boxes are genuinely laid out. No magic-number delay.
+  // mapHtml() reads only mapRegion/pan/zoom, so re-running it is safe at any
+  // time and covers the unmapped-region placeholder branch for free.
+  // ponytail: still reproduces the user's manual workaround rather than fixing
+  // the underlying cause. Untested lever left: `will-change: transform` on
+  // .map-svg (0.4.21) promoting a compositing layer at the wrong DPI.
   function resettleMapImage() {
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        // No #mapViewport on an unmapped region (placeholder markup instead),
-        // and screen may have changed within the two-frame window.
-        var vp = document.getElementById("mapViewport");
-        if (vp && screen === "map") vp.outerHTML = mapViewportHtml();
+        // screen may have changed within the two-frame window.
+        var el = document.getElementById("center");
+        if (el && screen === "map") el.innerHTML = mapHtml();
       });
     });
   }
