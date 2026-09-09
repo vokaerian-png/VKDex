@@ -349,6 +349,30 @@
   // means adding the file and its id here.
   var MAPPED_REGIONS = { kanto: 1 };
 
+  // The map's raw <svg> markup, fetched once per region and inlined into the
+  // DOM (0.4.31) instead of pointed at with <img src>. THE blur fix attempt:
+  // an <img> is rasterised to a bitmap at one resolution and then scaled for
+  // display, and seven rounds of nudging that bitmap cache into re-rasterising
+  // sharp (0.4.23-0.4.30) all failed on real hardware. An inline <svg> has no
+  // bitmap cache at all — the browser re-renders it as vectors on every paint,
+  // which removes the whole bug class rather than patching around it.
+  // Doubles as the hover warm-up: fetching early is the whole head start.
+  var MAP_SVG_MARKUP = {};
+  function ensureMapSvgLoaded(region) {
+    // `in`, not a truthiness test: the key is set to "" the moment the fetch
+    // starts, so a second view before it resolves doesn't fire a second one.
+    if (region in MAP_SVG_MARKUP || !MAPPED_REGIONS[region]) return;   // cached/in flight, or no SVG on disk -> don't 404
+    MAP_SVG_MARKUP[region] = "";
+    fetch("maps/" + region + ".svg").then(function (r) { return r.text(); }).then(function (text) {
+      MAP_SVG_MARKUP[region] = text;
+      // Only repaint if the user is still looking at this exact map.
+      if (screen === "map" && mapRegion === region) renderCenter();
+    }).catch(function (err) {
+      delete MAP_SVG_MARKUP[region];   // let a later visit retry
+      console.error("map svg fetch failed:", region, err);
+    });
+  }
+
   function mapHtml() {
     // Same chip markup as dexHtml()'s region bar (so the existing
     // [data-region="hisui"/"orre"] tints apply for free), minus the "All"
@@ -359,6 +383,7 @@
     }).join("");
 
     var label = (REGIONS.filter(function (r) { return r.id === mapRegion; })[0] || {}).label || mapRegion;
+    ensureMapSvgLoaded(mapRegion);   // no-op once cached; unmapped regions bail inside
     var body = MAPPED_REGIONS[mapRegion]
       ? mapViewportHtml()
       : '<div class="placeholder"><div><h2>Not mapped yet</h2><p>' + esc(label) +
@@ -370,12 +395,20 @@
 
   // Panning is pointer-drag only (0.4.20) — .map-viewport is overflow:hidden,
   // so the browser's own scrollbars are out of the picture entirely.
-  // draggable="false" stops Chromium's native image drag-and-drop from
-  // hijacking the pointer gesture the moment the cursor moves.
+  //
+  // #mapSvg is a wrapper <div> holding the fetched <svg> markup, not the map
+  // element itself: everything that pans/zooms/nudges looks the element up by
+  // that id and writes .style.transform / .style.width on it, so keeping the id
+  // on a wrapper leaves all of it working untouched across the 0.4.31 switch
+  // from <img> to inline SVG. The <img>'s old draggable="false" is gone with
+  // it — that blocked Chromium's native IMAGE drag-and-drop, which inline SVG
+  // doesn't have; the pointerdown handler's own preventDefault() (0.4.21)
+  // covers the drag-select gesture regardless.
   function mapViewportHtml() {
     return '<div class="map-viewport" id="mapViewport">' +
-      '<img class="map-svg" id="mapSvg" draggable="false" src="maps/' + esc(mapRegion) + '.svg" alt="' + esc(mapRegion) +
-      ' region map" style="transform:' + mapTransform() + '">' +
+      '<div class="map-svg" id="mapSvg" style="transform:' + mapTransform() + '">' +
+      (MAP_SVG_MARKUP[mapRegion] || '<div class="placeholder"><p>Loading map…</p></div>') +
+      "</div>" +
       '<div class="map-zoom">' +
       '<button type="button" data-mapzoom="in" title="Zoom in">+</button>' +
       '<button type="button" data-mapzoom="out" title="Zoom out">&minus;</button>' +
@@ -411,17 +444,6 @@
     mapPanY = cy - imgY * z;
     mapZoom = z;
     applyMapTransform();
-  }
-
-  // Warm-decode one region's SVG so the first zoom/drag isn't competing with
-  // the browser still rasterising an 80KB filter-heavy image (0.4.21's
-  // will-change fixed layer promotion, not decode cost). Hover-triggered only —
-  // never at boot, never for a region the user hasn't aimed at.
-  function warmMapImage(region) {
-    if (!MAPPED_REGIONS[region]) return;   // no SVG on disk -> don't 404
-    var im = new Image();
-    im.src = "maps/" + region + ".svg";
-    if (im.decode) im.decode().catch(function () {});   // best-effort
   }
 
   // Blur fix, 0.4.25 -> widened 0.4.27 -> re-timed 0.4.28. The Map screen
@@ -1438,7 +1460,8 @@
     zoomMapAt(e.clientX, e.clientY, e.deltaY < 0 ? MAP_ZOOM_STEP : -MAP_ZOOM_STEP);
   }, { passive: false });
 
-  // Hover head-start for the map image (0.4.22). mouseenter doesn't bubble, so
+  // Hover head-start for the map SVG (0.4.22; the warm-decode it used to do
+  // became ensureMapSvgLoaded's fetch in 0.4.31). mouseenter doesn't bubble, so
   // this is the standard mouseover + relatedTarget trick: relatedTarget is the
   // node the cursor came FROM, so "it isn't inside this element" == a genuine
   // enter, not a move between the row's own child spans. contains(null) is
@@ -1447,12 +1470,12 @@
     // The sidebar's Map row: fires well before the click, and mapRegion is
     // whatever the Map screen will show when it opens (Kanto by default).
     var mapRow = e.target.closest('[data-screen="map"]');
-    if (mapRow && !mapRow.contains(e.relatedTarget)) warmMapImage(mapRegion);
+    if (mapRow && !mapRow.contains(e.relatedTarget)) ensureMapSvgLoaded(mapRegion);
 
     // The Map screen's own region chips. Scoped to screen === "map" because the
     // Dex's region filter chips reuse [data-region] for something unrelated.
     var mapChip = screen === "map" && e.target.closest("[data-region]");
-    if (mapChip && !mapChip.contains(e.relatedTarget)) warmMapImage(mapChip.dataset.region);
+    if (mapChip && !mapChip.contains(e.relatedTarget)) ensureMapSvgLoaded(mapChip.dataset.region);
   });
 
   // Click-and-drag panning. Pointer Events, not mouse events — one code path

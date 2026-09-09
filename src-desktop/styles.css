@@ -350,18 +350,23 @@ body {
   user-select: none; -webkit-user-select: none;
 }
 .map-viewport.dragging { cursor: grabbing; }
-/* width/height 100% + object-fit:contain make "scale(1)" mean "the whole map
-   fits the viewport" instead of "the <img>'s intrinsic size" — the SVG has only
-   a viewBox, so its intrinsic box didn't match the pane and the top was clipped.
+/* #mapSvg is a wrapper <div> (0.4.31) holding the map's inlined <svg>, not the
+   map element itself — width/height 100% make "scale(1)" mean "the whole map
+   fits the viewport", and everything that pans/zooms transforms this box.
    will-change pre-promotes the compositing layer, so the FIRST drag/zoom is as
    smooth as the tenth (lazy promotion was the early-input stutter). */
 .map-svg {
   display: block;
   width: 100%; height: 100%;
-  object-fit: contain;
   transform-origin: 0 0;
   will-change: transform;
 }
+/* Replaces the old object-fit:contain, which only ever meant anything while
+   .map-svg was an <img>. Forcing the inlined <svg>'s box to 100%/100% overrides
+   the width/height presentation attributes baked into the file (0.4.26), and
+   its viewBox + the SVG default preserveAspectRatio="xMidYMid meet" then
+   letterbox the art inside that box — exactly what contain used to do. */
+.map-svg svg { display: block; width: 100%; height: 100%; }
 /* Deliberately NOT positioned against .map-viewport: an absolute child of a
    scroll container scrolls away with the content. .center is already
    position:absolute, so it's the nearest positioned ancestor and the cluster
