@@ -1,6 +1,6 @@
 [package]
 name = "vkdex"
-version = "0.4.25"
+version = "0.4.26"
 description = "VKDex - a portable Pokedex app"
 edition = "2021"
 rust-version = "1.77.2"

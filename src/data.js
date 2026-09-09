@@ -1,6 +1,6 @@
 // App version, major.minor.regular (e.g. 0.1.0). Bump the last number by
 // one for every change going forward, up to 999. Shown in Settings.
-var APP_VERSION = "0.4.25";
+var APP_VERSION = "0.4.26";
 
 // REGIONS lists every mainline region so the region bar always shows a
 // button for each one, even before that region's Pokémon have been added

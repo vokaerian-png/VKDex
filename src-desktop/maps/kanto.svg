@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1300 920" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg width="1300" height="920" viewBox="0 0 1300 920" xmlns="http://www.w3.org/2000/svg" role="img">
 <title>Kanto Region Map — v10 (v9 terrain + directional drop-shadows; central lake, Cycling Road lagoon and a new southern estuary merged into one bay open to the sea, Route 18 bridging its mouth)</title>
 <desc>Custom-drawn, non-copyrighted Kanto region map: landscape 1300x920, strict orthogonal route lines, stacked two-line node labels, toy-map visual style matching style_referene2.png; route connectivity per official_layout_kanto.png; terrain layout traced from reference_kanto4.png and adapted to the locked v8 node/route positions; v11 removes the land spit west of the estuary and joins the Nugget/Power Plant rivers; v10 adds a soft upper-left-light shadow pass (offset silhouettes + feGaussianBlur) and opens the central lake to the southern sea via the Cycling Road lagoon and an estuary west of Fuchsia (reference_kanto2/3).</desc>
 <defs>
