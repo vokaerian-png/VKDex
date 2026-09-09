@@ -424,30 +424,33 @@
     if (im.decode) im.decode().catch(function () {});   // best-effort
   }
 
-  // Blur fix, 0.4.25 -> widened 0.4.27. The Map screen renders soft on first
-  // open until you navigate away and back. That workaround works because a
-  // screen switch re-runs renderCenter()'s `el.innerHTML = mapHtml()` for the
-  // WHOLE #center pane — toolbar title, region chips and viewport alike — so
-  // do exactly that ourselves, once, a frame after the Map screen first paints.
-  // 0.4.25 rebuilt only #mapViewport, which never touched the blurry title/chip
-  // text the original report named; that narrower scope is why it didn't match
-  // the manual fix.
-  // Two nested rAFs: the first callback runs *before* the paint of the markup
-  // renderCenter() just wrote, the second runs after that paint has happened —
-  // i.e. once the boxes are genuinely laid out. No magic-number delay.
+  // Blur fix, 0.4.25 -> widened 0.4.27 -> re-timed 0.4.28. The Map screen
+  // renders soft on first open until you navigate away and back. That manual
+  // workaround works because a screen switch re-runs renderCenter()'s
+  // `el.innerHTML = mapHtml()` for the WHOLE #center pane — toolbar title,
+  // region chips and viewport alike — so do exactly that ourselves, once.
+  //
+  // The rebuild itself is confirmed necessary but was never sufficient: 0.4.25
+  // and 0.4.27 both scheduled it on a double rAF (~1 frame, ~16-33ms after the
+  // first paint) and both failed on real hardware, while the identical rebuild
+  // done by hand seconds later always fixes it. Passive waiting with no rebuild
+  // at all never self-heals either (user-confirmed, 5-10s idle). So the missing
+  // ingredient is elapsed time, not "the DOM has settled": something async in
+  // the compositor (plausibly the layer for will-change:transform'd .map-svg)
+  // isn't ready at the 30ms mark, and a rebuild that early just re-rasterises
+  // a second blurry frame. 600ms reproduces the real human reaction time of the
+  // one workaround known to work.
+  // ponytail: 600ms is a guessed ceiling — there is no "GPU resource ready"
+  // event to hook, so it's a heuristic. Raise it if it still blurs; replace it
+  // with a real signal if one ever exists.
   // mapHtml() reads only mapRegion/pan/zoom, so re-running it is safe at any
   // time and covers the unmapped-region placeholder branch for free.
-  // ponytail: still reproduces the user's manual workaround rather than fixing
-  // the underlying cause. Untested lever left: `will-change: transform` on
-  // .map-svg (0.4.21) promoting a compositing layer at the wrong DPI.
   function resettleMapImage() {
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        // screen may have changed within the two-frame window.
-        var el = document.getElementById("center");
-        if (el && screen === "map") el.innerHTML = mapHtml();
-      });
-    });
+    setTimeout(function () {
+      // screen may have changed within the delay window.
+      var el = document.getElementById("center");
+      if (el && screen === "map") el.innerHTML = mapHtml();
+    }, 600);
   }
 
   // ------------------------------------------------------------ settings
