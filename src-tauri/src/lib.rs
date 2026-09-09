@@ -24,7 +24,12 @@ mod resize_lock;
 /// ordinary text alike) renders blurry until something forces a recompute.
 /// Any real OS resize does force it, which is why dragging a window edge
 /// visibly sharpens everything — so we fake one: grow the window by a single
-/// physical pixel and put it straight back, before the user sees anything.
+/// physical pixel and put it straight back.
+///
+/// Must run *after* WebView2 has painted at least once — that first frame is
+/// where the wrong scale gets baked in, and a resize before it exists just
+/// resizes an empty shell (0.4.23 called this from `setup()` and changed
+/// nothing on real hardware). See the delayed dispatch in `run()`.
 /// Not needed on default builds, whose window is a fixed phone frame.
 #[cfg(all(target_os = "windows", feature = "desktop-ui"))]
 fn nudge_dpi_repaint(app: &tauri::AppHandle) {
@@ -45,8 +50,28 @@ pub fn run() {
         .setup(|_app| {
             #[cfg(all(target_os = "windows", not(feature = "desktop-ui")))]
             resize_lock::install(_app.handle());
+            // ponytail: fixed 300ms delay instead of a real "WebView2 has
+            // painted" signal, which Tauri doesn't cleanly expose. Ceiling:
+            // could be short on very slow hardware (blur stays) or longer than
+            // needed on fast hardware — imperceptible either way at this
+            // scale. Upgrade path: hook a real webview-ready event if Tauri
+            // ever exposes one; otherwise just raise the number.
             #[cfg(all(target_os = "windows", feature = "desktop-ui"))]
-            nudge_dpi_repaint(_app.handle());
+            {
+                // Insurance: `run_on_main_thread` is inherent on AppHandle in
+                // Tauri 2.11, so this import is expected to be unused (harmless
+                // warning). It's here only in case that method turns out to be
+                // trait-gated — delete the line to silence the warning.
+                #[allow(unused_imports)]
+                use tauri::Manager;
+                let handle = _app.handle().clone();
+                std::thread::spawn(move || {
+                    std::thread::sleep(std::time::Duration::from_millis(300));
+                    let nudge_handle = handle.clone();
+                    let _ = handle
+                        .run_on_main_thread(move || nudge_dpi_repaint(&nudge_handle));
+                });
+            }
             Ok(())
         })
         .run(tauri::generate_context!())
