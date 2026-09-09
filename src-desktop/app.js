@@ -424,6 +424,31 @@
     if (im.decode) im.decode().catch(function () {});   // best-effort
   }
 
+  // 0.4.25 blur fix. The map rendered soft on first open until you navigated
+  // away and back — which works because a screen switch runs renderCenter(),
+  // destroying the old <img id="mapSvg"> and building a brand new one. So do
+  // that ourselves, once, a frame after the Map screen first paints.
+  // Two nested rAFs: the first callback runs *before* the paint of the markup
+  // renderCenter() just wrote, the second runs after that paint has happened —
+  // i.e. once the viewport box is genuinely laid out. No magic-number delay.
+  // ponytail: this reproduces the user's manual workaround rather than fixing
+  // the underlying decode timing. Likely cause is maps/kanto.svg having a
+  // viewBox but no width/height, so its intrinsic size is ambiguous and an
+  // early decode can rasterise against a not-yet-settled box (a later CSS
+  // transform:scale only composites that bitmap, it doesn't re-decode).
+  // Upgrade path: give the SVG width="1300" height="920" and see if this
+  // whole function becomes unnecessary.
+  function resettleMapImage() {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        // No #mapViewport on an unmapped region (placeholder markup instead),
+        // and screen may have changed within the two-frame window.
+        var vp = document.getElementById("mapViewport");
+        if (vp && screen === "map") vp.outerHTML = mapViewportHtml();
+      });
+    });
+  }
+
   // ------------------------------------------------------------ settings
   // Content parity with the mobile Settings window (item 1): Dark Mode,
   // Measurements, Grid Width, Shiny Grids, Pixel Sprites — same five rows, same
@@ -471,7 +496,7 @@
     var el = document.getElementById("center");
     if (screen === "dex") el.innerHTML = dexHtml();
     else if (screen === "settings") el.innerHTML = settingsHtml();
-    else if (screen === "map") el.innerHTML = mapHtml();
+    else if (screen === "map") { el.innerHTML = mapHtml(); resettleMapImage(); }
     else el.innerHTML = placeholderHtml();
   }
 
