@@ -1,7 +1,0 @@
-{
-  "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "default",
-  "description": "Core permissions only — every privileged thing this window does goes through its own `start`/`answer` commands, which need no capability entry.",
-  "windows": ["main"],
-  "permissions": ["core:default"]
-}
