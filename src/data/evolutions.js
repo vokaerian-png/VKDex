@@ -4,8 +4,20 @@
 // friendship evolution (evoArrowLabel renders "Friendship"); "held" means
 // level up while holding `item` (no trade); "other" is the catch-all for a
 // mechanism we don't have a label for yet (shed, knows-a-move, party
-// species, special location) and renders no arrow label at all rather than
-// a wrong one.
+// species, special location) and renders no derived label at all rather than
+// a wrong one — every "other" edge therefore carries a hand-authored `note`
+// (see below).
+// PER-EDGE NOTES, hand-authored, two lengths (0.4.13):
+//   `note`     — a short chip label. evoArrowLabel/evoCondLabel read it FIRST,
+//                ahead of the whole move->trade->held->stone->level chain, so
+//                it wins outright (Urshifu's two scrolls, Galarian Slowpoke).
+//   `noteLong` — the full sentence, rendered in the desktop Evolution card's
+//                bottom notes list (src-desktop/app.js evoNotesHtml). Ignored
+//                by the mobile frontend. Only set where the short chip alone
+//                can't convey the mechanism — all 11 "other" edges, sourced
+//                from Serebii and cross-checked (2026-09-09).
+// A species whose long-form explanation already existed as a top-level `note`
+// (234 Stantler) keeps it there instead of duplicating it onto the edge.
 // Optional fields, all rendered as icons on the arrow (app.js
 // evolutionCardHtml): `item` (item slug, sprite at data/sprites/items/
 // {item}.png — stone/trade/held methods), `timeOfDay` ("day"/"night" —
@@ -100,7 +112,7 @@ var EVOLUTIONS = {
   54: { evolvesTo: [{ id: 55, method: "level", level: 33 }] },
   55: { evolvesTo: [] },
   56: { evolvesTo: [{ id: 57, method: "level", level: 28 }] },
-  57: { evolvesTo: [{ id: 979, method: "other" }] },
+  57: { evolvesTo: [{ id: 979, method: "other", note: "Rage Fist ×20", noteLong: "Evolves after using the move Rage Fist a cumulative 20 times, then leveling up." }] },
   58: { evolvesTo: [{ id: 59, method: "stone", item: "fire-stone" }] },
   59: { evolvesTo: [] },
   60: { evolvesTo: [{ id: 61, method: "level", level: 25 }] },
@@ -277,7 +289,10 @@ var EVOLUTIONS = {
   231: { evolvesTo: [{ id: 232, method: "level", level: 25 }] },
   232: { evolvesTo: [] },
   233: { evolvesTo: [{ id: 474, method: "trade", item: "dubious-disc" }] },
-  234: { evolvesTo: [{ id: 899, method: "other" }], note: "Evolves after using Psyshield Bash in Agile Style 20 times." },
+  // 234's long-form explanation already existed as the species-level `note`
+  // (rendered at the card's bottom); it is reworded here to the same verified
+  // text the other ten got, rather than adding a near-duplicate edge `noteLong`.
+  234: { evolvesTo: [{ id: 899, method: "other", note: "Psyshield Bash ×20 (Agile)" }], note: "Evolves after using Psyshield Bash in the Agile Style 20 times (Pokémon Legends: Arceus)." },
   235: { evolvesTo: [] },
   236: { evolvesTo: [{ id: 106, method: "level", level: 20, statCompare: "atk_gt_def" }, { id: 107, method: "level", level: 20, statCompare: "atk_lt_def" }, { id: 237, method: "level", level: 20, statCompare: "atk_eq_def" }] },
   237: { evolvesTo: [] },
@@ -333,7 +348,7 @@ var EVOLUTIONS = {
   287: { evolvesTo: [{ id: 288, method: "level", level: 18 }] },
   288: { evolvesTo: [{ id: 289, method: "level", level: 36 }] },
   289: { evolvesTo: [] },
-  290: { evolvesTo: [{ id: 291, method: "level", level: 20 }, { id: 292, method: "other" }] },
+  290: { evolvesTo: [{ id: 291, method: "level", level: 20 }, { id: 292, method: "other", note: "Empty slot + Poké Ball", noteLong: "Appears automatically when Nincada evolves into Ninjask at level 20, if there's an empty party slot and a spare Poké Ball in the bag." }] },
   291: { evolvesTo: [] },
   292: { evolvesTo: [] },
   293: { evolvesTo: [{ id: 294, method: "level", level: 20 }] },
@@ -501,7 +516,7 @@ var EVOLUTIONS = {
   455: { evolvesTo: [] },
   456: { evolvesTo: [{ id: 457, method: "level", level: 31 }] },
   457: { evolvesTo: [] },
-  458: { evolvesTo: [{ id: 226, method: "other" }] },
+  458: { evolvesTo: [{ id: 226, method: "other", note: "Level up w/ Remoraid", noteLong: "Evolves when leveled up while a Remoraid is in the party." }] },
   459: { evolvesTo: [{ id: 460, method: "level", level: 40 }] },
   460: { evolvesTo: [] },
   461: { evolvesTo: [] },
@@ -671,7 +686,7 @@ var EVOLUTIONS = {
   622: { evolvesTo: [{ id: 623, method: "level", level: 43 }] },
   623: { evolvesTo: [] },
   624: { evolvesTo: [{ id: 625, method: "level", level: 52 }] },
-  625: { evolvesTo: [{ id: 983, method: "other" }] },
+  625: { evolvesTo: [{ id: 983, method: "other", note: "Defeat 3 Crest-Bisharp", noteLong: "Evolves after defeating three Bisharp that are each leading a pack of Pawniard while holding a Leader's Crest, then leveling up." }] },
   626: { evolvesTo: [] },
   627: { evolvesTo: [{ id: 628, method: "level", level: 54 }] },
   628: { evolvesTo: [] },
@@ -914,7 +929,7 @@ var EVOLUTIONS = {
   865: { evolvesTo: [] },
   866: { evolvesTo: [] },
   867: { evolvesTo: [] },
-  868: { evolvesTo: [{ id: 869, method: "other" }] },
+  868: { evolvesTo: [{ id: 869, method: "other", note: "Spin holding a Sweet", noteLong: "Evolves when spun around while holding a Sweet — spin direction, duration, and time of day determine the final form." }] },
   869: { evolvesTo: [] },
   870: { evolvesTo: [] },
   871: { evolvesTo: [] },
@@ -977,9 +992,9 @@ var EVOLUTIONS = {
   919: { evolvesTo: [{ id: 920, method: "level", level: 24 }] },
   920: { evolvesTo: [] },
   921: { evolvesTo: [{ id: 922, method: "level", level: 18 }] },
-  922: { evolvesTo: [{ id: 923, method: "other" }] },
+  922: { evolvesTo: [{ id: 923, method: "other", note: "1,000 steps (Let's Go)", noteLong: "Evolves after walking 1,000 steps together using the Let's Go feature, then leveling up." }] },
   923: { evolvesTo: [] },
-  924: { evolvesTo: [{ id: 925, method: "other" }] },
+  924: { evolvesTo: [{ id: 925, method: "other", note: "Level 25 (battle XP)", noteLong: "Evolves leveling up to 25 or beyond via battle experience — Rare Candy/EXP Candy won't trigger it. Rare 1-in-100 chance for the \"Family of Three\" form instead of \"Family of Four\"." }] },
   925: { evolvesTo: [] },
   926: { evolvesTo: [{ id: 927, method: "level", level: 26 }] },
   927: { evolvesTo: [] },
@@ -1001,14 +1016,14 @@ var EVOLUTIONS = {
   943: { evolvesTo: [] },
   944: { evolvesTo: [{ id: 945, method: "level", level: 28 }] },
   945: { evolvesTo: [] },
-  946: { evolvesTo: [{ id: 947, method: "other" }] },
+  946: { evolvesTo: [{ id: 947, method: "other", note: "1,000 steps (Let's Go)", noteLong: "Evolves after walking 1,000 steps together using the Let's Go feature, then leveling up." }] },
   947: { evolvesTo: [] },
   948: { evolvesTo: [{ id: 949, method: "level", level: 30 }] },
   949: { evolvesTo: [] },
   950: { evolvesTo: [] },
   951: { evolvesTo: [{ id: 952, method: "stone", item: "fire-stone" }] },
   952: { evolvesTo: [] },
-  953: { evolvesTo: [{ id: 954, method: "other" }] },
+  953: { evolvesTo: [{ id: 954, method: "other", note: "1,000 steps (Let's Go)", noteLong: "Evolves after walking 1,000 steps together using the Let's Go feature, then leveling up." }] },
   954: { evolvesTo: [] },
   955: { evolvesTo: [{ id: 956, method: "level", level: 35 }] },
   956: { evolvesTo: [] },
@@ -1054,7 +1069,7 @@ var EVOLUTIONS = {
   996: { evolvesTo: [{ id: 997, method: "level", level: 35 }] },
   997: { evolvesTo: [{ id: 998, method: "level", level: 54 }] },
   998: { evolvesTo: [] },
-  999: { evolvesTo: [{ id: 1000, method: "other" }] },
+  999: { evolvesTo: [{ id: 1000, method: "other", note: "999 Gimmighoul Coins", noteLong: "Evolves when leveled up while holding 999 Gimmighoul Coins (the coins are consumed)." }] },
   1000: { evolvesTo: [] },
   1001: { evolvesTo: [] },
   1002: { evolvesTo: [] },

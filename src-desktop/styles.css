@@ -37,6 +37,9 @@
   --accent: #4da3ff;
   --accent-rgb: 77 163 255;
   --accent-warm: #ffcb05;
+  /* Connector lines in the Evolution tree (0.4.13) — light enough to read on
+     the card's tint, dark enough not to compete with the sprites. */
+  --evo-line: #5a5e66;
   --accent-purple: #9a6bd6;
   --accent-purple-rgb: 154 107 214;
   --accent-purple-grad: linear-gradient(180deg, #c49bf0 0%, var(--accent-purple) 100%);
@@ -139,9 +142,18 @@ body {
 .app.rail .sidebar:not(:hover) .foot { opacity: 0; }
 .lbl, .kbd, .ctx, .foot { transition: opacity .12s; }
 
+/* 0.4.12 — FIXED height in both states. It used to be padding+font-size driven
+   (12px/30px expanded, 10px/20px collapsed), which made the box 60px tall
+   expanded and 47px collapsed: every nav row below it jumped ~13px the instant
+   the rail was hovered, while the sidebar width was still animating. That jump
+   WAS the reported hover stutter — the nav rows themselves were already a fixed
+   38px in both states. Only the glyph swaps now; the box never changes size. */
 .wordmark {
   margin: 2px 0 14px;
-  padding: 12px 8px;
+  height: 60px;
+  padding: 0 8px;
+  display: grid;
+  place-items: center;
   text-align: center;
   border-radius: var(--window-radius);
   border: 2px solid #000;
@@ -158,7 +170,8 @@ body {
   text-shadow: 2px 2px 0 var(--wordmark-stroke);
 }
 .wordmark .mini { display: none; }
-.app.rail .sidebar:not(:hover) .wordmark { padding: 10px 2px; }
+/* Horizontal padding only — the height above is deliberately NOT re-stated. */
+.app.rail .sidebar:not(:hover) .wordmark { padding: 0 2px; }
 .app.rail .sidebar:not(:hover) .wordmark .full { display: none; }
 .app.rail .sidebar:not(:hover) .wordmark .mini { display: inline; }
 .app.rail .sidebar:not(:hover) .wordmark span { font-size: 20px; -webkit-text-stroke-width: 1px; text-shadow: 1px 1px 0 var(--wordmark-stroke); }
@@ -169,7 +182,11 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 8px;
+  /* 0.4.12 — an explicit height (was 7px padding + the 24px tile = the same
+     38px) so nothing about a row's geometry can depend on whether its label
+     text is rendered. Only .lbl/.kbd opacity changes between the two states. */
+  height: 38px;
+  padding: 0 8px;
   border-radius: 10px;
   color: #cfd2d8;
   text-decoration: none;
@@ -399,7 +416,14 @@ body {
 .baseback .sprite, .baseback img,
 .evo-slot img, .lightbox img { background: none; }
 .detail-head .spritecell .sprite { width: 84px; height: 84px; margin: 0; }
-.dhead .spritecell .sprite { width: 124px; height: 124px; margin: 0; }
+/* 0.4.12 — the document view's sprites scale with the window instead of sitting
+   at a fixed 124px while every card around them gets wider. Floor is 0.4.11's
+   shipped 124px (so nothing shrinks), ceiling 210px (~1.7x) so an ultrawide
+   monitor doesn't turn the header into a poster. 9.7vw is chosen so growth
+   starts right at the 1280px design width (1280 x .097 = 124.2px) and hits the
+   cap at ~2165px. The COMPACT pane's 84px sprites are deliberately left fixed —
+   that pane is a fixed 400px wide, so viewport units would be wrong there. */
+.dhead .spritecell .sprite { width: clamp(124px, 9.7vw, 210px); height: clamp(124px, 9.7vw, 210px); margin: 0; }
 /* 0.4.11: a non-interactive pill under the sprite, in the same outlined-pill
    language as .abil .tag's "Hidden" badge — it used to be plain text absolutely
    positioned over the artwork's bottom-left corner. Still a <span>, never a
@@ -450,7 +474,11 @@ body {
 .fact b { display: block; font-size: 10px; color: #7d818a; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 .fact span { font-size: 13px; }
 section h3 { margin: 0 0 8px; font-size: 12px; color: #9aa0aa; text-transform: uppercase; letter-spacing: .08em; display: flex; align-items: center; }
-section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; color: #7d818a; font-weight: 400; }
+/* 0.4.12 — the header's right-aligned value ("Total: 405") now INHERITS the
+   h3's own size/weight/colour instead of overriding them dimmer and lighter;
+   only the right-alignment and tabular digits are its own. Same change in
+   .box h3 .r below, so both panes read it the way their own card title reads. */
+section h3 .r { margin-left: auto; font-variant-numeric: tabular-nums; }
 .abil { display: flex; flex-direction: column; gap: 5px; }
 .abil div { background: var(--screen-bg); border: 1px solid #000; border-radius: 10px; padding: 6px 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .abil b { font-weight: 600; }
@@ -461,31 +489,91 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .stats .v { text-align: right; font-variant-numeric: tabular-nums; }
 .bar { height: 9px; background: var(--screen-bg); border-radius: 999px; border: 1px solid #000; overflow: hidden; }
 .bar i { display: block; height: 100%; background: rgb(var(--s)); border-radius: 999px; transition: width .25s; }
-/* Evolution line: a genuine merged-cell grid (0.4.10, sh4-evo-reference.png).
-   app.js places every cell explicitly — stage i in column 2i+1, the arrow into
-   it in column 2i — and gives the shared leading stages a grid-row span
-   covering every branch's row, so a shared ancestor is drawn ONCE and each
-   branch lays its own remaining steps on its own row. grid-auto-rows:1fr keeps
-   the spanning cell vertically centred against its branches. */
-.evo-grid { display: grid; column-gap: 14px; row-gap: 8px; grid-auto-rows: 1fr; justify-content: start; }
+/* Evolution line — a top-down vertical tree (0.4.13, the direction-4 mockup the
+   user picked out of four). Replaces 0.4.10/0.4.11's merged-cell grid entirely.
+   The card is full width and the tree is centred inside it; each child hangs
+   off a drop line carrying its condition chip, and a branching node fans its
+   children out sideways under a horizontal bar drawn from the children's own
+   ::before segments. Symmetric at every chain size — that symmetry is the fix
+   for 0.4.12's deferred "a 2-stage chain looks stranded" complaint. */
+.evo-tree { display: flex; justify-content: center; width: 100%; }
+/* `safe center` so a tree wider than the card still starts at its left edge and
+   stays scrollable — plain `center` would push the left half out of reach.
+   Engines without `safe` drop this declaration and keep the line above. */
+.evo-tree { justify-content: safe center; }
+.evo-node { display: flex; flex-direction: column; align-items: center; position: relative; padding: 0 6px; min-width: 0; }
+.evo-stem { width: 2px; height: 12px; background: var(--evo-line); }
+.evo-kids { display: flex; justify-content: center; align-items: flex-start; }
+/* The fan bar: each child paints the half-width segment above itself, so the
+   bar spans exactly first-child-centre to last-child-centre with no extra
+   element. An only child needs no bar — its stem already connects it. */
+.evo-kids > .evo-node::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--evo-line); }
+.evo-kids > .evo-node:first-child::before { left: 50%; }
+.evo-kids > .evo-node:last-child::before { right: 50%; }
+.evo-kids > .evo-node:only-child::before { display: none; }
+.evo-drop { display: flex; flex-direction: column; align-items: center; }
+.evo-drop i { display: block; width: 2px; height: 12px; background: var(--evo-line); }
+.evo-drop i.arr { height: 16px; position: relative; }
+.evo-drop i.arr::after {
+  content: ""; position: absolute; bottom: -1px; left: -5px;
+  border: 6px solid transparent; border-top: 8px solid var(--evo-line); border-bottom: 0;
+}
+/* Compact pane (368px inner): an 8-way fan can't sit on one row, so children
+   wrap and lose the bar — each chip still names its own condition. */
+.detail-body .evo-kids { flex-wrap: wrap; row-gap: 10px; }
+.detail-body .evo-kids > .evo-node::before { display: none; }
+.detail-body .evo-slot img { width: 52px; height: 52px; }
+
+/* A wide fan, 0.4.15. 4+ siblings (Eevee's 8-way line is the only one in the
+   dex) are split by the renderer into rows of at most 3 inside an .evo-fan, so
+   every branch is visible at a glance rather than hidden behind 0.4.14's
+   sideways scroll. Each row is its own .evo-kids and so paints its own bar for
+   free; the rows are joined by a LEFT RAIL — every row but the last draws a
+   vertical down its own left edge and through the gap below it, so the rails
+   meet end to end and run from the parent's stem past every row's bar. A
+   centred rail was the obvious alternative and is worse: it would have to cross
+   each row's own sprites and chips, or (worse) appear to drop out of whichever
+   child happens to sit in the middle, reading as "row 2 evolves from that one".
+   Rows are therefore left-aligned, not centred, so all their bars start on the
+   rail. Rows keep flex-wrap as a residual net: if one still overflows a very
+   narrow card it wraps again inside itself, the sub-row paints its own bar, and
+   the rail (full row height) still reaches it. */
+.evo-fan { --evo-row-gap: 14px; display: flex; flex-direction: column; align-items: flex-start; row-gap: var(--evo-row-gap); }
+.evo-fan > .evo-kids { position: relative; justify-content: flex-start; flex-wrap: wrap; row-gap: 10px; }
+.evo-fan > .evo-kids:not(:last-child)::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: calc(-1 * var(--evo-row-gap));
+  width: 2px; background: var(--evo-line);
+}
+/* …and the first child of EVERY row starts its bar at the rail instead of at
+   its own centre (the single-row trim), so no row's bar floats free of it. */
+.evo-fan > .evo-kids > .evo-node:first-child::before { left: 0; }
+/* The compact pane hides fan bars outright (above) because an unsplit 8-way fan
+   wrapped into rows it could not draw a bar for. Inside .evo-fan the rows are
+   real, so the bars come back — the rail would otherwise hang off nothing. */
+.detail-body .evo-fan > .evo-kids > .evo-node::before { display: block; }
+
+/* The stage bubble. 0.4.10's version was a filled box sized to stretch inside a
+   grid row; in a tree it is a light hover/current target instead, so the sprites
+   and the connector lines carry the shape. */
 .evo-slot {
-  background: var(--screen-bg); border: 1px solid #000; border-radius: 14px;
-  padding: 8px 10px; display: flex; flex-direction: column; align-items: center;
+  border: 1px solid transparent; border-radius: 12px;
+  padding: 4px 6px; display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 3px; font: inherit; font-size: 11px; color: var(--screen-fg);
-  cursor: pointer; min-width: 84px; align-self: stretch;
+  background: none; cursor: pointer;
 }
 .evo-slot:hover { border-color: var(--accent); }
 .evo-slot.cur { border-color: var(--accent); background: rgb(var(--accent-rgb) / .14); }
-.evo-slot img { width: 56px; height: 56px; image-rendering: var(--sprite-rendering); display: block; }
+.evo-slot img { width: 64px; height: 64px; image-rendering: var(--sprite-rendering); display: block; }
 .evo-name { text-align: center; line-height: 1.2; }
-.evo-arrowcell {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  color: #7d818a; align-self: stretch;
-}
+/* The condition chip, sitting ON the drop line. 0.4.10's grid capped it at 96px
+   with an ellipsis because an arrow column was ~96px wide; a drop line has the
+   whole card's width, so the chip states the full condition instead
+   ("Trade w/ King's Rock", "Razor Claw held, night", "999 Gimmighoul Coins"). */
 .evo-lv {
-  background: #e8e8e8; color: #222; font-size: 9px; font-weight: 700;
-  border-radius: 5px; padding: 2px 5px; white-space: nowrap; max-width: 96px;
-  overflow: hidden; text-overflow: ellipsis;
+  background: #e8e8e8; color: #222; font-size: 11px; font-weight: 600;
+  border-radius: 6px; padding: 3px 8px; white-space: nowrap; line-height: 1.2;
+  display: inline-flex; align-items: center; gap: 5px; margin: 2px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
 }
 .evo-icons { display: flex; align-items: center; gap: 3px; }
 .evo-item { width: 18px; height: 18px; image-rendering: var(--sprite-rendering); }
@@ -494,16 +582,32 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .evo-gender.gender-female { color: #ff8fb8; }
 .evo-gender.gender-male { color: #7fb8ff; }
 .evo-icons .pill { font-size: 8px; padding: 1px 5px; }
-.evo-chev { width: 20px; height: 14px; display: block; }
-.evo-note { margin: 8px 0 0; color: #8a8f99; font-size: 11px; }
-/* The card hugs its content with equal left/right padding and is capped at the
-   combined width of columns 1+2 (its .colgroup parent) — never into the third,
-   however wide the chain gets. Pre-0.4.11 this was `grid-column: span 2` on the
-   shared 3-track grid; the cap is now the parent's own width. */
+/* Bottom notes. 0.4.12 rendered at most one bare line; the tree renders a list
+   (mockup goal 3), so it gets a divider and an info bullet per entry. */
+.evo-notes { margin: 12px 0 0; padding: 9px 0 0; border-top: 1px solid var(--divider); display: flex; flex-direction: column; gap: 5px; }
+.evo-note { margin: 0; color: #b9bec8; font-size: 11.5px; line-height: 1.35; display: flex; gap: 7px; align-items: flex-start; }
+.evo-note::before {
+  content: "i"; flex: none; width: 14px; height: 14px; border-radius: 50%;
+  border: 1px solid #6c7079; color: #8a8f99; font: 700 9px/1 Georgia, serif;
+  display: grid; place-items: center; margin-top: 1px;
+}
+/* The Mega/Gmax band hugs its content, capped at the combined width of columns
+   1+2 (its .colgroup parent) — never into the third. It is the only band left:
+   0.4.13's full-width Evolution band became an ordinary column-1 card in
+   0.4.14 (.evocard), since the tree is narrow and centred and the extra width
+   was dead space. */
 .docband { align-self: start; width: max-content; max-width: 100%; }
-/* The 400px compact pane is narrower than a 3-stage branching chain, so that
-   one scrolls sideways rather than squashing the slots. */
-.detail-body .evosection { min-width: 0; overflow-x: auto; }
+/* Neither the 400px compact pane nor a ~340px document column is as wide as a
+   branching 3-stage chain (Eevee's 8-way fan is the worst case), so the tree
+   scrolls sideways rather than squashing the slots or bursting its card. 0.4.12:
+   the native scrollbar is hidden (all three vendor spellings) — it stood out
+   badly against the card. Scrolling itself is untouched, still overflow-x: auto.
+   Compact scrolls the whole <section>; the document card scrolls .evo-tree only,
+   so the h3 and the .evo-notes list below stay put and wrap normally. */
+.detail-body .evosection { min-width: 0; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.detail-body .evosection::-webkit-scrollbar { display: none; }
+.evocard .evo-tree { min-width: 0; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.evocard .evo-tree::-webkit-scrollbar { display: none; }
 
 /* Mega / Gigantamax bubbles. Clicking one opens that forme's own detail
    screen (0.4.10) — read-only bubbles until then. */
@@ -521,10 +625,9 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .stub { background: var(--screen-bg); border: 1px solid #000; border-radius: 10px; padding: 8px 10px; color: #8a8f99; font-size: 12px; }
 .pillrow { display: flex; flex-wrap: wrap; gap: 4px; }
 .pillrow .none { color: #6c7079; font-size: 12px; }
-.kv { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
-.kv div { display: flex; padding: 5px 0; border-bottom: 1px solid var(--divider); }
-.kv div:last-child { border-bottom: 0; }
-.kv .r { margin-left: auto; color: #8a8f99; }
+/* .kv (the old single-column label/value list) is gone as of 0.4.12 — its only
+   user was the Training & breeding card, now the two-column "Data" card built
+   out of .facts/.fact, the same pattern the Facts card uses. */
 
 /* -------------------------------------------- expanded document (3 cols) */
 
@@ -563,6 +666,10 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
 .colgroup { flex: 2 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .colgroup > * { max-width: 100%; }
 .colpair { align-self: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+/* A grid item's automatic minimum size is its content's min-content width, which
+   would let a wide evolution tree widen column 1 instead of scrolling inside it
+   (0.4.14). Column 3 already had this via `.cols > .col`. */
+.colpair > .col { min-width: 0; }
 .cols > .col { flex: 1 1 0; min-width: 0; }
 .col { display: flex; flex-direction: column; gap: 14px; }
 /* Texture ON TOP here (the tint gradient's second stop is opaque --chrome, so
@@ -577,7 +684,7 @@ section h3 .r { margin-left: auto; text-transform: none; letter-spacing: 0; colo
    card title and its right-aligned header value (Base stats / "Total: 405")
    don't butt straight up against each other. */
 .box h3 { margin: 0 0 10px; display: flex; align-items: baseline; }
-.box h3 .r { margin-left: auto; font-size: 12px; font-weight: 400; color: #8a8f99; font-variant-numeric: tabular-nums; }
+.box h3 .r { margin-left: auto; font-variant-numeric: tabular-nums; }
 .doc .abil div { background: none; border: 0; border-bottom: 1px solid var(--divider); border-radius: 0; padding: 6px 0; }
 .doc .abil { gap: 0; }
 .doc .abil div:last-child { border-bottom: 0; }

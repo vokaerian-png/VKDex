@@ -427,9 +427,11 @@
         '<div class="bar"><i style="--s:var(--s-' + k[0] + ");width:" + Math.min(100, v / 255 * 140) + '%"></i></div>';
     }).join("");
     // The .r span is the codebase's existing right-aligned header-value slot
-    // (section h3 .r / .kv .r). 0.4.11 gives it the colon and, in the document
-    // view, the .box h3 flex rule that actually pushes it to the right edge —
-    // without it the two ran together as "Base statsTotal 405".
+    // (section h3 .r / .box h3 .r). 0.4.11 gave it the colon and, in the
+    // document view, the .box h3 flex rule that actually pushes it to the right
+    // edge — without it the two ran together as "Base statsTotal 405". 0.4.12
+    // drops both rules' size/weight/colour overrides so it now reads as the same
+    // text as its own card's title, per feedback.
     return "<h3>Base stats<span class=\"r\">Total: " + total + '</span></h3><div class="stats">' + rows + "</div>";
   }
 
@@ -442,8 +444,8 @@
   // logic is mobile's verbatim-in-behaviour, because it already handles every
   // edge case in the real 1025-species set — branch-producing formes, gendered
   // evolutions, move/trade/held/stone/level triggers, sibling branches that
-  // converge on one id. Only the final HTML assembly (evoGridHtml) is new: a
-  // merged-cell grid instead of mobile's duplicate-per-row rows.
+  // converge on one id. Only the final HTML assembly (evoTreeHtml) is new: a
+  // top-down vertical tree instead of mobile's duplicate-per-row rows.
   //
   // The one simplification: desktop has no in-place forme swap on the detail
   // screen (a Mega/Gmax forme is its own screen, and that screen has no
@@ -466,16 +468,19 @@
     return extra.length ? base.concat(extra) : base;
   }
 
-  function evolutionPaths(rootId) {
-    var paths = [];
-    function walk(id, via, path) {
-      var stepPath = path.concat([{ id: id, via: via }]);
-      var children = evoEdgesFor(id);
-      if (children.length === 0) { paths.push(stepPath); return; }
-      children.forEach(function (edge) { walk(edge.id, edge, stepPath); });
-    }
-    walk(rootId, null, []);
-    return paths;
+  // Every edge in the chain, flattened, as {from, via}. Replaces 0.4.12's
+  // evolutionPaths(): the tree recursion below walks the chain itself, so the
+  // only remaining need is a flat edge list for the bottom notes. The `seen`
+  // guard matters for a chain whose siblings converge on one id (Urshifu's two
+  // scrolls both land on 892) — walking it twice would duplicate its notes.
+  function evoAllEdges(rootId) {
+    var out = [], seen = {};
+    (function walk(id) {
+      if (seen[id]) return;
+      seen[id] = 1;
+      evoEdgesFor(id).forEach(function (e) { out.push({ from: id, via: e }); walk(e.id); });
+    })(rootId);
+    return out;
   }
 
   // Which forme's art/name a stage bubble should show. `preferEdgeForme` is set
@@ -501,22 +506,45 @@
     return mon && mon.hasFemaleSprite ? femaleUrl(id, false) : null;
   }
 
-  function evoArrowLabel(via) {
+  var STAT_SHORT = { atk_gt_def: "Atk > Def", atk_lt_def: "Atk < Def", atk_eq_def: "Atk = Def" };
+
+  // The condition chip that rides on a drop line. Ported from the direction-4
+  // mockup's cond().mid, which is deliberately longer than 0.4.12's
+  // evoArrowLabel: a vertical connector has real horizontal room, so a
+  // trade/held/friendship edge can name its item and time of day instead of
+  // collapsing to a bare "Trade"/"Held"/"Friendship" (mockup goal 2 — always
+  // show HOW a transition happens). Returns "" only for a null edge.
+  function evoCondLabel(via) {
     if (!via) return "";
     // Hand-authored per-edge override, for a branch the derived label can't
-    // tell apart from its sibling (Galarian Slowpoke's two stone routes).
-    if (via.note) return via.note;
-    // A "level" edge with no `level` is a happiness/affection evolution.
-    if (via.method === "level") return typeof via.level === "number" ? "Lv " + via.level : "Friendship";
-    if (via.item === "tm-normal" && via.move) return via.move;
-    if (via.method === "stone") return via.item ? itemName(via.item) : "Stone";
-    if (via.method === "trade") return "Trade";
-    if (via.method === "held") return "Held";
-    return "";
+    // tell apart from its sibling (Urshifu's two scrolls, Galarian Slowpoke)
+    // or a mechanism the fields can't express at all (the 11 "other" edges,
+    // annotated in data/evolutions.js as of 0.4.13). Wins outright.
+    var s = via.note;
+    var tod = via.timeOfDay === "day" ? ", day" : via.timeOfDay === "night" ? ", night" : "";
+    if (!s) {
+      // A "level" edge with no `level` is a happiness/affection evolution.
+      if (via.method === "level" && typeof via.level === "number") s = "Lv " + via.level;
+      else if (via.method === "level") {
+        s = "Friendship" + tod + (via.moveType ? ", " + cap(via.moveType) + " move" : "");
+      } else if (via.item === "tm-normal" && via.move) s = "Knows " + via.move;
+      else if (via.method === "stone") s = via.item ? itemName(via.item) : "Stone";
+      else if (via.method === "trade") s = via.item ? "Trade w/ " + itemName(via.item) : "Trade";
+      else if (via.method === "held") s = (via.item ? itemName(via.item) + " held" : "Held") + tod;
+      // Nothing derivable and no hand-authored note: render no chip at all
+      // rather than a placeholder, exactly as 0.4.12 did. Still true for the 4
+      // FORME-level "other" edges in data/altforms.js (Galarian Farfetch'd,
+      // Hisuian Qwilfish, White-Striped Basculin, Galarian Yamask) — the same
+      // gap the 11 species-level ones had before 0.4.13, not yet researched.
+      else return "";
+    }
+    if (GENDER_GLYPH[via.gender]) s += " " + GENDER_GLYPH[via.gender] + " only";
+    if (STAT_SHORT[via.statCompare]) s += ", " + STAT_SHORT[via.statCompare];
+    return s;
   }
+  function cap(s) { return String(s).charAt(0).toUpperCase() + String(s).slice(1); }
 
   var GENDER_GLYPH = { male: "♂", female: "♀" };
-  var EVO_ARROW_SVG = '<svg class="evo-chev" viewBox="0 0 20 14" aria-hidden="true"><path d="M1 7 H16 M11 2 L16 7 L11 12" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
   var EVO_HEART_SVG = '<svg class="evo-cond-icon" viewBox="0 0 16 14" aria-hidden="true"><path d="M8 13 C3 9 1 6.5 1 4.2 C1 2 2.7 1 4.3 1 C5.7 1 7 1.8 8 3.2 C9 1.8 10.3 1 11.7 1 C13.3 1 15 2 15 4.2 C15 6.5 13 9 8 13 Z" fill="currentColor"/></svg>';
   var EVO_SUN_SVG = '<svg class="evo-cond-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.5" fill="currentColor"/><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="0.8" x2="8" y2="2.6"/><line x1="8" y1="13.4" x2="8" y2="15.2"/><line x1="0.8" y1="8" x2="2.6" y2="8"/><line x1="13.4" y1="8" x2="15.2" y2="8"/><line x1="2.9" y1="2.9" x2="4.2" y2="4.2"/><line x1="11.8" y1="11.8" x2="13.1" y2="13.1"/><line x1="2.9" y1="13.1" x2="4.2" y2="11.8"/><line x1="11.8" y1="4.2" x2="13.1" y2="2.9"/></g></svg>';
   var EVO_MOON_SVG = '<svg class="evo-cond-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M14 9.5 A6.5 6.5 0 1 1 6.5 2 A5.2 5.2 0 0 0 14 9.5 Z" fill="currentColor"/></svg>';
@@ -544,132 +572,158 @@
     return icons ? '<span class="evo-icons">' + icons + "</span>" : "";
   }
 
-  // One plain-text line at the bottom of the card, for a chain whose branches
-  // share an identical arrow label and need something beyond it to tell them
-  // apart. Keyed off the data, not off species ids.
-  function evoDescriptorHtml(root) {
-    var e = EVOLUTIONS[root];
-    if (!e) return "";
-    var edges = evolutionPaths(root).reduce(function (acc, path) {
-      return acc.concat(path.map(function (step) { return step.via; }).filter(Boolean));
-    }, []);
-    var text = e.note;
-    if (!text) {
-      var statEdge = edges.find(function (x) { return x.statCompare; });
-      var genderEdge = edges.find(function (x) { return x.gender; });
-      if (statEdge) {
-        text = "Evolves based on Attack vs. Defense" +
-          (statEdge.level !== undefined ? " at level " + statEdge.level : "") + ".";
-      } else if (genderEdge) {
-        text = "Evolves based on gender.";
-      }
+  function evoName(id) { return (byId(id) || {}).name || "#" + id; }
+
+  // Bottom-of-card notes (mockup goal 3: an edge case too awkward to convey on
+  // a connector chip gets a concise sentence here instead). 0.4.12's
+  // evoDescriptorHtml emitted at most ONE line and stopped at the first source
+  // that had something; the direction-4 mockup renders a list, so all four
+  // sources now contribute, in this order:
+  //   1. the species' own hand-authored top-level `note` (Wurmple's RNG, and
+  //      Stantler's, which predates the per-edge noteLong convention);
+  //   2. a derived line for a hidden stat comparison (Tyrogue), naming what
+  //      each comparison produces rather than 0.4.12's bare "based on stats";
+  //   3. a derived line per gendered edge (Kirlia, Combee, Snorunt, Burmy);
+  //   4. every edge's own `noteLong` — the full-sentence half of 0.4.13's
+  //      two-length note convention (data/evolutions.js's header comment).
+  // All four are keyed off the data, never off species ids.
+  function evoNotesHtml(root) {
+    var notes = [], edges = evoAllEdges(root);
+    var top = (EVOLUTIONS[root] || {}).note;
+    if (top) notes.push(top);
+
+    var stat = edges.filter(function (x) { return STAT_SHORT[x.via.statCompare]; });
+    if (stat.length) {
+      notes.push((stat[0].via.level !== undefined ? "At level " + stat[0].via.level + " the" : "The") +
+        " result depends on " + evoName(stat[0].from) + "'s stats: " +
+        stat.map(function (e) { return STAT_SHORT[e.via.statCompare] + " → " + evoName(e.via.id); }).join(", ") + ".");
     }
-    return text ? '<p class="evo-note">' + esc(text) + "</p>" : "";
+    edges.forEach(function (e) {
+      if (e.via.gender) {
+        notes.push("Only a " + e.via.gender + " " + evoName(e.from) +
+          " can evolve into " + evoName(e.via.id) + ".");
+      }
+    });
+    edges.forEach(function (e) { if (e.via.noteLong) notes.push(e.via.noteLong); });
+
+    if (!notes.length) return "";
+    return '<div class="evo-notes">' + notes.map(function (t) {
+      return '<p class="evo-note">' + esc(t) + "</p>";
+    }).join("") + "</div>";
   }
 
-  function evoSlotHtml(step, next, prefersEdge, col, row, span, curId) {
-    var mon = byId(step.id);
+  // One node of the vertical tree. `via` is the edge that reaches it (null at
+  // the root), `edges` this node's own outgoing edges — already narrowed to a
+  // single branch-key group by evoSubtreeHtml, so any of them names the forme
+  // this copy of the node should draw.
+  function evoNodeHtml(id, via, edges, curId, prefersEdge) {
+    var mon = byId(id);
     if (!mon) return "";
-    var forme = evoStageForme(step.id, next, step.via, prefersEdge);
+    var next = edges.length ? { via: edges[0] } : null;
+    var forme = evoStageForme(id, next, via, prefersEdge);
     var src = forme
       ? altFormeUrl(forme.sprite, false)
-      : (evoGenderSpriteUrl(step.id, next && next.via && next.via.gender) || spriteUrl(step.id));
-    var name = evoStageName(step.id, forme, prefersEdge) || mon.name;
-    return '<button type="button" class="evo-slot' + (step.id === curId ? " cur" : "") +
-      '" data-id="' + step.id + '" style="grid-column:' + col + ";grid-row:" + row +
-      (span > 1 ? " / span " + span : "") + '">' + imgTag(src, "") +
-      '<span class="evo-name">' + esc(name) + "</span></button>";
-  }
-  function evoArrowHtml(via, col, row, span) {
-    var label = evoArrowLabel(via);
-    return '<div class="evo-arrowcell" style="grid-column:' + col + ";grid-row:" + row +
-      (span > 1 ? " / span " + span : "") + '">' +
-      (label ? '<span class="evo-lv">' + esc(label) + "</span>" : "") +
-      evoArrowIconsHtml(via) + EVO_ARROW_SVG + "</div>";
+      : (evoGenderSpriteUrl(id, next && next.via.gender) || spriteUrl(id));
+    var name = evoStageName(id, forme, prefersEdge) || mon.name;
+
+    // Sibling edges landing on the SAME id are told apart only by the edge's
+    // own `forme` (Kubfu's two scrolls both reach 892) — 0.4.12's lastIdCounts,
+    // now a local sibling count instead of a whole-chain leaf count.
+    var counts = {};
+    edges.forEach(function (e) { counts[e.id] = (counts[e.id] || 0) + 1; });
+
+    var label = evoCondLabel(via), icons = via ? evoArrowIconsHtml(via) : "";
+    return '<div class="evo-node">' +
+      (via ? '<div class="evo-drop"><i></i>' +
+        (label || icons ? '<span class="evo-lv">' + icons + esc(label) + "</span>" : "") +
+        '<i class="arr"></i></div>' : "") +
+      '<button type="button" class="evo-slot' + (id === curId ? " cur" : "") +
+      '" data-id="' + id + '">' + imgTag(src, "") +
+      '<span class="evo-name">' + esc(name) + "</span></button>" +
+      (edges.length ? '<div class="evo-stem"></div>' + evoFanHtml(edges, curId, counts) : "") +
+      "</div>";
   }
 
-  // How many distinct "who produces this branch" keys the paths diverge on at
-  // step `at`. A shared ancestor cell can only show ONE sprite, so a divergence
-  // that would need two different sprites of that ancestor must NOT be merged —
-  // the prefix is shortened instead and each branch draws its own correctly-
-  // formed copy, which is mobile's one-full-row-per-branch shape.
+  // 0.4.15 — a fan of 4+ siblings does not fit column 1's card on one row, and
+  // 0.4.14's sideways scroll meant only 5 of Eevee's 8 branches were visible
+  // without dragging. Wide fans are split into rows of at most EVO_FAN_MAX
+  // instead, so every branch is on screen with no input from the user. Eevee's
+  // line (8) is the only fan in the whole dex over 3, so this is the one shape
+  // it ever produces; a 1-row fan renders byte-identically to 0.4.14.
   //
-  // Two causes: a different FORME produces each branch (base Meowth -> Persian
-  // vs. Galarian Meowth -> Perrserker), or a different GENDER does — but the
-  // gender only counts when female art is actually bundled for that ancestor.
-  // Only 103 species have it, so Snorunt -> Glalie/Froslass still merges: both
-  // rows would draw the same default sprite anyway.
-  function branchKeyCount(paths, at) {
-    var keys = [];
-    paths.forEach(function (x) {
-      var via = x[at] && x[at].via;
-      var prev = x[at - 1];
-      var gendered = via && via.gender && prev && evoGenderSpriteUrl(prev.id, via.gender);
-      var k = ((via && via.fromFormeKey) || "") + "|" + (gendered ? via.gender : "");
-      if (keys.indexOf(k) < 0) keys.push(k);
+  // Rows are balanced rather than greedily filled (8 -> 3/3/2, not 3/3/2 by
+  // luck and 7 -> 3/3/1), which also guarantees no row is left with a single
+  // child — a lone child would hit .evo-kids > .evo-node:only-child::before and
+  // lose its bar.
+  var EVO_FAN_MAX = 3;
+  function evoFanRows(edges) {
+    if (edges.length <= EVO_FAN_MAX) return [edges];
+    var rows = Math.ceil(edges.length / EVO_FAN_MAX);
+    var base = Math.floor(edges.length / rows), extra = edges.length % rows;
+    var out = [], at = 0;
+    for (var i = 0; i < rows; i++) {
+      var n = base + (i < extra ? 1 : 0);
+      out.push(edges.slice(at, at + n));
+      at += n;
+    }
+    return out;
+  }
+  // Each row is its own .evo-kids, so it paints its own fan bar for free: the
+  // bar is the children's own ::before segments and :first-child/:last-child
+  // now mean "of this row". The rows-to-parent connection is the left rail
+  // .evo-fan draws in CSS — see styles.css.
+  function evoFanHtml(edges, curId, counts) {
+    var rows = evoFanRows(edges).map(function (row) {
+      return '<div class="evo-kids">' + row.map(function (e) {
+        return evoSubtreeHtml(e.id, e, curId, counts[e.id] > 1);
+      }).join("") + "</div>";
     });
-    return keys.length;
+    return rows.length > 1 ? '<div class="evo-fan">' + rows.join("") + "</div>" : rows[0];
   }
 
-  // The merged-cell grid (item 6, sh4-evo-reference.png). Stage i always sits
-  // in column 2i+1 and the arrow into it in column 2i, so columns line up
-  // across rows for free. The longest common prefix of every path is drawn ONCE
-  // in row 1 spanning every branch's row; each branch then lays its remaining
-  // steps on its own row, independently — an uneven-depth branch (Applin's
-  // Dipplin -> Hydrapple) just runs one column further than its siblings.
+  // A node can only show ONE sprite. When its outgoing edges imply DIFFERENT
+  // sprites of it, the node is drawn once per implied sprite instead — the
+  // tree's version of 0.4.10's one-full-row-per-branch fallback, and the same
+  // two causes: a different FORME produces each branch (base Meowth -> Persian
+  // vs. Galarian Meowth -> Perrserker, plus the Wooper/Sneasel/Yamask
+  // equivalents — 8 species-views in the 1025), or a different GENDER does,
+  // but only where female art is actually bundled for that ancestor (Snorunt ->
+  // Glalie/Froslass still merges: both copies would draw the same sprite).
+  function evoSubtreeHtml(id, via, curId, prefersEdge) {
+    var groups = [], keys = [];
+    evoEdgesFor(id).forEach(function (e) {
+      var gendered = e.gender && evoGenderSpriteUrl(id, e.gender);
+      var k = (e.fromFormeKey || "") + "|" + (gendered ? e.gender : "");
+      var at = keys.indexOf(k);
+      if (at < 0) { keys.push(k); groups.push([e]); } else groups[at].push(e);
+    });
+    if (!groups.length) groups = [[]];
+    return groups.map(function (g) {
+      return evoNodeHtml(id, via, g, curId, prefersEdge);
+    }).join("");
+  }
+
+  // The vertical tree (0.4.13, direction-4 mockup — replaces 0.4.10/0.4.11's
+  // merged-cell grid outright, user-directed after a 4-mockup review). Stages
+  // flow top-to-bottom from the shared ancestor, centred in a full-width card;
+  // each child hangs off a drop line carrying its own condition chip, and a
+  // branching node fans its children out sideways under a horizontal bar. The
+  // shape is symmetric at every chain size, which is what fixes 0.4.12's
+  // deferred complaint: a 2-stage chain (Fearow) is now a short centred tree
+  // rather than a small grid stranded in leftover column space.
   //
-  // Merging the common PREFIX rather than only the root is what makes
-  // Oddish -> Gloom -> {Vileplume, Bellossom} draw Gloom once: 4 of the 70
-  // branching chains (Oddish, Poliwag, Ralts, Cosmog) branch at depth 1, not
-  // at the root. Verified against all 1025 species: every chain has exactly one
-  // branch point, at depth 0 or 1, so no second-level merge is needed.
-  // ponytail: single branch point assumed; a chain that ever branches twice
-  // would duplicate the sub-branch node — revisit only if the data adds one.
-  function evoGridHtml(p) {
+  // Unlike the grid there is no longest-common-prefix step: recursion shares an
+  // ancestor by construction, at any depth and any number of branch points, so
+  // 0.4.11's "single branch point assumed" ponytail caveat is gone with it.
+  function evoTreeHtml(p) {
     var root = evoRoot(p.id);
-    var paths = evolutionPaths(root);
     // A species with no evolution relationship at all hides the whole card
-    // (item 5) rather than showing a "does not evolve" note.
-    if (!paths.length || (paths.length === 1 && paths[0].length === 1)) return "";
-
-    // How many paths end on each id — >1 means sibling branches converge on the
-    // same species, making those leaves edge-determined (Urshifu).
-    var lastIdCounts = {};
-    paths.forEach(function (x) {
-      var last = x[x.length - 1].id;
-      lastIdCounts[last] = (lastIdCounts[last] || 0) + 1;
-    });
-
-    var pre;
-    if (paths.length === 1) {
-      pre = paths[0].length;                       // linear chain: one row, all shared
-    } else {
-      // Leave at least one step on every branch row, or a branch would vanish.
-      var lim = paths.reduce(function (m, x) { return Math.min(m, x.length); }, Infinity) - 1;
-      pre = 0;
-      while (pre < lim && paths.every(function (x) { return x[pre].id === paths[0][pre].id; })) pre++;
-      while (pre > 0 && branchKeyCount(paths, pre) > 1) pre--;
-    }
-
-    var rows = paths.length;
-    var html = "", maxCol = 1;
-    for (var i = 0; i < pre; i++) {
-      var step = paths[0][i], next = paths[0][i + 1];
-      if (i > 0) html += evoArrowHtml(step.via, 2 * i, 1, rows);
-      html += evoSlotHtml(step, next, !next && lastIdCounts[step.id] > 1, 2 * i + 1, 1, rows, p.id);
-      if (2 * i + 1 > maxCol) maxCol = 2 * i + 1;
-    }
-    paths.forEach(function (path, r) {
-      for (var j = pre; j < path.length; j++) {
-        var st = path[j], nx = path[j + 1];
-        if (j > 0) html += evoArrowHtml(st.via, 2 * j, r + 1, 1);
-        html += evoSlotHtml(st, nx, !nx && lastIdCounts[st.id] > 1, 2 * j + 1, r + 1, 1, p.id);
-        if (2 * j + 1 > maxCol) maxCol = 2 * j + 1;
-      }
-    });
-
-    return '<div class="evo-grid" style="grid-template-columns:repeat(' + maxCol + ',auto)">' +
-      html + "</div>" + evoDescriptorHtml(root);
+    // (0.4.10's rule) rather than showing a "does not evolve" note. evoRoot()
+    // walks up first, so an empty edge list here really does mean "nothing
+    // above it, nothing below it".
+    if (!evoEdgesFor(root).length) return "";
+    return '<div class="evo-tree">' + evoSubtreeHtml(root, null, p.id, false) + "</div>" +
+      evoNotesHtml(root);
   }
 
   // ------------------------------------------------------- Mega / Gigantamax
@@ -806,7 +860,7 @@
   // boxes here as well as to the head — it used to sit inline on the head only.
   function compactHtml(p, base, forme) {
     var formes = megaGmaxHtml(p, base);
-    var evo = forme ? "" : evoGridHtml(base);
+    var evo = forme ? "" : evoTreeHtml(base);
     return '<div class="detail-head"><div class="top">' + spriteBay(p, base, forme) +
       '<div><div class="id">#' + pad(base.id) + " · " + esc(base.region) + "</div><h2>" + esc(p.name) + "</h2>" +
       typePills(p.types) + "</div>" +
@@ -848,7 +902,12 @@
       "</div>";
   }
 
-  function trainingBox(p) {
+  // 0.4.12 (user-requested): "Training & breeding" is now just "Data", laid out
+  // in the same two-column .facts/.fact grid the Facts card uses rather than the
+  // old single-column .kv list, and rendered under Type defenses in column 2
+  // instead of under the radar in column 3 — that frees column 3 for the Moves
+  // card once it's wired in.
+  function dataBox(p) {
     var s = statsFor(p) || {};
     var ev = s.effort || {};
     var yields = STAT_KEYS.filter(function (k) { return ev[k[0]]; })
@@ -861,14 +920,15 @@
       ["Growth", (s.expGrowth || {}).curve],
       ["EV yield", yields]
     ];
-    return '<div class="box"><h3>Training &amp; breeding</h3><div class="kv">' + rows.map(function (r) {
-      return "<div>" + esc(r[0]) + '<span class="r">' + esc(r[1] == null || r[1] === "" ? "—" : r[1]) + "</span></div>";
+    return '<div class="box"><h3>Data</h3><div class="facts">' + rows.map(function (r) {
+      return '<div class="fact"><b>' + esc(r[0]) + "</b><span>" +
+        esc(r[1] == null || r[1] === "" ? "—" : r[1]) + "</span></div>";
     }).join("") + "</div></div>";
   }
 
   function docHtml(p, base, forme) {
     var formes = megaGmaxHtml(p, base);
-    var evo = forme ? "" : evoGridHtml(base);
+    var evo = forme ? "" : evoTreeHtml(base);
     var list = currentList();
     var i = list.indexOf(base);
     var prev = (list[i - 1] || base).id, next = (list[i + 1] || base).id;
@@ -885,9 +945,11 @@
       // 0.4.11: the bands used to be later ROWS of one shared 3-track grid, so
       // they waited on the tallest of the three columns — usually column 3 —
       // leaving a dead gap under the other two. Now .cols is a flex row of
-      // [.colgroup, column 3]: the bands live inside .colgroup, under the
-      // .colpair holding columns 1+2, so their top depends on max(col1, col2)
-      // only. Column 3 is an independent strip that runs alongside them.
+      // [.colgroup, column 3]: the Mega/Gmax band lives inside .colgroup, under
+      // the .colpair holding columns 1+2, so its top depends on max(col1, col2)
+      // only. Column 3 is an independent strip that runs alongside it.
+      // (0.4.14: Evolution left the band set and is a plain column-1 card now,
+      // so the band mechanism has exactly one user left.)
       '<div class="cols">' +
       '<div class="colgroup"><div class="colpair">' +
       '<div class="col">' +
@@ -898,18 +960,24 @@
       '<div class="fact"><b>Weight</b><span>' + kilos(p.weight) + "</span></div>" +
       "</div></div>" +
       '<div class="box"><h3>Abilities</h3>' + abilityRows(p, true) + "</div>" +
+      // 0.4.14: Evolution is an ordinary column-1 card under Abilities, not the
+      // full-width band it was from 0.4.10. The band existed because the old
+      // merged-cell grid needed the width; 0.4.13's tree is narrow and centred,
+      // so the band just wasted the space either side and pushed everything
+      // below it down. A chain wider than the column scrolls sideways inside
+      // .evocard .evo-tree (same hidden-scrollbar rule the compact pane uses).
+      (evo ? '<div class="box evocard"><h3>Evolution</h3>' + evo + "</div>" : "") +
       "</div>" +
       '<div class="col">' +
       '<div class="box">' + statsHtml(p) + "</div>" +
       defenseBox(p) +
+      dataBox(p) +
       "</div>" +
       "</div>" +
-      (evo ? '<div class="box docband"><h3>Evolution</h3>' + evo + "</div>" : "") +
       (formes ? '<div class="box docband"><h3>Mega &amp; Gigantamax</h3>' + formes + "</div>" : "") +
       "</div>" +
       '<div class="col">' +
       radarBox(p) +
-      trainingBox(p) +
       '<div class="box"><h3>Moves &middot; Locations &middot; Alt formes</h3>' +
       '<div class="stub">These three still live only in the mobile frontend. The document view has the width for them — they are a later desktop pass, not a dropped feature.</div></div>' +
       "</div>" +
@@ -1035,8 +1103,26 @@
     if (!list.some(function (p) { return p.id === selectedId; })) { selectedId = list[0].id; formeView = null; }
   }
 
+  // 0.4.12: back out of a live search, landing on exactly the state a fresh
+  // "All" chip gives — empty query, region "all", selection clamped back into
+  // the visible list. Returns whether anything actually changed, so a caller
+  // can skip a pointless full re-render. Does NOT render itself: every caller
+  // already has a render of its own to fold this into.
+  function clearSearch() {
+    if (!query) return false;
+    query = "";
+    region = "all";
+    clampSelection();
+    return true;
+  }
+
   function go(next) {
-    if (screen === next) return;
+    // Clicking Dex (or Ctrl+1) while a search is running clears it, even when
+    // the Dex screen is already the current one — one of the three "back out of
+    // search" gestures, alongside Esc and the All chip.
+    var changed = screen !== next;
+    if (next === "dex" && clearSearch()) changed = true;
+    if (!changed) return;
     screen = next;
     if (expanded) setExpanded(false);
     render();
@@ -1056,7 +1142,15 @@
     if (nav) { go(nav.dataset.screen); return; }
 
     var chip = e.target.closest("[data-region]");
-    if (chip) { region = chip.dataset.region; clampSelection(); render(); return; }
+    if (chip) {
+      // The All chip doubles as the search reset (0.4.12); every other chip
+      // narrows the region and leaves the query alone, as before.
+      if (chip.dataset.region === "all") query = "";
+      region = chip.dataset.region;
+      clampSelection();
+      render();
+      return;
+    }
 
     var seg = e.target.closest("[data-setting]");
     if (seg) { applySetting(seg.dataset.setting, seg.dataset.value); return; }
@@ -1114,6 +1208,10 @@
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && lightboxOpen()) { closeLightbox(); return; }
     if (e.key === "Escape" && expanded) { setExpanded(false); return; }
+    // Esc backs out of a live search (0.4.12). Deliberately ABOVE the
+    // input/textarea guard below, so it fires while the search box itself has
+    // focus — which is where the user almost always is when they press it.
+    if (e.key === "Escape" && clearSearch()) { render(); return; }
     if (e.ctrlKey && (e.key === "b" || e.key === "B")) { e.preventDefault(); setRail(!rail); return; }
     if (e.ctrlKey && e.key === ",") { e.preventDefault(); go("settings"); return; }
     if (e.ctrlKey && "12345".indexOf(e.key) >= 0) {
