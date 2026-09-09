@@ -460,9 +460,25 @@
   // at two different sizes, in portable JS. The native Rust DPI nudge
   // (0.4.23/0.4.24) already failed at this from the OS side, plausibly because
   // Tauri's synthetic resize doesn't reach Chromium like a real user drag does.
+  //
+  // 0.4.30 runs that same cycle TWICE. 0.4.29 still didn't fix the FIRST open of
+  // the Map screen — but it did change something real: with the nudge in place,
+  // switching to Settings and back now fixes the blur too, which it did NOT on
+  // 0.4.28 (only the Dex worked then). So the Dex-specific scrollbar theory is
+  // dead and the nudge itself is the sufficient ingredient — it just apparently
+  // has to happen more than once. The one structural difference between the
+  // still-broken first open and the working manual revisit is exactly that:
+  // a revisit means the cycle has run twice, once per visit. So run it twice
+  // ourselves, ~300ms apart, instead of waiting for the user to navigate away
+  // and back. Both runs re-check `screen === "map"` at their own fire time, so
+  // leaving the screen in between no-ops the second one.
+  // ponytail: "twice" and the 300ms gap are heuristics — there's no signal for
+  // "how many applications is enough" any more than there was for the 600ms.
+  // If this still isn't enough, don't just keep adding blind repeats past a
+  // third: work out what actually differs on the repeat application first.
   function resettleMapImage() {
-    setTimeout(function () {
-      // screen may have changed within the delay window.
+    function cycle(repeat) {
+      // screen may have changed within either delay window.
       var el = document.getElementById("center");
       if (el && screen === "map") {
         el.innerHTML = mapHtml();
@@ -474,8 +490,10 @@
           img.style.width = "";          // drop the override, CSS width:100% resumes
           img.offsetHeight;              // ...and flush again at the restored size
         }
+        if (repeat) setTimeout(function () { cycle(false); }, 300);
       }
-    }, 600);
+    }
+    setTimeout(function () { cycle(true); }, 600);
   }
 
   // ------------------------------------------------------------ settings
