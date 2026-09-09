@@ -41,7 +41,7 @@
   var TYPE_NAMES = Object.keys(TYPE_CHART);
   var SCREEN_TITLES = {
     dex: "Dex", favorites: "Favorites", bag: "Bag",
-    types: "Type Chart", natures: "Natures", settings: "Settings"
+    types: "Type Chart", natures: "Natures", map: "Map", settings: "Settings"
   };
   // Screens that exist as nav rows but have no desktop implementation yet.
   var PLACEHOLDERS = {
@@ -192,6 +192,13 @@
   // for free because select() defaults it back to null.
   var formeView = null;
   var expanded = false;
+  // Map screen (0.4.19) — its own region selection, deliberately separate from
+  // the Dex's `region`: a map is per-region only (no "All" view), and switching
+  // maps must not disturb whatever the Dex is filtered to.
+  var mapRegion = "kanto";
+  var mapZoom = 1;             // 1 = 100%, clamped to MAP_ZOOM_MIN..MAX
+  var mapPanX = 0, mapPanY = 0; // px, applied as a translate before the scale
+  var mapDrag = null;          // {x, y, panX, panY, id} while a drag is live
   var rail = true;             // live sidebar state
   var railDefault = true;      // persisted "collapse by default" setting
   // Mirrored-from-mobile settings state.
@@ -331,6 +338,92 @@
       "</p><p style=\"margin-top:8px\">Coming in a later desktop pass — the Dex and its detail pane came first.</p></div></div>";
   }
 
+  // ----------------------------------------------------------------- map
+  // First screen of the Map Project (TODO.md #22), desktop-only by design.
+  // Kanto's map is a finished standalone SVG in maps/, referenced as an asset
+  // (like the sprites) rather than inlined — every other region falls through
+  // to a "not mapped yet" note until its own map is drawn.
+
+  var MAP_ZOOM_MIN = 1, MAP_ZOOM_MAX = 3, MAP_ZOOM_STEP = 0.25;
+  // Region ids with a maps/<id>.svg on disk. One entry for now; adding a map
+  // means adding the file and its id here.
+  var MAPPED_REGIONS = { kanto: 1 };
+
+  function mapHtml() {
+    // Same chip markup as dexHtml()'s region bar (so the existing
+    // [data-region="hisui"/"orre"] tints apply for free), minus the "All"
+    // entry — a combined map makes no sense.
+    var chips = REGIONS.map(function (r) {
+      var cls = (r.id === mapRegion ? "on " : "") + (r.standalone ? "standalone" : "");
+      return '<button data-region="' + esc(r.id) + '" class="' + cls.trim() + '"><span>' + esc(r.label) + "</span></button>";
+    }).join("");
+
+    var label = (REGIONS.filter(function (r) { return r.id === mapRegion; })[0] || {}).label || mapRegion;
+    var body = MAPPED_REGIONS[mapRegion]
+      ? mapViewportHtml()
+      : '<div class="placeholder"><div><h2>Not mapped yet</h2><p>' + esc(label) +
+        "'s map hasn't been drawn yet.</p></div></div>";
+
+    return '<div class="toolbar"><h1>Map</h1></div>' +
+      '<div class="regions">' + chips + "</div>" + body;
+  }
+
+  // Panning is pointer-drag only (0.4.20) — .map-viewport is overflow:hidden,
+  // so the browser's own scrollbars are out of the picture entirely.
+  // draggable="false" stops Chromium's native image drag-and-drop from
+  // hijacking the pointer gesture the moment the cursor moves.
+  function mapViewportHtml() {
+    return '<div class="map-viewport" id="mapViewport">' +
+      '<img class="map-svg" id="mapSvg" draggable="false" src="maps/' + esc(mapRegion) + '.svg" alt="' + esc(mapRegion) +
+      ' region map" style="transform:' + mapTransform() + '">' +
+      '<div class="map-zoom">' +
+      '<button type="button" data-mapzoom="in" title="Zoom in">+</button>' +
+      '<button type="button" data-mapzoom="out" title="Zoom out">&minus;</button>' +
+      "</div></div>";
+  }
+
+  function mapTransform() {
+    return "translate(" + mapPanX + "px," + mapPanY + "px) scale(" + mapZoom + ")";
+  }
+
+  // Deliberately NOT a render() — a full re-render would replace the <img> on
+  // every wheel tick and every pointermove.
+  function applyMapTransform() {
+    var img = document.getElementById("mapSvg");
+    if (img) img.style.transform = mapTransform();
+  }
+
+  // Zoom anchored on a screen point: whatever bit of the map is under
+  // (clientX, clientY) stays under it. transform-origin is 0 0, so the image
+  // point under the cursor is just (c - pan) / zoom and the new pan follows.
+  // The +/- buttons have no cursor, so they pass the viewport's own centre.
+  function zoomMapAt(clientX, clientY, delta) {
+    var vp = document.getElementById("mapViewport");
+    if (!vp) return;
+    var rect = vp.getBoundingClientRect();
+    // clientLeft/clientTop are the border widths — the image's untransformed
+    // origin is the content-box corner, not the border-box one.
+    var cx = clientX - rect.left - vp.clientLeft;
+    var cy = clientY - rect.top - vp.clientTop;
+    var z = Math.max(MAP_ZOOM_MIN, Math.min(MAP_ZOOM_MAX, mapZoom + delta));
+    var imgX = (cx - mapPanX) / mapZoom, imgY = (cy - mapPanY) / mapZoom;
+    mapPanX = cx - imgX * z;
+    mapPanY = cy - imgY * z;
+    mapZoom = z;
+    applyMapTransform();
+  }
+
+  // Warm-decode one region's SVG so the first zoom/drag isn't competing with
+  // the browser still rasterising an 80KB filter-heavy image (0.4.21's
+  // will-change fixed layer promotion, not decode cost). Hover-triggered only —
+  // never at boot, never for a region the user hasn't aimed at.
+  function warmMapImage(region) {
+    if (!MAPPED_REGIONS[region]) return;   // no SVG on disk -> don't 404
+    var im = new Image();
+    im.src = "maps/" + region + ".svg";
+    if (im.decode) im.decode().catch(function () {});   // best-effort
+  }
+
   // ------------------------------------------------------------ settings
   // Content parity with the mobile Settings window (item 1): Dark Mode,
   // Measurements, Grid Width, Shiny Grids, Pixel Sprites — same five rows, same
@@ -378,6 +471,7 @@
     var el = document.getElementById("center");
     if (screen === "dex") el.innerHTML = dexHtml();
     else if (screen === "settings") el.innerHTML = settingsHtml();
+    else if (screen === "map") el.innerHTML = mapHtml();
     else el.innerHTML = placeholderHtml();
   }
 
@@ -456,9 +550,14 @@
   // Sirfetch'd off base Farfetch'd's page. Any OTHER species in the chain also
   // contributes its forme-only routes, or the walk down from the root can't
   // re-enter the forme edge it walked up through.
+  // Exception (0.4.18): desktop has no in-place forme swap, so a species whose
+  // base form never evolves and whose ONLY route is forme-level (83, 122, 211,
+  // 222, 264, 550) would show no Evolution card at all. Fall back to the forme
+  // edges when the base has none — general rule, not a per-species case. The
+  // 10 species that keep some base edge stay strict, as before.
   function evoEdgesFor(id) {
     var base = ((EVOLUTIONS[id] || {}).evolvesTo) || [];
-    if (id === selectedId) return base;
+    if (id === selectedId) return base.length ? base : formeEvoEdges(id);
     var seen = base.map(function (e) { return e.id; });
     var extra = formeEvoEdges(id).filter(function (e) {
       if (seen.indexOf(e.id) !== -1) return false;
@@ -1072,6 +1171,7 @@
     rail = on;
     document.getElementById("app").classList.toggle("rail", on);
     document.getElementById("railTile").innerHTML = on ? "&#187;" : "&#171;";
+    document.getElementById("railToggle").checked = on;
   }
 
   function setGridCols(cols) {
@@ -1143,12 +1243,33 @@
 
     var chip = e.target.closest("[data-region]");
     if (chip) {
+      // The Map screen reuses the same chip markup, so it has to claim the
+      // click before the Dex's own filter state is touched.
+      if (screen === "map") {
+        mapRegion = chip.dataset.region;
+        mapZoom = 1;
+        mapPanX = 0;
+        mapPanY = 0;
+        render();
+        return;
+      }
       // The All chip doubles as the search reset (0.4.12); every other chip
       // narrows the region and leaves the query alone, as before.
       if (chip.dataset.region === "all") query = "";
       region = chip.dataset.region;
       clampSelection();
       render();
+      return;
+    }
+
+    var mz = e.target.closest("[data-mapzoom]");
+    if (mz) {
+      var mzVp = document.getElementById("mapViewport");
+      if (mzVp) {
+        var mzR = mzVp.getBoundingClientRect();
+        zoomMapAt(mzR.left + mzR.width / 2, mzR.top + mzR.height / 2,
+          mz.dataset.mapzoom === "in" ? MAP_ZOOM_STEP : -MAP_ZOOM_STEP);
+      }
       return;
     }
 
@@ -1214,9 +1335,9 @@
     if (e.key === "Escape" && clearSearch()) { render(); return; }
     if (e.ctrlKey && (e.key === "b" || e.key === "B")) { e.preventDefault(); setRail(!rail); return; }
     if (e.ctrlKey && e.key === ",") { e.preventDefault(); go("settings"); return; }
-    if (e.ctrlKey && "12345".indexOf(e.key) >= 0) {
+    if (e.ctrlKey && "123456".indexOf(e.key) >= 0) {
       e.preventDefault();
-      go(["dex", "favorites", "bag", "types", "natures"][+e.key - 1]);
+      go(["dex", "favorites", "bag", "types", "natures", "map"][+e.key - 1]);
       return;
     }
     if (screen !== "dex") return;
@@ -1233,6 +1354,68 @@
     e.preventDefault();
     select(ids[Math.min(ids.length - 1, Math.max(0, i + step))]);
   });
+
+  // Plain wheel over the map viewport zooms at the cursor (0.4.20 — no Ctrl:
+  // drag now owns panning, so the wheel is free, matching every other map UI).
+  // preventDefault stops the page scrolling/zooming underneath it; passive:false
+  // is what makes that preventDefault() actually bind.
+  document.addEventListener("wheel", function (e) {
+    if (screen !== "map") return;
+    if (!e.target.closest("#mapViewport")) return;
+    e.preventDefault();
+    zoomMapAt(e.clientX, e.clientY, e.deltaY < 0 ? MAP_ZOOM_STEP : -MAP_ZOOM_STEP);
+  }, { passive: false });
+
+  // Hover head-start for the map image (0.4.22). mouseenter doesn't bubble, so
+  // this is the standard mouseover + relatedTarget trick: relatedTarget is the
+  // node the cursor came FROM, so "it isn't inside this element" == a genuine
+  // enter, not a move between the row's own child spans. contains(null) is
+  // false, so entering from outside the window still counts.
+  document.addEventListener("mouseover", function (e) {
+    // The sidebar's Map row: fires well before the click, and mapRegion is
+    // whatever the Map screen will show when it opens (Kanto by default).
+    var mapRow = e.target.closest('[data-screen="map"]');
+    if (mapRow && !mapRow.contains(e.relatedTarget)) warmMapImage(mapRegion);
+
+    // The Map screen's own region chips. Scoped to screen === "map" because the
+    // Dex's region filter chips reuse [data-region] for something unrelated.
+    var mapChip = screen === "map" && e.target.closest("[data-region]");
+    if (mapChip && !mapChip.contains(e.relatedTarget)) warmMapImage(mapChip.dataset.region);
+  });
+
+  // Click-and-drag panning. Pointer Events, not mouse events — one code path
+  // for mouse/touch/pen, same reason mobile's drawer swipe uses them.
+  // ponytail: no pan-bounds clamp, add if the map can be dragged fully out of
+  // view and that's confirmed to be a problem.
+  document.addEventListener("pointerdown", function (e) {
+    if (screen !== "map") return;
+    var vp = e.target.closest("#mapViewport");
+    // Don't start a drag on the zoom cluster — those are buttons.
+    if (!vp || e.target.closest("[data-mapzoom]")) return;
+    // Suppresses the native drag-select gesture (the blue highlight that showed
+    // up mid-pan and ate subsequent input); pairs with .map-viewport's
+    // user-select:none. Buttons are already excluded by the guard above.
+    e.preventDefault();
+    mapDrag = { x: e.clientX, y: e.clientY, panX: mapPanX, panY: mapPanY, id: e.pointerId };
+    vp.setPointerCapture(e.pointerId);
+    vp.classList.add("dragging");
+  });
+
+  document.addEventListener("pointermove", function (e) {
+    if (!mapDrag || e.pointerId !== mapDrag.id) return;
+    mapPanX = mapDrag.panX + (e.clientX - mapDrag.x);
+    mapPanY = mapDrag.panY + (e.clientY - mapDrag.y);
+    applyMapTransform();  // never render(), same reason as the zoom path
+  });
+
+  function endMapDrag(e) {
+    if (!mapDrag || e.pointerId !== mapDrag.id) return;
+    mapDrag = null;
+    var vp = document.getElementById("mapViewport");
+    if (vp) vp.classList.remove("dragging");
+  }
+  document.addEventListener("pointerup", endMapDrag);
+  document.addEventListener("pointercancel", endMapDrag);
 
   // ---------------------------------------------------------------- init
 

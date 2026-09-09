@@ -139,8 +139,9 @@ body {
 .app.rail .sidebar:not(:hover) .lbl,
 .app.rail .sidebar:not(:hover) .kbd,
 .app.rail .sidebar:not(:hover) .ctx,
+.app.rail .sidebar:not(:hover) .ctl,
 .app.rail .sidebar:not(:hover) .foot { opacity: 0; }
-.lbl, .kbd, .ctx, .foot { transition: opacity .12s; }
+.lbl, .kbd, .ctx, .ctl, .foot { transition: opacity .12s; }
 
 /* 0.4.12 — FIXED height in both states. It used to be padding+font-size driven
    (12px/30px expanded, 10px/20px collapsed), which made the box 60px tall
@@ -199,6 +200,7 @@ body {
 .nav .tile { width: 24px; height: 24px; flex: none; border-radius: 6px; background: #3a3d44; display: grid; place-items: center; font-size: 13px; }
 .nav a.active .tile, .nav a:hover .tile { background: var(--row-accent); color: #16181c; }
 .nav a .kbd { margin-left: auto; font-size: 10px; color: #7d818a; }
+.nav a .ctl { margin-left: auto; display: flex; }
 .nav .sep { height: 1px; background: var(--divider); margin: 8px 4px; }
 .nav .ctx { font-size: 11px; color: #7d818a; padding: 0 8px 2px; text-transform: uppercase; letter-spacing: .06em; }
 .nav a.detail-row { color: #b0b4bb; }
@@ -326,6 +328,53 @@ body {
 .placeholder { flex: 1; display: grid; place-items: center; text-align: center; color: #7d818a; padding: 40px; }
 .placeholder h2 { margin: 0 0 8px; font-size: 20px; color: #b0b4bb; font-weight: 600; }
 .placeholder p { margin: 0; max-width: 420px; font-size: 13px; }
+
+/* ----------------------------------------------------------------- map */
+
+/* The map is a standalone SVG in maps/, moved by ONE translate+scale transform
+   and panned by pointer drag (0.4.20) — no native scrolling, so overflow is
+   hidden and the 14px radius clips the map at the corners. Margin makes it read
+   as an inset card the way .grid does; the border matches .card's. Kept
+   transform-origin at top-left: zoomMapAt()'s anchor math is linear only
+   because of it. No transition, so wheel zoom tracks the gesture exactly. */
+.map-viewport {
+  flex: 1; overflow: hidden;
+  margin: 12px 16px 14px;
+  border: 1px solid #000;
+  border-radius: 14px;
+  background: var(--chrome-deep);
+  cursor: grab;
+  touch-action: none;   /* or the browser eats the pointer gesture on touch */
+  /* Drag-panning otherwise triggers the browser's native text/drag selection,
+     which paints a blue highlight over the map and swallows later input. */
+  user-select: none; -webkit-user-select: none;
+}
+.map-viewport.dragging { cursor: grabbing; }
+/* width/height 100% + object-fit:contain make "scale(1)" mean "the whole map
+   fits the viewport" instead of "the <img>'s intrinsic size" — the SVG has only
+   a viewBox, so its intrinsic box didn't match the pane and the top was clipped.
+   will-change pre-promotes the compositing layer, so the FIRST drag/zoom is as
+   smooth as the tenth (lazy promotion was the early-input stutter). */
+.map-svg {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+/* Deliberately NOT positioned against .map-viewport: an absolute child of a
+   scroll container scrolls away with the content. .center is already
+   position:absolute, so it's the nearest positioned ancestor and the cluster
+   stays pinned to the pane's bottom-right while the map scrolls under it. */
+.map-zoom { position: absolute; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+.map-zoom button {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--chip-bg); border: 1px solid #3a3d44; color: #cfd2d8;
+  font: inherit; font-size: 17px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  box-shadow: var(--raised-shadow-sm);
+}
+.map-zoom button:hover { border-color: #6c7079; color: #fff; background: #33363c; }
 
 /* ------------------------------------------------------------ settings */
 

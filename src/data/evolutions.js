@@ -46,10 +46,8 @@
 // `evolvesTo` on that forme in data/altforms.js, which replaces this entry's
 // array while the forme is active. So a species that only ever evolves as a
 // variant has an empty array here: 83 Farfetch'd, 122 Mr. Mime, 211
-// Qwilfish, 222 Corsola, 264 Linoone (and 52/194/215/562 lose one branch
-// each). Sole exception: 550 Basculin, whose White-Striped form has no
-// ALT_FORMS entry to carry the edge, so it stays here rather than vanishing
-// from the app — populate_region.js flags that case instead of dropping it.
+// Qwilfish, 222 Corsola, 264 Linoone, 550 Basculin (and 52/194/215/562 lose
+// one branch each).
 // A Pokémon with no further evolution just has an empty evolvesTo array.
 //
 // 1: { evolvesTo: [{ id: 2, method: "level", level: 16 }] }

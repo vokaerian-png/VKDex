@@ -247,7 +247,7 @@ var ALT_FORMS = {
         abilities: ["Rock Head", "Adaptability", "Mold Breaker"], hiddenAbility: "Mold Breaker" },
       { key: "white", name: "White-Striped Form", sprite: "basculin_white_striped",
         abilities: ["Rattled", "Adaptability", "Mold Breaker"], hiddenAbility: "Mold Breaker",
-        evolvesTo: [{ id: 902, method: "other" }] }
+        evolvesTo: [{ id: 902, method: "other", note: "294 HP recoil damage" }] }
     ]
   },
   647: { // Keldeo — Resolute Form, cosmetic-only (identical type/ability/stats), ordinary side-by-side bubble per Sinistea-line precedent, plus a condition note
@@ -589,7 +589,7 @@ var ALT_FORMS = {
     formes: [
       { key: "hisui", name: "Hisuian Qwilfish", sprite: "hisui/qwilfish",
         types: ["Dark", "Poison"],
-        evolvesTo: [{ id: 904, method: "other" }] }
+        evolvesTo: [{ id: 904, method: "other", note: "Barb Barrage + level up", noteLong: "Evolves after learning the move Barb Barrage, then leveling up (in Pokémon Legends: Arceus, it instead evolves after using Barb Barrage's Strong Style 20 times)." }] }
     ]
   },
   215: { // Sneasel — Hisuian Sneasel, Fighting/Poison, stats identical to base
@@ -818,7 +818,7 @@ var ALT_FORMS = {
         types: ["Fighting"],
         stats: { hp: 52, attack: 95, defense: 55, spAttack: 58, spDefense: 62, speed: 55 },
         abilities: ["Steadfast", "Scrappy"], hiddenAbility: "Scrappy",
-        evolvesTo: [{ id: 865, method: "other" }] }
+        evolvesTo: [{ id: 865, method: "other", note: "3 crits in one battle", noteLong: "Evolves after landing a critical hit on three different opponents within a single battle, without fainting or being switched out — holding a Leek boosts its critical-hit ratio, making this easier to trigger." }] }
     ]
   },
   88: { // Grimer — Alolan Grimer, Poison/Dark, stats identical to base
@@ -964,7 +964,7 @@ var ALT_FORMS = {
         types: ["Ground", "Ghost"],
         stats: { hp: 38, attack: 55, defense: 85, spAttack: 30, spDefense: 65, speed: 30 },
         abilities: ["Wandering Spirit"],
-        evolvesTo: [{ id: 867, method: "other" }] }
+        evolvesTo: [{ id: 867, method: "other", note: "49 HP dmg, then arch", noteLong: "Evolves after taking at least 49 HP of damage in battle without fainting or healing it off, then walking beneath the stone arch in Galar's Dusty Bowl." }] }
     ]
   },
   618: { // Stunfisk — Galarian Stunfisk, Ground/Steel, own base stats
