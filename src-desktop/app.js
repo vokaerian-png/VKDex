@@ -421,8 +421,8 @@
   // on a wrapper leaves all of it working untouched across the 0.4.31 switch
   // from <img> to inline SVG. The <img>'s old draggable="false" is gone with
   // it — that blocked Chromium's native IMAGE drag-and-drop, which inline SVG
-  // doesn't have; the pointerdown handler's own preventDefault() (0.4.21)
-  // covers the drag-select gesture regardless.
+  // doesn't have; .map-viewport's user-select:none plus the drag handler's
+  // selectstart guard (0.4.34) cover the drag-select gesture regardless.
   function mapViewportHtml() {
     return '<div class="map-viewport" id="mapViewport">' +
       '<div class="map-svg" id="mapSvg" style="transform:' + mapTransform() + '">' +
@@ -1566,20 +1566,42 @@
     var vp = e.target.closest("#mapViewport");
     // Don't start a drag on the zoom cluster — those are buttons.
     if (!vp || e.target.closest("[data-mapzoom]")) return;
-    // Suppresses the native drag-select gesture (the blue highlight that showed
-    // up mid-pan and ate subsequent input); pairs with .map-viewport's
-    // user-select:none. Buttons are already excluded by the guard above.
-    e.preventDefault();
-    mapDrag = { x: e.clientX, y: e.clientY, panX: mapPanX, panY: mapPanY, id: e.pointerId };
-    vp.setPointerCapture(e.pointerId);
+    // NOTHING that suppresses the press happens here (0.4.34). Both of the
+    // things that used to — preventDefault() and setPointerCapture() — break
+    // 0.4.33's area selection, which is wired off `click`:
+    //   * preventDefault() on pointerdown suppresses that pointer's whole
+    //     compatibility mouse-event stream (Pointer Events spec), so mousedown,
+    //     and therefore `click`, never fire. Unconditional here, it meant NO
+    //     click anywhere in the viewport, ever — the real 0.4.33 regression.
+    //   * pointer capture retargets the click to the capture element, so the
+    //     click that did survive would arrive on #mapViewport, where
+    //     closest("[data-area]") finds nothing.
+    // Both are deferred to the moment pointermove confirms a real pan (same
+    // "wait for the gesture to prove itself" shape as 0.4.32's GPU-layer
+    // scoping). A press with no movement does neither, so its click reaches the
+    // hit region. The drag-select highlight 0.4.21 killed with preventDefault()
+    // is covered by .map-viewport's user-select:none plus the selectstart guard
+    // below, which is the purpose-built hook for it.
+    mapDrag = { x: e.clientX, y: e.clientY, panX: mapPanX, panY: mapPanY, id: e.pointerId, vp: vp };
     vp.classList.add("dragging");
     markMapGesture();     // promote before the first move, not on it (0.4.32)
   });
 
+  // user-select:none only covers the viewport itself; once a pan drags the
+  // cursor out over the rest of the chrome, the browser would happily start
+  // selecting there. Live only while a map drag is in progress.
+  document.addEventListener("selectstart", function (e) { if (mapDrag) e.preventDefault(); });
+
   document.addEventListener("pointermove", function (e) {
     if (!mapDrag || e.pointerId !== mapDrag.id) return;
-    if (Math.abs(e.clientX - mapDrag.x) >= MAP_DRAG_SLOP ||
-        Math.abs(e.clientY - mapDrag.y) >= MAP_DRAG_SLOP) mapDragged = true;
+    if (!mapDragged &&
+        (Math.abs(e.clientX - mapDrag.x) >= MAP_DRAG_SLOP ||
+         Math.abs(e.clientY - mapDrag.y) >= MAP_DRAG_SLOP)) {
+      mapDragged = true;
+      // Confirmed pan: take the capture pointerdown deliberately skipped, so
+      // the rest of the drag behaves exactly as it did before 0.4.34.
+      mapDrag.vp.setPointerCapture(mapDrag.id);
+    }
     mapPanX = mapDrag.panX + (e.clientX - mapDrag.x);
     mapPanY = mapDrag.panY + (e.clientY - mapDrag.y);
     applyMapTransform();  // never render(), same reason as the zoom path
