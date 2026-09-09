@@ -445,11 +445,36 @@
   // with a real signal if one ever exists.
   // mapHtml() reads only mapRegion/pan/zoom, so re-running it is safe at any
   // time and covers the unmapped-region placeholder branch for free.
+  //
+  // 0.4.29 adds a real geometry nudge on top, because the rebuild alone kept
+  // failing: 0.4.25/0.4.27 (~1 frame later) and 0.4.28 (600ms later) all lost on
+  // real hardware. New evidence narrowed it — switching to the Dex and back
+  // still fixes the blur, but switching to Settings and back does NOT, so it
+  // isn't "any screen switch". The Dex is the only one of the three tall enough
+  // to toggle a scrollbar, which changes an ancestor's real content width and
+  // forces a genuine geometry recalculation — the same thing an actual window
+  // resize does, and a resize was the other confirmed fix in the original
+  // report. Every automated attempt so far only ever swapped DOM *content*;
+  // nothing ever changed a rendered SIZE. So: shrink the fresh <img> by one real
+  // pixel, flush layout, restore, flush again — two genuine layout/paint passes
+  // at two different sizes, in portable JS. The native Rust DPI nudge
+  // (0.4.23/0.4.24) already failed at this from the OS side, plausibly because
+  // Tauri's synthetic resize doesn't reach Chromium like a real user drag does.
   function resettleMapImage() {
     setTimeout(function () {
       // screen may have changed within the delay window.
       var el = document.getElementById("center");
-      if (el && screen === "map") el.innerHTML = mapHtml();
+      if (el && screen === "map") {
+        el.innerHTML = mapHtml();
+        // null on an unmapped region — mapHtml() rendered the placeholder.
+        var img = document.getElementById("mapSvg");
+        if (img) {
+          img.style.width = (img.getBoundingClientRect().width - 1) + "px";
+          img.offsetHeight;              // forced synchronous layout flush
+          img.style.width = "";          // drop the override, CSS width:100% resumes
+          img.offsetHeight;              // ...and flush again at the restored size
+        }
+      }
     }, 600);
   }
 
