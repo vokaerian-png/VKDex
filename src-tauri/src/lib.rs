@@ -17,12 +17,36 @@
 #[cfg(all(target_os = "windows", not(feature = "desktop-ui")))]
 mod resize_lock;
 
+/// First-paint DPI fix for the desktop-ui build — Windows only.
+///
+/// WebView2 sometimes composites its very first frame at the wrong scale
+/// factor for the monitor it opened on, so the whole page (SVG map art and
+/// ordinary text alike) renders blurry until something forces a recompute.
+/// Any real OS resize does force it, which is why dragging a window edge
+/// visibly sharpens everything — so we fake one: grow the window by a single
+/// physical pixel and put it straight back, before the user sees anything.
+/// Not needed on default builds, whose window is a fixed phone frame.
+#[cfg(all(target_os = "windows", feature = "desktop-ui"))]
+fn nudge_dpi_repaint(app: &tauri::AppHandle) {
+    use tauri::Manager;
+    let Some(window) = app.get_webview_window("main") else {
+        eprintln!("VKDex dpi nudge: no 'main' window");
+        return;
+    };
+    if let Ok(size) = window.inner_size() {
+        let _ = window.set_size(tauri::PhysicalSize::new(size.width + 1, size.height));
+        let _ = window.set_size(size);
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .setup(|_app| {
             #[cfg(all(target_os = "windows", not(feature = "desktop-ui")))]
             resize_lock::install(_app.handle());
+            #[cfg(all(target_os = "windows", feature = "desktop-ui"))]
+            nudge_dpi_repaint(_app.handle());
             Ok(())
         })
         .run(tauri::generate_context!())
