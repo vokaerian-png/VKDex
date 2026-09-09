@@ -353,14 +353,25 @@ body {
 /* #mapSvg is a wrapper <div> (0.4.31) holding the map's inlined <svg>, not the
    map element itself — width/height 100% make "scale(1)" mean "the whole map
    fits the viewport", and everything that pans/zooms transforms this box.
-   will-change pre-promotes the compositing layer, so the FIRST drag/zoom is as
-   smooth as the tenth (lazy promotion was the early-input stutter). */
+   will-change is NOT static here any more (0.4.32). It was (0.4.21) to pre-
+   promote the compositing layer so the FIRST drag/zoom is as smooth as the
+   tenth — but a permanently promoted layer is rasterised into a GPU texture
+   sized to whatever box existed when it was promoted, and the compositor then
+   stretches that texture. Promoted once at cold load, before the pane's layout
+   has settled, that is a stale-size texture for the life of the screen: the
+   prime suspect for the first-open blur, and the one mechanism that explains
+   why 0.4.31's <img> -> inline <svg> switch changed nothing (an inline SVG has
+   no bitmap cache, but a compositor layer texture is not a bitmap cache).
+   app.js's markMapGesture() adds .gpu-layer at gesture start — when the box is
+   already at its settled size — and drops it once the gesture is idle, so the
+   element spends most of its life as a plain painted (always crisp) element and
+   still gets its layer before the first move of a drag. */
 .map-svg {
   display: block;
   width: 100%; height: 100%;
   transform-origin: 0 0;
-  will-change: transform;
 }
+.map-svg.gpu-layer { will-change: transform; }
 /* Replaces the old object-fit:contain, which only ever meant anything while
    .map-svg was an <img>. Forcing the inlined <svg>'s box to 100%/100% overrides
    the width/height presentation attributes baked into the file (0.4.26), and

@@ -350,21 +350,28 @@
   var MAPPED_REGIONS = { kanto: 1 };
 
   // The map's raw <svg> markup, fetched once per region and inlined into the
-  // DOM (0.4.31) instead of pointed at with <img src>. THE blur fix attempt:
-  // an <img> is rasterised to a bitmap at one resolution and then scaled for
-  // display, and seven rounds of nudging that bitmap cache into re-rasterising
-  // sharp (0.4.23-0.4.30) all failed on real hardware. An inline <svg> has no
-  // bitmap cache at all — the browser re-renders it as vectors on every paint,
-  // which removes the whole bug class rather than patching around it.
+  // DOM (0.4.31) instead of pointed at with <img src>. That was itself a blur
+  // fix attempt — an <img> is rasterised to a bitmap at one resolution and then
+  // scaled, and seven rounds of nudging that bitmap cache into re-rasterising
+  // sharp (0.4.23-0.4.30) had all failed — and it failed too. Useful failure:
+  // an inline <svg> has no bitmap cache at all, so "stale raster" cannot be the
+  // mechanism, which is what pointed at the compositor layer instead (0.4.32,
+  // see markMapGesture()). Inlining stays regardless: it's the cleaner shape.
   // Doubles as the hover warm-up: fetching early is the whole head start.
   var MAP_SVG_MARKUP = {};
+  // A root <title> is invisible in an <img> but becomes a native hover tooltip
+  // once the same file is inlined as real DOM (0.4.31's regression; kanto.svg
+  // carries a long dev note in one). Stripped here, at the loader, so it holds
+  // for every region's file rather than being edited out of each asset — these
+  // maps are art, not accessible diagrams, and nothing wants a tooltip.
+  function stripSvgTitles(text) { return text.replace(/<title\b[^>]*>[\s\S]*?<\/title\s*>/gi, ""); }
   function ensureMapSvgLoaded(region) {
     // `in`, not a truthiness test: the key is set to "" the moment the fetch
     // starts, so a second view before it resolves doesn't fire a second one.
     if (region in MAP_SVG_MARKUP || !MAPPED_REGIONS[region]) return;   // cached/in flight, or no SVG on disk -> don't 404
     MAP_SVG_MARKUP[region] = "";
     fetch("maps/" + region + ".svg").then(function (r) { return r.text(); }).then(function (text) {
-      MAP_SVG_MARKUP[region] = text;
+      MAP_SVG_MARKUP[region] = stripSvgTitles(text);
       // Only repaint if the user is still looking at this exact map.
       if (screen === "map" && mapRegion === region) renderCenter();
     }).catch(function (err) {
@@ -444,78 +451,43 @@
     mapPanY = cy - imgY * z;
     mapZoom = z;
     applyMapTransform();
+    markMapGesture();   // one call covers both zoom paths (wheel and the +/- buttons)
   }
 
-  // Blur fix, 0.4.25 -> widened 0.4.27 -> re-timed 0.4.28. The Map screen
-  // renders soft on first open until you navigate away and back. That manual
-  // workaround works because a screen switch re-runs renderCenter()'s
-  // `el.innerHTML = mapHtml()` for the WHOLE #center pane — toolbar title,
-  // region chips and viewport alike — so do exactly that ourselves, once.
+  // Blur fix, 0.4.32 — the ninth attempt, and the first with a mechanism behind
+  // it rather than a nudge. .map-svg used to carry a permanent
+  // will-change:transform (0.4.21, to kill the first-drag stutter). That
+  // promotes it to its own compositor layer, and a layer is rasterised into a
+  // GPU texture sized to the box it had when it was promoted — promoted at cold
+  // load, before the pane's layout settles, the compositor spends the rest of
+  // the screen's life stretching a texture rasterised at a stale size. That is
+  // the same story whether the promoted content is an <img> or an inline <svg>,
+  // which is exactly why 0.4.31's structural fix moved nothing, and why a real
+  // window resize (which forces a re-raster) is one of the two known manual
+  // cures. So: don't be a layer at rest. Promote at gesture start — the box is
+  // long since settled by then, so the texture is rasterised at the right
+  // size — and demote once the gesture goes idle.
   //
-  // The rebuild itself is confirmed necessary but was never sufficient: 0.4.25
-  // and 0.4.27 both scheduled it on a double rAF (~1 frame, ~16-33ms after the
-  // first paint) and both failed on real hardware, while the identical rebuild
-  // done by hand seconds later always fixes it. Passive waiting with no rebuild
-  // at all never self-heals either (user-confirmed, 5-10s idle). So the missing
-  // ingredient is elapsed time, not "the DOM has settled": something async in
-  // the compositor (plausibly the layer for will-change:transform'd .map-svg)
-  // isn't ready at the 30ms mark, and a rebuild that early just re-rasterises
-  // a second blurry frame. 600ms reproduces the real human reaction time of the
-  // one workaround known to work.
-  // ponytail: 600ms is a guessed ceiling — there is no "GPU resource ready"
-  // event to hook, so it's a heuristic. Raise it if it still blurs; replace it
-  // with a real signal if one ever exists.
-  // mapHtml() reads only mapRegion/pan/zoom, so re-running it is safe at any
-  // time and covers the unmapped-region placeholder branch for free.
-  //
-  // 0.4.29 adds a real geometry nudge on top, because the rebuild alone kept
-  // failing: 0.4.25/0.4.27 (~1 frame later) and 0.4.28 (600ms later) all lost on
-  // real hardware. New evidence narrowed it — switching to the Dex and back
-  // still fixes the blur, but switching to Settings and back does NOT, so it
-  // isn't "any screen switch". The Dex is the only one of the three tall enough
-  // to toggle a scrollbar, which changes an ancestor's real content width and
-  // forces a genuine geometry recalculation — the same thing an actual window
-  // resize does, and a resize was the other confirmed fix in the original
-  // report. Every automated attempt so far only ever swapped DOM *content*;
-  // nothing ever changed a rendered SIZE. So: shrink the fresh <img> by one real
-  // pixel, flush layout, restore, flush again — two genuine layout/paint passes
-  // at two different sizes, in portable JS. The native Rust DPI nudge
-  // (0.4.23/0.4.24) already failed at this from the OS side, plausibly because
-  // Tauri's synthetic resize doesn't reach Chromium like a real user drag does.
-  //
-  // 0.4.30 runs that same cycle TWICE. 0.4.29 still didn't fix the FIRST open of
-  // the Map screen — but it did change something real: with the nudge in place,
-  // switching to Settings and back now fixes the blur too, which it did NOT on
-  // 0.4.28 (only the Dex worked then). So the Dex-specific scrollbar theory is
-  // dead and the nudge itself is the sufficient ingredient — it just apparently
-  // has to happen more than once. The one structural difference between the
-  // still-broken first open and the working manual revisit is exactly that:
-  // a revisit means the cycle has run twice, once per visit. So run it twice
-  // ourselves, ~300ms apart, instead of waiting for the user to navigate away
-  // and back. Both runs re-check `screen === "map"` at their own fire time, so
-  // leaving the screen in between no-ops the second one.
-  // ponytail: "twice" and the 300ms gap are heuristics — there's no signal for
-  // "how many applications is enough" any more than there was for the 600ms.
-  // If this still isn't enough, don't just keep adding blind repeats past a
-  // third: work out what actually differs on the repeat application first.
-  function resettleMapImage() {
-    function cycle(repeat) {
-      // screen may have changed within either delay window.
-      var el = document.getElementById("center");
-      if (el && screen === "map") {
-        el.innerHTML = mapHtml();
-        // null on an unmapped region — mapHtml() rendered the placeholder.
-        var img = document.getElementById("mapSvg");
-        if (img) {
-          img.style.width = (img.getBoundingClientRect().width - 1) + "px";
-          img.offsetHeight;              // forced synchronous layout flush
-          img.style.width = "";          // drop the override, CSS width:100% resumes
-          img.offsetHeight;              // ...and flush again at the restored size
-        }
-        if (repeat) setTimeout(function () { cycle(false); }, 300);
-      }
-    }
-    setTimeout(function () { cycle(true); }, 600);
+  // The class is added, never removed, for the duration of a gesture: repeated
+  // calls (every wheel tick, every pointermove) only reset the idle timer.
+  // Toggling per event would reintroduce the exact promote-on-demand stutter
+  // 0.4.21 added will-change to fix.
+  // ponytail: 200ms idle is a heuristic ceiling, same as 0.4.28's 600ms was —
+  // there's no "gesture session over" event. Long enough that a wheel tick or a
+  // drag pause doesn't demote mid-interaction, short enough that the element is
+  // back to plain painting well before the user could notice a soft frame.
+  var mapGpuTimer = null;
+  function markMapGesture() {
+    var el = document.getElementById("mapSvg");
+    if (!el) return;   // unmapped region -> placeholder branch, no map element
+    el.classList.add("gpu-layer");
+    if (mapGpuTimer) clearTimeout(mapGpuTimer);
+    mapGpuTimer = setTimeout(function () {
+      mapGpuTimer = null;
+      // Re-looked-up, not closed over: a render in the idle window replaces it.
+      var later = document.getElementById("mapSvg");
+      if (later) later.classList.remove("gpu-layer");
+    }, 200);
   }
 
   // ------------------------------------------------------------ settings
@@ -565,7 +537,7 @@
     var el = document.getElementById("center");
     if (screen === "dex") el.innerHTML = dexHtml();
     else if (screen === "settings") el.innerHTML = settingsHtml();
-    else if (screen === "map") { el.innerHTML = mapHtml(); resettleMapImage(); }
+    else if (screen === "map") el.innerHTML = mapHtml();
     else el.innerHTML = placeholderHtml();
   }
 
@@ -1494,6 +1466,7 @@
     mapDrag = { x: e.clientX, y: e.clientY, panX: mapPanX, panY: mapPanY, id: e.pointerId };
     vp.setPointerCapture(e.pointerId);
     vp.classList.add("dragging");
+    markMapGesture();     // promote before the first move, not on it (0.4.32)
   });
 
   document.addEventListener("pointermove", function (e) {
@@ -1501,11 +1474,14 @@
     mapPanX = mapDrag.panX + (e.clientX - mapDrag.x);
     mapPanY = mapDrag.panY + (e.clientY - mapDrag.y);
     applyMapTransform();  // never render(), same reason as the zoom path
+    markMapGesture();     // already promoted; this only pushes the idle timer out
   });
 
   function endMapDrag(e) {
     if (!mapDrag || e.pointerId !== mapDrag.id) return;
     mapDrag = null;
+    markMapGesture();     // starts the idle countdown from the gesture's end
+
     var vp = document.getElementById("mapViewport");
     if (vp) vp.classList.remove("dragging");
   }
