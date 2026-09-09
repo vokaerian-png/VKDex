@@ -1,0 +1,14 @@
+{
+  "name": "vkdex-release-gui",
+  "productName": "VKDex Release",
+  "private": true,
+  "description": "Maintainer-only GUI over tools/release.js. Run with `npm run tauri dev` (or release-gui.bat) — never packaged, never shipped.",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev"
+  },
+  "devDependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/cli": "^2"
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VKDex Release</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px; height: 100vh; display: flex; flex-direction: column; gap: 12px;
+    background: #1b1b1b; color: #e6e6e6;
+    font: 14px/1.45 "Segoe UI", system-ui, sans-serif;
+  }
+  h1 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: .04em; }
+  h1 span { color: #8a8a8a; font-weight: 400; }
+  fieldset { border: 1px solid #333; border-radius: 6px; margin: 0; padding: 12px 14px; }
+  legend { padding: 0 6px; color: #9a9a9a; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .row:last-child { margin-bottom: 0; }
+  label.k { width: 92px; flex: none; color: #9a9a9a; }
+  select, input[type=text] {
+    flex: 1; min-width: 0; padding: 6px 8px; border-radius: 4px;
+    border: 1px solid #3a3a3a; background: #242424; color: #e6e6e6; font: inherit;
+  }
+  input[type=text]::placeholder { color: #5e5e5e; }
+  button {
+    padding: 7px 16px; border-radius: 4px; border: 1px solid #3a3a3a;
+    background: #2c2c2c; color: #e6e6e6; font: inherit; cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: #383838; }
+  button:disabled { opacity: .45; cursor: default; }
+  button.go { border-color: #2f6f3f; background: #235c33; }
+  button.stop { border-color: #7a3535; background: #5e2a2a; }
+  .bar { display: flex; align-items: center; gap: 10px; }
+  .bar .msg { color: #d0a24a; }
+  #confirm[hidden], #status[hidden] { display: none; }
+  #status.ok { color: #6cc07a; }
+  #status.bad { color: #e07a7a; }
+  #log {
+    flex: 1; min-height: 0; overflow: auto; margin: 0; padding: 10px 12px;
+    border: 1px solid #333; border-radius: 6px; background: #121212;
+    font: 12px/1.4 Consolas, "Cascadia Mono", monospace; white-space: pre-wrap; word-break: break-word;
+  }
+  #log .err { color: #e07a7a; }
+</style>
+</head>
+<body>
+
+<h1>VKDex Release <span>— tools/release.js</span></h1>
+
+<fieldset>
+  <legend>Run</legend>
+  <div class="row">
+    <label class="k" for="target">Target</label>
+    <select id="target"></select>
+  </div>
+  <div class="row">
+    <label class="k" for="extra">Extra args</label>
+    <input type="text" id="extra" placeholder="passed through to tauri build / tauri android build, e.g. --verbose">
+  </div>
+  <div class="row">
+    <label class="k" for="dry">Dry run</label>
+    <input type="checkbox" id="dry">
+    <span style="color:#8a8a8a">builds locally, no tag / push / GitHub release</span>
+  </div>
+  <div class="row">
+    <button class="go" id="run">Run release</button>
+    <code id="cmd" style="color:#7a7a7a"></code>
+  </div>
+</fieldset>
+
+<div class="bar" id="confirm" hidden>
+  <span class="msg">release.js is waiting on its confirmation.</span>
+  <button class="go" id="yes">Confirm &amp; Continue</button>
+  <button class="stop" id="no">Abort</button>
+</div>
+
+<div class="bar" id="status" hidden></div>
+
+<pre id="log"></pre>
+
+<script src="app.js"></script>
+</body>
+</html>

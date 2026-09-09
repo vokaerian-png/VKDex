@@ -1,0 +1,17 @@
+# Standalone Tauri project for the maintainer-only release GUI. Deliberately
+# NOT a member/feature of the app's own src-tauri crate: this window shells out
+# to `node tools/release.js` and must never end up inside the packaged Pokedex
+# end users download. Always run via `tauri dev` (release-gui.bat) — there is
+# no bundle/sign/publish path for it and none is wanted.
+[package]
+name = "vkdex-release-gui"
+version = "0.0.0"
+description = "GUI over tools/release.js"
+edition = "2021"
+rust-version = "1.77.2"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }

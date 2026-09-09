@@ -5,9 +5,13 @@ release.bat
 /src-tauri/target
 /src-tauri/gen
 /releases/
+/release-gui/node_modules
+/release-gui/src-tauri/target
+/release-gui/src-tauri/gen
 /src-desktop/data
 /src-desktop/data.js
 cleanup.bat
+release-gui.bat
 memory/
 tools/
 package-lock.json
