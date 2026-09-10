@@ -725,9 +725,10 @@
   // which sub-line the caller hands over. `pop` is an areaPopups index (null =
   // an unclickable <div> rather than a <button>). nameHtml/subHtml are HTML —
   // every caller escapes its own text, same convention as the rest of the file.
-  function chip(icon, nameHtml, subHtml, pop, cls) {
+  function chip(icon, nameHtml, subHtml, pop, cls, style) {
     var tag = pop == null ? "div" : "button";
     return "<" + tag + ' class="chip' + (cls ? " " + cls : "") + '"' +
+      (style ? ' style="' + style + '"' : "") +
       (pop == null ? "" : ' type="button" data-pop="' + pop + '"') + ">" +
       '<span class="chip-top">' + icon + "<b>" + nameHtml + "</b></span>" +
       (subHtml ? '<span class="chip-sub">' + subHtml + "</span>" : "") +
@@ -743,20 +744,99 @@
     return chips ? '<section class="box"><h3>' + title + '</h3><div class="chips">' + chips + "</div></section>" : "";
   }
 
-  // A trainer's full roster, one block per slot. Reads the `.rows` array
-  // areaTrainerGroups() keeps for exactly this — `.row` is only slot 1.
-  function trainerPopupHtml(g) {
+  // --------------------------------------------------- trainer popup (0.4.45)
+  // The flat roster list is now two views sharing the ONE popup mechanism: an
+  // overview (portrait + prize + a chip per team slot) and a per-Pokémon card.
+  // Both are ordinary areaPopups entries, so a team chip and the mon card's
+  // "Team" button are the same [data-pop] click the area chips already use — no
+  // second overlay layer and no navigation state to keep.
+  //
+  // The overview reserves its own index BEFORE building its chips, because each
+  // mon card links back to it; its body is filled into the reserved slot after.
+  function trainerTitle(row) {
+    return row.trainerClass + (row.name ? " " + row.name : "");
+  }
+  function trainerPopRef(g) {
+    var self = popRef(trainerTitle(g.row), "");
+    areaPopups[self].body = trainerOverviewHtml(g, self);
+    return self;
+  }
+  function rowPills(r) {
+    return [r.type1, r.type2].filter(Boolean).map(onePill).join("");
+  }
+  // ₱ is the project's own Poké Dollar glyph (src/app.js's CURRENCY_SHORT).
+  // `prize` is on every one of the 1192 rows, so it is never conditional;
+  // `prizeNote` (an extra reward, or the condition that earns the money) is on a
+  // handful and only renders when there.
+  function prizeText(row) {
+    return "₱" + row.prize + (row.prizeNote ? " (" + row.prizeNote + ")" : "");
+  }
+  // ponytail: a generic person icon, not trainer-class artwork — deliberate for
+  // this pass (user-confirmed), swap the <span>'s contents when art is sourced.
+  function trainerOverviewHtml(g, self) {
     var tier = tierText(g.row);
-    return (tier ? '<div class="enc-line">' + esc(tier) + "</div>" : "") +
-      g.rows.map(function (r) {
-        var types = [r.type1, r.type2].filter(Boolean).map(onePill).join("");
-        var bits = [];
-        if (r.level != null) bits.push("Lv " + esc(r.level));
-        if (r.ability) bits.push("Ability: " + esc(r.ability));
-        return '<div class="area-mon"><b>' + esc(r.species) + "</b> " + types +
-          (bits.length ? '<div class="enc-line">' + bits.join(" &middot; ") + "</div>" : "") +
-          (r.moves ? '<div class="enc-line">' + esc(r.moves) + "</div>" : "") + "</div>";
-      }).join("");
+    var chips = g.rows.map(function (r) {
+      return chip(imgTag(spriteUrl(r.ndex), "chip-sprite"), esc(r.species),
+        "Lv " + esc(r.level) + " " + rowPills(r),
+        popRef(r.species, trainerMonHtml(r, self)), "mon");
+    }).join("");
+    return '<div class="trainer-head"><span class="trainer-portrait">' + iconSvg("person") + "</span>" +
+      '<div class="trainer-meta"><div class="trainer-title-row"><b>' + esc(trainerTitle(g.row)) + "</b>" +
+      '<span class="prize">' + esc(prizeText(g.row)) + "</span></div>" +
+      (tier ? '<div class="enc-line">' + esc(tier) + "</div>" : "") + "</div></div>" +
+      '<div class="chips">' + chips + "</div>";
+  }
+
+  // AREA_TRAINERS stores a held item as a display name ("Black Belt"), unlike
+  // pokemon.js's heldItems which are already slugs — hence the conversion. An
+  // item ITEMS_DATA doesn't know still shows its name, just without the icon, so
+  // a future region's unmapped name can't break the card.
+  function itemSlug(name) {
+    return String(name).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+  // src/app.js's formula, ported (it had no desktop counterpart): 31 IV, 0 EV,
+  // neutral nature — the same convention the Base Stats card reads. Real
+  // per-trainer IVs exist nowhere in the sourced data, so the card labels these
+  // as estimates rather than inventing an IV row.
+  function calcStat(base, level, isHp) {
+    var core = Math.floor((2 * base + 31) * level / 100);
+    return isHp ? core + level + 10 : core + 5;
+  }
+  function trainerMonHtml(r, backPop) {
+    var s = STATS[r.ndex];
+    var stats = !s ? "" :
+      '<div class="group-label">Stats at Lv ' + esc(r.level) + "</div>" +
+      '<div class="facts">' + STAT_KEYS.map(function (k) {
+        return '<div class="fact stat" style="--s:var(--s-' + k[0] + ')"><b>' + k[1] + "</b><span>" +
+          calcStat(s[k[0]] || 0, r.level, k[0] === "hp") + "</span></div>";
+      }).join("") + "</div>" +
+      '<div class="enc-line">31 IV / 0 EV / neutral nature &mdash; estimated.</div>';
+    var item = "";
+    if (r.heldItem) {
+      var slug = itemSlug(r.heldItem);
+      item = '<div class="enc-line">' + (ITEMS_DATA[slug] ? imgTag(itemUrl(slug), "chip-sprite") : "") +
+        "Held item: " + esc(r.heldItem) + "</div>";
+    }
+    var pills = rowPills(r);
+    return '<button type="button" class="arealink backlink" data-pop="' + backPop + '">&larr; Team</button>' +
+      '<div class="mon-head"><b>' + esc(r.species) + " &middot; Lv " + esc(r.level) + "</b></div>" +
+      (pills ? '<div class="pillrow">' + pills + "</div>" : "") +
+      (r.ability ? '<div class="enc-line">Ability: ' + esc(r.ability) + "</div>" : "") +
+      item + stats +
+      (r.moves ? '<div class="group-label">Moves</div><div class="move-chips">' +
+        r.moves.split(";").map(moveChip).join("") + "</div>" : "");
+  }
+  // A move segment is "Name (Type)" or, in the LGPE-shaped rows, "Name (Type,
+  // DamageClass)". The type drives the chip's tint through the same --t custom
+  // property onePill() uses, so the move-dex this is groundwork for gets the
+  // parse for free. A segment that doesn't match at all still renders its own
+  // text, untinted — no move is ever silently dropped.
+  var MOVE_RE = /^(.*?)\s*\(([^,)]+)(?:,[^)]*)?\)\s*$/;
+  function moveChip(seg) {
+    var m = String(seg).trim().match(MOVE_RE);
+    return m ? chip("", esc(m[1]), "", null, "move", typeVar(m[2].trim()))
+      : chip("", esc(String(seg).trim()), "", null, "move");
   }
 
   // The chip's one-line encounter summary: the first method (plus a count of
@@ -796,10 +876,9 @@
       var tier = tierText(g.row);
       var shown = g.species.slice(0, 3).join(", ") +
         (g.species.length > 3 ? " +" + (g.species.length - 3) + " more" : "");
-      var title = g.row.trainerClass + (g.row.name ? " " + g.row.name : "");
-      return chip(iconSvg("person"), esc(title),
+      return chip(iconSvg("person"), esc(trainerTitle(g.row)),
         (tier ? "(" + esc(tier) + ") " : "") + esc(shown),
-        popRef(title, trainerPopupHtml(g)), g.row.role === "leader" ? "leader" : "");
+        trainerPopRef(g), g.row.role === "leader" ? "leader" : "");
     }).join("");
 
     // 0.4.44: a one-off gift (methods "Gift" and "Gift Egg" — the only two in

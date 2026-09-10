@@ -784,6 +784,55 @@ button.chip:hover { border-color: var(--accent); }
 .chip.leader .chip-top { background: rgb(255 203 5 / .12); }
 .chip.leader .chip-top b { color: var(--accent-warm); }
 
+/* Trainer popup (0.4.45). The overview's header: a generic person icon in a
+   bordered box beside the trainer's own line — trainer-class artwork is
+   deferred, so the icon is the intended art for now, not a grey placeholder. */
+.trainer-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.trainer-portrait {
+  flex: none; display: grid; place-items: center;
+  width: 52px; height: 52px;
+  border: 1px solid #000; border-radius: 10px;
+  background: var(--screen-bg); color: var(--accent);
+}
+.trainer-portrait .poi-icon { display: block; margin: 0; vertical-align: 0; }
+.trainer-portrait .poi-icon > svg { width: 32px; height: 32px; }
+.trainer-meta { min-width: 0; flex: 1; }
+.trainer-meta b { font-size: 14px; font-weight: 600; }
+/* 0.4.45: name left, prize right, one line — the prize keeps the .enc-line tone
+   it had as its own stacked line, so only its position changed. */
+.trainer-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.trainer-title-row .prize { font-size: 12px; color: #b9bec8; white-space: nowrap; flex: none; }
+/* A team chip's sub-line carries type pills, not one line of text, so the area
+   cards' nowrap/ellipsis treatment is undone for it alone. */
+.chip.mon .chip-sub { white-space: normal; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+/* .chip's `flex-grow: 1` is right for POI/NPC chips (it fills dead sub-band
+   space) but wrong here: an odd-numbered team's last chip would stretch to the
+   full row. Half-width always, whatever the count. */
+.chip.mon { flex-grow: 0; }
+.chip.mon .chip-sub .pill { font-size: 9px; padding: 1px 6px; }
+.chip.mon .chip-sprite { width: 26px; height: 26px; }
+/* The per-Pokémon card. .arealink already is this file's borderless accent
+   button; only the spacing under it is new. */
+.backlink { margin-bottom: 8px; }
+.mon-head { margin: 2px 0 6px; }
+.mon-head b { font-size: 14px; font-weight: 600; }
+.popcard .pillrow { margin-bottom: 4px; }
+.popcard .pillrow .pill { font-size: 9px; padding: 1px 6px; }
+.popcard .facts { margin: 4px 0; }
+.enc-line > .chip-sprite { vertical-align: -4px; margin-right: 5px; }
+/* 0.4.45 — moves as a 2-col grid of type-tinted chips. .chip's flex sizing is
+   inert under a grid parent, so the class is reused purely for the box. Tint
+   formula is .chip.leader's, generalised from the fixed gold to var(--t); an
+   unparseable segment carries no --t and falls back to the plain chip. */
+.move-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.chip.move .chip-top { background: rgb(var(--t) / .15); }
+.chip.move .chip-top b { color: rgb(var(--t)); }
+/* Same tint formula on the computed-stat boxes, keyed by --s. Scoped to the
+   .stat modifier so the species detail pane's own plain .fact boxes (Facts,
+   Data, Training) are untouched. */
+.fact.stat { background: rgb(var(--s) / .12); border-color: rgb(var(--s) / .4); }
+.fact.stat b { color: rgb(var(--s)); }
+
 .area-fold > summary {
   font-size: 12px; color: #9aa0aa; text-transform: uppercase; letter-spacing: .08em;
   cursor: pointer; list-style-position: outside;

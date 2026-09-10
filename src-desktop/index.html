@@ -99,6 +99,11 @@
 <script src="data/stats.js"></script>
 <script src="data/hisui.js"></script>
 <script src="data/orre.js"></script>
+<!-- 0.4.45: the trainer popup's held-item line checks ITEMS_DATA before drawing
+     an icon, so an unmapped item name degrades to plain text instead of a broken
+     sprite. The only consumer so far; the evolution card's item icons build
+     their URL from a slug they already have. -->
+<script src="data/items.js"></script>
 
 <!-- Map markup (0.4.35). maps/<region>.js is generated from maps/<region>.svg by
      tools/gen_map_js.js and defines MAP_SVG_SOURCE[<region>] as a string; app.js
