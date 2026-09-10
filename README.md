@@ -11,10 +11,10 @@ A Pokédex app: plain HTML/CSS/JS (no framework) plus a Tauri shell packaging it
 Design implementation & coding done by Claude.ai to try out Ai centric development.  
 Also first time trying a proper git pipeline.
 
-Currently, mobile front-end (works on desktop).
+Currently, mobile front-end (works on desktop).  
 Plus dedicated desktop front-end.
 
-Design & Data Sourcing & Structuring by @vokaerian-png
+Design & Data Sourcing & Structuring by @vokaerian-png  
 Code & Implementation by @Claude.AI
 
 <br clear="both">
