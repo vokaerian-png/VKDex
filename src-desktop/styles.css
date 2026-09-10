@@ -730,9 +730,60 @@ span.forme { cursor: default; }
 .move-name { font-weight: 600; }
 .move-row .pill { min-width: 56px; text-align: center; font-size: 9px; padding: 1px 5px; }
 
-/* Map area detail (0.4.33) — the Map screen's compact pane. Native <details>
-   for the collapsible sections; the summary is styled to read exactly like the
-   `section h3` above it, so a fold and a static section look the same. */
+/* Map area detail — the Map screen's compact pane. 0.4.43 replaced the four
+   folds with four <section class="box"> cards of chips (user-approved mockup);
+   .area-fold/.poi-fold below survive because the SPECIES detail pane's Found In
+   and Alt formes cards reuse them for their own folds (see areaFoldsHtml).
+
+   A chip: icon + name on a tinted top strip, one dim line under it, the full
+   detail one click away in the shared popup. `flex: 1 1 calc(50% - 4px)` with
+   an 8px gap is what makes it two per row — a third can never fit (150% + one
+   gap > 100%), and the pane's own width is untouched by design. */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  flex: 1 1 calc(50% - 4px); min-width: 0;
+  display: flex; flex-direction: column;
+  border: 1px solid #000; border-radius: 10px; overflow: hidden;
+  background: var(--screen-bg);
+  font: inherit; color: inherit; text-align: left; padding: 0;
+}
+button.chip { cursor: pointer; }
+button.chip:hover { border-color: var(--accent); }
+/* `flex: 1` so a chip with nothing to say in its sub band (21 of the 56 Kanto
+   AREA_NPCS rows carry no poiName) fills its box with the name strip instead of
+   leaving dead space under it — a row's chips are stretched to a common height
+   by .chips' default align-items. No invented filler text. */
+.chip-top {
+  flex: 1; display: flex; align-items: center; gap: 6px;
+  padding: 5px 8px; background: rgba(255, 255, 255, .05);
+  min-width: 0;
+}
+.chip-top b { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip-sub {
+  display: block; padding: 4px 8px;
+  font-size: 11px; color: #8a8f99;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* Icons read blue (user-approved) — the same --accent every other actionable
+   thing in the pane uses. The encounter chips' sprite is the deliberate
+   exception: the species itself already says what it is. */
+.chip .poi-icon { flex: none; color: var(--accent); }
+.chip .poi-icon > svg { width: 17px; height: 17px; }
+.chip-sprite { width: 18px; height: 18px; flex: none; border-radius: 4px; image-rendering: var(--sprite-rendering); }
+/* A separator inside a .chips row (0.4.44: the encounters card's "Gift" group).
+   Same small-caps dim label the mobile drawer's .menu-group-label uses; the
+   flex-basis is the only addition, so it takes a whole row of its own instead
+   of sitting beside a chip. */
+.group-label {
+  flex: 0 0 100%;
+  padding: 4px 2px 0;
+  font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+  color: rgba(242, 242, 242, .45);
+}
+/* Gym leader — the same gold the fold list used for .area-mon.leader. */
+.chip.leader .chip-top { background: rgb(255 203 5 / .12); }
+.chip.leader .chip-top b { color: var(--accent-warm); }
+
 .area-fold > summary {
   font-size: 12px; color: #9aa0aa; text-transform: uppercase; letter-spacing: .08em;
   cursor: pointer; list-style-position: outside;
@@ -748,6 +799,10 @@ span.forme { cursor: default; }
   text-transform: none; letter-spacing: 0;
 }
 .poi-fold[open] > summary { margin-bottom: 0; }
+/* POI category icon (0.4.42): inline before the name, currentColor so it takes
+   the summary's own text colour. */
+.poi-icon { display: inline-block; vertical-align: -3px; margin-right: 6px; }
+.poi-icon > svg { width: 16px; height: 16px; display: block; }
 .area-mon { border-top: 1px solid var(--divider); padding: 6px 0; }
 .area-mon:first-child { border-top: 0; padding-top: 0; }
 .area-mon > b { font-size: 13px; font-weight: 600; }
@@ -815,11 +870,16 @@ span.forme { cursor: default; }
 .cols > .col { flex: 1 1 0; min-width: 0; }
 .col { display: flex; flex-direction: column; gap: 14px; }
 /* Texture ON TOP here (the tint gradient's second stop is opaque --chrome, so
-   a texture layered under it would be covered from 55% down). */
+   a texture layered under it would be covered from 55% down).
+   The --t fallback (0.4.43) is the Map nav row's own teal: renderDetail()
+   deliberately clears --t on a non-Dex screen, and without a fallback the whole
+   `background` declaration would be invalid at computed-value time and the Map
+   screen's new area cards would paint nothing at all. Every Dex path still sets
+   --t, so this changes no existing screen. */
 .box {
   background:
     repeating-linear-gradient(135deg, rgba(0, 0, 0, .05) 0 2px, transparent 2px 7px),
-    linear-gradient(160deg, rgb(var(--t) / .16) 0%, var(--chrome) 55%);
+    linear-gradient(160deg, rgb(var(--t, 38 168 155) / .16) 0%, var(--chrome) 55%);
   border: 1px solid #000; border-radius: 14px; padding: 12px 14px;
 }
 /* 0.4.11: flex + .r mirrors the compact pane's own `section h3 .r` slot, so a
@@ -845,13 +905,25 @@ span.forme { cursor: default; }
   background: rgba(0, 0, 0, .72);
   backdrop-filter: blur(3px);
 }
-.lightbox[hidden] { display: none; }
+.lightbox[hidden], .lightbox > [hidden] { display: none; }
 .lightbox img {
   width: min(60vh, 60vw); height: auto;
   image-rendering: var(--sprite-rendering);
   background: none;
   filter: drop-shadow(0 12px 40px rgba(0, 0, 0, .7));
 }
+/* 0.4.43 — the overlay's second mode: a titled HTML card (a POI's full text, a
+   trainer's whole roster, every encounter line for one species). Same backdrop
+   and same close behaviour as the image above it, so this is not a second modal
+   pattern. */
+.popcard {
+  width: min(520px, 82vw); max-height: 76vh; overflow-y: auto;
+  background: var(--chrome); border: 1px solid #000; border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .7);
+}
+.popcard h3 { margin: 0 0 10px; font-size: 15px; }
+.popcard .area-mon .pill { font-size: 9px; padding: 1px 6px; }
 
 /* ---------------------------------------------------------- status bar */
 

@@ -218,12 +218,12 @@
   // since an area name is only meaningful within its own region.
   var selectedArea = null;
   var selectedAreaKind = "";   // "Route" / "Gym city" / ... from the SVG's data-kind
-  // Which area-detail folds are open. renderDetail() rebuilds the pane's HTML
-  // from scratch on every area click, so without this each <details> snapped
-  // shut again the moment the user browsed to another area. Shared across every
-  // area (a preference, not per-area state) and deliberately NOT cleared by a
-  // region switch. In-memory only for the running session — no localStorage.
-  var mapFoldOpen = { npcs: false, trainers: false, encounters: false };
+  // Per-render popup registry for the Map screen's area chips (0.4.43). A chip
+  // carries `data-pop="<index>"`; the click handler reads the body back out of
+  // here rather than smuggling a whole HTML document through a data attribute.
+  // Rebuilt from scratch by every areaDetailHtml() call, which is also the only
+  // thing that can invalidate an index — the pane is re-rendered wholesale.
+  var areaPopups = [];
   var rail = true;             // live sidebar state
   var railDefault = true;      // persisted "collapse by default" setting
   // Mirrored-from-mobile settings state.
@@ -569,16 +569,6 @@
       encGamesHtml(e.games) + "</div>";
   }
 
-  // A collapsible section, native <details> — the marker, the toggle state,
-  // Enter/Space and the screen-reader semantics all come for free. `key` is the
-  // mapFoldOpen slot this fold remembers itself in, carried on the element as
-  // data-fold for the delegated toggle listener to read back.
-  function areaFold(key, title, body) {
-    return '<section><details class="area-fold" data-fold="' + key + '"' +
-      (mapFoldOpen[key] ? " open" : "") + "><summary>" + esc(title) + "</summary>" +
-      body + "</details></section>";
-  }
-
   // areas.js is region -> area name -> flat rows, so every lookup is the same
   // two hops. An unpopulated region/area just yields [] and keeps its empty state.
   function areaRows(table, region, areaName) {
@@ -591,13 +581,19 @@
   // ponytail: canonical (FRLG) rows only. Showing the Let's Go variants too would
   // double every list for a first content-parity pass; drop the filter and add a
   // game label to the title if both are ever wanted.
+  //
+  // 0.4.43: `.rows` keeps every slot's whole row alongside `.species`, in the
+  // same slot order — the chip's popup shows level/type/ability/moves per
+  // Pokémon, which `.species` (bare names) and `.row` (slot 1 only) can't
+  // answer. `.species` itself is untouched: same array, same order.
   function areaTrainerGroups(region, areaName) {
     var byKey = {}, order = [];
     areaRows(AREA_TRAINERS, region, areaName).forEach(function (r) {
       if (r.canonical !== 1) return;
       var key = [r.role, r.trainerClass, r.name, r.game, r.tier].join("|");
-      if (!byKey[key]) { byKey[key] = { row: r, species: [] }; order.push(key); }
+      if (!byKey[key]) { byKey[key] = { row: r, species: [], rows: [] }; order.push(key); }
       byKey[key].species.push(r.species);
+      byKey[key].rows.push(r);
     });
     return order.map(function (k) { return byKey[k]; })
       // Gym leaders read first; everything else keeps its source order.
@@ -605,11 +601,11 @@
   }
 
   // "after-reaching-fuchsia-city" -> the scrape's own sentence when it has one,
-  // else the slug turned back into words rather than dumped raw.
-  function tierLabel(row) {
+  // else the slug turned back into words rather than dumped raw. Plain text as
+  // of 0.4.43 (was a wrapped <span>): both callers now place it themselves.
+  function tierText(row) {
     if (row.tier === "base") return "";
-    var t = row.tierNote || row.tier.replace(/-/g, " ").replace(/^./, function (c) { return c.toUpperCase(); });
-    return '<span class="enc-line"> (' + esc(t) + ")</span>";
+    return row.tierNote || row.tier.replace(/-/g, " ").replace(/^./, function (c) { return c.toUpperCase(); });
   }
 
   // A POI's collapsed one-liner: its first sentence, hard-capped so a long
@@ -631,50 +627,211 @@
     return s;
   }
 
+  // POI category icons (0.4.42): 18 approved categories + a pin fallback, all
+  // one 24x24 currentColor stroke set so they inherit the summary's colour.
+  var POI_ICONS = {
+    gym: '<path d="M12 2l7 3v6c0 5-3 8.5-7 11-4-2.5-7-6-7-11V5l7-3z"/><path d="M9 12l2 2 4-4"/>',
+    house: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/>',
+    person: '<circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/>',
+    shop: '<path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+    lab: '<path d="M9 2v6L4 20a1.5 1.5 0 0 0 1.4 2h13.2a1.5 1.5 0 0 0 1.4-2L15 8V2"/><path d="M9 2h6"/><path d="M7 15h10"/>',
+    cave: '<path d="M3 20l6-12 4 7 3-5 5 10z"/>',
+    casino: '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/>',
+    building: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/>',
+    hideout: '<path d="M4 20v-6a8 8 0 0 1 16 0v6"/><path d="M4 20h16"/><rect x="10.5" y="14" width="3" height="6"/><circle cx="7" cy="17" r=".6" fill="currentColor" stroke="none"/><circle cx="17" cy="17" r=".6" fill="currentColor" stroke="none"/>',
+    pagoda: '<path d="M12 2l3 3H9l3-3z"/><path d="M5 8h14l-1.5 3h-11L5 8z"/><path d="M4.5 15h15l-2 3h-11l-2-3z"/><path d="M12 5v16M6 21h12"/>',
+    hotel: '<path d="M3 16v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3"/><path d="M3 16h18v3H3z"/><path d="M6 11V8a2 2 0 0 1 2-2h2v5"/>',
+    dojo: '<path d="M6 14l-2 3 1.5 2L9 15"/><path d="M18 14l2 3-1.5 2L15 15"/><circle cx="7" cy="11" r="2"/><circle cx="17" cy="11" r="2"/><path d="M9 12l3 2 3-2"/>',
+    transit: '<rect x="5" y="4" width="14" height="12" rx="4"/><path d="M5 12h14"/><circle cx="8.5" cy="19" r="1"/><circle cx="15.5" cy="19" r="1"/><path d="M7 16l-1.5 3M17 16l1.5 3"/>',
+    club: '<circle cx="9" cy="9" r="3"/><circle cx="16" cy="10" r="2.4"/><path d="M3.5 19c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><path d="M14.5 19c0-2.3 1.4-4 3.7-4s3.8 1.7 3.8 4"/>',
+    notice: '<path d="M5 21V6l7-3 7 3v15"/><path d="M9 21v-6h6v6"/><circle cx="12" cy="11" r="1" fill="currentColor" stroke="none"/>',
+    school: '<path d="M3 6.5C5 5 8 5 12 6.5 16 5 19 5 21 6.5v12C19 17 16 17 12 18.5 8 17 5 17 3 18.5z"/><path d="M12 6.5v12"/>',
+    construction: '<path d="M9 19l3-13 3 13z"/><path d="M8 19h8M9.5 14h5M10.3 9.5h3.4"/>',
+    safari: '<circle cx="7" cy="7" r="1.6"/><circle cx="12" cy="5.5" r="1.6"/><circle cx="17" cy="7" r="1.6"/><circle cx="9.5" cy="11" r="1.4"/><path d="M6 18c0-3 2.5-5 6-5s6 2 6 5"/>',
+    fallback: '<path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/>'
+  };
+  // Exact names first: all 58 real Kanto POIs are named here, so none of them
+  // ever reaches the pattern list or the pin. ("Berries" is a Juggler who trades
+  // Berries for shards near Pal Park — a person, not a berry tree.)
+  var POI_CATEGORY = {
+    "Pewter Museum of Science": "building", "Pewter Gym": "gym", "Bike Shop": "shop",
+    "Cerulean Cave": "cave", "Cerulean Gym": "gym", "Berry Powder man": "person",
+    "Gym Badge man": "person", "Dontae's house": "house", "Burglarized house": "house",
+    "Move Tutor": "person", "Celadon Department Store": "shop", "Celadon Condominiums": "house",
+    "Celadon Game Corner": "casino", "Team Rocket Hideout": "hideout", "Celadon Hotel": "hotel",
+    "Move Tutors": "person", "Fortune Teller": "person", "Celadon Gym": "gym",
+    "Silph Co. Head Office": "building", "Fighting Dojo": "dojo", "Magnet Train station": "transit",
+    "Mr. Psychic's House": "house", "Copycat's house": "house", "Pokémon Trainer Fan Club": "club",
+    "Saffron Gym": "gym", "Pokémon Tower": "pagoda", "Kanto Radio Station": "building",
+    "Lavender Volunteer Pokémon House": "house", "Name Rater": "person", "House of Memories": "house",
+    "Silph Scope advertisement": "notice", "Viridian Gym": "gym", "Trainers' School": "school",
+    "Trainer House": "house", "Old Man": "person", "TM man/Move Tutor": "person",
+    "Port": "transit", "Pokémon Fan Club": "club", "Vermilion Gym": "gym",
+    "Construction site": "construction", "In-game trade": "person", "Fishing Brother": "person",
+    "Sleeping Pokémon notice": "notice", "Professor Oak's Lab": "lab", "Player's house": "house",
+    "Rival's house": "house", "Safari Zone": "safari", "Safari Zone Warden": "person",
+    "Move Deleter": "person", "Pokémon Zoo": "safari", "Berries": "person",
+    "Fuchsia Gym": "gym", "Volcano": "cave", "Cinnabar Gym": "gym",
+    "Pokémon Mansion": "building", "Cinnabar Lab": "lab", "Blue": "person"
+  };
+  // Only ever reached by a name the table above doesn't have — i.e. a future
+  // region's scrape. Best-effort, ordered: transit's "station" is tested before
+  // building's generic public-institution rule, so "Magnet Train station"-shaped
+  // names don't land on a filing-cabinet icon.
+  // ponytail: keyword guesswork, not a taxonomy; extend POI_CATEGORY when a
+  // region's real names are known and let this stay the safety net.
+  var POI_PATTERNS = [
+    { test: /\bgym\b/i, cat: "gym" },
+    { test: /\bhouse\b|mansion|condominium/i, cat: "house" },
+    { test: /\bshop\b|\bstore\b|\bmart\b/i, cat: "shop" },
+    { test: /\blab\b|laboratory/i, cat: "lab" },
+    { test: /\bcave\b|volcano|tunnel|\bmt\.?\b/i, cat: "cave" },
+    { test: /game corner|casino/i, cat: "casino" },
+    { test: /hideout|bunker/i, cat: "hideout" },
+    { test: /\btower\b|pagoda|shrine/i, cat: "pagoda" },
+    { test: /\bhotel\b|\binn\b/i, cat: "hotel" },
+    { test: /\bdojo\b/i, cat: "dojo" },
+    { test: /\bstation\b|\bport\b|\bharbou?r\b/i, cat: "transit" },
+    { test: /\bclub\b/i, cat: "club" },
+    { test: /notice|advertisement|\bsign\b/i, cat: "notice" },
+    { test: /\bschool\b|academy/i, cat: "school" },
+    { test: /construction/i, cat: "construction" },
+    { test: /safari|\bzoo\b/i, cat: "safari" },
+    { test: /museum|office|building|centre|center/i, cat: "building" }
+  ];
+  function poiCategory(name) {
+    if (typeof POI_CATEGORY[name] === "string") return POI_CATEGORY[name];
+    for (var i = 0; i < POI_PATTERNS.length; i++) {
+      if (POI_PATTERNS[i].test.test(name)) return POI_PATTERNS[i].cat;
+    }
+    return "fallback";
+  }
+  function iconSvg(cat) {
+    return '<span class="poi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+      ' stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+      POI_ICONS[cat] + "</svg></span>";
+  }
+  function poiIcon(name) { return iconSvg(poiCategory(name)); }
+
+  // ------------------------------------------------------ area chips (0.4.43)
+  // The four categories are cards of chips now, not folds (user-approved
+  // mockup). A chip is one bordered rounded box split in two: a tinted top
+  // strip carrying the icon + name, and a dim one-line sub under it. The full
+  // detail moved out of an inline expand and into the shared popup, so a card
+  // stays the same height however encyclopedic its Bulbapedia text is — which
+  // is what 0.4.38's per-POI <details> was working around.
+  //
+  // One builder for all four: the categories differ only in which icon and
+  // which sub-line the caller hands over. `pop` is an areaPopups index (null =
+  // an unclickable <div> rather than a <button>). nameHtml/subHtml are HTML —
+  // every caller escapes its own text, same convention as the rest of the file.
+  function chip(icon, nameHtml, subHtml, pop, cls) {
+    var tag = pop == null ? "div" : "button";
+    return "<" + tag + ' class="chip' + (cls ? " " + cls : "") + '"' +
+      (pop == null ? "" : ' type="button" data-pop="' + pop + '"') + ">" +
+      '<span class="chip-top">' + icon + "<b>" + nameHtml + "</b></span>" +
+      (subHtml ? '<span class="chip-sub">' + subHtml + "</span>" : "") +
+      "</" + tag + ">";
+  }
+  function popRef(title, body) {
+    areaPopups.push({ title: title, body: body });
+    return areaPopups.length - 1;
+  }
+  // A card is omitted entirely when its category is empty for this area, rather
+  // than rendering an empty-state box nobody asked for.
+  function areaCard(title, chips) {
+    return chips ? '<section class="box"><h3>' + title + '</h3><div class="chips">' + chips + "</div></section>" : "";
+  }
+
+  // A trainer's full roster, one block per slot. Reads the `.rows` array
+  // areaTrainerGroups() keeps for exactly this — `.row` is only slot 1.
+  function trainerPopupHtml(g) {
+    var tier = tierText(g.row);
+    return (tier ? '<div class="enc-line">' + esc(tier) + "</div>" : "") +
+      g.rows.map(function (r) {
+        var types = [r.type1, r.type2].filter(Boolean).map(onePill).join("");
+        var bits = [];
+        if (r.level != null) bits.push("Lv " + esc(r.level));
+        if (r.ability) bits.push("Ability: " + esc(r.ability));
+        return '<div class="area-mon"><b>' + esc(r.species) + "</b> " + types +
+          (bits.length ? '<div class="enc-line">' + bits.join(" &middot; ") + "</div>" : "") +
+          (r.moves ? '<div class="enc-line">' + esc(r.moves) + "</div>" : "") + "</div>";
+      }).join("");
+  }
+
+  // The chip's one-line encounter summary: the first method (plus a count of
+  // the others) and the level range across every line, so "what and roughly
+  // when" fits on one line and the popup carries the rest.
+  function encSummary(enc) {
+    var methods = [], lo = null, hi = null;
+    enc.forEach(function (e) {
+      if (methods.indexOf(e.method) < 0) methods.push(e.method);
+      if (e.min === undefined) return;
+      var max = e.max === undefined ? e.min : e.max;
+      if (lo === null || e.min < lo) lo = e.min;
+      if (hi === null || max > hi) hi = max;
+    });
+    return esc(methods[0]) + (methods.length > 1 ? " +" + (methods.length - 1) : "") +
+      (lo === null ? "" : " &middot; Lv " + (lo === hi ? lo : lo + "&ndash;" + hi));
+  }
+
   function areaDetailHtml() {
+    areaPopups = [];
     if (!selectedArea) {
       return '<div class="detail-body"><div class="stub">Click an area on the map to see its details.</div></div>';
     }
-    var mons = areaEncounters(mapRegion, selectedArea);
-    var encs = mons.map(function (m) {
-      return '<div class="area-mon"><b>' + esc(m.name) + "</b>" +
-        m.enc.map(function (e) { return encLineHtml(e, m.id); }).join("") + "</div>";
-    }).join("");
 
-    // The section itself stays a static list rather than a fold (user's call on
-    // the mockup), so it is what the pane leads with — but each item is now its
-    // own <details>: first sentence as the summary, full paragraph inside, so
-    // the encyclopedic Bulbapedia text no longer pushes the folds below it off
-    // screen. Nothing is lost, only collapsed.
     var pois = areaRows(AREA_POI, mapRegion, selectedArea).map(function (p) {
-      return '<details class="area-fold poi-fold"><summary><b>' + esc(p.name) + "</b>" +
-        '<span class="enc-line"> &mdash; ' + esc(poiSummary(p.description)) + "</span></summary>" +
-        '<div class="enc-line">' + esc(p.description) + "</div></details>";
+      return chip(poiIcon(p.name), esc(p.name), esc(poiSummary(p.description)),
+        popRef(p.name, '<div class="enc-line">' + esc(p.description) + "</div>"));
     }).join("");
 
+    // Not clickable: an AREA_NPCS row is only {name, poiName}, both already on
+    // the chip — a popup here would repeat the chip back at the user.
     var npcs = areaRows(AREA_NPCS, mapRegion, selectedArea).map(function (n) {
-      return '<div class="area-mon"><b>' + esc(n.name) + "</b>" +
-        (n.poiName ? '<span class="enc-line"> &mdash; near ' + esc(n.poiName) + "</span>" : "") + "</div>";
+      return chip(iconSvg("person"), esc(n.name), n.poiName ? "near " + esc(n.poiName) : "", null);
     }).join("");
 
     var trainers = areaTrainerGroups(mapRegion, selectedArea).map(function (g) {
-      return '<div class="area-mon' + (g.row.role === "leader" ? " leader" : "") + '"><b>' +
-        esc(g.row.trainerClass + " " + g.row.name) + "</b>" + tierLabel(g.row) +
-        '<div class="enc-line">' + esc(g.species.join(", ")) + "</div></div>";
+      var tier = tierText(g.row);
+      var shown = g.species.slice(0, 3).join(", ") +
+        (g.species.length > 3 ? " +" + (g.species.length - 3) + " more" : "");
+      var title = g.row.trainerClass + (g.row.name ? " " + g.row.name : "");
+      return chip(iconSvg("person"), esc(title),
+        (tier ? "(" + esc(tier) + ") " : "") + esc(shown),
+        popRef(title, trainerPopupHtml(g)), g.row.role === "leader" ? "leader" : "");
     }).join("");
+
+    // 0.4.44: a one-off gift (methods "Gift" and "Gift Egg" — the only two in
+    // LOCATIONS) is a different thing from a wild encounter, so it sorts to the
+    // end under its own label instead of sitting mid-list. Each group keeps its
+    // existing relative order; only the partition is new, and the label is
+    // omitted entirely when the area has no gifts. A species with BOTH kinds of
+    // line (Kanto Magikarp: the Route 4 salesman plus its Good/Old Rod lines)
+    // counts as a gift and moves as one whole chip — its popup still lists every
+    // line it has, so nothing is split or lost.
+    function encChip(m) {
+      return chip(imgTag(spriteUrl(m.id), "chip-sprite"), esc(m.name), encSummary(m.enc),
+        popRef(m.name, m.enc.map(function (e) { return encLineHtml(e, m.id); }).join("")));
+    }
+    function isGift(m) {
+      return m.enc.some(function (e) { return /^Gift/.test(e.method || ""); });
+    }
+    var encMons = areaEncounters(mapRegion, selectedArea);
+    var encs = encMons.filter(function (m) { return !isGift(m); }).map(encChip).join("");
+    var giftChips = encMons.filter(isGift).map(encChip).join("");
+    if (giftChips) encs += '<div class="group-label">Gift</div>' + giftChips;
+
+    var body = areaCard("Points of interest", pois) +
+      areaCard("Important NPCs", npcs) +
+      areaCard("Trainers", trainers) +
+      areaCard("Pokémon encounters", encs);
 
     return '<div class="detail-head"><div class="top"><div>' +
       '<div class="id">' + esc(selectedAreaKind || "Area") + "</div><h2>" + esc(selectedArea) + "</h2>" +
       "</div></div></div>" +
       '<div class="detail-body">' +
-      "<section><h3>Points of interest</h3>" +
-      (pois || '<div class="stub">No points of interest catalogued yet.</div>') + "</section>" +
-      areaFold("npcs", "Important NPCs",
-        npcs || '<div class="stub">No important NPCs catalogued yet.</div>') +
-      areaFold("trainers", "Trainers",
-        trainers || '<div class="stub">No trainers found here.</div>') +
-      areaFold("encounters", "Pokémon encounters",
-        encs || '<div class="stub">No wild encounters here.</div>') +
+      (body || '<div class="stub">Nothing catalogued for this area yet.</div>') +
       "</div>";
   }
 
@@ -1718,12 +1875,29 @@
   // The codebase's first popup of any kind. Deliberately one shared element in
   // index.html rather than a per-sprite overlay: the enlarge buttons only ever
   // hand it a URL.
+  //
+  // 0.4.43: the same overlay now also hosts a titled HTML card (#lightboxCard)
+  // for the Map screen's area chips. One backdrop, one Esc handler, one
+  // close-on-outside-click — the two modes just swap which child is visible.
 
   function openLightbox(src) {
     var box = document.getElementById("lightbox");
     var img = document.getElementById("lightboxImg");
+    var card = document.getElementById("lightboxCard");
     if (!box || !img) return;
     img.src = src;
+    img.hidden = false;
+    if (card) card.hidden = true;
+    box.hidden = false;
+  }
+  function openPopup(title, bodyHtml) {
+    var box = document.getElementById("lightbox");
+    var img = document.getElementById("lightboxImg");
+    var card = document.getElementById("lightboxCard");
+    if (!box || !card) return;
+    if (img) img.hidden = true;
+    card.innerHTML = "<h3>" + esc(title) + "</h3>" + bodyHtml;
+    card.hidden = false;
     box.hidden = false;
   }
   function closeLightbox() {
@@ -1826,6 +2000,16 @@
 
     var zoom = e.target.closest("[data-zoom]");
     if (zoom) { openLightbox(zoom.dataset.zoom); return; }
+
+    // A Map-screen area chip (0.4.43). The index is only ever valid against the
+    // areaPopups the CURRENT pane render filled, which is fine: any re-render
+    // replaces both at once.
+    var pop = e.target.closest("[data-pop]");
+    if (pop) {
+      var popData = areaPopups[+pop.dataset.pop];
+      if (popData) openPopup(popData.title, popData.body);
+      return;
+    }
 
     if (e.target.closest("[data-rail]")) { setRail(!rail); return; }
 
@@ -1959,16 +2143,6 @@
       writeSetting(PIXEL_KEY, pixelSprites);
     }
   });
-
-  // <details> fires `toggle` on open AND close, but it does NOT bubble — so this
-  // delegates in the CAPTURE phase (third arg), which is what lets one listener
-  // registered once survive every renderDetail() rebuild of the pane.
-  document.addEventListener("toggle", function (e) {
-    var key = e.target && e.target.dataset && e.target.dataset.fold;
-    if (key && Object.prototype.hasOwnProperty.call(mapFoldOpen, key)) {
-      mapFoldOpen[key] = !!e.target.open;
-    }
-  }, true);
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && lightboxOpen()) { closeLightbox(); return; }

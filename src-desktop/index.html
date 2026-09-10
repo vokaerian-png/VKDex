@@ -52,8 +52,12 @@
 
 <!-- Sprite-enlarge popup (0.4.10). One shared overlay rather than one per
      sprite: the enlarge buttons beside the detail pane's normal/shiny sprites
-     only hand app.js a URL. Esc or a click outside the image closes it. -->
-<div class="lightbox" id="lightbox" hidden><img id="lightboxImg" alt=""></div>
+     only hand app.js a URL. Esc or a click outside the image closes it.
+     0.4.43 added a second child, #lightboxCard — a titled HTML card for the Map
+     screen's area chips. Exactly one of the two is ever visible; the backdrop,
+     the Esc key and the click-outside close are shared, so there is still only
+     one modal in this app. -->
+<div class="lightbox" id="lightbox" hidden><img id="lightboxImg" alt=""><div class="popcard" id="lightboxCard" hidden></div></div>
 
 <!-- Data layer, read-only, shared verbatim with the mobile frontend: these are
      src/data/*.js, loaded as plain <script> tags exactly the way src/index.html
