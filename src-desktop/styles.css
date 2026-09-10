@@ -372,6 +372,20 @@ body {
   transform-origin: 0 0;
 }
 .map-svg.gpu-layer { will-change: transform; }
+/* Selected-area marker (0.4.39). The hit-regions carry fill/stroke="transparent"
+   as PRESENTATION attributes, which a CSS rule on the element itself outranks —
+   so lighting one up needs no change to the generated map at all. A route is a
+   stroked path (an accent line traced over the drawn route); a city/landmark is
+   a rect (a tinted panel with a thin outline). Persistent selection only —
+   hover highlighting is a separate deferred design item. The outline pulses
+   (0.4.40) via stroke-opacity only — stroke-width stays per-shape (6 path /
+   4 rect), so the keyframes can be shared by both without flattening them. */
+@keyframes sel-area-pulse { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: .25; } }
+.map-svg [data-area].sel-area {
+  stroke: var(--accent); stroke-width: 6; stroke-linecap: round;
+  animation: sel-area-pulse 3s ease-in-out infinite;
+}
+.map-svg rect[data-area].sel-area { fill: rgb(var(--accent-rgb) / .3); stroke-width: 4; }
 /* Replaces the old object-fit:contain, which only ever meant anything while
    .map-svg was an <img>. Forcing the inlined <svg>'s box to 100%/100% overrides
    the width/height presentation attributes baked into the file (0.4.26), and
@@ -656,12 +670,8 @@ section h3 .r { margin-left: auto; font-variant-numeric: tabular-nums; }
   border: 1px solid #6c7079; color: #8a8f99; font: 700 9px/1 Georgia, serif;
   display: grid; place-items: center; margin-top: 1px;
 }
-/* The Mega/Gmax band hugs its content, capped at the combined width of columns
-   1+2 (its .colgroup parent) — never into the third. It is the only band left:
-   0.4.13's full-width Evolution band became an ordinary column-1 card in
-   0.4.14 (.evocard), since the tree is narrow and centred and the extra width
-   was dead space. */
-.docband { align-self: start; width: max-content; max-width: 100%; }
+/* 0.4.41: .docband is gone — the Mega/Gmax card was the last full-width band
+   and now sits under Data in column 2, like every other card. */
 /* Neither the 400px compact pane nor a ~340px document column is as wide as a
    branching 3-stage chain (Eevee's 8-way fan is the worst case), so the tree
    scrolls sideways rather than squashing the slots or bursting its card. 0.4.12:
@@ -685,9 +695,40 @@ section h3 .r { margin-left: auto; font-variant-numeric: tabular-nums; }
 .forme:hover { border-color: var(--accent); }
 .forme.on { border-color: var(--accent); background: rgb(var(--accent-rgb) / .14); }
 .forme img { width: 32px; height: 32px; image-rendering: var(--sprite-rendering); }
+/* A recolour-only forme (0.4.39) changes nothing but its art, so its bubble is
+   a plain <span> gallery item rather than a button. */
+span.forme { cursor: default; }
 .ftag { font-size: 9px; font-weight: 700; letter-spacing: .03em; padding: 1px 6px; border-radius: 999px; background: #b53434; color: #fff; }
 .ftag.gmax { background: #6b3fa0; }
 .stub { background: var(--screen-bg); border: 1px solid #000; border-radius: 10px; padding: 8px 10px; color: #8a8f99; font-size: 12px; }
+
+/* Learnable Moves (0.4.39) — one list per tab, only the active one displayed.
+   The 240px cap is mobile's own (.move-list): an unbounded TM list is 100+ rows
+   and would push the Found In and Alt formes cards below it clean off the pane,
+   the same failure 0.4.38 fixed for the Map screen's POI section. */
+.move-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.move-tab {
+  flex: 1 1 auto; padding: 5px 8px; border: 1px solid #000; border-radius: 8px;
+  background: var(--screen-bg); color: #b0b4bb;
+  font: inherit; font-size: 11px; font-weight: 700; cursor: pointer;
+}
+.move-tab:hover { border-color: var(--accent); color: #fff; }
+.move-tab.active { background: var(--accent); border-color: var(--accent); color: #08131f; }
+.move-list {
+  display: none; flex-direction: column; max-height: 240px; overflow-y: auto;
+  border: 1px solid #000; border-radius: 10px; background: var(--screen-bg);
+}
+.move-list.active { display: flex; }
+/* Left-aligned fixed-width columns (level | type pill | name) rather than
+   space-between, so the list scans as a table. */
+.move-row {
+  display: flex; align-items: center; gap: 8px; padding: 5px 9px;
+  border-bottom: 1px solid var(--divider); font-size: 12px;
+}
+.move-row:last-child { border-bottom: 0; }
+.move-req { min-width: 38px; font-size: 11px; font-weight: 700; white-space: nowrap; color: var(--accent-warm); }
+.move-name { font-weight: 600; }
+.move-row .pill { min-width: 56px; text-align: center; font-size: 9px; padding: 1px 5px; }
 
 /* Map area detail (0.4.33) — the Map screen's compact pane. Native <details>
    for the collapsible sections; the summary is styled to read exactly like the
@@ -714,6 +755,16 @@ section h3 .r { margin-left: auto; font-variant-numeric: tabular-nums; }
 .area-mon.leader > b { color: var(--accent-warm); }
 .enc-line { font-size: 12px; color: #b9bec8; padding-top: 3px; }
 .enc-games { display: block; font-size: 11px; color: #8a8f99; }
+/* Found In's map cross-link (0.4.39). Sits inside a <summary>, so it inherits
+   that row's weight/size and only the colour marks it as actionable. */
+.arealink {
+  background: none; border: 0; padding: 0; margin: 0;
+  font: inherit; color: var(--accent); cursor: pointer; text-align: left;
+}
+.arealink:hover { text-decoration: underline; }
+/* Neutral counterpart to .ftag's Mega red — a DLC marker and a forme count are
+   both quiet badges, not warnings. */
+.ftag.soft { background: #3f5a6b; margin-left: 6px; }
 .pillrow { display: flex; flex-wrap: wrap; gap: 4px; }
 .pillrow .none { color: #6c7079; font-size: 12px; }
 /* .kv (the old single-column label/value list) is gone as of 0.4.12 — its only

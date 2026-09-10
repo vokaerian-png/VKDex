@@ -115,6 +115,14 @@
   var MON_BY_ID = {};
   POKEMON_DATA.forEach(function (p) { MON_BY_ID[p.id] = p; });
 
+  // REGIONS' own order and labels, indexed — the Found In card sorts its
+  // region folds into the region bar's canonical order (mobile's REGION_IDS /
+  // regionLabel), not LOCATIONS' insertion order.
+  var REGION_IDS = REGIONS.map(function (r) { return r.id; });
+  var REGION_LABEL = {};
+  REGIONS.forEach(function (r) { REGION_LABEL[r.id] = r.label; });
+  function regionLabel(id) { return REGION_LABEL[id] || id; }
+
   // Every per-forme `evolvesTo` override on a species, flattened and tagged
   // with the forme key it came from (ported from src/app.js's formeEvoEdges)
   // — a downstream stage bubble reads `fromFormeKey` to show the ancestor
@@ -390,6 +398,25 @@
   // guard because app.js must not hard-depend on any map file being loaded.
   var MAP_SVG_MARKUP = typeof MAP_SVG_SOURCE !== "undefined" ? MAP_SVG_SOURCE : {};
 
+  // region -> { areaName: dataKind } for every hit-region the map actually
+  // draws, scraped once out of the markup itself rather than hand-listed —
+  // the "Where to find" card needs both halves: whether an area is worth
+  // linking to the map at all, and the `data-kind` the area pane's header
+  // shows once it lands there. Region-generic by construction: a second map
+  // file drops in and indexes itself. An area name repeated in one map
+  // (Diglett's Cave has two entrances) keeps the first kind seen.
+  var MAP_AREAS = {};
+  Object.keys(MAP_SVG_MARKUP).forEach(function (r) {
+    var index = MAP_AREAS[r] = {};
+    var re = /data-area="([^"]*)"(?:\s+data-kind="([^"]*)")?/g, m;
+    while ((m = re.exec(MAP_SVG_MARKUP[r]))) {
+      if (!(m[1] in index)) index[m[1]] = m[2] || "";
+    }
+  });
+  function mapHasArea(region, name) {
+    return !!(MAP_AREAS[region] && Object.prototype.hasOwnProperty.call(MAP_AREAS[region], name));
+  }
+
   function mapHtml() {
     // Same chip markup as dexHtml()'s region bar (so the existing
     // [data-region="hisui"/"orre"] tints apply for free), minus the "All"
@@ -530,11 +557,16 @@
   // (openLocationPopup): "Method · Lv a–b · N%" with the games on their own
   // sub-line. min/max/rate are all optional in the newer data shapes, so each
   // part degrades to nothing rather than rendering "Lv undefined".
-  function encLineHtml(e) {
+  //
+  // 0.4.39: one renderer for both callers — the Map screen's area pane and the
+  // detail pane's Found In card — so the SV/BDSP/LA extras (encExtrasHtml) and
+  // the wrappable game list reach both. `id` is the species the line belongs
+  // to, needed only to resolve an `e.forme` key to its real name.
+  function encLineHtml(e, id) {
     var lv = e.min === undefined ? "" : " &middot; Lv " + (e.min === e.max ? e.min : e.min + "&ndash;" + e.max);
     var rate = e.rate === undefined ? "" : " &middot; " + (typeof e.rate === "number" ? e.rate + "%" : esc(e.rate));
-    return '<div class="enc-line">' + esc(e.method) + lv + rate +
-      (e.games ? '<span class="enc-games">' + esc(e.games) + "</span>" : "") + "</div>";
+    return '<div class="enc-line">' + esc(e.method) + lv + rate + encExtrasHtml(e, id) +
+      encGamesHtml(e.games) + "</div>";
   }
 
   // A collapsible section, native <details> — the marker, the toggle state,
@@ -606,7 +638,7 @@
     var mons = areaEncounters(mapRegion, selectedArea);
     var encs = mons.map(function (m) {
       return '<div class="area-mon"><b>' + esc(m.name) + "</b>" +
-        m.enc.map(encLineHtml).join("") + "</div>";
+        m.enc.map(function (e) { return encLineHtml(e, m.id); }).join("") + "</div>";
     }).join("");
 
     // The section itself stays a static list rather than a fold (user's call on
@@ -644,6 +676,38 @@
       areaFold("encounters", "Pokémon encounters",
         encs || '<div class="stub">No wild encounters here.</div>') +
       "</div>";
+  }
+
+  // The selected area's own hit-region, marked on the map (0.4.39). Driven off
+  // `selectedArea` alone, so BOTH ways in — a direct click on the map and the
+  // Found In card's cross-link — light the same shape, and a region switch
+  // (which nulls selectedArea) clears it for free. Not a hover effect: hover
+  // highlighting is a separate, still-deferred design item (TODO.md #22).
+  // A name drawn twice on one map (Diglett's Cave's two entrances) lights both,
+  // which is correct — they are the same place.
+  function applyAreaHighlight() {
+    var svg = document.getElementById("mapSvg");
+    if (!svg) return;
+    var hits = svg.querySelectorAll("[data-area]");
+    for (var i = 0; i < hits.length; i++) {
+      hits[i].classList.toggle("sel-area", hits[i].getAttribute("data-area") === selectedArea);
+    }
+  }
+
+  // Phase 3's cross-link (TODO.md #22): a species' Found In card -> the Map
+  // screen, that area already selected. Deliberately resets pan/zoom to the
+  // default full-map view rather than centring on the target — the map is small
+  // enough to read whole, and the highlight is what actually locates it.
+  function goToMapArea(region, areaName) {
+    mapRegion = region;
+    mapZoom = 1;
+    mapPanX = 0;
+    mapPanY = 0;
+    selectedArea = areaName;
+    selectedAreaKind = (MAP_AREAS[region] || {})[areaName] || "";
+    screen = "map";
+    if (expanded) setExpanded(false);
+    render();   // renderDetail() paints the area pane and the highlight
   }
 
   // ------------------------------------------------------------ settings
@@ -706,7 +770,7 @@
   // statsFor()/radarBox()/trainingBox() need no special-casing.
   function formeEntry(p, f) {
     if (!f) return p;
-    return Object.assign({}, p, {
+    var out = Object.assign({}, p, {
       name: f.name,
       types: f.types || p.types,
       // A Mega's `ability` is its ONLY ability in canon, so it replaces the
@@ -717,6 +781,19 @@
       _forme: f,
       _stats: f.stats ? Object.assign({}, STATS[p.id], f.stats) : STATS[p.id]
     });
+    // 0.4.39, for the ordinary alt formes the Alt formes card now makes
+    // tappable: a regional variant carries a full `abilities` LIST plus its own
+    // `hiddenAbility` (not a Mega's single `ability`), and Pumpkaboo/Gourgeist's
+    // four sizes override height/weight while sharing everything else. Each
+    // field is independent, and anything the forme doesn't set falls through to
+    // the base — which is what makes reverting restore the base exactly.
+    if (!f.ability && f.abilities) {
+      out.abilities = f.abilities;
+      out.hiddenAbility = f.hiddenAbility || null;
+    }
+    if (f.height !== undefined) out.height = f.height;
+    if (f.weight !== undefined) out.weight = f.weight;
+    return out;
   }
   function statsFor(p) { return p._stats || STATS[p.id]; }
 
@@ -1051,6 +1128,14 @@
   // Clicking a pill opens that forme's own detail screen (item 7) — the same
   // [data-id]+[data-forme] pair the search grid's forme cards use, so one click
   // handler covers both. Species with no Mega/Gmax forme render no card at all.
+  // 0.4.41: the card's title names only what this species actually has, so a
+  // Gmax-only line (Meowth) no longer advertises a Mega it doesn't get.
+  function megaGmaxTitle(base) {
+    var formes = megaGmaxFormes(base);
+    var mega = formes.some(function (f) { return f.isMega; });
+    var gmax = formes.some(function (f) { return f.isGmax; });
+    return mega && gmax ? "Mega &amp; Gigantamax" : gmax ? "Gigantamax" : "Mega Evolution";
+  }
   function megaGmaxHtml(p, base) {
     var formes = megaGmaxFormes(base);
     if (!formes.length) return "";
@@ -1161,7 +1246,9 @@
     var normal = forme ? altFormeUrl(forme.sprite, false) : spriteUrl(base.id);
     var shiny = forme ? altFormeUrl(forme.sprite, true) : shinyUrl(base.id);
     return '<div class="spritebay">' +
-      (forme ? '<button type="button" class="baseback" data-id="' + base.id +
+      // Only a Mega/Gmax screen needs a way back — an ordinary alt forme reverts
+      // by tapping the base bubble in its own Alt formes card (rule 9).
+      (isFormeScreen(forme) ? '<button type="button" class="baseback" data-id="' + base.id +
         '" title="Back to ' + esc(base.name) + '">' + spriteImg(base.id, "") + "</button>" : "") +
       spriteCell(normal, "") + spriteCell(shiny, "Shiny") + "</div>";
   }
@@ -1177,11 +1264,285 @@
     }).join("") + "</div>";
   }
 
+  // ------------------------------------- moves / found in / alt formes
+  // 0.4.39: the three cards the detail pane carried a "later pass" stub for.
+  // Data shaping is mobile's verbatim in behaviour (movesCardHtml,
+  // foundInCardHtml + openLocationPopup's encounter rendering,
+  // altFormsCardHtml); the markup is desktop's own .box/.facts/.area-fold
+  // idiom, not a copy of mobile's .detail-section HTML.
+  //
+  // Each function returns a BODY only, "" meaning "no card at all". compactHtml
+  // wraps a body in <section><h3>, docHtml in <div class="box"><h3> — one
+  // definition, two shells (detailExtras below).
+
+  var MOVE_TABS = [
+    { key: "levelUp", label: "Level-Up" },
+    { key: "tm", label: "TM" },
+    { key: "egg", label: "Egg" },
+    { key: "max", label: "Max" },
+    { key: "tutor", label: "Tutor" }
+  ];
+  // Legends: Arceus learnsets are level-up + tutor only — no TMs, no breeding,
+  // no Dynamax (mobile's MOVE_TABS_HISUI).
+  var MOVE_TABS_HISUI = [
+    { key: "levelUp", label: "Level-Up" },
+    { key: "tutor", label: "Tutor" }
+  ];
+
+  // Level requirement (level-up tab only, fixed-width column), the move's own
+  // type pill from MOVES, then the name. PokeAPI encodes "learned on evolution"
+  // as level 0 — shown as "Evo", not "Lv 0".
+  function moveListHtml(tab, list, active) {
+    var rows = list.map(function (m) {
+      var isLevelUp = tab.key === "levelUp";
+      var name = isLevelUp ? m.move : m;
+      var req = isLevelUp ? '<span class="move-req">' + (m.level === 0 ? "Evo" : "Lv " + m.level) + "</span>" : "";
+      var data = MOVES[name];
+      return '<div class="move-row">' + req + (data ? onePill(data.type) : "") +
+        '<span class="move-name">' + esc(name) + "</span></div>";
+    }).join("");
+    return '<div class="move-list' + (active ? " active" : "") + '" data-list="' + tab.key + '">' + rows + "</div>";
+  }
+
+  // An empty list gets no tab at all (`max` is [] for every entry — no Dynamax
+  // in Gen 9), and a species with no moveset data gets no card.
+  // The Hisui learnset stands in for the mainline one while the Hisui dex is the
+  // active filter — desktop's equivalent of mobile's fromHisuiScreen signal,
+  // which has no direct counterpart here (there is no separate Hisui screen).
+  function movesBody(base) {
+    var hisuiSet = region === "hisui" ? MOVESETS_HISUI[base.id] : null;
+    var set = hisuiSet || MOVESETS[base.id];
+    if (!set) return "";
+    var present = (hisuiSet ? MOVE_TABS_HISUI : MOVE_TABS).filter(function (t) {
+      return set[t.key] && set[t.key].length;
+    });
+    if (!present.length) return "";
+    var tabs = present.map(function (t, i) {
+      return '<button type="button" class="move-tab' + (i === 0 ? " active" : "") +
+        '" data-movetab="' + t.key + '">' + t.label + "</button>";
+    }).join("");
+    var lists = present.map(function (t, i) { return moveListHtml(t, set[t.key], i === 0); }).join("");
+    return '<div class="movesbox"><div class="move-tabs">' + tabs + "</div>" + lists + "</div>";
+  }
+
+  // A "/"-joined game list is one unbreakable word to the line breaker, so a
+  // long one overflows a narrow column; a <wbr> after each "/" gives it
+  // somewhere to wrap (mobile's encGamesHtml).
+  function encGamesHtml(games) {
+    if (!games) return "";
+    return '<span class="enc-games">' + esc(games).replace(/\//g, "/<wbr>") + "</span>";
+  }
+
+  // Both source vocabularies can name the same place identically (~40 Sinnoh
+  // species carry two "Lake Verity" entries), which reads as two
+  // indistinguishable rows. Merge on the exact name, keeping the FIRST
+  // occurrence's position so the in-game progression order survives.
+  function mergeAreasByName(areas) {
+    var out = [], byName = {};
+    areas.forEach(function (a) {
+      var name = typeof a === "string" ? a : a.area;
+      var hit = byName[name];
+      if (!hit) {
+        byName[name] = { area: name, enc: ((typeof a === "string" ? null : a.enc) || []).slice() };
+        out.push(byName[name]);
+        return;
+      }
+      if (typeof a !== "string" && a.enc) hit.enc = hit.enc.concat(a.enc);
+    });
+    return out;
+  }
+
+  function encTitleCase(s) {
+    return String(s).split("-").map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
+  }
+  function encSeg(html) { return html ? " &middot; " + html : ""; }
+  function encRangeSeg(prefix, min, max) {
+    if (min === undefined) return "";
+    return encSeg(prefix + (min === max ? min : min + "&ndash;" + max));
+  }
+  var TIME_RATE_KEYS = ["morning", "day", "evening", "night"];
+
+  // The optional SV/BDSP/LA encounter fields, in a fixed order after the
+  // classic method/Lv/rate segments and before the games sub-line. Every one is
+  // conditional, so a classic-shape line renders exactly as it did before.
+  // `group`/`tradeFor` are raw source species slugs, shown verbatim.
+  function encExtrasHtml(e, id) {
+    var out = "";
+    if (e.forme) {
+      var forme = findForme(id, e.forme);
+      out += encSeg(esc(forme ? forme.name : encTitleCase(e.forme)));
+    }
+    if (e.teraStars !== undefined) out += encSeg(e.teraStars + "&#9733; Tera Raid");
+    out += encRangeSeg("Alpha Lv ", e.alphaMin, e.alphaMax);
+    ["terrain", "weather", "times"].forEach(function (field) {
+      if (e[field] && e[field].length) out += encSeg(esc(e[field].map(encTitleCase).join("/")));
+    });
+    if (e.timeRates) {
+      var keys = TIME_RATE_KEYS.filter(function (k) { return e.timeRates[k] !== undefined; });
+      // A single key says nothing the plain `rate` segment doesn't already.
+      if (keys.length > 1) {
+        out += encSeg(esc(keys.map(function (k) {
+          return encTitleCase(k) + " " + String(e.timeRates[k]);
+        }).join(", ")));
+      }
+    }
+    if (e.hiddenAbility) out += encSeg("HA possible");
+    if (e.boulder) out += encSeg("Requires boulder");
+    if (e.group) out += encSeg(esc("with " + e.group));
+    out += encRangeSeg("Way Home Lv ", e.homeMin, e.homeMax);
+    if (e.tradeFor) out += encSeg(esc("Trade for " + e.tradeFor));
+    if (e.note) out += encSeg(esc(e.note));
+    return out;
+  }
+
+  // Broader than pokemon.js's own `region` field (which only says where a
+  // species was INTRODUCED): every region key in LOCATIONS[id] with a non-empty
+  // area list is somewhere it can actually be caught. Sorted into REGIONS'
+  // canonical order; an unknown key sorts last.
+  function foundInRegions(id) {
+    var loc = LOCATIONS[id] || {};
+    return Object.keys(loc).filter(function (r) { return loc[r] && loc[r].length > 0; })
+      .sort(function (a, b) {
+        var ia = REGION_IDS.indexOf(a), ib = REGION_IDS.indexOf(b);
+        if (ia === -1) ia = REGION_IDS.length;
+        if (ib === -1) ib = REGION_IDS.length;
+        return ia - ib;
+      });
+  }
+
+  // SV's two paid-DLC version-group names as an enc line's `games` field spells
+  // them: bare ("The Teal Mask") or version-exclusive ("Violet: The Indigo
+  // Disk"). Anchored both ends so the base-game labels can never match.
+  var DLC_GAMES_RE = /(?:^|: )The (?:Teal Mask|Indigo Disk)$/;
+
+  // True when this region's data exists and EVERY line is DLC-only. Kitakami/
+  // Blueberry sit under the plain "paldea" key (there are no separate REGIONS
+  // entries for them), so without this a DLC-exclusive species reads as
+  // base-game catchable in Scarlet/Violet. A mixed species shows a plain fold.
+  function isDlcOnlyRegion(id, regionId) {
+    var areas = (LOCATIONS[id] || {})[regionId] || [];
+    var lines = areas.reduce(function (acc, a) { return acc.concat((a && a.enc) || []); }, []);
+    return lines.length > 0 && lines.every(function (e) { return DLC_GAMES_RE.test(e.games || ""); });
+  }
+
+  // Mobile opens a modal popup per region chip. The desktop detail pane has no
+  // modal of its own and isn't getting one for this: each region is a <details>
+  // fold rendered in place, its areas nested folds inside it — the same
+  // .area-fold/.poi-fold convention the Map screen's own area pane already uses,
+  // so no new visual language is introduced.
+  function areaFoldsHtml(id, regionId) {
+    var areas = mergeAreasByName((LOCATIONS[id] || {})[regionId] || []);
+    if (!areas.length) return '<div class="enc-line">No specific areas recorded.</div>';
+    return areas.map(function (a) {
+      // Phase 3's cross-link: an area that the region's map actually draws is a
+      // button into the Map screen. Everywhere else (an unmapped region, or an
+      // area with no hit-region) it stays plain text, exactly as before.
+      var name = mapHasArea(regionId, a.area)
+        ? '<button type="button" class="arealink" data-mapregion="' + esc(regionId) +
+          '" data-maparea="' + esc(a.area) + '" title="Show on the map">' + esc(a.area) + "</button>"
+        : esc(a.area);
+      var lines = (a.enc || []).map(function (e) { return encLineHtml(e, id); }).join("");
+      // A pre-0.2.7 bare-string entry has no lines to fold open.
+      if (!lines) return '<div class="area-mon">' + name + "</div>";
+      // A lone area opens by default — there is nothing to scan past, so making
+      // the only content cost a click would be strictly worse (mobile's rule).
+      return '<details class="area-fold poi-fold"' + (areas.length === 1 ? " open" : "") +
+        "><summary>" + name + "</summary>" + lines + "</details>";
+    }).join("");
+  }
+
+  function foundInBody(base) {
+    var regions = foundInRegions(base.id);
+    if (!regions.length) {
+      // "Evolution only" is only a safe claim when something actually evolves
+      // into this species; otherwise just say there is no data.
+      return '<div class="stub">' + (evoRoot(base.id) !== base.id
+        ? "Not found in the wild — evolution only."
+        : "No wild encounter data recorded.") + "</div>";
+    }
+    return regions.map(function (r) {
+      return '<details class="area-fold poi-fold"' + (regions.length === 1 ? " open" : "") +
+        "><summary>" + esc(regionLabel(r)) +
+        (isDlcOnlyRegion(base.id, r) ? '<span class="ftag soft">DLC</span>' : "") +
+        "</summary>" + areaFoldsHtml(base.id, r) + "</details>";
+    }).join("");
+  }
+
+  // One alt-forme bubble, reusing the Mega/Gmax .forme pill (same data-id +
+  // data-forme pair, so the existing delegated click handler covers it with no
+  // new wiring). key "" is the base bubble: dataset.forme || null resolves it
+  // back to no forme, which is how tapping it reverts.
+  function formeBubble(id, key, name, src) {
+    return '<button type="button" class="forme' + ((key || null) === formeView ? " on" : "") +
+      '" data-id="' + id + '" data-forme="' + esc(key) + '">' + imgTag(src, "") + esc(name) + "</button>";
+  }
+
+  // Rules 6 and 7 of SCOPE.md §4's Alt Formes spec. Mega/Gmax are deliberately
+  // absent: they have their own card and their own detail screen on desktop
+  // (megaGmaxHtml, PLAN.md's Pass 3), and rendering them here too would double
+  // every bubble.
+  function altFormesBody(base) {
+    var data = ALT_FORMS[base.id];
+    if (!data || !data.formes) return "";
+    var formes = data.formes.filter(function (f) { return !f.isMega && !f.isGmax; });
+    if (!formes.length) return "";
+    // Optional entry-level `note`: one line under the row, for a forme whose
+    // trigger the bubbles alone don't convey (Keldeo's Resolute Forme).
+    var note = data.note ? '<div class="enc-line">' + esc(data.note) + "</div>" : "";
+
+    // Rule 6 — recolour-only formes (Unown, Vivillon, Alcremie...) change
+    // nothing but their art, so there is nothing to swap and nothing to tap.
+    // Mobile collapses them to a "+N" bubble opening a popup gallery; the
+    // desktop pane has no popup, so the gallery is a fold instead.
+    if (data.recolorOnly) {
+      return '<details class="area-fold poi-fold"><summary>' + esc(base.name) + " forms" +
+        '<span class="ftag soft">' + formes.length + "</span></summary>" +
+        '<div class="formes">' + formes.map(function (f) {
+          return '<span class="forme">' + altFormeImg(f.sprite, "") + esc(f.name) + "</span>";
+        }).join("") + "</div></details>" + note;
+    }
+
+    // Rule 7 — every other forme is its own tappable bubble. Optional
+    // `baseName` (Sinistea's "Phony") names the base bubble where the species
+    // has a name for it; optional `baseIndex` (Pumpkaboo/Gourgeist) says how
+    // many forme bubbles render BEFORE it, so a size range reads Small/Average/
+    // Large/Super rather than putting the middle size first.
+    var bubbles = formes.map(function (f) {
+      return formeBubble(base.id, f.key, f.name, altFormeUrl(f.sprite, false));
+    });
+    bubbles.splice(data.baseIndex || 0, 0,
+      formeBubble(base.id, "", data.baseName || base.name, spriteUrl(base.id)));
+    return '<div class="formes">' + bubbles.join("") + "</div>" + note;
+  }
+
+  // The three cards, in the order the stub they replace named them. `wrap` is
+  // the pane's own card shell; a body of "" drops its card entirely.
+  function detailExtras(base, wrap) {
+    return wrap("Learnable moves", movesBody(base)) +
+      wrap("Found in", foundInBody(base)) +
+      wrap("Alt formes", altFormesBody(base));
+  }
+  function sectionWrap(title, body) {
+    return body ? "<section><h3>" + title + "</h3>" + body + "</section>" : "";
+  }
+  function boxWrap(title, body) {
+    return body ? '<div class="box"><h3>' + title + "</h3>" + body + "</div>" : "";
+  }
+
+  // A Mega/Gmax forme is shown as its OWN detail screen (PLAN.md's Pass 3):
+  // a back-to-base sprite in the header. (0.4.41: it also keeps the BASE
+  // species' evolution tree — every node routes through the generic [data-id]
+  // dispatch with no data-forme, so any of them is a second way back to the
+  // base screen.) An ordinary alt forme
+  // is not a screen — it swaps this species' own facts in place (rule 9), so
+  // the page around it stays exactly as it was.
+  function isFormeScreen(f) { return !!f && !!(f.isMega || f.isGmax); }
+
   // --t is set once on #compact/#doc by renderDetail(), so it cascades to the
   // boxes here as well as to the head — it used to sit inline on the head only.
   function compactHtml(p, base, forme) {
     var formes = megaGmaxHtml(p, base);
-    var evo = forme ? "" : evoTreeHtml(base);
+    var evo = evoTreeHtml(base);
     return '<div class="detail-head"><div class="top">' + spriteBay(p, base, forme) +
       '<div><div class="id">#' + pad(base.id) + " · " + esc(base.region) + "</div><h2>" + esc(p.name) + "</h2>" +
       typePills(p.types) + "</div>" +
@@ -1200,8 +1561,8 @@
       // Mega/Gmax. Mega/Gmax used to sit above Evolution.
       "<section>" + statsHtml(p) + "</section>" +
       (evo ? '<section class="evosection"><h3>Evolution</h3>' + evo + "</section>" : "") +
-      (formes ? "<section><h3>Mega &amp; Gigantamax</h3>" + formes + "</section>" : "") +
-      '<section><h3>Moves &middot; Locations &middot; Alt formes</h3><div class="stub">Not wired into the desktop pane yet — a later pass.</div></section>' +
+      (formes ? "<section><h3>" + megaGmaxTitle(base) + "</h3>" + formes + "</section>" : "") +
+      detailExtras(base, sectionWrap) +
       "</div>";
   }
 
@@ -1249,7 +1610,7 @@
 
   function docHtml(p, base, forme) {
     var formes = megaGmaxHtml(p, base);
-    var evo = forme ? "" : evoTreeHtml(base);
+    var evo = evoTreeHtml(base);
     var list = currentList();
     var i = list.indexOf(base);
     var prev = (list[i - 1] || base).id, next = (list[i + 1] || base).id;
@@ -1263,14 +1624,11 @@
       '<button class="iconbtn" data-id="' + next + '" title="Next (→)">▶</button>' +
       '<button class="iconbtn" data-expand title="Back to three-pane (Esc)">⇥ Collapse</button>' +
       "</div>" + dexNumbersHtml(base) + "</div>" +
-      // 0.4.11: the bands used to be later ROWS of one shared 3-track grid, so
-      // they waited on the tallest of the three columns — usually column 3 —
-      // leaving a dead gap under the other two. Now .cols is a flex row of
-      // [.colgroup, column 3]: the Mega/Gmax band lives inside .colgroup, under
-      // the .colpair holding columns 1+2, so its top depends on max(col1, col2)
-      // only. Column 3 is an independent strip that runs alongside it.
-      // (0.4.14: Evolution left the band set and is a plain column-1 card now,
-      // so the band mechanism has exactly one user left.)
+      // .cols is a flex row of [.colgroup, column 3]; .colgroup wraps the
+      // .colpair holding columns 1+2. It existed to host full-width bands under
+      // that pair — 0.4.14 moved Evolution out, 0.4.41 moved Mega/Gmax into
+      // column 2, so there are no bands left. The wrappers stay (CSS keys the
+      // column widths off them); .docband is gone.
       '<div class="cols">' +
       '<div class="colgroup"><div class="colpair">' +
       '<div class="col">' +
@@ -1293,14 +1651,15 @@
       '<div class="box">' + statsHtml(p) + "</div>" +
       defenseBox(p) +
       dataBox(p) +
+      // 0.4.41 (user-requested): the Mega/Gmax card sits under Data in column 2
+      // instead of the full-width band it was under both columns.
+      (formes ? '<div class="box"><h3>' + megaGmaxTitle(base) + "</h3>" + formes + "</div>" : "") +
       "</div>" +
       "</div>" +
-      (formes ? '<div class="box docband"><h3>Mega &amp; Gigantamax</h3>' + formes + "</div>" : "") +
       "</div>" +
       '<div class="col">' +
       radarBox(p) +
-      '<div class="box"><h3>Moves &middot; Locations &middot; Alt formes</h3>' +
-      '<div class="stub">These three still live only in the mobile frontend. The document view has the width for them — they are a later desktop pass, not a dropped feature.</div></div>' +
+      detailExtras(base, boxWrap) +
       "</div>" +
       "</div>";
   }
@@ -1321,6 +1680,9 @@
       // expand-to-document is Dex-only.
       compact.innerHTML = screen === "map" ? areaDetailHtml()
         : '<div class="detail-body"><div class="stub">Nothing selected on this screen yet.</div></div>';
+      // Every path that changes the selected area ends here, so this is the one
+      // place the map's own highlight has to be kept in step (0.4.39).
+      if (screen === "map") applyAreaHighlight();
       doc.innerHTML = "";
       document.getElementById("navDetailTile").innerHTML = "";
       document.getElementById("navDetailName").textContent = "—";
@@ -1515,6 +1877,33 @@
       selectedArea = hit.dataset.area;
       selectedAreaKind = hit.dataset.kind || "";
       renderDetail();   // the map's own pan/zoom/markup state is untouched
+      return;
+    }
+
+    // Phase 3's cross-link (0.4.39). The button lives inside a <summary>, whose
+    // default click action is toggling its own <details> — preventDefault stops
+    // the fold flapping open on the way out to the Map screen.
+    var link = e.target.closest("[data-maparea]");
+    if (link) {
+      e.preventDefault();
+      goToMapArea(link.dataset.mapregion, link.dataset.maparea);
+      return;
+    }
+
+    // Learnable Moves tab bar. Scoped to the .movesbox it was clicked in: the
+    // compact pane and the document view both render one, and they keep their
+    // own tab independently.
+    var tab = e.target.closest("[data-movetab]");
+    if (tab) {
+      var box = tab.closest(".movesbox");
+      if (box) {
+        var tabs = box.querySelectorAll(".move-tab");
+        for (var t = 0; t < tabs.length; t++) tabs[t].classList.toggle("active", tabs[t] === tab);
+        var lists = box.querySelectorAll(".move-list");
+        for (var l = 0; l < lists.length; l++) {
+          lists[l].classList.toggle("active", lists[l].dataset.list === tab.dataset.movetab);
+        }
+      }
       return;
     }
 
