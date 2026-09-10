@@ -210,6 +210,12 @@
   // since an area name is only meaningful within its own region.
   var selectedArea = null;
   var selectedAreaKind = "";   // "Route" / "Gym city" / ... from the SVG's data-kind
+  // Which area-detail folds are open. renderDetail() rebuilds the pane's HTML
+  // from scratch on every area click, so without this each <details> snapped
+  // shut again the moment the user browsed to another area. Shared across every
+  // area (a preference, not per-area state) and deliberately NOT cleared by a
+  // region switch. In-memory only for the running session — no localStorage.
+  var mapFoldOpen = { npcs: false, trainers: false, encounters: false };
   var rail = true;             // live sidebar state
   var railDefault = true;      // persisted "collapse by default" setting
   // Mirrored-from-mobile settings state.
@@ -357,40 +363,32 @@
 
   var MAP_ZOOM_MIN = 1, MAP_ZOOM_MAX = 3, MAP_ZOOM_STEP = 0.25;
   var MAP_DRAG_SLOP = 5;   // logical px before a press counts as a pan, not a click
-  // Region ids with a maps/<id>.svg on disk. One entry for now; adding a map
-  // means adding the file and its id here.
-  var MAPPED_REGIONS = { kanto: 1 };
 
-  // The map's raw <svg> markup, fetched once per region and inlined into the
-  // DOM (0.4.31) instead of pointed at with <img src>. That was itself a blur
-  // fix attempt — an <img> is rasterised to a bitmap at one resolution and then
+  // The map's raw <svg> markup, keyed by region and inlined into the DOM
+  // (0.4.31) instead of pointed at with <img src>. That was itself a blur fix
+  // attempt — an <img> is rasterised to a bitmap at one resolution and then
   // scaled, and seven rounds of nudging that bitmap cache into re-rasterising
   // sharp (0.4.23-0.4.30) had all failed — and it failed too. Useful failure:
   // an inline <svg> has no bitmap cache at all, so "stale raster" cannot be the
   // mechanism, which is what pointed at the compositor layer instead (0.4.32,
   // see markMapGesture()). Inlining stays regardless: it's the cleaner shape.
-  // Doubles as the hover warm-up: fetching early is the whole head start.
-  var MAP_SVG_MARKUP = {};
-  // A root <title> is invisible in an <img> but becomes a native hover tooltip
-  // once the same file is inlined as real DOM (0.4.31's regression; kanto.svg
-  // carries a long dev note in one). Stripped here, at the loader, so it holds
-  // for every region's file rather than being edited out of each asset — these
-  // maps are art, not accessible diagrams, and nothing wants a tooltip.
-  function stripSvgTitles(text) { return text.replace(/<title\b[^>]*>[\s\S]*?<\/title\s*>/gi, ""); }
-  function ensureMapSvgLoaded(region) {
-    // `in`, not a truthiness test: the key is set to "" the moment the fetch
-    // starts, so a second view before it resolves doesn't fire a second one.
-    if (region in MAP_SVG_MARKUP || !MAPPED_REGIONS[region]) return;   // cached/in flight, or no SVG on disk -> don't 404
-    MAP_SVG_MARKUP[region] = "";
-    fetch("maps/" + region + ".svg").then(function (r) { return r.text(); }).then(function (text) {
-      MAP_SVG_MARKUP[region] = stripSvgTitles(text);
-      // Only repaint if the user is still looking at this exact map.
-      if (screen === "map" && mapRegion === region) renderCenter();
-    }).catch(function (err) {
-      delete MAP_SVG_MARKUP[region];   // let a later visit retry
-      console.error("map svg fetch failed:", region, err);
-    });
-  }
+  //
+  // 0.4.35: the markup arrives as a plain <script src="maps/<region>.js"> in
+  // index.html — the same way every data file in this app loads — instead of
+  // being fetch()ed at runtime. fetch() of a local file is blocked outright
+  // under file:// (every local file is its own opaque origin), so opening
+  // src-desktop/index.html straight from disk never got a map at all; a
+  // <script> tag has no such restriction and works identically under file://,
+  // `tauri dev` and the packaged .exe. maps/<region>.js is generated from
+  // maps/<region>.svg by tools/gen_map_js.js (which is also where the 0.4.32
+  // <title> strip lives now, done once at generation instead of every load).
+  // The whole async surface is gone with the fetch: no in-flight state, no
+  // "landed after the user navigated away" race, no loading placeholder.
+  //
+  // This object IS the region list: a region is mapped iff its key is here, so
+  // dropping in a map and its <script> tag is the only bookkeeping. typeof
+  // guard because app.js must not hard-depend on any map file being loaded.
+  var MAP_SVG_MARKUP = typeof MAP_SVG_SOURCE !== "undefined" ? MAP_SVG_SOURCE : {};
 
   function mapHtml() {
     // Same chip markup as dexHtml()'s region bar (so the existing
@@ -402,8 +400,7 @@
     }).join("");
 
     var label = (REGIONS.filter(function (r) { return r.id === mapRegion; })[0] || {}).label || mapRegion;
-    ensureMapSvgLoaded(mapRegion);   // no-op once cached; unmapped regions bail inside
-    var body = MAPPED_REGIONS[mapRegion]
+    var body = MAP_SVG_MARKUP[mapRegion]
       ? mapViewportHtml()
       : '<div class="placeholder"><div><h2>Not mapped yet</h2><p>' + esc(label) +
         "'s map hasn't been drawn yet.</p></div></div>";
@@ -415,7 +412,7 @@
   // Panning is pointer-drag only (0.4.20) — .map-viewport is overflow:hidden,
   // so the browser's own scrollbars are out of the picture entirely.
   //
-  // #mapSvg is a wrapper <div> holding the fetched <svg> markup, not the map
+  // #mapSvg is a wrapper <div> holding the inlined <svg> markup, not the map
   // element itself: everything that pans/zooms/nudges looks the element up by
   // that id and writes .style.transform / .style.width on it, so keeping the id
   // on a wrapper leaves all of it working untouched across the 0.4.31 switch
@@ -426,7 +423,7 @@
   function mapViewportHtml() {
     return '<div class="map-viewport" id="mapViewport">' +
       '<div class="map-svg" id="mapSvg" style="transform:' + mapTransform() + '">' +
-      (MAP_SVG_MARKUP[mapRegion] || '<div class="placeholder"><p>Loading map…</p></div>') +
+      MAP_SVG_MARKUP[mapRegion] +   // never empty: mapHtml() only reaches here for a mapped region
       "</div>" +
       '<div class="map-zoom">' +
       '<button type="button" data-mapzoom="in" title="Zoom in">+</button>' +
@@ -541,9 +538,12 @@
   }
 
   // A collapsible section, native <details> — the marker, the toggle state,
-  // Enter/Space and the screen-reader semantics all come for free.
-  function areaFold(title, body) {
-    return '<section><details class="area-fold"><summary>' + esc(title) + "</summary>" +
+  // Enter/Space and the screen-reader semantics all come for free. `key` is the
+  // mapFoldOpen slot this fold remembers itself in, carried on the element as
+  // data-fold for the delegated toggle listener to read back.
+  function areaFold(key, title, body) {
+    return '<section><details class="area-fold" data-fold="' + key + '"' +
+      (mapFoldOpen[key] ? " open" : "") + "><summary>" + esc(title) + "</summary>" +
       body + "</details></section>";
   }
 
@@ -566,9 +566,9 @@
       // a later phase — so every area shows their empty state for now.
       "<section><h3>Points of interest</h3>" +
       '<div class="stub">No points of interest catalogued yet.</div></section>' +
-      areaFold("Important NPCs", '<div class="stub">No important NPCs catalogued yet.</div>') +
-      areaFold("Trainers", '<div class="stub">No trainers found here.</div>') +
-      areaFold("Pokémon encounters",
+      areaFold("npcs", "Important NPCs", '<div class="stub">No important NPCs catalogued yet.</div>') +
+      areaFold("trainers", "Trainers", '<div class="stub">No trainers found here.</div>') +
+      areaFold("encounters", "Pokémon encounters",
         encs || '<div class="stub">No wild encounters here.</div>') +
       "</div>";
   }
@@ -1498,6 +1498,16 @@
     }
   });
 
+  // <details> fires `toggle` on open AND close, but it does NOT bubble — so this
+  // delegates in the CAPTURE phase (third arg), which is what lets one listener
+  // registered once survive every renderDetail() rebuild of the pane.
+  document.addEventListener("toggle", function (e) {
+    var key = e.target && e.target.dataset && e.target.dataset.fold;
+    if (key && Object.prototype.hasOwnProperty.call(mapFoldOpen, key)) {
+      mapFoldOpen[key] = !!e.target.open;
+    }
+  }, true);
+
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && lightboxOpen()) { closeLightbox(); return; }
     if (e.key === "Escape" && expanded) { setExpanded(false); return; }
@@ -1538,23 +1548,10 @@
     zoomMapAt(e.clientX, e.clientY, e.deltaY < 0 ? MAP_ZOOM_STEP : -MAP_ZOOM_STEP);
   }, { passive: false });
 
-  // Hover head-start for the map SVG (0.4.22; the warm-decode it used to do
-  // became ensureMapSvgLoaded's fetch in 0.4.31). mouseenter doesn't bubble, so
-  // this is the standard mouseover + relatedTarget trick: relatedTarget is the
-  // node the cursor came FROM, so "it isn't inside this element" == a genuine
-  // enter, not a move between the row's own child spans. contains(null) is
-  // false, so entering from outside the window still counts.
-  document.addEventListener("mouseover", function (e) {
-    // The sidebar's Map row: fires well before the click, and mapRegion is
-    // whatever the Map screen will show when it opens (Kanto by default).
-    var mapRow = e.target.closest('[data-screen="map"]');
-    if (mapRow && !mapRow.contains(e.relatedTarget)) ensureMapSvgLoaded(mapRegion);
-
-    // The Map screen's own region chips. Scoped to screen === "map" because the
-    // Dex's region filter chips reuse [data-region] for something unrelated.
-    var mapChip = screen === "map" && e.target.closest("[data-region]");
-    if (mapChip && !mapChip.contains(e.relatedTarget)) ensureMapSvgLoaded(mapChip.dataset.region);
-  });
+  // The hover head-start for the map SVG (0.4.22's warm <img> decode, then
+  // 0.4.31's early fetch on the sidebar Map row and the region chips) is gone
+  // as of 0.4.35: the markup is a <script>-loaded constant that is already in
+  // memory before the first paint, so there is nothing left to warm.
 
   // Click-and-drag panning. Pointer Events, not mouse events — one code path
   // for mouse/touch/pen, same reason mobile's drawer swipe uses them.

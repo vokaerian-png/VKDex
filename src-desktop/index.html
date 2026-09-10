@@ -88,6 +88,17 @@
 <script src="data/stats.js"></script>
 <script src="data/hisui.js"></script>
 <script src="data/orre.js"></script>
+
+<!-- Map markup (0.4.35). maps/<region>.js is generated from maps/<region>.svg by
+     tools/gen_map_js.js and defines MAP_SVG_SOURCE[<region>] as a string; app.js
+     reads that object directly and treats its keys AS the list of mapped regions.
+     A <script> tag rather than the fetch() this used to be (0.4.31), because
+     fetch() of a local file is blocked under file:// — opening this page straight
+     from disk never got a map. Unlike data/, these are real committed files, not
+     build artifacts. Adding a region means adding its tag here at the same time
+     as the .svg — the same easy-to-forget step data/locations.js was missing
+     until 0.4.33. -->
+<script src="maps/kanto.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
