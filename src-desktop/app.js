@@ -547,6 +547,58 @@
       body + "</details></section>";
   }
 
+  // areas.js is region -> area name -> flat rows, so every lookup is the same
+  // two hops. An unpopulated region/area just yields [] and keeps its empty state.
+  function areaRows(table, region, areaName) {
+    return ((table || {})[region] || {})[areaName] || [];
+  }
+
+  // AREA_TRAINERS is one row per Pokémon, mirroring how LOCATIONS stores one row
+  // per encounter line — a human reads "Bug Catcher Colton's FRLG team" as one
+  // unit, so group by who/which-game/which-tier and join the species.
+  // ponytail: canonical (FRLG) rows only. Showing the Let's Go variants too would
+  // double every list for a first content-parity pass; drop the filter and add a
+  // game label to the title if both are ever wanted.
+  function areaTrainerGroups(region, areaName) {
+    var byKey = {}, order = [];
+    areaRows(AREA_TRAINERS, region, areaName).forEach(function (r) {
+      if (r.canonical !== 1) return;
+      var key = [r.role, r.trainerClass, r.name, r.game, r.tier].join("|");
+      if (!byKey[key]) { byKey[key] = { row: r, species: [] }; order.push(key); }
+      byKey[key].species.push(r.species);
+    });
+    return order.map(function (k) { return byKey[k]; })
+      // Gym leaders read first; everything else keeps its source order.
+      .sort(function (a, b) { return (b.row.role === "leader") - (a.row.role === "leader"); });
+  }
+
+  // "after-reaching-fuchsia-city" -> the scrape's own sentence when it has one,
+  // else the slug turned back into words rather than dumped raw.
+  function tierLabel(row) {
+    if (row.tier === "base") return "";
+    var t = row.tierNote || row.tier.replace(/-/g, " ").replace(/^./, function (c) { return c.toUpperCase(); });
+    return '<span class="enc-line"> (' + esc(t) + ")</span>";
+  }
+
+  // A POI's collapsed one-liner: its first sentence, hard-capped so a long
+  // opener still reads as a summary. Split on "." only — "Let's Go, Pikachu!"
+  // appears mid-sentence all over the scrape, so "!"/"?" are not terminators
+  // here — and skip the abbreviations that actually occur in the data
+  // ("Silph Co.", "Mr. Psychic", "Mt. Moon", "S.S. Anne").
+  // ponytail: hand-tuned to the 58 real Kanto rows, not a general sentence
+  // splitter; extend ABBR if a later region's scrape trips it.
+  var POI_ABBR = /(^|[\s(])(Mr|Mrs|Ms|Dr|Prof|Co|Corp|Inc|Mt|St|Jr|Sr|No|vs|[A-Z]\.[A-Z])$/;
+  function poiSummary(text) {
+    var s = text, re = /\.(?=\s|$)/g, m;
+    while ((m = re.exec(text))) {
+      if (POI_ABBR.test(text.slice(0, m.index))) continue;
+      s = text.slice(0, m.index + 1);
+      break;
+    }
+    if (s.length > 130) s = s.slice(0, 130).replace(/\s+\S*$/, "") + "…";
+    return s;
+  }
+
   function areaDetailHtml() {
     if (!selectedArea) {
       return '<div class="detail-body"><div class="stub">Click an area on the map to see its details.</div></div>';
@@ -557,17 +609,38 @@
         m.enc.map(encLineHtml).join("") + "</div>";
     }).join("");
 
+    // The section itself stays a static list rather than a fold (user's call on
+    // the mockup), so it is what the pane leads with — but each item is now its
+    // own <details>: first sentence as the summary, full paragraph inside, so
+    // the encyclopedic Bulbapedia text no longer pushes the folds below it off
+    // screen. Nothing is lost, only collapsed.
+    var pois = areaRows(AREA_POI, mapRegion, selectedArea).map(function (p) {
+      return '<details class="area-fold poi-fold"><summary><b>' + esc(p.name) + "</b>" +
+        '<span class="enc-line"> &mdash; ' + esc(poiSummary(p.description)) + "</span></summary>" +
+        '<div class="enc-line">' + esc(p.description) + "</div></details>";
+    }).join("");
+
+    var npcs = areaRows(AREA_NPCS, mapRegion, selectedArea).map(function (n) {
+      return '<div class="area-mon"><b>' + esc(n.name) + "</b>" +
+        (n.poiName ? '<span class="enc-line"> &mdash; near ' + esc(n.poiName) + "</span>" : "") + "</div>";
+    }).join("");
+
+    var trainers = areaTrainerGroups(mapRegion, selectedArea).map(function (g) {
+      return '<div class="area-mon' + (g.row.role === "leader" ? " leader" : "") + '"><b>' +
+        esc(g.row.trainerClass + " " + g.row.name) + "</b>" + tierLabel(g.row) +
+        '<div class="enc-line">' + esc(g.species.join(", ")) + "</div></div>";
+    }).join("");
+
     return '<div class="detail-head"><div class="top"><div>' +
       '<div class="id">' + esc(selectedAreaKind || "Area") + "</div><h2>" + esc(selectedArea) + "</h2>" +
       "</div></div></div>" +
       '<div class="detail-body">' +
-      // Points of interest is a static list, not a fold (user's call on the
-      // mockup). NPCs/Trainers have no data source yet — a Bulbapedia scrape is
-      // a later phase — so every area shows their empty state for now.
       "<section><h3>Points of interest</h3>" +
-      '<div class="stub">No points of interest catalogued yet.</div></section>' +
-      areaFold("npcs", "Important NPCs", '<div class="stub">No important NPCs catalogued yet.</div>') +
-      areaFold("trainers", "Trainers", '<div class="stub">No trainers found here.</div>') +
+      (pois || '<div class="stub">No points of interest catalogued yet.</div>') + "</section>" +
+      areaFold("npcs", "Important NPCs",
+        npcs || '<div class="stub">No important NPCs catalogued yet.</div>') +
+      areaFold("trainers", "Trainers",
+        trainers || '<div class="stub">No trainers found here.</div>') +
       areaFold("encounters", "Pokémon encounters",
         encs || '<div class="stub">No wild encounters here.</div>') +
       "</div>";

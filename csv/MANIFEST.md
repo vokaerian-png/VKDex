@@ -192,6 +192,16 @@ Row counts are data rows (header excluded). Src: **A** = PokeAPI, **B** = PokeDB
 
 B's Gen 1-8 encounter rows for versions A already covers (~28k) were **not** carried: the models are not row-joinable, so "PokeAPI wins" means A's table stands alone there. Only versions with zero A rows (LA, SV, BDSP) take B's data.
 
+### Region-map area data (Bulbapedia)
+
+Points of interest, notable NPCs and trainers per map area — the data behind the desktop Map screen's detail pane (`TODO.md` #22 phases 2a/2b). Neither A nor B has any table of this kind, so all three files are Bulbapedia-only (`source=bulbapedia` throughout), same standalone precedent as `item_acquisitions_orre.csv`. `area` matches the `data-area` attributes in `src-desktop/maps/<region>.svg`; `page` is the Bulbapedia article each row came from. Kanto-only today. Built by `node tools/merge_area_data.js` from the reviewed scrape staged in `temp/bulbapedia-dump/areas/`, which also emits `src/data/areas.js` from these three files.
+
+| file | rows | key | src | notes |
+|---|---|---|---|---|
+| `area_poi.csv` | 58 | (`region`,`area`,`poi_name`) | Bulbapedia scrape | One row per point of interest: `description` is the article's own encyclopedic prose, kept untruncated. The scrape's `confident` column is dropped at merge (it was `1` on every row). |
+| `area_npcs.csv` | 56 | (`region`,`area`,`name`) | Bulbapedia scrape | Notable NPCs; `poi_name` links one to a POI in `area_poi.csv` when the article placed it there, blank otherwise. The scrape's 265 candidates were hand-reviewed and this is the `verdict=keep` subset — the review-only columns (`matched`/`confident`/`verdict`/`note`) are not carried. |
+| `area_trainers.csv` | 1192 | (`region`,`area`,`role`,`name`,`game`,`tier`,`slot`) | Bulbapedia scrape | **One row per Pokémon**, not per trainer. `role` unifies two scrape sources: `leader` (94 rows, gym leaders — carry `type1`/`type2`/`ability`/`moves`, no `sub_area`/`group`/`held_item`) and `trainer` (1098 rows, ordinary trainers — carry `sub_area`/`group`/`held_item`, no battle stats, since `{{Trainerentry}}` has none). `canonical=1` marks the FRLG team (the app's default); `0` rows are the Let's Go variant. `tier` is `base`/`rematch`/an `after-…` availability slug, with `tier_note` the human sentence. `gender` is normalized to `male`/`female`/`none` across both sources. |
+
 ## Known gaps and limitations
 
 - **Base experience Gen 1-4**: absent from both sources (only Gen 5-6 and Gen 7+ eras exist).
