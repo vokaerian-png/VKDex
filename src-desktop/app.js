@@ -173,6 +173,19 @@
   function megaGmaxFormes(p) {
     return ((ALT_FORMS[p.id] || {}).formes || []).filter(function (f) { return f.isMega || f.isGmax; });
   }
+  // Every regional-variant forme of a species (Alolan/Galarian/Hisuian/
+  // Paldean...), or only `reg`'s when given — ported from src/app.js's
+  // regionalFormes(). Megas/Gmax never count, nor do recolorOnly galleries.
+  // [0] is the one a region chip shows (Tauros's 3 Paldean breeds: Combat).
+  function regionalFormes(id, reg) {
+    var data = ALT_FORMS[id];
+    if (!data || data.recolorOnly || !data.formes) return [];
+    return data.formes.filter(function (f) {
+      if (f.isMega || f.isGmax) return false;
+      var r = f.key.split("-")[0];
+      return REGION_IDS.indexOf(r) !== -1 && (!reg || r === reg);
+    });
+  }
   // Same short label mobile's altFormeShortLabel() produces: "Mega X" / "Mega Y"
   // from the forme name minus the species, "Gmax" always.
   function formeTag(p, f) {
@@ -268,7 +281,26 @@
       return POKEMON_DATA.filter(function (p) { return ORRE_MEMBERS[p.id] != null; });
     }
     if (region === "all") return POKEMON_DATA;
-    return POKEMON_DATA.filter(function (p) { return p.region === region; });
+    // A species native elsewhere still belongs under this chip when it has a
+    // variant forme OF this region (Linoone is Hoenn's, but Galarian Linoone
+    // makes it a Galar member) — user-directed 2026-09-11, matching mobile.
+    return POKEMON_DATA.filter(function (p) {
+      return p.region === region || regionalFormes(p.id, region).length > 0;
+    });
+  }
+
+  // The forme a species is shown AS when it's browsed under a DIFFERENT
+  // region's chip than its own — name, sprite, types and tag all come from
+  // it, not the base (user-directed 2026-09-11). Null for the chip's own
+  // natives, for "all", and for anything with no matching regional forme.
+  // Standalone dexes are excluded deliberately: nothing has p.region ===
+  // "hisui"/"orre", so without this guard every Hisui-roster species with a
+  // Hisuian forme would substitute — and a forme card drops cardTag()'s H###
+  // badge for an ftag. Out of scope until asked for.
+  function guestForme(p) {
+    if (!p || region === "all" || region === "hisui" || region === "orre") return null;
+    if (p.region === region) return null;
+    return regionalFormes(p.id, region)[0] || null;
   }
 
   function matchesQuery(p, q) {
@@ -295,7 +327,10 @@
   function gridEntries() {
     var base = baseList();
     var q = query.trim().toLowerCase();
-    if (!q) return base.map(function (p) { return { p: p }; });
+    if (!q) return base.map(function (p) {
+      var g = guestForme(p);
+      return g ? { p: p, forme: g } : { p: p };
+    });
     var out = [];
     base.forEach(function (p) {
       var self = matchesQuery(p, q);
@@ -306,6 +341,21 @@
       megaGmaxFormes(p).forEach(function (f) {
         if (byName || f.name.toLowerCase().indexOf(q) >= 0) out.push({ p: p, forme: f });
       });
+      // Regional-variant formes (Alolan/Galarian/Hisuian/Paldean, etc.) — the
+      // same dual-display mobile already ships (SCOPE.md 2026-09-06,
+      // src/app.js's regionalFormes()/renderDexList()), never ported to
+      // desktop's own search until now. Unlike the Mega/Gmax block above, this
+      // DOES cascade on a type/number match (`self`), not name-only — that's
+      // mobile's existing, deliberate rule for this specific feature, ported
+      // as-is. recolorOnly species are excluded, same as mobile.
+      var altData = ALT_FORMS[p.id];
+      if (altData && !altData.recolorOnly && altData.formes) {
+        altData.formes.forEach(function (f) {
+          if (f.isMega || f.isGmax) return;
+          if (REGION_IDS.indexOf(f.key.split("-")[0]) === -1) return;
+          if (self || f.name.toLowerCase().indexOf(q) >= 0) out.push({ p: p, forme: f });
+        });
+      }
     });
     return out;
   }
@@ -1153,9 +1203,18 @@
   // 222, 264, 550) would show no Evolution card at all. Fall back to the forme
   // edges when the base has none — general rule, not a per-species case. The
   // 10 species that keep some base edge stay strict, as before.
+  // 0.4.48: that fallback is now forme-aware. Unconditionally surfacing every
+  // forme route made evoStageForme()'s source-side swap fire on the VIEWED
+  // species' own node, so base Linoone/Mr. Mime drew Galarian art and name
+  // under a base-form header. Only the forme actually on screen contributes;
+  // the base view shows its own art and no onward arrow (the card disappears
+  // entirely where there is no other relationship — e.g. base Farfetch'd).
   function evoEdgesFor(id) {
     var base = ((EVOLUTIONS[id] || {}).evolvesTo) || [];
-    if (id === selectedId) return base.length ? base : formeEvoEdges(id);
+    if (id === selectedId) {
+      if (base.length) return base;
+      return formeView ? formeEvoEdges(id).filter(function (e) { return e.fromFormeKey === formeView; }) : [];
+    }
     var seen = base.map(function (e) { return e.id; });
     var extra = formeEvoEdges(id).filter(function (e) {
       if (seen.indexOf(e.id) !== -1) return false;
@@ -1814,12 +1873,14 @@
     return '<div class="formes">' + bubbles.join("") + "</div>" + note;
   }
 
-  // The three cards, in the order the stub they replace named them. `wrap` is
+  // The two cards, in the order the stub they replace named them. `wrap` is
   // the pane's own card shell; a body of "" drops its card entirely.
+  // 0.4.48 (user-directed): Alt formes left this shared pair and is now emitted
+  // by each caller itself — the document view puts it in column 2 under Data,
+  // the compact pane keeps it last, exactly where it has always been.
   function detailExtras(base, wrap) {
     return wrap("Learnable moves", movesBody(base)) +
-      wrap("Found in", foundInBody(base)) +
-      wrap("Alt formes", altFormesBody(base));
+      wrap("Found in", foundInBody(base));
   }
   function sectionWrap(title, body) {
     return body ? "<section><h3>" + title + "</h3>" + body + "</section>" : "";
@@ -1862,6 +1923,7 @@
       (evo ? '<section class="evosection"><h3>Evolution</h3>' + evo + "</section>" : "") +
       (formes ? "<section><h3>" + megaGmaxTitle(base) + "</h3>" + formes + "</section>" : "") +
       detailExtras(base, sectionWrap) +
+      sectionWrap("Alt formes", altFormesBody(base)) +
       "</div>";
   }
 
@@ -1912,15 +1974,22 @@
     var evo = evoTreeHtml(base);
     var list = currentList();
     var i = list.indexOf(base);
-    var prev = (list[i - 1] || base).id, next = (list[i + 1] || base).id;
+    // Same guest-forme carry-through as the grid and keyboard nav: stepping
+    // onto a species that the current chip shows as a regional variant opens
+    // that variant, not its base.
+    var prevMon = list[i - 1] || base, nextMon = list[i + 1] || base;
+    var prevForme = guestForme(prevMon), nextForme = guestForme(nextMon);
+    var prev = prevMon.id, next = nextMon.id;
 
     return '<div class="dhead">' + spriteBay(p, base, forme) +
       '<div class="dheadmain"><div class="id">#' + pad(base.id) + " · " + esc(base.region) +
       (p.category ? " · " + esc(p.category) : "") + "</div><h2>" + esc(p.name) + "</h2>" +
       typePills(p.types) + (p.description ? '<p class="desc">' + esc(p.description) + "</p>" : "") + "</div>" +
       '<div class="nav2">' +
-      '<button class="iconbtn" data-id="' + prev + '" title="Previous (←)">◀</button>' +
-      '<button class="iconbtn" data-id="' + next + '" title="Next (→)">▶</button>' +
+      '<button class="iconbtn" data-id="' + prev + '"' +
+        (prevForme ? ' data-forme="' + esc(prevForme.key) + '"' : "") + ' title="Previous (←)">◀</button>' +
+      '<button class="iconbtn" data-id="' + next + '"' +
+        (nextForme ? ' data-forme="' + esc(nextForme.key) + '"' : "") + ' title="Next (→)">▶</button>' +
       '<button class="iconbtn" data-expand title="Back to three-pane (Esc)">⇥ Collapse</button>' +
       "</div>" + dexNumbersHtml(base) + "</div>" +
       // .cols is a flex row of [.colgroup, column 3]; .colgroup wraps the
@@ -1952,6 +2021,9 @@
       dataBox(p) +
       // 0.4.41 (user-requested): the Mega/Gmax card sits under Data in column 2
       // instead of the full-width band it was under both columns.
+      // 0.4.48 (user-requested): Alt formes moved out of column 3 to sit between
+      // Data and Mega/Gmax here. boxWrap drops it when the species has none.
+      boxWrap("Alt formes", altFormesBody(base)) +
       (formes ? '<div class="box"><h3>' + megaGmaxTitle(base) + "</h3>" + formes + "</div>" : "") +
       "</div>" +
       "</div>" +
@@ -2107,7 +2179,17 @@
   function clampSelection() {
     var list = currentList();
     if (!list.length) return;
-    if (!list.some(function (p) { return p.id === selectedId; })) { selectedId = list[0].id; formeView = null; }
+    if (!list.some(function (p) { return p.id === selectedId; })) {
+      selectedId = list[0].id;
+      // Re-landing picks the species itself, so it owns the forme too: if the
+      // new chip shows it as a guest regional variant, open that variant —
+      // otherwise the grid card and the detail pane disagree and nothing
+      // highlights (Galar's list[0] is #52 Meowth, a guest). Unlike select(),
+      // there's no caller here whose explicit "go back to base" this could
+      // override.
+      var g = guestForme(list[0]);
+      formeView = g ? g.key : null;
+    }
   }
 
   // 0.4.12: back out of a live search, landing on exactly the state a fresh
@@ -2312,7 +2394,10 @@
     var step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols }[e.key];
     if (step == null) return;
     e.preventDefault();
-    select(ids[Math.min(ids.length - 1, Math.max(0, i + step))]);
+    // Land on the guest forme the grid card actually showed, not the base.
+    var landId = ids[Math.min(ids.length - 1, Math.max(0, i + step))];
+    var landForme = guestForme(byId(landId));
+    select(landId, landForme ? landForme.key : null);
   });
 
   // Plain wheel over the map viewport zooms at the cursor (0.4.20 — no Ctrl:
