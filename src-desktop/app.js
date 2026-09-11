@@ -23,6 +23,7 @@
   var DATA_BASE = "data/";
   var SPRITE = DATA_BASE + "sprites/pokemon/";
   var ITEM_SPRITE = DATA_BASE + "sprites/items/";
+  var TRAINER_SPRITE = DATA_BASE + "sprites/trainers/DP-HGSS/";
   var MISSING_SPRITE = SPRITE + "0.png";
 
   // localStorage keys. The five mirrored settings deliberately reuse the
@@ -771,8 +772,68 @@
   function prizeText(row) {
     return "₱" + row.prize + (row.prizeNote ? " (" + row.prizeNote + ")" : "");
   }
-  // ponytail: a generic person icon, not trainer-class artwork — deliberate for
-  // this pass (user-confirmed), swap the <span>'s contents when art is sourced.
+  // Trainer-class artwork (0.4.47), from the DP/HGSS sprite set the user
+  // sourced. A flat map, not a slugifier: the files on disk have inconsistent
+  // casing/underscore conventions ("Beauty.png" vs "black_belt.png" vs
+  // "dp_ace_trainer_m.png") that no derivation rule reproduces, so exception
+  // handling around a slugifier would be longer AND less correct than this.
+  // Keys are the exact trainerClass strings in AREA_TRAINERS (gender symbols
+  // and diacritics included) — the 33 that Kanto's canonical FRLG rows use.
+  // ponytail: "Cooltrainer" maps to the male art for both genders — Kanto has
+  // exactly one female Cooltrainer (Mary); add a per-name override only if a
+  // later region makes the mismatch actually visible.
+  var TRAINER_CLASS_SPRITE = {
+    "Beauty": "Beauty.png",
+    "Biker": "Biker.png",
+    "Bird Keeper": "Bird_Keeper_m.png",
+    "Black Belt": "black_belt.png",
+    "Bug Catcher": "bug_catcher.png",
+    "Burglar": "burglar.png",
+    "Camper": "camper.png",
+    "Channeler": "channeler.png",
+    "Cooltrainer": "dp_ace_trainer_m.png",
+    "Crush Kin": "crush_kin.png",
+    "Cue Ball": "cue_ball.png",
+    "Engineer": "engineer.png",
+    "Fisherman": "fisherman.png",
+    "Gamer": "gamer.png",
+    "Gentleman": "gentleman.png",
+    "Hiker": "hiker.png",
+    "Juggler": "juggler.png",
+    "Lass": "lass.png",
+    "Picnicker": "picnicker.png",
+    "PokéManiac": "poke_maniac.png",
+    "Psychic": "psychic_m.png",
+    "Rocker": "rocker.png",
+    "Sailor": "sailor.png",
+    "Sis and Bro": "sis_and_bro.png",
+    "Super Nerd": "super_nerd.png",
+    "Swimmer": "swimmer_m.png",
+    "Swimmer♀": "swimmer_f.png",
+    "Swimmer♂": "swimmer_m.png",
+    "Tamer": "tamer.png",
+    "Team Rocket Grunt": "rocket_grunt_m.png",
+    "Twins": "twins.png",
+    "Young Couple": "young_couple.png",
+    "Youngster": "youngster.png"
+  };
+  // A leader's trainerClass is just "Gym Leader" for all eight, so their art
+  // keys off the name instead.
+  var LEADER_SPRITE = {
+    "Brock": "brock.png",
+    "Misty": "misty.png",
+    "Lt. Surge": "lt_surge.png",
+    "Erika": "erika.png",
+    "Koga": "koga.png",
+    "Sabrina": "sabrina.png",
+    "Blaine": "blaine.png",
+    "Giovanni": "giovanni.png"
+  };
+  // Undefined for anything the maps don't know (a future region's class), which
+  // falls back to the generic person icon rather than a broken image.
+  function trainerSpriteFile(row) {
+    return row.role === "leader" ? LEADER_SPRITE[row.name] : TRAINER_CLASS_SPRITE[row.trainerClass];
+  }
   function trainerOverviewHtml(g, self) {
     var tier = tierText(g.row);
     var chips = g.rows.map(function (r) {
@@ -780,7 +841,9 @@
         "Lv " + esc(r.level) + " " + rowPills(r),
         popRef(r.species, trainerMonHtml(r, self)), "mon");
     }).join("");
-    return '<div class="trainer-head"><span class="trainer-portrait">' + iconSvg("person") + "</span>" +
+    var art = trainerSpriteFile(g.row);
+    return '<div class="trainer-head"><span class="trainer-portrait">' +
+      (art ? imgTag(TRAINER_SPRITE + art, "trainer-art") : iconSvg("person")) + "</span>" +
       '<div class="trainer-meta"><div class="trainer-title-row"><b>' + esc(trainerTitle(g.row)) + "</b>" +
       '<span class="prize">' + esc(prizeText(g.row)) + "</span></div>" +
       (tier ? '<div class="enc-line">' + esc(tier) + "</div>" : "") + "</div></div>" +

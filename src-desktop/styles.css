@@ -376,8 +376,7 @@ body {
    as PRESENTATION attributes, which a CSS rule on the element itself outranks —
    so lighting one up needs no change to the generated map at all. A route is a
    stroked path (an accent line traced over the drawn route); a city/landmark is
-   a rect (a tinted panel with a thin outline). Persistent selection only —
-   hover highlighting is a separate deferred design item. The outline pulses
+   a rect (a tinted panel with a thin outline). The outline pulses
    (0.4.40) via stroke-opacity only — stroke-width stays per-shape (6 path /
    4 rect), so the keyframes can be shared by both without flattening them. */
 @keyframes sel-area-pulse { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: .25; } }
@@ -386,6 +385,21 @@ body {
   animation: sel-area-pulse 3s ease-in-out infinite;
 }
 .map-svg rect[data-area].sel-area { fill: rgb(var(--accent-rgb) / .3); stroke-width: 4; }
+/* Hover preview (0.4.46) — the same accent family as .sel-area above, deliberately
+   weaker: no pulse, thinner stroke at partial opacity, a much lighter rect tint, so
+   a hovered area reads as "about to select" rather than "selected". :not(.sel-area)
+   keeps the two from stacking on the current selection; the .map-viewport:not(.dragging)
+   scope stops a click-drag pan from strobing every area the cursor crosses. Visual
+   only — no tooltip/label, 0.4.31 removed the SVG's native <title> on purpose.
+   cursor:pointer rides the same non-dragging scope so .dragging's grabbing cursor
+   still wins mid-pan (a rule on the child otherwise beats the inherited one). */
+.map-viewport:not(.dragging) .map-svg [data-area] { cursor: pointer; }
+.map-viewport:not(.dragging) .map-svg [data-area]:not(.sel-area):hover {
+  stroke: var(--accent); stroke-width: 4; stroke-opacity: .45; stroke-linecap: round;
+}
+.map-viewport:not(.dragging) .map-svg rect[data-area]:not(.sel-area):hover {
+  fill: rgb(var(--accent-rgb) / .13); stroke-width: 2;
+}
 /* Replaces the old object-fit:contain, which only ever meant anything while
    .map-svg was an <img>. Forcing the inlined <svg>'s box to 100%/100% overrides
    the width/height presentation attributes baked into the file (0.4.26), and
@@ -784,15 +798,19 @@ button.chip:hover { border-color: var(--accent); }
 .chip.leader .chip-top { background: rgb(255 203 5 / .12); }
 .chip.leader .chip-top b { color: var(--accent-warm); }
 
-/* Trainer popup (0.4.45). The overview's header: a generic person icon in a
-   bordered box beside the trainer's own line — trainer-class artwork is
-   deferred, so the icon is the intended art for now, not a grey placeholder. */
+/* Trainer popup (0.4.45). The overview's header: the trainer's DP/HGSS class
+   art (0.4.47) in a bordered box beside their own line, falling back to the
+   generic person icon for a class the sprite map doesn't cover. */
 .trainer-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .trainer-portrait {
   flex: none; display: grid; place-items: center;
   width: 52px; height: 52px;
   border: 1px solid #000; border-radius: 10px;
   background: var(--screen-bg); color: var(--accent);
+}
+.trainer-portrait .trainer-art {
+  width: 100%; height: 100%; object-fit: contain;
+  image-rendering: var(--sprite-rendering);
 }
 .trainer-portrait .poi-icon { display: block; margin: 0; vertical-align: 0; }
 .trainer-portrait .poi-icon > svg { width: 32px; height: 32px; }
