@@ -319,7 +319,15 @@ var EVOLUTIONS = {
   260: { evolvesTo: [] },
   261: { evolvesTo: [{ id: 262, method: "level", level: 18 }] },
   262: { evolvesTo: [] },
-  263: { evolvesTo: [{ id: 264, method: "level", level: 20 }] },
+  // Two edges onto the SAME target, told apart only by the edge's own `forme`
+  // — the Kubfu/Urshifu shape (891). Base Linoone is a dead end; only Galarian
+  // Linoone continues (to Obstagoon, via ALT_FORMS[264].formes[0].evolvesTo),
+  // so the fork is which regional Zigzagoon you actually have, not a choice
+  // made at evolution time. Both edges therefore carry the identical trigger.
+  263: { evolvesTo: [
+    { id: 264, method: "level", level: 20 },
+    { id: 264, method: "level", level: 20, forme: "galar" }
+  ] },
   264: { evolvesTo: [] },
   265: { evolvesTo: [{ id: 266, method: "level", level: 7 }, { id: 268, method: "level", level: 7 }], note: "Which one it evolves into is decided by a hidden value the player can't see or influence." },
   266: { evolvesTo: [{ id: 267, method: "level", level: 10 }] },
@@ -495,7 +503,13 @@ var EVOLUTIONS = {
   436: { evolvesTo: [{ id: 437, method: "level", level: 33 }] },
   437: { evolvesTo: [] },
   438: { evolvesTo: [{ id: 185, method: "stone", item: "tm-normal", move: "Mimic" }] },
-  439: { evolvesTo: [{ id: 122, method: "stone", item: "tm-normal", move: "Mimic" }] },
+  // Same two-edges-one-target shape as 263 above (and 891): base Mr. Mime is a
+  // dead end, only Galarian Mr. Mime continues (to Mr. Rime, via
+  // ALT_FORMS[122].formes[0].evolvesTo).
+  439: { evolvesTo: [
+    { id: 122, method: "stone", item: "tm-normal", move: "Mimic" },
+    { id: 122, method: "stone", item: "tm-normal", move: "Mimic", forme: "galar" }
+  ] },
   440: { evolvesTo: [{ id: 113, method: "held", item: "oval-stone", timeOfDay: "day" }] },
   441: { evolvesTo: [] },
   442: { evolvesTo: [] },

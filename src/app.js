@@ -1708,21 +1708,43 @@
   //     Sirfetch'd's own page finds Farfetch'd as its root and then no way
   //     back. Deduping on target id keeps a same-target forme route from
   //     adding a second, duplicate branch.
-  function evoEdgesFor(id) {
+  //
+  // 0.4.52: `viaForme` — the forme context of the edge that reached THIS
+  // occurrence of `id` — is tri-state, the same contract src-desktop/app.js's
+  // evoEdgesFor documents at length:
+  //   undefined  no incoming edge (the chain's root): no context to filter by,
+  //              so every forme-only route is offered, exactly as before;
+  //   null       reached by a plain, untagged edge — that occurrence is the
+  //              BASE form and owns no forme-only continuation;
+  //   "<key>"    reached by an edge tagged for that forme — only that forme's
+  //              own continuation belongs to it.
+  // It exists because EVOLUTIONS can put two sibling edges on ONE target, told
+  // apart only by the edge's own `forme` (the Kubfu/Urshifu shape, and as of
+  // 0.4.52 Zigzagoon->Linoone and Mime Jr.->Mr. Mime). Both occurrences are the
+  // same id, so activeFormeKey alone cannot say which row is the base one and
+  // which continues — without this, both rows render identically.
+  function edgeForme(via) {
+    return via ? (via.forme || via.fromFormeKey || null) : undefined;
+  }
+  function evoEdgesFor(id, viaForme) {
     var node = EVOLUTIONS[id];
     var base = node ? node.evolvesTo : [];
+    // An incoming edge's own context beats activeFormeKey; at the root (no
+    // incoming edge) there is none, so the viewed forme still decides.
+    var key = viaForme === undefined ? activeFormeKey : viaForme;
     if (id === detailEntryId) {
-      var forme = findForme(id, activeFormeKey);
+      var forme = findForme(id, key);
       return forme && forme.evolvesTo ? forme.evolvesTo : base;
     }
-    var sharedForme = activeFormeKey ? findForme(id, activeFormeKey) : null;
+    var sharedForme = key ? findForme(id, key) : null;
     var sharedEdges = sharedForme && sharedForme.evolvesTo ? sharedForme.evolvesTo.map(function (e) {
-      return Object.assign({}, e, { fromFormeKey: activeFormeKey });
+      return Object.assign({}, e, { fromFormeKey: key });
     }) : [];
     var sharedIds = sharedEdges.map(function (e) { return e.id; });
     var merged = sharedEdges.concat(base.filter(function (b) { return sharedIds.indexOf(b.id) === -1; }));
     var seen = merged.map(function (e) { return e.id; });
     var extra = formeEvoEdges(id).filter(function (e) {
+      if (viaForme !== undefined && e.fromFormeKey !== viaForme) return false;
       if (seen.indexOf(e.id) !== -1) return false;
       seen.push(e.id);
       return true;
@@ -1784,7 +1806,7 @@
     var paths = [];
     function walk(id, via, path) {
       var stepPath = path.concat([{ id: id, via: via }]);
-      var children = evoEdgesFor(id);
+      var children = evoEdgesFor(id, edgeForme(via));
       if (children.length === 0) { paths.push(stepPath); return; }
       children.forEach(function (edge) {
         // The whole edge is the `via` — evoArrowIconsHtml reads its optional

@@ -368,7 +368,17 @@
     return "";
   }
 
-  function gridSpriteUrl(id) { return useShinyGrids ? shinyUrl(id) : spriteUrl(id); }
+  // Sprite-only swap under the Hisui chip: a species with its own Hisuian forme
+  // shows that forme's art, but keeps its base name and the purple H### badge
+  // (cardTag). Mirrors mobile's regionalCellSprite(); deliberately NOT the full
+  // guestForme() substitution the mainline region chips do.
+  function gridSpriteUrl(id) {
+    if (region === "hisui") {
+      var f = regionalFormes(id, "hisui")[0];
+      if (f) return altFormeUrl(f.sprite, useShinyGrids);
+    }
+    return useShinyGrids ? shinyUrl(id) : spriteUrl(id);
+  }
 
   // --------------------------------------------------------- center pane
 
@@ -1209,14 +1219,40 @@
   // under a base-form header. Only the forme actually on screen contributes;
   // the base view shows its own art and no onward arrow (the card disappears
   // entirely where there is no other relationship — e.g. base Farfetch'd).
-  function evoEdgesFor(id) {
+  //
+  // 0.4.52: `viaForme` is the forme context of the edge that reached THIS
+  // occurrence of `id`, and it is deliberately TRI-state — a node reached twice
+  // by two sibling edges has to resolve its own continuation differently per
+  // occurrence, which a bare "which forme is on screen" flag cannot express:
+  //   undefined — no incoming edge at all (the tree's root). No context to
+  //               filter by, so every forme-only route is offered, exactly as
+  //               before; this is what keeps Sirfetch'd/Overqwil/Cursola/
+  //               Basculegion reachable from their own pages, where the root
+  //               IS the forme-only evolver.
+  //   null      — reached by a plain, untagged edge. That occurrence is the
+  //               BASE form, so no forme-only continuation belongs to it
+  //               (base Mr. Mime and base Linoone are dead ends).
+  //   "<key>"   — reached by an edge tagged for that forme, so only that
+  //               forme's own continuation belongs to it (Galarian Mr. Mime ->
+  //               Mr. Rime, Galarian Linoone -> Obstagoon).
+  // Use edgeForme() below rather than reading `.forme`/`.fromFormeKey` at a
+  // call site, so every caller produces the same tri-state.
+  function edgeForme(via) {
+    return via ? (via.forme || via.fromFormeKey || null) : undefined;
+  }
+  function evoEdgesFor(id, viaForme) {
     var base = ((EVOLUTIONS[id] || {}).evolvesTo) || [];
     if (id === selectedId) {
       if (base.length) return base;
-      return formeView ? formeEvoEdges(id).filter(function (e) { return e.fromFormeKey === formeView; }) : [];
+      // An incoming edge's own context beats formeView: on Galarian Mr. Mime's
+      // page BOTH sibling occurrences of 122 are `selectedId`, and only the one
+      // the Galar edge reached may continue to Mr. Rime.
+      var key = viaForme === undefined ? formeView : viaForme;
+      return key ? formeEvoEdges(id).filter(function (e) { return e.fromFormeKey === key; }) : [];
     }
     var seen = base.map(function (e) { return e.id; });
     var extra = formeEvoEdges(id).filter(function (e) {
+      if (viaForme !== undefined && e.fromFormeKey !== viaForme) return false;
       if (seen.indexOf(e.id) !== -1) return false;
       seen.push(e.id);
       return true;
@@ -1229,12 +1265,21 @@
   // only remaining need is a flat edge list for the bottom notes. The `seen`
   // guard matters for a chain whose siblings converge on one id (Urshifu's two
   // scrolls both land on 892) — walking it twice would duplicate its notes.
+  // 0.4.52: keyed by id + forme context, not by bare id, because evoEdgesFor()
+  // now answers differently per occurrence — keying on the id alone let
+  // whichever sibling was walked first claim it and silently dropped the
+  // other's onward edges (and their note/noteLong/gender/stat lines) from the
+  // notes list. Same walk order as the tree's, via the same edgeForme().
   function evoAllEdges(rootId) {
     var out = [], seen = {};
-    (function walk(id) {
-      if (seen[id]) return;
-      seen[id] = 1;
-      evoEdgesFor(id).forEach(function (e) { out.push({ from: id, via: e }); walk(e.id); });
+    (function walk(id, viaForme) {
+      var k = id + "|" + (viaForme || "");
+      if (seen[k]) return;
+      seen[k] = 1;
+      evoEdgesFor(id, viaForme).forEach(function (e) {
+        out.push({ from: id, via: e });
+        walk(e.id, edgeForme(e));
+      });
     })(rootId);
     return out;
   }
@@ -1393,8 +1438,12 @@
       (via ? '<div class="evo-drop"><i></i>' +
         (label || icons ? '<span class="evo-lv">' + icons + esc(label) + "</span>" : "") +
         '<i class="arr"></i></div>' : "") +
+      // data-forme (0.4.52) so a node DRAWN as a forme opens that forme's own
+      // screen, not the base species'. The shared [data-id] click dispatcher
+      // already reads it; only this emitter was missing it. A node with no
+      // forme emits no attribute and behaves exactly as before.
       '<button type="button" class="evo-slot' + (id === curId ? " cur" : "") +
-      '" data-id="' + id + '">' + imgTag(src, "") +
+      '" data-id="' + id + '"' + (forme ? ' data-forme="' + esc(forme.key) + '"' : "") + ">" + imgTag(src, "") +
       '<span class="evo-name">' + esc(name) + "</span></button>" +
       (edges.length ? '<div class="evo-stem"></div>' + evoFanHtml(edges, curId, counts) : "") +
       "</div>";
@@ -1447,7 +1496,7 @@
   // Glalie/Froslass still merges: both copies would draw the same sprite).
   function evoSubtreeHtml(id, via, curId, prefersEdge) {
     var groups = [], keys = [];
-    evoEdgesFor(id).forEach(function (e) {
+    evoEdgesFor(id, edgeForme(via)).forEach(function (e) {
       var gendered = e.gender && evoGenderSpriteUrl(id, e.gender);
       var k = (e.fromFormeKey || "") + "|" + (gendered ? e.gender : "");
       var at = keys.indexOf(k);
